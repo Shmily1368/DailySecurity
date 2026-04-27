@@ -1,0 +1,485 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://cyber-daily-radar/schemas/digest_item.schema.json",
+    "title": "DigestItem",
+    "description": "前端消费的最终条目结构。外层 DailyDigest 包裹 items 数组。",
+    "type": "object",
+    "additionalProperties": false,
+    "$defs": {
+        "Severity": {
+            "type": "string",
+            "enum": [
+                "critical",
+                "high",
+                "medium",
+                "low",
+                "info"
+            ]
+        },
+        "Category": {
+            "type": "string",
+            "enum": [
+                "vuln",
+                "exploited",
+                "research",
+                "advisory",
+                "threat-intel",
+                "detection"
+            ]
+        },
+        "RiskSignal": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cvss_score": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 10
+                },
+                "cvss_vector": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "epss_score": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "epss_percentile": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "kev_status": {
+                    "type": "string",
+                    "enum": [
+                        "listed",
+                        "not_listed",
+                        "unknown"
+                    ]
+                },
+                "kev_listed": {
+                    "type": "boolean"
+                },
+                "kev_date_added": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                },
+                "due_date": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+                },
+                "known_ransomware": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "known_exploited": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "exploit_in_the_wild": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "has_public_exploit": {
+                    "type": "boolean",
+                    "default": false
+                },
+                "exploit_maturity": {
+                    "type": "string",
+                    "enum": [
+                        "unreported",
+                        "poc",
+                        "functional",
+                        "weaponized",
+                        "in_the_wild"
+                    ],
+                    "default": "unreported"
+                },
+                "exploit_references": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/ExploitRef"
+                    },
+                    "default": []
+                }
+            }
+        },
+        "ExploitRef": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "url",
+                "source"
+            ],
+            "properties": {
+                "url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "source": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "LlmSummary": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "summary_zh",
+                "why_it_matters_zh",
+                "novelty_score",
+                "actionability_score",
+                "confidence"
+            ],
+            "properties": {
+                "summary_zh": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "why_it_matters_zh": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "impact_zh": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "detection_signals_zh": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "defense_advice_zh": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "recommended_action_zh": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "category": {
+                    "$ref": "#/$defs/Category"
+                },
+                "severity_hint": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "novelty_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "actionability_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "confidence_label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "enum": [
+                        "abstract_only",
+                        "metadata_only",
+                        "with_references",
+                        "full_text",
+                        null
+                    ]
+                },
+                "refusal": {
+                    "type": "boolean"
+                },
+                "refusal_reason": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "prompt_version": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "DigestItem": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "id",
+                "type",
+                "title",
+                "source",
+                "source_name",
+                "source_url",
+                "published_at",
+                "severity",
+                "risk_score",
+                "recommendation_score",
+                "llm_summary",
+                "why_it_matters",
+                "confidence"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "type": {
+                    "type": "string",
+                    "enum": [
+                        "paper",
+                        "cve",
+                        "kev",
+                        "advisory",
+                        "threat_report",
+                        "detection_rule"
+                    ]
+                },
+                "title": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "summary": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source_name": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source_url": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "published_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "updated_at": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "format": "date-time"
+                },
+                "cves": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "vendors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "products": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "topics": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "severity": {
+                    "$ref": "#/$defs/Severity"
+                },
+                "risk": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/$defs/RiskSignal"
+                        }
+                    ]
+                },
+                "risk_score": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "recommendation_score": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "llm_summary": {
+                    "$ref": "#/$defs/LlmSummary"
+                },
+                "why_it_matters": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "recommended_action": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "confidence": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "shown_in_sections": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "rank_reasons": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "HeroStats": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cve_count": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "kev_added": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "paper_count": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "advisory_count": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "max_epss": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "Hero": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "one_liner_zh",
+                "stats"
+            ],
+            "properties": {
+                "one_liner_zh": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "stats": {
+                    "$ref": "#/$defs/HeroStats"
+                }
+            }
+        }
+    },
+    "required": [
+        "schema_version",
+        "date",
+        "generated_at",
+        "hero",
+        "items"
+    ],
+    "properties": {
+        "schema_version": {
+            "type": "string"
+        },
+        "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "generated_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "is_mock": {
+            "type": "boolean"
+        },
+        "hero": {
+            "$ref": "#/$defs/Hero"
+        },
+        "sections": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "array",
+                "items": {
+                    "type": "string"
+                }
+            }
+        },
+        "items": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/DigestItem"
+            }
+        }
+    }
+}

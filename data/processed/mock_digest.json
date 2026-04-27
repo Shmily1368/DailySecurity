@@ -1,0 +1,413 @@
+{
+    "schema_version": "0.2.0",
+    "date": "2026-04-27",
+    "generated_at": "2026-04-27T23:10:00Z",
+    "is_mock": true,
+    "hero": {
+        "one_liner_zh": "今日 KEV 新增 1 项在野利用漏洞, Microsoft 发布月度补丁, arXiv 出现 1 篇值得关注的 Agent 安全研究。",
+        "stats": {
+            "cve_count": 4,
+            "kev_added": 1,
+            "paper_count": 1,
+            "advisory_count": 2,
+            "max_epss": 0.93
+        }
+    },
+    "sections": {
+        "must_read": [
+            "kev:CVE-2026-1001",
+            "vendor:msrc-2026-apr",
+            "arxiv:2604.01234"
+        ],
+        "high_risk": [
+            "kev:CVE-2026-1001",
+            "vendor:msrc-2026-apr",
+            "nvd:CVE-2026-1002"
+        ],
+        "research": [
+            "arxiv:2604.01234"
+        ],
+        "supply_chain": [
+            "ghsa:GHSA-abcd-efgh-ijkl",
+            "nvd:CVE-2026-1002"
+        ]
+    },
+    "items": [
+        {
+            "id": "kev:CVE-2026-1001",
+            "type": "kev",
+            "title": "Example Vendor Edge Appliance Remote Code Execution (CVE-2026-1001)",
+            "summary": "CISA added CVE-2026-1001 to the Known Exploited Vulnerabilities catalog. Exploitation is observed against internet-facing management interfaces.",
+            "source": "kev",
+            "source_name": "CISA KEV",
+            "source_url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+            "published_at": "2026-04-27T10:00:00Z",
+            "updated_at": null,
+            "cves": [
+                "CVE-2026-1001"
+            ],
+            "vendors": [
+                "ExampleVendor"
+            ],
+            "products": [
+                "Edge Appliance"
+            ],
+            "topics": [
+                "rce",
+                "edge-device",
+                "kev"
+            ],
+            "severity": "critical",
+            "risk": {
+                "cvss_score": 9.8,
+                "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+                "epss_score": 0.93,
+                "epss_percentile": 0.995,
+                "kev_listed": true,
+                "kev_date_added": "2026-04-27",
+                "known_ransomware": false,
+                "exploit_in_the_wild": true,
+                "has_public_exploit": true,
+                "exploit_maturity": "in_the_wild",
+                "exploit_references": [
+                    {
+                        "url": "https://www.cisa.gov/known-exploited-vulnerabilities-catalog",
+                        "source": "cisa",
+                        "label": "CISA KEV Catalog"
+                    }
+                ]
+            },
+            "risk_score": 9.6,
+            "recommendation_score": 9.2,
+            "llm_summary": {
+                "summary_zh": "[MOCK] 某边界网关设备存在未授权 RCE, 已被 CISA 列入 KEV 并观察到在野利用。",
+                "why_it_matters_zh": "该漏洞已在野利用, 影响广泛部署的边界设备, 今日必须排查暴露面并升级。",
+                "impact_zh": "影响 v4.2.1 之前版本, 暴露管理接口的设备风险最高。",
+                "detection_signals_zh": [
+                    "管理接口异常外联",
+                    "来自未知 IP 的未认证请求"
+                ],
+                "defense_advice_zh": [
+                    "立即升级到官方补丁版本",
+                    "关闭公网暴露的管理端口",
+                    "排查异常管理员账户"
+                ],
+                "recommended_action_zh": "今天内完成资产排查与补丁升级。",
+                "tags": [
+                    "rce",
+                    "edge-device",
+                    "kev"
+                ],
+                "category": "exploited",
+                "severity_hint": "critical",
+                "novelty_score": 0.6,
+                "actionability_score": 0.95,
+                "confidence": 0.9,
+                "refusal": false,
+                "refusal_reason": null,
+                "prompt_version": "mock-v1"
+            },
+            "why_it_matters": "该漏洞已在野利用, 影响广泛部署的边界设备, 今日必须排查暴露面并升级。",
+            "recommended_action": "今天内完成资产排查与补丁升级。",
+            "confidence": 0.9,
+            "shown_in_sections": [
+                "must_read",
+                "high_risk"
+            ],
+            "rank_reasons": [
+                "KEV 新增",
+                "EPSS=0.93",
+                "CVSS=9.8"
+            ]
+        },
+        {
+            "id": "vendor:msrc-2026-apr",
+            "type": "advisory",
+            "title": "Microsoft April 2026 Security Update Summary",
+            "summary": "Microsoft released the April 2026 security update covering multiple products including Windows, Office, and Azure. Critical items include an authentication spoofing issue in Identity service.",
+            "source": "vendor",
+            "source_name": "Microsoft Security Response Center",
+            "source_url": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-2000",
+            "published_at": "2026-04-27T17:00:00Z",
+            "updated_at": null,
+            "cves": [
+                "CVE-2026-2000",
+                "CVE-2026-2001"
+            ],
+            "vendors": [
+                "Microsoft"
+            ],
+            "products": [
+                "Windows",
+                "Office",
+                "Azure Identity"
+            ],
+            "topics": [
+                "patch-tuesday",
+                "microsoft"
+            ],
+            "severity": "high",
+            "risk": {
+                "cvss_score": 9.0,
+                "cvss_vector": null,
+                "epss_score": 0.35,
+                "epss_percentile": 0.88,
+                "kev_listed": false,
+                "kev_date_added": null,
+                "known_ransomware": null,
+                "exploit_in_the_wild": false,
+                "has_public_exploit": true,
+                "exploit_maturity": "poc",
+                "exploit_references": [
+                    {
+                        "url": "https://msrc.microsoft.com/update-guide/",
+                        "source": "vendor",
+                        "label": "MSRC Advisory"
+                    }
+                ]
+            },
+            "risk_score": 8.4,
+            "recommendation_score": 7.5,
+            "llm_summary": {
+                "summary_zh": "[MOCK] 微软发布 2026 年 4 月累积安全更新, 包含一枚 Identity 服务的认证欺骗高危问题。",
+                "why_it_matters_zh": "覆盖 Windows / Office / Azure, 企业 IT 需要优先排期内网打补丁。",
+                "impact_zh": "影响面广, Azure Identity 为重点。",
+                "detection_signals_zh": [
+                    "身份服务异常登录审计事件"
+                ],
+                "defense_advice_zh": [
+                    "按照 MSRC 公告优先级打补丁",
+                    "关注 Azure 租户层相关告警"
+                ],
+                "recommended_action_zh": "本周内完成 MSRC 高危条目评估并安排补丁窗口。",
+                "tags": [
+                    "patch-tuesday",
+                    "microsoft",
+                    "identity"
+                ],
+                "category": "advisory",
+                "severity_hint": "high",
+                "novelty_score": 0.5,
+                "actionability_score": 0.85,
+                "confidence": 0.85,
+                "refusal": false,
+                "refusal_reason": null,
+                "prompt_version": "mock-v1"
+            },
+            "why_it_matters": "覆盖 Windows / Office / Azure, 企业 IT 需要优先排期内网打补丁。",
+            "recommended_action": "本周内完成 MSRC 高危条目评估并安排补丁窗口。",
+            "confidence": 0.85,
+            "shown_in_sections": [
+                "must_read",
+                "high_risk"
+            ],
+            "rank_reasons": [
+                "CVSS=9.0",
+                "影响面广"
+            ]
+        },
+        {
+            "id": "nvd:CVE-2026-1002",
+            "type": "cve",
+            "title": "Popular OSS Library Authentication Bypass (CVE-2026-1002)",
+            "summary": "An authentication bypass vulnerability exists in ExampleLib 1.x.",
+            "source": "nvd",
+            "source_name": "NVD",
+            "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-1002",
+            "published_at": "2026-04-27T08:30:00Z",
+            "updated_at": "2026-04-27T09:15:00Z",
+            "cves": [
+                "CVE-2026-1002"
+            ],
+            "vendors": [
+                "ExampleCorp"
+            ],
+            "products": [
+                "ExampleLib"
+            ],
+            "topics": [
+                "auth-bypass",
+                "supply-chain"
+            ],
+            "severity": "high",
+            "risk": {
+                "cvss_score": 8.1,
+                "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+                "epss_score": 0.42,
+                "epss_percentile": 0.91,
+                "kev_listed": false,
+                "kev_date_added": null,
+                "known_ransomware": null,
+                "exploit_in_the_wild": false
+            },
+            "risk_score": 7.2,
+            "recommendation_score": 6.7,
+            "llm_summary": {
+                "summary_zh": "[MOCK] 某流行开源库存在身份认证绕过, 使用默认配置的服务受影响。",
+                "why_it_matters_zh": "使用面极广, 建议今日内确认依赖版本并升级。",
+                "impact_zh": "影响 1.x 全系版本。",
+                "detection_signals_zh": [
+                    "登录日志中出现未授权但成功的请求"
+                ],
+                "defense_advice_zh": [
+                    "升级到 2.0.3",
+                    "加强登录审计"
+                ],
+                "recommended_action_zh": "盘点依赖并升级到 2.0.3+。",
+                "tags": [
+                    "auth-bypass",
+                    "supply-chain"
+                ],
+                "category": "vuln",
+                "severity_hint": "high",
+                "novelty_score": 0.55,
+                "actionability_score": 0.8,
+                "confidence": 0.8,
+                "refusal": false,
+                "refusal_reason": null,
+                "prompt_version": "mock-v1"
+            },
+            "why_it_matters": "使用面极广, 建议今日内确认依赖版本并升级。",
+            "recommended_action": "盘点依赖并升级到 2.0.3+。",
+            "confidence": 0.8,
+            "shown_in_sections": [
+                "high_risk",
+                "supply_chain"
+            ],
+            "rank_reasons": [
+                "CVSS=8.1",
+                "常用库"
+            ]
+        },
+        {
+            "id": "ghsa:GHSA-abcd-efgh-ijkl",
+            "type": "advisory",
+            "title": "Prototype Pollution in example-js",
+            "summary": "A prototype pollution vulnerability affects example-js < 3.5.0.",
+            "source": "ghsa",
+            "source_name": "GitHub Advisory",
+            "source_url": "https://github.com/advisories/GHSA-abcd-efgh-ijkl",
+            "published_at": "2026-04-27T12:00:00Z",
+            "updated_at": null,
+            "cves": [
+                "CVE-2026-1003"
+            ],
+            "vendors": [
+                "example-js"
+            ],
+            "products": [
+                "example-js"
+            ],
+            "topics": [
+                "prototype-pollution",
+                "javascript",
+                "supply-chain"
+            ],
+            "severity": "medium",
+            "risk": {
+                "cvss_score": 6.5,
+                "cvss_vector": null,
+                "epss_score": 0.12,
+                "epss_percentile": 0.72,
+                "kev_listed": false,
+                "kev_date_added": null,
+                "known_ransomware": null,
+                "exploit_in_the_wild": false
+            },
+            "risk_score": 5.5,
+            "recommendation_score": 4.9,
+            "llm_summary": {
+                "summary_zh": "[MOCK] example-js < 3.5.0 存在原型链污染, 依赖此库且合并不可信输入的项目需要关注。",
+                "why_it_matters_zh": "JavaScript 生态常见攻击面, 影响链路较深。",
+                "impact_zh": "所有依赖 example-js 且使用 deep merge 的项目。",
+                "detection_signals_zh": [
+                    "对象属性被意外覆盖的运行时异常"
+                ],
+                "defense_advice_zh": [
+                    "升级到 3.5.0+",
+                    "对用户输入做 key 白名单校验"
+                ],
+                "recommended_action_zh": "本周内升级依赖。",
+                "tags": [
+                    "prototype-pollution",
+                    "javascript"
+                ],
+                "category": "vuln",
+                "severity_hint": "medium",
+                "novelty_score": 0.4,
+                "actionability_score": 0.7,
+                "confidence": 0.75,
+                "refusal": false,
+                "refusal_reason": null,
+                "prompt_version": "mock-v1"
+            },
+            "why_it_matters": "JavaScript 生态常见攻击面, 影响链路较深。",
+            "recommended_action": "本周内升级依赖。",
+            "confidence": 0.75,
+            "shown_in_sections": [
+                "supply_chain"
+            ],
+            "rank_reasons": [
+                "常见 JS 生态问题"
+            ]
+        },
+        {
+            "id": "arxiv:2604.01234",
+            "type": "paper",
+            "title": "Rethinking Detection of Prompt Injection in Agentic Systems",
+            "summary": "We revisit prompt-injection detection under realistic agent workloads.",
+            "source": "arxiv",
+            "source_name": "arXiv cs.CR",
+            "source_url": "https://arxiv.org/abs/2604.01234",
+            "published_at": "2026-04-27T01:00:00Z",
+            "updated_at": null,
+            "cves": [],
+            "vendors": [],
+            "products": [],
+            "topics": [
+                "prompt-injection",
+                "agent",
+                "ml-security"
+            ],
+            "severity": "info",
+            "risk": null,
+            "risk_score": 0.0,
+            "recommendation_score": 5.4,
+            "llm_summary": {
+                "summary_zh": "[MOCK] 提出一种针对 Agent 系统的 Prompt Injection 检测框架, 在多个基准上提升召回。",
+                "why_it_matters_zh": "随着 Agent 应用普及, 本工作对构建纵深防御检测层具有参考价值。",
+                "impact_zh": null,
+                "detection_signals_zh": [
+                    "LLM 输入侧异常指令模式"
+                ],
+                "defense_advice_zh": [
+                    "结合文中方法引入检测模型作为前置过滤"
+                ],
+                "recommended_action_zh": "研究跟进, 评估是否引入到内部 Agent 防护链。",
+                "tags": [
+                    "ml-security",
+                    "prompt-injection",
+                    "agent"
+                ],
+                "category": "research",
+                "severity_hint": "info",
+                "novelty_score": 0.85,
+                "actionability_score": 0.35,
+                "confidence": 0.75,
+                "refusal": false,
+                "refusal_reason": null,
+                "prompt_version": "mock-v1"
+            },
+            "why_it_matters": "随着 Agent 应用普及, 本工作对构建纵深防御检测层具有参考价值。",
+            "recommended_action": "研究跟进, 评估是否引入到内部 Agent 防护链。",
+            "confidence": 0.75,
+            "shown_in_sections": [
+                "must_read",
+                "research"
+            ],
+            "rank_reasons": [
+                "novelty=0.85"
+            ]
+        }
+    ]
+}

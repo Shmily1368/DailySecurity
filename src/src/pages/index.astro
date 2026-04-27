@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ItemCard from '../components/ItemCard.astro';
+import { getLatestDigest, pickItems } from '../lib/data';
+import { formatDate } from '../lib/format';
+
+const digest = getLatestDigest();
+const mustRead = pickItems(digest, digest.sections.must_read ?? []);
+const highRisk = pickItems(digest, digest.sections.high_risk ?? []);
+const research = pickItems(digest, digest.sections.research ?? []);
+---
+<BaseLayout title="Cyber Security Daily Radar">
+  <section class="hero">
+    <div class="date">{formatDate(digest.date)}</div>
+    <p class="one-liner">{digest.hero.one_liner_zh}</p>
+    <div class="stats">
+      <div><strong>{digest.hero.stats.cve_count}</strong><span>CVE</span></div>
+      <div><strong>{digest.hero.stats.kev_added}</strong><span>KEV 新增</span></div>
+      <div><strong>{digest.hero.stats.paper_count}</strong><span>论文</span></div>
+      <div><strong>{digest.hero.stats.max_epss.toFixed(2)}</strong><span>最高 EPSS</span></div>
+    </div>
+    {digest.is_mock && (
+      <div class="mock-banner">当前为 MOCK 数据, 仅用于本地开发预览。</div>
+    )}
+  </section>
+
+  <section>
+    <h2>🔥 今日精选</h2>
+    {mustRead.length === 0 ? (
+      <p class="muted">今日暂无精选。</p>
+    ) : (
+      mustRead.map((it) => <ItemCard item={it} />)
+    )}
+  </section>
+
+  <section>
+    <h2>🚨 今日高风险漏洞</h2>
+    {highRisk.length === 0 ? (
+      <p class="muted">今日暂无高风险漏洞入围。</p>
+    ) : (
+      highRisk.map((it) => <ItemCard item={it} />)
+    )}
+  </section>
+
+  <section>
+    <h2>🧬 今日研究前沿</h2>
+    {research.length === 0 ? (
+      <p class="muted">今日暂无研究前沿入围。</p>
+    ) : (
+      research.map((it) => <ItemCard item={it} />)
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 1rem 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+  .date {
+    font-family: ui-monospace, monospace;
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+  }
+  .one-liner {
+    font-size: 1.15rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .stats {
+    display: flex; gap: 1.5rem; flex-wrap: wrap;
+  }
+  .stats > div {
+    display: flex; flex-direction: column; align-items: flex-start;
+  }
+  .stats strong {
+    font-size: 1.4rem;
+    color: var(--accent);
+  }
+  .stats span {
+    font-size: 0.78rem;
+    color: var(--fg-muted);
+  }
+  .mock-banner {
+    margin-top: 1rem;
+    background: #fef3c7;
+    color: #92400e;
+    padding: 0.4rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    display: inline-block;
+  }
+</style>

@@ -1,0 +1,266 @@
+{
+  "items": [
+    {
+      "id": "osv:CVE-2024-3094",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2024-3094",
+        "native_id": "CVE-2024-3094"
+      },
+      "title": "CVE-2024-3094",
+      "summary": "Malicious code was discovered in the upstream tarballs of xz, starting with version 5.6.0. \r\nThrough a series of complex obfuscations, the liblzma build process extracts a prebuilt object file from a disguised test file existing in the source code, which is then used to modify specific functions in the liblzma code. This results in a modified liblzma library that can be used by any software linked against this library, intercepting and modifying the data interaction with this library.",
+      "raw_text": null,
+      "published_at": "2024-03-29T17:15:21.150000Z",
+      "updated_at": "2026-04-10T05:12:24.048240Z",
+      "fetched_at": "2026-04-27T08:21:01.771151Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2024-3094"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "references": [
+        "http://www.openwall.com/lists/oss-security/2024/03/29/8",
+        "https://www.theregister.com/2024/03/29/malicious_backdoor_xz/",
+        "http://www.openwall.com/lists/oss-security/2024/03/29/10",
+        "http://www.openwall.com/lists/oss-security/2024/04/16/5",
+        "https://ariadne.space/2024/04/02/the-xz-utils-backdoor-is-a-symptom-of-a-larger-problem/",
+        "https://research.swtch.com/xz-timeline",
+        "https://twitter.com/debian/status/1774219194638409898",
+        "https://research.swtch.com/xz-script",
+        "http://www.openwall.com/lists/oss-security/2024/03/29/4",
+        "http://www.openwall.com/lists/oss-security/2024/03/30/12",
+        "http://www.openwall.com/lists/oss-security/2024/03/29/12",
+        "http://www.openwall.com/lists/oss-security/2024/03/30/36",
+        "http://www.openwall.com/lists/oss-security/2024/03/29/5",
+        "http://www.openwall.com/lists/oss-security/2024/03/30/27",
+        "https://news.ycombinator.com/item?id=39895344",
+        "http://www.openwall.com/lists/oss-security/2024/03/30/5",
+        "https://twitter.com/infosecb/status/1774595540233167206",
+        "https://twitter.com/infosecb/status/1774597228864139400",
+        "https://www.vicarius.io/vsociety/vulnerabilities/cve-2024-3094",
+        "https://openssf.org/blog/2024/03/30/xz-backdoor-cve-2024-3094/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2024-21626",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2024-21626",
+        "native_id": "CVE-2024-21626"
+      },
+      "title": "runc container breakout through process.cwd trickery and leaked fds",
+      "summary": "runc is a CLI tool for spawning and running containers on Linux according to the OCI specification. In runc 1.1.11 and earlier, due to an internal file descriptor leak, an attacker could cause a newly-spawned container process (from runc exec) to have a working directory in the host filesystem namespace, allowing for a container escape by giving access to the host filesystem (\"attack 2\"). The same attack could be used by a malicious image to allow a container process to gain access to the host filesystem through runc run (\"attack 1\"). Variants of attacks 1 and 2 could be also be used to overwrite semi-arbitrary host binaries, allowing for complete container escapes (\"attack 3a\" and \"attack 3b\"). runc 1.1.12 includes patches for this issue.",
+      "raw_text": null,
+      "published_at": "2024-01-31T21:31:14.391000Z",
+      "updated_at": "2026-04-10T05:08:57.747044Z",
+      "fetched_at": "2026-04-27T08:21:01.771151Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2024-21626"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-403",
+        "cwe-668"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "references": [
+        "http://packetstormsecurity.com/files/176993/runc-1.1.11-File-Descriptor-Leak-Privilege-Escalation.html",
+        "http://www.openwall.com/lists/oss-security/2024/02/01/1",
+        "http://www.openwall.com/lists/oss-security/2024/02/02/3",
+        "https://github.com/opencontainers/runc/releases/tag/v1.1.12",
+        "https://lists.debian.org/debian-lts-announce/2024/02/msg00005.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/2NLXNE23Q5ESQUAI22Z7A63JX2WMPJ2J/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SYMO3BANINS6RGFQFKPRG4FIOJ7GWYTL/",
+        "https://www.vicarius.io/vsociety/posts/leaky-vessels-part-1-cve-2024-21626",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2024/21xxx/CVE-2024-21626.json",
+        "https://github.com/opencontainers/runc/security/advisories/GHSA-xr7r-f8xq-vfvv",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-21626",
+        "https://github.com/opencontainers/runc/commit/02120488a4c0fc487d1ed2867e901eeed7ce8ecf"
+      ]
+    },
+    {
+      "id": "osv:CVE-2024-23897",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2024-23897",
+        "native_id": "CVE-2024-23897"
+      },
+      "title": "CVE-2024-23897",
+      "summary": "Jenkins 2.441 and earlier, LTS 2.426.2 and earlier does not disable a feature of its CLI command parser that replaces an '@' character followed by a file path in an argument with the file's contents, allowing unauthenticated attackers to read arbitrary files on the Jenkins controller file system.",
+      "raw_text": null,
+      "published_at": "2024-01-24T18:15:09.370000Z",
+      "updated_at": "2026-04-10T05:09:41.818368Z",
+      "fetched_at": "2026-04-27T08:21:01.771151Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2024-23897"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "references": [
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2024-23897",
+        "https://www.jenkins.io/security/advisory/2024-01-24/#SECURITY-3314",
+        "http://packetstormsecurity.com/files/176839/Jenkins-2.441-LTS-2.426.3-CVE-2024-23897-Scanner.html",
+        "http://www.openwall.com/lists/oss-security/2024/01/24/6",
+        "https://www.sonarsource.com/blog/excessive-expansion-uncovering-critical-security-vulnerabilities-in-jenkins/",
+        "https://www.vicarius.io/vsociety/posts/the-anatomy-of-a-jenkins-vulnerability-cve-2024-23897-revealed-1",
+        "http://packetstormsecurity.com/files/176840/Jenkins-2.441-LTS-2.426.3-Arbitrary-File-Read.html"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44228",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44228",
+        "native_id": "CVE-2021-44228"
+      },
+      "title": "CVE-2021-44228",
+      "summary": "Apache Log4j2 2.0-beta9 through 2.15.0 (excluding security releases 2.12.2, 2.12.3, and 2.3.1) JNDI features used in configuration, log messages, and parameters do not protect against attacker controlled LDAP and other JNDI related endpoints. An attacker who can control log messages or log message parameters can execute arbitrary code loaded from LDAP servers when message lookup substitution is enabled. From log4j 2.15.0, this behavior has been disabled by default. From version 2.16.0 (along with 2.12.2, 2.12.3, and 2.3.1), this functionality has been completely removed. Note that this vulnerability is specific to log4j-core and does not affect log4net, log4cxx, or other Apache Logging Services projects.",
+      "raw_text": null,
+      "published_at": "2021-12-10T10:15:09.143000Z",
+      "updated_at": "2026-04-16T04:30:26.990433Z",
+      "fetched_at": "2026-04-27T08:21:01.771151Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44228"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "references": [
+        "https://github.com/cisagov/log4j-affected-db/blob/develop/SOFTWARE-LIST.md",
+        "http://packetstormsecurity.com/files/165307/Log4j-Remote-Code-Execution-Word-Bypassing.html",
+        "https://github.com/cisagov/log4j-affected-db",
+        "https://www.kb.cert.org/vuls/id/930724",
+        "https://www.oracle.com/security-alerts/alert-cve-2021-44228.html",
+        "https://www.cisa.gov/known-exploited-vulnerabilities-catalog?field_cve=CVE-2021-44228",
+        "http://packetstormsecurity.com/files/165311/log4j-scan-Extensive-Scanner.html",
+        "http://www.openwall.com/lists/oss-security/2021/12/13/2",
+        "http://www.openwall.com/lists/oss-security/2021/12/15/3",
+        "https://lists.debian.org/debian-lts-announce/2021/12/msg00007.html",
+        "https://tools.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-apache-log4j-qRuKNEbd",
+        "http://packetstormsecurity.com/files/165282/Log4j-Payload-Generator.html",
+        "http://packetstormsecurity.com/files/171626/AD-Manager-Plus-7122-Remote-Code-Execution.html",
+        "https://cert-portal.siemens.com/productcert/pdf/ssa-479842.pdf",
+        "http://packetstormsecurity.com/files/165225/Apache-Log4j2-2.14.1-Remote-Code-Execution.html",
+        "http://www.openwall.com/lists/oss-security/2021/12/10/3",
+        "https://cert-portal.siemens.com/productcert/pdf/ssa-661247.pdf",
+        "https://security.netapp.com/advisory/ntap-20211210-0007/",
+        "https://www.debian.org/security/2021/dsa-5020",
+        "http://seclists.org/fulldisclosure/2022/Jul/11"
+      ]
+    }
+  ],
+  "meta": {
+    "cve_inputs": [
+      "CVE-2024-3094",
+      "CVE-2024-21626",
+      "CVE-2024-23897",
+      "CVE-2021-44228"
+    ],
+    "osv_id_count": 4,
+    "raw_count": 4,
+    "normalized_count": 4,
+    "fetched_at": "2026-04-27T08:21:01.771151+00:00",
+    "source": "OSV.dev /v1/vulns"
+  }
+}

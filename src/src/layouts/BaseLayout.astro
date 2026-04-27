@@ -1,0 +1,77 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = '每日网络空间安全雷达 —— 聚合论文、CVE、KEV、EPSS、公告与情报' } = Astro.props;
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <style is:global>
+      :root {
+        --fg: #111827;
+        --fg-muted: #4b5563;
+        --bg: #ffffff;
+        --bg-card: #f9fafb;
+        --border: #e5e7eb;
+        --accent: #0f766e;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        line-height: 1.6;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      main { max-width: 960px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+      header.site-header {
+        border-bottom: 1px solid var(--border);
+        padding: 1rem;
+      }
+      header.site-header .inner {
+        max-width: 960px; margin: 0 auto;
+        display: flex; justify-content: space-between; align-items: baseline;
+      }
+      header.site-header h1 {
+        margin: 0; font-size: 1.25rem;
+      }
+      footer.site-footer {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem 1rem;
+        font-size: 0.85rem;
+        color: var(--fg-muted);
+        text-align: center;
+      }
+      h2 { font-size: 1.25rem; margin-top: 2.5rem; }
+      .muted { color: var(--fg-muted); font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="inner">
+        <h1><a href="/">Cyber Security Daily Radar</a></h1>
+        <span class="muted">每日安全雷达</span>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div>
+        数据仅用于防御者研究, 不展示 exploit 代码或攻击步骤。
+      </div>
+      <div class="muted">
+        Powered by Astro · Data from arXiv / NVD / CISA KEV / EPSS
+      </div>
+    </footer>
+  </body>
+</html>
