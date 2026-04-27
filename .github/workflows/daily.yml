@@ -60,12 +60,17 @@ jobs:
       - name: Summarize with LLM (Dynamic Mode)
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
         run: |
           # 检查是否有真实 API KEY, 如果没有或手动勾选了 force_mock, 则使用 mock 模式
           MOCK_FLAG=""
           if [ -z "$OPENAI_API_KEY" ] || [ "${{ github.event.inputs.force_mock }}" == "true" ]; then
             echo "OPENAI_API_KEY is not set or force_mock is true. Using --mock mode."
             MOCK_FLAG="--mock"
+          else
+            echo "Using LLM_BASE_URL: ${LLM_BASE_URL:-default}"
+            echo "Using LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}"
           fi
           
           python scripts/summarize_with_llm.py \

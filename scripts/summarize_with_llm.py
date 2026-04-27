@@ -409,22 +409,28 @@ class MockLlmClient(LlmClient):
 
 class OpenAiLlmClient(LlmClient):
     """
-    OpenAI Responses API 适配器。
+    OpenAI 兼容接口 API 适配器 (支持 OpenAI、DeepSeek 等)。
 
-    - 模型名: 优先 OPENAI_MODEL 环境变量, 否则 'gpt-4o-mini'
+    - Base URL: 优先 LLM_BASE_URL 环境变量 (例如 https://api.deepseek.com/v1)
+    - 模型名: 优先 LLM_MODEL 环境变量, 否则 'gpt-4o-mini'
     - 严格 JSON 输出: 使用 response_format={"type": "json_object"}
-    - 若安装了 openai SDK, 使用 openai.OpenAI(); 否则退化为裸 httpx
+    - 若安装了 openai SDK, 使用 openai.OpenAI(); 否则报错
     """
 
-    name = "openai"
+    name = "openai-compatible"
 
     def __init__(self, api_key: str, model: Optional[str] = None):
         self.api_key = api_key
-        self.model = model or os.environ.get("OPENAI_MODEL") or "gpt-4o-mini"
+        self.model = model or os.environ.get("LLM_MODEL") or "gpt-4o-mini"
+        self.base_url = os.environ.get("LLM_BASE_URL")
+        
         try:
             from openai import OpenAI  # type: ignore
 
-            self._client = OpenAI(api_key=api_key)
+            self._client = OpenAI(
+                api_key=api_key,
+                base_url=self.base_url  # 如果是 None，SDK 会自动使用默认的 api.openai.com
+            )
         except Exception as e:  # noqa: BLE001
             raise RuntimeError(
                 f"openai SDK 初始化失败, 请检查 requirements.txt: {e!r}"
