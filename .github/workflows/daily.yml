@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/fetch_github_advisory.py
-          python scripts/fetch_osv.py
+          python scripts/fetch_osv.py --nvd-source data/raw/nvd_recent.json
         
       - name: Summarize with LLM (Dynamic Mode)
         env:
