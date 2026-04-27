@@ -71,9 +71,10 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
         if "supply chain" in text_to_check or "供应链" in text_to_check or (item.type == ItemType.ADVISORY and item.source.lower() != "vendor"):
             sections["supply_chain"].append(item.id)
             
-        # 高风险漏洞
-        if getattr(item, "risk_score", 0) >= 4.0 or item.severity in [Severity("critical"), Severity("high")]:
-            sections["high_risk"].append(item.id)
+        # 高风险漏洞 (排除论文和威胁情报)
+        if item.type in [ItemType.CVE, ItemType.KEV, ItemType.ADVISORY]:
+            if getattr(item, "risk_score", 0) >= 4.0 or item.severity in [Severity("critical"), Severity("high")]:
+                sections["high_risk"].append(item.id)
             
         # 研究前沿
         if item.type == ItemType.PAPER:
