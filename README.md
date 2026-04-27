@@ -310,33 +310,73 @@ python scripts/validate_data.py data/processed/digest_items.json
 - Prompt 按 item type 分派 (paper / cve / kev / advisory / threat_report /
   detection_rule), 详情见 [docs/PROMPTS.md](./docs/PROMPTS.md)。
 
-### 7. (未来) 运行完整管线
+### 7. 生成日报与排序
+
+`scripts/rank_items.py` 会计算各项加分，`scripts/build_daily_digest.py` 负责组装最终的日报：
 
 ```bash
-# Phase 3+ 实装后的示例
-python scripts/run_pipeline.py --date 2026-04-27       # 全流程
-python scripts/run_pipeline.py --date 2026-04-27 --only fetch
-LLM_MOCK=1 python scripts/run_pipeline.py --date 2026-04-27   # mock 模式
+# 从 processed 目录读取数据，生成 data/daily/YYYY-MM-DD.json 和 latest.json
+python scripts/build_daily_digest.py
 ```
+
+### 8. GitHub Actions 自动更新与部署
+
+本项目已配置完整的 GitHub Actions 工作流，实现每日自动抓取、LLM 分析、构建和 Pages 部署。
+
+#### 如何开启 GitHub Pages
+1. 进入仓库 **Settings** -> **Pages**
+2. 将 **Source** 设置为 **GitHub Actions**
+3. 确保你的 `src/astro.config.mjs` 中正确配置了 `site` 和 `base` (若有需要)
+
+#### 如何配置 GitHub Secrets (可选)
+如果需要真实调用 LLM 和提高 NVD API 速率，请在 **Settings** -> **Secrets and variables** -> **Actions** 中添加：
+- `OPENAI_API_KEY`: 你的 OpenAI API 密钥。**如果不配置，Actions 将自动回退到 `--mock` 模式**，产生假数据而不会报错。
+- `NVD_API_KEY`: 你的 NVD API 密钥。
+
+#### 如何手动触发 Workflow
+1. 进入仓库 **Actions** 页面
+2. 左侧点击 **Daily Security Radar Update**
+3. 点击右侧的 **Run workflow**
+4. （可选）你可以勾选 `Force mock mode` 强制本次运行不调用 LLM API。
+
+> **注：** `daily.yml` 每天 UTC 01:30 (北京时间 09:30) 自动运行，它会自动把抓取到的 JSON 数据提交回 `main` 分支。`main` 分支的数据变更会自动触发 `deploy.yml` 进行前端静态构建和 Pages 发布。
 
 ---
 
-## 如果没用 conda
+## 本地开发与 Mock 运行
 
 最低要求:
 - Python 3.11+
 - Node.js 20+
-- `pip install -r requirements.txt`
-- `cd src && npm install`
-
----
-
-## 一键验证当前骨架
 
 ```bash
-conda activate cyber-daily-radar
-cd src && npm install && npm run build
-# 期望: src/dist/index.html 生成, 打开可见三大板块与 mock 数据
+# 安装依赖
+pip install -r requirements.txt
+cd src && npm install
+
+# 本地完整 mock 运行管线
+python scripts/fetch_arxiv.py --max-results 10
+python scripts/fetch_cisa_kev.py
+python scripts/fetch_nvd.py --days 1
+python scripts/fetch_github_advisory.py
+python scripts/fetch_osv.py
+
+# 强制使用 mock 生成摘要
+python scripts/summarize_with_llm.py \
+  --input data/raw/arxiv_latest.json \
+  --input data/raw/cisa_kev.json \
+  --input data/raw/nvd_recent.json \
+  --input data/raw/github_advisory_latest.json \
+  --input data/raw/osv_latest.json \
+  --output data/processed/daily_digest.json \
+  --mock
+
+# 生成最终日报和校验
+python scripts/build_daily_digest.py
+python scripts/validate_data.py --all
+
+# 启动本地前端开发服务器预览
+cd src && npm run dev
 ```
 
 ---

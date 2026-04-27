@@ -1,0 +1,67 @@
+---
+import { formatPercent, severityColor } from '../lib/format';
+import type { RiskSignal, Severity } from '../lib/data';
+
+export interface Props {
+  severity?: Severity;
+  risk?: RiskSignal | null;
+}
+
+const { severity = 'info', risk } = Astro.props;
+const epss = risk?.epss_score;
+const kevListed = risk?.kev_listed;
+const inTheWild = risk?.known_exploited || risk?.exploit_in_the_wild;
+---
+<div class="risk-badges">
+  <span class="sev" style={`background:${severityColor(severity)}`}>
+    {severity.toUpperCase()}
+  </span>
+  
+  {epss != null && (
+    <span class="epss">EPSS {formatPercent(epss, 0)}</span>
+  )}
+  
+  {kevListed && <span class="kev-badge">KEV</span>}
+  
+  {inTheWild && <span class="itw-badge">⚠ 在野利用</span>}
+</div>
+
+<style>
+  .risk-badges {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .sev {
+    color: #fff;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+  }
+  .epss {
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    border: 1px solid var(--border);
+    padding: 0.05rem 0.3rem;
+    border-radius: 4px;
+  }
+  .kev-badge {
+    background: #b91c1c;
+    color: #fff;
+    padding: 0.05rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+  }
+  .itw-badge {
+    background: #7f1d1d;
+    color: #fff;
+    padding: 0.05rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+</style>

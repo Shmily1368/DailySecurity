@@ -1,164 +1,21 @@
 ---
-import type { DigestItem, ExploitMaturity } from '../lib/data';
-import { severityColor, formatPercent } from '../lib/format';
+import type { DigestItem } from '../lib/data';
+import PaperCard from './PaperCard.astro';
+import VulnerabilityCard from './VulnerabilityCard.astro';
+import AdvisoryCard from './AdvisoryCard.astro';
 
 export interface Props {
   item: DigestItem;
 }
+
 const { item } = Astro.props;
-const llm = item.llm_summary;
-const sev = item.severity ?? 'info';
-const epss = item.risk?.epss_score ?? null;
-const firstCve = item.cves && item.cves.length > 0 ? item.cves[0] : null;
-const tags = llm?.tags ?? item.topics ?? [];
-
-// Exploit 存在性信号 (仅展示存在性 + 外链, 不展示 PoC 正文)
-const maturity: ExploitMaturity = item.risk?.exploit_maturity ?? 'unreported';
-const hasExploit = Boolean(item.risk?.has_public_exploit) || maturity !== 'unreported';
-const inTheWild =
-  maturity === 'in_the_wild' ||
-  Boolean(item.risk?.known_exploited) ||
-  Boolean(item.risk?.exploit_in_the_wild);
-const exploitRefs = item.risk?.exploit_references ?? [];
-const MATURITY_LABEL: Record<ExploitMaturity, string> = {
-  unreported: '未见公开 PoC',
-  poc: '已有 PoC',
-  functional: '已有可用 Exploit',
-  weaponized: '已武器化',
-  in_the_wild: '在野利用',
-};
 ---
-<article class="item-card">
-  <div class="head">
-    <span class="sev" style={`background:${severityColor(sev)}`}>{sev.toUpperCase()}</span>
-    <span class="type">{item.type}</span>
-    <span class="source">{item.source_name}</span>
-    {firstCve && <span class="cve">{firstCve}</span>}
-    {epss !== null && epss !== undefined && (
-      <span class="epss">EPSS {formatPercent(epss, 0)}</span>
-    )}
-    {item.risk?.kev_listed && <span class="kev-badge">KEV</span>}
-    {inTheWild && <span class="itw-badge">⚠ 在野利用</span>}
-    {!inTheWild && hasExploit && (
-      <span class="exploit-badge">⚠ {MATURITY_LABEL[maturity]}</span>
-    )}
-  </div>
-  <h3>
-    <a href={item.source_url} target="_blank" rel="noopener noreferrer">{item.title}</a>
-  </h3>
-  {llm?.refusal ? (
-    <p class="refusal">该条目触发安全策略, 已拒绝生成摘要; 请前往来源查看。</p>
-  ) : (
-    <>
-      <p class="summary">{llm.summary_zh}</p>
-      {item.why_it_matters && (
-        <p class="why"><strong>为什么重要:</strong> {item.why_it_matters}</p>
-      )}
-      {item.recommended_action && (
-        <p class="action"><strong>建议动作:</strong> {item.recommended_action}</p>
-      )}
-      {exploitRefs.length > 0 && (
-        <div class="exploit-refs">
-          <strong>公开 PoC 线索:</strong>
-          <ul>
-            {exploitRefs.map((ref) => (
-              <li>
-                <a href={ref.url} target="_blank" rel="noopener noreferrer nofollow">
-                  {ref.label ?? ref.source}
-                </a>
-                <span class="ref-source">[{ref.source}]</span>
-              </li>
-            ))}
-          </ul>
-          <p class="exploit-note">
-            仅展示第三方链接, 本站不托管 PoC 代码 / payload / 攻击步骤。
-          </p>
-        </div>
-      )}
-      {tags.length > 0 && (
-        <div class="tags">
-          {tags.map((t) => <span class="tag">#{t}</span>)}
-        </div>
-      )}
-    </>
-  )}
-</article>
-
-<style>
-  .item-card {
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    border-radius: 8px;
-    padding: 1rem 1.2rem;
-    margin-bottom: 1rem;
-  }
-  .head {
-    display: flex; gap: 0.5rem; flex-wrap: wrap;
-    font-size: 0.8rem; margin-bottom: 0.4rem;
-    align-items: center;
-  }
-  .sev {
-    color: #fff; padding: 0.1rem 0.5rem; border-radius: 4px;
-    font-weight: 600; letter-spacing: 0.03em;
-  }
-  .type {
-    border: 1px solid var(--border);
-    padding: 0.05rem 0.45rem; border-radius: 4px;
-    color: var(--fg-muted);
-    text-transform: uppercase; font-size: 0.7rem;
-  }
-  .source { color: var(--fg-muted); }
-  .cve { font-family: ui-monospace, monospace; color: var(--fg-muted); }
-  .epss { color: var(--fg-muted); }
-  .kev-badge {
-    background: #b91c1c; color: #fff;
-    padding: 0.05rem 0.4rem; border-radius: 4px;
-    font-size: 0.7rem; font-weight: 600;
-  }
-  .itw-badge {
-    background: #7f1d1d; color: #fff;
-    padding: 0.05rem 0.4rem; border-radius: 4px;
-    font-size: 0.7rem; font-weight: 700;
-  }
-  .exploit-badge {
-    background: #c2410c; color: #fff;
-    padding: 0.05rem 0.4rem; border-radius: 4px;
-    font-size: 0.7rem; font-weight: 600;
-  }
-  h3 { margin: 0.25rem 0 0.5rem; font-size: 1.05rem; line-height: 1.4; }
-  .summary { margin: 0.4rem 0; }
-  .why, .action {
-    margin: 0.4rem 0; color: var(--fg-muted); font-size: 0.92rem;
-  }
-  .action strong { color: #0f766e; }
-  .exploit-refs {
-    margin: 0.6rem 0 0.2rem;
-    padding: 0.5rem 0.7rem;
-    background: #fff7ed;
-    border-left: 3px solid #c2410c;
-    border-radius: 4px;
-    font-size: 0.88rem;
-  }
-  .exploit-refs strong { color: #9a3412; }
-  .exploit-refs ul {
-    margin: 0.3rem 0 0.2rem; padding-left: 1.1rem;
-  }
-  .exploit-refs li { margin: 0.15rem 0; }
-  .exploit-refs .ref-source {
-    color: var(--fg-muted); font-size: 0.78rem; margin-left: 0.3rem;
-  }
-  .exploit-note {
-    margin: 0.3rem 0 0; color: var(--fg-muted);
-    font-size: 0.78rem; font-style: italic;
-  }
-  .tags { margin-top: 0.5rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
-  .tag {
-    font-size: 0.75rem; color: var(--accent);
-    background: rgba(15, 118, 110, 0.08);
-    padding: 0.1rem 0.45rem; border-radius: 4px;
-  }
-  .refusal {
-    color: #b91c1c; font-size: 0.9rem;
-    background: #fef2f2; padding: 0.5rem 0.7rem; border-radius: 6px;
-  }
-</style>
+{item.type === 'paper' ? (
+  <PaperCard item={item} />
+) : item.type === 'cve' || item.type === 'kev' ? (
+  <VulnerabilityCard item={item} />
+) : item.type === 'advisory' ? (
+  <AdvisoryCard item={item} />
+) : (
+  <VulnerabilityCard item={item} />
+)}

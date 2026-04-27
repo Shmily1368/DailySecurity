@@ -1,0 +1,81 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="关于本站 - Cyber Security Daily Radar">
+  <section class="about-page">
+    <h1>🛡️ 关于本站</h1>
+    <p class="muted">Cyber Security Daily Radar</p>
+
+    <article class="content">
+      <h2>项目愿景</h2>
+      <p>
+        这是一个完全开源、自动化的网络空间安全情报雷达。每天定时从各大权威安全情报源（arXiv、NVD、CISA KEV、EPSS、OSV、GitHub Advisory 等）抓取数据，
+        并通过大语言模型（LLM）提炼出结构化的中文摘要和防御建议。
+      </p>
+      
+      <h2>安全原则</h2>
+      <p>
+        本站严格遵循面向防御者视角的原则：
+      </p>
+      <ul>
+        <li><strong>不托管攻击载荷：</strong> 不包含任何漏洞利用代码（PoC）、Payload、Shellcode。</li>
+        <li><strong>不展示攻击细节：</strong> 拒绝输出具体的绕过步骤和攻击复现命令。</li>
+        <li><strong>客观展示信号：</strong> 对于第三方漏洞利用信息，仅展示来源链接和存在性标记（如 `已有 PoC`、`在野利用`）。</li>
+      </ul>
+
+      <h2>技术架构</h2>
+      <ul>
+        <li><strong>前端：</strong> Astro 静态网站生成，部署于 GitHub Pages。</li>
+        <li><strong>后端：</strong> Python 3.11 每日定时脚本。</li>
+        <li><strong>数据：</strong> 纯静态 JSON 驱动，无需数据库。</li>
+        <li><strong>自动化：</strong> GitHub Actions。</li>
+      </ul>
+      
+      <p style="margin-top: 3rem; text-align: center;">
+        <a href="https://github.com/Shmily1368/DailySecurity" target="_blank" rel="noopener noreferrer" class="repo-link">
+          查看 GitHub 仓库
+        </a>
+      </p>
+    </article>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { margin-top: 0; }
+  .content {
+    margin-top: 2rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+  h2 {
+    font-size: 1.35rem;
+    color: var(--accent);
+    border-bottom: 2px solid rgba(15, 118, 110, 0.1);
+    padding-bottom: 0.4rem;
+    margin-top: 2.5rem;
+  }
+  ul {
+    padding-left: 1.2rem;
+  }
+  li {
+    margin-bottom: 0.5rem;
+  }
+  .repo-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: var(--fg);
+    color: var(--bg);
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  .repo-link:hover {
+    background: var(--accent);
+    text-decoration: none;
+  }
+</style>

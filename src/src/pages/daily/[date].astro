@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ItemCard from '../../components/ItemCard.astro';
+import { getDailyDigest, getDailyIndex } from '../../lib/data';
+import { formatDate } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const index = getDailyIndex();
+  return index.dates.map(date => ({
+    params: { date }
+  }));
+}
+
+const { date } = Astro.params;
+const digest = getDailyDigest(date as string);
+const items = digest.items;
+---
+
+<BaseLayout title={`安全日报 - ${date} - Cyber Security Daily Radar`}>
+  <section class="archive-header">
+    <h1>{formatDate(digest.date)} 归档</h1>
+    <p class="stats-info">{digest.hero.one_liner_zh}</p>
+    <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/daily"} class="back-link">← 返回归档列表</a>
+  </section>
+
+  <section class="item-list">
+    {items.length === 0 ? (
+      <p class="muted">当日无数据。</p>
+    ) : (
+      items.map(it => <ItemCard item={it} />)
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .archive-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h1 {
+    margin: 0 0 0.5rem 0;
+  }
+  .stats-info {
+    color: var(--fg-muted);
+    margin: 0 0 1rem 0;
+  }
+  .back-link {
+    font-size: 0.9rem;
+    color: var(--accent);
+  }
+  .item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const sources = [
+  { name: "arXiv cs.CR", url: "https://arxiv.org/list/cs.CR/recent", desc: "网络安全与密码学领域的最新学术预印本论文。" },
+  { name: "CISA KEV", url: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog", desc: "美国网络安全与基础设施安全局 (CISA) 维护的已知在野被利用漏洞列表。" },
+  { name: "EPSS", url: "https://www.first.org/epss/", desc: "漏洞预测利用评分系统，量化某个漏洞未来 30 天内被利用的概率。" },
+  { name: "NVD (CVE)", url: "https://nvd.nist.gov/", desc: "美国国家漏洞数据库，提供全球标准化的 CVE 漏洞信息及 CVSS 评分。" },
+  { name: "OSV", url: "https://osv.dev/", desc: "Google 维护的开源漏洞数据库，涵盖 PyPI, npm, Go, Rust 等主流生态。" },
+  { name: "GitHub Advisory", url: "https://github.com/advisories", desc: "GitHub 安全社区维护的软件安全公告数据库。" }
+];
+---
+
+<BaseLayout title="数据源 - Cyber Security Daily Radar">
+  <section class="sources-page">
+    <h1>📡 数据源</h1>
+    <p class="muted">本系统每天自动从以下权威信源聚合情报，不依赖任何人工干预。</p>
+
+    <div class="source-grid">
+      {sources.map(s => (
+        <article class="source-card">
+          <h3>
+            <a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
+          </h3>
+          <p>{s.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .sources-page {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { margin-top: 0; }
+  .source-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .source-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: transform 0.2s;
+  }
+  .source-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .source-card h3 {
+    margin: 0 0 0.5rem 0;
+  }
+  .source-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+  }
+</style>

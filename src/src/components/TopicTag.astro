@@ -1,0 +1,28 @@
+---
+export interface Props {
+  topic: string;
+}
+
+const { topic } = Astro.props;
+// 这里简单处理下 URI 编码，因为 Astro 会做静态路径匹配
+const href = `/topics/${encodeURIComponent(topic)}`;
+---
+<a href={import.meta.env.BASE_URL.replace(/\/$/, '') + href} class="topic-tag">
+  #{topic}
+</a>
+
+<style>
+  .topic-tag {
+    font-size: 0.75rem;
+    color: var(--accent);
+    background: rgba(15, 118, 110, 0.08);
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    white-space: nowrap;
+  }
+  .topic-tag:hover {
+    background: rgba(15, 118, 110, 0.15);
+  }
+</style>

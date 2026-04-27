@@ -15,7 +15,7 @@ const DAILY_DIR = path.join(PROJECT_ROOT, 'data', 'daily');
 const PROCESSED_DIR = path.join(PROJECT_ROOT, 'data', 'processed');
 
 // 当前 Phase 2 默认读取的 mock digest
-const MOCK_DIGEST_PATH = path.join(PROCESSED_DIR, 'mock_digest.json');
+const LATEST_DIGEST_PATH = path.join(DAILY_DIR, 'latest.json');
 
 export type Severity = 'critical' | 'high' | 'medium' | 'low' | 'info';
 export type Category =
@@ -140,9 +140,9 @@ interface DailyIndex {
     dates: string[];
 }
 
-/** 读取 Phase 2 的 mock digest (data/processed/mock_digest.json)。 */
-export function getMockDigest(): DailyDigest {
-    const raw = fs.readFileSync(MOCK_DIGEST_PATH, 'utf-8');
+/** 读取最新 digest (data/daily/latest.json)。 */
+export function getLatestDigest(): DailyDigest {
+    const raw = fs.readFileSync(LATEST_DIGEST_PATH, 'utf-8');
     return JSON.parse(raw) as DailyDigest;
 }
 
@@ -158,19 +158,6 @@ export function getDailyDigest(date: string): DailyDigest {
     return JSON.parse(raw) as DailyDigest;
 }
 
-/**
- * 获取当前要展示的 digest。
- * Phase 2 阶段优先返回 mock_digest.json (结构为最新模型);
- * 找不到时回退到 data/daily/<latest>.json。
- */
-export function getLatestDigest(): DailyDigest {
-    if (fs.existsSync(MOCK_DIGEST_PATH)) {
-        return getMockDigest();
-    }
-    const idx = getDailyIndex();
-    return getDailyDigest(idx.latest);
-}
-
 /** 根据 id 列表在 items 中查出条目, 保持顺序, 跳过找不到的 */
 export function pickItems(digest: DailyDigest, ids: string[]): DigestItem[] {
     const map = new Map(digest.items.map((i) => [i.id, i]));
@@ -180,4 +167,47 @@ export function pickItems(digest: DailyDigest, ids: string[]): DigestItem[] {
         if (it) out.push(it);
     }
     return out;
+}
+
+/** 提取所有可用的日期列表 */
+export function getAllDates(): string[] {
+    return getDailyIndex().dates;
+}
+
+/** 聚合所有日期的所有条目 (供归档、主题分析用) */
+export function getAllItems(): DigestItem[] {
+    const index = getDailyIndex();
+    const allItems: DigestItem[] = [];
+    const seen = new Set<string>();
+    for (const date of index.dates) {
+        try {
+            const digest = getDailyDigest(date);
+            for (const item of digest.items) {
+                if (!seen.has(item.id)) {
+                    seen.add(item.id);
+                    allItems.push(item);
+                }
+            }
+        } catch (e) {
+            console.warn(`Failed to read digest for date ${date}`);
+        }
+    }
+    // 按照 published_at 倒序
+    allItems.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+    return allItems;
+}
+
+/** 获取所有主题/标签的列表 */
+export function getAllTopics(): string[] {
+    const items = getAllItems();
+    const topics = new Set<string>();
+    for (const item of items) {
+        if (item.llm_summary?.tags) {
+            item.llm_summary.tags.forEach(t => topics.add(t));
+        }
+        if (item.topics) {
+            item.topics.forEach(t => topics.add(t));
+        }
+    }
+    return Array.from(topics).sort();
 }

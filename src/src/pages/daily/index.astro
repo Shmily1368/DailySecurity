@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllDates } from '../../lib/data';
+import { formatDate } from '../../lib/format';
+
+const dates = getAllDates();
+---
+
+<BaseLayout title="历史归档 - Cyber Security Daily Radar">
+  <section class="archive-list">
+    <h1>📅 历史归档</h1>
+    <p class="muted">查看过去的安全雷达摘要。</p>
+    
+    {dates.length === 0 ? (
+      <p>暂无归档数据。</p>
+    ) : (
+      <ul class="dates">
+        {dates.map(date => (
+          <li>
+            <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + `/daily/${date}`} class="date-link">
+              <span class="date-raw">{date}</span>
+              <span class="date-fmt">{formatDate(date)}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .archive-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { margin-top: 0; }
+  .dates {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+  .date-link {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-card);
+    transition: all 0.2s ease;
+  }
+  .date-link:hover {
+    background: #f1f5f9;
+    border-color: var(--accent);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+  .date-raw {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 0.2rem;
+  }
+  .date-fmt {
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+  }
+</style>

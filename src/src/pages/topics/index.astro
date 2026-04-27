@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TopicTag from '../../components/TopicTag.astro';
+import { getAllTopics } from '../../lib/data';
+
+const topics = getAllTopics();
+---
+
+<BaseLayout title="所有主题 - Cyber Security Daily Radar">
+  <section class="topic-list">
+    <h1>🏷️ 热门主题</h1>
+    <p class="muted">安全领域研究前沿与风险热点标签。</p>
+    
+    {topics.length === 0 ? (
+      <p>暂无标签数据。</p>
+    ) : (
+      <div class="tags-container">
+        {topics.map(topic => (
+          <div class="tag-wrapper">
+            <TopicTag topic={topic} />
+          </div>
+        ))}
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<style>
+  .topic-list {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 { margin-top: 0; }
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+  .tag-wrapper {
+    font-size: 1.1rem; /* 放大显示 */
+  }
+</style>

@@ -5,9 +5,10 @@ import { getLatestDigest, pickItems } from '../lib/data';
 import { formatDate } from '../lib/format';
 
 const digest = getLatestDigest();
-const mustRead = pickItems(digest, digest.sections.must_read ?? []);
+const top10 = pickItems(digest, digest.sections.top_10 ?? []);
 const highRisk = pickItems(digest, digest.sections.high_risk ?? []);
 const research = pickItems(digest, digest.sections.research ?? []);
+const supplyChain = pickItems(digest, digest.sections.supply_chain ?? []);
 ---
 <BaseLayout title="Cyber Security Daily Radar">
   <section class="hero">
@@ -25,29 +26,38 @@ const research = pickItems(digest, digest.sections.research ?? []);
   </section>
 
   <section>
-    <h2>🔥 今日精选</h2>
-    {mustRead.length === 0 ? (
+    <h2>🔥 今日精选 Top 10</h2>
+    {top10.length === 0 ? (
       <p class="muted">今日暂无精选。</p>
     ) : (
-      mustRead.map((it) => <ItemCard item={it} />)
+      top10.map((it) => <ItemCard item={it} />)
     )}
   </section>
 
   <section>
-    <h2>🚨 今日高风险漏洞</h2>
+    <h2>🚨 高风险漏洞</h2>
     {highRisk.length === 0 ? (
-      <p class="muted">今日暂无高风险漏洞入围。</p>
+      <p class="muted">今日暂无高风险漏洞。</p>
     ) : (
       highRisk.map((it) => <ItemCard item={it} />)
     )}
   </section>
 
   <section>
-    <h2>🧬 今日研究前沿</h2>
+    <h2>🧬 研究前沿</h2>
     {research.length === 0 ? (
-      <p class="muted">今日暂无研究前沿入围。</p>
+      <p class="muted">今日暂无研究前沿。</p>
     ) : (
       research.map((it) => <ItemCard item={it} />)
+    )}
+  </section>
+
+  <section>
+    <h2>🔗 供应链安全</h2>
+    {supplyChain.length === 0 ? (
+      <p class="muted">今日暂无供应链安全情报。</p>
+    ) : (
+      supplyChain.map((it) => <ItemCard item={it} />)
     )}
   </section>
 </BaseLayout>

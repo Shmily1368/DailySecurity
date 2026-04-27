@@ -5,7 +5,7 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     output: 'static',
     // GitHub Pages 子路径；绑定自定义域名时改为 '/'
-    // site: 'https://<user>.github.io',
-    // base: '/cyber-daily-radar/',
+    site: 'https://Shmily1368.github.io',
+    base: '/DailySecurity/',
     trailingSlash: 'ignore',
 });

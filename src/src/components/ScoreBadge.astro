@@ -1,0 +1,68 @@
+---
+import { formatPercent } from '../lib/format';
+
+export interface Props {
+  recommendationScore: number;
+  confidence: number;
+  label?: string;
+}
+
+const { recommendationScore, confidence, label = "推荐" } = Astro.props;
+
+// 动态颜色: 推荐分数越高颜色越深
+const getScoreColor = (score: number) => {
+  if (score >= 10) return '#b91c1c'; // dark red
+  if (score >= 6) return '#c2410c';  // orange
+  if (score >= 3) return '#b45309';  // lighter orange
+  return '#9ca3af'; // gray
+};
+const color = getScoreColor(recommendationScore);
+---
+<div class="score-badge" style={`border-color: ${color}40`}>
+  <div class="score-value" style={`color: ${color}`}>
+    <span class="label">{label}</span>
+    <span class="val">{recommendationScore.toFixed(1)}</span>
+  </div>
+  <div class="conf" title="LLM 摘要置信度">
+    Conf: {formatPercent(confidence, 0)}
+  </div>
+</div>
+
+<style>
+  .score-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.2rem 0.4rem;
+    background: var(--bg);
+    min-width: 3.5rem;
+  }
+  .score-value {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+  }
+  .label {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+  }
+  .val {
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+  .conf {
+    font-size: 0.6rem;
+    color: var(--fg-muted);
+    margin-top: 0.1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.1rem;
+    width: 100%;
+    text-align: center;
+  }
+</style>
