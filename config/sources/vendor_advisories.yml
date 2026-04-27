@@ -1,0 +1,609 @@
+sources:
+  # ==========================================
+  # 国内安全厂商
+  # ==========================================
+  - id: "360cert_advisory"
+    name: "360CERT"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://cert.360.cn/warning"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["360", "vulnerability", "advisory"]
+    notes: "国内主流漏洞通告源，无官方 API，需解析 HTML"
+    expected_fields: ["title", "published_at", "cves", "severity"]
+    safety_policy: "strict_no_poc"
+
+  - id: "qianxin_cert"
+    name: "奇安信 CERT"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://cert.qianxin.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["qianxin", "advisory"]
+    notes: "needs verification (部分内容可能在微信公众号发布，需确认官网信息流稳定性)"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "nsfocus_cert"
+    name: "绿盟科技 CERT / NSFOCUS"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.nsfocus.com.cn/html/2/32/85/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["nsfocus", "advisory"]
+    notes: "需解析 HTML 列表"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "sangfor_qianlimu_advisory"
+    name: "深信服千里目安全实验室"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://sec.sangfor.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["sangfor", "advisory"]
+    notes: "needs verification (寻找稳定的通告列表入口)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "dbappsecurity_advisory"
+    name: "安恒信息"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://www.dbappsecurity.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["dbappsecurity", "advisory"]
+    notes: "needs verification (官网新闻或通告入口需进一步确认)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "chaitin_advisory"
+    name: "长亭科技 / 长亭安全应急响应中心"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://stack.chaitin.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["chaitin", "advisory"]
+    notes: "needs verification (多发布于公众号或长亭社区，需确认可用 API/HTML)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "knownsec_seebug"
+    name: "知道创宇 / Seebug"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "secondary"
+    parser: "html"
+    url: "https://www.seebug.org/"
+    enabled: true
+    rate_limit_seconds: 10
+    tags: ["knownsec", "seebug", "vulnerability"]
+    notes: "Seebug 是国内重要的漏洞库，需注意避免抓取 PoC 详情，只取元数据"
+    expected_fields: ["title", "published_at", "cves"]
+    safety_policy: "strict_no_poc"
+
+  - id: "venustech_advisory"
+    name: "启明星辰"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://www.venustech.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["venustech", "advisory"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "topsec_advisory"
+    name: "天融信"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://www.topsec.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["topsec", "advisory"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "threatbook_advisory"
+    name: "微步在线 ThreatBook"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://x.threatbook.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["threatbook", "advisory"]
+    notes: "needs verification (微步微社区有部分公开通告)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "hillstone_advisory"
+    name: "山石网科"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://www.hillstonenet.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["hillstone", "advisory"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "asiainfo_sec_advisory"
+    name: "亚信安全"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://www.asiainfo-sec.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["asiainfo", "advisory"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "tophant_advisory"
+    name: "斗象科技"
+    region: "CN"
+    category: "security_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://www.tophant.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["tophant", "advisory"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  # ==========================================
+  # 国内互联网大厂 / 云厂商
+  # ==========================================
+  - id: "aliyun_advisory"
+    name: "阿里云安全公告"
+    region: "CN"
+    category: "cloud_provider"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://help.aliyun.com/noticelist/9213612.html"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["aliyun", "cloud", "advisory"]
+    notes: "官方云安全公告，需解析 HTML"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "tencent_cloud_advisory"
+    name: "腾讯云安全公告"
+    region: "CN"
+    category: "cloud_provider"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://cloud.tencent.com/announce"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["tencent", "cloud", "advisory"]
+    notes: "官方云安全公告，需解析 HTML"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "tencent_tic_advisory"
+    name: "腾讯安全威胁情报中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "mixed"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://s.tencent.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["tencent", "advisory", "intel"]
+    notes: "needs verification (通常以微信公众号文章为主，需确认官网信息流)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "huawei_psirt"
+    name: "华为 PSIRT"
+    region: "CN"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.huawei.com/cn/psirt/security-advisories"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["huawei", "psirt", "advisory"]
+    notes: "官方安全通告，可解析 HTML 或寻找 API"
+    expected_fields: ["title", "published_at", "cves", "severity"]
+    safety_policy: "strict_no_poc"
+
+  - id: "baidu_src"
+    name: "百度安全应急响应中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://bsrc.baidu.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["baidu", "src"]
+    notes: "needs verification (需寻找公告列表页 URL)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "bytedance_src"
+    name: "字节跳动安全中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://security.bytedance.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["bytedance", "src"]
+    notes: "needs verification (主要为 SRC 平台，需确认是否有公开的通用安全通告)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "jd_src"
+    name: "京东安全应急响应中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://security.jd.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["jd", "src"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "xiaomi_src"
+    name: "小米安全中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://trust.mi.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["xiaomi", "src"]
+    notes: "needs verification (小米安全中心有自己的公告区)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "meituan_src"
+    name: "美团安全应急响应中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://security.meituan.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["meituan", "src"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "netease_src"
+    name: "网易安全中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://aq.163.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["netease", "src"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "kuaishou_src"
+    name: "快手安全中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://security.kuaishou.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["kuaishou", "src"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "didi_src"
+    name: "滴滴安全应急响应中心"
+    region: "CN"
+    category: "internet_company"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://sec.didichuxing.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["didi", "src"]
+    notes: "needs verification"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  # ==========================================
+  # 国际厂商公告
+  # ==========================================
+  - id: "msrc_advisory"
+    name: "Microsoft MSRC"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://api.msrc.microsoft.com/sug/v2.0/en-US/vulnerability"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["microsoft", "msrc", "windows"]
+    notes: "支持 CVRF API，质量极高"
+    expected_fields: ["title", "published_at", "cves", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cisco_psirt"
+    name: "Cisco PSIRT"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://tools.cisco.com/security/center/rss.x?i=44"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["cisco", "network", "advisory"]
+    notes: "需申请 Cisco API token"
+    expected_fields: ["title", "published_at", "cves", "severity"]
+    safety_policy: "strict_no_poc"
+
+  - id: "apple_security"
+    name: "Apple Security Releases"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://support.apple.com/en-us/HT201222"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["apple", "ios", "macos"]
+    notes: "需解析 HTML 表格"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "google_chrome_releases"
+    name: "Google Chrome Releases"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://chromereleases.googleblog.com/feeds/posts/default"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["google", "chrome", "browser"]
+    notes: "支持 Atom/RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "android_security"
+    name: "Android Security Bulletin"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://source.android.com/docs/security/bulletin"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["android", "mobile"]
+    notes: "需解析 HTML"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "mozilla_advisories"
+    name: "Mozilla Security Advisories"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.mozilla.org/en-US/security/advisories/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["mozilla", "firefox", "browser"]
+    notes: "需解析 HTML"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "gitlab_security"
+    name: "GitLab Security Releases"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://about.gitlab.com/security-releases.xml"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["gitlab", "devops"]
+    notes: "可通过 RSS 获取"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "github_security_advisories"
+    name: "GitHub Security Advisories"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://api.github.com/advisories"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["github", "devops", "advisory"]
+    notes: "已在 GHSA fetcher 中单独实现，此配置为元数据记录"
+    expected_fields: ["title", "published_at", "cves", "severity"]
+    safety_policy: "strict_no_poc"
+
+  - id: "vmware_advisories"
+    name: "VMware / Broadcom Security Advisories"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://support.broadcom.com/group/ecx/security-advisories"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["vmware", "broadcom", "virtualization"]
+    notes: " Broadcom 迁移后需确认最新的稳定 RSS/API 或 HTML 解析路径"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "atlassian_advisories"
+    name: "Atlassian Security Advisories"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://confluence.atlassian.com/trust/security-advisories"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["atlassian", "jira", "confluence"]
+    notes: "需解析 HTML"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "fortinet_psirt"
+    name: "Fortinet PSIRT"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://fortiguard.com/rss/ir.xml"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["fortinet", "network", "firewall"]
+    notes: "支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "palo_alto_advisories"
+    name: "Palo Alto Security Advisories"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://security.paloaltonetworks.com/rss.xml"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["paloalto", "network", "firewall"]
+    notes: "官网提供 JSON 数据源，可抓取"
+    expected_fields: ["title", "published_at", "severity"]
+    safety_policy: "strict_no_poc"
+
+  - id: "ivanti_advisories"
+    name: "Ivanti Security Advisories"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://forums.ivanti.com/s/security-advisories"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["ivanti", "vpn"]
+    notes: "需解析 HTML 论坛页面"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "oracle_cpu"
+    name: "Oracle Critical Patch Updates"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.oracle.com/security-alerts/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["oracle", "database", "java"]
+    notes: "季度更新，HTML 解析"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "adobe_security"
+    name: "Adobe Security Bulletins"
+    region: "GLOBAL"
+    category: "product_vendor"
+    content_type: "vendor_advisory"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://helpx.adobe.com/security.html"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["adobe", "acrobat", "reader"]
+    notes: "需解析 HTML 表格"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"

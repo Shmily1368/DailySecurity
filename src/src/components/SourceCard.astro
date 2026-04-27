@@ -1,0 +1,162 @@
+---
+import { categoryToGroup, normalizeRegionLabel } from '../lib/sources';
+import type { SourceConfig } from '../lib/sources';
+
+export interface Props {
+  source: SourceConfig;
+}
+
+const { source } = Astro.props;
+const regionLabel = normalizeRegionLabel(source.region);
+const groupName = categoryToGroup(source.category);
+const isUnknownCategory = groupName === '安全社区 / 媒体' && !['security_community', 'media'].includes((source.category || '').toLowerCase());
+
+function getQualityBadgeClass(quality: string) {
+  if (quality === 'primary') return 'badge-primary';
+  if (quality === 'secondary') return 'badge-secondary';
+  return 'badge-community';
+}
+
+function getQualityLabel(quality: string) {
+  if (quality === 'primary') return '高可信 (官方)';
+  if (quality === 'secondary') return '中可信 (媒体/研究)';
+  return '低可信 (社区)';
+}
+---
+
+<div class="source-card">
+  <div class="header">
+    <h3 class="name">
+      {source.url ? (
+        <a href={source.url} target="_blank" rel="noopener noreferrer">{source.name}</a>
+      ) : (
+        <span>{source.name}</span>
+      )}
+    </h3>
+    <div class="badges">
+      <span class="badge badge-region">{regionLabel}</span>
+      <span class={`badge ${getQualityBadgeClass(source.source_quality)}`}>
+        {getQualityLabel(source.source_quality)}
+      </span>
+      {source.enabled ? (
+        <span class="badge badge-enabled">Enabled</span>
+      ) : (
+        <span class="badge badge-disabled">Disabled</span>
+      )}
+    </div>
+  </div>
+
+  <div class="details">
+    <div class="detail-item">
+      <strong>Category:</strong> 
+      <span class={isUnknownCategory ? 'warning-text' : ''}>
+        {source.category || 'unknown'}
+        {isUnknownCategory && ' ⚠️ (分类未识别)'}
+      </span>
+    </div>
+    <div class="detail-item">
+      <strong>Parser:</strong> {source.parser || 'N/A'}
+    </div>
+    {source.notes && (
+      <div class="detail-item notes">
+        <strong>Notes:</strong> {source.notes}
+      </div>
+    )}
+  </div>
+</div>
+
+<style>
+  .source-card {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    transition: box-shadow 0.2s;
+  }
+  .source-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .name {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .name a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .name a:hover {
+    text-decoration: underline;
+  }
+  .badges {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-weight: 500;
+  }
+  .badge-region {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid #cbd5e1;
+  }
+  .badge-primary {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+  .badge-secondary {
+    background: #fef9c3;
+    color: #854d0e;
+    border: 1px solid #fef08a;
+  }
+  .badge-community {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+  }
+  .badge-enabled {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+  .badge-disabled {
+    background: #f1f5f9;
+    color: #64748b;
+    opacity: 0.8;
+  }
+  .details {
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .detail-item strong {
+    color: var(--fg);
+    margin-right: 0.4rem;
+  }
+  .notes {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
+    font-style: italic;
+  }
+  .warning-text {
+    color: #b45309;
+    background: #fffbeb;
+    padding: 0 0.3rem;
+    border-radius: 4px;
+  }
+</style>

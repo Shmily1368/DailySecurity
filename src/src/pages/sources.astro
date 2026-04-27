@@ -1,63 +1,185 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import SourceCard from '../components/SourceCard.astro';
+import { getAllSources, categoryToGroup } from '../lib/sources';
+import type { SourceConfig } from '../lib/sources';
 
-const sources = [
-  { name: "arXiv cs.CR", url: "https://arxiv.org/list/cs.CR/recent", desc: "网络安全与密码学领域的最新学术预印本论文。" },
-  { name: "CISA KEV", url: "https://www.cisa.gov/known-exploited-vulnerabilities-catalog", desc: "美国网络安全与基础设施安全局 (CISA) 维护的已知在野被利用漏洞列表。" },
-  { name: "EPSS", url: "https://www.first.org/epss/", desc: "漏洞预测利用评分系统，量化某个漏洞未来 30 天内被利用的概率。" },
-  { name: "NVD (CVE)", url: "https://nvd.nist.gov/", desc: "美国国家漏洞数据库，提供全球标准化的 CVE 漏洞信息及 CVSS 评分。" },
-  { name: "OSV", url: "https://osv.dev/", desc: "Google 维护的开源漏洞数据库，涵盖 PyPI, npm, Go, Rust 等主流生态。" },
-  { name: "GitHub Advisory", url: "https://github.com/advisories", desc: "GitHub 安全社区维护的软件安全公告数据库。" }
+const sources = getAllSources();
+
+// Define groups in order
+const groups = [
+  '产品厂商 / 云厂商公告',
+  '安全厂商 / 安全研究团队',
+  '政府 / CERT / 漏洞机构',
+  '开源生态 / 平台安全',
+  '学术论文 / 研究前沿',
+  '威胁情报研究',
+  '安全社区 / 媒体'
 ];
+
+// Group the sources
+const groupedSources: Record<string, SourceConfig[]> = {};
+groups.forEach(g => groupedSources[g] = []);
+
+sources.forEach(source => {
+  const group = categoryToGroup(source.category);
+  if (groupedSources[group]) {
+    groupedSources[group].push(source);
+  } else {
+    // Should not happen as categoryToGroup defaults to '安全社区 / 媒体'
+    groupedSources['安全社区 / 媒体'].push(source);
+  }
+});
 ---
 
-<BaseLayout title="数据源 - Cyber Security Daily Radar">
-  <section class="sources-page">
-    <h1>📡 数据源</h1>
-    <p class="muted">本系统每天自动从以下权威信源聚合情报，不依赖任何人工干预。</p>
-
-    <div class="source-grid">
-      {sources.map(s => (
-        <article class="source-card">
-          <h3>
-            <a href={s.url} target="_blank" rel="noopener noreferrer">{s.name}</a>
-          </h3>
-          <p>{s.desc}</p>
-        </article>
-      ))}
+<BaseLayout title="Data Sources - Cyber Security Daily Radar" description="List of data sources and trust model">
+  <header class="page-header">
+    <h1>Data Sources & Trust Model</h1>
+    <div class="description">
+      <p>本站按“来源角色”分类展示所有数据源，地域（如国家或地区）仅作为辅助标签。</p>
+      <p>数据来源包括：厂商公告、漏洞库、威胁情报、开源安全等。</p>
+      <p>⚠️ <strong>注意事项：</strong>所有安全摘要由 LLM 自动化生成，仅供参考，实际细节与建议请以原始来源为准。本站不提供 exploit 代码、payload 或攻击复现步骤。</p>
     </div>
-  </section>
+  </header>
+
+  <div class="content-wrapper">
+    {groups.map(groupName => {
+      const groupItems = groupedSources[groupName];
+      return (
+        <details class="group-section" open>
+          <summary>
+            <h2>{groupName} <span class="count">({groupItems.length})</span></h2>
+          </summary>
+          
+          <div class="group-content">
+            {groupItems.length === 0 ? (
+              <p class="empty-state">暂无数据</p>
+            ) : (
+              <div class="grid">
+                {groupItems.map(item => (
+                  <SourceCard source={item} />
+                ))}
+              </div>
+            )}
+          </div>
+        </details>
+      );
+    })}
+  </div>
 </BaseLayout>
 
 <style>
-  .sources-page {
-    max-width: 800px;
-    margin: 0 auto;
+  .page-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
   }
-  h1 { margin-top: 0; }
-  .source-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--fg);
   }
-  .source-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    padding: 1.5rem;
-    border-radius: 8px;
-    transition: transform 0.2s;
-  }
-  .source-card:hover {
-    transform: translateY(-2px);
-    border-color: var(--accent);
-  }
-  .source-card h3 {
-    margin: 0 0 0.5rem 0;
-  }
-  .source-card p {
-    margin: 0;
+  
+  .description {
+    background: #f8fafc;
+    border-left: 4px solid #3b82f6;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 8px 8px 0;
+    color: #334155;
     font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  .description p {
+    margin: 0.5rem 0;
+  }
+  
+  .group-section {
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    overflow: hidden;
+  }
+  
+  .group-section summary {
+    cursor: pointer;
+    list-style: none; /* Hide default arrow */
+    padding: 1rem 1.5rem;
+    background: #f8fafc;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s ease;
+  }
+  
+  .group-section summary::-webkit-details-marker {
+    display: none;
+  }
+  
+  .group-section summary:hover {
+    background: #f1f5f9;
+  }
+  
+  /* Add custom arrow */
+  .group-section summary::before {
+    content: "▶";
+    display: inline-block;
+    margin-right: 0.75rem;
+    transition: transform 0.2s ease;
+    font-size: 0.9rem;
     color: var(--fg-muted);
+  }
+  
+  .group-section[open] summary::before {
+    transform: rotate(90deg);
+  }
+  
+  .group-section[open] summary {
+    border-bottom: 1px solid var(--border);
+  }
+  
+  /* When closed, remove bottom border of summary if it's the only thing */
+  .group-section:not([open]) summary {
+    border-bottom: none;
+  }
+  
+  h2 {
+    font-size: 1.35rem;
+    margin: 0;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    color: var(--fg);
+  }
+  
+  .group-content {
+    padding: 1.5rem;
+  }
+  
+  .count {
+    font-size: 1rem;
+    color: var(--fg-muted);
+    font-weight: normal;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  
+  @media (min-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .empty-state {
+    color: var(--fg-muted);
+    font-style: italic;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    text-align: center;
   }
 </style>

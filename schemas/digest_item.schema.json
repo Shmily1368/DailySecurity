@@ -222,16 +222,54 @@
                     "minimum": 0,
                     "maximum": 1
                 },
-                "confidence_label": {
+                "affected_assets": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "cves": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "limitations": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "threat_type": { "type": ["string", "null"] },
+        "threat_actors": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "malware_families": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "affected_industries": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "affected_regions": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "attack_techniques": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        },
+        "iocs_present": { "type": ["boolean", "null"] },
+        "confidence_label": {
                     "type": [
                         "string",
                         "null"
                     ],
                     "enum": [
+                        "source_confirmed",
                         "abstract_only",
                         "metadata_only",
                         "with_references",
                         "full_text",
+                        "single_source",
+                        "unverified",
+                        "multi_source",
                         null
                     ]
                 },

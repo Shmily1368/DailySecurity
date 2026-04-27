@@ -122,6 +122,16 @@
                 }
             ]
         },
+        "threat_meta": {
+            "oneOf": [
+                {
+                    "type": "null"
+                },
+                {
+                    "$ref": "#/$defs/ThreatMeta"
+                }
+            ]
+        },
         "references": {
             "type": "array",
             "items": {
@@ -131,6 +141,51 @@
         }
     },
     "$defs": {
+        "ThreatMeta": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "malware_families": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "threat_actors": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "affected_industries": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "affected_regions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "attack_techniques": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "iocs_present": {
+                    "type": "boolean"
+                },
+                "confidence": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            }
+        },
         "SourceInfo": {
             "type": "object",
             "additionalProperties": false,

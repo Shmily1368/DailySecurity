@@ -1,0 +1,75 @@
+sources:
+  - id: "arxiv_cs_cr"
+    name: "arXiv (cs.CR)"
+    region: "GLOBAL"
+    category: "research_paper"
+    content_type: "paper"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://export.arxiv.org/api/query?search_query=cat:cs.CR"
+    enabled: true
+    rate_limit_seconds: 3
+    tags: ["research", "academic", "paper"]
+    notes: "每日学术前沿，使用 arXiv 官方 API"
+    expected_fields: ["title", "published_at", "summary", "authors"]
+    safety_policy: "strict_no_poc"
+
+  - id: "nvd_cve"
+    name: "NVD (National Vulnerability Database)"
+    region: "US"
+    category: "government_cert"
+    content_type: "vulnerability"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://services.nvd.nist.gov/rest/json/cves/2.0"
+    enabled: true
+    rate_limit_seconds: 6
+    tags: ["cve", "vulnerability", "nvd"]
+    notes: "使用 NVD API 2.0 获取最新 CVE 动态，推荐配置 API Key"
+    expected_fields: ["title", "published_at", "summary", "cvss"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cisa_kev"
+    name: "CISA KEV (Known Exploited Vulnerabilities)"
+    region: "US"
+    category: "government_cert"
+    content_type: "vulnerability"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["kev", "cisa", "exploited"]
+    notes: "官方已确认在野利用的漏洞目录"
+    expected_fields: ["cveID", "dateAdded", "shortDescription"]
+    safety_policy: "strict_no_poc"
+
+  - id: "epss"
+    name: "FIRST EPSS"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "vulnerability"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://api.first.org/data/v1/epss"
+    enabled: true
+    rate_limit_seconds: 1
+    tags: ["epss", "prediction", "scoring"]
+    notes: "利用预测评分系统"
+    expected_fields: ["epss", "percentile"]
+    safety_policy: "strict_no_poc"
+
+  - id: "osv_dev"
+    name: "OSV.dev"
+    region: "GLOBAL"
+    category: "open_source"
+    content_type: "vulnerability"
+    source_quality: "primary"
+    parser: "api"
+    url: "https://api.osv.dev/v1/vulns"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["osv", "open_source", "ecosystem"]
+    notes: "开源软件漏洞库，支持 CVE 反查"
+    expected_fields: ["id", "summary", "affected"]
+    safety_policy: "strict_no_poc"

@@ -343,41 +343,55 @@ python scripts/build_daily_digest.py
 
 ---
 
-## 本地开发与 Mock 运行
+## 本地开发与测试
 
-最低要求:
-- Python 3.11+
-- Node.js 20+
-
+1. 安装依赖：
 ```bash
-# 安装依赖
 pip install -r requirements.txt
 cd src && npm install
+```
 
-# 本地完整 mock 运行管线
+2. 抓取数据（或使用预置 mock 数据）：
+```bash
 python scripts/fetch_arxiv.py --max-results 10
 python scripts/fetch_cisa_kev.py
-python scripts/fetch_nvd.py --days 1
-python scripts/fetch_github_advisory.py
-python scripts/fetch_osv.py
+python scripts/fetch_nvd.py --days 2
+python scripts/fetch_vendor_advisories.py --limit-per-source 10
+python scripts/fetch_threat_intel.py --limit-per-source 10
+```
 
-# 强制使用 mock 生成摘要
-python scripts/summarize_with_llm.py \
-  --input data/raw/arxiv_latest.json \
-  --input data/raw/cisa_kev.json \
-  --input data/raw/nvd_recent.json \
-  --input data/raw/github_advisory_latest.json \
-  --input data/raw/osv_latest.json \
-  --output data/processed/daily_digest.json \
-  --mock
+3. 生成 LLM 摘要：
+   你可以设置真实的环境变量，或者直接使用 `--mock` 生成测试摘要：
+```bash
+# 可选环境变量
+export OPENAI_API_KEY="sk-..."
+export LLM_BASE_URL="https://api.deepseek.com/v1" # 例如使用 DeepSeek
+export LLM_MODEL="deepseek-chat"
 
-# 生成最终日报和校验
+# 运行摘要并合并数据
+python scripts/summarize_with_llm.py --input data/raw/arxiv_latest.json --output data/processed/arxiv_digest.json --limit 10 --mock
 python scripts/build_daily_digest.py
-python scripts/validate_data.py --all
+```
 
-# 启动本地前端开发服务器预览
+4. 本地预览：
+```bash
 cd src && npm run dev
 ```
+
+---
+
+## 自动更新机制 (GitHub Actions)
+
+项目配置了每日自动抓取和部署的工作流 (`.github/workflows/daily.yml` 和 `deploy.yml`)：
+- **触发时间**：每天 UTC 01:30 (北京时间 09:30)。
+- **运行内容**：依次执行论文、CVE、厂商公告和威胁情报的数据抓取。通过 `--mock` 或环境变量生成摘要后进行 `validate_data.py` 数据验证，若验证通过将更新数据自动推送到当前仓库。数据推送会触发第二个流水线完成静态站点（Astro）的构建，发布至 GitHub Pages。
+- **环境变量配置**：你需要在 GitHub 仓库的 **Settings -> Secrets and variables -> Actions** 中配置以下 Secret 才能使用真实大模型：
+  - `OPENAI_API_KEY` (必填，否则将 fallback 到 `--mock` 假数据模式)
+  - `LLM_BASE_URL` (选填，如果你不用 OpenAI 官方接口)
+  - `LLM_MODEL` (选填，默认为 `gpt-4o-mini`)
+  - `NVD_API_KEY` (选填，用于提升 NVD 抓取速率)
+- **禁用特定数据源**：
+  如果某些数据源抓取频繁失败或不再需要，可修改 `config/sources/vendor_advisories.yml` 或 `threat_intel.yml`，将对应 ID 下的 `enabled: true` 改为 `enabled: false`，下次 Actions 将自动跳过。
 
 ---
 
@@ -399,3 +413,13 @@ cd src && npm run dev
 ## 许可
 
 (待定)
+
+### Fetch Vendor Advisories
+```bash
+PYTHONPATH=. python scripts/fetch_vendor_advisories.py --limit-per-source 5
+```
+
+### Fetch Threat Intel
+```bash
+PYTHONPATH=. python scripts/fetch_threat_intel.py --limit-per-source 5
+```

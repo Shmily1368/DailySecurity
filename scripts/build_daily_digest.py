@@ -52,17 +52,27 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
         "top_10": [],
         "high_risk": [],
         "research": [],
-        "supply_chain": []
+        "supply_chain": [],
+        "vendor_advisories": [],
+        "threat_intel": []
     }
     
     for item in items:
+        # 威胁情报
+        if item.type == ItemType.THREAT_REPORT:
+            sections["threat_intel"].append(item.id)
+            
+        # 厂商安全公告
+        if item.type == ItemType.ADVISORY and item.source.lower() == "vendor":
+            sections["vendor_advisories"].append(item.id)
+            
         # 供应链安全
         text_to_check = (item.title + " " + str(item.summary) + " " + str(item.topics)).lower()
-        if "supply chain" in text_to_check or "供应链" in text_to_check or item.type == ItemType.ADVISORY:
+        if "supply chain" in text_to_check or "供应链" in text_to_check or (item.type == ItemType.ADVISORY and item.source.lower() != "vendor"):
             sections["supply_chain"].append(item.id)
             
         # 高风险漏洞
-        if item.risk_score >= 4.0 or item.severity in [Severity.CRITICAL, Severity.HIGH]:
+        if getattr(item, "risk_score", 0) >= 4.0 or item.severity in [Severity("critical"), Severity("high")]:
             sections["high_risk"].append(item.id)
             
         # 研究前沿
@@ -83,19 +93,20 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
 
 def build_hero(items: List[DigestItem]) -> Hero:
     stats = HeroStats()
+    stats.advisory_count = 0
     for item in items:
         if item.type == ItemType.CVE:
             stats.cve_count += 1
-        if item.risk and item.risk.kev_listed:
+        if item.risk and getattr(item.risk, "kev_listed", False):
             stats.kev_added += 1
         if item.type == ItemType.PAPER:
             stats.paper_count += 1
         if item.type == ItemType.ADVISORY:
             stats.advisory_count += 1
-        if item.risk and item.risk.epss_score is not None:
+        if item.risk and getattr(item.risk, "epss_score", None) is not None:
             stats.max_epss = max(stats.max_epss, item.risk.epss_score)
             
-    one_liner = f"今日共收录 {len(items)} 条安全情报，包含 {stats.cve_count} 个 CVE 和 {stats.paper_count} 篇研究论文。"
+    one_liner = f"今日共收录 {len(items)} 条安全情报，包含 {stats.cve_count} 个 CVE，{stats.advisory_count} 篇安全通告，以及 {stats.paper_count} 篇研究论文。"
     return Hero(one_liner_zh=one_liner, stats=stats)
 
 def main():

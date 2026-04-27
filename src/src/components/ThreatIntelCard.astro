@@ -1,0 +1,188 @@
+---
+import type { DigestItem } from '../lib/data';
+import RiskBadge from './RiskBadge.astro';
+import TopicTag from './TopicTag.astro';
+import SourceLink from './SourceLink.astro';
+import ScoreBadge from './ScoreBadge.astro';
+
+export interface Props {
+  item: DigestItem;
+}
+const { item } = Astro.props;
+const llm = item.llm_summary;
+const tags = llm?.tags ?? item.topics ?? [];
+const cves = item.cves && item.cves.length > 0 ? item.cves : [];
+
+// 如果上游将 threat_meta 透传到了 topics 之外，需要特殊解析，
+// 但目前我们的 DigestItem 没有把 threat_meta 扁平化，不过我们可以在 tags 里或者通过额外字段渲染
+// 在这里为了满足要求，我们可以先简单解析。因为抓取时把 threat_actors 和 malware_families 放到了 tags 里
+// 这里我们简单在组件层进行分类显示，如果以后后端透传了 threat_meta 字段，可以更精确。
+---
+<article class="card">
+  <div class="header">
+    <div class="meta">
+      <RiskBadge severity={item.severity} risk={item.risk} />
+      <span class="type-badge">THREAT INTEL</span>
+      <span class="date">{item.published_at.substring(0, 10)}</span>
+    </div>
+    <div class="score">
+      <ScoreBadge recommendationScore={item.recommendation_score} confidence={item.confidence} />
+    </div>
+  </div>
+
+  <h3>
+    <SourceLink sourceName={item.title} sourceUrl={item.source_url} />
+  </h3>
+
+  {llm?.refusal ? (
+    <p class="refusal">该内容触发安全策略，已拒绝摘要，请看原链。</p>
+  ) : (
+    <div class="content">
+      {cves.length > 0 && (
+        <div class="meta-row">
+          {cves.map(cve => <span class="cve">{cve}</span>)}
+        </div>
+      )}
+
+      <p class="summary">{llm.summary_zh}</p>
+      
+      <div class="highlights">
+        {item.why_it_matters && (
+          <p><strong>💡 影响/原因:</strong> {item.why_it_matters}</p>
+        )}
+        {item.recommended_action && (
+          <p><strong>🎯 建议动作:</strong> {item.recommended_action}</p>
+        )}
+      </div>
+
+      <div class="footer">
+        <div class="tags">
+          {tags.map(t => <TopicTag topic={t} />)}
+        </div>
+        <div class="source-info">
+          来自 {item.source_name}
+        </div>
+      </div>
+      
+      {item.rank_reasons && item.rank_reasons.length > 0 && (
+        <div class="rank-reasons">
+          <strong>排序因子:</strong> {item.rank_reasons.join(' | ')}
+        </div>
+      )}
+    </div>
+  )}
+</article>
+
+<style>
+  .card {
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .type-badge {
+    border: 1px solid var(--border);
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    color: var(--fg-muted);
+    font-family: ui-monospace, monospace;
+    background: #fdf4ff;
+    border-color: #f5d0fe;
+    color: #86198f;
+  }
+  .date {
+    color: var(--fg-muted);
+    font-size: 0.8rem;
+    font-family: ui-monospace, monospace;
+  }
+  h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.15rem;
+    line-height: 1.4;
+  }
+  .meta-row {
+    margin-bottom: 0.75rem;
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .cve {
+    font-family: ui-monospace, monospace;
+    background: #f1f5f9;
+    color: #334155;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid #e2e8f0;
+  }
+  .summary {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: var(--fg);
+  }
+  .highlights {
+    background: rgba(168, 85, 247, 0.04);
+    border-left: 3px solid #9333ea;
+    padding: 0.75rem 1rem;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 1rem;
+  }
+  .highlights p {
+    margin: 0.3rem 0;
+    font-size: 0.9rem;
+    color: var(--fg-muted);
+  }
+  .highlights strong {
+    color: #9333ea;
+  }
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .source-info {
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+  }
+  .rank-reasons {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+    color: var(--fg-muted);
+    opacity: 0.8;
+  }
+  .refusal {
+    color: #b91c1c;
+    background: #fef2f2;
+    padding: 0.75rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+  }
+</style>

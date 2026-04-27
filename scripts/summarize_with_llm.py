@@ -162,37 +162,95 @@ confidence_label = "metadata_only"。
 """
 
 
-ADVISORY_USER_PROMPT = """请为以下厂商 / 开源生态安全公告生成摘要 JSON。
+ADVISORY_USER_PROMPT = """你是网络安全厂商公告分析助手。你的任务是把厂商安全公告转成中文结构化摘要，帮助防守方理解风险和修复优先级。你必须只基于输入内容总结，不得编造事实。 
 
-Advisory 元数据:
-- 来源: {source}
-- ID: {advisory_id}
-- 标题: {title}
-- 描述: {summary}
-- CVE: {cves}
-- 受影响包 / 生态: {products} ({ecosystems})
-- CVSS: {cvss}
+Input:
+- title: {title}
+- source_name: {source}
+- source_url: {source_url}
+- published_at: {published_at}
+- summary or body excerpt: {summary}
+- cves: {cves}
+- vendors: {vendors}
+- products: {products}
+- severity: {severity}
+- references: {references}
 
-重点: 厂商 / 产品 / 补丁版本 / 风险等级。
-category = "vuln"。
-confidence_label = "metadata_only"。
+Output JSON 格式要求:
+{{
+  "summary_zh": "120-180字中文摘要",
+  "affected_assets": ["受影响产品或资产"],
+  "cves": ["CVE-xxxx-xxxx"],
+  "severity": "critical | high | medium | low | unknown",
+  "why_it_matters": "为什么值得关注",
+  "recommended_action": "防御性建议",
+  "topics": ["标签"],
+  "confidence": "source_confirmed | single_source | unverified",
+  "limitations": ["限制说明"]
+}}
+
+Rules:
+1. 不输出漏洞利用步骤。
+2. 不输出 payload。
+3. 不输出攻击复现命令。
+4. 不声称“已在野利用”，除非输入明确说明或关联 CISA KEV。
+5. 如果是厂商官方公告，confidence 可以是 source_confirmed。
+6. 如果是社区转载或新闻源，confidence 只能是 single_source。
+7. 如果没有 CVE，cves 返回空数组。
+8. 如果没有明确严重性，severity 写 unknown。
+9. recommended_action 必须是修复、升级、缓解、排查资产、关注官方公告等防御建议。
+10. 不要夸大影响范围。
+11. 最外层必须是一个 JSON 对象。
 """
 
 
-THREAT_REPORT_USER_PROMPT = """请为以下威胁情报报告生成摘要 JSON。
+THREAT_REPORT_USER_PROMPT = """你是威胁情报分析助手。你的任务是把公开威胁情报文章转成中文结构化摘要，帮助安全团队快速判断攻击活动、影响范围、关联漏洞和防御动作。你必须谨慎区分事实、推断和建议。 
 
-Report 元数据:
-- 来源: {source}
-- 标题: {title}
-- 摘要: {summary}
-- 涉及厂商 / 产品: {products}
+Input:
+- title: {title}
+- source_name: {source}
+- source_url: {source_url}
+- published_at: {published_at}
+- summary or body excerpt: {summary}
+- cves: {cves}
+- tags: {topics}
+- possible threat actors: {threat_actors}
+- possible malware families: {malware_families}
+- possible industries: {affected_industries}
+- possible regions: {affected_regions}
+- possible ATT&CK techniques: {attack_techniques}
+- iocs_present: {iocs_present}
 
-重点: 攻击者 / 目标行业 / TTP (高层叙述, 不要复述具体攻击命令) /
-IOC 类型描述 (不要列出具体 IOC 字符串, 除非是公开的 hash 类) / 防御建议。
-category = "threat_intel"。
-severity_hint 由攻击目标影响面决定。
-**不要输出 PoC / 命令行 / 绕过步骤。**
-confidence_label = "with_references" 或 "metadata_only"。
+Output JSON 格式要求:
+{{ 
+  "summary_zh": "150-220字中文摘要", 
+  "threat_type": "apt | ransomware | malware | supply_chain | phishing | vulnerability_exploitation | cloud_security | unknown", 
+  "threat_actors": ["攻击组织"], 
+  "malware_families": ["恶意软件家族"], 
+  "affected_industries": ["行业"], 
+  "affected_regions": ["地区"], 
+  "cves": ["CVE-xxxx-xxxx"], 
+  "attack_techniques": ["Txxxx"], 
+  "iocs_present": true, 
+  "why_it_matters": "为什么值得关注", 
+  "recommended_action": "防御建议", 
+  "topics": ["标签"], 
+  "confidence": "source_confirmed | multi_source | single_source | unverified", 
+  "limitations": ["限制说明"] 
+}}
+
+Rules:
+1. 不输出攻击步骤。 
+2. 不输出 payload。 
+3. 不输出恶意代码。 
+4. 不提供样本下载方式。 
+5. 不批量转载 IOC，只能标记 iocs_present。 
+6. 如果来源没有明确 ATT&CK 技术 ID，不要编造。 
+7. 如果来源没有明确攻击者归因，不要强行归因。 
+8. 如果只是媒体报道，不要写成官方确认。 
+9. 如果存在 CVE，说明它在攻击链中的角色；如果无法判断，写“原文提及但角色不明”。 
+10. recommended_action 必须偏防御：补丁、检测、日志排查、账号安全、网络监控、威胁狩猎。
+11. 最外层必须是一个 JSON 对象。
 """
 
 
@@ -232,12 +290,23 @@ def render_user_prompt(item: RawItem) -> str:
         "cve_id": item.cves[0] if item.cves else "(无)",
         "cves": ", ".join(item.cves) if item.cves else "(无)",
         "source": item.source_info.source_name,
+        "source_url": str(item.source_info.source_url) if item.source_info.source_url else "(未提供)",
+        "published_at": item.published_at.isoformat() if item.published_at else "(未提供)",
+        "source_quality": "primary" if item.source_info.source in ("vendor", "nvd", "kev", "osv", "cisa", "threat_intel") else "secondary",
         "advisory_id": item.source_info.native_id,
         "vendors": ", ".join(item.vendors) if item.vendors else "(未提供)",
         "products": ", ".join(item.products) if item.products else "(未提供)",
+        "severity": getattr(item, "severity", "unknown"),
+        "references": ", ".join(str(r) for r in item.references) if item.references else "(无)",
         "ecosystems": ", ".join(
             t for t in item.topics if t not in {"advisory", "cve"}
         ) or "(未提供)",
+        "threat_actors": ", ".join(item.threat_meta.threat_actors) if item.threat_meta and item.threat_meta.threat_actors else "(无)",
+        "malware_families": ", ".join(item.threat_meta.malware_families) if item.threat_meta and item.threat_meta.malware_families else "(无)",
+        "affected_industries": ", ".join(item.threat_meta.affected_industries) if item.threat_meta and item.threat_meta.affected_industries else "(无)",
+        "affected_regions": ", ".join(item.threat_meta.affected_regions) if item.threat_meta and item.threat_meta.affected_regions else "(无)",
+        "attack_techniques": ", ".join(item.threat_meta.attack_techniques) if item.threat_meta and item.threat_meta.attack_techniques else "(无)",
+        "iocs_present": "true" if item.threat_meta and item.threat_meta.iocs_present else "false",
         "cvss": (
             f"{risk.cvss_score} ({risk.cvss_vector})"
             if risk.cvss_score is not None
@@ -354,41 +423,40 @@ class MockLlmClient(LlmClient):
 
         if t == ItemType.ADVISORY:
             return {
-                "summary_zh": f"[MOCK] 安全公告: {_truncate(item.title, 80)}",
-                "why_it_matters_zh": f"涉及 {', '.join(item.products[:3]) or '厂商产品'}, 建议评估版本覆盖。",
-                "impact_zh": None,
-                "detection_signals_zh": [],
-                "defense_advice_zh": ["按公告升级到修复版本"],
-                "recommended_action_zh": "纳入本周补丁窗口。",
-                "tags": tags,
-                "category": Category.VULN.value,
-                "severity_hint": severity.value,
-                "novelty_score": 0.35,
-                "actionability_score": 0.6,
-                "confidence_label": "metadata_only",
-                "refusal": False,
-                "refusal_reason": None,
+                "summary_zh": f"[MOCK] 这是一个厂商公告的伪摘要: {_truncate(item.title, 50)}",
+                "why_it_matters_zh": "涉及相关组件配置",
+                "recommended_action_zh": "建议排查资产和配置",
+                "tags": ["mock", "advisory"],
+                "category": "advisory",
+                "severity_hint": "high",
+                "confidence_label": "source_confirmed",
+                "affected_assets": ["MockAsset"],
+                "cves": item.cves if item.cves else [],
+                "severity": "high",
+                "limitations": ["由 mock 生成"]
             }
 
         if t == ItemType.THREAT_REPORT:
             return {
-                "summary_zh": f"[MOCK] 情报: {_truncate(item.title, 80)}",
-                "why_it_matters_zh": "可用于完善内部检测规则与演练剧本, 关注 TTP 类似的历史事件。",
-                "impact_zh": None,
-                "detection_signals_zh": ["参考来源提供的行为 IOC 类型"],
-                "defense_advice_zh": ["根据 TTP 校准现有检测覆盖"],
-                "recommended_action_zh": "情报团队跟进、同步给检测团队。",
-                "tags": tags,
-                "category": Category.THREAT_INTEL.value,
-                "severity_hint": Severity.MEDIUM.value,
-                "novelty_score": 0.55,
-                "actionability_score": 0.55,
-                "confidence_label": "with_references",
-                "refusal": False,
-                "refusal_reason": None,
+                "summary_zh": f"[MOCK] 这是一个威胁情报的伪摘要: {_truncate(item.title, 50)}",
+                "threat_type": "unknown",
+                "threat_actors": ["MockActor"],
+                "malware_families": ["MockMalware"],
+                "affected_industries": ["MockIndustry"],
+                "affected_regions": ["MockRegion"],
+                "cves": item.cves if item.cves else [],
+                "attack_techniques": ["T1059"],
+                "iocs_present": True,
+                "why_it_matters_zh": "涉及高级威胁",
+                "recommended_action_zh": "建议加强边界监控",
+                "tags": ["mock", "threat_intel"],
+                "category": "threat-intel",
+                "severity_hint": "high",
+                "confidence_label": "source_confirmed",
+                "limitations": ["由 mock 生成"]
             }
 
-        # detection_rule / 其他
+        # detection_rule or other fallback
         return {
             "summary_zh": f"[MOCK] 检测规则: {_truncate(item.title, 80)}",
             "why_it_matters_zh": "新检测规则, 可评估是否纳入内部检测库。",
@@ -488,6 +556,9 @@ def _mock_tags(item: RawItem) -> list[str]:
     return tags[:6]
 
 
+
+
+
 # ---------------------------------------------------------------------------
 # 校验 + 组装 DigestItem
 # ---------------------------------------------------------------------------
@@ -500,6 +571,14 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
     3) 用 Pydantic 严格校验
     """
     data = dict(raw)
+    
+    # fallback map to LlmSummary keys if names differ
+    # Advisory has its own structure, but LlmSummary fields must be populated
+    if "recommended_action" in data and "recommended_action_zh" not in data:
+        data["recommended_action_zh"] = data["recommended_action"]
+    if "why_it_matters" in data and "why_it_matters_zh" not in data:
+        data["why_it_matters_zh"] = data["why_it_matters"]
+
     # 必填字段兜底
     data.setdefault("summary_zh", item.title[:120])
     data.setdefault("why_it_matters_zh", "(LLM 未提供 why_it_matters)")
@@ -533,6 +612,17 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
 
 def build_digest_item(item: RawItem, summary: LlmSummary) -> DigestItem:
     """从 RawItem + LlmSummary 组装 DigestItem (不含 rank_score; 后续 rank 阶段填)。"""
+    # 继承或推导字段
+    severity = getattr(item.risk, "severity", None) if item.risk else None
+    if severity is None:
+        severity = getattr(item, "severity", Severity("info"))
+    # override by llm hint if raw is info
+    if severity == Severity("info") and summary.severity_hint:
+        try:
+            severity = Severity(summary.severity_hint.lower())
+        except ValueError:
+            pass
+            
     return DigestItem(
         id=item.id,
         type=item.type,
@@ -547,7 +637,7 @@ def build_digest_item(item: RawItem, summary: LlmSummary) -> DigestItem:
         vendors=item.vendors,
         products=item.products,
         topics=item.topics,
-        severity=summary.severity_hint,
+        severity=severity,
         risk=item.risk,
         risk_score=0.0,  # rank 阶段会覆盖
         recommendation_score=0.0,

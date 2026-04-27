@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ItemCard from '../components/ItemCard.astro';
+import VendorAdvisoryCard from '../components/VendorAdvisoryCard.astro';
+import ThreatIntelCard from '../components/ThreatIntelCard.astro';
 import { getLatestDigest, pickItems } from '../lib/data';
 import { formatDate } from '../lib/format';
 
@@ -9,6 +11,8 @@ const top10 = pickItems(digest, digest.sections.top_10 ?? []);
 const highRisk = pickItems(digest, digest.sections.high_risk ?? []);
 const research = pickItems(digest, digest.sections.research ?? []);
 const supplyChain = pickItems(digest, digest.sections.supply_chain ?? []);
+const vendorAdvisories = pickItems(digest, digest.sections.vendor_advisories ?? []);
+const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
 ---
 <BaseLayout title="Cyber Security Daily Radar">
   <section class="hero">
@@ -20,47 +24,124 @@ const supplyChain = pickItems(digest, digest.sections.supply_chain ?? []);
       <div><strong>{digest.hero.stats.paper_count}</strong><span>论文</span></div>
       <div><strong>{digest.hero.stats.max_epss.toFixed(2)}</strong><span>最高 EPSS</span></div>
     </div>
-    {digest.is_mock && (
+    {import.meta.env.DEV && digest.is_mock && (
       <div class="mock-banner">当前为 MOCK 数据, 仅用于本地开发预览。</div>
     )}
   </section>
 
-  <section>
-    <h2>🔥 今日精选 Top 10</h2>
-    {top10.length === 0 ? (
-      <p class="muted">今日暂无精选。</p>
-    ) : (
-      top10.map((it) => <ItemCard item={it} />)
-    )}
-  </section>
+  <div class="dashboard-layout">
+    <aside class="sidebar">
+      <nav class="nav-list">
+        <button class="nav-btn active" data-target="sec-top10">
+          <div><span class="icon">🔥</span>每日精选</div>
+          <span class="badge">{top10.length}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-research">
+          <div><span class="icon">🧬</span>学术论文</div>
+          <span class="badge">{research.length}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-vuln">
+          <div><span class="icon">🚨</span>漏洞预警</div>
+          <span class="badge">{highRisk.length}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-threat">
+          <div><span class="icon">🛡️</span>威胁情报</div>
+          <span class="badge">{threatIntel.length}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-vendor">
+          <div><span class="icon">🏢</span>厂商公告</div>
+          <span class="badge">{vendorAdvisories.length}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-supply">
+          <div><span class="icon">🔗</span>供应链安全</div>
+          <span class="badge">{supplyChain.length}</span>
+        </button>
+      </nav>
+    </aside>
 
-  <section>
-    <h2>🚨 高风险漏洞</h2>
-    {highRisk.length === 0 ? (
-      <p class="muted">今日暂无高风险漏洞。</p>
-    ) : (
-      highRisk.map((it) => <ItemCard item={it} />)
-    )}
-  </section>
+    <main class="main-content">
+      <section id="sec-top10" class="tab-pane active">
+        <h2>🔥 每日精选 Top 10</h2>
+        {top10.length === 0 ? (
+          <p class="muted">今日暂无精选。</p>
+        ) : (
+          top10.map((it) => <ItemCard item={it} />)
+        )}
+      </section>
 
-  <section>
-    <h2>🧬 研究前沿</h2>
-    {research.length === 0 ? (
-      <p class="muted">今日暂无研究前沿。</p>
-    ) : (
-      research.map((it) => <ItemCard item={it} />)
-    )}
-  </section>
+      <section id="sec-research" class="tab-pane">
+        <h2>🧬 学术论文</h2>
+        {research.length === 0 ? (
+          <p class="muted">今日暂无学术论文。</p>
+        ) : (
+          research.map((it) => <ItemCard item={it} />)
+        )}
+      </section>
 
-  <section>
-    <h2>🔗 供应链安全</h2>
-    {supplyChain.length === 0 ? (
-      <p class="muted">今日暂无供应链安全情报。</p>
-    ) : (
-      supplyChain.map((it) => <ItemCard item={it} />)
-    )}
-  </section>
+      <section id="sec-vuln" class="tab-pane">
+        <h2>🚨 漏洞预警</h2>
+        {highRisk.length === 0 ? (
+          <p class="muted">今日暂无漏洞预警。</p>
+        ) : (
+          highRisk.map((it) => <ItemCard item={it} />)
+        )}
+      </section>
+
+      <section id="sec-threat" class="tab-pane">
+        <h2>🛡️ 威胁情报</h2>
+        {threatIntel.length === 0 ? (
+          <p class="muted">今日暂无威胁情报。</p>
+        ) : (
+          threatIntel.map((it) => <ThreatIntelCard item={it} />)
+        )}
+      </section>
+
+      <section id="sec-vendor" class="tab-pane">
+        <h2>🏢 厂商公告</h2>
+        {vendorAdvisories.length === 0 ? (
+          <p class="muted">今日暂无厂商公告。</p>
+        ) : (
+          vendorAdvisories.map((it) => <VendorAdvisoryCard item={it} />)
+        )}
+      </section>
+
+      <section id="sec-supply" class="tab-pane">
+        <h2>🔗 供应链安全</h2>
+        {supplyChain.length === 0 ? (
+          <p class="muted">今日暂无供应链安全情报。</p>
+        ) : (
+          supplyChain.map((it) => <ItemCard item={it} />)
+        )}
+      </section>
+    </main>
+  </div>
 </BaseLayout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btns = document.querySelectorAll('.nav-btn');
+    const panes = document.querySelectorAll('.tab-pane');
+    
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Remove active class from all
+        btns.forEach(b => b.classList.remove('active'));
+        panes.forEach(p => p.classList.remove('active'));
+        
+        // Add active class to current
+        btn.classList.add('active');
+        const targetId = btn.getAttribute('data-target');
+        const targetPane = document.getElementById(targetId);
+        
+        if (targetPane) {
+          targetPane.classList.add('active');
+          // Optional: Scroll to the top of the content area smoothly
+          // targetPane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  });
+</script>
 
 <style>
   .hero {
@@ -99,5 +180,145 @@ const supplyChain = pickItems(digest, digest.sections.supply_chain ?? []);
     border-radius: 6px;
     font-size: 0.85rem;
     display: inline-block;
+  }
+
+  /* Dashboard Layout */
+  .dashboard-layout {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+  }
+  
+  .sidebar {
+    position: sticky;
+    top: 2rem;
+    width: 240px;
+    flex-shrink: 0;
+  }
+  
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--fg-muted);
+    transition: all 0.2s ease;
+    text-align: left;
+    font-family: inherit;
+  }
+  
+  .nav-btn > div {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-btn:hover {
+    background: var(--bg-card);
+    color: var(--fg);
+    border-color: var(--border);
+  }
+  
+  .nav-btn.active {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+    font-weight: 500;
+  }
+  
+  .nav-btn .icon {
+    margin-right: 0.6rem;
+    font-size: 1.2em;
+  }
+  
+  .nav-btn .badge {
+    background: #f1f5f9;
+    color: #64748b;
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-family: ui-monospace, monospace;
+    transition: all 0.2s;
+  }
+  
+  .nav-btn.active .badge {
+    background: #dbeafe;
+    color: #1e40af;
+  }
+
+  .main-content {
+    flex-grow: 1;
+    min-width: 0;
+  }
+  
+  .tab-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .tab-pane.active {
+    display: block;
+  }
+  
+  .tab-pane h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive Design for Mobile */
+  @media (max-width: 768px) {
+    .dashboard-layout {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .sidebar {
+      position: relative;
+      top: 0;
+      width: 100%;
+      margin: 0 -1rem; /* Full bleed on mobile */
+      padding: 0 1rem;
+      width: calc(100% + 2rem);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Firefox */
+    }
+    
+    .sidebar::-webkit-scrollbar {
+      display: none; /* Chrome/Safari */
+    }
+    
+    .nav-list {
+      flex-direction: row;
+      min-width: max-content;
+      padding-bottom: 0.5rem;
+    }
+    
+    .nav-btn {
+      padding: 0.6rem 1rem;
+      border: 1px solid var(--border);
+    }
   }
 </style>

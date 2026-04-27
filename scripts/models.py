@@ -193,6 +193,19 @@ class LlmSummary(BaseModel):
             "'abstract_only' / 'metadata_only' / 'with_references' / 'full_text'"
         ),
     )
+
+    # 可选字段：如果存在则使用
+    affected_assets: Optional[List[str]] = None
+    cves: Optional[List[str]] = None
+    limitations: Optional[List[str]] = None
+    threat_type: Optional[str] = None
+    threat_actors: Optional[List[str]] = None
+    malware_families: Optional[List[str]] = None
+    affected_industries: Optional[List[str]] = None
+    affected_regions: Optional[List[str]] = None
+    attack_techniques: Optional[List[str]] = None
+    iocs_present: Optional[bool] = None
+
     refusal: bool = False
     refusal_reason: Optional[str] = None
     prompt_version: Optional[str] = None
@@ -202,6 +215,18 @@ class LlmSummary(BaseModel):
 # 主模型
 # ---------------------------------------------------------------------------
 
+
+class ThreatMeta(BaseModel):
+    """特定于威胁情报报告的元数据"""
+    model_config = ConfigDict(extra="forbid")
+    
+    malware_families: List[str] = Field(default_factory=list)
+    threat_actors: List[str] = Field(default_factory=list)
+    affected_industries: List[str] = Field(default_factory=list)
+    affected_regions: List[str] = Field(default_factory=list)
+    attack_techniques: List[str] = Field(default_factory=list)
+    iocs_present: bool = False
+    confidence: Optional[float] = None
 
 class RawItem(BaseModel):
     """抓取侧归一结构, 每个 fetcher 必须输出此模型的实例列表。"""
@@ -245,6 +270,9 @@ class RawItem(BaseModel):
 
     # 风险信号 (漏洞类必填, 论文类可全空)
     risk: Optional[RiskSignal] = None
+
+    # 情报元数据 (仅针对情报类适用)
+    threat_meta: Optional[ThreatMeta] = None
 
     # 参考链接
     references: List[HttpUrl] = Field(default_factory=list)

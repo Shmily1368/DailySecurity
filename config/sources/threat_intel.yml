@@ -1,0 +1,501 @@
+sources:
+  # ==========================================
+  # 国内威胁情报
+  # ==========================================
+  - id: "360cert_report"
+    name: "360CERT 安全报告"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://cert.360.cn/report"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["360", "apt", "malware", "report"]
+    notes: "官网提供 HTML 报告列表，质量较高"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "nsfocus_nti"
+    name: "绿盟威胁情报中心 / NSFOCUS NTI"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://nti.nsfocus.com/threatInfo"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["nsfocus", "nti", "threat_intel"]
+    notes: "HTML 抓取，需确认内容可达性"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "tencent_tic_report"
+    name: "腾讯安全威胁情报中心"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://s.tencent.com/research"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["tencent", "apt", "report"]
+    notes: "needs verification (部分优质报告在公众号，需监控官网同步情况)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "qianxin_ti_center"
+    name: "奇安信威胁情报中心"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://ti.qianxin.com/blog/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["qianxin", "ti", "apt", "malware"]
+    notes: "官方博客有高质量报告，HTML 结构清晰"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "threatbook_intel"
+    name: "微步在线 ThreatBook"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://x.threatbook.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["threatbook", "intel", "ioc"]
+    notes: "needs verification (微社区和官方博客，需梳理结构化抓取接口)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "dbappsecurity_intel"
+    name: "安恒威胁情报"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://ti.dbappsecurity.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["dbappsecurity", "ti"]
+    notes: "needs verification (确认公开报告入口)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "sangfor_qianlimu_intel"
+    name: "深信服千里目安全实验室"
+    region: "CN"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "manual_pending"
+    url: "https://sec.sangfor.com.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["sangfor", "ti", "report"]
+    notes: "needs verification (同厂商通告，需寻找稳定的报告入口)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cncert_report"
+    name: "CNCERT"
+    region: "CN"
+    category: "government_cert"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.cert.org.cn/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["cncert", "government", "report"]
+    notes: "国家级宏观报告和预警，HTML 解析"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cnvd_advisory"
+    name: "CNVD"
+    region: "CN"
+    category: "government_cert"
+    content_type: "mixed"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.cnvd.org.cn/flaw/list"
+    enabled: true
+    rate_limit_seconds: 15
+    tags: ["cnvd", "vulnerability", "government"]
+    notes: "国家漏洞库，防爬虫极严，不建议高频抓取，建议按需或极低频尝试"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cnnvd_advisory"
+    name: "CNNVD"
+    region: "CN"
+    category: "government_cert"
+    content_type: "mixed"
+    source_quality: "primary"
+    parser: "html"
+    url: "http://www.cnnvd.org.cn/"
+    enabled: true
+    rate_limit_seconds: 15
+    tags: ["cnnvd", "vulnerability", "government"]
+    notes: "防爬虫策略较严，需测试可用性"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "freebuf"
+    name: "FreeBuf"
+    region: "CN"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "community"
+    parser: "rss"
+    url: "https://www.freebuf.com/feed"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["freebuf", "community", "news"]
+    notes: "国内主流安全媒体社区，提供 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "anquanke"
+    name: "安全客"
+    region: "CN"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "community"
+    parser: "manual_pending"
+    url: "https://www.anquanke.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["anquanke", "community"]
+    notes: "needs verification (寻找 RSS 或结构化列表)"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "xianzhi"
+    name: "先知社区"
+    region: "CN"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "community"
+    parser: "html"
+    url: "https://xz.aliyun.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["xianzhi", "community", "research"]
+    notes: "偏技术研究，有大量技术文章，需谨慎过滤 PoC/Exploit 细节"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "kanxue"
+    name: "看雪"
+    region: "CN"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "community"
+    parser: "html"
+    url: "https://bbs.kanxue.com/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["kanxue", "community", "reversing"]
+    notes: "底层技术/逆向社区为主，需针对特定安全板块抓取"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  # ==========================================
+  # 国际威胁情报
+  # ==========================================
+  - id: "cisa_cybersecurity_advisories"
+    name: "CISA Cybersecurity Advisories"
+    region: "GLOBAL"
+    category: "government_cert"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["cisa", "government", "advisory", "apt"]
+    notes: "CISA 权威公告，支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "microsoft_ti"
+    name: "Microsoft Threat Intelligence"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://www.microsoft.com/en-us/security/blog/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["microsoft", "ti", "apt", "malware"]
+    notes: "微软官方安全博客 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "google_tag"
+    name: "Google Threat Analysis Group"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://blog.google/threat-analysis-group/rss/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["google", "tag", "apt", "0day"]
+    notes: "TAG 博客，高质量 0day 和 APT 分析"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "mandiant"
+    name: "Mandiant"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.mandiant.com/resources/blog"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["mandiant", "apt", "report"]
+    notes: "被 Google 收购后仍保持独立博客，需解析 HTML"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "palo_alto_unit42"
+    name: "Palo Alto Unit 42"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://unit42.paloaltonetworks.com/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["paloalto", "unit42", "malware", "apt"]
+    notes: "支持 RSS，高产出"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cisco_talos"
+    name: "Cisco Talos"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://blog.talosintelligence.com/rss/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["cisco", "talos", "malware", "vuln_research"]
+    notes: "支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "crowdstrike"
+    name: "CrowdStrike"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.crowdstrike.com/blog/category/threat-intel-research/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["crowdstrike", "apt", "edr"]
+    notes: "高质量博客，需解析 HTML"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "sentinelone"
+    name: "SentinelOne"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://www.sentinelone.com/labs/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["sentinelone", "labs", "malware"]
+    notes: "支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "sophos_labs"
+    name: "Sophos"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://news.sophos.com/en-us/category/threat-research/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["sophos", "malware", "ransomware"]
+    notes: "支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "eset_research"
+    name: "ESET"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://www.welivesecurity.com/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["eset", "apt", "malware"]
+    notes: "WeLiveSecurity 博客，支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "checkpoint_research"
+    name: "Check Point Research"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://research.checkpoint.com/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["checkpoint", "research", "malware"]
+    notes: "支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "rapid7_blog"
+    name: "Rapid7"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://www.rapid7.com/blog/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["rapid7", "vulnerability", "research"]
+    notes: "支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "cloudflare_security"
+    name: "Cloudflare Blog Security"
+    region: "GLOBAL"
+    category: "cloud_provider"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://blog.cloudflare.com/tag/security/rss/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["cloudflare", "ddos", "web_security"]
+    notes: "支持 RSS，主要涉及 DDoS、WAF 和 Web 安全"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "akamai_security"
+    name: "Akamai Security Research"
+    region: "GLOBAL"
+    category: "cloud_provider"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "html"
+    url: "https://www.akamai.com/blog/security-research"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["akamai", "botnet", "ddos"]
+    notes: "需解析 HTML"
+    expected_fields: ["title", "published_at"]
+    safety_policy: "strict_no_poc"
+
+  - id: "elastic_security_labs"
+    name: "Elastic Security Labs"
+    region: "GLOBAL"
+    category: "threat_research_lab"
+    content_type: "threat_intel"
+    source_quality: "primary"
+    parser: "rss"
+    url: "https://www.elastic.co/security-labs/rss/feed.xml"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["elastic", "labs", "detection"]
+    notes: "提供丰富的检测工程规则和分析，支持 RSS"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "sans_isc"
+    name: "SANS ISC"
+    region: "GLOBAL"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "secondary"
+    parser: "rss"
+    url: "https://isc.sans.edu/rssfeed.xml"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["sans", "isc", "diary", "community"]
+    notes: "Internet Storm Center，高频日志"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "bleeping_computer"
+    name: "BleepingComputer"
+    region: "GLOBAL"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "secondary"
+    parser: "rss"
+    url: "https://www.bleepingcomputer.com/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["news", "ransomware", "cybersecurity"]
+    notes: "主流安全新闻源，侧重勒索软件与泄露事件"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "the_hacker_news"
+    name: "The Hacker News"
+    region: "GLOBAL"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "secondary"
+    parser: "rss"
+    url: "https://feeds.feedburner.com/TheHackersNews"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["news", "cybersecurity", "thn"]
+    notes: "主流安全新闻源"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
+
+  - id: "security_week"
+    name: "SecurityWeek"
+    region: "GLOBAL"
+    category: "security_community"
+    content_type: "mixed"
+    source_quality: "secondary"
+    parser: "rss"
+    url: "https://www.securityweek.com/feed/"
+    enabled: true
+    rate_limit_seconds: 5
+    tags: ["news", "enterprise", "securityweek"]
+    notes: "偏企业级视角的安全新闻"
+    expected_fields: ["title", "published_at", "summary"]
+    safety_policy: "strict_no_poc"
