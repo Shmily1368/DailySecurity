@@ -2,11 +2,11 @@ import json
 import glob
 import os
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import argparse
 from typing import Dict, List, Any
 
-from models import DigestItem, DailyDigest, Hero, HeroStats, ItemType, Severity, RawItem
+from models import DigestItem, DailyDigest, Hero, HeroStats, ItemType, Severity, RawItem, RiskSignal
 from rank_items import rank_items
 from summarize_with_llm import build_llm_summary, build_digest_item
 
@@ -50,13 +50,39 @@ def load_processed_items(input_dir: str) -> Dict[str, DigestItem]:
                     
     return items_map
 
+def load_epss_scores(raw_dir: str) -> Dict[str, float]:
+    """Load EPSS scores mapping from epss_scores.json to merge into items."""
+    epss_map = {}
+    epss_path = Path(raw_dir) / "epss_scores.json"
+    if not epss_path.exists():
+        return epss_map
+        
+    try:
+        with open(epss_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+            
+        raw_list = data.get("items", []) if isinstance(data, dict) else (data if isinstance(data, list) else [])
+        for raw_dict in raw_list:
+            cves = raw_dict.get("cves", [])
+            risk = raw_dict.get("risk", {})
+            if cves and risk and "epss_score" in risk:
+                for cve in cves:
+                    epss_map[cve] = risk["epss_score"]
+    except Exception as e:
+        print(f"[WARN] Failed to load EPSS scores: {e}")
+        
+    return epss_map
+
 def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
     """Load raw items that didn't get processed by LLM and create mock/fallback DigestItems for them."""
     missing_items = []
     
+    # We only want to display "Daily" items. Skip anything older than 3 days.
+    cutoff_date = datetime.now(timezone.utc) - timedelta(days=3)
+    
     for filepath in glob.glob(f"{raw_dir}/*.json"):
-        # Ignore error files
-        if "errors" in filepath:
+        # Ignore error files and EPSS scores (which are purely metadata to be merged)
+        if "errors" in filepath or "epss" in filepath:
             continue
             
         with open(filepath, "r", encoding="utf-8") as f:
@@ -79,6 +105,11 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                         
                     raw_item = RawItem.model_validate(raw_dict)
                     
+                    # Skip old historical data (especially important for cisa_kev.json which has 1500+ items)
+                    # For threat intelligence, we also want to stay daily.
+                    if raw_item.published_at and raw_item.published_at < cutoff_date:
+                        continue
+                        
                     # Create a minimal fallback LlmSummary
                     summary_data = {
                         "summary_zh": raw_item.title[:120],
@@ -184,6 +215,22 @@ def main():
     missing_items = load_missing_raw_items(str(raw_dir), existing_ids)
     
     items = list(processed_items_map.values()) + missing_items
+    
+    # 1.8 Merge EPSS scores
+    epss_map = load_epss_scores(str(raw_dir))
+    if epss_map:
+        for item in items:
+            if not item.cves:
+                continue
+            max_epss = -1.0
+            for cve in item.cves:
+                if cve in epss_map and epss_map[cve] > max_epss:
+                    max_epss = epss_map[cve]
+            if max_epss >= 0.0:
+                if not item.risk:
+                    item.risk = RiskSignal()
+                if item.risk.epss_score is None or max_epss > item.risk.epss_score:
+                    item.risk.epss_score = max_epss
     
     if not items:
         print("[WARN] No items found in processed or raw dir.")
