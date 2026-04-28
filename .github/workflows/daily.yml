@@ -36,7 +36,7 @@ jobs:
           pip install -r requirements.txt
           
       - name: Fetch arXiv (cs.CR)
-        run: python scripts/fetch_arxiv.py --max-results 50
+        run: python scripts/fetch_arxiv.py --max-results 200
         
       - name: Fetch CISA KEV
         run: python scripts/fetch_cisa_kev.py
@@ -58,11 +58,11 @@ jobs:
           python scripts/fetch_osv.py --nvd-source data/raw/nvd_recent.json || true
           
       - name: Fetch Vendor Advisories
-        run: python scripts/fetch_vendor_advisories.py --limit-per-source 10
+        run: python scripts/fetch_vendor_advisories.py --days 1 --limit-per-source 50
         continue-on-error: true
         
       - name: Fetch Threat Intelligence
-        run: python scripts/fetch_threat_intel.py --limit-per-source 10
+        run: python scripts/fetch_threat_intel.py --days 1 --limit-per-source 50
         continue-on-error: true
         
       - name: Summarize with LLM (Dynamic Mode)

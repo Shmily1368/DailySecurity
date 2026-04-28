@@ -60,58 +60,76 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
     </aside>
 
     <main class="main-content">
-      <section id="sec-top10" class="tab-pane active">
+      <section id="sec-top10" class="tab-pane active" data-page-size="10">
         <h2>🔥 每日精选 Top 10</h2>
+        <div class="items-container">
         {top10.length === 0 ? (
           <p class="muted">今日暂无精选。</p>
         ) : (
-          top10.map((it) => <ItemCard item={it} />)
+          top10.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
         )}
+        </div>
+        <div class="pagination-controls"></div>
       </section>
 
-      <section id="sec-research" class="tab-pane">
+      <section id="sec-research" class="tab-pane" data-page-size="20">
         <h2>🧬 学术论文</h2>
+        <div class="items-container">
         {research.length === 0 ? (
           <p class="muted">今日暂无学术论文。</p>
         ) : (
-          research.map((it) => <ItemCard item={it} />)
+          research.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
         )}
+        </div>
+        <div class="pagination-controls"></div>
       </section>
 
-      <section id="sec-vuln" class="tab-pane">
+      <section id="sec-vuln" class="tab-pane" data-page-size="20">
         <h2>🚨 漏洞预警</h2>
+        <div class="items-container">
         {highRisk.length === 0 ? (
           <p class="muted">今日暂无漏洞预警。</p>
         ) : (
-          highRisk.map((it) => <ItemCard item={it} />)
+          highRisk.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
         )}
+        </div>
+        <div class="pagination-controls"></div>
       </section>
 
-      <section id="sec-threat" class="tab-pane">
+      <section id="sec-threat" class="tab-pane" data-page-size="20">
         <h2>🛡️ 威胁情报</h2>
+        <div class="items-container">
         {threatIntel.length === 0 ? (
           <p class="muted">今日暂无威胁情报。</p>
         ) : (
-          threatIntel.map((it) => <ThreatIntelCard item={it} />)
+          threatIntel.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)
         )}
+        </div>
+        <div class="pagination-controls"></div>
       </section>
 
-      <section id="sec-vendor" class="tab-pane">
+      <section id="sec-vendor" class="tab-pane" data-page-size="20">
         <h2>🏢 厂商公告</h2>
+        <div class="items-container">
         {vendorAdvisories.length === 0 ? (
           <p class="muted">今日暂无厂商公告。</p>
         ) : (
-          vendorAdvisories.map((it) => <VendorAdvisoryCard item={it} />)
+          vendorAdvisories.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)
         )}
+        </div>
+        <div class="pagination-controls"></div>
       </section>
 
-      <section id="sec-supply" class="tab-pane">
+      <section id="sec-supply" class="tab-pane" data-page-size="20">
         <h2>🔗 供应链安全</h2>
+        <div class="items-container">
         {supplyChain.length === 0 ? (
           <p class="muted">今日暂无供应链安全情报。</p>
         ) : (
-          supplyChain.map((it) => <ItemCard item={it} />)
+          supplyChain.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
         )}
+        </div>
+        <div class="pagination-controls"></div>
       </section>
     </main>
   </div>
@@ -122,6 +140,66 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
     const btns = document.querySelectorAll('.nav-btn');
     const panes = document.querySelectorAll('.tab-pane');
     
+    // Pagination setup
+    panes.forEach(pane => {
+      const items = Array.from(pane.querySelectorAll('.item-wrapper'));
+      const pageSize = parseInt(pane.getAttribute('data-page-size') || '20', 10);
+      const controlsContainer = pane.querySelector('.pagination-controls');
+      
+      if (items.length <= pageSize && controlsContainer) {
+        controlsContainer.style.display = 'none';
+        return;
+      }
+      
+      let currentPage = 1;
+      const totalPages = Math.ceil(items.length / pageSize);
+      
+      function renderPage(page) {
+        items.forEach((item, index) => {
+          if (index >= (page - 1) * pageSize && index < page * pageSize) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        
+        if (controlsContainer) {
+          controlsContainer.innerHTML = `
+            <div class="pagination">
+              <button class="page-btn" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
+              <span class="page-info">第 ${page} / ${totalPages} 页</span>
+              <button class="page-btn" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
+            </div>
+          `;
+          
+          const prevBtn = controlsContainer.querySelector('[data-action="prev"]');
+          const nextBtn = controlsContainer.querySelector('[data-action="next"]');
+          
+          if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+              if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
+          }
+          
+          if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+              if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(currentPage);
+                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
+          }
+        }
+      }
+      
+      renderPage(1);
+    });
+
     btns.forEach(btn => {
       btn.addEventListener('click', () => {
         // Remove active class from all
@@ -280,6 +358,42 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .page-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--fg);
+    font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+
+  .page-btn:hover:not(:disabled) {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+
+  .page-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .page-info {
+    font-size: 0.9rem;
+    color: var(--fg-muted);
   }
 
   @keyframes fadeIn {

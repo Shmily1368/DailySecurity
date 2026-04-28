@@ -51,7 +51,7 @@ from models import ItemType, RawItem, SourceInfo  # noqa: E402
 
 ARXIV_API_ENDPOINT = "http://export.arxiv.org/api/query"
 ARXIV_CATEGORY = "cs.CR"
-DEFAULT_MAX_RESULTS = 50
+DEFAULT_MAX_RESULTS = 200  # Increased to capture all daily papers
 DEFAULT_OUTPUT = Path("data/raw/arxiv_latest.json")
 HTTP_TIMEOUT = 20.0
 USER_AGENT = "cyber-daily-radar/0.1 (+https://github.com/)"
@@ -312,9 +312,13 @@ def main() -> int:
     except ArxivFetchError as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         return 1
+        
+    # Filter for today's papers
+    cutoff_date = fetched_at.replace(hour=0, minute=0, second=0, microsecond=0)
+    items = [item for item in items if item.published_at and item.published_at >= cutoff_date]
 
     if not items:
-        print("[WARN] 未解析到任何条目", file=sys.stderr)
+        print("[WARN] 未解析到任何今日条目", file=sys.stderr)
 
     count = dump_items(items, args.output)
     print(f"[OK] 写入 {count} 条到 {args.output}", file=sys.stderr)
