@@ -8,11 +8,28 @@ import { formatDate } from '../lib/format';
 
 const digest = getLatestDigest();
 const top10 = pickItems(digest, digest.sections.top_10 ?? []);
-const highRisk = pickItems(digest, digest.sections.high_risk ?? []);
-const research = pickItems(digest, digest.sections.research ?? []);
-const supplyChain = pickItems(digest, digest.sections.supply_chain ?? []);
-const vendorAdvisories = pickItems(digest, digest.sections.vendor_advisories ?? []);
-const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
+
+const vulnExploited = pickItems(digest, digest.sections.vuln_exploited ?? []);
+const vulnPoc = pickItems(digest, digest.sections.vuln_poc ?? []);
+const vulnSupplyChain = pickItems(digest, digest.sections.vuln_supply_chain ?? []);
+const vulnBaseline = pickItems(digest, digest.sections.vuln_baseline ?? []);
+const vulnTotalCount = vulnExploited.length + vulnPoc.length + vulnSupplyChain.length + vulnBaseline.length;
+
+const threatApt = pickItems(digest, digest.sections.threat_apt ?? []);
+const threatCybercrime = pickItems(digest, digest.sections.threat_cybercrime ?? []);
+const threatCampaigns = pickItems(digest, digest.sections.threat_campaigns ?? []);
+const threatMacro = pickItems(digest, digest.sections.threat_macro ?? []);
+const threatTotalCount = threatApt.length + threatCybercrime.length + threatCampaigns.length + threatMacro.length;
+
+const vendorCloud = pickItems(digest, digest.sections.vendor_cloud ?? []);
+const vendorOs = pickItems(digest, digest.sections.vendor_os ?? []);
+const vendorIot = pickItems(digest, digest.sections.vendor_iot ?? []);
+const vendorTotalCount = vendorCloud.length + vendorOs.length + vendorIot.length;
+
+const researchAi = pickItems(digest, digest.sections.research_ai ?? []);
+const researchCrypto = pickItems(digest, digest.sections.research_crypto ?? []);
+const researchSystems = pickItems(digest, digest.sections.research_systems ?? []);
+const researchTotalCount = researchAi.length + researchCrypto.length + researchSystems.length;
 ---
 <BaseLayout title="Cyber Security Daily Radar">
   <section class="hero">
@@ -36,21 +53,21 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
           <div><span class="icon">🔥</span>每日精选</div>
           <span class="badge">{top10.length}</span>
         </button>
-        <button class="nav-btn" data-target="sec-research">
-          <div><span class="icon">🧬</span>学术论文</div>
-          <span class="badge">{research.length}</span>
-        </button>
         <button class="nav-btn" data-target="sec-vuln">
           <div><span class="icon">🚨</span>漏洞预警</div>
-          <span class="badge">{highRisk.length}</span>
+          <span class="badge">{vulnTotalCount}</span>
         </button>
         <button class="nav-btn" data-target="sec-threat">
           <div><span class="icon">🛡️</span>威胁情报</div>
-          <span class="badge">{threatIntel.length}</span>
+          <span class="badge">{threatTotalCount}</span>
         </button>
         <button class="nav-btn" data-target="sec-vendor">
           <div><span class="icon">🏢</span>厂商公告</div>
-          <span class="badge">{vendorAdvisories.length}</span>
+          <span class="badge">{vendorTotalCount}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-research">
+          <div><span class="icon">🧬</span>学术论文</div>
+          <span class="badge">{researchTotalCount}</span>
         </button>
       </nav>
     </aside>
@@ -68,70 +85,148 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
         <div class="pagination-controls"></div>
       </section>
 
-      <section id="sec-research" class="tab-pane" data-page-size="20">
-        <div class="section-header">
-          <h2>🧬 学术论文</h2>
-          <div class="filter-group">
-            <button class="filter-tag active" data-filter="all">全部</button>
-            <button class="filter-tag" data-filter="supply_chain">供应链安全</button>
-          </div>
-        </div>
-        <div class="items-container">
-        {research.length === 0 ? (
-          <p class="muted">今日暂无学术论文。</p>
-        ) : (
-          research.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><ItemCard item={it} /></div>)
-        )}
-        </div>
-        <div class="pagination-controls"></div>
-      </section>
-
       <section id="sec-vuln" class="tab-pane" data-page-size="20">
         <div class="section-header">
           <h2>🚨 漏洞预警</h2>
-          <div class="filter-group">
-            <button class="filter-tag active" data-filter="all">全部</button>
-            <button class="filter-tag" data-filter="supply_chain">供应链安全</button>
+          <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtarget="vuln-exploited">🧨 在野利用 ({vulnExploited.length})</button>
+            <button class="sub-tab-btn" data-subtarget="vuln-poc">🔬 深度分析与PoC ({vulnPoc.length})</button>
+            <button class="sub-tab-btn" data-subtarget="vuln-supply">📦 供应链与开源 ({vulnSupplyChain.length})</button>
+            <button class="sub-tab-btn" data-subtarget="vuln-baseline">📋 常规披露 ({vulnBaseline.length})</button>
           </div>
         </div>
-        <div class="items-container">
-        {highRisk.length === 0 ? (
-          <p class="muted">今日暂无漏洞预警。</p>
-        ) : (
-          highRisk.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><ItemCard item={it} /></div>)
-        )}
+        
+        <div class="sub-pane active" id="vuln-exploited">
+          <div class="items-container">
+          {vulnExploited.length === 0 ? <p class="muted">今日暂无在野利用漏洞。</p> : vulnExploited.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
         </div>
-        <div class="pagination-controls"></div>
+        
+        <div class="sub-pane" id="vuln-poc">
+          <div class="items-container">
+          {vulnPoc.length === 0 ? <p class="muted">今日暂无第三方深度分析。</p> : vulnPoc.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="vuln-supply">
+          <div class="items-container">
+          {vulnSupplyChain.length === 0 ? <p class="muted">今日暂无供应链与开源漏洞。</p> : vulnSupplyChain.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="vuln-baseline">
+          <div class="items-container">
+          {vulnBaseline.length === 0 ? <p class="muted">今日暂无常规漏洞披露。</p> : vulnBaseline.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
       </section>
 
       <section id="sec-threat" class="tab-pane" data-page-size="20">
         <div class="section-header">
           <h2>🛡️ 威胁情报</h2>
-          <div class="filter-group">
-            <button class="filter-tag active" data-filter="all">全部</button>
-            <button class="filter-tag" data-filter="supply_chain">供应链安全</button>
+          <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtarget="threat-apt">🥷 APT与高级威胁 ({threatApt.length})</button>
+            <button class="sub-tab-btn" data-subtarget="threat-cybercrime">💸 勒索与黑产 ({threatCybercrime.length})</button>
+            <button class="sub-tab-btn" data-subtarget="threat-campaigns">🎯 战术与攻击活动 ({threatCampaigns.length})</button>
+            <button class="sub-tab-btn" data-subtarget="threat-macro">📊 宏观态势 ({threatMacro.length})</button>
           </div>
         </div>
-        <div class="items-container">
-        {threatIntel.length === 0 ? (
-          <p class="muted">今日暂无威胁情报。</p>
-        ) : (
-          threatIntel.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><ThreatIntelCard item={it} /></div>)
-        )}
+
+        <div class="sub-pane active" id="threat-apt">
+          <div class="items-container">
+          {threatApt.length === 0 ? <p class="muted">今日暂无APT情报。</p> : threatApt.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
         </div>
-        <div class="pagination-controls"></div>
+
+        <div class="sub-pane" id="threat-cybercrime">
+          <div class="items-container">
+          {threatCybercrime.length === 0 ? <p class="muted">今日暂无勒索与黑产情报。</p> : threatCybercrime.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="threat-campaigns">
+          <div class="items-container">
+          {threatCampaigns.length === 0 ? <p class="muted">今日暂无具体战术情报。</p> : threatCampaigns.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="threat-macro">
+          <div class="items-container">
+          {threatMacro.length === 0 ? <p class="muted">今日暂无宏观态势报告。</p> : threatMacro.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
       </section>
 
       <section id="sec-vendor" class="tab-pane" data-page-size="20">
-        <h2>🏢 厂商公告</h2>
-        <div class="items-container">
-        {vendorAdvisories.length === 0 ? (
-          <p class="muted">今日暂无厂商公告。</p>
-        ) : (
-          vendorAdvisories.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><VendorAdvisoryCard item={it} /></div>)
-        )}
+        <div class="section-header">
+          <h2>🏢 厂商公告</h2>
+          <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtarget="vendor-cloud">☁️ 云与网络设施 ({vendorCloud.length})</button>
+            <button class="sub-tab-btn" data-subtarget="vendor-os">💻 操作系统与软件 ({vendorOs.length})</button>
+            <button class="sub-tab-btn" data-subtarget="vendor-iot">📱 物联网与工控 ({vendorIot.length})</button>
+          </div>
         </div>
-        <div class="pagination-controls"></div>
+
+        <div class="sub-pane active" id="vendor-cloud">
+          <div class="items-container">
+          {vendorCloud.length === 0 ? <p class="muted">今日暂无云厂商公告。</p> : vendorCloud.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="vendor-os">
+          <div class="items-container">
+          {vendorOs.length === 0 ? <p class="muted">今日暂无操作系统厂商公告。</p> : vendorOs.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="vendor-iot">
+          <div class="items-container">
+          {vendorIot.length === 0 ? <p class="muted">今日暂无IoT与工控厂商公告。</p> : vendorIot.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+      </section>
+
+      <section id="sec-research" class="tab-pane" data-page-size="20">
+        <div class="section-header">
+          <h2>🧬 学术论文</h2>
+          <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtarget="research-ai">🤖 AI 安全 ({researchAi.length})</button>
+            <button class="sub-tab-btn" data-subtarget="research-crypto">🔐 密码学与架构 ({researchCrypto.length})</button>
+            <button class="sub-tab-btn" data-subtarget="research-systems">🌐 系统与网络 ({researchSystems.length})</button>
+          </div>
+        </div>
+
+        <div class="sub-pane active" id="research-ai">
+          <div class="items-container">
+          {researchAi.length === 0 ? <p class="muted">今日暂无AI安全相关论文。</p> : researchAi.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="research-crypto">
+          <div class="items-container">
+          {researchCrypto.length === 0 ? <p class="muted">今日暂无密码学相关论文。</p> : researchCrypto.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div class="sub-pane" id="research-systems">
+          <div class="items-container">
+          {researchSystems.length === 0 ? <p class="muted">今日暂无系统与网络安全论文。</p> : researchSystems.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
       </section>
     </main>
   </div>
@@ -143,93 +238,66 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
     const panes = document.querySelectorAll('.tab-pane');
     
     // Pagination setup
-    panes.forEach(pane => {
-      let items = Array.from(pane.querySelectorAll('.item-wrapper'));
-      const pageSize = parseInt(pane.getAttribute('data-page-size') || '20', 10);
+    const subPanes = document.querySelectorAll('.sub-pane, #sec-top10');
+    
+    subPanes.forEach(pane => {
+      const items = Array.from(pane.querySelectorAll('.item-wrapper'));
+      const parentTab = pane.closest('.tab-pane') || pane;
+      const pageSize = parseInt(parentTab.getAttribute('data-page-size') || '20', 10);
       const controlsContainer = pane.querySelector('.pagination-controls');
-      const filterTags = pane.querySelectorAll('.filter-tag');
+      
+      if (items.length <= pageSize && controlsContainer) {
+        controlsContainer.style.display = 'none';
+        return;
+      }
       
       let currentPage = 1;
-      let currentFilter = 'all';
+      const totalPages = Math.ceil(items.length / pageSize);
       
-      function renderPage(page, activeItems) {
-        const totalPages = Math.ceil(activeItems.length / pageSize) || 1;
-        
-        // Hide all items first
-        items.forEach(item => item.style.display = 'none');
-        
-        // Show only active items for the current page
-        activeItems.forEach((item, index) => {
+      function renderPage(page) {
+        items.forEach((item, index) => {
           if (index >= (page - 1) * pageSize && index < page * pageSize) {
             item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
           }
         });
         
         if (controlsContainer) {
-          if (activeItems.length <= pageSize) {
-             controlsContainer.style.display = 'none';
-          } else {
-             controlsContainer.style.display = 'flex';
-             controlsContainer.innerHTML = `
-               <div class="pagination">
-                 <button class="page-btn" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
-                 <span class="page-info">第 ${page} / ${totalPages} 页</span>
-                 <button class="page-btn" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
-               </div>
-             `;
-             
-             const prevBtn = controlsContainer.querySelector('[data-action="prev"]');
-             const nextBtn = controlsContainer.querySelector('[data-action="next"]');
-             
-             if (prevBtn) {
-               prevBtn.addEventListener('click', () => {
-                 if (currentPage > 1) {
-                   currentPage--;
-                   renderPage(currentPage, activeItems);
-                   pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                 }
-               });
-             }
-             
-             if (nextBtn) {
-               nextBtn.addEventListener('click', () => {
-                 if (currentPage < totalPages) {
-                   currentPage++;
-                   renderPage(currentPage, activeItems);
-                   pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                 }
-               });
-             }
+          controlsContainer.innerHTML = `
+            <div class="pagination">
+              <button class="page-btn" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
+              <span class="page-info">第 ${page} / ${totalPages} 页</span>
+              <button class="page-btn" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
+            </div>
+          `;
+          
+          const prevBtn = controlsContainer.querySelector('[data-action="prev"]');
+          const nextBtn = controlsContainer.querySelector('[data-action="next"]');
+          
+          if (prevBtn) {
+            prevBtn.addEventListener('click', () => {
+              if (currentPage > 1) {
+                currentPage--;
+                renderPage(currentPage);
+                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
+          }
+          
+          if (nextBtn) {
+            nextBtn.addEventListener('click', () => {
+              if (currentPage < totalPages) {
+                currentPage++;
+                renderPage(currentPage);
+                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }
+            });
           }
         }
       }
       
-      function applyFilter() {
-        currentPage = 1;
-        let activeItems = items;
-        
-        if (currentFilter !== 'all') {
-           activeItems = items.filter(item => {
-             const tags = item.getAttribute('data-tags') || '';
-             return tags.includes(currentFilter);
-           });
-        }
-        
-        renderPage(currentPage, activeItems);
-      }
-      
-      if (filterTags.length > 0) {
-         filterTags.forEach(tag => {
-           tag.addEventListener('click', (e) => {
-             filterTags.forEach(t => t.classList.remove('active'));
-             e.target.classList.add('active');
-             currentFilter = e.target.getAttribute('data-filter');
-             applyFilter();
-           });
-         });
-      }
-      
-      applyFilter();
+      renderPage(1);
     });
 
     btns.forEach(btn => {
@@ -247,6 +315,28 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
           targetPane.classList.add('active');
           // Optional: Scroll to the top of the content area smoothly
           // targetPane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Sub-tabs logic
+    const subTabBtns = document.querySelectorAll('.sub-tab-btn');
+    subTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const parentSection = btn.closest('.tab-pane');
+        const targetId = btn.getAttribute('data-subtarget');
+        
+        // Remove active class from buttons in this section
+        parentSection.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        // Hide all sub-panes in this section
+        parentSection.querySelectorAll('.sub-pane').forEach(p => p.classList.remove('active'));
+        
+        // Show target sub-pane
+        const targetPane = document.getElementById(targetId);
+        if (targetPane) {
+          targetPane.classList.add('active');
         }
       });
     });
@@ -381,52 +471,70 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
     display: block;
   }
   
-  .tab-pane h2 {
+  .section-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .section-header h2 {
     margin-top: 0;
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    border-bottom: none;
+    padding-bottom: 0;
   }
   
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #e2e8f0;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .filter-group {
+  .sub-tabs {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
   }
   
-  .filter-tag {
+  .sub-tab-btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
     background: #f1f5f9;
     color: #475569;
     border: 1px solid transparent;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
     font-size: 0.85rem;
     cursor: pointer;
     transition: all 0.2s;
   }
   
-  .filter-tag:hover {
+  .sub-tab-btn:hover {
     background: #e2e8f0;
   }
   
-  .filter-tag.active {
-    background: #eff6ff;
-    color: #1d4ed8;
+  .sub-tab-btn.active {
+    background: #dbeafe;
+    color: #1e40af;
     border-color: #bfdbfe;
     font-weight: 500;
+  }
+  
+  .sub-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  
+  .sub-pane.active {
+    display: block;
+  }
+
+  /* Handle top10 h2 specifically since it doesn't have a section-header wrapper */
+  #sec-top10 h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
   .pagination {

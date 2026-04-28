@@ -141,52 +141,74 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
 def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
     sections = {
         "top_10": [],
-        "high_risk": [],
-        "research": [],
-        "threat_intel": [],
-        "vendor_advisories": []
+        "vuln_exploited": [],
+        "vuln_poc": [],
+        "vuln_supply_chain": [],
+        "vuln_baseline": [],
+        "threat_apt": [],
+        "threat_cybercrime": [],
+        "threat_campaigns": [],
+        "threat_macro": [],
+        "vendor_cloud": [],
+        "vendor_os": [],
+        "vendor_iot": [],
+        "research_ai": [],
+        "research_crypto": [],
+        "research_systems": []
     }
     
     for item in items:
-        # Tag initialization if not present
-        if not item.tags:
-            item.tags = []
-            
-        text_to_check = (item.title + " " + str(item.summary) + " " + str(item.topics)).lower()
-        is_supply_chain = "supply chain" in text_to_check or "供应链" in text_to_check
-        
-        # 1. 威胁情报 (Threat Intel)
+        # ======= 1. Threat Intel =======
         if item.type == ItemType.THREAT_REPORT:
-            if is_supply_chain and "supply_chain" not in item.tags:
-                item.tags.append("supply_chain")
-            sections["threat_intel"].append(item.id)
-            
-        # 2. 厂商公告 (Vendor Advisories) - 仅限第一方产品厂商
-        elif item.type == ItemType.ADVISORY and item.source.lower() == "vendor":
-            # 我们通过判断源是否是安全厂商来区分。配置里 security_vendor 也是 vendor_advisory。
-            # 这里我们通过硬编码一些常见的第三方平台将其踢出厂商公告，或者通过类别。
-            # 由于 DigestItem 里没有暴露 config 的 category，我们通过名称黑名单快速路由。
-            third_party_platforms = ["seebug", "360cert", "nsfocus", "threatbook", "cncert", "cnvd", "cnnvd", "freebuf", "anquanke"]
-            is_third_party = any(platform in item.source.lower() for platform in third_party_platforms)
-            
-            if is_third_party:
-                # 第三方安全机构发出的漏洞分析，路由到漏洞预警
-                sections["high_risk"].append(item.id)
+            threat_type = getattr(item.summary, "threat_type", "").lower() if item.summary else ""
+            tags = " ".join(getattr(item.summary, "tags", [])).lower() if item.summary else ""
+            if "apt" in threat_type or "apt" in tags:
+                sections["threat_apt"].append(item.id)
+            elif "ransomware" in threat_type or "cybercrime" in tags or "botnet" in tags:
+                sections["threat_cybercrime"].append(item.id)
+            elif "macro" in tags or "态势" in tags or "周报" in item.title:
+                sections["threat_macro"].append(item.id)
             else:
-                # 真正的原厂补丁公告
-                sections["vendor_advisories"].append(item.id)
+                sections["threat_campaigns"].append(item.id)
                 
-        # 3. 漏洞预警 (High Risk) - 包含 CVE, KEV, GitHub Advisory, OSV 以及被踢出来的第三方漏洞分析
+        # ======= 2. Vendor Advisories (Only Primary Vendors) =======
+        elif item.type == ItemType.ADVISORY and item.source.lower() == "vendor":
+            # Assuming product_vendor from source config, we heuristically split based on tags or source name
+            title_lower = item.title.lower()
+            if "cloud" in title_lower or "aws" in title_lower or "aliyun" in title_lower or "tencent" in title_lower:
+                sections["vendor_cloud"].append(item.id)
+            elif "router" in title_lower or "camera" in title_lower or "iot" in title_lower:
+                sections["vendor_iot"].append(item.id)
+            else:
+                sections["vendor_os"].append(item.id)
+                
+        # ======= 3. Vulnerability Alerts (CVE, KEV, and Secondary Advisories like Seebug) =======
         elif item.type in [ItemType.CVE, ItemType.KEV] or (item.type == ItemType.ADVISORY and item.source.lower() != "vendor"):
-            if is_supply_chain and "supply_chain" not in item.tags:
-                item.tags.append("supply_chain")
-            sections["high_risk"].append(item.id)
+            is_exploited = (item.risk and getattr(item.risk, "kev_listed", False)) or (item.summary and "exploited" in getattr(item.summary, "tags", []))
             
-        # 4. 研究前沿 (Research)
+            text_to_check = (item.title + " " + str(item.summary) + " " + str(item.topics)).lower()
+            is_supply_chain = "supply chain" in text_to_check or "供应链" in text_to_check or item.source in ["github_advisory", "osv"]
+            
+            is_research_poc = item.type == ItemType.ADVISORY and item.source.lower() != "vendor" # e.g. Seebug, 360CERT
+            
+            if is_exploited:
+                sections["vuln_exploited"].append(item.id)
+            elif is_supply_chain:
+                sections["vuln_supply_chain"].append(item.id)
+            elif is_research_poc:
+                sections["vuln_poc"].append(item.id)
+            else:
+                sections["vuln_baseline"].append(item.id)
+                
+        # ======= 4. Research / Papers =======
         elif item.type == ItemType.PAPER:
-            if is_supply_chain and "supply_chain" not in item.tags:
-                item.tags.append("supply_chain")
-            sections["research"].append(item.id)
+            title_lower = item.title.lower()
+            if "ai " in title_lower or "llm" in title_lower or "machine learning" in title_lower:
+                sections["research_ai"].append(item.id)
+            elif "crypto" in title_lower or "signature" in title_lower:
+                sections["research_crypto"].append(item.id)
+            else:
+                sections["research_systems"].append(item.id)
             
     # Top 10 取总榜前 10
     sections["top_10"] = [item.id for item in items[:10]]
