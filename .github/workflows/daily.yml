@@ -88,16 +88,19 @@ jobs:
             --input data/raw/github_advisory_latest.json \
             --input data/raw/osv_latest.json \
             --output data/processed/daily_digest.json \
+            --limit 20 \
             $MOCK_FLAG
             
           python scripts/summarize_with_llm.py \
             --input data/raw/vendor_advisories.json \
             --output data/processed/vendor_advisories_digest.json \
+            --limit 30 \
             $MOCK_FLAG || true
             
           python scripts/summarize_with_llm.py \
             --input data/raw/threat_intel.json \
             --output data/processed/threat_intel_digest.json \
+            --limit 30 \
             $MOCK_FLAG || true
             
       - name: Build Daily Digest & Rank

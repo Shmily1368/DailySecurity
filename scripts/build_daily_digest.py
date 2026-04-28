@@ -1,20 +1,23 @@
 import json
 import glob
+import os
 from pathlib import Path
 from datetime import datetime, timezone
 import argparse
 from typing import Dict, List, Any
 
-from models import DigestItem, DailyDigest, Hero, HeroStats, ItemType, Severity
+from models import DigestItem, DailyDigest, Hero, HeroStats, ItemType, Severity, RawItem
 from rank_items import rank_items
+from summarize_with_llm import build_llm_summary, build_digest_item
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input-dir", default="data/processed", help="Dir containing processed JSON files")
+    parser.add_argument("--processed-dir", default="data/processed", help="Dir containing processed JSON files")
+    parser.add_argument("--raw-dir", default="data/raw", help="Dir containing raw JSON files")
     parser.add_argument("--output-dir", default="data/daily", help="Dir to output daily digest")
     return parser.parse_args()
 
-def load_processed_items(input_dir: str) -> List[DigestItem]:
+def load_processed_items(input_dir: str) -> Dict[str, DigestItem]:
     items_map: Dict[str, DigestItem] = {}
     
     for filepath in glob.glob(f"{input_dir}/*.json"):
@@ -45,7 +48,64 @@ def load_processed_items(input_dir: str) -> List[DigestItem]:
                 except Exception as e:
                     print(f"[WARN] Failed to validate item in {filepath}: {e}")
                     
-    return list(items_map.values())
+    return items_map
+
+def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
+    """Load raw items that didn't get processed by LLM and create mock/fallback DigestItems for them."""
+    missing_items = []
+    
+    for filepath in glob.glob(f"{raw_dir}/*.json"):
+        # Ignore error files
+        if "errors" in filepath:
+            continue
+            
+        with open(filepath, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                continue
+                
+            raw_list = []
+            if isinstance(data, dict) and "items" in data:
+                raw_list = data["items"]
+            elif isinstance(data, list):
+                raw_list = data
+                
+            for raw_dict in raw_list:
+                try:
+                    item_id = raw_dict.get("id")
+                    if not item_id or item_id in existing_ids:
+                        continue
+                        
+                    raw_item = RawItem.model_validate(raw_dict)
+                    
+                    # Create a minimal fallback LlmSummary
+                    summary_data = {
+                        "summary_zh": raw_item.title[:120],
+                        "why_it_matters_zh": "由于配额限制，未进行深度 LLM 分析。",
+                        "recommended_action_zh": "建议根据原标题自行评估",
+                        "confidence_label": "metadata_only",
+                        "confidence": 0.5,
+                        "category": "vuln"
+                    }
+                    
+                    if raw_item.type == ItemType.PAPER:
+                        summary_data["category"] = "research"
+                        summary_data["confidence_label"] = "abstract_only"
+                    elif raw_item.type == ItemType.ADVISORY:
+                        summary_data["category"] = "advisory"
+                    elif raw_item.type == ItemType.THREAT_REPORT:
+                        summary_data["category"] = "threat-intel"
+                        
+                    llm_summary = build_llm_summary(raw_item, summary_data)
+                    digest_item = build_digest_item(raw_item, llm_summary)
+                    missing_items.append(digest_item)
+                    existing_ids.add(raw_item.id)
+                except Exception as e:
+                    # Ignore validation errors for raw items here to not spam logs
+                    pass
+                    
+    return missing_items
 
 def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
     sections = {
@@ -111,14 +171,22 @@ def build_hero(items: List[DigestItem]) -> Hero:
 
 def main():
     args = parse_args()
-    input_dir = Path(args.input_dir)
+    processed_dir = Path(args.processed_dir)
+    raw_dir = Path(args.raw_dir)
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # 1. 读取并去重
-    items = load_processed_items(str(input_dir))
+    # 1. 读取已经通过 LLM 总结好的 items
+    processed_items_map = load_processed_items(str(processed_dir))
+    existing_ids = set(processed_items_map.keys())
+    
+    # 1.5 读取漏网之鱼 (被 LLM limit 卡掉的 raw_items)，生成 fallback 结构
+    missing_items = load_missing_raw_items(str(raw_dir), existing_ids)
+    
+    items = list(processed_items_map.values()) + missing_items
+    
     if not items:
-        print("[WARN] No items found in processed dir.")
+        print("[WARN] No items found in processed or raw dir.")
         return
         
     # 2. 排序打分
