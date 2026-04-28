@@ -630,6 +630,14 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
         if "confidence_label" not in data or not data["confidence_label"]:
             data["confidence_label"] = string_val if string_val not in ("0.5", "0.0") else None
 
+    # LLM might output extra fields like 'severity' directly in LlmSummary, which causes extra_forbidden.
+    # We should pop them before passing to LlmSummary, or let DigestItem handle them.
+    if "severity" in data:
+        # Pass it to severity_hint if not present, then remove
+        if "severity_hint" not in data or data["severity_hint"] == Severity.INFO.value:
+            data["severity_hint"] = data["severity"]
+        data.pop("severity")
+        
     data["prompt_version"] = PROMPT_VERSION
 
     return LlmSummary(**data)
