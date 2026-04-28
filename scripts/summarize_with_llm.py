@@ -430,6 +430,7 @@ class MockLlmClient(LlmClient):
                 "category": "advisory",
                 "severity_hint": "high",
                 "confidence_label": "source_confirmed",
+                "confidence": 0.85,
                 "affected_assets": ["MockAsset"],
                 "cves": item.cves if item.cves else [],
                 "severity": "high",
@@ -453,6 +454,7 @@ class MockLlmClient(LlmClient):
                 "category": "threat-intel",
                 "severity_hint": "high",
                 "confidence_label": "source_confirmed",
+                "confidence": 0.85,
                 "limitations": ["由 mock 生成"]
             }
 
@@ -604,6 +606,29 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
             data["confidence"] = CONFIDENCE_LABEL_SCORE[label]
         else:
             data["confidence"] = 0.5
+    
+    # Catch cases where LLM assigned a string like "single_source" directly to 'confidence'
+    # which breaks Pydantic float validation. We map it to float and set confidence_label.
+    if "confidence" in data and isinstance(data["confidence"], str):
+        string_val = data["confidence"]
+        if string_val == "source_confirmed":
+            data["confidence"] = 0.9
+        elif string_val == "multi_source":
+            data["confidence"] = 0.8
+        elif string_val == "single_source":
+            data["confidence"] = 0.6
+        elif string_val == "unverified":
+            data["confidence"] = 0.3
+        elif string_val in CONFIDENCE_LABEL_SCORE:
+            data["confidence"] = CONFIDENCE_LABEL_SCORE[string_val]
+        else:
+            try:
+                data["confidence"] = float(string_val)
+            except ValueError:
+                data["confidence"] = 0.5
+        
+        if "confidence_label" not in data or not data["confidence_label"]:
+            data["confidence_label"] = string_val if string_val not in ("0.5", "0.0") else None
 
     data["prompt_version"] = PROMPT_VERSION
 
