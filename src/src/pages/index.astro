@@ -39,30 +39,38 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       <p class="one-liner">{digest.hero.one_liner_zh}</p>
       <div class="stats">
         <div class="stat-card">
-          <div class="stat-icon">🌊</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
           <div class="stat-info">
             <strong>{digest.hero.stats.cve_count}</strong>
             <span>今日 CVE</span>
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">⚖️</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
           <div class="stat-info">
             <strong>{digest.hero.stats.kev_added}</strong>
             <span>KEV 新增</span>
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">📜</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
           <div class="stat-info">
             <strong>{digest.hero.stats.paper_count}</strong>
             <span>学术论文</span>
           </div>
         </div>
         <div class="stat-card">
-          <div class="stat-icon">💠</div>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
           <div class="stat-info">
-            <strong>{digest.hero.stats.max_epss.toFixed(2)}</strong>
+            <strong style="letter-spacing: -0.05em;">{digest.hero.stats.max_epss.toFixed(2)}</strong>
             <span>最高 EPSS</span>
           </div>
         </div>
@@ -75,8 +83,10 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
 
   <div class="search-container">
     <div class="search-input-wrapper">
-      <span class="search-icon">🔍</span>
-      <input type="search" id="global-search" placeholder="搜索漏洞、论文、情报..." autocomplete="off" />
+      <span class="search-icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      </span>
+      <input type="search" id="global-search" placeholder="在水镜档案中检索 CVE、厂商、论文、威胁情报..." autocomplete="off" />
     </div>
   </div>
 
@@ -91,23 +101,38 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     <aside class="sidebar">
       <nav class="nav-list">
         <button class="nav-btn active" data-target="sec-top10">
-          <div><span class="icon">🔥</span>每日精选</div>
+          <div class="nav-btn-content">
+            <svg viewBox="0 0 24 24" class="icon"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            每日精选
+          </div>
           <span class="badge">{top10.length}</span>
         </button>
         <button class="nav-btn" data-target="sec-research">
-          <div><span class="icon">🧬</span>学术论文</div>
+          <div class="nav-btn-content">
+            <svg viewBox="0 0 24 24" class="icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            学术论文
+          </div>
           <span class="badge">{researchTotalCount}</span>
         </button>
         <button class="nav-btn" data-target="sec-vuln">
-          <div><span class="icon">🚨</span>漏洞预警</div>
+          <div class="nav-btn-content">
+            <svg viewBox="0 0 24 24" class="icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            漏洞预警
+          </div>
           <span class="badge">{vulnTotalCount}</span>
         </button>
         <button class="nav-btn" data-target="sec-threat">
-          <div><span class="icon">🛡️</span>威胁情报</div>
+          <div class="nav-btn-content">
+            <svg viewBox="0 0 24 24" class="icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            威胁情报
+          </div>
           <span class="badge">{threatTotalCount}</span>
         </button>
         <button class="nav-btn" data-target="sec-vendor">
-          <div><span class="icon">🏢</span>厂商公告</div>
+          <div class="nav-btn-content">
+            <svg viewBox="0 0 24 24" class="icon"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+            厂商公告
+          </div>
           <span class="badge">{vendorTotalCount}</span>
         </button>
       </nav>
@@ -117,6 +142,7 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       <section id="sec-top10" class="tab-pane active" data-page-size="10">
         <div class="section-header">
           <h2>🔥 每日精选 Top 10</h2>
+          <div class="section-subtitle">Vulnerability Dossier & Key Findings</div>
         </div>
         <div class="items-container">
         {top10.length === 0 ? (
@@ -131,11 +157,24 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       <section id="sec-research" class="tab-pane" data-page-size="20">
         <div class="section-header">
           <h2>🧬 学术论文</h2>
+          <div class="section-subtitle">Research Archive & Cutting-Edge Studies</div>
           <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtarget="research-ai">🤖 AI 安全 ({researchAi.length})</button>
-            <button class="sub-tab-btn" data-subtarget="research-systems">🛡️ 系统与软件 ({researchSystems.length})</button>
-            <button class="sub-tab-btn" data-subtarget="research-crypto">🔐 密码与隐私 ({researchCrypto.length})</button>
-            <button class="sub-tab-btn" data-subtarget="research-others">📚 综合前沿 ({researchOthers.length})</button>
+            <button class="sub-tab-btn active" data-subtarget="research-ai" data-count={researchAi.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+              AI 安全 ({researchAi.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="research-systems" data-count={researchSystems.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              系统与软件 ({researchSystems.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="research-crypto" data-count={researchCrypto.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              密码与隐私 ({researchCrypto.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="research-others" data-count={researchOthers.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              综合前沿 ({researchOthers.length})
+            </button>
           </div>
         </div>
 
@@ -171,11 +210,24 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       <section id="sec-vuln" class="tab-pane" data-page-size="20">
         <div class="section-header">
           <h2>🚨 漏洞预警</h2>
+          <div class="section-subtitle">Vulnerability Alerts & Public Exploits</div>
           <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtarget="vuln-exploited">🧨 在野利用 ({vulnExploited.length})</button>
-            <button class="sub-tab-btn" data-subtarget="vuln-poc">🔬 深度分析与PoC ({vulnPoc.length})</button>
-            <button class="sub-tab-btn" data-subtarget="vuln-supply">📦 供应链与开源 ({vulnSupplyChain.length})</button>
-            <button class="sub-tab-btn" data-subtarget="vuln-baseline">📋 常规披露 ({vulnBaseline.length})</button>
+            <button class="sub-tab-btn active" data-subtarget="vuln-exploited" data-count={vulnExploited.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              在野利用 ({vulnExploited.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="vuln-poc" data-count={vulnPoc.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              深度分析与PoC ({vulnPoc.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="vuln-supply" data-count={vulnSupplyChain.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M20 16.28a2 2 0 0 1-1.02 1.73l-6 3.46a2 2 0 0 1-1.96 0l-6-3.46A2 2 0 0 1 4 16.28V7.72a2 2 0 0 1 1.02-1.73l6-3.46a2 2 0 0 1 1.96 0l6 3.46A2 2 0 0 1 20 7.72v8.56z"/><polyline points="12 22 12 12 20 7.72"/><polyline points="12 12 4 7.72"/></svg>
+              供应链与开源 ({vulnSupplyChain.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="vuln-baseline" data-count={vulnBaseline.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              常规披露 ({vulnBaseline.length})
+            </button>
           </div>
         </div>
         
@@ -211,11 +263,24 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       <section id="sec-threat" class="tab-pane" data-page-size="20">
         <div class="section-header">
           <h2>🛡️ 威胁情报</h2>
+          <div class="section-subtitle">Threat Intelligence & Campaigns</div>
           <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtarget="threat-apt">🥷 APT与高级威胁 ({threatApt.length})</button>
-            <button class="sub-tab-btn" data-subtarget="threat-cybercrime">💸 勒索与黑产 ({threatCybercrime.length})</button>
-            <button class="sub-tab-btn" data-subtarget="threat-campaigns">🎯 战术与攻击活动 ({threatCampaigns.length})</button>
-            <button class="sub-tab-btn" data-subtarget="threat-macro">📊 宏观态势 ({threatMacro.length})</button>
+            <button class="sub-tab-btn active" data-subtarget="threat-apt" data-count={threatApt.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M2 12h4l3-9 5 18 3-9h5"/></svg>
+              APT与高级威胁 ({threatApt.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="threat-cybercrime" data-count={threatCybercrime.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              勒索与黑产 ({threatCybercrime.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="threat-campaigns" data-count={threatCampaigns.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              战术与攻击活动 ({threatCampaigns.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="threat-macro" data-count={threatMacro.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+              宏观态势 ({threatMacro.length})
+            </button>
           </div>
         </div>
 
@@ -251,10 +316,20 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       <section id="sec-vendor" class="tab-pane" data-page-size="20">
         <div class="section-header">
           <h2>🏢 厂商公告</h2>
+          <div class="section-subtitle">Vendor Bulletin & Security Advisories</div>
           <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtarget="vendor-cloud">☁️ 云与网络设施 ({vendorCloud.length})</button>
-            <button class="sub-tab-btn" data-subtarget="vendor-os">💻 操作系统与软件 ({vendorOs.length})</button>
-            <button class="sub-tab-btn" data-subtarget="vendor-iot">📱 物联网与工控 ({vendorIot.length})</button>
+            <button class="sub-tab-btn active" data-subtarget="vendor-cloud" data-count={vendorCloud.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+              云与网络设施 ({vendorCloud.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="vendor-os" data-count={vendorOs.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              操作系统与软件 ({vendorOs.length})
+            </button>
+            <button class="sub-tab-btn" data-subtarget="vendor-iot" data-count={vendorIot.length}>
+              <svg viewBox="0 0 24 24" class="sub-tab-icon"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              物联网与工控 ({vendorIot.length})
+            </button>
           </div>
         </div>
 
@@ -450,18 +525,18 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
 
 <style>
   .hero {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     position: relative;
   }
   .hero-inner {
-    background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(238, 248, 255, 0.6) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(216, 182, 108, 0.4);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
     text-align: center;
-    box-shadow: var(--shadow);
+    box-shadow: 0 12px 40px rgba(47, 128, 183, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     position: relative;
     overflow: hidden;
   }
@@ -469,61 +544,95 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(circle at 50% -20%, rgba(91, 188, 228, 0.15) 0%, transparent 60%);
+    background: radial-gradient(circle at 50% -20%, rgba(91, 188, 228, 0.2) 0%, transparent 70%);
     pointer-events: none;
+  }
+  .hero-inner::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 10%; right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(216, 182, 108, 0.6), transparent);
+    opacity: 0.8;
   }
   .date-badge {
     display: inline-block;
-    font-family: var(--font-sans);
-    color: var(--accent-gold);
-    font-size: 0.95rem;
-    letter-spacing: 0.1em;
+    font-family: var(--font-serif, serif);
+    color: #17324d;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--accent-gold);
-    padding-bottom: 0.2rem;
+    margin-bottom: 1.5rem;
+    padding: 0.4rem 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(216, 182, 108, 0.5);
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(216, 182, 108, 0.15);
   }
   .one-liner {
-    font-size: 1.3rem;
-    margin: 0 auto 2rem;
-    color: var(--fg);
-    max-width: 800px;
+    font-size: 1.4rem;
+    margin: 0 auto 2.5rem;
+    color: #17324d;
+    max-width: 850px;
     line-height: 1.8;
-    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+    font-family: var(--font-serif, serif);
+    text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+    word-break: break-word;
   }
   .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.5rem;
     position: relative;
     z-index: 1;
   }
   .stat-card {
-    background: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-bottom: 3px solid var(--accent-gold);
-    border-radius: 12px;
-    padding: 1.25rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.7) 100%);
+    border: 1px solid rgba(91, 188, 228, 0.3);
+    border-bottom: 3px solid rgba(216, 182, 108, 0.8);
+    border-radius: 16px;
+    padding: 1.5rem 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition);
+    gap: 1.2rem;
+    box-shadow: 0 6px 16px rgba(47, 128, 183, 0.08), inset 0 1px 0 rgba(255,255,255,1);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
     backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
   }
   .stat-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-glow);
-    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-6px);
+    box-shadow: 0 12px 24px rgba(47, 128, 183, 0.15), 0 0 0 1px rgba(216, 182, 108, 0.4);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 0.9) 100%);
   }
   .stat-icon {
-    font-size: 2.2rem;
-    line-height: 1;
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(47, 128, 183, 0.2));
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(238, 248, 255, 0.8);
+    border-radius: 50%;
+    border: 1px solid rgba(91, 188, 228, 0.4);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.8), 0 2px 8px rgba(47, 128, 183, 0.1);
+  }
+  .stat-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: #2f80b7;
+    stroke-width: 1.5;
+    fill: none;
+    filter: drop-shadow(0 1px 2px rgba(47, 128, 183, 0.2));
   }
   .stat-info {
     display: flex;
@@ -531,16 +640,20 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     text-align: left;
   }
   .stat-info strong {
-    font-size: 1.6rem;
-    line-height: 1.2;
-    color: var(--accent);
-    font-family: var(--font-mono);
+    font-size: 1.8rem;
+    line-height: 1.1;
+    color: #17324d;
+    font-family: var(--font-serif, serif);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+    letter-spacing: -0.02em;
   }
   .stat-info span {
     font-size: 0.85rem;
-    color: var(--fg-muted);
-    margin-top: 0.2rem;
-    font-weight: 500;
+    color: #5b7c99;
+    margin-top: 0.3rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
   .mock-banner {
     margin-top: 1rem;
@@ -554,36 +667,53 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
 
   /* Search Styles */
   .search-container {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: center;
   }
   .search-input-wrapper {
     position: relative;
-    max-width: 600px;
+    width: 100%;
+    max-width: 680px;
   }
   .search-icon {
     position: absolute;
-    left: 1rem;
+    left: 1.2rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--fg-muted);
     pointer-events: none;
+    display: flex;
+    align-items: center;
+  }
+  .search-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: #5bbce4;
+    stroke-width: 2;
+    fill: none;
   }
   #global-search {
     width: 100%;
-    padding: 0.8rem 1rem 0.8rem 2.8rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-    background: var(--bg-card);
-    color: var(--fg);
-    transition: all 0.2s ease;
-    font-family: inherit;
+    padding: 1rem 1.5rem 1rem 3.2rem;
+    border: 1px solid rgba(91, 188, 228, 0.4);
+    border-radius: 30px;
+    font-size: 1.05rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    color: #17324d;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    font-family: var(--font-sans);
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.05), inset 0 2px 4px rgba(255,255,255,0.8);
+  }
+  #global-search::placeholder {
+    color: #5b7c99;
+    opacity: 0.8;
   }
   #global-search:focus {
     outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
-    background: var(--bg);
+    border-color: #2f80b7;
+    box-shadow: 0 0 0 4px rgba(91, 188, 228, 0.2), inset 0 2px 4px rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.95);
   }
   #search-results-container {
     margin-bottom: 2rem;
@@ -599,15 +729,21 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   
   .sidebar {
     position: sticky;
-    top: 2rem;
+    top: 6rem;
     width: 240px;
     flex-shrink: 0;
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .sidebar::-webkit-scrollbar {
+    display: none;
   }
   
   .nav-list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.8rem;
   }
   
   .nav-btn {
@@ -615,63 +751,71 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.85rem 1.2rem;
-    border: 1px solid transparent;
+    padding: 0.9rem 1.2rem;
+    border: 1px solid rgba(91, 188, 228, 0.2);
     background: rgba(255, 255, 255, 0.4);
-    border-radius: var(--radius);
+    border-radius: 12px;
     cursor: pointer;
     font-size: 0.95rem;
-    color: var(--fg-muted);
-    transition: var(--transition);
+    color: #5b7c99;
+    transition: all 0.3s ease;
     text-align: left;
     font-family: inherit;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 8px rgba(47, 128, 183, 0.05);
   }
   
-  .nav-btn > div {
+  .nav-btn-content {
     display: flex;
     align-items: center;
+    gap: 0.6rem;
   }
   
   .nav-btn:hover {
-    background: var(--bg-card);
-    color: var(--fg);
-    border-color: var(--border-blue);
-    box-shadow: var(--shadow-sm);
+    background: rgba(255, 255, 255, 0.8);
+    color: #17324d;
+    border-color: rgba(91, 188, 228, 0.5);
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.1);
     transform: translateX(4px);
   }
   
   .nav-btn.active {
-    background: linear-gradient(to right, rgba(91, 188, 228, 0.15), rgba(255,255,255,0.7));
-    color: var(--accent);
-    border-left: 4px solid var(--accent-gold);
-    border-top: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-    font-weight: 500;
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(to right, rgba(91, 188, 228, 0.15), rgba(255, 255, 255, 0.8));
+    color: #2f80b7;
+    border-left: 4px solid #d8b66c;
+    border-top: 1px solid rgba(216, 182, 108, 0.4);
+    border-right: 1px solid rgba(216, 182, 108, 0.4);
+    border-bottom: 1px solid rgba(216, 182, 108, 0.4);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.15);
   }
   
   .nav-btn .icon {
-    margin-right: 0.6rem;
-    font-size: 1.2em;
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    opacity: 0.8;
   }
   
   .nav-btn .badge {
-    background: var(--bg);
-    color: var(--fg-muted);
-    padding: 0.15rem 0.6rem;
+    background: rgba(255, 255, 255, 0.6);
+    color: #5b7c99;
+    padding: 0.15rem 0;
+    width: 2.2rem;
+    text-align: center;
     border-radius: 12px;
     font-size: 0.75rem;
     font-family: var(--font-mono);
-    transition: var(--transition);
-    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(91, 188, 228, 0.3);
   }
   
   .nav-btn.active .badge {
-    background: var(--accent);
+    background: linear-gradient(135deg, rgba(47, 128, 183, 0.9), rgba(91, 188, 228, 0.9));
     color: #fff;
-    border-color: var(--accent);
+    border-color: rgba(216, 182, 108, 0.5);
+    box-shadow: 0 2px 4px rgba(47, 128, 183, 0.2);
   }
 
   .main-content {
@@ -697,15 +841,23 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     border-bottom: 1px solid var(--border-blue);
     position: relative;
   }
+  .section-subtitle {
+    font-size: 0.9rem;
+    color: #5bbce4;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-family: var(--font-serif, serif);
+    margin-top: -0.5rem;
+    opacity: 0.9;
+  }
   .section-header::after {
     content: '';
     position: absolute;
     bottom: -1px;
     left: 0;
-    width: 60px;
-    height: 3px;
-    background: var(--accent-gold);
-    border-radius: 3px;
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, #d8b66c, #5bbce4, transparent);
   }
 
   .section-header h2 {
@@ -741,29 +893,56 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   }
   
   .sub-tab-btn {
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 1.2rem;
     border-radius: 20px;
-    background: rgba(255,255,255,0.6);
-    color: var(--fg-muted);
-    border: 1px solid var(--border-blue);
+    background: rgba(255, 255, 255, 0.4);
+    color: #5b7c99;
+    border: 1px solid rgba(91, 188, 228, 0.2);
     font-size: 0.85rem;
     cursor: pointer;
-    transition: var(--transition);
-    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 4px rgba(47, 128, 183, 0.05);
   }
   
   .sub-tab-btn:hover {
-    background: rgba(255,255,255,0.9);
-    color: var(--fg);
-    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.8);
+    color: #17324d;
+    border-color: rgba(91, 188, 228, 0.5);
+    box-shadow: 0 4px 8px rgba(47, 128, 183, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   }
   
   .sub-tab-btn.active {
-    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    background: linear-gradient(135deg, rgba(47, 128, 183, 0.9), rgba(91, 188, 228, 0.9));
     color: #fff;
-    border-color: var(--accent-gold);
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.25);
+    border-color: rgba(216, 182, 108, 0.6);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+  .sub-tab-btn[data-count="0"] {
+    opacity: 0.6;
+    background: transparent;
+    box-shadow: none;
+    border-color: transparent;
+  }
+  .sub-tab-btn[data-count="0"]:hover {
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  .sub-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .sub-tab-icon {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    opacity: 0.8;
   }
   
   .sub-pane {
@@ -817,7 +996,6 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Responsive Design for Mobile */
   @media (max-width: 768px) {
     .dashboard-layout {
       flex-direction: column;
@@ -834,6 +1012,7 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none; /* Firefox */
+      max-height: none;
     }
     
     .sidebar::-webkit-scrollbar {
@@ -848,7 +1027,30 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     
     .nav-btn {
       padding: 0.6rem 1rem;
-      border: 1px solid var(--border);
+      border: 1px solid rgba(91, 188, 228, 0.3);
+      width: auto;
+    }
+    
+    .stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-card {
+      padding: 1rem;
+      gap: 0.8rem;
+    }
+    
+    .stat-info strong {
+      font-size: 1.4rem;
+    }
+    
+    .header {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    
+    .score {
+      align-self: flex-start;
     }
   }
 </style>

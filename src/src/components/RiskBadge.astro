@@ -23,10 +23,19 @@ const inTheWild = risk?.known_exploited || risk?.exploit_in_the_wild;
   
   {kevListed && <span class="kev-badge">KEV</span>}
   
-  {inTheWild && <span class="itw-badge">⚠ 在野利用</span>}
+  {inTheWild && <span class="itw-badge"><svg viewBox="0 0 24 24" class="svg-icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>在野利用</span>}
 </div>
 
 <style>
+  .svg-icon {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    stroke-width: 2.5;
+    fill: none;
+    vertical-align: text-bottom;
+    margin-right: 3px;
+  }
   .risk-badges {
     display: flex;
     gap: 0.4rem;
@@ -67,6 +76,8 @@ const inTheWild = risk?.known_exploited || risk?.exploit_in_the_wild;
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
   .itw-badge {
+    display: inline-flex;
+    align-items: center;
     background: linear-gradient(135deg, #9f1239, #881337);
     color: #fff;
     padding: 0.1rem 0.5rem;

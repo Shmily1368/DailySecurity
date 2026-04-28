@@ -36,9 +36,10 @@ const { title, description = '每日网络空间安全雷达 —— 聚合论文
         
         /* Water ripples & divine palace gradient */
         --bg-pattern: 
-          radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
-          radial-gradient(circle at 90% 80%, rgba(216, 182, 108, 0.08) 0%, transparent 50%),
-          linear-gradient(135deg, #eef8ff 0%, #dff3ff 50%, #f8fcff 100%);
+          radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.95) 0%, transparent 40%),
+          radial-gradient(circle at 90% 10%, rgba(216, 182, 108, 0.15) 0%, transparent 45%),
+          radial-gradient(circle at 50% 80%, rgba(91, 188, 228, 0.1) 0%, transparent 60%),
+          linear-gradient(135deg, #eef8ff 0%, #dff3ff 30%, #f0f9ff 60%, #e0f2fe 100%);
         
         --font-sans: 'Georgia', 'Palatino Linotype', 'Times New Roman', 'PingFang SC', 'Hiragino Sans GB', serif;
         --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -50,11 +51,38 @@ const { title, description = '每日网络空间安全雷达 —— 聚合论文
         padding: 0;
         background-color: var(--bg);
         background-image: var(--bg-pattern);
-        background-size: cover;
+        background-size: 100vw 100vh;
         background-attachment: fixed;
         color: var(--fg);
         font-family: var(--font-sans);
         line-height: 1.6;
+        position: relative;
+        min-height: 100vh;
+      }
+      /* Global animated water reflection / Water ripple overlay */
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: 
+          radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.4) 0%, transparent 70%),
+          linear-gradient(180deg, transparent 0%, rgba(91, 188, 228, 0.03) 50%, transparent 100%);
+        background-size: 100% 200%;
+        animation: water-reflection 20s ease-in-out infinite alternate;
+        pointer-events: none;
+        z-index: -1;
+      }
+      body::after {
+        content: '';
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.05) 10px, rgba(255, 255, 255, 0.05) 11px);
+        pointer-events: none;
+        z-index: -1;
+      }
+      @keyframes water-reflection {
+        0% { background-position: 0% 0%; }
+        100% { background-position: 0% 100%; }
       }
       h1, h2, h3, h4, h5, h6 { 
         font-family: var(--font-sans); 

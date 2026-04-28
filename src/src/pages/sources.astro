@@ -79,46 +79,88 @@ Object.keys(groupedSources).forEach(group => {
 
 <style>
   .page-header {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  
+  .page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, #d8b66c, #5bbce4, transparent);
   }
   
   h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
-    color: var(--fg);
+    color: #17324d;
+    font-family: var(--font-serif, "Noto Serif SC", serif);
+    font-weight: 600;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  h1::before {
+    content: '✦';
+    color: #d8b66c;
+    font-size: 1.8rem;
+    animation: pulseGold 3s ease-in-out infinite;
   }
   
   .description {
-    background: #f8fafc;
-    border-left: 4px solid #3b82f6;
+    background: linear-gradient(to right, rgba(91, 188, 228, 0.08), rgba(255, 255, 255, 0.4));
+    border-left: 4px solid #5bbce4;
+    border-right: 1px solid rgba(91, 188, 228, 0.2);
+    border-top: 1px solid rgba(91, 188, 228, 0.2);
+    border-bottom: 1px solid rgba(91, 188, 228, 0.2);
     padding: 1.25rem 1.5rem;
-    border-radius: 0 8px 8px 0;
-    color: #334155;
+    border-radius: 4px 8px 8px 4px;
+    color: #17324d;
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    box-shadow: 0 2px 8px rgba(47, 128, 183, 0.03);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
   
   .description p {
-    margin: 0.5rem 0;
+    margin: 0.6rem 0;
+  }
+  
+  .description strong {
+    color: #2f80b7;
   }
   
   .group-section {
-    margin-bottom: 2rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--bg);
+    margin-bottom: 2.5rem;
+    border: 1px solid rgba(216, 182, 108, 0.3);
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(238, 248, 255, 0.4) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 16px rgba(47, 128, 183, 0.05);
     overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .group-section:hover {
+    box-shadow: 0 6px 20px rgba(47, 128, 183, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
   }
   
   .group-section summary {
     cursor: pointer;
     list-style: none; /* Hide default arrow */
-    padding: 1rem 1.5rem;
-    background: #f8fafc;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s ease;
+    padding: 1.2rem 1.5rem;
+    background: rgba(255, 255, 255, 0.5);
+    border-bottom: 1px solid rgba(91, 188, 228, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
   }
   
   .group-section summary::-webkit-details-marker {
@@ -126,25 +168,27 @@ Object.keys(groupedSources).forEach(group => {
   }
   
   .group-section summary:hover {
-    background: #f1f5f9;
+    background: rgba(255, 255, 255, 0.8);
   }
   
   /* Add custom arrow */
   .group-section summary::before {
     content: "▶";
     display: inline-block;
-    margin-right: 0.75rem;
-    transition: transform 0.2s ease;
-    font-size: 0.9rem;
-    color: var(--fg-muted);
+    margin-right: 1rem;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.85rem;
+    color: #5bbce4;
   }
   
   .group-section[open] summary::before {
     transform: rotate(90deg);
+    color: #d8b66c;
   }
   
   .group-section[open] summary {
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(216, 182, 108, 0.3);
+    background: linear-gradient(to right, rgba(91, 188, 228, 0.05), rgba(255, 255, 255, 0.6));
   }
   
   /* When closed, remove bottom border of summary if it's the only thing */
@@ -157,8 +201,10 @@ Object.keys(groupedSources).forEach(group => {
     margin: 0;
     display: inline-flex;
     align-items: baseline;
-    gap: 0.5rem;
-    color: var(--fg);
+    gap: 0.6rem;
+    color: #17324d;
+    font-family: var(--font-serif, "Noto Serif SC", serif);
+    font-weight: 600;
   }
   
   .group-content {
@@ -167,14 +213,15 @@ Object.keys(groupedSources).forEach(group => {
   
   .count {
     font-size: 1rem;
-    color: var(--fg-muted);
-    font-weight: normal;
+    color: #5bbce4;
+    font-family: var(--font-mono);
+    font-weight: 500;
   }
   
   .grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
   
   @media (min-width: 768px) {
@@ -184,11 +231,19 @@ Object.keys(groupedSources).forEach(group => {
   }
   
   .empty-state {
-    color: var(--fg-muted);
+    color: #5b7c99;
     font-style: italic;
-    padding: 1rem;
-    background: #f8fafc;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px dashed rgba(91, 188, 228, 0.4);
     border-radius: 8px;
     text-align: center;
+    font-size: 0.95rem;
+  }
+
+  @keyframes pulseGold {
+    0% { opacity: 0.8; transform: scale(1); text-shadow: 0 0 10px rgba(216, 182, 108, 0.4); }
+    50% { opacity: 1; transform: scale(1.1); text-shadow: 0 0 20px rgba(216, 182, 108, 0.8); }
+    100% { opacity: 0.8; transform: scale(1); text-shadow: 0 0 10px rgba(216, 182, 108, 0.4); }
   }
 </style>

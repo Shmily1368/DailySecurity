@@ -36,8 +36,8 @@ const products = item.products && item.products.length > 0 ? item.products : [];
   ) : (
     <div class="content">
       <div class="meta-row">
-        {vendors.length > 0 && <span class="vendor-badge">🏢 {vendors.join(', ')}</span>}
-        {products.length > 0 && <span class="product-badge">📦 {products.join(', ')}</span>}
+        {vendors.length > 0 && <span class="vendor-badge"><svg viewBox="0 0 24 24" class="svg-icon"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 7h6"/><path d="M9 11h6"/><path d="M9 15h6"/></svg>{vendors.join(', ')}</span>}
+        {products.length > 0 && <span class="product-badge"><svg viewBox="0 0 24 24" class="svg-icon"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>{products.join(', ')}</span>}
         {cves.map(cve => <span class="cve">{cve}</span>)}
       </div>
 
@@ -168,7 +168,7 @@ const products = item.products && item.products.length > 0 ? item.products : [];
     color: #23384f;
     flex-wrap: wrap;
   }
-  .vendor, .product, .cve, .vendor-badge, .product-badge {
+  .vendor, .product, .vendor-badge, .product-badge {
     background: rgba(255, 255, 255, 0.8);
     padding: 0.25rem 0.6rem;
     border-radius: 6px;
@@ -177,6 +177,41 @@ const products = item.products && item.products.length > 0 ? item.products : [];
     font-weight: 500;
     font-family: var(--font-mono);
     color: #2f80b7;
+    display: inline-flex;
+    align-items: center;
+  }
+  .cve {
+    font-family: var(--font-mono);
+    background: rgba(255, 255, 255, 0.8);
+    color: #2f80b7;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(91, 188, 228, 0.4);
+    box-shadow: 0 1px 3px rgba(47, 128, 183, 0.05);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+  }
+  .cve::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232f80b7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z'/%3E%3Cline x1='12' y1='9' x2='12' y2='13'/%3E%3Cline x1='12' y1='17' x2='12.01' y2='17'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+  }
+  .svg-icon {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+    margin-right: 4px;
+    opacity: 0.8;
   }
   .summary {
     font-size: 0.95rem;
@@ -252,4 +287,18 @@ const products = item.products && item.products.length > 0 ? item.products : [];
     border-left: 4px solid #b91c1c;
     font-size: 0.95rem;
   }
+
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .score {
+      align-self: flex-start;
+    }
+    .card {
+      padding: 1rem;
+    }
+  }
 </style>
+

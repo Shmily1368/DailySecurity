@@ -21,7 +21,11 @@ def load_processed_items(input_dir: str) -> Dict[str, DigestItem]:
     items_map: Dict[str, DigestItem] = {}
     
     for filepath in glob.glob(f"{input_dir}/*.json"):
-        # 忽略已经存在的旧 daily 文件如果混进来的话 (虽然不应该在 processed)
+        # Ignore mock files or any test files when building production digest
+        if "mock" in filepath or "test" in filepath or filepath.endswith("digest_items.json"):
+            print(f"[INFO] Skipping mock/test file: {filepath}")
+            continue
+            
         with open(filepath, "r", encoding="utf-8") as f:
             try:
                 data = json.load(f)
