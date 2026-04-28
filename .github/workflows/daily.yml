@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python scripts/fetch_github_advisory.py || true
-          python scripts/fetch_osv.py --nvd-source data/raw/nvd_recent.json || true
+          python scripts/fetch_osv.py --nvd-source data/raw/nvd_recent.json --limit 500 || true
           
       - name: Fetch Vendor Advisories
         run: python scripts/fetch_vendor_advisories.py --days 1 --limit-per-source 50
@@ -88,19 +88,16 @@ jobs:
             --input data/raw/github_advisory_latest.json \
             --input data/raw/osv_latest.json \
             --output data/processed/daily_digest.json \
-            --limit 20 \
             $MOCK_FLAG
             
           python scripts/summarize_with_llm.py \
             --input data/raw/vendor_advisories.json \
             --output data/processed/vendor_advisories_digest.json \
-            --limit 30 \
             $MOCK_FLAG || true
             
           python scripts/summarize_with_llm.py \
             --input data/raw/threat_intel.json \
             --output data/processed/threat_intel_digest.json \
-            --limit 30 \
             $MOCK_FLAG || true
             
       - name: Build Daily Digest & Rank
