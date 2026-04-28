@@ -216,6 +216,20 @@ def main():
     
     items = list(processed_items_map.values()) + missing_items
     
+    # 1.6 严格过滤，确保只展示“当日”数据 (过去 24-36 小时)
+    cutoff_date = datetime.now(timezone.utc) - timedelta(hours=36)
+    valid_items = []
+    for item in items:
+        # 有些特殊的 fallback 没有 published_at，或者确保只过滤确实有发表时间且较新的
+        if getattr(item, "published_at", None):
+            if item.published_at >= cutoff_date:
+                valid_items.append(item)
+        else:
+            # 没有明确发布时间的，保守起见默认放行 (可能是今天新产生的合成数据)
+            valid_items.append(item)
+    
+    items = valid_items
+
     # 1.8 Merge EPSS scores
     epss_map = load_epss_scores(str(raw_dir))
     if epss_map:
