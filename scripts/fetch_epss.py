@@ -201,7 +201,9 @@ def collect_from_kev(
         raise EpssFetchError(f"KEV 文件 JSON 解析失败: {e}") from e
 
     items = data.get("items") or []
-    cutoff = now_utc.date() - timedelta(days=days)
+    # Use 36h rolling window consistently, if days is 1 it means last 36h, otherwise days * 24 + 12h
+    hours_back = max(36, days * 24)
+    cutoff = now_utc - timedelta(hours=hours_back)
     out: List[str] = []
     for item in items:
         risk = item.get("risk") or {}
@@ -215,9 +217,10 @@ def collect_from_kev(
             continue
         try:
             d = datetime.strptime(date_added, "%Y-%m-%d").date()
+            d_dt = datetime.combine(d, time.min, tzinfo=timezone.utc)
         except ValueError:
             continue
-        if d >= cutoff:
+        if d_dt >= cutoff:
             out.extend(cves)
     return _validate_cves(out)
 

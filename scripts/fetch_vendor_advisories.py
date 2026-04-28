@@ -20,7 +20,7 @@ def main():
     parser = argparse.ArgumentParser(description="Fetch vendor security advisories")
     parser.add_argument("--config", type=str, default="config/sources/vendor_advisories.yml", help="Path to config YAML")
     parser.add_argument("--output", type=str, default="data/raw/vendor_advisories.json", help="Output JSON path")
-    parser.add_argument("--days", type=int, default=7, help="Fetch items from last N days")
+    parser.add_argument("--days", type=int, default=2, help="Fetch items from last N days")
     parser.add_argument("--source", type=str, help="Fetch only from this source ID")
     parser.add_argument("--limit-per-source", type=int, default=20, help="Max items to fetch per source")
     parser.add_argument("--dry-run", action="store_true", help="Run without saving")
@@ -45,7 +45,9 @@ def main():
     
     all_items: List[RawItem] = []
     errors: List[Dict[str, Any]] = []
-    cutoff_date = datetime.now(timezone.utc) - timedelta(days=args.days)
+    # Use 36h rolling window consistently, if days is 1 it means last 36h, otherwise days * 24 + 12h
+    hours_back = max(36, args.days * 24)
+    cutoff_date = datetime.now(timezone.utc) - timedelta(hours=hours_back)
     
     for source in enabled_sources:
         logger.info(f"Fetching from {source.id} ({source.parser})")

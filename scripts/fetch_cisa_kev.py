@@ -305,6 +305,12 @@ def main() -> int:
         default=KEV_FEED_URL,
         help="自定义 KEV JSON URL (调试用)",
     )
+    parser.add_argument(
+        "--days",
+        type=int,
+        default=0,
+        help="如果 > 0，则仅保留最近 N 天新增的 KEV。0 代表全量 (默认 0)。",
+    )
     args = parser.parse_args()
 
     print(f"[INFO] 拉取 CISA KEV: {args.url}", file=sys.stderr)
@@ -322,6 +328,11 @@ def main() -> int:
     except KevFetchError as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         return 1
+        
+    if args.days > 0:
+        from datetime import timedelta
+        cutoff = fetched_at - timedelta(hours=args.days * 24)
+        items = [item for item in items if item.published_at and item.published_at >= cutoff]
 
     meta = {
         "catalog_version": feed.get("catalogVersion"),
