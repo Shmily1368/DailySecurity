@@ -575,11 +575,13 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
     data = dict(raw)
     
     # fallback map to LlmSummary keys if names differ
-    # Advisory has its own structure, but LlmSummary fields must be populated
+    # Advisory and Threat Intel have their own structure, but LlmSummary fields must be populated
     if "recommended_action" in data and "recommended_action_zh" not in data:
         data["recommended_action_zh"] = data["recommended_action"]
+        data.pop("recommended_action")
     if "why_it_matters" in data and "why_it_matters_zh" not in data:
         data["why_it_matters_zh"] = data["why_it_matters"]
+        data.pop("why_it_matters")
 
     # 必填字段兜底
     data.setdefault("summary_zh", item.title[:120])
