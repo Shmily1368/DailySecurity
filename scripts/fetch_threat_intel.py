@@ -1,13 +1,17 @@
 import argparse
 import json
 import logging
+import sys
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Any
 
-from scripts.source_registry import load_sources, get_enabled_sources
-from scripts.parsers.threat_intel_parsers import get_parser
-from scripts.models import RawItem
+# Ensure scripts directory is in sys.path when running from project root
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from source_registry import load_sources, get_enabled_sources
+from parsers.threat_intel_parsers import get_parser
+from models import RawItem
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)

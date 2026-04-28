@@ -1,6 +1,6 @@
 import logging
 import feedparser
-import requests
+import httpx
 from bs4 import BeautifulSoup
 from datetime import datetime, timezone
 from dateutil import parser as date_parser
@@ -9,8 +9,8 @@ import re
 from urllib.parse import urljoin
 import hashlib
 
-from scripts.models import RawItem, ItemType, SourceInfo, RiskSignal, ThreatMeta
-from scripts.source_registry import SourceConfig
+from models import RawItem, ItemType, SourceInfo, RiskSignal, ThreatMeta
+from source_registry import SourceConfig
 
 logger = logging.getLogger(__name__)
 
@@ -141,9 +141,10 @@ class HtmlParser(BaseParser):
         items = []
         try:
             headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"}
-            resp = requests.get(source.url, headers=headers, timeout=10, verify=False)
-            resp.raise_for_status()
-            soup = BeautifulSoup(resp.text, "html.parser")
+            with httpx.Client(verify=False, timeout=10.0, follow_redirects=True) as client:
+                resp = client.get(source.url, headers=headers)
+                resp.raise_for_status()
+                soup = BeautifulSoup(resp.text, "html.parser")
             
             links = soup.find_all("a", href=True)
             seen_titles = set()

@@ -159,6 +159,30 @@ def _validate_cves(cves: Iterable[str]) -> List[str]:
     return out
 
 
+def collect_from_inputs(input_paths: List[Path]) -> List[str]:
+    """从多个 RawItem JSON 文件中提取所有的 CVE ID"""
+    out: List[str] = []
+    for path in input_paths:
+        if not path.exists():
+            sys.stderr.write(f"[WARN] 输入文件不存在: {path}\n")
+            continue
+        try:
+            with path.open("r", encoding="utf-8") as f:
+                data = json.load(f)
+        except json.JSONDecodeError as e:
+            sys.stderr.write(f"[WARN] 文件 JSON 解析失败 {path}: {e}\n")
+            continue
+
+        items = data.get("items") if isinstance(data, dict) else data
+        if not isinstance(items, list):
+            continue
+
+        for item in items:
+            cves = item.get("cves") or []
+            out.extend(cves)
+            
+    return _validate_cves(out)
+
 def collect_from_kev(
     kev_path: Path,
     days: int,
@@ -304,6 +328,13 @@ def main() -> int:
         description="查询 EPSS 评分, 输出 RawItem JSON"
     )
     parser.add_argument(
+        "--input",
+        type=Path,
+        action="append",
+        default=[],
+        help="包含 RawItem 的 JSON 文件路径，提取其中的 CVE",
+    )
+    parser.add_argument(
         "--cve",
         action="append",
         default=[],
@@ -345,6 +376,9 @@ def main() -> int:
             print(f"[ERROR] --cve-file 不存在: {args.cve_file}", file=sys.stderr)
             return 2
         cves.extend(_validate_cves(_read_cve_file(args.cve_file)))
+
+    if args.input:
+        cves.extend(collect_from_inputs(args.input))
 
     if not cves:
         try:
