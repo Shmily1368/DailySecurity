@@ -31,47 +31,50 @@ const researchCrypto = pickItems(digest, digest.sections.research_crypto ?? []);
 const researchSystems = pickItems(digest, digest.sections.research_systems ?? []);
 const researchOthers = pickItems(digest, digest.sections.research_others ?? []);
 const researchTotalCount = researchAi.length + researchCrypto.length + researchSystems.length + researchOthers.length;
+
+const totalItemsCount = vulnTotalCount + threatTotalCount + vendorTotalCount + researchTotalCount;
+const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，包含 ${researchTotalCount} 篇学术论文，${vulnTotalCount} 条漏洞预警，${threatTotalCount} 条威胁情报，以及 ${vendorTotalCount} 篇厂商公告。`;
 ---
 <BaseLayout title="Cyber Security Daily Radar">
   <section class="hero">
     <div class="hero-inner">
       <div class="date-badge">✧ {formatDate(digest.date)} ✧</div>
-      <p class="one-liner">{digest.hero.one_liner_zh}</p>
+      <p class="one-liner">{dynamicOneLiner}</p>
       <div class="stats">
-        <div class="stat-card">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <div class="stat-info">
-            <strong>{digest.hero.stats.cve_count}</strong>
-            <span>今日 CVE</span>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          </div>
-          <div class="stat-info">
-            <strong>{digest.hero.stats.kev_added}</strong>
-            <span>KEV 新增</span>
-          </div>
-        </div>
         <div class="stat-card">
           <div class="stat-icon">
             <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           </div>
           <div class="stat-info">
-            <strong>{digest.hero.stats.paper_count}</strong>
+            <strong>{researchTotalCount}</strong>
             <span>学术论文</span>
           </div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
           </div>
           <div class="stat-info">
-            <strong style="letter-spacing: -0.05em;">{digest.hero.stats.max_epss.toFixed(2)}</strong>
-            <span>最高 EPSS</span>
+            <strong>{vulnTotalCount}</strong>
+            <span>漏洞预警</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="stat-info">
+            <strong>{threatTotalCount}</strong>
+            <span>威胁情报</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>
+          </div>
+          <div class="stat-info">
+            <strong>{vendorTotalCount}</strong>
+            <span>厂商公告</span>
           </div>
         </div>
       </div>
@@ -394,9 +397,9 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
         if (controlsContainer) {
           controlsContainer.innerHTML = `
             <div class="pagination">
-              <button class="page-btn" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
-              <span class="page-info">第 ${page} / ${totalPages} 页</span>
-              <button class="page-btn" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
+              <button class="pagination__button" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
+              <span class="pagination__info">第 <strong>${page}</strong> / <strong>${totalPages}</strong> 页</span>
+              <button class="pagination__button" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
             </div>
           `;
           
@@ -577,7 +580,8 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     line-height: 1.8;
     font-family: var(--font-serif, serif);
     text-shadow: 0 1px 3px rgba(255,255,255,0.9);
-    word-break: break-word;
+    word-break: keep-all;
+    text-wrap: balance;
   }
   .stats {
     display: grid;
@@ -587,18 +591,18 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     z-index: 1;
   }
   .stat-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 249, 255, 0.7) 100%);
-    border: 1px solid rgba(91, 188, 228, 0.3);
-    border-bottom: 3px solid rgba(216, 182, 108, 0.8);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(238, 248, 255, 0.4) 100%);
+    border: 1px solid rgba(216, 182, 108, 0.4);
     border-radius: 16px;
     padding: 1.5rem 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1.2rem;
-    box-shadow: 0 6px 16px rgba(47, 128, 183, 0.08), inset 0 1px 0 rgba(255,255,255,1);
+    box-shadow: 0 4px 16px rgba(47, 128, 183, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: relative;
     overflow: hidden;
   }
@@ -606,14 +610,18 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, rgba(255,255,255,0) 100%);
-    pointer-events: none;
+    height: 4px;
+    background: linear-gradient(90deg, rgba(91, 188, 228, 0) 0%, rgba(216, 182, 108, 0.5) 50%, rgba(91, 188, 228, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
   }
   .stat-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 24px rgba(47, 128, 183, 0.15), 0 0 0 1px rgba(216, 182, 108, 0.4);
-    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(240, 249, 255, 0.9) 100%);
+    box-shadow: 0 8px 24px rgba(47, 128, 183, 0.15), 0 0 0 1px rgba(216, 182, 108, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(238, 248, 255, 0.7) 100%);
+  }
+  .stat-card:hover::before {
+    opacity: 1;
   }
   .stat-icon {
     width: 48px;
@@ -954,43 +962,6 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     display: block;
   }
 
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .page-btn {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    cursor: pointer;
-    color: var(--fg);
-    font-size: 0.9rem;
-    transition: var(--transition);
-  }
-
-  .page-btn:hover:not(:disabled) {
-    background: var(--bg);
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .page-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-
-  .page-info {
-    font-size: 0.9rem;
-    color: var(--fg-muted);
-  }
-
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
@@ -1051,6 +1022,129 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     
     .score {
       align-self: flex-start;
+    }
+  }
+  /* Global Pagination Styles for Dynamically Injected DOM */
+  :global(.pagination) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    margin: 36px auto 20px;
+    padding: 12px 0;
+  }
+
+  :global(.pagination__button),
+  :global(.pagination button) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid rgba(216, 182, 108, 0.55);
+    min-width: 96px;
+    height: 48px;
+    padding: 0 22px;
+    border-radius: 16px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.92), rgba(224, 246, 255, 0.78));
+    color: #17324d;
+    font: inherit;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    box-shadow:
+      0 12px 30px rgba(47, 128, 183, 0.14),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -2px 0 rgba(216, 182, 108, 0.28);
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      border-color 180ms ease,
+      background 180ms ease;
+  }
+
+  :global(.pagination__button:hover:not(:disabled)),
+  :global(.pagination button:hover:not(:disabled)) {
+    transform: translateY(-2px);
+    border-color: rgba(216, 182, 108, 0.9);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(203, 239, 255, 0.86));
+    box-shadow:
+      0 18px 42px rgba(47, 128, 183, 0.22),
+      0 0 0 4px rgba(91, 188, 228, 0.13),
+      inset 0 1px 0 rgba(255, 255, 255, 1);
+  }
+
+  :global(.pagination__button:active:not(:disabled)),
+  :global(.pagination button:active:not(:disabled)) {
+    transform: translateY(0);
+    box-shadow:
+      0 8px 20px rgba(47, 128, 183, 0.14),
+      inset 0 2px 5px rgba(47, 128, 183, 0.12);
+  }
+
+  :global(.pagination__button:disabled),
+  :global(.pagination button:disabled) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid rgba(135, 165, 185, 0.32);
+    background: linear-gradient(145deg, rgba(236, 246, 251, 0.58), rgba(218, 234, 242, 0.44));
+    color: rgba(23, 50, 77, 0.38);
+    cursor: not-allowed;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.75),
+      inset 0 -1px 0 rgba(216, 182, 108, 0.14);
+    transform: none;
+  }
+
+  :global(.pagination__info) {
+    min-width: 150px;
+    height: 48px;
+    padding: 0 24px;
+    border-radius: 999px;
+    border: 1px solid rgba(216, 182, 108, 0.6);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(128, 215, 255, 0.28), transparent 70%),
+      linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(236, 249, 255, 0.82));
+    color: #17324d;
+    font-size: 1.12rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    box-shadow:
+      0 14px 34px rgba(47, 128, 183, 0.13),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95),
+      inset 0 -2px 0 rgba(216, 182, 108, 0.24);
+  }
+
+  :global(.pagination__info strong) {
+    color: #2f80b7;
+    font-size: 1.28em;
+    margin: 0 4px;
+  }
+
+  @media (max-width: 520px) {
+    :global(.pagination) {
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    :global(.pagination__button),
+    :global(.pagination button) {
+      min-width: 76px;
+      height: 42px;
+      padding: 0 14px;
+      font-size: 0.95rem;
+      border-radius: 14px;
+    }
+
+    :global(.pagination__info) {
+      min-width: 118px;
+      height: 42px;
+      padding: 0 14px;
+      font-size: 0.95rem;
     }
   }
 </style>

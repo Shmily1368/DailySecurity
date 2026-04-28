@@ -672,6 +672,7 @@ def build_digest_item(item: RawItem, summary: LlmSummary) -> DigestItem:
         vendors=item.vendors,
         products=item.products,
         topics=item.topics,
+        authors=item.authors,
         severity=severity,
         risk=item.risk,
         risk_score=0.0,  # rank 阶段会覆盖

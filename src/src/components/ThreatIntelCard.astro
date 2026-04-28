@@ -67,7 +67,7 @@ const cves = item.cves && item.cves.length > 0 ? item.cves : [];
       
       {item.rank_reasons && item.rank_reasons.length > 0 && (
         <div class="rank-reasons">
-          <strong>排序因子:</strong> {item.rank_reasons.join(' | ')}
+          <strong>排序因子:</strong> <span>{item.rank_reasons.join(' | ')}</span>
         </div>
       )}
     </div>
@@ -75,6 +75,16 @@ const cves = item.cves && item.cves.length > 0 ? item.cves : [];
 </article>
 
 <style>
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes rainbowBorder {
+    to {
+      --angle: 360deg;
+    }
+  }
   .card {
     border: 1px solid rgba(216, 182, 108, 0.4);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(238, 248, 255, 0.5) 100%);
@@ -86,24 +96,43 @@ const cves = item.cves && item.cves.length > 0 ? item.cves : [];
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     position: relative;
-    overflow: hidden;
+    z-index: 1;
   }
   .card::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, rgba(91, 188, 228, 0) 0%, rgba(216, 182, 108, 0.5) 50%, rgba(91, 188, 228, 0) 100%);
+    inset: -1px;
+    border-radius: 13px; /* Slightly larger to cover the border */
+    background: conic-gradient(
+      from var(--angle),
+      rgba(255, 0, 0, 0.7),
+      rgba(255, 127, 0, 0.7),
+      rgba(255, 255, 0, 0.7),
+      rgba(0, 255, 0, 0.7),
+      rgba(0, 0, 255, 0.7),
+      rgba(75, 0, 130, 0.7),
+      rgba(148, 0, 211, 0.7),
+      rgba(255, 0, 0, 0.7)
+    );
+    z-index: -1;
     opacity: 0;
     transition: opacity 0.3s ease;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 2px;
   }
   .card:hover {
-    box-shadow: 0 8px 24px rgba(47, 128, 183, 0.15), 0 0 0 1px rgba(216, 182, 108, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 24px rgba(47, 128, 183, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
     transform: translateY(-4px);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(238, 248, 255, 0.7) 100%);
+    border-color: transparent;
   }
   .card:hover::before {
     opacity: 1;
+    animation: rainbowBorder 3s linear infinite;
   }
   .header {
     display: flex;
@@ -265,12 +294,15 @@ const cves = item.cves && item.cves.length > 0 ? item.cves : [];
     border-radius: 6px;
     padding: 0.6rem 1rem;
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.5rem;
   }
   .rank-reasons::before {
     content: '✦';
     color: #d8b66c;
+  }
+  .rank-reasons strong {
+    white-space: nowrap;
   }
   .refusal {
     color: #b91c1c;

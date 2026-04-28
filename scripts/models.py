@@ -307,6 +307,7 @@ class DigestItem(BaseModel):
     vendors: List[str] = Field(default_factory=list)
     products: List[str] = Field(default_factory=list)
     topics: List[str] = Field(default_factory=list)
+    authors: List[str] = Field(default_factory=list)
 
     # 评估字段
     severity: Severity = Severity.INFO

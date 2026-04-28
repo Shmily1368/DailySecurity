@@ -6,6 +6,7 @@ import json
 import httpx
 import argparse
 import random
+import urllib.parse
 from datetime import datetime, timezone
 
 STATE_FILE = Path("data/state/dblp_state.json")
@@ -58,7 +59,31 @@ def fetch_dblp_random(stream_id, year, limit=5):
         print(f"[WARN] Error fetching {stream_id} {year} random: {e}")
     return []
 
-def format_item(p, source_id, info, now):
+def fetch_abstract_openalex(title: str) -> str:
+    """Fetch abstract from OpenAlex API based on paper title."""
+    headers = {"User-Agent": "mailto:cyber-daily-radar-dev@example.com"}
+    # Using title.search helps find partial matches, but title is more exact
+    url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(title)}&select=title,abstract_inverted_index"
+    try:
+        res = httpx.get(url, headers=headers, timeout=10.0, verify=False)
+        if res.status_code == 200:
+            data = res.json()
+            results = data.get("results", [])
+            for r in results:
+                idx = r.get("abstract_inverted_index")
+                if idx:
+                    # Reconstruct the abstract from the inverted index
+                    words = {}
+                    for word, positions in idx.items():
+                        for pos in positions:
+                            words[pos] = word
+                    abstract = " ".join(words[i] for i in sorted(words.keys()))
+                    return abstract
+    except Exception as e:
+        print(f"[WARN] OpenAlex fetch failed for '{title[:30]}...': {e}")
+    return ""
+
+def format_item(p, source_id, info, now, abstract=""):
     authors_data = p.get('authors', {}).get('author', [])
     authors = []
     if isinstance(authors_data, dict):
@@ -85,7 +110,7 @@ def format_item(p, source_id, info, now):
             "source_url": ee or info['url']
         },
         "title": title,
-        "summary": f"Authors: {author_str}. Published in {info['name']} {year_pub}.",
+        "summary": abstract,
         "published_at": now.isoformat(),
         "fetched_at": now.isoformat(),
         "authors": authors
@@ -136,14 +161,22 @@ def run():
         if len(new_papers) > 0:
             print(f"[OK] Found {len(new_papers)} NEW papers for {info['name']}! Fetching all of them.")
             for p in new_papers:
-                results.append(format_item(p, source_id, info, now))
+                title = p.get('title', '')
+                if isinstance(title, list):
+                    title = title[0]
+                abstract = fetch_abstract_openalex(title)
+                results.append(format_item(p, source_id, info, now, abstract))
         else:
             print(f"[INFO] No new papers for {info['name']}. Fetching {args.limit_per_conf} random fallback from past 5 years.")
             # Fallback: pick a random year from the past 5 years
             random_year = random.choice(range(current_year - 5, current_year + 1))
             fallback_papers = fetch_dblp_random(info['stream'], random_year, limit=args.limit_per_conf)
             for p in fallback_papers:
-                results.append(format_item(p, source_id, info, now))
+                title = p.get('title', '')
+                if isinstance(title, list):
+                    title = title[0]
+                abstract = fetch_abstract_openalex(title)
+                results.append(format_item(p, source_id, info, now, abstract))
                 # Note: We do NOT add fallback papers to seen_keys, so they can be randomly picked again.
 
     # Save the updated state

@@ -101,6 +101,7 @@ export interface DigestItem {
     vendors?: string[];
     products?: string[];
     topics?: string[];
+    authors?: string[];
 
     severity: Severity;
     risk?: RiskSignal | null;
