@@ -106,39 +106,99 @@ export function getAllSources(): SourceConfig[] {
   return sources;
 }
 
-export function categoryToGroup(category: string): string {
-  const cat = (category || '').toLowerCase();
-  switch (cat) {
-    case 'product_vendor':
-    case 'cloud_provider':
-    case 'internet_company':
-      return '产品厂商 / 云厂商公告';
-      
-    case 'security_vendor':
-    case 'threat_research_lab':
-      return '安全厂商 / 安全研究团队';
-      
-    case 'government_cert':
-      return '政府 / CERT / 漏洞机构';
-      
-    case 'open_source':
-    case 'platform_security':
-      return '开源生态 / 平台安全';
-      
-    case 'threat_intel':
-      return '威胁情报研究';
-      
-    case 'research_paper':
-    case 'academic':
-      return '学术论文 / 研究前沿';
-      
-    case 'security_community':
-    case 'media':
-      return '安全社区 / 媒体';
-      
-    default:
-      return '安全社区 / 媒体';
+export function getSourceCapabilities(source: SourceConfig): string[] {
+  const capabilities = new Set<string>();
+  
+  // 1. 根据具体 ID 进行精细化多维度映射 (Capability Matrix)
+  const id = source.id.toLowerCase();
+  
+  // -- 综合型大厂安全团队 (既发漏洞预警，也做威胁情报，偶尔发自身公告) --
+  if (id.includes('360cert') || id.includes('qianxin') || id.includes('nsfocus') || id.includes('sangfor') || id.includes('dbappsecurity') || id.includes('venustech') || id.includes('topsec') || id.includes('hillstone')) {
+    capabilities.add('漏洞预警与深度分析');
+    capabilities.add('威胁情报与 APT 追踪');
   }
+  
+  if (id.includes('tencent_tic')) {
+    capabilities.add('威胁情报与 APT 追踪');
+    capabilities.add('综合安全资讯与社区');
+  }
+  
+  if (id.includes('threatbook')) {
+    capabilities.add('威胁情报与 APT 追踪');
+    capabilities.add('漏洞预警与深度分析');
+  }
+  
+  if (id.includes('chaitin') || id.includes('knownsec')) {
+    capabilities.add('漏洞预警与深度分析');
+  }
+  
+  // -- 国际顶尖威胁情报与研究团队 --
+  if (id.includes('palo_alto_unit42') || id.includes('cisco_talos') || id.includes('mandiant') || id.includes('crowdstrike') || id.includes('microsoft_ti') || id.includes('google_tag') || id.includes('sentinelone') || id.includes('sophos_labs') || id.includes('eset_research') || id.includes('checkpoint_research') || id.includes('elastic_security_labs') || id.includes('kaspersky') || id.includes('rapid7') || id.includes('cloudflare') || id.includes('akamai')) {
+    capabilities.add('威胁情报与 APT 追踪');
+    capabilities.add('漏洞预警与深度分析'); // 这些团队经常首发 0day/在野利用分析
+  }
+  
+  // -- 官方 CERT 与漏洞库 --
+  if (id.includes('cncert') || id.includes('cnvd') || id.includes('cnnvd') || id.includes('cisa') || id.includes('cert_')) {
+    capabilities.add('官方应急响应与政策');
+    capabilities.add('漏洞预警与深度分析');
+  }
+  
+  if (id.includes('nvd') || id.includes('cve') || id.includes('epss') || id.includes('osv')) {
+    capabilities.add('漏洞库与开源生态');
+    // NVD/OSV 主要作为基础库，不属于深度分析
+  }
+  
+  // -- 厂商公告专属 (仅发自己产品的更新) --
+  if (source.category === 'product_vendor' || source.category === 'cloud_provider' || source.category === 'internet_company') {
+    if (!id.includes('tic') && !id.includes('360cert') && !id.includes('qianxin') && !id.includes('nsfocus') && !id.includes('sangfor')) {
+      capabilities.add('官方厂商安全公告');
+    }
+  }
+  
+  // -- 安全社区与媒体 --
+  if (id.includes('freebuf') || id.includes('anquanke') || id.includes('xianzhi') || id.includes('kanxue') || id.includes('bleeping_computer') || id.includes('the_hacker_news') || id.includes('security_week') || id.includes('sans_isc')) {
+    capabilities.add('综合安全资讯与社区');
+    capabilities.add('威胁情报与 APT 追踪'); // 媒体经常转载情报
+  }
+  
+  // 2. 如果以上没有匹配到，则根据原有的 category 做兜底映射
+  if (capabilities.size === 0) {
+    const cat = (source.category || '').toLowerCase();
+    switch (cat) {
+      case 'product_vendor':
+      case 'cloud_provider':
+      case 'internet_company':
+        capabilities.add('官方厂商安全公告');
+        break;
+      case 'security_vendor':
+      case 'threat_research_lab':
+        capabilities.add('漏洞预警与深度分析');
+        break;
+      case 'government_cert':
+        capabilities.add('官方应急响应与政策');
+        break;
+      case 'open_source':
+      case 'platform_security':
+        capabilities.add('漏洞库与开源生态');
+        break;
+      case 'threat_intel':
+        capabilities.add('威胁情报与 APT 追踪');
+        break;
+      case 'research_paper':
+      case 'academic':
+        capabilities.add('学术论文与前沿研究');
+        break;
+      case 'security_community':
+      case 'media':
+        capabilities.add('综合安全资讯与社区');
+        break;
+      default:
+        capabilities.add('综合安全资讯与社区');
+    }
+  }
+  
+  return Array.from(capabilities);
 }
 
 export function normalizeRegionLabel(region: string): string {

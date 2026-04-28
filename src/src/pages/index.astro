@@ -29,29 +29,74 @@ const vendorTotalCount = vendorCloud.length + vendorOs.length + vendorIot.length
 const researchAi = pickItems(digest, digest.sections.research_ai ?? []);
 const researchCrypto = pickItems(digest, digest.sections.research_crypto ?? []);
 const researchSystems = pickItems(digest, digest.sections.research_systems ?? []);
-const researchTotalCount = researchAi.length + researchCrypto.length + researchSystems.length;
+const researchOthers = pickItems(digest, digest.sections.research_others ?? []);
+const researchTotalCount = researchAi.length + researchCrypto.length + researchSystems.length + researchOthers.length;
 ---
 <BaseLayout title="Cyber Security Daily Radar">
   <section class="hero">
-    <div class="date">{formatDate(digest.date)}</div>
-    <p class="one-liner">{digest.hero.one_liner_zh}</p>
-    <div class="stats">
-      <div><strong>{digest.hero.stats.cve_count}</strong><span>CVE</span></div>
-      <div><strong>{digest.hero.stats.kev_added}</strong><span>KEV 新增</span></div>
-      <div><strong>{digest.hero.stats.paper_count}</strong><span>论文</span></div>
-      <div><strong>{digest.hero.stats.max_epss.toFixed(2)}</strong><span>最高 EPSS</span></div>
+    <div class="hero-inner">
+      <div class="date-badge">✧ {formatDate(digest.date)} ✧</div>
+      <p class="one-liner">{digest.hero.one_liner_zh}</p>
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-icon">🌊</div>
+          <div class="stat-info">
+            <strong>{digest.hero.stats.cve_count}</strong>
+            <span>今日 CVE</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⚖️</div>
+          <div class="stat-info">
+            <strong>{digest.hero.stats.kev_added}</strong>
+            <span>KEV 新增</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📜</div>
+          <div class="stat-info">
+            <strong>{digest.hero.stats.paper_count}</strong>
+            <span>学术论文</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">💠</div>
+          <div class="stat-info">
+            <strong>{digest.hero.stats.max_epss.toFixed(2)}</strong>
+            <span>最高 EPSS</span>
+          </div>
+        </div>
+      </div>
+      {import.meta.env.DEV && digest.is_mock && (
+        <div class="mock-banner">当前为 MOCK 数据, 仅用于本地开发预览。</div>
+      )}
     </div>
-    {import.meta.env.DEV && digest.is_mock && (
-      <div class="mock-banner">当前为 MOCK 数据, 仅用于本地开发预览。</div>
-    )}
   </section>
 
-  <div class="dashboard-layout">
+  <div class="search-container">
+    <div class="search-input-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="search" id="global-search" placeholder="搜索漏洞、论文、情报..." autocomplete="off" />
+    </div>
+  </div>
+
+  <div id="search-results-container" style="display: none;">
+    <div class="section-header">
+      <h2 id="search-results-title">🔍 搜索结果</h2>
+    </div>
+    <div class="items-container" id="search-results-list"></div>
+  </div>
+
+  <div class="dashboard-layout" id="main-dashboard">
     <aside class="sidebar">
       <nav class="nav-list">
         <button class="nav-btn active" data-target="sec-top10">
           <div><span class="icon">🔥</span>每日精选</div>
           <span class="badge">{top10.length}</span>
+        </button>
+        <button class="nav-btn" data-target="sec-research">
+          <div><span class="icon">🧬</span>学术论文</div>
+          <span class="badge">{researchTotalCount}</span>
         </button>
         <button class="nav-btn" data-target="sec-vuln">
           <div><span class="icon">🚨</span>漏洞预警</div>
@@ -65,24 +110,62 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
           <div><span class="icon">🏢</span>厂商公告</div>
           <span class="badge">{vendorTotalCount}</span>
         </button>
-        <button class="nav-btn" data-target="sec-research">
-          <div><span class="icon">🧬</span>学术论文</div>
-          <span class="badge">{researchTotalCount}</span>
-        </button>
       </nav>
     </aside>
 
     <main class="main-content">
       <section id="sec-top10" class="tab-pane active" data-page-size="10">
-        <h2>🔥 每日精选 Top 10</h2>
+        <div class="section-header">
+          <h2>🔥 每日精选 Top 10</h2>
+        </div>
         <div class="items-container">
         {top10.length === 0 ? (
           <p class="muted">今日暂无精选。</p>
         ) : (
-          top10.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
+          top10.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)
         )}
         </div>
         <div class="pagination-controls"></div>
+      </section>
+
+      <section id="sec-research" class="tab-pane" data-page-size="20">
+        <div class="section-header">
+          <h2>🧬 学术论文</h2>
+          <div class="sub-tabs">
+            <button class="sub-tab-btn active" data-subtarget="research-ai">🤖 AI 安全 ({researchAi.length})</button>
+            <button class="sub-tab-btn" data-subtarget="research-systems">🛡️ 系统与软件 ({researchSystems.length})</button>
+            <button class="sub-tab-btn" data-subtarget="research-crypto">🔐 密码与隐私 ({researchCrypto.length})</button>
+            <button class="sub-tab-btn" data-subtarget="research-others">📚 综合前沿 ({researchOthers.length})</button>
+          </div>
+        </div>
+
+        <div id="research-ai" class="sub-pane active">
+          <div class="items-container">
+            {researchAi.length === 0 ? <p class="muted">今日暂无内容。</p> : researchAi.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+        
+        <div id="research-systems" class="sub-pane">
+          <div class="items-container">
+            {researchSystems.length === 0 ? <p class="muted">今日暂无内容。</p> : researchSystems.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div id="research-crypto" class="sub-pane">
+          <div class="items-container">
+            {researchCrypto.length === 0 ? <p class="muted">今日暂无内容。</p> : researchCrypto.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
+
+        <div id="research-others" class="sub-pane">
+          <div class="items-container">
+            {researchOthers.length === 0 ? <p class="muted">今日暂无内容。</p> : researchOthers.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+          </div>
+          <div class="pagination-controls"></div>
+        </div>
       </section>
 
       <section id="sec-vuln" class="tab-pane" data-page-size="20">
@@ -98,28 +181,28 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
         
         <div class="sub-pane active" id="vuln-exploited">
           <div class="items-container">
-          {vulnExploited.length === 0 ? <p class="muted">今日暂无在野利用漏洞。</p> : vulnExploited.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          {vulnExploited.length === 0 ? <p class="muted">今日暂无在野利用漏洞。</p> : vulnExploited.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
         
         <div class="sub-pane" id="vuln-poc">
           <div class="items-container">
-          {vulnPoc.length === 0 ? <p class="muted">今日暂无第三方深度分析。</p> : vulnPoc.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          {vulnPoc.length === 0 ? <p class="muted">今日暂无第三方深度分析。</p> : vulnPoc.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vuln-supply">
           <div class="items-container">
-          {vulnSupplyChain.length === 0 ? <p class="muted">今日暂无供应链与开源漏洞。</p> : vulnSupplyChain.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          {vulnSupplyChain.length === 0 ? <p class="muted">今日暂无供应链与开源漏洞。</p> : vulnSupplyChain.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vuln-baseline">
           <div class="items-container">
-          {vulnBaseline.length === 0 ? <p class="muted">今日暂无常规漏洞披露。</p> : vulnBaseline.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
+          {vulnBaseline.length === 0 ? <p class="muted">今日暂无常规漏洞披露。</p> : vulnBaseline.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
@@ -138,28 +221,28 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
 
         <div class="sub-pane active" id="threat-apt">
           <div class="items-container">
-          {threatApt.length === 0 ? <p class="muted">今日暂无APT情报。</p> : threatApt.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          {threatApt.length === 0 ? <p class="muted">今日暂无APT情报。</p> : threatApt.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="threat-cybercrime">
           <div class="items-container">
-          {threatCybercrime.length === 0 ? <p class="muted">今日暂无勒索与黑产情报。</p> : threatCybercrime.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          {threatCybercrime.length === 0 ? <p class="muted">今日暂无勒索与黑产情报。</p> : threatCybercrime.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="threat-campaigns">
           <div class="items-container">
-          {threatCampaigns.length === 0 ? <p class="muted">今日暂无具体战术情报。</p> : threatCampaigns.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          {threatCampaigns.length === 0 ? <p class="muted">今日暂无具体战术情报。</p> : threatCampaigns.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="threat-macro">
           <div class="items-container">
-          {threatMacro.length === 0 ? <p class="muted">今日暂无宏观态势报告。</p> : threatMacro.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)}
+          {threatMacro.length === 0 ? <p class="muted">今日暂无宏观态势报告。</p> : threatMacro.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
@@ -177,56 +260,26 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
 
         <div class="sub-pane active" id="vendor-cloud">
           <div class="items-container">
-          {vendorCloud.length === 0 ? <p class="muted">今日暂无云厂商公告。</p> : vendorCloud.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)}
+          {vendorCloud.length === 0 ? <p class="muted">今日暂无云厂商公告。</p> : vendorCloud.map((it) => <div class="item-wrapper" data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vendor-os">
           <div class="items-container">
-          {vendorOs.length === 0 ? <p class="muted">今日暂无操作系统厂商公告。</p> : vendorOs.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)}
+          {vendorOs.length === 0 ? <p class="muted">今日暂无操作系统厂商公告。</p> : vendorOs.map((it) => <div class="item-wrapper" data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vendor-iot">
           <div class="items-container">
-          {vendorIot.length === 0 ? <p class="muted">今日暂无IoT与工控厂商公告。</p> : vendorIot.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)}
+          {vendorIot.length === 0 ? <p class="muted">今日暂无IoT与工控厂商公告。</p> : vendorIot.map((it) => <div class="item-wrapper" data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
       </section>
 
-      <section id="sec-research" class="tab-pane" data-page-size="20">
-        <div class="section-header">
-          <h2>🧬 学术论文</h2>
-          <div class="sub-tabs">
-            <button class="sub-tab-btn active" data-subtarget="research-ai">🤖 AI 安全 ({researchAi.length})</button>
-            <button class="sub-tab-btn" data-subtarget="research-crypto">🔐 密码学与架构 ({researchCrypto.length})</button>
-            <button class="sub-tab-btn" data-subtarget="research-systems">🌐 系统与网络 ({researchSystems.length})</button>
-          </div>
-        </div>
-
-        <div class="sub-pane active" id="research-ai">
-          <div class="items-container">
-          {researchAi.length === 0 ? <p class="muted">今日暂无AI安全相关论文。</p> : researchAi.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
-          </div>
-          <div class="pagination-controls"></div>
-        </div>
-
-        <div class="sub-pane" id="research-crypto">
-          <div class="items-container">
-          {researchCrypto.length === 0 ? <p class="muted">今日暂无密码学相关论文。</p> : researchCrypto.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
-          </div>
-          <div class="pagination-controls"></div>
-        </div>
-
-        <div class="sub-pane" id="research-systems">
-          <div class="items-container">
-          {researchSystems.length === 0 ? <p class="muted">今日暂无系统与网络安全论文。</p> : researchSystems.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)}
-          </div>
-          <div class="pagination-controls"></div>
-        </div>
       </section>
     </main>
   </div>
@@ -340,37 +393,154 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
         }
       });
     });
+
+    // Global Search Logic
+    const searchInput = document.getElementById('global-search');
+    const dashboardLayout = document.getElementById('main-dashboard');
+    const searchResultsContainer = document.getElementById('search-results-container');
+    const searchResultsList = document.getElementById('search-results-list');
+    const searchResultsTitle = document.getElementById('search-results-title');
+    
+    if (searchInput) {
+      let timeout = null;
+      
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          const term = e.target.value.trim().toLowerCase();
+          if (!term) {
+            searchResultsContainer.style.display = 'none';
+            // Important: we need to use flex for dashboard layout if it's the default, but on mobile it might be column.
+            // Let's just remove the inline style to let CSS handle it.
+            dashboardLayout.style.display = ''; 
+            return;
+          }
+
+          searchResultsContainer.style.display = 'block';
+          dashboardLayout.style.display = 'none';
+          searchResultsList.innerHTML = '';
+
+          const allItems = Array.from(document.querySelectorAll('#main-dashboard .item-wrapper'));
+          const seenIds = new Set();
+          let matchCount = 0;
+
+          allItems.forEach(item => {
+            const id = item.getAttribute('data-item-id');
+            if (seenIds.has(id)) return; // Deduplicate items that appear in multiple sections
+
+            // Search in text content
+            if (item.textContent.toLowerCase().includes(term)) {
+              seenIds.add(id);
+              const clone = item.cloneNode(true);
+              clone.style.display = 'block'; // Ensure it is visible, overriding any pagination inline styles
+              searchResultsList.appendChild(clone);
+              matchCount++;
+            }
+          });
+
+          searchResultsTitle.textContent = `🔍 找到 ${matchCount} 条关于 "${e.target.value.trim()}" 的结果`;
+          if (matchCount === 0) {
+            searchResultsList.innerHTML = '<p class="muted" style="padding: 1rem 0;">未找到相关内容，请尝试更换关键词。</p>';
+          }
+        }, 200); // 200ms debounce
+      });
+    }
   });
 </script>
 
 <style>
   .hero {
-    padding: 1rem 0 1.5rem;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
   }
-  .date {
-    font-family: ui-monospace, monospace;
-    color: var(--fg-muted);
-    font-size: 0.9rem;
+  .hero-inner {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% -20%, rgba(91, 188, 228, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .date-badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    color: var(--accent-gold);
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--accent-gold);
+    padding-bottom: 0.2rem;
   }
   .one-liner {
-    font-size: 1.15rem;
-    margin: 0.5rem 0 1rem;
+    font-size: 1.3rem;
+    margin: 0 auto 2rem;
+    color: var(--fg);
+    max-width: 800px;
+    line-height: 1.8;
+    text-shadow: 0 1px 2px rgba(255,255,255,0.8);
   }
   .stats {
-    display: flex; gap: 1.5rem; flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    position: relative;
+    z-index: 1;
   }
-  .stats > div {
-    display: flex; flex-direction: column; align-items: flex-start;
+  .stat-card {
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 3px solid var(--accent-gold);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    backdrop-filter: blur(8px);
   }
-  .stats strong {
-    font-size: 1.4rem;
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .stat-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(47, 128, 183, 0.2));
+  }
+  .stat-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .stat-info strong {
+    font-size: 1.6rem;
+    line-height: 1.2;
     color: var(--accent);
+    font-family: var(--font-mono);
   }
-  .stats span {
-    font-size: 0.78rem;
+  .stat-info span {
+    font-size: 0.85rem;
     color: var(--fg-muted);
+    margin-top: 0.2rem;
+    font-weight: 500;
   }
   .mock-banner {
     margin-top: 1rem;
@@ -380,6 +550,44 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     border-radius: 6px;
     font-size: 0.85rem;
     display: inline-block;
+  }
+
+  /* Search Styles */
+  .search-container {
+    margin-bottom: 2rem;
+  }
+  .search-input-wrapper {
+    position: relative;
+    max-width: 600px;
+  }
+  .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--fg-muted);
+    pointer-events: none;
+  }
+  #global-search {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background: var(--bg-card);
+    color: var(--fg);
+    transition: all 0.2s ease;
+    font-family: inherit;
+  }
+  #global-search:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    background: var(--bg);
+  }
+  #search-results-container {
+    margin-bottom: 2rem;
+    animation: fadeIn 0.3s ease;
   }
 
   /* Dashboard Layout */
@@ -409,14 +617,15 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     width: 100%;
     padding: 0.85rem 1.2rem;
     border: 1px solid transparent;
-    background: transparent;
-    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: var(--radius);
     cursor: pointer;
     font-size: 0.95rem;
     color: var(--fg-muted);
-    transition: all 0.2s ease;
+    transition: var(--transition);
     text-align: left;
     font-family: inherit;
+    backdrop-filter: blur(4px);
   }
   
   .nav-btn > div {
@@ -427,14 +636,20 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   .nav-btn:hover {
     background: var(--bg-card);
     color: var(--fg);
-    border-color: var(--border);
+    border-color: var(--border-blue);
+    box-shadow: var(--shadow-sm);
+    transform: translateX(4px);
   }
   
   .nav-btn.active {
-    background: #eff6ff;
-    color: #1d4ed8;
-    border-color: #bfdbfe;
+    background: linear-gradient(to right, rgba(91, 188, 228, 0.15), rgba(255,255,255,0.7));
+    color: var(--accent);
+    border-left: 4px solid var(--accent-gold);
+    border-top: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: 1px solid transparent;
     font-weight: 500;
+    box-shadow: var(--shadow-sm);
   }
   
   .nav-btn .icon {
@@ -443,18 +658,20 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   }
   
   .nav-btn .badge {
-    background: #f1f5f9;
-    color: #64748b;
+    background: var(--bg);
+    color: var(--fg-muted);
     padding: 0.15rem 0.6rem;
     border-radius: 12px;
     font-size: 0.75rem;
-    font-family: ui-monospace, monospace;
-    transition: all 0.2s;
+    font-family: var(--font-mono);
+    transition: var(--transition);
+    border: 1px solid var(--border);
   }
   
   .nav-btn.active .badge {
-    background: #dbeafe;
-    color: #1e40af;
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
   }
 
   .main-content {
@@ -472,22 +689,51 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   }
   
   .section-header {
-    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 2px solid var(--border);
+    border-bottom: 1px solid var(--border-blue);
+    position: relative;
+  }
+  .section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-gold);
+    border-radius: 3px;
   }
 
   .section-header h2 {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin: 0;
+    font-size: 1.6rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    border-bottom: none;
-    padding-bottom: 0;
+    font-family: var(--font-sans);
+    color: var(--fg);
+    text-shadow: 0 1px 2px rgba(255,255,255,0.5);
+  }
+
+  .section-header h2::before {
+    content: '✧';
+    color: var(--accent-gold);
+    margin-right: 0.4rem;
+    font-weight: normal;
+    font-family: serif;
+    animation: float 3s ease-in-out infinite;
   }
   
+  @keyframes float {
+    0% { transform: translateY(0px); text-shadow: 0 0 5px rgba(216, 182, 108, 0.3); }
+    50% { transform: translateY(-3px); text-shadow: 0 0 15px rgba(216, 182, 108, 0.8); }
+    100% { transform: translateY(0px); text-shadow: 0 0 5px rgba(216, 182, 108, 0.3); }
+  }
+
   .sub-tabs {
     display: flex;
     gap: 0.5rem;
@@ -495,25 +741,29 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   }
   
   .sub-tab-btn {
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 1rem;
     border-radius: 20px;
-    background: #f1f5f9;
-    color: #475569;
-    border: 1px solid transparent;
+    background: rgba(255,255,255,0.6);
+    color: var(--fg-muted);
+    border: 1px solid var(--border-blue);
     font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: var(--transition);
+    backdrop-filter: blur(4px);
   }
   
   .sub-tab-btn:hover {
-    background: #e2e8f0;
+    background: rgba(255,255,255,0.9);
+    color: var(--fg);
+    border-color: var(--accent);
   }
   
   .sub-tab-btn.active {
-    background: #dbeafe;
-    color: #1e40af;
-    border-color: #bfdbfe;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    color: #fff;
+    border-color: var(--accent-gold);
     font-weight: 500;
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.25);
   }
   
   .sub-pane {
@@ -523,18 +773,6 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
   
   .sub-pane.active {
     display: block;
-  }
-
-  /* Handle top10 h2 specifically since it doesn't have a section-header wrapper */
-  #sec-top10 h2 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #e2e8f0;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
   }
 
   .pagination {
@@ -551,16 +789,17 @@ const researchTotalCount = researchAi.length + researchCrypto.length + researchS
     padding: 0.5rem 1rem;
     border: 1px solid var(--border);
     background: var(--bg-card);
-    border-radius: 6px;
+    border-radius: var(--radius);
     cursor: pointer;
     color: var(--fg);
     font-size: 0.9rem;
-    transition: all 0.2s;
+    transition: var(--transition);
   }
 
   .page-btn:hover:not(:disabled) {
-    background: #f1f5f9;
-    border-color: #cbd5e1;
+    background: var(--bg);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 
   .page-btn:disabled {

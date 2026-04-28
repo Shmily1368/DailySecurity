@@ -1,34 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SourceCard from '../components/SourceCard.astro';
-import { getAllSources, categoryToGroup } from '../lib/sources';
+import { getAllSources, getSourceCapabilities } from '../lib/sources';
 import type { SourceConfig } from '../lib/sources';
 
 const sources = getAllSources();
 
-// Define groups in order
+// Define groups in order (Capability Matrix)
 const groups = [
-  '产品厂商 / 云厂商公告',
-  '安全厂商 / 安全研究团队',
-  '政府 / CERT / 漏洞机构',
-  '开源生态 / 平台安全',
-  '学术论文 / 研究前沿',
-  '威胁情报研究',
-  '安全社区 / 媒体'
+  '学术论文与前沿研究',
+  '漏洞预警与深度分析',
+  '威胁情报与 APT 追踪',
+  '官方厂商安全公告',
+  '综合安全资讯与社区',
+  '官方应急响应与政策',
+  '漏洞库与开源生态'
 ];
 
-// Group the sources
+// Group the sources (Many-to-Many mapping)
 const groupedSources: Record<string, SourceConfig[]> = {};
 groups.forEach(g => groupedSources[g] = []);
 
 sources.forEach(source => {
-  const group = categoryToGroup(source.category);
-  if (groupedSources[group]) {
-    groupedSources[group].push(source);
-  } else {
-    // Should not happen as categoryToGroup defaults to '安全社区 / 媒体'
-    groupedSources['安全社区 / 媒体'].push(source);
-  }
+  const capabilities = getSourceCapabilities(source);
+  
+  capabilities.forEach(cap => {
+    if (groupedSources[cap]) {
+      groupedSources[cap].push(source);
+    } else {
+      // Fallback
+      groupedSources['综合安全资讯与社区'].push(source);
+    }
+  });
+});
+
+// Remove duplicates within each group just in case
+Object.keys(groupedSources).forEach(group => {
+  const uniqueSources = Array.from(new Map(groupedSources[group].map(item => [item.id, item])).values());
+  groupedSources[group] = uniqueSources;
 });
 ---
 
@@ -36,7 +45,7 @@ sources.forEach(source => {
   <header class="page-header">
     <h1>Data Sources & Trust Model</h1>
     <div class="description">
-      <p>本站按“来源角色”分类展示所有数据源，地域（如国家或地区）仅作为辅助标签。</p>
+      <p>本站按“核心安全能力（Capability）”分类展示所有数据源，同一个安全机构可能同时具备多项能力（如 360CERT 既做漏洞预警，也做 APT 追踪），因此会出现在多个分类下。</p>
       <p>数据来源包括：厂商公告、漏洞库、威胁情报、开源安全等。</p>
       <p>⚠️ <strong>注意事项：</strong>所有安全摘要由 LLM 自动化生成，仅供参考，实际细节与建议请以原始来源为准。本站不提供 exploit 代码、payload 或攻击复现步骤。</p>
     </div>
@@ -46,7 +55,7 @@ sources.forEach(source => {
     {groups.map(groupName => {
       const groupItems = groupedSources[groupName];
       return (
-        <details class="group-section" open>
+        <details class="group-section">
           <summary>
             <h2>{groupName} <span class="count">({groupItems.length})</span></h2>
           </summary>

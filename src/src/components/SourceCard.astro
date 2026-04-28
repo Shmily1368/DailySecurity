@@ -1,5 +1,5 @@
 ---
-import { categoryToGroup, normalizeRegionLabel } from '../lib/sources';
+import { getSourceCapabilities, normalizeRegionLabel } from '../lib/sources';
 import type { SourceConfig } from '../lib/sources';
 
 export interface Props {
@@ -8,8 +8,7 @@ export interface Props {
 
 const { source } = Astro.props;
 const regionLabel = normalizeRegionLabel(source.region);
-const groupName = categoryToGroup(source.category);
-const isUnknownCategory = groupName === '安全社区 / 媒体' && !['security_community', 'media'].includes((source.category || '').toLowerCase());
+const capabilities = getSourceCapabilities(source);
 
 function getQualityBadgeClass(quality: string) {
   if (quality === 'primary') return 'badge-primary';
@@ -48,14 +47,23 @@ function getQualityLabel(quality: string) {
 
   <div class="details">
     <div class="detail-item">
-      <strong>Category:</strong> 
-      <span class={isUnknownCategory ? 'warning-text' : ''}>
-        {source.category || 'unknown'}
-        {isUnknownCategory && ' ⚠️ (分类未识别)'}
+      <strong>Capabilities:</strong> 
+      <span>
+        {capabilities.join(', ')}
       </span>
     </div>
     <div class="detail-item">
-      <strong>Parser:</strong> {source.parser || 'N/A'}
+      <strong>Category:</strong> 
+      <span>
+        {source.category || 'unknown'}
+      </span>
+    </div>
+    <div class="detail-item">
+      <strong>Parser:</strong> 
+      <span class={source.parser === 'manual_pending' ? 'badge badge-pending' : ''}>
+        {source.parser || 'N/A'}
+        {source.parser === 'manual_pending' && ' ⏳ (待开发/寻找入口)'}
+      </span>
     </div>
     {source.notes && (
       <div class="detail-item notes">
@@ -135,6 +143,12 @@ function getQualityLabel(quality: string) {
     background: #f1f5f9;
     color: #64748b;
     opacity: 0.8;
+  }
+  .badge-pending {
+    background: #fffbeb;
+    color: #b45309;
+    border: 1px dashed #fcd34d;
+    padding: 0.1rem 0.4rem;
   }
   .details {
     font-size: 0.9rem;

@@ -390,11 +390,11 @@ sources:
     content_type: "vendor_advisory"
     source_quality: "primary"
     parser: "api"
-    url: "https://api.msrc.microsoft.com/sug/v2.0/en-US/vulnerability"
+    url: "https://api.msrc.microsoft.com/sug/v2.0/en-US/vulnerability?$filter=releaseDate gt 2026-04-01T00:00:00Z&$orderby=releaseDate%20desc&$top=50"
     enabled: true
     rate_limit_seconds: 5
     tags: ["microsoft", "msrc", "windows"]
-    notes: "支持 CVRF API，质量极高"
+    notes: "支持 CVRF API，质量极高。加入了基于日期的 $filter 以减小返回体积。"
     expected_fields: ["title", "published_at", "cves", "summary"]
     safety_policy: "strict_no_poc"
 

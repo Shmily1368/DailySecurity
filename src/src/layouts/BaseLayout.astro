@@ -12,32 +12,81 @@ const { title, description = '每日网络空间安全雷达 —— 聚合论文
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <title>{title}</title>
+    <!-- 尽早执行，避免页面闪烁 (FOUC) -->
     <style is:global>
       :root {
-        --fg: #111827;
-        --fg-muted: #4b5563;
-        --bg: #ffffff;
-        --bg-card: #f9fafb;
-        --border: #e5e7eb;
-        --accent: #0f766e;
+        /* Fontaine Water Capital Theme (High Fantasy & Elegance) */
+        --fg: #17324d; /* Deep ocean blue for high contrast text */
+        --fg-muted: #5b7c99; /* Subdued blue-gray */
+        --bg: #eef8ff; /* Bright water blue */
+        --bg-card: rgba(255, 255, 255, 0.72); /* Glassmorphism background */
+        --border: rgba(216, 182, 108, 0.35); /* Elegant gold border */
+        --border-blue: rgba(91, 188, 228, 0.35); /* Hydro blue border */
+        --accent: #2f80b7; /* Deep hydro blue */
+        --accent-hover: #5bbce4; /* Light hydro blue */
+        --accent-gold: #d8b66c; /* Champagne gold */
+        
+        --shadow-sm: 0 4px 16px rgba(47, 128, 183, 0.08);
+        --shadow: 0 10px 30px rgba(216, 182, 108, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+        --shadow-glow: 0 0 20px rgba(91, 188, 228, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+        
+        --radius: 16px;
+        --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        --header-bg: rgba(238, 248, 255, 0.65);
+        
+        /* Water ripples & divine palace gradient */
+        --bg-pattern: 
+          radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 40%),
+          radial-gradient(circle at 90% 80%, rgba(216, 182, 108, 0.08) 0%, transparent 50%),
+          linear-gradient(135deg, #eef8ff 0%, #dff3ff 50%, #f8fcff 100%);
+        
+        --font-sans: 'Georgia', 'Palatino Linotype', 'Times New Roman', 'PingFang SC', 'Hiragino Sans GB', serif;
+        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       }
+      
       * { box-sizing: border-box; }
       html, body {
         margin: 0;
         padding: 0;
-        background: var(--bg);
+        background-color: var(--bg);
+        background-image: var(--bg-pattern);
+        background-size: cover;
+        background-attachment: fixed;
         color: var(--fg);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        font-family: var(--font-sans);
         line-height: 1.6;
       }
-      a { color: var(--accent); text-decoration: none; }
-      a:hover { text-decoration: underline; }
-      main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem 4rem; }
-      header.site-header {
-        border-bottom: 1px solid var(--border);
-        padding: 1rem;
-        background: #f8fafc;
+      h1, h2, h3, h4, h5, h6 { 
+        font-family: var(--font-sans); 
+        color: var(--fg);
       }
+      a { color: var(--accent); text-decoration: none; transition: var(--transition); }
+      a:hover { color: var(--accent-hover); }
+      main { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+      
+      header.site-header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid var(--border-blue);
+        padding: 1rem;
+        background: var(--header-bg);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 4px 20px rgba(47, 128, 183, 0.05);
+      }
+      /* Gold accent line under header */
+      header.site-header::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        opacity: 0.7;
+      }
+      
       header.site-header .inner {
         max-width: 1200px; margin: 0 auto;
         display: flex; justify-content: space-between; align-items: center;
@@ -45,29 +94,70 @@ const { title, description = '每日网络空间安全雷达 —— 聚合论文
         gap: 1rem;
       }
       header.site-header h1 {
-        margin: 0; font-size: 1.25rem;
+        margin: 0; 
+        font-size: 1.4rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, var(--fg), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 2px 4px rgba(47, 128, 183, 0.1);
+      }
+      
+      .nav-container {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
       }
       .nav-links {
         display: flex;
         gap: 1.5rem;
-        font-size: 0.95rem;
+        font-size: 1rem;
       }
       .nav-links a {
         color: var(--fg-muted);
         font-weight: 500;
-        text-decoration: none;
+        position: relative;
       }
       .nav-links a:hover {
         color: var(--accent);
       }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--accent-gold);
+        transition: var(--transition);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      
       footer.site-footer {
-        border-top: 1px solid var(--border);
-        padding: 1.5rem 1rem;
+        border-top: 1px solid var(--border-blue);
+        padding: 2rem 1rem;
         font-size: 0.85rem;
         color: var(--fg-muted);
         text-align: center;
+        background: rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(8px);
+        position: relative;
       }
-      h2 { font-size: 1.25rem; margin-top: 2.5rem; }
+      footer.site-footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+        opacity: 0.5;
+      }
+      
+      h2 { font-size: 1.25rem; margin-top: 2.5rem; color: var(--fg); }
       .muted { color: var(--fg-muted); font-size: 0.9rem; }
     </style>
   </head>
@@ -75,13 +165,15 @@ const { title, description = '每日网络空间安全雷达 —— 聚合论文
     <header class="site-header">
       <div class="inner">
         <h1><a href={import.meta.env.BASE_URL} style="color: inherit; text-decoration: none;">Cyber Security Daily Radar</a></h1>
-        <nav class="nav-links">
-          <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/"}>首页</a>
-          <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/daily"}>归档</a>
-          <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/topics"}>主题</a>
-          <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/sources"}>数据源</a>
-          <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/about"}>关于</a>
-        </nav>
+        <div class="nav-container">
+          <nav class="nav-links">
+            <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/"}>首页</a>
+            <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/daily"}>归档</a>
+            <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/topics"}>主题</a>
+            <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/sources"}>数据源</a>
+            <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/about"}>关于</a>
+          </nav>
+        </div>
       </div>
     </header>
     <main>

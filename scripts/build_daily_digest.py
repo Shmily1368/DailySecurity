@@ -96,6 +96,9 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                 raw_list = data["items"]
             elif isinstance(data, list):
                 raw_list = data
+            else:
+                # Some files might just be a direct array at root or have a different structure
+                raw_list = data
                 
             for raw_dict in raw_list:
                 try:
@@ -110,11 +113,14 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                     if raw_item.published_at and raw_item.published_at < cutoff_date:
                         continue
                         
+                    import re
+                    clean_summary = re.sub(r'<[^>]+>', '', raw_item.summary) if raw_item.summary else raw_item.title
+                    
                     # Create a minimal fallback LlmSummary
                     summary_data = {
-                        "summary_zh": raw_item.title[:120],
-                        "why_it_matters_zh": "由于配额限制，未进行深度 LLM 分析。",
-                        "recommended_action_zh": "建议根据原标题自行评估",
+                        "summary_zh": clean_summary[:400],
+                        "why_it_matters_zh": "原文内容（由于配额限制，未进行深度 LLM 分析）",
+                        "recommended_action_zh": "建议根据原文自行评估",
                         "confidence_label": "metadata_only",
                         "confidence": 0.5,
                         "category": "vuln"
@@ -140,21 +146,26 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
 
 def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
     sections = {
-        "top_10": [],
+        "top10": [],
+        # Research
+        "research_ai": [],
+        "research_systems": [],
+        "research_crypto": [],
+        "research_others": [],
+        # Vuln
         "vuln_exploited": [],
         "vuln_poc": [],
         "vuln_supply_chain": [],
         "vuln_baseline": [],
+        # Threat Intel
         "threat_apt": [],
         "threat_cybercrime": [],
         "threat_campaigns": [],
         "threat_macro": [],
+        # Vendor
         "vendor_cloud": [],
         "vendor_os": [],
         "vendor_iot": [],
-        "research_ai": [],
-        "research_crypto": [],
-        "research_systems": []
     }
     
     for item in items:
@@ -203,12 +214,15 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
         # ======= 4. Research / Papers =======
         elif item.type == ItemType.PAPER:
             title_lower = item.title.lower()
-            if "ai " in title_lower or "llm" in title_lower or "machine learning" in title_lower:
+            
+            if any(k in title_lower for k in ["ai ", " ai", "llm", "machine learning", "deep learning", "adversarial", "federated"]):
                 sections["research_ai"].append(item.id)
-            elif "crypto" in title_lower or "signature" in title_lower:
+            elif any(k in title_lower for k in ["fuzzing", "malware", "side-channel", "vulnerability", "web", "network", "protocol", "binary", "cache", "memory", "exploit", "forensic", "system", "kernel", "sandbox", "hypervisor"]):
+                sections["research_systems"].append(item.id)
+            elif any(k in title_lower for k in ["crypto", "signature", "privacy", "zk-snark", "mpc", "authentication", "anonymity", "obfuscation", "homomorphic", "differential", "key exchange"]):
                 sections["research_crypto"].append(item.id)
             else:
-                sections["research_systems"].append(item.id)
+                sections["research_others"].append(item.id)
             
     # Top 10 取总榜前 10
     sections["top_10"] = [item.id for item in items[:10]]
@@ -220,6 +234,26 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
             if item.id in sec_items:
                 item.shown_in_sections.append(sec_name)
                 
+    # Sort items within each category:
+    # Rule 1: Papers from 'top_conferences' always bubble to the top of their respective lists.
+    # Rule 2: Then by descending risk score.
+    valid_items_dict = {it.id: it for it in items}
+    for key in sections:
+        if key == "top_10":
+            continue
+        
+        def sort_key(item_id):
+            it = valid_items_dict.get(item_id)
+            if not it:
+                return (0, 0)
+            
+            # Check source for top_conferences
+            is_top_conf = 1 if getattr(it, "source", "") == "top_conferences" else 0
+            score = getattr(it, "risk_score", 0.0) or 0.0
+            return (is_top_conf, score)
+            
+        sections[key] = sorted(sections[key], key=sort_key, reverse=True)
+
     return sections
 
 def build_hero(items: List[DigestItem]) -> Hero:

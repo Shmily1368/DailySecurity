@@ -92,16 +92,26 @@ class ApiParser(BaseParser):
                 entries = data.get("value", []) or data.get("items", []) or data.get("data", []) or data.get("updates", [])
 
             for entry in entries[:limit]:
-                title = entry.get("Title") or entry.get("title") or entry.get("name") or "No Title"
-                pub_date_str = entry.get("PublishedDate") or entry.get("publishedAt") or entry.get("date") or entry.get("published")
+                # MSRC API uses specific fields like cveTitle, releaseDate, cveNumber
+                title = entry.get("cveTitle") or entry.get("Title") or entry.get("title") or entry.get("name") or "No Title"
+                pub_date_str = entry.get("releaseDate") or entry.get("PublishedDate") or entry.get("publishedAt") or entry.get("date") or entry.get("published")
                 pub_date = date_parser.parse(pub_date_str) if pub_date_str else datetime.now(timezone.utc)
                 if pub_date.tzinfo is None:
                     pub_date = pub_date.replace(tzinfo=timezone.utc)
                 
-                link = entry.get("Url") or entry.get("url") or entry.get("link") or source.url
-                summary = entry.get("Summary") or entry.get("summary") or entry.get("description") or ""
+                link = entry.get("Url") or entry.get("url") or entry.get("link")
+                if not link and "cveNumber" in entry:
+                    link = f"https://msrc.microsoft.com/update-guide/vulnerability/{entry['cveNumber']}"
+                elif not link:
+                    link = source.url
+
+                summary = entry.get("unformattedDescription") or entry.get("description") or entry.get("Summary") or entry.get("summary") or ""
+                if summary:
+                    summary = BeautifulSoup(summary, "html.parser").get_text()
                 
                 cves = extract_cves(title + " " + summary)
+                if "cveNumber" in entry:
+                    cves.append(entry["cveNumber"])
                 if "Cves" in entry and isinstance(entry["Cves"], list):
                     cves.extend(entry["Cves"])
                 cves = list(set(cves))
