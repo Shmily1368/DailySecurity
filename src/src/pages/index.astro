@@ -52,10 +52,6 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
           <div><span class="icon">🏢</span>厂商公告</div>
           <span class="badge">{vendorAdvisories.length}</span>
         </button>
-        <button class="nav-btn" data-target="sec-supply">
-          <div><span class="icon">🔗</span>供应链安全</div>
-          <span class="badge">{supplyChain.length}</span>
-        </button>
       </nav>
     </aside>
 
@@ -73,36 +69,54 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
       </section>
 
       <section id="sec-research" class="tab-pane" data-page-size="20">
-        <h2>🧬 学术论文</h2>
+        <div class="section-header">
+          <h2>🧬 学术论文</h2>
+          <div class="filter-group">
+            <button class="filter-tag active" data-filter="all">全部</button>
+            <button class="filter-tag" data-filter="supply_chain">供应链安全</button>
+          </div>
+        </div>
         <div class="items-container">
         {research.length === 0 ? (
           <p class="muted">今日暂无学术论文。</p>
         ) : (
-          research.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
+          research.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><ItemCard item={it} /></div>)
         )}
         </div>
         <div class="pagination-controls"></div>
       </section>
 
       <section id="sec-vuln" class="tab-pane" data-page-size="20">
-        <h2>🚨 漏洞预警</h2>
+        <div class="section-header">
+          <h2>🚨 漏洞预警</h2>
+          <div class="filter-group">
+            <button class="filter-tag active" data-filter="all">全部</button>
+            <button class="filter-tag" data-filter="supply_chain">供应链安全</button>
+          </div>
+        </div>
         <div class="items-container">
         {highRisk.length === 0 ? (
           <p class="muted">今日暂无漏洞预警。</p>
         ) : (
-          highRisk.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
+          highRisk.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><ItemCard item={it} /></div>)
         )}
         </div>
         <div class="pagination-controls"></div>
       </section>
 
       <section id="sec-threat" class="tab-pane" data-page-size="20">
-        <h2>🛡️ 威胁情报</h2>
+        <div class="section-header">
+          <h2>🛡️ 威胁情报</h2>
+          <div class="filter-group">
+            <button class="filter-tag active" data-filter="all">全部</button>
+            <button class="filter-tag" data-filter="supply_chain">供应链安全</button>
+          </div>
+        </div>
         <div class="items-container">
         {threatIntel.length === 0 ? (
           <p class="muted">今日暂无威胁情报。</p>
         ) : (
-          threatIntel.map((it) => <div class="item-wrapper"><ThreatIntelCard item={it} /></div>)
+          threatIntel.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><ThreatIntelCard item={it} /></div>)
         )}
         </div>
         <div class="pagination-controls"></div>
@@ -114,19 +128,7 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
         {vendorAdvisories.length === 0 ? (
           <p class="muted">今日暂无厂商公告。</p>
         ) : (
-          vendorAdvisories.map((it) => <div class="item-wrapper"><VendorAdvisoryCard item={it} /></div>)
-        )}
-        </div>
-        <div class="pagination-controls"></div>
-      </section>
-
-      <section id="sec-supply" class="tab-pane" data-page-size="20">
-        <h2>🔗 供应链安全</h2>
-        <div class="items-container">
-        {supplyChain.length === 0 ? (
-          <p class="muted">今日暂无供应链安全情报。</p>
-        ) : (
-          supplyChain.map((it) => <div class="item-wrapper"><ItemCard item={it} /></div>)
+          vendorAdvisories.map((it) => <div class="item-wrapper" data-tags={it.tags?.join(',') || ''}><VendorAdvisoryCard item={it} /></div>)
         )}
         </div>
         <div class="pagination-controls"></div>
@@ -142,62 +144,92 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
     
     // Pagination setup
     panes.forEach(pane => {
-      const items = Array.from(pane.querySelectorAll('.item-wrapper'));
+      let items = Array.from(pane.querySelectorAll('.item-wrapper'));
       const pageSize = parseInt(pane.getAttribute('data-page-size') || '20', 10);
       const controlsContainer = pane.querySelector('.pagination-controls');
-      
-      if (items.length <= pageSize && controlsContainer) {
-        controlsContainer.style.display = 'none';
-        return;
-      }
+      const filterTags = pane.querySelectorAll('.filter-tag');
       
       let currentPage = 1;
-      const totalPages = Math.ceil(items.length / pageSize);
+      let currentFilter = 'all';
       
-      function renderPage(page) {
-        items.forEach((item, index) => {
+      function renderPage(page, activeItems) {
+        const totalPages = Math.ceil(activeItems.length / pageSize) || 1;
+        
+        // Hide all items first
+        items.forEach(item => item.style.display = 'none');
+        
+        // Show only active items for the current page
+        activeItems.forEach((item, index) => {
           if (index >= (page - 1) * pageSize && index < page * pageSize) {
             item.style.display = 'block';
-          } else {
-            item.style.display = 'none';
           }
         });
         
         if (controlsContainer) {
-          controlsContainer.innerHTML = `
-            <div class="pagination">
-              <button class="page-btn" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
-              <span class="page-info">第 ${page} / ${totalPages} 页</span>
-              <button class="page-btn" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
-            </div>
-          `;
-          
-          const prevBtn = controlsContainer.querySelector('[data-action="prev"]');
-          const nextBtn = controlsContainer.querySelector('[data-action="next"]');
-          
-          if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-              if (currentPage > 1) {
-                currentPage--;
-                renderPage(currentPage);
-                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            });
-          }
-          
-          if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-              if (currentPage < totalPages) {
-                currentPage++;
-                renderPage(currentPage);
-                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            });
+          if (activeItems.length <= pageSize) {
+             controlsContainer.style.display = 'none';
+          } else {
+             controlsContainer.style.display = 'flex';
+             controlsContainer.innerHTML = `
+               <div class="pagination">
+                 <button class="page-btn" ${page === 1 ? 'disabled' : ''} data-action="prev">上一页</button>
+                 <span class="page-info">第 ${page} / ${totalPages} 页</span>
+                 <button class="page-btn" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
+               </div>
+             `;
+             
+             const prevBtn = controlsContainer.querySelector('[data-action="prev"]');
+             const nextBtn = controlsContainer.querySelector('[data-action="next"]');
+             
+             if (prevBtn) {
+               prevBtn.addEventListener('click', () => {
+                 if (currentPage > 1) {
+                   currentPage--;
+                   renderPage(currentPage, activeItems);
+                   pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                 }
+               });
+             }
+             
+             if (nextBtn) {
+               nextBtn.addEventListener('click', () => {
+                 if (currentPage < totalPages) {
+                   currentPage++;
+                   renderPage(currentPage, activeItems);
+                   pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                 }
+               });
+             }
           }
         }
       }
       
-      renderPage(1);
+      function applyFilter() {
+        currentPage = 1;
+        let activeItems = items;
+        
+        if (currentFilter !== 'all') {
+           activeItems = items.filter(item => {
+             const tags = item.getAttribute('data-tags') || '';
+             return tags.includes(currentFilter);
+           });
+        }
+        
+        renderPage(currentPage, activeItems);
+      }
+      
+      if (filterTags.length > 0) {
+         filterTags.forEach(tag => {
+           tag.addEventListener('click', (e) => {
+             filterTags.forEach(t => t.classList.remove('active'));
+             e.target.classList.add('active');
+             currentFilter = e.target.getAttribute('data-filter');
+             applyFilter();
+           });
+         });
+      }
+      
+      applyFilter();
     });
 
     btns.forEach(btn => {
@@ -351,13 +383,50 @@ const threatIntel = pickItems(digest, digest.sections.threat_intel ?? []);
   
   .tab-pane h2 {
     margin-top: 0;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid #e2e8f0;
+    margin-bottom: 0;
     font-size: 1.5rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .filter-group {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .filter-tag {
+    background: #f1f5f9;
+    color: #475569;
+    border: 1px solid transparent;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .filter-tag:hover {
+    background: #e2e8f0;
+  }
+  
+  .filter-tag.active {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-color: #bfdbfe;
+    font-weight: 500;
   }
 
   .pagination {

@@ -143,31 +143,49 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
         "top_10": [],
         "high_risk": [],
         "research": [],
-        "supply_chain": [],
-        "vendor_advisories": [],
-        "threat_intel": []
+        "threat_intel": [],
+        "vendor_advisories": []
     }
     
     for item in items:
-        # 威胁情报
+        # Tag initialization if not present
+        if not item.tags:
+            item.tags = []
+            
+        text_to_check = (item.title + " " + str(item.summary) + " " + str(item.topics)).lower()
+        is_supply_chain = "supply chain" in text_to_check or "供应链" in text_to_check
+        
+        # 1. 威胁情报 (Threat Intel)
         if item.type == ItemType.THREAT_REPORT:
+            if is_supply_chain and "supply_chain" not in item.tags:
+                item.tags.append("supply_chain")
             sections["threat_intel"].append(item.id)
             
-        # 厂商安全公告
-        if item.type == ItemType.ADVISORY and item.source.lower() == "vendor":
-            sections["vendor_advisories"].append(item.id)
+        # 2. 厂商公告 (Vendor Advisories) - 仅限第一方产品厂商
+        elif item.type == ItemType.ADVISORY and item.source.lower() == "vendor":
+            # 我们通过判断源是否是安全厂商来区分。配置里 security_vendor 也是 vendor_advisory。
+            # 这里我们通过硬编码一些常见的第三方平台将其踢出厂商公告，或者通过类别。
+            # 由于 DigestItem 里没有暴露 config 的 category，我们通过名称黑名单快速路由。
+            third_party_platforms = ["seebug", "360cert", "nsfocus", "threatbook", "cncert", "cnvd", "cnnvd", "freebuf", "anquanke"]
+            is_third_party = any(platform in item.source.lower() for platform in third_party_platforms)
             
-        # 供应链安全
-        text_to_check = (item.title + " " + str(item.summary) + " " + str(item.topics)).lower()
-        if "supply chain" in text_to_check or "供应链" in text_to_check or (item.type == ItemType.ADVISORY and item.source.lower() != "vendor"):
-            sections["supply_chain"].append(item.id)
-            
-        # 高风险漏洞 (排除论文和威胁情报) - 包含所有该类型项目，不卡 risk_score
-        if item.type in [ItemType.CVE, ItemType.KEV, ItemType.ADVISORY]:
+            if is_third_party:
+                # 第三方安全机构发出的漏洞分析，路由到漏洞预警
+                sections["high_risk"].append(item.id)
+            else:
+                # 真正的原厂补丁公告
+                sections["vendor_advisories"].append(item.id)
+                
+        # 3. 漏洞预警 (High Risk) - 包含 CVE, KEV, GitHub Advisory, OSV 以及被踢出来的第三方漏洞分析
+        elif item.type in [ItemType.CVE, ItemType.KEV] or (item.type == ItemType.ADVISORY and item.source.lower() != "vendor"):
+            if is_supply_chain and "supply_chain" not in item.tags:
+                item.tags.append("supply_chain")
             sections["high_risk"].append(item.id)
             
-        # 研究前沿
-        if item.type == ItemType.PAPER:
+        # 4. 研究前沿 (Research)
+        elif item.type == ItemType.PAPER:
+            if is_supply_chain and "supply_chain" not in item.tags:
+                item.tags.append("supply_chain")
             sections["research"].append(item.id)
             
     # Top 10 取总榜前 10
