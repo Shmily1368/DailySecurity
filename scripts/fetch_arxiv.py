@@ -314,7 +314,9 @@ def main() -> int:
         return 1
         
     # Filter for today's papers
-    cutoff_date = fetched_at.replace(hour=0, minute=0, second=0, microsecond=0)
+    # Use 36 hours rolling window similar to other sources to avoid timezone cutoffs
+    from datetime import timedelta
+    cutoff_date = fetched_at - timedelta(hours=36)
     items = [item for item in items if item.published_at and item.published_at >= cutoff_date]
 
     if not items:
