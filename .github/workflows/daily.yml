@@ -2,8 +2,8 @@ name: Daily Security Radar Update
 
 on:
   schedule:
-    # 每天 UTC 01:17 运行 (北京时间 09:17) - 避开整点/半点高峰期
-    - cron: '17 1 * * *'
+    # 每天 UTC 00:37 运行 (北京时间 08:37)
+    - cron: '37 0 * * *'
   workflow_dispatch:
     inputs:
       force_mock:
@@ -85,13 +85,18 @@ jobs:
           
           python scripts/summarize_with_llm.py \
             --input data/raw/arxiv_latest.json \
+            --input data/raw/top_conferences.json \
+            --output data/processed/paper_digest.json \
+            $MOCK_FLAG || true
+            
+          python scripts/summarize_with_llm.py \
             --input data/raw/cisa_kev.json \
             --input data/raw/nvd_recent.json \
             --input data/raw/github_advisory_latest.json \
             --input data/raw/osv_latest.json \
             --output data/processed/daily_digest.json \
             --limit 20 \
-            $MOCK_FLAG
+            $MOCK_FLAG || true
             
           python scripts/summarize_with_llm.py \
             --input data/raw/vendor_advisories.json \

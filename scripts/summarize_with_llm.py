@@ -42,6 +42,7 @@ import json
 import os
 import sys
 from datetime import datetime, timezone
+import concurrent.futures
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
@@ -716,38 +717,55 @@ def load_raw_items(path: Path) -> list[RawItem]:
     return out
 
 
+
 def summarize_all(
     items: Iterable[RawItem],
     client: LlmClient,
     *,
     limit: Optional[int] = None,
 ) -> list[DigestItem]:
+    items_list = list(items)
+    if limit is not None:
+        items_list = items_list[:limit]
+
     digest_items: list[DigestItem] = []
     n_ok = 0
     n_skip = 0
-    for i, item in enumerate(items):
-        if limit is not None and i >= limit:
-            break
+
+    def process_item(item: RawItem) -> Optional[DigestItem]:
         try:
             raw_out = client.summarize(item)
-        except Exception as e:  # noqa: BLE001
-            sys.stderr.write(
-                f"[WARN] [{client.name}] 单条摘要失败, 跳过 id={item.id}: {e!r}\n"
-            )
-            n_skip += 1
-            continue
+        except Exception as e:
+            sys.stderr.write(f"[WARN] [{client.name}] 单条摘要失败, 跳过 id={item.id}: {e!r}
+")
+            return None
+        
         try:
             summary = build_llm_summary(item, raw_out)
             digest = build_digest_item(item, summary)
+            return digest
         except ValidationError as e:
-            sys.stderr.write(
-                f"[WARN] LlmSummary 校验失败, 跳过 id={item.id}: {e.errors()[:1]}\n"
-            )
-            n_skip += 1
-            continue
-        digest_items.append(digest)
-        n_ok += 1
-    sys.stderr.write(f"[INFO] 摘要完成: {n_ok} 条成功, {n_skip} 条跳过\n")
+            sys.stderr.write(f"[WARN] LlmSummary 校验失败, 跳过 id={item.id}: {e.errors()[:1]}
+")
+            return None
+
+    # Determine max workers based on client type
+    max_workers = 1 if isinstance(client, MockLlmClient) else 10
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(process_item, item): item for item in items_list}
+        for future in concurrent.futures.as_completed(futures):
+            result = future.result()
+            if result is not None:
+                digest_items.append(result)
+                n_ok += 1
+            else:
+                n_skip += 1
+
+    sys.stderr.write(f"[INFO] 摘要完成: {n_ok} 条成功, {n_skip} 条跳过
+")
+    # Sort to maintain original reverse chronological order
+    digest_items.sort(key=lambda x: (x.published_at, x.id), reverse=True)
     return digest_items
 
 

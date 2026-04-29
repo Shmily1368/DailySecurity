@@ -55,6 +55,7 @@ import argparse
 import json
 import sys
 import time
+import asyncio
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable, Optional
@@ -114,57 +115,53 @@ def _http_get_json(client: httpx.Client, url: str) -> Any:
     return resp.json()
 
 
-def query_osv_ids_by_cves(
-    client: httpx.Client, cves: list[str]
-) -> list[str]:
-    """
-    POST /v1/querybatch 按 CVE 反查, 返回所有 OSV ID 列表 (去重)。
-    Body: {"queries": [{"package": null, "commit": null, ...}]}
-    注意: OSV querybatch 要求每个 query 至少有 package 或 commit,
-    但对 CVE 反查实际上更推荐 GET /v1/vulns/{CVE-xxxx} (OSV 会把 CVE
-    作为 alias, 如果某个 OSV 记录把该 CVE 作为 alias, 直接走 vulns 入口)。
 
-    这里采用更直接的方式: 直接 GET /v1/vulns/{cve_id}, 若 404 则跳过。
-    OSV 实际上会把 CVE 作为 alias 分派到对应 OSV ID, 所以这是有效的。
-    """
-    out: list[str] = []
-    for cve in cves:
+@retry(
+    reraise=True,
+    stop=stop_after_attempt(4),
+    wait=wait_exponential(multiplier=2, min=2, max=20),
+    retry=retry_if_exception_type((httpx.HTTPError,)),
+)
+async def _async_http_get_json(client: httpx.AsyncClient, url: str) -> Any:
+    resp = await client.get(url)
+    resp.raise_for_status()
+    return resp.json()
+
+async def async_fetch_osv(client: httpx.AsyncClient, oid: str, sem: asyncio.Semaphore) -> tuple[str, Any]:
+    async with sem:
         try:
-            data = _http_get_json(client, OSV_VULN_URL.format(osv_id=cve))
+            data = await _async_http_get_json(client, OSV_VULN_URL.format(osv_id=oid))
+            return oid, data
         except RetryError:
-            continue
+            return oid, None
         except httpx.HTTPStatusError as e:
             if e.response.status_code == 404:
-                continue
-            raise
+                return oid, 404
+            return oid, None
         except httpx.HTTPError:
-            continue
-        # /v1/vulns/CVE-xxxx 如果命中, 会直接返回一条 OSV 记录 (或者 alias 重定向后的)
-        osv_id = data.get("id") if isinstance(data, dict) else None
-        if isinstance(osv_id, str) and osv_id and osv_id not in out:
-            out.append(osv_id)
-        # 保护性限速
-        time.sleep(0.1)
+            return oid, None
+
+async def fetch_all_osv(cves: list[str]) -> list[dict]:
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
+    out = []
+    seen_ids = set()
+    
+    # 限制并发为 30, 防止被 OSV API 限流
+    sem = asyncio.Semaphore(30)
+    
+    async with httpx.AsyncClient(timeout=HTTP_TIMEOUT, headers=headers, follow_redirects=True) as client:
+        # Phase 1: Reverse query CVEs
+        tasks = [async_fetch_osv(client, cve, sem) for cve in cves]
+        results = await asyncio.gather(*tasks)
+        
+        for cve, data in results:
+            if isinstance(data, dict):
+                osv_id = data.get("id")
+                # 如果命中，/v1/vulns/CVE-xxxx 会直接返回完整的 OSV 记录
+                if isinstance(osv_id, str) and osv_id and osv_id not in seen_ids:
+                    seen_ids.add(osv_id)
+                    out.append(data)
     return out
-
-
-def fetch_osv_vulns(client: httpx.Client, osv_ids: list[str]) -> list[dict]:
-    out: list[dict] = []
-    for oid in osv_ids:
-        try:
-            data = _http_get_json(client, OSV_VULN_URL.format(osv_id=oid))
-        except RetryError as e:
-            sys.stderr.write(f"[WARN] OSV {oid} 取详情失败(重试后): {e}\n")
-            continue
-        except httpx.HTTPError as e:
-            sys.stderr.write(f"[WARN] OSV {oid} 取详情失败: {e!r}\n")
-            continue
-        if isinstance(data, dict) and data.get("id"):
-            out.append(data)
-        time.sleep(0.1)
-    return out
-
-
 # ---------------------------------------------------------------------------
 # 归一
 # ---------------------------------------------------------------------------
@@ -433,6 +430,7 @@ def main() -> int:
 
     osv_ids: list[str] = list(dict.fromkeys(args.osv_id or []))
 
+
     if not cves and not osv_ids:
         print(
             "[ERROR] 未提供任何输入 (--cve / --cve-file / --nvd-source / --osv-id)",
@@ -440,56 +438,44 @@ def main() -> int:
         )
         return 1
 
-    headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
-    with httpx.Client(
-        timeout=HTTP_TIMEOUT, headers=headers, follow_redirects=True
-    ) as client:
-        try:
-            if cves:
-                print(
-                    f"[INFO] 反查 {len(cves)} 个 CVE 对应的 OSV ID...",
-                    file=sys.stderr,
-                )
-                resolved = query_osv_ids_by_cves(client, cves)
-                print(
-                    f"[INFO] 命中 {len(resolved)} 个 OSV 记录",
-                    file=sys.stderr,
-                )
-                for oid in resolved:
-                    if oid not in osv_ids:
-                        osv_ids.append(oid)
+    # 如果有单纯的 OSV_IDs，也把它们和 CVE 一起放进列表查询
+    all_queries = cves + [oid for oid in osv_ids if oid not in cves]
+    
+    if all_queries:
+        print(
+            f"[INFO] 异步查询 {len(all_queries)} 个漏洞的 OSV 记录 (并发度: 30)...",
+            file=sys.stderr,
+        )
+        entries = asyncio.run(fetch_all_osv(all_queries))
+        print(
+            f"[INFO] 命中并成功拉取 {len(entries)} 个 OSV 完整记录",
+            file=sys.stderr,
+        )
+    else:
+        entries = []
 
-            if not osv_ids:
-                print("[WARN] 未命中任何 OSV 记录", file=sys.stderr)
-                fetched_at = datetime.now(timezone.utc)
-                dump_items(
-                    [],
-                    args.output,
-                    meta={
-                        "cve_inputs": cves,
-                        "raw_count": 0,
-                        "normalized_count": 0,
-                        "fetched_at": fetched_at.isoformat(),
-                        "source": "OSV.dev /v1/vulns",
-                    },
-                )
-                return 0
-
-            print(
-                f"[INFO] 拉取 {len(osv_ids)} 个 OSV 详情...",
-                file=sys.stderr,
-            )
-            entries = fetch_osv_vulns(client, osv_ids)
-        except OsvFetchError as e:
-            print(f"[ERROR] {e}", file=sys.stderr)
-            return 1
+    if not entries:
+        print("[WARN] 未命中任何 OSV 记录", file=sys.stderr)
+        fetched_at = datetime.now(timezone.utc)
+        dump_items(
+            [],
+            args.output,
+            meta={
+                "cve_inputs": cves,
+                "raw_count": 0,
+                "normalized_count": 0,
+                "fetched_at": fetched_at.isoformat(),
+                "source": "OSV.dev /v1/vulns",
+            },
+        )
+        return 0
 
     fetched_at = datetime.now(timezone.utc)
     items = normalize(entries, fetched_at)
 
     meta = {
         "cve_inputs": cves,
-        "osv_id_count": len(osv_ids),
+        "osv_id_count": len(entries),
         "raw_count": len(entries),
         "normalized_count": len(items),
         "fetched_at": fetched_at.isoformat(),

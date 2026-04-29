@@ -151,7 +151,7 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
         {top10.length === 0 ? (
           <p class="muted">今日暂无精选。</p>
         ) : (
-          top10.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)
+          top10.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ItemCard item={it} /></div>)
         )}
         </div>
         <div class="pagination-controls"></div>
@@ -183,28 +183,28 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
 
         <div id="research-ai" class="sub-pane active">
           <div class="items-container">
-            {researchAi.length === 0 ? <p class="muted">今日暂无内容。</p> : researchAi.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+            {researchAi.length === 0 ? <p class="muted">今日暂无内容。</p> : researchAi.map((item , index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={item.id}><ItemCard item={item} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
         
         <div id="research-systems" class="sub-pane">
           <div class="items-container">
-            {researchSystems.length === 0 ? <p class="muted">今日暂无内容。</p> : researchSystems.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+            {researchSystems.length === 0 ? <p class="muted">今日暂无内容。</p> : researchSystems.map((item , index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={item.id}><ItemCard item={item} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div id="research-crypto" class="sub-pane">
           <div class="items-container">
-            {researchCrypto.length === 0 ? <p class="muted">今日暂无内容。</p> : researchCrypto.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+            {researchCrypto.length === 0 ? <p class="muted">今日暂无内容。</p> : researchCrypto.map((item , index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={item.id}><ItemCard item={item} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div id="research-others" class="sub-pane">
           <div class="items-container">
-            {researchOthers.length === 0 ? <p class="muted">今日暂无内容。</p> : researchOthers.map(item => <div class="item-wrapper" data-item-id={item.id}><ItemCard item={item} /></div>)}
+            {researchOthers.length === 0 ? <p class="muted">今日暂无内容。</p> : researchOthers.map((item , index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={item.id}><ItemCard item={item} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
@@ -236,28 +236,28 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
         
         <div class="sub-pane active" id="vuln-exploited">
           <div class="items-container">
-          {vulnExploited.length === 0 ? <p class="muted">今日暂无在野利用漏洞。</p> : vulnExploited.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
+          {vulnExploited.length === 0 ? <p class="muted">今日暂无在野利用漏洞。</p> : vulnExploited.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
         
         <div class="sub-pane" id="vuln-poc">
           <div class="items-container">
-          {vulnPoc.length === 0 ? <p class="muted">今日暂无第三方深度分析。</p> : vulnPoc.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
+          {vulnPoc.length === 0 ? <p class="muted">今日暂无第三方深度分析。</p> : vulnPoc.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vuln-supply">
           <div class="items-container">
-          {vulnSupplyChain.length === 0 ? <p class="muted">今日暂无供应链与开源漏洞。</p> : vulnSupplyChain.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
+          {vulnSupplyChain.length === 0 ? <p class="muted">今日暂无供应链与开源漏洞。</p> : vulnSupplyChain.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vuln-baseline">
           <div class="items-container">
-          {vulnBaseline.length === 0 ? <p class="muted">今日暂无常规漏洞披露。</p> : vulnBaseline.map((it) => <div class="item-wrapper" data-item-id={it.id}><ItemCard item={it} /></div>)}
+          {vulnBaseline.length === 0 ? <p class="muted">今日暂无常规漏洞披露。</p> : vulnBaseline.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ItemCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
@@ -289,28 +289,28 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
 
         <div class="sub-pane active" id="threat-apt">
           <div class="items-container">
-          {threatApt.length === 0 ? <p class="muted">今日暂无APT情报。</p> : threatApt.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
+          {threatApt.length === 0 ? <p class="muted">今日暂无APT情报。</p> : threatApt.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="threat-cybercrime">
           <div class="items-container">
-          {threatCybercrime.length === 0 ? <p class="muted">今日暂无勒索与黑产情报。</p> : threatCybercrime.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
+          {threatCybercrime.length === 0 ? <p class="muted">今日暂无勒索与黑产情报。</p> : threatCybercrime.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="threat-campaigns">
           <div class="items-container">
-          {threatCampaigns.length === 0 ? <p class="muted">今日暂无具体战术情报。</p> : threatCampaigns.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
+          {threatCampaigns.length === 0 ? <p class="muted">今日暂无具体战术情报。</p> : threatCampaigns.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="threat-macro">
           <div class="items-container">
-          {threatMacro.length === 0 ? <p class="muted">今日暂无宏观态势报告。</p> : threatMacro.map((it) => <div class="item-wrapper" data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
+          {threatMacro.length === 0 ? <p class="muted">今日暂无宏观态势报告。</p> : threatMacro.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><ThreatIntelCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
@@ -338,21 +338,21 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
 
         <div class="sub-pane active" id="vendor-cloud">
           <div class="items-container">
-          {vendorCloud.length === 0 ? <p class="muted">今日暂无云厂商公告。</p> : vendorCloud.map((it) => <div class="item-wrapper" data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
+          {vendorCloud.length === 0 ? <p class="muted">今日暂无云厂商公告。</p> : vendorCloud.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vendor-os">
           <div class="items-container">
-          {vendorOs.length === 0 ? <p class="muted">今日暂无操作系统厂商公告。</p> : vendorOs.map((it) => <div class="item-wrapper" data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
+          {vendorOs.length === 0 ? <p class="muted">今日暂无操作系统厂商公告。</p> : vendorOs.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
 
         <div class="sub-pane" id="vendor-iot">
           <div class="items-container">
-          {vendorIot.length === 0 ? <p class="muted">今日暂无IoT与工控厂商公告。</p> : vendorIot.map((it) => <div class="item-wrapper" data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
+          {vendorIot.length === 0 ? <p class="muted">今日暂无IoT与工控厂商公告。</p> : vendorIot.map((it, index) => <div class:list={["item-wrapper", { "hidden-item": index >= 20 }]} data-item-id={it.id}><VendorAdvisoryCard item={it} /></div>)}
           </div>
           <div class="pagination-controls"></div>
         </div>
@@ -388,9 +388,9 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
       function renderPage(page) {
         items.forEach((item, index) => {
           if (index >= (page - 1) * pageSize && index < page * pageSize) {
-            item.style.display = 'block';
+            item.classList.remove('hidden-item');
           } else {
-            item.style.display = 'none';
+            item.classList.add('hidden-item');
           }
         });
         
@@ -402,33 +402,28 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
               <button class="pagination__button" ${page === totalPages ? 'disabled' : ''} data-action="next">下一页</button>
             </div>
           `;
-          
-          const prevBtn = controlsContainer.querySelector('[data-action="prev"]');
-          const nextBtn = controlsContainer.querySelector('[data-action="next"]');
-          
-          if (prevBtn) {
-            prevBtn.addEventListener('click', () => {
-              if (currentPage > 1) {
-                currentPage--;
-                renderPage(currentPage);
-                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            });
-          }
-          
-          if (nextBtn) {
-            nextBtn.addEventListener('click', () => {
-              if (currentPage < totalPages) {
-                currentPage++;
-                renderPage(currentPage);
-                pane.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
-            });
-          }
         }
       }
       
       renderPage(1);
+
+      // Use Event Delegation for Pagination
+      if (controlsContainer) {
+        controlsContainer.addEventListener('click', (e) => {
+          const btn = e.target.closest('.pagination__button');
+          if (!btn || btn.disabled) return;
+          
+          if (btn.getAttribute('data-action') === 'prev' && currentPage > 1) {
+            currentPage--;
+            renderPage(currentPage);
+            pane.scrollIntoView({ block: 'start' }); // Removed 'smooth' for performance
+          } else if (btn.getAttribute('data-action') === 'next' && currentPage < totalPages) {
+            currentPage++;
+            renderPage(currentPage);
+            pane.scrollIntoView({ block: 'start' }); // Removed 'smooth' for performance
+          }
+        });
+      }
     });
 
     btns.forEach(btn => {
@@ -486,37 +481,65 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
         clearTimeout(timeout);
         timeout = setTimeout(() => {
           const term = e.target.value.trim().toLowerCase();
+          const allItems = Array.from(document.querySelectorAll('#main-dashboard .item-wrapper'));
+          
           if (!term) {
             searchResultsContainer.style.display = 'none';
-            // Important: we need to use flex for dashboard layout if it's the default, but on mobile it might be column.
-            // Let's just remove the inline style to let CSS handle it.
-            dashboardLayout.style.display = ''; 
+            dashboardLayout.style.display = '';
+            // Reset visibility of all items to default (pagination will handle the rest)
+            allItems.forEach(item => {
+              item.style.display = ''; // Let CSS or pagination JS handle it
+            });
+            // Re-trigger pagination render for active tab
+            const activeSubPane = document.querySelector('.sub-pane.active, .tab-pane.active > #sec-top10');
+            if (activeSubPane) {
+              const activeBtn = activeSubPane.querySelector('.pagination__button:not([disabled])');
+              if (activeBtn) activeBtn.click();
+              else {
+                // If pagination doesn't exist, just show them all
+                const items = Array.from(activeSubPane.querySelectorAll('.item-wrapper'));
+                const pageSize = parseInt(activeSubPane.closest('.tab-pane').getAttribute('data-page-size') || '20', 10);
+                items.forEach((item, idx) => {
+                  item.style.display = idx < pageSize ? 'block' : 'none';
+                });
+              }
+            }
             return;
           }
 
           searchResultsContainer.style.display = 'block';
           dashboardLayout.style.display = 'none';
+
+          let matchCount = 0;
+          const maxResults = 50; // 限制最大渲染数量以防止 DOM 爆炸
+          const searchResultsList = document.getElementById('search-results-list');
+          // Clear previous results manually
           searchResultsList.innerHTML = '';
 
-          const allItems = Array.from(document.querySelectorAll('#main-dashboard .item-wrapper'));
           const seenIds = new Set();
-          let matchCount = 0;
-
+          
           allItems.forEach(item => {
             const id = item.getAttribute('data-item-id');
-            if (seenIds.has(id)) return; // Deduplicate items that appear in multiple sections
+            if (seenIds.has(id)) return;
 
-            // Search in text content
             if (item.textContent.toLowerCase().includes(term)) {
               seenIds.add(id);
-              const clone = item.cloneNode(true);
-              clone.style.display = 'block'; // Ensure it is visible, overriding any pagination inline styles
-              searchResultsList.appendChild(clone);
               matchCount++;
+              
+              if (matchCount <= maxResults) {
+                const clone = item.cloneNode(true);
+                clone.style.display = 'block';
+                clone.classList.remove('hidden-item');
+                searchResultsList.appendChild(clone);
+              }
             }
           });
 
-          searchResultsTitle.textContent = `🔍 找到 ${matchCount} 条关于 "${e.target.value.trim()}" 的结果`;
+          let titleText = `🔍 找到 ${matchCount} 条关于 "${e.target.value.trim()}" 的结果`;
+          if (matchCount > maxResults) {
+            titleText += ` (仅显示前 ${maxResults} 条，请细化关键词)`;
+          }
+          searchResultsTitle.textContent = titleText;
           if (matchCount === 0) {
             searchResultsList.innerHTML = '<p class="muted" style="padding: 1rem 0;">未找到相关内容，请尝试更换关键词。</p>';
           }
@@ -533,13 +556,11 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
   }
   .hero-inner {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(238, 248, 255, 0.6) 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(216, 182, 108, 0.4);
     border-radius: 24px;
     padding: 3rem 2.5rem;
     text-align: center;
-    box-shadow: 0 12px 40px rgba(47, 128, 183, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.9);
     position: relative;
     overflow: hidden;
   }
@@ -591,7 +612,7 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
     z-index: 1;
   }
   .stat-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(238, 248, 255, 0.4) 100%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(238, 248, 255, 0.85) 100%);
     border: 1px solid rgba(216, 182, 108, 0.4);
     border-radius: 16px;
     padding: 1.5rem 1.2rem;
@@ -601,8 +622,6 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
     gap: 1.2rem;
     box-shadow: 0 4px 16px rgba(47, 128, 183, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.6);
     transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
     position: relative;
     overflow: hidden;
   }
@@ -617,7 +636,7 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
   }
   .stat-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 8px 24px rgba(47, 128, 183, 0.15), 0 0 0 1px rgba(216, 182, 108, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(47, 128, 183, 0.12), 0 0 0 1px rgba(216, 182, 108, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(238, 248, 255, 0.7) 100%);
   }
   .stat-card:hover::before {
@@ -707,9 +726,8 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
     border-radius: 30px;
     font-size: 1.05rem;
     background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
     color: #17324d;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     font-family: var(--font-sans);
     box-shadow: 0 4px 12px rgba(47, 128, 183, 0.05), inset 0 2px 4px rgba(255,255,255,0.8);
   }
@@ -766,11 +784,9 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
     cursor: pointer;
     font-size: 0.95rem;
     color: #5b7c99;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     text-align: left;
     font-family: inherit;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     box-shadow: 0 2px 8px rgba(47, 128, 183, 0.05);
   }
   
@@ -815,7 +831,7 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
     border-radius: 12px;
     font-size: 0.75rem;
     font-family: var(--font-mono);
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid rgba(91, 188, 228, 0.3);
   }
   
@@ -880,18 +896,11 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
   }
 
   .section-header h2::before {
-    content: '✧';
-    color: var(--accent-gold);
+    content: '>_';
+    color: var(--accent);
     margin-right: 0.4rem;
-    font-weight: normal;
-    font-family: serif;
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  @keyframes float {
-    0% { transform: translateY(0px); text-shadow: 0 0 5px rgba(216, 182, 108, 0.3); }
-    50% { transform: translateY(-3px); text-shadow: 0 0 15px rgba(216, 182, 108, 0.8); }
-    100% { transform: translateY(0px); text-shadow: 0 0 5px rgba(216, 182, 108, 0.3); }
+    font-family: var(--font-mono);
+    font-weight: 900;
   }
 
   .sub-tabs {
@@ -908,9 +917,7 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
     border: 1px solid rgba(91, 188, 228, 0.2);
     font-size: 0.85rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 4px rgba(47, 128, 183, 0.05);
   }
   
@@ -965,6 +972,15 @@ const dynamicOneLiner = `今日共收录 ${totalItemsCount} 条安全情报，�
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
+  }
+
+  .item-wrapper {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 250px;
+  }
+
+  .hidden-item {
+    display: none !important;
   }
 
   @media (max-width: 768px) {
