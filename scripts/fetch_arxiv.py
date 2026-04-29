@@ -66,20 +66,28 @@ class ArxivFetchError(RuntimeError):
     """arXiv 抓取失败的统一异常。"""
 
 
+import time
+
 @retry(
     reraise=True,
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=1, min=2, max=10),
+    stop=stop_after_attempt(7),
+    wait=wait_exponential(multiplier=2, min=10, max=120),
     retry=retry_if_exception_type((httpx.HTTPError,)),
 )
 def _http_get(url: str) -> str:
     """带重试的 HTTP GET, 失败抛 httpx.HTTPError 触发 tenacity 重试。"""
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
-        headers={"User-Agent": USER_AGENT},
+        headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"},
         follow_redirects=True,
     ) as client:
         resp = client.get(url)
+        if resp.status_code == 429:
+            # Check for Retry-After header, otherwise default to 30 seconds
+            retry_after = int(resp.headers.get("Retry-After", 30))
+            print(f"[WARN] arXiv API rate limit (429) hit. Sleeping for {retry_after} seconds...", file=sys.stderr)
+            time.sleep(retry_after)
+            resp.raise_for_status()
         resp.raise_for_status()
         return resp.text
 
