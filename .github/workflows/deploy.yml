@@ -4,6 +4,10 @@ on:
   # 在推送到 main 分支时触发（主要是当 daily.yml 更新了 data/ 之后）
   push:
     branches: ["main"]
+  # 当 Daily 数据流水线完成后触发，避免 GITHUB_TOKEN push 不触发后续 workflow
+  workflow_run:
+    workflows: ["Daily Security Radar Update"]
+    types: [completed]
   # 允许手动触发
   workflow_dispatch:
 
@@ -20,6 +24,8 @@ concurrency:
 
 jobs:
   build:
+    # workflow_run 仅在上游成功时继续，push / 手动触发则直接运行
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
