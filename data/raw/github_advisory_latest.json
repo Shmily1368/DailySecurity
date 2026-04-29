@@ -1,6 +1,593 @@
 {
   "items": [
     {
+      "id": "ghsa:GHSA-f6hw-3rgq-5rhv",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-f6hw-3rgq-5rhv",
+        "native_id": "GHSA-f6hw-3rgq-5rhv"
+      },
+      "title": "This vulnerability exists in e-Sushrut due to disclosure of sensitive information and hardcoded...",
+      "summary": "This vulnerability exists in e-Sushrut due to disclosure of sensitive information and hardcoded AES encryption keys in client-side JavaScript. An unauthenticated remote attacker could exploit this vulnerability by accessing the client-side code to extract sensitive information and cryptographic keys.\n\nSuccessful exploitation of this vulnerability could lead to exposure of sensitive data and compromise of cryptographic protections on the targeted system.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:25Z",
+      "updated_at": "2026-04-29T09:30:31Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42518"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-321",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42518",
+        "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0207",
+        "https://github.com/advisories/GHSA-f6hw-3rgq-5rhv"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-648g-qp2w-38qp",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-648g-qp2w-38qp",
+        "native_id": "GHSA-648g-qp2w-38qp"
+      },
+      "title": "The Complianz – GDPR/CCPA Cookie Consent plugin for WordPress is vulnerable to unauthorized data...",
+      "summary": "The Complianz – GDPR/CCPA Cookie Consent plugin for WordPress is vulnerable to unauthorized data access in all versions up to, and including, 7.4.5 This is due to the REST API endpoint at /wp-json/complianz/v1/consent-area/{post_id}/{block_id} using __return_true as the permission_callback, allowing any unauthenticated user to access it. The cmplz_rest_consented_content() function retrieves a post by ID via get_post() and returns the consentedContent attribute of any complianz/consent-area block found in it, without checking if the post is published or if the user has permission to read it. This makes it possible for unauthenticated attackers to read the consent area block content from private, draft, or unpublished posts.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:25Z",
+      "updated_at": "2026-04-29T09:30:31Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-4019"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-862",
+        "severity:medium"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 5.3,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-4019",
+        "https://github.com/complianz/complianz-gdpr/blob/64c09657bd028f62d7b50a54d83ca19b87df2cef/rest-api/rest-api.php#L61",
+        "https://plugins.trac.wordpress.org/browser/complianz-gdpr/tags/7.4.4.2/rest-api/rest-api.php#L54",
+        "https://plugins.trac.wordpress.org/browser/complianz-gdpr/tags/7.4.4.2/rest-api/rest-api.php#L61",
+        "https://plugins.trac.wordpress.org/changeset/3508713/complianz-gdpr/trunk/rest-api/rest-api.php",
+        "https://plugins.trac.wordpress.org/changeset?old_path=%2Fcomplianz-gdpr/tags/7.4.5&new_path=%2Fcomplianz-gdpr/tags/7.4.6",
+        "https://www.wordfence.com/threat-intel/vulnerabilities/id/3892489e-6ff7-4664-bb06-b8edff6dd659?source=cve",
+        "https://github.com/advisories/GHSA-648g-qp2w-38qp"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-qpf8-2mc2-hvmh",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-qpf8-2mc2-hvmh",
+        "native_id": "GHSA-qpf8-2mc2-hvmh"
+      },
+      "title": "This vulnerability exists in e-Sushrut due to improper access control in resource access...",
+      "summary": "This vulnerability exists in e-Sushrut due to improper access control in resource access validation. An authenticated attacker could exploit this vulnerability by manipulating parameter in the API request URL to gain unauthorized access to sensitive information of patients on the targeted system.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:24Z",
+      "updated_at": "2026-04-29T09:30:25Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42515"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-639",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42515",
+        "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0207",
+        "https://github.com/advisories/GHSA-qpf8-2mc2-hvmh"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-h9mx-4q4f-m7wv",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-h9mx-4q4f-m7wv",
+        "native_id": "GHSA-h9mx-4q4f-m7wv"
+      },
+      "title": "Missing Authorization vulnerability in weDevs WP User Frontend allows Exploiting Incorrectly...",
+      "summary": "Missing Authorization vulnerability in weDevs WP User Frontend allows Exploiting Incorrectly Configured Access Control Security Levels.\n\nThis issue affects WP User Frontend: from n/a through 4.3.1.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:24Z",
+      "updated_at": "2026-04-29T09:30:24Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42412"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-862",
+        "severity:medium"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 6.5,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42412",
+        "https://patchstack.com/database/wordpress/plugin/wp-user-frontend/vulnerability/wordpress-wp-user-frontend-plugin-4-3-1-broken-access-control-vulnerability?_s_id=cve",
+        "https://github.com/advisories/GHSA-h9mx-4q4f-m7wv"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-gq82-hp87-wfrg",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-gq82-hp87-wfrg",
+        "native_id": "GHSA-gq82-hp87-wfrg"
+      },
+      "title": "This vulnerability exists in e-Sushrut due to the use of reversible Base64 encoding for...",
+      "summary": "This vulnerability exists in e-Sushrut due to the use of reversible Base64 encoding for protecting sensitive data. An authenticated attacker could exploit this vulnerability by decoding and manipulating Base64-encoded parameters in the request URL to gain unauthorized access to sensitive information on the targeted system.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:24Z",
+      "updated_at": "2026-04-29T09:30:31Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42517"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-639",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42517",
+        "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0207",
+        "https://github.com/advisories/GHSA-gq82-hp87-wfrg"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-fvwx-ghwg-3rm3",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-fvwx-ghwg-3rm3",
+        "native_id": "GHSA-fvwx-ghwg-3rm3"
+      },
+      "title": "This vulnerability exists in e-Sushrut due to improper authorization checks during resource...",
+      "summary": "This vulnerability exists in e-Sushrut due to improper authorization checks during resource access. An authenticated attacker could exploit this vulnerability by manipulating encoded parameters in the request URL to gain unauthorized access to patient accounts on the targeted system.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:24Z",
+      "updated_at": "2026-04-29T09:30:24Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42516"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-639",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42516",
+        "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0207",
+        "https://github.com/advisories/GHSA-fvwx-ghwg-3rm3"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-9m5v-3mgc-h8pg",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-9m5v-3mgc-h8pg",
+        "native_id": "GHSA-9m5v-3mgc-h8pg"
+      },
+      "title": "This vulnerability exists in e-Sushrut due to improper authentication logic that relies on client...",
+      "summary": "This vulnerability exists in e-Sushrut due to improper authentication logic that relies on client-side response parameters to determine authentication status. A remote attacker could exploit this vulnerability by intercepting and modifying the server response.  \n\nSuccessful exploitation of this vulnerability could allow the attacker to bypass authentication and gain unauthorized access to user accounts on the targeted system.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:24Z",
+      "updated_at": "2026-04-29T09:30:24Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42513"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42513",
+        "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0207",
+        "https://github.com/advisories/GHSA-9m5v-3mgc-h8pg"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-4xx4-4wcr-v65q",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-4xx4-4wcr-v65q",
+        "native_id": "GHSA-4xx4-4wcr-v65q"
+      },
+      "title": "This vulnerability exists in e-Sushrut due to exposure of OTPs in plaintext within API responses....",
+      "summary": "This vulnerability exists in e-Sushrut due to exposure of OTPs in plaintext within API responses. A remote attacker could exploit this vulnerability by intercepting API responses containing valid OTPs.\n\nSuccessful exploitation of this vulnerability could allow an attacker to impersonate the target user and gain unauthorized access to user accounts on the targeted system.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:24Z",
+      "updated_at": "2026-04-29T09:30:31Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42514"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-319",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42514",
+        "https://www.cert-in.org.in/s2cMainServlet?pageid=PUBVLNOTES01&VLCODE=CIVN-2026-0207",
+        "https://github.com/advisories/GHSA-4xx4-4wcr-v65q"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-mv53-6q27-4m6w",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-mv53-6q27-4m6w",
+        "native_id": "GHSA-mv53-6q27-4m6w"
+      },
+      "title": "Missing Authorization vulnerability in Brainstorm Force SureForms Pro allows Exploiting...",
+      "summary": "Missing Authorization vulnerability in Brainstorm Force SureForms Pro allows Exploiting Incorrectly Configured Access Control Security Levels.\n\nThis issue affects SureForms Pro: from n/a through 2.8.0.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:23Z",
+      "updated_at": "2026-04-29T09:30:31Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-42377"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-862",
+        "severity:high"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 7.3,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-42377",
+        "https://patchstack.com/database/wordpress/plugin/sureforms-pro/vulnerability/wordpress-sureforms-pro-plugin-2-8-0-broken-access-control-vulnerability?_s_id=cve",
+        "https://github.com/advisories/GHSA-mv53-6q27-4m6w"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-894p-r722-q8j9",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-894p-r722-q8j9",
+        "native_id": "GHSA-894p-r722-q8j9"
+      },
+      "title": "SQL injection (SQLi) in MegaCMS v12.0.0, specifically in the “id_territorio” parameter of the “...",
+      "summary": "SQL injection (SQLi) in MegaCMS v12.0.0, specifically in the “id_territorio” parameter of the “/web_comunications/cms/get_provincias” endpoint. The vulnerability arises from inadequate validation and sanitisation of user input. Specifically, via a POST request, the “id_territorio” parameter, used immediately after the registration form is submitted, could be manipulated by an unauthenticated attacker to execute arbitrary SQL queries.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:23Z",
+      "updated_at": "2026-04-29T09:30:24Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-3325"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-89",
+        "severity:critical"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-3325",
+        "https://www.incibe.es/en/incibe-cert/notices/aviso/sql-injection-megacms-crm-sistemas-de-fidelizacion",
+        "https://github.com/advisories/GHSA-894p-r722-q8j9"
+      ]
+    },
+    {
+      "id": "ghsa:GHSA-6pqq-8j74-wgg5",
+      "type": "advisory",
+      "source_info": {
+        "source": "ghsa",
+        "source_sub": "github",
+        "source_name": "GitHub Advisory",
+        "source_url": "https://github.com/advisories/GHSA-6pqq-8j74-wgg5",
+        "native_id": "GHSA-6pqq-8j74-wgg5"
+      },
+      "title": "The authentication endpoint accepts user-supplied input without enforcing expected validation...",
+      "summary": "The authentication endpoint accepts user-supplied input without enforcing expected validation constraints, leading to a lack of proper output encoding. This allows for the injection of malicious JavaScript payloads, enabling reflected cross-site scripting.\n\nAn attacker can leverage this vulnerability to redirect the user's browser to a malicious website, modify the user interface of the web page, retrieve information from the browser, or cause other harmful actions. However, due to the protection of session-related cookies with the httpOnly flag, session hijacking is not possible.",
+      "raw_text": null,
+      "published_at": "2026-04-29T09:30:23Z",
+      "updated_at": "2026-04-29T09:30:24Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-10503"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-79",
+        "severity:medium"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 6.1,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-10503",
+        "https://security.docs.wso2.com/en/latest/security-announcements/security-advisories/2026/WSO2-2025-4577",
+        "https://github.com/advisories/GHSA-6pqq-8j74-wgg5"
+      ]
+    },
+    {
       "id": "ghsa:GHSA-wq6f-p29f-9pgv",
       "type": "advisory",
       "source_info": {
@@ -15,7 +602,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T06:33:30Z",
       "updated_at": "2026-04-29T06:33:35Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -68,7 +655,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T06:33:30Z",
       "updated_at": "2026-04-29T06:33:39Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -120,7 +707,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T06:33:30Z",
       "updated_at": "2026-04-29T06:33:35Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -176,7 +763,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T06:33:30Z",
       "updated_at": "2026-04-29T06:33:31Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -229,7 +816,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:22Z",
       "updated_at": "2026-04-29T04:13:25Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -280,7 +867,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:22Z",
       "updated_at": "2026-04-29T04:12:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -337,7 +924,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:21Z",
       "updated_at": "2026-04-29T04:12:21Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -395,7 +982,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:21Z",
       "updated_at": "2026-04-29T04:12:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -452,7 +1039,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:20Z",
       "updated_at": "2026-04-29T04:12:21Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -509,7 +1096,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:20Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -566,7 +1153,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:18Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -625,7 +1212,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:17Z",
       "updated_at": "2026-04-29T04:12:18Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -678,7 +1265,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:16Z",
       "updated_at": "2026-04-29T04:13:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -729,7 +1316,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:16Z",
       "updated_at": "2026-04-29T04:12:24Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -787,7 +1374,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:16Z",
       "updated_at": "2026-04-29T04:12:23Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -845,7 +1432,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:16Z",
       "updated_at": "2026-04-29T04:12:23Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -903,7 +1490,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:16Z",
       "updated_at": "2026-04-29T04:12:24Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -962,7 +1549,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:16Z",
       "updated_at": "2026-04-29T04:12:23Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1018,7 +1605,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:15Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1074,7 +1661,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:15Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1132,7 +1719,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:15Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1189,7 +1776,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:15Z",
       "updated_at": "2026-04-29T04:12:15Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1245,7 +1832,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:15Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1303,7 +1890,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T04:12:14Z",
       "updated_at": "2026-04-29T04:12:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1360,7 +1947,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:24Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1413,7 +2000,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:24Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1466,7 +2053,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:24Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1519,7 +2106,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:24Z",
       "updated_at": "2026-04-29T06:34:34Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1574,7 +2161,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:24Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1627,7 +2214,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1680,7 +2267,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1733,7 +2320,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1786,7 +2373,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1838,7 +2425,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1891,7 +2478,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1941,7 +2528,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -1994,7 +2581,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2047,7 +2634,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2103,7 +2690,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2156,7 +2743,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2209,7 +2796,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2262,7 +2849,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2319,7 +2906,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2372,7 +2959,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2429,7 +3016,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2486,7 +3073,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2544,7 +3131,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2597,7 +3184,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2650,7 +3237,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2703,7 +3290,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2759,7 +3346,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2812,7 +3399,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2865,7 +3452,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2918,7 +3505,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -2971,7 +3558,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3023,7 +3610,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3080,7 +3667,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3133,7 +3720,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3186,7 +3773,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3239,7 +3826,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3292,7 +3879,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3345,7 +3932,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3398,7 +3985,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3455,7 +4042,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:23Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3508,7 +4095,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3561,7 +4148,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3614,7 +4201,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3671,7 +4258,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3729,7 +4316,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3786,7 +4373,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3845,7 +4432,7 @@
       "raw_text": null,
       "published_at": "2026-04-29T00:30:22Z",
       "updated_at": "2026-04-29T00:30:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3898,7 +4485,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T23:23:28Z",
       "updated_at": "2026-04-28T23:23:28Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -3956,7 +4543,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T23:23:28Z",
       "updated_at": "2026-04-28T23:23:28Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4014,7 +4601,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:57:13Z",
       "updated_at": "2026-04-28T22:57:14Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4069,7 +4656,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:57:13Z",
       "updated_at": "2026-04-28T22:57:14Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4124,7 +4711,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:54:32Z",
       "updated_at": "2026-04-28T22:54:34Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4180,7 +4767,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:54:32Z",
       "updated_at": "2026-04-28T22:54:34Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4236,7 +4823,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:50:31Z",
       "updated_at": "2026-04-28T22:50:33Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4292,7 +4879,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:50:31Z",
       "updated_at": "2026-04-28T22:50:33Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4348,7 +4935,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:46:15Z",
       "updated_at": "2026-04-28T22:46:18Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4404,7 +4991,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:46:15Z",
       "updated_at": "2026-04-28T22:46:18Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4460,7 +5047,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:44:39Z",
       "updated_at": "2026-04-28T22:44:43Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4516,7 +5103,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:44:39Z",
       "updated_at": "2026-04-28T22:44:43Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4572,7 +5159,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:43:47Z",
       "updated_at": "2026-04-28T22:43:48Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4628,7 +5215,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:43:47Z",
       "updated_at": "2026-04-28T22:43:48Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4684,7 +5271,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:40:38Z",
       "updated_at": "2026-04-28T22:40:43Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4741,7 +5328,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:40:38Z",
       "updated_at": "2026-04-28T22:40:43Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4798,7 +5385,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:39:01Z",
       "updated_at": "2026-04-28T22:39:02Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4853,7 +5440,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:39:01Z",
       "updated_at": "2026-04-28T22:39:02Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4908,7 +5495,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:28:14Z",
       "updated_at": "2026-04-28T22:28:15Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -4966,7 +5553,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T22:28:14Z",
       "updated_at": "2026-04-28T22:28:15Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5024,7 +5611,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5081,7 +5668,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5138,7 +5725,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5192,7 +5779,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5251,7 +5838,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-29T00:31:25Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5305,7 +5892,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:27Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5348,59 +5935,6 @@
       ]
     },
     {
-      "id": "ghsa:GHSA-f82c-vj6w-xx38",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-f82c-vj6w-xx38",
-        "native_id": "GHSA-f82c-vj6w-xx38"
-      },
-      "title": "A vulnerability affecting the detailed versions of Cryptobox allows a legitimate user to prevent...",
-      "summary": "A vulnerability affecting the detailed versions of Cryptobox allows a legitimate user to prevent another to login by triggering an account lockout via sending a specially crafted request.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:14Z",
-      "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-5794"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-694",
-        "severity:medium"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": null,
-        "cvss_vector": null,
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-5794",
-        "https://info.cryptobox.com/doc/v4.40/4.40.en",
-        "https://github.com/advisories/GHSA-f82c-vj6w-xx38"
-      ]
-    },
-    {
       "id": "ghsa:GHSA-7842-mgmh-cr7g",
       "type": "advisory",
       "source_info": {
@@ -5415,7 +5949,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5472,7 +6006,7 @@
       "raw_text": null,
       "published_at": "2026-04-28T21:36:14Z",
       "updated_at": "2026-04-28T21:36:26Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -5515,548 +6049,6 @@
       ]
     },
     {
-      "id": "ghsa:GHSA-fc84-9gcf-p72v",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-fc84-9gcf-p72v",
-        "native_id": "GHSA-fc84-9gcf-p72v"
-      },
-      "title": "The Carlson VASCO-B GNSS Receiver lacks an authentication mechanism, \nallowing an attacker with...",
-      "summary": "The Carlson VASCO-B GNSS Receiver lacks an authentication mechanism, \nallowing an attacker with network access to directly access and modify \nits configuration and operational functions without needing credentials.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:13Z",
-      "updated_at": "2026-04-28T21:36:23Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-3893"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-306",
-        "severity:critical"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 9.4,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:H/A:H",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-3893",
-        "https://github.com/cisagov/CSAF/blob/develop/csaf_files/OT/white/2026/icsa-26-113-02.json",
-        "https://www.carlsonsw.com/support-and-training",
-        "https://www.cve.org/CVERecord?id=CVE-2026-3893",
-        "https://github.com/advisories/GHSA-fc84-9gcf-p72v"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-42cc-qc2r-r9fj",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-42cc-qc2r-r9fj",
-        "native_id": "GHSA-42cc-qc2r-r9fj"
-      },
-      "title": "Cross-Site Scripting (XSS) vulnerability exists in HTMLy version 3.1.1 in the content creation...",
-      "summary": "Cross-Site Scripting (XSS) vulnerability exists in HTMLy version 3.1.1 in the content creation functionality at the /add/content?type=image endpoint. The application fails to properly sanitize user input, allowing injection of arbitrary code",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:13Z",
-      "updated_at": "2026-04-28T21:36:22Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-38949"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": null,
-        "cvss_vector": null,
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-38949",
-        "https://github.com/Chittu13/cve-research/blob/main/CVE-2026-38949/README.md",
-        "https://github.com/danpros/htmly",
-        "https://youtu.be/3e-tzUMCox8",
-        "https://github.com/advisories/GHSA-42cc-qc2r-r9fj"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-mf4x-g8fr-m8pw",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-mf4x-g8fr-m8pw",
-        "native_id": "GHSA-mf4x-g8fr-m8pw"
-      },
-      "title": "NVIDIA NeMoClaw contains a vulnerability in the sandbox environment initialization component,...",
-      "summary": "NVIDIA NeMoClaw contains a vulnerability in the sandbox environment initialization component, where a remote attacker could cause improper access control by sending prompt-injected content that causes the agent to read and exfiltrate host environment variables not properly restricted during sandbox creation. A successful exploit of this vulnerability might lead to information disclosure.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:12Z",
-      "updated_at": "2026-04-28T21:36:23Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-24222"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-497",
-        "severity:high"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 8.6,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:N/A:N",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-24222",
-        "https://nvidia.custhelp.com/app/answers/detail/a_id/5837",
-        "https://www.cve.org/CVERecord?id=CVE-2026-24222",
-        "https://github.com/advisories/GHSA-mf4x-g8fr-m8pw"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-jqp3-qrgh-4846",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-jqp3-qrgh-4846",
-        "native_id": "GHSA-jqp3-qrgh-4846"
-      },
-      "title": "NVIDIA NVFlare Dashboard contains a vulnerability in the user management and authentication...",
-      "summary": "NVIDIA NVFlare Dashboard contains a vulnerability in the user management and authentication system where an unauthenticated attacker may cause authorization bypass through user-controlled key. A successful exploit of this vulnerability may lead to privilege escalation, data tampering, information disclosure, code execution, and denial of service.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:12Z",
-      "updated_at": "2026-04-28T21:36:21Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-24178"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-639",
-        "severity:critical"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 9.8,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-24178",
-        "https://nvidia.custhelp.com/app/answers/detail/a_id/5819",
-        "https://www.cve.org/CVERecord?id=CVE-2026-24178",
-        "https://github.com/advisories/GHSA-jqp3-qrgh-4846"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-3468-q87c-9xhv",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-3468-q87c-9xhv",
-        "native_id": "GHSA-3468-q87c-9xhv"
-      },
-      "title": "NVIDIA FLARE SDK  contains a vulnerability in FOBS, where an attacker may cause deserialization...",
-      "summary": "NVIDIA FLARE SDK  contains a vulnerability in FOBS, where an attacker may cause deserialization of untrusted data by sending a malicious FOBS- encoded message. A successful exploit of this vulnerability might lead to code execution.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:12Z",
-      "updated_at": "2026-04-28T21:36:22Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-24186"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-502",
-        "severity:high"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 8.8,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-24186",
-        "https://nvidia.custhelp.com/app/answers/detail/a_id/5819",
-        "https://www.cve.org/CVERecord?id=CVE-2026-24186",
-        "https://github.com/advisories/GHSA-3468-q87c-9xhv"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-2vr2-r99h-p8hr",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-2vr2-r99h-p8hr",
-        "native_id": "GHSA-2vr2-r99h-p8hr"
-      },
-      "title": "NVIDIA Flare SDK contains a vulnerability where an Attacker may cause an Improper Input...",
-      "summary": "NVIDIA Flare SDK contains a vulnerability where an Attacker may cause an Improper Input Validation by path traversing. A successful exploit of this vulnerability may lead to information disclosure.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:12Z",
-      "updated_at": "2026-04-28T21:36:23Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-24204"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-20",
-        "severity:medium"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 6.5,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-24204",
-        "https://nvidia.custhelp.com/app/answers/detail/a_id/5819",
-        "https://www.cve.org/CVERecord?id=CVE-2026-24204",
-        "https://github.com/advisories/GHSA-2vr2-r99h-p8hr"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-2p28-95f5-q8q3",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-2p28-95f5-q8q3",
-        "native_id": "GHSA-2p28-95f5-q8q3"
-      },
-      "title": "NVIDIA NemoClaw contains a vulnerability in the validateEndpointUrl() SSRF protection component,...",
-      "summary": "NVIDIA NemoClaw contains a vulnerability in the validateEndpointUrl() SSRF protection component, where an attacker could cause a server-side request forgery by supplying a crafted endpoint URL referencing the 0.0.0.0/8 address range through a blueprint configuration file or CLI flag. A successful exploit of this vulnerability may lead to information disclosure.",
-      "raw_text": null,
-      "published_at": "2026-04-28T21:36:12Z",
-      "updated_at": "2026-04-28T21:36:22Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-24231"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-918",
-        "severity:medium"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 6.3,
-        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:C/C:H/I:N/A:N",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-24231",
-        "https://nvidia.custhelp.com/app/answers/detail/a_id/5837",
-        "https://www.cve.org/CVERecord?id=CVE-2026-24231",
-        "https://github.com/advisories/GHSA-2p28-95f5-q8q3"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-rg2j-x79h-5v2w",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-rg2j-x79h-5v2w",
-        "native_id": "GHSA-rg2j-x79h-5v2w"
-      },
-      "title": "Cross-Site Scripting (XSS) vulnerability exists in FUEL CMS v1.5.2 and before within the asset...",
-      "summary": "Cross-Site Scripting (XSS) vulnerability exists in FUEL CMS v1.5.2 and before within the asset upload functionality. The application fails to properly sanitize uploaded SVG files, allowing a low-privileged authenticated user to upload a crafted SVG file containing malicious code.",
-      "raw_text": null,
-      "published_at": "2026-04-28T18:30:33Z",
-      "updated_at": "2026-04-28T21:37:12Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-38948"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-79",
-        "severity:medium"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 5.4,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-38948",
-        "https://github.com/Chittu13/cve-research/blob/main/CVE-2026-38948/README.md",
-        "https://github.com/daylightstudio/FUEL-CMS",
-        "https://www.youtube.com/watch?v=lLCF0xbjecQ",
-        "https://github.com/advisories/GHSA-rg2j-x79h-5v2w"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-qpv2-rwc8-c993",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-qpv2-rwc8-c993",
-        "native_id": "GHSA-qpv2-rwc8-c993"
-      },
-      "title": "Authentication Bypass vulnerability exists in Netmaker versions prior to 1.5.0. The...",
-      "summary": "Authentication Bypass vulnerability exists in Netmaker versions prior to 1.5.0. The VerifyHostToken function in logic/jwts.go fails to validate the JWT signature when verifying host tokens. An attacker can forge a JWT signed with any arbitrary key and use it to impersonate any host in the network, gaining access to sensitive information",
-      "raw_text": null,
-      "published_at": "2026-04-28T18:30:33Z",
-      "updated_at": "2026-04-28T21:37:12Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-38651"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-347",
-        "severity:high"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 8.2,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:N",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-38651",
-        "https://github.com/gravitl/netmaker/commit/5309aa70d464ef565911369714d661a61481a79b",
-        "https://www.zyenra.com/advisories/netmaker-jwt-verification-bypass",
-        "https://www.zyenra.com/blog/netmaker-jwt-verification-bypass",
-        "https://github.com/advisories/GHSA-qpv2-rwc8-c993"
-      ]
-    },
-    {
-      "id": "ghsa:GHSA-cvw6-x8c3-583g",
-      "type": "advisory",
-      "source_info": {
-        "source": "ghsa",
-        "source_sub": "github",
-        "source_name": "GitHub Advisory",
-        "source_url": "https://github.com/advisories/GHSA-cvw6-x8c3-583g",
-        "native_id": "GHSA-cvw6-x8c3-583g"
-      },
-      "title": "** UNSUPPORTED WHEN ASSIGNED ** Inconsistent Interpretation of HTTP Requests ('HTTP Request...",
-      "summary": "** UNSUPPORTED WHEN ASSIGNED ** Inconsistent Interpretation of HTTP Requests ('HTTP Request/Response Smuggling') vulnerability in Pony Mail leading to admin account takeover.\n\nThis issue affects all versions of the Lua implementation of Pony Mail. There is a Python implementation under development under the name \"Pony Mail Foal\" that is not affected by this issue, but hasn't been released yet.\n\nAs the Lua implementation of this project is retired, we do not plan to release a version that fixes this issue. Users are recommended to find an alternative or restrict access to the instance to trusted users.\n\nNOTE: This vulnerability only affects products that are no longer supported by the maintainer.",
-      "raw_text": null,
-      "published_at": "2026-04-28T18:30:33Z",
-      "updated_at": "2026-04-29T00:31:25Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-41873"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "cwe-444",
-        "severity:critical"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 9.8,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-41873",
-        "https://lists.apache.org/thread/1c7jtxjobh280kqc13fzw1cg57xrz951",
-        "http://www.openwall.com/lists/oss-security/2026/04/28/17",
-        "https://github.com/advisories/GHSA-cvw6-x8c3-583g"
-      ]
-    },
-    {
       "id": "ghsa:GHSA-7jm2-g593-4qrc",
       "type": "advisory",
       "source_info": {
@@ -6071,7 +6063,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:51:11Z",
       "updated_at": "2026-04-25T23:51:11Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6126,7 +6118,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:50:38Z",
       "updated_at": "2026-04-25T23:50:39Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6180,7 +6172,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:50:10Z",
       "updated_at": "2026-04-25T23:50:10Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6235,7 +6227,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:49:42Z",
       "updated_at": "2026-04-25T23:49:44Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6290,7 +6282,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:49:00Z",
       "updated_at": "2026-04-25T23:49:01Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6345,7 +6337,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:48:29Z",
       "updated_at": "2026-04-25T23:48:30Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6399,7 +6391,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:48:03Z",
       "updated_at": "2026-04-25T23:48:04Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6456,7 +6448,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:47:31Z",
       "updated_at": "2026-04-25T23:47:31Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6510,7 +6502,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:47:05Z",
       "updated_at": "2026-04-25T23:47:06Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6564,7 +6556,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:46:31Z",
       "updated_at": "2026-04-25T23:46:31Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6618,7 +6610,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:45:49Z",
       "updated_at": "2026-04-25T23:45:49Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6672,7 +6664,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:45:11Z",
       "updated_at": "2026-04-25T23:45:12Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6726,7 +6718,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:42:16Z",
       "updated_at": "2026-04-25T23:42:17Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6779,7 +6771,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:41:49Z",
       "updated_at": "2026-04-25T23:41:50Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -6832,7 +6824,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:40:37Z",
       "updated_at": "2026-04-25T23:40:38Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -6888,7 +6880,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:40:19Z",
       "updated_at": "2026-04-25T23:40:20Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -6944,7 +6936,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:39:37Z",
       "updated_at": "2026-04-25T23:39:38Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -7004,7 +6996,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:35:28Z",
       "updated_at": "2026-04-25T23:35:29Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -7057,7 +7049,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:34:35Z",
       "updated_at": "2026-04-25T23:34:36Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -7112,7 +7104,7 @@
       "raw_text": null,
       "published_at": "2026-04-25T23:30:46Z",
       "updated_at": "2026-04-25T23:30:47Z",
-      "fetched_at": "2026-04-29T06:41:39.032131Z",
+      "fetched_at": "2026-04-29T10:56:30.172349Z",
       "authors": [],
       "affiliations": [],
       "cves": [],
@@ -7155,13 +7147,13 @@
     }
   ],
   "meta": {
-    "since": "2026-04-26T06:41:37.950711+00:00",
+    "since": "2026-04-26T10:56:28.908026+00:00",
     "raw_count": 130,
     "normalized_count": 130,
     "ecosystem": null,
     "severity": null,
     "authenticated": true,
-    "fetched_at": "2026-04-29T06:41:39.032131+00:00",
+    "fetched_at": "2026-04-29T10:56:30.172349+00:00",
     "source": "GitHub Advisory REST v2022-11-28"
   }
 }
