@@ -8,6 +8,8 @@ import argparse
 import random
 import urllib.parse
 from datetime import datetime, timezone
+import time
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
 STATE_FILE = Path("data/state/dblp_state.json")
 
@@ -25,15 +27,27 @@ def save_state(seen_keys):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump({"seen_keys": list(seen_keys)}, f)
 
+HEADERS = {"User-Agent": "cyber-daily-radar-dev/0.1 (mailto:dev@example.com)"}
+
+@retry(
+    stop=stop_after_attempt(3),
+    wait=wait_exponential(multiplier=2, min=2, max=10),
+    retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError)),
+    reraise=True
+)
+def _safe_get(url: str, timeout: float = 30.0) -> httpx.Response:
+    res = httpx.get(url, headers=HEADERS, timeout=timeout, follow_redirects=True)
+    res.raise_for_status()
+    return res
+
 def fetch_dblp_all(stream_id, year):
     # Fetch all papers for a given year to check for new ones
     url = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:{year}&format=json&h=1000"
     try:
-        res = httpx.get(url, timeout=15.0)
-        if res.status_code == 200:
-            data = res.json()
-            hits = data.get('result', {}).get('hits', {}).get('hit', [])
-            return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers']
+        res = _safe_get(url, timeout=30.0)
+        data = res.json()
+        hits = data.get('result', {}).get('hits', {}).get('hit', [])
+        return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers']
     except Exception as e:
         print(f"[WARN] Error fetching {stream_id} {year} all: {e}")
     return []
@@ -42,34 +56,30 @@ def fetch_dblp_random(stream_id, year, limit=5):
     # Fetch a random subset of papers from a specific year
     url_total = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:{year}&format=json&h=0"
     try:
-        res = httpx.get(url_total, timeout=15.0)
-        if res.status_code == 200:
-            total = int(res.json().get('result', {}).get('hits', {}).get('@total', 0))
-            if total == 0:
-                return []
-            
-            # offset cannot exceed total-limit
-            offset = random.randint(0, max(0, total - limit))
-            url_data = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:{year}&format=json&f={offset}&h={limit}"
-            res_data = httpx.get(url_data, timeout=15.0)
-            if res_data.status_code == 200:
-                hits = res_data.json().get('result', {}).get('hits', {}).get('hit', [])
-                return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers'][:limit]
+        res = _safe_get(url_total, timeout=30.0)
+        total = int(res.json().get('result', {}).get('hits', {}).get('@total', 0))
+        if total == 0:
+            return []
+        
+        # offset cannot exceed total-limit
+        offset = random.randint(0, max(0, total - limit))
+        url_data = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:{year}&format=json&f={offset}&h={limit}"
+        res_data = _safe_get(url_data, timeout=30.0)
+        hits = res_data.json().get('result', {}).get('hits', {}).get('hit', [])
+        return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers'][:limit]
     except Exception as e:
         print(f"[WARN] Error fetching {stream_id} {year} random: {e}")
     return []
 
 def fetch_abstract_openalex(title: str) -> str:
     """Fetch abstract from OpenAlex API based on paper title."""
-    headers = {"User-Agent": "mailto:cyber-daily-radar-dev@example.com"}
     # Using title.search helps find partial matches, but title is more exact
     url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(title)}&select=title,abstract_inverted_index"
     try:
-        res = httpx.get(url, headers=headers, timeout=10.0, verify=False)
-        if res.status_code == 200:
-            data = res.json()
-            results = data.get("results", [])
-            for r in results:
+        res = _safe_get(url, timeout=20.0)
+        data = res.json()
+        results = data.get("results", [])
+        for r in results:
                 idx = r.get("abstract_inverted_index")
                 if idx:
                     # Reconstruct the abstract from the inverted index
