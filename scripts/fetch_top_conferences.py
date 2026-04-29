@@ -42,7 +42,8 @@ def _safe_get(url: str, timeout: float = 30.0) -> httpx.Response:
 
 def fetch_dblp_all(stream_id, year):
     # Fetch all papers for a given year to check for new ones
-    url = f"https://dblp.uni-trier.de/search/publ/api?q=stream:{stream_id}:{year}&format=json&h=1000"
+    # Correct syntax: stream:conf/sp: + year:2024: or stream:conf/sp year:2024
+    url = f"https://dblp.org/search/publ/api?q=stream:{stream_id}%20year:{year}&format=json&h=1000"
     try:
         res = _safe_get(url, timeout=30.0)
         data = res.json()
@@ -54,7 +55,7 @@ def fetch_dblp_all(stream_id, year):
 
 def fetch_dblp_random(stream_id, year, limit=5):
     # Fetch a random subset of papers from a specific year
-    url_total = f"https://dblp.uni-trier.de/search/publ/api?q=stream:{stream_id}:{year}&format=json&h=0"
+    url_total = f"https://dblp.org/search/publ/api?q=stream:{stream_id}%20year:{year}&format=json&h=0"
     try:
         res = _safe_get(url_total, timeout=30.0)
         total = int(res.json().get('result', {}).get('hits', {}).get('@total', 0))
@@ -63,7 +64,7 @@ def fetch_dblp_random(stream_id, year, limit=5):
         
         # offset cannot exceed total-limit
         offset = random.randint(0, max(0, total - limit))
-        url_data = f"https://dblp.uni-trier.de/search/publ/api?q=stream:{stream_id}:{year}&format=json&f={offset}&h={limit}"
+        url_data = f"https://dblp.org/search/publ/api?q=stream:{stream_id}%20year:{year}&format=json&f={offset}&h={limit}"
         res_data = _safe_get(url_data, timeout=30.0)
         hits = res_data.json().get('result', {}).get('hits', {}).get('hit', [])
         return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers'][:limit]
@@ -130,6 +131,7 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="data/raw/top_conferences.json")
     parser.add_argument("--limit-per-conf", type=int, default=5, help="Number of random fallback papers per conference")
+    parser.add_argument("--force", action="store_true", help="Force fetch ignoring state")
     args = parser.parse_args()
 
     conferences = {
@@ -142,7 +144,7 @@ def run():
     current_year = datetime.now().year
     
     # 1. Load state
-    seen_keys = load_state()
+    seen_keys = load_state() if not args.force else None
     is_first_run = (seen_keys is None)
     if is_first_run:
         seen_keys = set()
@@ -166,7 +168,10 @@ def run():
         # If it's the very first run, we don't want to flood with 800+ papers,
         # so we just mark them as seen, and act as if no "new" papers arrived today.
         if is_first_run:
-            new_papers = []
+            print("[INFO] First run: Initialized state with current papers.")
+            # Do not clear new_papers so we get something on the first run.
+            # Just limit it to a reasonable number to avoid flooding.
+            new_papers = new_papers[:20]
             
         if len(new_papers) > 0:
             print(f"[OK] Found {len(new_papers)} NEW papers for {info['name']}! Fetching all of them.")
