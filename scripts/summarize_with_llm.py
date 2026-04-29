@@ -736,8 +736,7 @@ def summarize_all(
         try:
             raw_out = client.summarize(item)
         except Exception as e:
-            sys.stderr.write(f"[WARN] [{client.name}] 单条摘要失败, 跳过 id={item.id}: {e!r}
-")
+            sys.stderr.write(f"[WARN] [{client.name}] 单条摘要失败, 跳过 id={item.id}: {e!r}\n")
             return None
         
         try:
@@ -745,8 +744,7 @@ def summarize_all(
             digest = build_digest_item(item, summary)
             return digest
         except ValidationError as e:
-            sys.stderr.write(f"[WARN] LlmSummary 校验失败, 跳过 id={item.id}: {e.errors()[:1]}
-")
+            sys.stderr.write(f"[WARN] LlmSummary 校验失败, 跳过 id={item.id}: {e.errors()[:1]}\n")
             return None
 
     # Determine max workers based on client type
@@ -762,8 +760,7 @@ def summarize_all(
             else:
                 n_skip += 1
 
-    sys.stderr.write(f"[INFO] 摘要完成: {n_ok} 条成功, {n_skip} 条跳过
-")
+    sys.stderr.write(f"[INFO] 摘要完成: {n_ok} 条成功, {n_skip} 条跳过\n")
     # Sort to maintain original reverse chronological order
     digest_items.sort(key=lambda x: (x.published_at, x.id), reverse=True)
     return digest_items
