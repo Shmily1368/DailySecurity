@@ -8,7 +8,7 @@ from typing import Dict, List, Any
 
 from models import DigestItem, DailyDigest, Hero, HeroStats, ItemType, Severity, RawItem, RiskSignal
 from rank_items import rank_items
-from summarize_with_llm import build_llm_summary, build_digest_item
+from summarize_with_llm import build_llm_summary, build_digest_item, MockLlmClient, OpenAiLlmClient
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -78,7 +78,10 @@ def load_epss_scores(raw_dir: str) -> Dict[str, float]:
     return epss_map
 
 def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
-    """Load raw items that didn't get processed by LLM and create mock/fallback DigestItems for them."""
+    """
+    Load raw items that were NOT processed by LLM, create a basic fallback DigestItem.
+    We apply a strict cutoff (e.g. 3 days) to avoid old data lingering.
+    """
     missing_items = []
     
     # We only want to display "Daily" items. Skip anything older than 3 days.
@@ -278,6 +281,81 @@ def build_hero(items: List[DigestItem]) -> Hero:
     one_liner = f"今日共收录 {len(items)} 条安全情报，包含 {stats.cve_count} 个 CVE，{stats.advisory_count} 篇安全通告，以及 {stats.paper_count} 篇研究论文。"
     return Hero(one_liner_zh=one_liner, stats=stats)
 
+def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str, is_mock: bool = False) -> List[DigestItem]:
+    """
+    Find items in the top N list that only have fallback summaries (metadata_only),
+    and process them with LLM on the fly to ensure high quality for the top picks.
+    """
+    missing_items = [item for item in top_items if getattr(item.llm_summary, "confidence_label", "") == "metadata_only"]
+    if not missing_items:
+        return top_items
+
+    print(f"[INFO] Found {len(missing_items)} Top items missing LLM summary. Processing them now...")
+    
+    # Initialize LLM Client
+    client = None
+    if is_mock or not os.getenv("OPENAI_API_KEY"):
+        print("[INFO] build_daily_digest: Using MockLlmClient for missing Top items.")
+        client = MockLlmClient()
+    else:
+        print("[INFO] build_daily_digest: Using OpenAiLlmClient for missing Top items.")
+        api_key = os.getenv("OPENAI_API_KEY")
+        client = OpenAiLlmClient(api_key=api_key, model=os.getenv("LLM_MODEL", "gpt-4o-mini"))
+
+    # Load corresponding raw items
+    raw_files = glob.glob(f"{raw_dir}/*.json")
+    raw_map = {}
+    for rf_path in raw_files:
+        if "mock" in rf_path or "test" in rf_path or "epss" in rf_path:
+            continue
+        try:
+            with open(rf_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                
+                raw_list = []
+                if isinstance(data, dict) and "items" in data:
+                    raw_list = data["items"]
+                elif isinstance(data, list):
+                    raw_list = data
+                else:
+                    raw_list = data
+                
+                for d in raw_list:
+                    try:
+                        raw_item = RawItem.model_validate(d)
+                        raw_map[raw_item.id] = raw_item
+                    except Exception:
+                        pass
+        except Exception:
+            pass
+
+    updated_items_map = {}
+    for item in missing_items:
+        raw_item = raw_map.get(item.id)
+        if not raw_item:
+            print(f"[WARN] Raw data not found for {item.id}, skipping LLM processing.")
+            continue
+            
+        try:
+            # Correct order: summarize first, then build summary object
+            raw_summary_dict = client.summarize(raw_item)
+            summary = build_llm_summary(raw_item, raw_summary_dict)
+            new_digest_item = build_digest_item(raw_item, summary)
+            updated_items_map[item.id] = new_digest_item
+            print(f"[OK] Successfully generated LLM summary for {item.id}")
+        except Exception as e:
+            print(f"[WARN] Failed to generate LLM summary for {item.id}: {e}")
+
+    # Replace the items in the original list
+    final_items = []
+    for item in top_items:
+        if item.id in updated_items_map:
+            final_items.append(updated_items_map[item.id])
+        else:
+            final_items.append(item)
+            
+    return final_items
+
 def main():
     args = parse_args()
     processed_dir = Path(args.processed_dir)
@@ -328,8 +406,23 @@ def main():
         print("[WARN] No items found in processed or raw dir.")
         return
         
-    # 2. 排序打分
+    # 2. 排序并补录 Top 10 的 LLM 摘要
+    # First ranking pass to find top candidates
     ranked_items = rank_items(items)
+    
+    # Check top 10 items, if any are missing LLM summary, process them now
+    top_10_candidates = ranked_items[:10]
+    is_mock = os.getenv("LLM_MOCK", "0") == "1"
+    top_10_processed = process_missing_top_items_with_llm(top_10_candidates, str(raw_dir), is_mock=is_mock)
+    
+    # Replace top 10 items in the main list
+    for i, item in enumerate(top_10_processed):
+        ranked_items[i] = item
+        
+    # Second ranking pass: scores might have changed due to LLM processing (confidence score addition)
+    ranked_items = rank_items(ranked_items)
+
+    print(f"[INFO] 过滤 & 排序后剩余: {len(ranked_items)} 条")
     
     # 3. 构建区块
     sections = build_sections(ranked_items)
