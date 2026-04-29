@@ -4,12 +4,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import json
 import httpx
+import asyncio
 import argparse
 import random
 import urllib.parse
 from datetime import datetime, timezone
 import time
-from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
+from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type, AsyncRetrying
 
 STATE_FILE = Path("data/state/dblp_state.json")
 
@@ -73,26 +74,63 @@ def fetch_dblp_random(stream_id, year, limit=5):
     return []
 
 def fetch_abstract_openalex(title: str) -> str:
-    """Fetch abstract from OpenAlex API based on paper title."""
-    # Using title.search helps find partial matches, but title is more exact
+    raise DeprecationWarning("Synchronous version is deprecated.")
+
+async def _safe_get_async(client: httpx.AsyncClient, url: str, timeout: float = 30.0) -> httpx.Response:
+    async for attempt in AsyncRetrying(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=2, min=2, max=10),
+        retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError)),
+        reraise=True
+    ):
+        with attempt:
+            res = await client.get(url, timeout=timeout, follow_redirects=True)
+            res.raise_for_status()
+            return res
+
+async def fetch_abstract_openalex_async(client: httpx.AsyncClient, title: str, sem: asyncio.Semaphore) -> str:
+    """Fetch abstract from OpenAlex API based on paper title concurrently."""
     url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(title)}&select=title,abstract_inverted_index"
-    try:
-        res = _safe_get(url, timeout=20.0)
-        data = res.json()
-        results = data.get("results", [])
-        for r in results:
-                idx = r.get("abstract_inverted_index")
-                if idx:
-                    # Reconstruct the abstract from the inverted index
-                    words = {}
-                    for word, positions in idx.items():
-                        for pos in positions:
-                            words[pos] = word
-                    abstract = " ".join(words[i] for i in sorted(words.keys()))
-                    return abstract
-    except Exception as e:
-        print(f"[WARN] OpenAlex fetch failed for '{title[:30]}...': {e}")
+    async with sem:
+        try:
+            res = await _safe_get_async(client, url, timeout=20.0)
+            data = res.json()
+            results = data.get("results", [])
+            for r in results:
+                    idx = r.get("abstract_inverted_index")
+                    if idx:
+                        # Reconstruct the abstract from the inverted index
+                        words = {}
+                        for word, positions in idx.items():
+                            for pos in positions:
+                                words[pos] = word
+                        abstract = " ".join(words[i] for i in sorted(words.keys()))
+                        return abstract
+        except Exception as e:
+            print(f"[WARN] OpenAlex fetch failed for '{title[:30]}...': {e}")
     return ""
+
+async def process_papers_async(papers, source_id, info, now):
+    results = []
+    sem = asyncio.Semaphore(10) # 限制并发数为10，防止 OpenAlex 拒绝服务
+    
+    async with httpx.AsyncClient(headers=HEADERS) as client:
+        tasks = []
+        for i, p in enumerate(papers):
+            title = p.get('title', '')
+            if isinstance(title, list):
+                title = title[0]
+            tasks.append(fetch_abstract_openalex_async(client, title, sem))
+            
+        print(f"[INFO] 正在并发获取 {len(papers)} 篇论文的摘要...")
+        abstracts = await asyncio.gather(*tasks)
+        
+        for i, p in enumerate(papers):
+            results.append(format_item(p, source_id, info, now, abstracts[i]))
+            if (i + 1) % 10 == 0 or (i + 1) == len(papers):
+                print(f"  -> 已处理 {i + 1}/{len(papers)} 篇")
+                
+    return results
 
 def format_item(p, source_id, info, now, abstract=""):
     authors_data = p.get('authors', {}).get('author', [])
@@ -175,24 +213,14 @@ def run():
             
         if len(new_papers) > 0:
             print(f"[OK] Found {len(new_papers)} NEW papers for {info['name']}! Fetching all of them.")
-            for p in new_papers:
-                title = p.get('title', '')
-                if isinstance(title, list):
-                    title = title[0]
-                abstract = fetch_abstract_openalex(title)
-                results.append(format_item(p, source_id, info, now, abstract))
+            results.extend(asyncio.run(process_papers_async(new_papers, source_id, info, now)))
         else:
             print(f"[INFO] No new papers for {info['name']}. Fetching {args.limit_per_conf} random fallback from past 5 years.")
             # Fallback: pick a random year from the past 5 years
             random_year = random.choice(range(current_year - 5, current_year + 1))
             fallback_papers = fetch_dblp_random(info['stream'], random_year, limit=args.limit_per_conf)
-            for p in fallback_papers:
-                title = p.get('title', '')
-                if isinstance(title, list):
-                    title = title[0]
-                abstract = fetch_abstract_openalex(title)
-                results.append(format_item(p, source_id, info, now, abstract))
-                # Note: We do NOT add fallback papers to seen_keys, so they can be randomly picked again.
+            results.extend(asyncio.run(process_papers_async(fallback_papers, source_id, info, now)))
+            # Note: We do NOT add fallback papers to seen_keys, so they can be randomly picked again.
 
     # Save the updated state
     save_state(seen_keys)
