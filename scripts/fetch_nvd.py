@@ -85,8 +85,11 @@ USER_AGENT = "cyber-daily-radar/0.1 (+https://github.com/)"
 # NVD 限速 (参见 https://nvd.nist.gov/developers/start-here)
 # 无 key: 5 请求 / 30s => 保守 6.5s 间隔
 # 有 key: 50 请求 / 30s => 保守 0.7s 间隔
-SLEEP_NO_KEY = 6.5
-SLEEP_WITH_KEY = 0.7
+SLEEP_NO_KEY = 7.5  # Increased slightly to be safe
+SLEEP_WITH_KEY = 1.0
+
+# 当 API 返回总数非常大（如几千条）时，限制最大翻页次数以防止 CI/CD 运行时间过长
+MAX_PAGES = 5
 
 # NVD references 上如果带 "Exploit" 标签, 仅保留 URL 元数据;
 # 不抓取也不镜像第三方页面正文。
@@ -112,6 +115,10 @@ def _http_get_json(
     client: httpx.Client, url: str, params: dict[str, Any]
 ) -> dict:
     resp = client.get(url, params=params)
+    if resp.status_code == 403 or resp.status_code == 429:
+        print(f"[WARN] NVD API limit hit ({resp.status_code}). Sleeping for 30s before retry...", file=sys.stderr)
+        time.sleep(30)
+        resp.raise_for_status()
     # 429 / 5xx 直接 raise, 由 tenacity 重试
     resp.raise_for_status()
     return resp.json()
@@ -141,6 +148,7 @@ def fetch_nvd_window(
     all_items: list[dict] = []
     start_index = 0
     total_results: Optional[int] = None
+    page_count = 0
 
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
@@ -171,14 +179,17 @@ def fetch_nvd_window(
                 raise NvdFetchError("NVD 返回 vulnerabilities 字段非数组")
 
             all_items.extend(vulns)
+            page_count += 1
 
             if total_results is None:
                 tr = payload.get("totalResults")
                 total_results = int(tr) if isinstance(tr, int) else len(vulns)
 
             start_index += len(vulns)
-            # 翻页结束: 本次返回 0 条, 或者已经覆盖 totalResults
-            if not vulns or start_index >= (total_results or 0):
+            # 翻页结束: 本次返回 0 条, 或者已经覆盖 totalResults，或者达到了最大的翻页次数
+            if not vulns or start_index >= (total_results or 0) or page_count >= MAX_PAGES:
+                if page_count >= MAX_PAGES and start_index < (total_results or 0):
+                    print(f"[WARN] 达到最大翻页限制 ({MAX_PAGES})。总数: {total_results}，已获取: {start_index}。", file=sys.stderr)
                 break
 
             # 主动限速, 避免触发 NVD 的 429
