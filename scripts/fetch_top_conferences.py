@@ -43,8 +43,8 @@ def _safe_get(url: str, timeout: float = 30.0) -> httpx.Response:
 
 def fetch_dblp_all(stream_id, year):
     # Fetch all papers for a given year to check for new ones
-    # Correct syntax: stream:conf/sp: + year:2024: or stream:conf/sp year:2024
-    url = f"https://dblp.org/search/publ/api?q=stream:{stream_id}%20year:{year}&format=json&h=1000"
+    # Correct syntax: stream:conf/sp: year:2024: (colons at the end are important for exact match in DBLP)
+    url = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:%20year:{year}:&format=json&h=1000"
     try:
         res = _safe_get(url, timeout=30.0)
         data = res.json()
@@ -56,7 +56,7 @@ def fetch_dblp_all(stream_id, year):
 
 def fetch_dblp_random(stream_id, year, limit=5):
     # Fetch a random subset of papers from a specific year
-    url_total = f"https://dblp.org/search/publ/api?q=stream:{stream_id}%20year:{year}&format=json&h=0"
+    url_total = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:%20year:{year}:&format=json&h=0"
     try:
         res = _safe_get(url_total, timeout=30.0)
         total = int(res.json().get('result', {}).get('hits', {}).get('@total', 0))
@@ -65,7 +65,7 @@ def fetch_dblp_random(stream_id, year, limit=5):
         
         # offset cannot exceed total-limit
         offset = random.randint(0, max(0, total - limit))
-        url_data = f"https://dblp.org/search/publ/api?q=stream:{stream_id}%20year:{year}&format=json&f={offset}&h={limit}"
+        url_data = f"https://dblp.org/search/publ/api?q=stream:{stream_id}:%20year:{year}:&format=json&f={offset}&h={limit}"
         res_data = _safe_get(url_data, timeout=30.0)
         hits = res_data.json().get('result', {}).get('hits', {}).get('hit', [])
         return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers'][:limit]
