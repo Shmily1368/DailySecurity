@@ -172,8 +172,8 @@ class LlmSummary(BaseModel):
 
     model_config = ConfigDict(extra="ignore")
 
-    summary_zh: str = Field(..., description="一句话中文摘要, <= 120 字")
-    why_it_matters_zh: str = Field(..., description="推荐理由, <= 150 字")
+    summary_zh: str = Field(..., min_length=1, description="一句话中文摘要, <= 120 字")
+    why_it_matters_zh: str = Field(..., min_length=1, description="推荐理由, <= 150 字")
     impact_zh: Optional[str] = None
     detection_signals_zh: List[str] = Field(default_factory=list)
     defense_advice_zh: List[str] = Field(default_factory=list)
@@ -332,7 +332,7 @@ class DigestItem(BaseModel):
 
     # LLM 字段 (扁平暴露核心字段, 同时保留嵌套 llm_summary)
     llm_summary: LlmSummary
-    why_it_matters: str = Field(..., description="等同于 llm_summary.why_it_matters_zh")
+    why_it_matters: str = Field(..., min_length=1, description="等同于 llm_summary.why_it_matters_zh")
     recommended_action: Optional[str] = Field(
         default=None, description="等同于 llm_summary.recommended_action_zh"
     )

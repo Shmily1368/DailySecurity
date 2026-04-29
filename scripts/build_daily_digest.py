@@ -125,7 +125,7 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                     
                     # Create a minimal fallback LlmSummary
                     summary_data = {
-                        "summary_zh": clean_summary[:400],
+                        "summary_zh": clean_summary[:400] or "（暂无可用摘要）",
                         "why_it_matters_zh": "原文内容（由于配额限制，未进行深度 LLM 分析）",
                         "recommended_action_zh": "建议根据原文自行评估",
                         "confidence_label": "metadata_only",

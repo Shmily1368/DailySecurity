@@ -585,9 +585,15 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
         data.pop("why_it_matters")
 
     # 必填字段兜底
-    data.setdefault("summary_zh", item.title[:120])
+    data.setdefault("summary_zh", item.title[:120] or "（暂无可用摘要）")
     data.setdefault("why_it_matters_zh", "(LLM 未提供 why_it_matters)")
     data.setdefault("detection_signals_zh", [])
+    
+    # 强制修正空字符串
+    if not data.get("summary_zh"):
+        data["summary_zh"] = "（暂无可用摘要）"
+    if not data.get("why_it_matters_zh"):
+        data["why_it_matters_zh"] = "(LLM 未提供 why_it_matters)"
     data.setdefault("defense_advice_zh", [])
     data.setdefault("tags", [])
     data.setdefault("category", Category.VULN.value)
