@@ -17,7 +17,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
 
 
 # ---------------------------------------------------------------------------
@@ -170,7 +170,7 @@ class RiskSignal(BaseModel):
 class LlmSummary(BaseModel):
     """LLM 产出的结构化摘要。防御者视角, 禁止攻击步骤。"""
 
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="ignore")
 
     summary_zh: str = Field(..., description="一句话中文摘要, <= 120 字")
     why_it_matters_zh: str = Field(..., description="推荐理由, <= 150 字")
@@ -209,6 +209,17 @@ class LlmSummary(BaseModel):
     refusal: bool = False
     refusal_reason: Optional[str] = None
     prompt_version: Optional[str] = None
+
+    @field_validator("severity_hint", mode="before")
+    @classmethod
+    def validate_severity(cls, v: str) -> str:
+        """容错大模型输出的非法严重程度枚举值 (如 'unknown')"""
+        if isinstance(v, str):
+            v_lower = v.lower()
+            if v_lower not in ["critical", "high", "medium", "low", "info"]:
+                return "info"
+            return v_lower
+        return v
 
 
 # ---------------------------------------------------------------------------
