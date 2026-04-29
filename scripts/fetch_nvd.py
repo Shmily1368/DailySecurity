@@ -78,8 +78,8 @@ NVD_API_URL = "https://services.nvd.nist.gov/rest/json/cves/2.0"
 DEFAULT_OUTPUT = Path("data/raw/nvd_recent.json")
 DEFAULT_DAYS = 2
 MAX_DAYS = 120  # NVD 单次查询窗口硬上限
-PAGE_SIZE = 2000  # NVD 允许的最大 resultsPerPage
-HTTP_TIMEOUT = 30.0
+PAGE_SIZE = 500  # 降低单页大小以防 NVD 服务器超时断流 (最大 2000)
+HTTP_TIMEOUT = 60.0
 USER_AGENT = "cyber-daily-radar/0.1 (+https://github.com/)"
 
 # NVD 限速 (参见 https://nvd.nist.gov/developers/start-here)
@@ -104,9 +104,9 @@ class NvdFetchError(RuntimeError):
 
 @retry(
     reraise=True,
-    stop=stop_after_attempt(4),
+    stop=stop_after_attempt(6),
     wait=wait_exponential(multiplier=2, min=3, max=30),
-    retry=retry_if_exception_type((httpx.HTTPError,)),
+    retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError, httpx.RemoteProtocolError)),
 )
 def _http_get_json(
     client: httpx.Client, url: str, params: dict[str, Any]
