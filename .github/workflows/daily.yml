@@ -41,12 +41,12 @@ jobs:
           python scripts/fetch_top_conferences.py --limit-per-conf 5
         
       - name: Fetch CISA KEV
-        run: python scripts/fetch_cisa_kev.py --days 2
+        run: python scripts/fetch_cisa_kev.py --days 1
         
       - name: Fetch NVD CVEs
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: python scripts/fetch_nvd.py --days 2
+        run: python scripts/fetch_nvd.py --days 1
         
       - name: Fetch EPSS
         run: python scripts/fetch_epss.py --input data/raw/cisa_kev.json --input data/raw/nvd_recent.json
