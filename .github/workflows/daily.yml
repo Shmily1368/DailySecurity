@@ -111,7 +111,15 @@ jobs:
             $MOCK_FLAG || true
             
       - name: Build Daily Digest & Rank
-        run: python scripts/build_daily_digest.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
+          LLM_MODEL: ${{ secrets.LLM_MODEL }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ] || [ "${{ github.event.inputs.force_mock }}" == "true" ]; then
+            export LLM_MOCK="1"
+          fi
+          python scripts/build_daily_digest.py
         
       - name: Validate Data
         run: python scripts/validate_data.py --all
