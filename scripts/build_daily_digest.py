@@ -356,6 +356,37 @@ def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str
             
     return final_items
 
+def get_diverse_top_10(items: List[DigestItem]) -> List[DigestItem]:
+    """从已排序的 items 中挑选出多样化的 Top 10 (4:3:3 比例)"""
+    vulns = [it for it in items if it.type in [ItemType.CVE, ItemType.KEV, ItemType.ADVISORY]]
+    threats = [it for it in items if it.type == ItemType.THREAT_REPORT]
+    papers = [it for it in items if it.type == ItemType.PAPER]
+    
+    selected = []
+    seen_ids = set()
+    
+    # 按照漏洞4、情报3、论文3的比例挑选最高分
+    for category_list, limit in [(vulns, 4), (threats, 3), (papers, 3)]:
+        count = 0
+        for it in category_list:
+            if count >= limit:
+                break
+            if it.id not in seen_ids:
+                selected.append(it)
+                seen_ids.add(it.id)
+                count += 1
+                
+    # 如果名额没招满（比如某天没有足够的论文），用剩余最高分补齐至 10 条
+    remaining = [it for it in items if it.id not in seen_ids]
+    for it in remaining:
+        if len(selected) >= 10:
+            break
+        selected.append(it)
+        seen_ids.add(it.id)
+        
+    # 重新按分数降序排列
+    return sorted(selected, key=lambda x: x.recommendation_score, reverse=True)
+
 def main():
     args = parse_args()
     processed_dir = Path(args.processed_dir)
@@ -410,14 +441,19 @@ def main():
     # First ranking pass to find top candidates
     ranked_items = rank_items(items)
     
-    # Check top 10 items, if any are missing LLM summary, process them now
-    top_10_candidates = ranked_items[:10]
+    # 从中筛选出具备类别多样性的 Top 10，避免全被高危漏洞霸榜
+    top_10_candidates = get_diverse_top_10(ranked_items)
+    
     is_mock = os.getenv("LLM_MOCK", "0") == "1"
     top_10_processed = process_missing_top_items_with_llm(top_10_candidates, str(raw_dir), is_mock=is_mock)
     
     # Replace top 10 items in the main list
     for i, item in enumerate(top_10_processed):
-        ranked_items[i] = item
+        # 找到它在总榜单中的位置并替换
+        for j, ranked in enumerate(ranked_items):
+            if ranked.id == item.id:
+                ranked_items[j] = item
+                break
         
     # Second ranking pass: scores might have changed due to LLM processing (confidence score addition)
     ranked_items = rank_items(ranked_items)

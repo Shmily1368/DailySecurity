@@ -51,10 +51,17 @@ def calculate_scores(item: DigestItem) -> DigestItem:
         recommendation_score += 5.0
         reasons.append("影响边界/网络设备 (+5)")
 
-    # 6. arXiv cs.CR: +2
-    if item.type == ItemType.PAPER and item.source == "arxiv" and "cs.CR" in item.topics:
-        recommendation_score += 2.0
-        reasons.append("来自 arXiv cs.CR (+2)")
+    # 6. 论文类来源特定加分
+    if item.type == ItemType.PAPER:
+        if item.source == "top_conferences":
+            recommendation_score += 8.0
+            reasons.append("来自网络安全顶级会议 (+8)")
+        elif item.source == "arxiv" and "cs.CR" in item.topics:
+            recommendation_score += 4.0
+            reasons.append("来自 arXiv cs.CR (+4)")
+        elif item.source == "arxiv":
+            recommendation_score += 2.0
+            reasons.append("来自 arXiv 其他板块 (+2)")
 
     # 7. 论文主题命中 LLM Security、Fuzzing、Supply Chain、Program Analysis、Web Security: +2
     research_keywords = [
