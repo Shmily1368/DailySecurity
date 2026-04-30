@@ -17,7 +17,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator
+from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator, ValidationInfo
 
 
 # ---------------------------------------------------------------------------
@@ -219,6 +219,34 @@ class LlmSummary(BaseModel):
             if v_lower not in ["critical", "high", "medium", "low", "info"]:
                 return "info"
             return v_lower
+        return v
+
+    @field_validator("category", mode="before")
+    @classmethod
+    def validate_category(cls, v: str, info: ValidationInfo) -> str:
+        """容错大模型输出的非法类别枚举值 (基于上下文动态推断)"""
+        if isinstance(v, str):
+            v_lower = v.lower()
+            if v_lower in ["vulnerability", "vulnerabilities"]:
+                return "vuln"
+            
+            allowed = {"vuln", "exploited", "research", "advisory", "threat-intel", "detection"}
+            if v_lower in allowed:
+                return v_lower
+
+            # 根据其他字段特征进行动态回退
+            data = info.data
+            if data.get("confidence_label") == "abstract_only":
+                return "research"
+            
+            tags = data.get("tags", [])
+            tags_lower = [t.lower() for t in tags]
+            if any("apt" in t or "threat" in t or "ransomware" in t for t in tags_lower):
+                return "threat-intel"
+            
+            # 默认兜底：因为漏洞/安全公告占了日常数据的绝对大头（CVE、NVD、GHSA 等）
+            return "vuln"
+            
         return v
 
 

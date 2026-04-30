@@ -4,22 +4,123 @@ import TopicTag from '../../components/TopicTag.astro';
 import { getAllTopics } from '../../lib/data';
 
 const topics = getAllTopics();
+
+// 分类字典
+const categories = [
+  {
+    name: "🧠 AI与大模型",
+    keywords: ["ai", "llm", "machine-learning", "deep-learning", "prompt", "chatgpt", "adversarial", "model", "agent", "neural", "nlp", "vision", "gpt"],
+    topics: [] as string[]
+  },
+  {
+    name: "🐛 漏洞与缺陷",
+    keywords: ["cwe", "cve", "vulnerabilit", "zero-day", "exploit", "rce", "xss", "sqli", "bypass", "injection", "overflow", "disclosure", "severity", "0-day", "1-day"],
+    topics: [] as string[]
+  },
+  {
+    name: "🕵️ 安全情报与黑产",
+    keywords: ["apt", "ransomware", "malware", "botnet", "phishing", "trojan", "threat", "darkweb", "campaign", "actor", "backdoor", "spyware", "attack", "cybercrime"],
+    topics: [] as string[]
+  },
+  {
+    name: "☁️ 云与基础设施",
+    keywords: ["aws", "azure", "gcp", "kubernetes", "docker", "cloud", "container", "serverless", "infrastructure", "vm", "virtualization"],
+    topics: [] as string[]
+  },
+  {
+    name: "💻 系统与网络",
+    keywords: ["linux", "windows", "macos", "ios", "android", "network", "protocol", "tcp", "http", "kernel", "hardware", "firmware", "iot", "router", "switch", "mobile", "os-"],
+    topics: [] as string[]
+  },
+  {
+    name: "📦 语言与生态",
+    keywords: ["python", "javascript", "npm", "pip", "java", "maven", "rust", "go", "golang", "ruby", "php", "c++", "c/c++", "github", "gitlab", "nuget", "ecosystem", "supply-chain", "dependency"],
+    topics: [] as string[]
+  },
+  {
+    name: "🔐 加密与隐私",
+    keywords: ["crypto", "encryption", "privacy", "authentication", "authorization", "zk", "mpc", "signature", "certificate", "tls", "ssl", "hash", "password"],
+    topics: [] as string[]
+  }
+];
+
+const others: string[] = [];
+
+topics.forEach(topic => {
+  const lower = topic.toLowerCase();
+  let matched = false;
+  for (const cat of categories) {
+    if (cat.keywords.some(kw => lower.includes(kw))) {
+      cat.topics.push(topic);
+      matched = true;
+      break;
+    }
+  }
+  if (!matched) {
+    others.push(topic);
+  }
+});
+
+const activeCategories = categories.filter(c => c.topics.length > 0);
+
+// 对 Others 进一步按首字母分组
+const othersByLetter: Record<string, string[]> = {};
+others.forEach(t => {
+  const firstChar = t.charAt(0).toUpperCase();
+  const letter = /[A-Z]/.test(firstChar) ? firstChar : '#';
+  if (!othersByLetter[letter]) othersByLetter[letter] = [];
+  othersByLetter[letter].push(t);
+});
+const sortedLetters = Object.keys(othersByLetter).sort();
 ---
 
 <BaseLayout title="所有主题 - Cyber Security Daily Radar">
   <section class="topic-list">
-    <h1>🏷️ 热门主题</h1>
-    <p class="muted">安全领域研究前沿与风险热点标签。</p>
+    <div class="header">
+      <h1>🏷️ 热门主题</h1>
+      <p class="muted">安全领域研究前沿与风险热点标签 ({topics.length} 个)。</p>
+    </div>
     
     {topics.length === 0 ? (
       <p>暂无标签数据。</p>
     ) : (
-      <div class="tags-container">
-        {topics.map(topic => (
-          <div class="tag-wrapper">
-            <TopicTag topic={topic} />
+      <div class="categories-wrapper">
+        {activeCategories.map(cat => (
+          <div class="category-section">
+            <h2 class="category-title">{cat.name} <span class="count">({cat.topics.length})</span></h2>
+            <div class="tags-container">
+              {cat.topics.map(topic => (
+                <div class="tag-wrapper">
+                  <TopicTag topic={topic} />
+                </div>
+              ))}
+            </div>
           </div>
         ))}
+
+        {sortedLetters.length > 0 && (
+          <div class="category-section">
+            <h2 class="category-title">🗂️ 其他主题 <span class="count">({others.length})</span></h2>
+            <div class="alphabet-nav">
+              {sortedLetters.map(letter => (
+                <a href={`#letter-${letter}`} class="letter-link">{letter}</a>
+              ))}
+            </div>
+            
+            {sortedLetters.map(letter => (
+              <div class="letter-group" id={`letter-${letter}`}>
+                <h3 class="letter-title">{letter}</h3>
+                <div class="tags-container">
+                  {othersByLetter[letter].map(topic => (
+                    <div class="tag-wrapper">
+                      <TopicTag topic={topic} />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     )}
   </section>
@@ -27,17 +128,81 @@ const topics = getAllTopics();
 
 <style>
   .topic-list {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 1rem 0;
   }
-  h1 { margin-top: 0; }
+  .header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+  h1 { margin-top: 0; margin-bottom: 0.5rem; }
+  
+  .category-section {
+    margin-bottom: 3rem;
+  }
+  .category-title {
+    font-size: 1.4rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    border-left: 4px solid #3498db;
+    padding-left: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .count {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    font-weight: normal;
+  }
+  
   .tags-container {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 2rem;
   }
   .tag-wrapper {
-    font-size: 1.1rem; /* 放大显示 */
+    font-size: 1.1rem;
+  }
+  
+  .alphabet-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    background: #f8f9fa;
+    padding: 0.75rem;
+    border-radius: 8px;
+  }
+  .letter-link {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    line-height: 24px;
+    background: #fff;
+    border-radius: 4px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  .letter-link:hover {
+    background: #3498db;
+    color: #fff;
+  }
+  
+  .letter-group {
+    margin-bottom: 1.5rem;
+  }
+  .letter-title {
+    font-size: 1.1rem;
+    color: #7f8c8d;
+    margin-bottom: 0.75rem;
+    border-bottom: 1px dashed #eee;
+    padding-bottom: 0.25rem;
   }
 </style>
