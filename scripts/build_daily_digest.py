@@ -151,9 +151,9 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                     
     return missing_items
 
-def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
+def build_sections(items: List[DigestItem], top_10_ids: List[str] = None) -> Dict[str, List[str]]:
     sections = {
-        "top10": [],
+        "top_10": [],
         # Research
         "research_ai": [],
         "research_systems": [],
@@ -231,8 +231,11 @@ def build_sections(items: List[DigestItem]) -> Dict[str, List[str]]:
             else:
                 sections["research_others"].append(item.id)
             
-    # Top 10 取总榜前 10
-    sections["top_10"] = [item.id for item in items[:10]]
+    # Top 10
+    if top_10_ids is not None:
+        sections["top_10"] = top_10_ids
+    else:
+        sections["top_10"] = [item.id for item in items[:10]]
     
     # 填充每个 item 的 shown_in_sections
     for item in items:
@@ -460,8 +463,12 @@ def main():
 
     print(f"[INFO] 过滤 & 排序后剩余: {len(ranked_items)} 条")
     
+    # 提取经过配额与 LLM 处理的那 10 个候选者 ID，按最新分数排序
+    top_10_ids_set = {item.id for item in top_10_processed}
+    final_top_10_ids = [item.id for item in ranked_items if item.id in top_10_ids_set]
+    
     # 3. 构建区块
-    sections = build_sections(ranked_items)
+    sections = build_sections(ranked_items, top_10_ids=final_top_10_ids)
     
     # 4. 构建 Hero
     hero = build_hero(ranked_items)
