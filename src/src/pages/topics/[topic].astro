@@ -5,24 +5,29 @@ import { getAllTopics, getAllItems } from '../../lib/data';
 
 export async function getStaticPaths() {
   const topics = getAllTopics();
-  return topics.map(topic => ({
-    params: { topic }
-  }));
+  return topics.map(topic => {
+    const slug = topic.replace(/\//g, '-').replace(/\+/g, 'plus');
+    return {
+      params: { topic: slug },
+      props: { originalTopic: topic }
+    };
+  });
 }
 
 const { topic } = Astro.params;
+const { originalTopic } = Astro.props;
 const allItems = getAllItems();
 
 const relatedItems = allItems.filter(item => {
   const llmTags = item.llm_summary?.tags ?? [];
   const rawTopics = item.topics ?? [];
-  return llmTags.includes(topic as string) || rawTopics.includes(topic as string);
+  return llmTags.includes(originalTopic as string) || rawTopics.includes(originalTopic as string);
 });
 ---
 
-<BaseLayout title={`#${topic} 主题 - Cyber Security Daily Radar`}>
+<BaseLayout title={`#${originalTopic} 主题 - Cyber Security Daily Radar`}>
   <section class="topic-header">
-    <h1>#{topic}</h1>
+    <h1>#{originalTopic}</h1>
     <p class="stats-info">共收录 {relatedItems.length} 条相关安全情报。</p>
     <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + "/topics"} class="back-link">← 返回所有主题</a>
   </section>
