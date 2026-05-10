@@ -1,329 +1,452 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_LycklamaBVKH23",
+    "id": "paper:ieee_sp:conf_sp_KimPRCLKL25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_LycklamaBVKH23",
+      "native_id": "conf_sp_KimPRCLKL25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179400"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00039"
     },
-    "title": "RoFL: Robustness of Secure Federated Learning.",
-    "summary": "Even though recent years have seen many attacks exposing severe vulnerabilities in Federated Learning (FL), a holistic understanding of what enables these attacks and how they can be mitigated effectively is still lacking. In this work, we demystify the inner workings of existing (targeted) attacks. We provide new insights into why these attacks are possible and why a definitive solution to FL robustness is challenging. We show that the need for ML algorithms to memorize tail data has significant implications for FL integrity. This phenomenon has largely been studied in the context of privacy; our analysis sheds light on its implications for ML integrity. We show that certain classes of severe attacks can be mitigated effectively by enforcing constraints such as norm bounds on clients’ updates. We investigate how to efficiently incorporate these constraints into secure FL protocols in the single-server setting. Based on this, we propose RoFL, a new secure FL system that extends secure aggregation with privacy-preserving input validation. Specifically, RoFL can enforce constraints such as L <inf xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">2</inf> and L <inf xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">∞</inf> bounds on high-dimensional encrypted model updates.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Hidde Lycklama",
-      "Lukas Burkhalter",
-      "Alexander Viand",
-      "Nicolas Küchler",
-      "Anwar Hithnawi"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_MaWAPR23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MaWAPR23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179434"
-    },
-    "title": "Flamingo: Multi-Round Single-Server Secure Aggregation with Applications to Private Federated Learning.",
-    "summary": "This paper introduces Flamingo, a system for secure aggregation of data across a large set of clients. In secure aggregation, a server sums up the private inputs of clients and obtains the result without learning anything about the individual inputs beyond what is implied by the final sum. Flamingo focuses on the multi-round setting found in federated learning in which many consecutive summations (averages) of model weights are performed to derive a good model. Previous protocols, such as Bell et al. (CCS ’20), have been designed for a single round and are adapted to the federated learning setting by repeating the protocol multiple times. Flamingo eliminates the need for the per-round setup of previous protocols, and has a new lightweight dropout resilience protocol to ensure that if clients leave in the middle of a sum the server can still obtain a meaningful result. Furthermore, Flamingo introduces a new way to locally choose the so-called client neighborhood introduced by Bell et al. These techniques help Flamingo reduce the number of interactions between clients and the server, resulting in a significant reduction in the end-to-end runtime for a full training session over prior work.We implement and evaluate Flamingo and show that it can securely train a neural network on the (Extended) MNIST and CIFAR-100 datasets, and the model converges without a loss in accuracy, compared to a non-private federated learning system.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Yiping Ma 0001",
-      "Jess Woods",
-      "Sebastian Angel",
-      "Antigoni Polychroniadou",
-      "Tal Rabin"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_MaZWZCXWR23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MaZWZCXWR23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179356"
-    },
-    "title": "When Top-down Meets Bottom-up: Detecting and Exploiting Use-After-Cleanup Bugs in Linux Kernel.",
-    "summary": "When a device is detached from the system, Use-After-Cleanup (UAC) bugs can occur because a running kernel thread may be unaware of the device detachment and attempt to use an object that has been released by the cleanup thread. Our investigation suggests that an attacker can exploit the UAC bugs to obtain the capability of arbitrary code execution and privilege escalation, which receives little attention from the community. While existing tools mainly focus on well-known concurrency bugs like data race, few target UAC bugs.In this paper, we propose a tool named UACatcher to systematically detect UAC bugs. UACatcher consists of three main phases. It first scans the entire kernel to find target layers. Next, it adopts the context- and flow-sensitive inter-procedural analysis and the points-to analysis to locate possible free (deallocation) sites in the bottom-up cleanup thread and use (dereference) sites in the top-down kernel thread that can cause UAC bugs. Then, UACatcher uses the routine switch point algorithm which counts on the synchronizations and path constraints to detect UAC bugs among these sites and estimate exploitable ones. For exploitable bugs, we leverage the pseudoterminal-based device emulation technique to develop practical exploits.We have implemented a prototype of UACatcher and evaluated it on 5.11 Linux kernel. As a result, our tool successfully detected 346 UAC bugs, which were reported to the community (277 have been confirmed and fixed and 15 CVEs have been assigned). Additionally, 13 bugs are exploitable, which can be used to develop working exploits that gain the arbitrary code execution primitive in kernel space and achieve the privilege escalation. Finally, we discuss UACatcher’s limitations and propose possible solutions to fix and prevent UAC bugs.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Lin Ma 0009",
-      "Duoming Zhou",
-      "Hanjie Wu",
-      "Yajin Zhou",
-      "Rui Chang",
-      "Hao Xiong",
-      "Lei Wu 0012",
-      "Kui Ren 0001"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_MalkinLPM23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MalkinLPM23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179475"
-    },
-    "title": "Optimistic Access Control for the Smart Home.",
-    "summary": "One of the biggest privacy concerns of smart home users is enforcing limits on household members’ access to devices and each other’s data. While people commonly express preferences for intricate access control policies, in practice they often settle for less secure defaults. As an alternative, this paper investigates \"optimistic access control\" policies that allow users to obtain access and data without pre-approval, subject to oversight from other household members. This solution allows users to leverage the interpersonal trust they already rely on in order to establish privacy boundaries commensurate with more complex access control methods, while retaining the convenience of less secure strategies. To evaluate this concept, we conducted a series of surveys with 604 people total, studying the acceptability and perceptions of this approach. We found that a number of respondents preferred optimistic modes to existing access control methods and that interest in optimistic access varied with device type and household characteristics.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Nathan Malkin",
-      "Alan F. Luo",
-      "Julio Poveda",
-      "Michelle L. Mazurek"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_MandalariHDC23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MandalariHDC23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179282"
-    },
-    "title": "Protected or Porous: A Comparative Analysis of Threat Detection Capability of IoT Safeguards.",
-    "summary": "Consumer Internet of Things (IoT) devices are increasingly common, from smart speakers to security cameras, in homes. Along with their benefits come potential privacy and security threats. To limit these threats a number of commercial services have become available (IoT safeguards). The safeguards claim to provide protection against IoT privacy risks and security threats. However, the effectiveness and the associated privacy risks of these safeguards remains a key open question. In this paper, we investigate the threat detection capabilities of IoT safeguards for the first time. We develop and release an approach for automated safeguards experimentation to reveal their response to common security threats and privacy risks. We perform thousands of automated experiments using popular commercial IoT safeguards when deployed in a large IoT testbed. Our results indicate not only that these devices may be ineffective in preventing risks, but also their cloud interactions and data collection operations may introduce privacy risks for the households that adopt them.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Anna Maria Mandalari",
-      "Hamed Haddadi 0001",
-      "Daniel J. Dubois",
-      "David R. Choffnes"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_GregersenAT25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_GregersenAT25",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3744801"
-    },
-    "title": "Logical Relations for Formally Verified Authenticated Data Structures.",
-    "summary": "Authenticated data structures allow untrusted third parties to carry out operations which produce proofs that can be used to verify an operation's output. Such data structures are challenging to develop and implement correctly. This paper gives a formal proof of security and correctness for a library that generates authenticated versions of data structures automatically. The proof is based on a new relational separation logic for reasoning about programs that use collision-resistant cryptographic hash functions. This logic provides a basis for constructing two semantic models of a type system, which are used to justify how the library makes use of type abstraction to enforce security and correctness. Using these models, we also prove the correctness of several optimizations to the library and then show how optimized, hand-written implementations of authenticated data structures can be soundly linked with automatically generated code. All of the results in this paper have been mechanized in the Coq proof assistant using the Iris framework.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Simon Oddershede Gregersen",
-      "Chaitanya Agarwal",
-      "Joseph Tassarotti"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_GuimaraesP25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_GuimaraesP25",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3765181"
-    },
-    "title": "Fast Amortized Bootstrapping with Small Keys and Polynomial Noise Overhead.",
-    "summary": "Most homomorphic encryption (FHE) schemes exploit a technique called single-instruction multiple-data (SIMD) to process several messages in parallel. However, they base their security in somehow strong assumptions, such as the hardness of approximate lattice problems with superpolynomial approximation factor. On the other extreme of the spectrum, there are lightweight FHE schemes that have much faster bootstrapping but no SIMD capabilities. On the positive side, the security of these schemes is based on lattice problems with (low-degree) polynomial approximation factor only, which is a much weaker security assumption. Aiming the best of those two options, Micciancio and Sorrell (ICALP'18) proposed a new amortized bootstrapping that can process many messages at once, yielding sublinear time complexity per message, and allowing one to construct FHE based on lattice problems with polynomial approximation factor.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Antonio Guimarães",
-      "Hilder V. L. Pereira"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_GuoCCL0W25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_GuoCCL0W25",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3765069"
-    },
-    "title": "BOLT: Bandwidth-Optimized Lightning-Fast Oblivious Map powered by Secure HBM Accelerators.",
-    "summary": "While Trusted Execution Environments provide a strong foundation for secure cloud computing, they remain vulnerable to access pattern leakages. Oblivious Maps (OMAPs) mitigate this by fully hiding access patterns but suffer from high overhead due to randomized remapping and worst-case padding. We argue these costs are not fundamental. Modern accelerators featuring High-Bandwidth Memory (HBM) offer a new opportunity: Vaswani et al. [OSDI'18] point out that eavesdropping on HBM is difficult -- even for physical attackers -- as its memory channels are sealed together with processor cores inside the same physical package. Later, Hunt et al. [NSDI'20] show that, with proper isolation, HBM can be turned into an unobservable region where both data and memory traces are hidden. This motivates a rethink of OMAP design with HBM-backed solutions to finally overcome their traditional performance limits. Building on these insights, we present BOLT, a Bandwidth Optimized, Lightning-fast OMAP accelerator that, for the first time, achieves O(1) + O(log_2(log_2 (N))) bandwidth overhead. BOLT introduces three key innovations: (i) a new OMAP algorithm that leverages isolated HBM as an unobservable cache to accelerate oblivious access to large host memory; (ii) a self-hosted architecture that offloads execution and memory control from the host to mitigate CPU-side leakage; and (iii) tailored algorithm-architecture co-designs that maximize resource efficiency. We implement a prototype BOLT on a Xilinx U55C FPGA. Evaluations show that BOLT achieves up to 279x and 480x speedups in initialization and query time, respectively, over state-of-the-art OMAPs, including an industry implementation from Facebook.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Yitong Guo",
-      "Hongbo Chen",
-      "Haobin Hiroki Chen",
-      "Yukui Luo",
-      "XiaoFeng Wang 0001",
-      "Chenghong Wang"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_GuoYYCS025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_GuoYYCS025",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3765167"
-    },
-    "title": "DiveFuzz: Enhancing CPU Fuzzing via Diverse Instruction Construction.",
-    "summary": "Comprehensive exploration of the CPU architectural states in fuzzing is akin to generating diverse test cases, which include a reasonable distribution of opcode and diversity in instruction execution results (typically measured through write-back data). However, our analysis of state-of-the-art CPU fuzzers reveals that they exhibit high repetition in write-back data and an imbalanced distribution of opcodes during fuzzing. This paper presents DiveFuzz, which diversifies write-back data by finely controlling the operands of instructions at runtime, coupled with correlated contextual semantics, to generate instruction streams with diverse write-back data and semantic associations. Furthermore, DiveFuzz introduces a novel mutator that monitors the fuzzing process to dynamically adjust opcode distribution and accurately eliminate false positives. Our evaluations show that DiveFuzz significantly increases the diversity of instruction write-back data and achieves a more balanced opcode distribution compared to state-of-the-art fuzzers. Across five common coverage metrics, DiveFuzz achieves coverage 204× faster than DifuzzRTL and 114× faster than Cascade. We evaluated DiveFuzz on four well-known open-source RISC-V CPUs—XiangShan, CVA6, Rocket, and NutShell—uncovering 26 new bugs, 15 of which have CVE identifiers.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Zihui Guo",
-      "Miaomiao Yuan",
-      "Yanqi Yang",
-      "Liwei Chen",
-      "Gang Shi",
-      "Dan Meng 0002"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_HailemariamE25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_HailemariamE25",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3744802"
-    },
-    "title": "PoisonSpot: Precise Spotting of Clean-Label Backdoors via Fine-Grained Training Provenance Tracking.",
-    "summary": "Relying on untrusted data exposes machine learning models to backdoor attacks, where adversaries poison training data to embed hidden behaviors.Existing defenses struggle against increasingly stealthy attacks, particularly clean-label backdoor attacks, due to their inability to monitor fine-grained impact of individual training samples on model updates.In this paper, we present PoisonSpot, a novel system that precisely detects clean-label backdoor attacks by using fine-grained training provenance tracking, inspired by dynamic taint tracking.PoisonSpot captures and analyzes the impact of individual training samples on model parameter updates throughout the training process.By attributing poisoning scores to suspect samples based on their impact lineage, PoisonSpot allows for accurate identification and rejection of samples carrying backdoor triggers.We evaluate PoisonSpot on multiple benchmark datasets and attack scenarios, demonstrating its superior performance compared to the state-of-the-art clean-label backdoor poisoning defense.Poi-sonSpot consistently achieves high true positive rates, low false positive rates, and effectively mitigates backdoor attacks, even under adaptive adversarial strategies.Furthermore, PoisonSpot operates efficiently in various training settings, including retraining and fine-tuning regimes, demonstrating its robustness and scalability.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Philemon Hailemariam",
-      "Birhanu Eshete"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_JauernigJPSS23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_JauernigJPSS23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/darwin-survival-of-the-fittest-fuzzing-mutators/"
-    },
-    "title": "DARWIN: Survival of the Fittest Fuzzing Mutators.",
-    "summary": "Fuzzing is an automated software testing technique broadly adopted by the industry. A popular variant is mutation-based fuzzing, which discovers a large number of bugs in practice. While the research community has studied mutation-based fuzzing for years now, the algorithms' interactions within the fuzzer are highly complex and can, together with the randomness in every instance of a fuzzer, lead to unpredictable effects. Most efforts to improve this fragile interaction focused on optimizing seed scheduling. However, real-world results like Google's FuzzBench highlight that these approaches do not consistently show improvements in practice. Another approach to improve the fuzzing process algorithmically is optimizing mutation scheduling. Unfortunately, existing mutation scheduling approaches also failed to convince because of missing real-world improvements or too many user-controlled parameters whose configuration requires expert knowledge about the target program. This leaves the challenging problem of cleverly processing test cases and achieving a measurable improvement unsolved. We present DARWIN, a novel mutation scheduler and the first to show fuzzing improvements in a realistic scenario without the need to introduce additional user-configurable parameters, opening this approach to the broad fuzzing community. DARWIN uses an Evolution Strategy to systematically optimize and adapt the probability distribution of the mutation operators during fuzzing. We implemented a prototype based on the popular general-purpose fuzzer AFL. DARWIN significantly outperforms the state-of-the-art mutation scheduler and the AFL baseline in our own coverage experiment, in FuzzBench, and by finding 15 out of 21 bugs the fastest in the MAGMA benchmark. Finally, DARWIN found 20 unique bugs (including one novel bug), 66% more than AFL, in widely-used real-world applications.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
-    "authors": [
-      "Patrick Jauernig",
-      "Domagoj Jakobovic",
-      "Stjepan Picek",
-      "Emmanuel Stapf",
-      "Ahmad-Reza Sadeghi"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_JeongKJNSK23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_JeongKJNSK23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/un-rocking-drones-foundations-of-acoustic-injection-attacks-and-recovery-thereof/"
-    },
-    "title": "Un-Rocking Drones: Foundations of Acoustic Injection Attacks and Recovery Thereof.",
+    "title": "Tiktag: Breaking ARM&apos;s Memory Tagging Extension with Speculative Execution.",
     "summary": "",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
     "authors": [
-      "Jinseob Jeong",
-      "Dongkwan Kim 0001",
-      "Joon-Ha Jang",
-      "Juhwan Noh",
-      "Changhun Song",
-      "Yongdae Kim"
+      "Juhee Kim",
+      "Jinbum Park",
+      "Sihyeon Roh",
+      "Jaeyoung Chung",
+      "Youngjoo Lee",
+      "Taesoo Kim",
+      "Byoungyoung Lee"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_JiAYL023",
+    "id": "paper:ieee_sp:conf_sp_KimTU25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_KimTU25",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00194"
+    },
+    "title": "Chimera: Fuzzing P4 Network Infrastructure for Multi-Plane Bug Detection and Vulnerability Discovery.",
+    "summary": "Programmable network data planes, such as P4, offer flexibility in defining network forwarding behavior. However, such programmability introduces a new attack surface for bugs and security vulnerabilities. Most P4 security research has focused solely on the data plane, overlooking its integration with the control plane. We investigated past bug reports in open-source P4 implementations across both control and data planes, and we observed that many P4 network bugs and vulnerabilities arise from the interplay between these planes. We present Chimera, a comprehensive P4 fuzzer that targets bugs requiring multi-plane inputs and impacts. Unlike existing network fuzzers that operate separately on each plane, Chimera uses concolic execution to capture control-data plane interactions. Chimera introduces two novel input mutation strategies to exploit interdependencies across both planes and P4 programs: parser-aware packet mutation (PAPM) and header-guided rule generation (HGRG). Evaluating Chimera on ONOS, Stratum, and BMv2, we discovered 7 new bugs, including 3 security-critical vulnerabilities, 2 bugs triggered by multi-plane inputs, and 2 cross-plane bugs. Chimera outperforms state-of-the-art single-plane fuzzers with higher coverage and a 3.5x higher bug detection rate.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Jiwon Kim 0001",
+      "Dave Jing Tian",
+      "Benjamin E. Ujcich"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_KlemmerSL0SSF25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_KlemmerSL0SSF25",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00038"
+    },
+    "title": "Transparency in Usable Privacy and Security Research: Scholars&apos; Perspectives, Practices, and Recommendations.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Jan H. Klemmer",
+      "Juliane Schmüser",
+      "Byron M. Lowens",
+      "Fabian Fischer 0009",
+      "Lea Schmüser",
+      "Florian Schaub",
+      "Sascha Fahl"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_KlischiesGHMMM25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_KlischiesGHMMM25",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00142"
+    },
+    "title": "BaseBridge: Bridging the Gap Between Over-the-Air and Emulation Testing for Cellular Baseband Firmware.",
+    "summary": "Current approaches for emulating cellular base-bands inherently fall short in comparison to over-the-air testing due to their limited support for the complex peripherals involved in a modern baseband, such as DSPs, SIM cards and RF frontends. Improving such support is a daunting task, requiring deep reverse-engineering which is extremely time consuming - resulting in slow progress. Consequently, techniques such as fuzzing are only able to find relatively shallow bugs, since they are unable to reach the states required for the majority of the baseband to function. To fill this gap, we propose Basebridge, which enables far more comprehensive simulation of baseband behavior by restoring relevant state from memory dumps of real devices. Our prototype implementation supports baseband firmware from two major vendors (MediaTek and Samsung), and - in contrast to current state-of-the-art emulators - correctly responds to 97% of tested RRC and NAS messages while improving coverage by an average factor of 2.41 (Samsung) and 5.54 (MediaTek). Basebridge also passes several LTE conformance tests. Our empirical evaluation demonstrates that this enhanced fidelity enables faster discovery of a wider range of bugs thanks to the scalability of emulation; our fuzzing campaign shows that coverage improves by a factor of 2.3-5x overall, and by a factor of 9.0-22.5x for functionality targeted by our approach. Basebridge unveiled 5 new vulnerabilities, which we have disclosed to affected vendors.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Daniel Klischies",
+      "Dyon Goos",
+      "David Hirsch",
+      "Alyssa Milburn",
+      "Marius Muench",
+      "Veelasha Moonsamy"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_KonkaVCZ25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_KonkaVCZ25",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SPW67851.2025.00047"
+    },
+    "title": "An Agent-Based Model for Evaluating Connected and Autonomous Vehicles, Collective Behaviors and Traffic System Performance.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Rajkumar Konka",
+      "Rakesh M. Verma",
+      "Shun Cao",
+      "Yunpeng Zhang"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_FengMWCMAB24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_FengMWCMAB24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690292"
+    },
+    "title": "Uncovering Gradient Inversion Risks in Practical Language Model Training.",
+    "summary": "The gradient inversion attack has been demonstrated as a significant privacy threat to federated learning (FL), particularly in continuous domains such as vision models. In contrast, it is often considered less effective or highly dependent on impractical training settings when applied to language models, due to the challenges posed by the discrete nature of tokens in text data. As a result, its potential privacy threats remain largely underestimated, despite FL being an emerging training method for language models. In this work, we propose a domain-specific gradient inversion attack named GRAB (<u>gra</u>dient inversion with hy<u>b</u>rid optimization). GRAB features two alternating optimization processes to address the challenges caused by practical training settings, including a simultaneous optimization on dropout masks between layers for improved token recovery and a discrete optimization for effective token sequencing. GRAB can recover a significant portion (up to 92.9% recovery rate) of the private training data, outperforming the attack strategy of utilizing discrete optimization with an auxiliary model by notable improvements of up to 28.9% recovery rate in benchmark settings and 48.5% recovery rate in practical settings. GRAB provides a valuable step forward in understanding this privacy threat in the emerging FL training mode of language models.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Xinguo Feng",
+      "Zhongkui Ma",
+      "Zihan Wang",
+      "Eu Joe Chegne",
+      "Mengyao Ma",
+      "Alsharif Abuadbba",
+      "Guangdong Bai"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_Fenske024",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Fenske024",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690198"
+    },
+    "title": "Bytes to Schlep? Use a FEP: Hiding Protocol Metadata with Fully Encrypted Protocols.",
+    "summary": "Fully Encrypted Protocols (FEPs) have arisen in practice as a technique to avoid network censorship. Such protocols are designed to produce messages that appear completely random. This design hides communications metadata, such as version and length fields, and makes it difficult to even determine what protocol is being used. Moreover, these protocols frequently support padding to hide the length of protocol fields and the contained message. These techniques have relevance well beyond censorship circumvention, as protecting protocol metadata has security and privacy benefits for all Internet communications. The security of FEP designs depends on cryptographic assumptions, but neither security definitions nor proofs exist for them. We provide novel security definitions that capture the metadata-protection goals of FEPs. Our definitions are given in both the datastream and datagram settings, which model the ubiquitous TCP and UDP interfaces available to protocol designers. We prove relations among these new notions and existing security definitions. We further present new FEP constructions and prove their security. Finally, we survey existing FEP candidates and characterize the extent to which they satisfy FEP security. We identify novel ways in which these protocols are identifiable, including their responses to the introduction of data errors and the sizes of their smallest protocol messages.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Ellis Fenske",
+      "Aaron Johnson 0001"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_FischL0P24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_FischL0P24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690326"
+    },
+    "title": "ThorPIR: Single Server PIR via Homomorphic Thorp Shuffles.",
+    "summary": "Private Information Retrieval (PIR) is a two player protocol where the client, given some query x ε [N], interacts with the server, which holds a N-bit string DB, in order to privately retrieve DB[x]. In this work, we focus on the single-server client-preprocessing model, initially proposed by Corrigan-Gibbs and Kogan (EUROCRYPT 2020), where the client and server first run a joint preprocessing algorithm, after which the client can retrieve elements from DB privately in time sublinear in N. Most known constructions of single-server client-preprocessing PIR follow one of two paradigms: They feature either (1) a linear-bandwidth offline phase where the client downloads the whole database from the server, or (2) a sublinear-bandwidth offline phase where however the server has to compute a large-depth (Ωλ(N)) circuit under fully-homomorphic encryption (FHE) in order to execute the preprocessing phase.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Ben Fisch",
+      "Arthur Lazzaretti",
+      "Zeyu Liu 0004",
+      "Charalampos Papamanthou"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_FischlinS24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_FischlinS24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3670360"
+    },
+    "title": "Fake It till You Make It: Enhancing Security of Bluetooth Secure Connections via Deferrable Authentication.",
+    "summary": "The Bluetooth protocol for wireless connection between devices comes with several security measures to protect confidentiality and integrity of data. At the heart of these security protocols lies the Secure Simple Pairing, wherewith the devices can negotiate a shared key before communicating sensitive data. Despite the good intentions, the Bluetooth security protocol has repeatedly been shown to be vulnerable, especially with regard to active attacks on the Secure Simple Pairing.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Marc Fischlin",
+      "Olga Sanina"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_Fournaris024",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Fournaris024",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3691548"
+    },
+    "title": "CCSW 2024 - Cloud Computing Security Workshop.",
+    "summary": "The CCSW workshop aims to bring together researchers and practitioners to explore all aspects of security in cloud-centric and outsourced computing. In CCSW 2024, based on the papers that have been accepted, the workshop is focused on applied cryptographic schemes and protocols for the cloud, cloud-based leakage related attacks and their countermeasures, trusted computing technology in clouds, binary analysis of software for cloud protection, network security mechanisms using AI anomaly detection as well as security for emerging cloud programming models (like extended Berkeley Packet Filter, eBPF, programs). Throughout the years, the workshop particularly encourages novel paradigms and controversial ideas not covered by traditional cloud security research, serving as a fertile ground for creative debate and interaction in security-sensitive areas of computing impacted by cloud technologies. The workshop received 20 submissions, 15 of which passed through a thorough review process of at least 3 reviewers, and 7 of them were accepted for publication and presentation.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Apostolos P. Fournaris",
+      "Paolo Palmieri 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AlrawiIPKBHHS21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AlrawiIPKBHHS21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/alrawi-forecasting"
+    },
+    "title": "Forecasting Malware Capabilities From Cyber Attack Memory Images.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Omar Alrawi",
+      "Moses Ike",
+      "Matthew Pruett",
+      "Ranjita Pai Kasturi",
+      "Srimanta Barua",
+      "Taleb Hirani",
+      "Brennan Hill",
+      "Brendan Saltaformaggio"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AlrawiLVCSMA21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AlrawiLVCSMA21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/alrawi-circle"
+    },
+    "title": "The Circle Of Life: A Large-Scale Study of The IoT Malware Lifecycle.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Omar Alrawi",
+      "Charles Lever",
+      "Kevin Valakuzhy",
+      "Ryan Court",
+      "Kevin Z. Snow",
+      "Fabian Monrose",
+      "Manos Antonakakis"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AlsaheelNMYWC0X21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AlsaheelNMYWC0X21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel"
+    },
+    "title": "ATLAS: A Sequence-based Learning Approach for Attack Investigation.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Abdulellah Alsaheel",
+      "Yuhong Nan",
+      "Shiqing Ma",
+      "Le Yu",
+      "Gregory Walkup",
+      "Z. Berkay Celik",
+      "Xiangyu Zhang 0001",
+      "Dongyan Xu"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AnthoineDJMPHR21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AnthoineDJMPHR21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/anthoine"
+    },
+    "title": "Dynamic proofs of retrievability with low server storage.",
+    "summary": "Proofs of Retrievability (PoRs) are protocols which allow a client to store data remotely and to efficiently ensure, via audits, that the entirety of that data is still intact. A dynamic PoR system also supports efficient retrieval and update of any small portion of the data. We propose new, simple protocols for dynamic PoR that are designed for practical efficiency, trading decreased persistent storage for increased server computation, and show in fact that this tradeoff is inherent via a lower bound proof of time-space for any PoR scheme. Notably, ours is the first dynamic PoR which does not require any special encoding of the data stored on the server, meaning it can be trivially composed with any database service or with existing techniques for encryption or redundancy. Our implementation and deployment on Google Cloud Platform demonstrates our solution is scalable: for example, auditing a 1TB file takes just less than 5 minutes and costs less than $0.08 USD. We also present several further enhancements, reducing the amount of client storage, or the communication bandwidth, or allowing public verifiability, wherein any untrusted third party may conduct an audit.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Gaspard Anthoine",
+      "Jean-Guillaume Dumas",
+      "Mélanie de Jonghe",
+      "Aude Maignan",
+      "Clément Pernet",
+      "Michael Hanling",
+      "Daniel S. Roche"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_ArdiHS21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_ArdiHS21",
+      "source_name": "USENIX Security",
+      "source_url": "https://doi.org/10.1145/3474718.3474721"
+    },
+    "title": "Building Reproducible Video Streaming Traffic Generators.",
+    "summary": "Video streaming traffic dominates Internet traffic. However, there is a dearth of tools to generate such traffic on emulation-based testbeds. In this paper we present tools to create representative and reproducible video streaming traffic to evaluate the next generation of traffic classification, Quality of Service (QoS) algorithms and traffic engineering systems. We discuss 27 different combinations of streaming video traffic types in this preliminary work, and illustrate the diversity of network-level dynamics in these protocols.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Calvin Ardi",
+      "Alefiya Hussain",
+      "Stephen Schwab"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LingLRKD25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_JiAYL023",
+      "native_id": "conf_ndss_LingLRKD25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/privacy-preserving-database-fingerprinting/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/gadgetmeter-quantitatively-and-accurately-gauging-the-exploitability-of-speculative-gadgets/"
     },
-    "title": "Privacy-Preserving Database Fingerprinting.",
-    "summary": "-entry-level DP fingerprinting mechanism. We theoretically analyze the connections between privacy, fingerprint robustness, and database utility by deriving closed form expressions. We also propose a sparse vector technique-based solution to control the cumulative privacy loss when fingerprinted copies of a database are shared with multiple recipients. We experimentally show that our mechanism achieves strong fingerprint robustness (e.g., the fingerprint cannot be compromised even if the malicious database recipient modifies/distorts more than half of the entries in its received fingerprinted copy), and higher database utility compared to various baseline methods (e.g., application-dependent database utility of the shared database achieved by the proposed mechanism is higher than that of the considered baselines).",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
+    "title": "GadgetMeter: Quantitatively and Accurately Gauging the Exploitability of Speculative Gadgets.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
     "authors": [
-      "Tianxi Ji",
-      "Erman Ayday",
-      "Emre Yilmaz 0002",
-      "Ming Li 0006",
-      "Pan Li 0001"
+      "Qi Ling",
+      "Yujun Liang",
+      "Yi Ren",
+      "Baris Kasikci",
+      "Shuwen Deng"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Jin0CD0W23",
+    "id": "paper:ndss:conf_ndss_LiuL0PL00C25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Jin0CD0W23",
+      "native_id": "conf_ndss_LiuL0PL00C25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/a-security-study-about-electron-applications-and-a-programming-methodology-to-tame-dom-functionalities/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/kronos-a-secure-and-generic-sharding-blockchain-consensus-with-optimized-overhead/"
     },
-    "title": "A Security Study about Electron Applications and a Programming Methodology to Tame DOM Functionalities.",
-    "summary": "The Electron platform represents a paradigm to develop modern desktop apps using HTML and JavaScript.Microsoft Teams, Visual Studio Code and other flagship products are examples of Electron apps.This new paradigm inherits the security challenges in web programming into the desktop-app realm, thus opens a new way for local-machine exploitation.We conducted a security study about real-world Electron apps, and discovered many vulnerabilities that are now confirmed by the app vendors.The conventional wisdom is to view these bugs as sanitization errors.Accordingly, secure programming requires programmers to explicitly enumerate all kinds of unexpected inputs to sanitize.We believe that secure programming should focus on specifying programmers' intentions as opposed to their non-intentions.We introduce a concept called DOM-tree type, which expresses the set of DOM trees that an app expects to see during execution, so an exploit will be caught as a type violation.With insights into the HTML standard and the Chromium engine, we build the DOM-tree type mechanism into the Electron platform.The evaluations show that the methodology is practical, and it secures all vulnerable apps that we found in the study.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
+    "title": "Kronos: A Secure and Generic Sharding Blockchain Consensus with Optimized Overhead.",
+    "summary": "Sharding enhances blockchain scalability by dividing the network into shards, each managing specific unspent transaction outputs or accounts. As an introduced new transaction type, cross-shard transactions pose a critical challenge to the security and efficiency of sharding blockchains. Currently, there is a lack of a generic sharding consensus pattern that achieves both security and low overhead. In this paper, we present Kronos, a secure sharding blockchain consensus achieving optimized overhead. In particular, we propose a new secure sharding consensus pattern, based on a buffer managed jointly by shard members. Valid transactions are transferred to the payee via the buffer, while invalid ones are rejected through happy or unhappy paths. Kronos is proved to achieve security with atomicity under malicious clients with optimal intra-shard overhead $kB$ ($k$ for involved shard number and $B$ for a Byzantine fault tolerance (BFT) cost). Besides, we propose secure cross-shard certification methods based on batch certification and reliable cross-shard transfer. The former combines hybrid trees or vector commitments, while the latter integrates erasure coding. Handling $b$ transactions, Kronos is proved to achieve reliability with low cross-shard overhead $O(n b λ)$ ($n$ for shard size and $λ$ for the security parameter). Notably, Kronos imposes no restrictions on BFT and does not rely on time assumptions, offering optional constructions in various modules. We implement Kronos using two prominent BFT protocols: asynchronous Speeding Dumbo and partial synchronous Hotstuff. Extensive experiments demonstrate Kronos scales the consensus nodes to thousands, achieving a substantial throughput of 320 ktx/sec with 2.0 sec latency. Compared with the past solutions, Kronos outperforms, achieving up to a 12* improvement in throughput and a 50% reduction in latency.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
     "authors": [
-      "Zihao Jin",
-      "Shuo Chen 0001",
-      "Yang Chen",
-      "Haixin Duan",
-      "Jianjun Chen 0005",
-      "Jianping Wu"
+      "Yizhong Liu",
+      "Andi Liu",
+      "Yuan Lu 0001",
+      "Zhuocheng Pan",
+      "Yinuo Li",
+      "Jianwei Liu 0001",
+      "Song Bian 0001",
+      "Mauro Conti"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_JordanNOPT23",
+    "id": "paper:ndss:conf_ndss_LiuLM0L0025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_JordanNOPT23",
+      "native_id": "conf_ndss_LiuLM0L0025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-336/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/l-hawk-a-controllable-physical-adversarial-patch-against-a-long-distance-target/"
     },
-    "title": "VICEROY: GDPR-/CCPA-compliant Enforcement of Verifiable Accountless Consumer Requests.",
-    "summary": "Recent data protection regulations (such as GDPR and CCPA) grant consumers various rights, including the right to access, modify or delete any personal information collected about them (and retained) by a service provider. To exercise these rights, one must submit a verifiable consumer request proving that the collected data indeed pertains to them. This action is straightforward for consumers with active accounts with a service provider at the time of data collection, since they can use standard (e.g., password-based) means of authentication to validate their requests. However, a major conundrum arises from the need to support consumers without accounts to exercise their rights. To this end, some service providers began requiring such accountless consumers to reveal and prove their identities (e.g., using government-issued documents, utility bills, or credit card numbers) as part of issuing a verifiable consumer request. While understandable as a short-term cure, this approach is cumbersome and expensive for service providers as well as privacy-invasive for consumers. Consequently, there is a strong need to provide better means of authenticating requests from accountless consumers. To achieve this, we propose VICEROY, a privacy-preserving and scalable framework for producing proofs of data ownership, which form a basis for verifiable consumer requests. Building upon existing web techniques and features, VICEROY allows accountless consumers to interact with service providers, and later prove that they are the same person in a privacy-preserving manner, while requiring minimal changes for both parties. We design and implement VICEROY with emphasis on security/privacy, deployability and usability. We also thoroughly assess its practicality via extensive experiments.",
-    "published_at": "2026-05-09T04:06:04.558930+00:00",
-    "fetched_at": "2026-05-09T04:06:04.558930+00:00",
+    "title": "L-HAWK: A Controllable Physical Adversarial Patch Against a Long-Distance Target.",
+    "summary": "",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
     "authors": [
-      "Scott Jordan 0001",
-      "Yoshimichi Nakatsuka",
-      "Ercan Ozturk",
-      "Andrew Paverd",
-      "Gene Tsudik"
+      "Taifeng Liu",
+      "Yang Liu 0118",
+      "Zhuo Ma 0001",
+      "Tong Yang 0003",
+      "Xinjing Liu",
+      "Teng Li 0003",
+      "Jianfeng Ma 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiuMZLLLZL25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiuMZLLLZL25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/provguard-detecting-sdn-control-policy-manipulation-via-contextual-semantics-of-provenance-graphs/"
+    },
+    "title": "ProvGuard: Detecting SDN Control Policy Manipulation via Contextual Semantics of Provenance Graphs.",
+    "summary": "Software-Defined Networking (SDN) improves network flexibility by decoupling control functions (control plane) from forwarding devices (data plane).However, the logically centralized control plane is vulnerable to Control Policy Manipulation (CPM), which introduces incorrect policies by manipulating the controller's network view.Current methods for anomaly detection and configuration verification have limitations in detecting CPM attacks because they focus solely on the data plane.Certain covert CPM attacks are indistinguishable from normal behavior without analyzing the causality of the controller's decisions.In this paper, we propose PROVGUARD, a provenance graph-based detection framework that identifies CPM attacks by monitoring controller activities.PROVGUARD leverages static analysis to identify data-plane-related controller operations and guide controller instrumentation, constructing a provenance graph from captured control plane activities.PROVGUARD reduces redundancies and extracts paths in the provenance graph as contexts to capture concise and long-term features.Suspicious behaviors are flagged by identifying paths that cause prediction errors beyond the normal range, based on a sequence-to-sequence prediction model.We implemented a prototype of PROVGUARD on the Floodlight controller.Our approach successfully identified all four typical CPM attacks that previous methods could not fully address and provided valuable insights for investigating attack behaviors.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Ziwen Liu",
+      "Jian Mao",
+      "Jun Zeng 0006",
+      "Jiawei Li",
+      "Qixiao Lin",
+      "Jiahao Liu 0005",
+      "Jianwei Zhuge",
+      "Zhenkai Liang"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiuQ0LS25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiuQ0LS25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/ladder-multi-objective-backdoor-attack-via-evolutionary-algorithm/"
+    },
+    "title": "LADDER: Multi-Objective Backdoor Attack via Evolutionary Algorithm.",
+    "summary": "Current black-box backdoor attacks in convolutional neural networks formulate attack objective(s) as single-objective optimization problems in single domain. Designing triggers in single domain harms semantics and trigger robustness as well as introduces visual and spectral anomaly. This work proposes a multi-objective black-box backdoor attack in dual domains via evolutionary algorithm (LADDER), the first instance of achieving multiple attack objectives simultaneously by optimizing triggers without requiring prior knowledge about victim model. In particular, we formulate LADDER as a multi-objective optimization problem (MOP) and solve it via multi-objective evolutionary algorithm (MOEA). MOEA maintains a population of triggers with trade-offs among attack objectives and uses non-dominated sort to drive triggers toward optimal solutions. We further apply preference-based selection to MOEA to exclude impractical triggers. We state that LADDER investigates a new dual-domain perspective for trigger stealthiness by minimizing the anomaly between clean and poisoned samples in the spectral domain. Lastly, the robustness against preprocessing operations is achieved by pushing triggers to low-frequency regions. Extensive experiments comprehensively showcase that LADDER achieves attack effectiveness of at least 99%, attack robustness with 90.23% (50.09% higher than state-of-the-art attacks on average), superior natural stealthiness (1.12x to 196.74x improvement) and excellent spectral stealthiness (8.45x enhancement) as compared to current stealthy attacks by the average $l_2$-norm across 5 public datasets.",
+    "published_at": "2026-05-10T04:34:57.320040+00:00",
+    "fetched_at": "2026-05-10T04:34:57.320040+00:00",
+    "authors": [
+      "Dazhuang Liu",
+      "Yanqi Qiao",
+      "Rui Wang 0070",
+      "Kaitai Liang",
+      "Georgios Smaragdakis"
     ]
   }
 ]
