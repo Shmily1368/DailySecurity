@@ -1,114 +1,428 @@
 [
   {
-    "id": "paper:ndss:conf_ndss_CeliDHPR25",
+    "id": "paper:ieee_sp:conf_sp_BlassK23a",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_CeliDHPR25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/distefano-decentralized-infrastructure-for-sharing-trusted-encrypted-facts-and-nothing-more/"
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_BlassK23a",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179337"
     },
-    "title": "DiStefano: Decentralized Infrastructure for Sharing Trusted Encrypted Facts and Nothing More.",
+    "title": "Private Collaborative Data Cleaning via Non-Equi PSI.",
+    "summary": "We introduce and investigate the privacy-preserving version of collaborative data cleaning. With collaborative data cleaning, two parties want to reconcile their data sets to filter out badly classified, misclassified data items. In the privacy-preserving (private) version of data cleaning, the additional security goal is that parties should only learn their misclassified data items, but nothing else about the other party’s data set. The problem of private data cleaning is essentially a variation of private set intersection (PSI), and one could employ recent circuit-PSI techniques to compute misclassifications with privacy. However, we design, analyze, and implement three new protocols tailored to the specifics of private data cleaning that outperform a circuit-PSI-based approach. With the first protocol, we exploit the idea that a small additional leakage (the differentially private size of the intersection of data items) allows for a reduction in complexity over circuit-PSI. The other two protocols convert the problem of finding a mismatch in data classifications into finding a match, and then follow the standard technique of using oblivious pseudorandom functions (OPRF) for computing PSI. Depending on the number of data classes, this leads to a concrete runtime improvement over circuit-PSI.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Erik-Oliver Blass",
+      "Florian Kerschbaum"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_BlockiL23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_BlockiL23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179431"
+    },
+    "title": "Towards a Rigorous Statistical Analysis of Empirical Password Datasets.",
+    "summary": "A central challenge in password security is to characterize the attacker's guessing curve i.e., what is the probability that the attacker will crack a random user's password within the first G guesses. A key challenge is that the guessing curve depends on the attacker's guessing strategy and the distribution of user passwords both of which are unknown to us. In this work we aim to follow Kerckhoffs's principal and analyze the performance of an optimal attacker who knows the password distribution. Let λ <inf xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">G</inf> denote the probability that such an attacker can crack a random user's password within G guesses. We develop several statistically rigorous techniques to upper and lower bound λ <inf xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">G</inf> given N independent samples from the unknown password distribution ${\\mathcal{P}}$. We show that our upper/lower bounds on λ <inf xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">G</inf> hold with high confidence and we apply our techniques to analyze eight large password datasets. Our empirical analysis shows that even state-of-the-art password cracking models are often significantly less guess efficient than an attacker who can optimize its attack based on its (partial) knowledge of the password distribution. We also apply our statistical tools to re-examine different models of the password distribution i.e., the empirical password distribution and Zipf's Law. We find that the empirical distribution closely matches our upper/lower bounds on λ <inf xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">G</inf> when the guessing number G is not too large i.e., G ≪ N. However, for larger values of G our empirical analysis rigorously demonstrates that the empirical distribution (resp. Zipf's Law) overestimates the attacker's success rate. We apply our statistical techniques to upper/lower bound the effectiveness of password throttling mechanisms (key-stretching) which are used to reduce the number of attacker guesses G. Finally, if we are willing to make an additional assumption about the way users respond to password restrictions, we can use our statistical techniques to evaluate the effectiveness of various password composition policies which restrict the passwords that users may select.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Jeremiah Blocki",
+      "Peiyuan Liu"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_BorrelloESC023",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_BorrelloESC023",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SPW59333.2023.00031"
+    },
+    "title": "CustomProcessingUnit: Reverse Engineering and Customization of Intel Microcode.",
+    "summary": "Microcode provides an abstraction layer over the instruction set to decompose complex instructions into simpler micro-operations that can be more easily implemented in hardware. It is an essential optimization to simplify the design of x86 processors. However, introducing an additional layer of software beneath the instruction set poses security and reliability concerns. The microcode details are confidential to the manufacturers, preventing independent auditing or customization of the microcode. Moreover, microcode patches are signed and encrypted to prevent unauthorized patching and reverse engineering. However, recent research has recovered decrypted microcode and reverse-engineered read/write debug mechanisms on Intel Goldmont (Atom), making analysis and customization of microcode possible on a modern Intel microarchitecture. In this work, we present the first framework for static and dynamic analysis of Intel microcode. Building upon prior research, we reverse-engineer Goldmont microcode semantics and reconstruct the patching primitives for microcode customization. For static analysis, we implement a Ghidra processor module for decompilation and analysis of decrypted microcode. For dynamic analysis, we create a UEFI application that can trace and patch microcode to provide complete microcode control on Goldmont systems. Leveraging our framework, we reverse-engineer the confidential Intel microcode update algorithm and perform the first security analysis of its design and implementation. In three further case studies, we illustrate the potential security and performance benefits of microcode customization. We provide the first x86 Pointer Authentication Code (PAC) microcode implementation and its security evaluation, design and implement fast software breakpoints that are more than 1000x faster than standard breakpoints, and present constant-time microcode division, illustrating the potential security and performance benefits of microcode customization.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Pietro Borrello",
+      "Catherine Easdon",
+      "Martin Schwarzl",
+      "Roland Czerny",
+      "Michael Schwarz 0001"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_Botacin23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_Botacin23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SPW59333.2023.00027"
+    },
+    "title": "GPThreats-3: Is Automatic Malware Generation a Threat?",
+    "summary": "Recent research advances introduced large textual models, of which GPT-3 is state-of-the-art. They enable many applications, such as generating text and code. Whereas the model's capabilities might be explored for good, they might also cause some negative impact: The model's code generation capabilities might be used by attackers to assist in malware creation, a phenomenon that must be understood. In this work, our goal is to answer the question: Can current large textual models (represented by GPT-3) already be used by attackers to generate malware? If so: How can attackers use these models? We explore multiple coding strategies, ranging from the entire mal ware description to separate descriptions of mal ware functions that can be used as building blocks. We also test the model's ability to rewrite malware code in multiple manners. Our experiments show that GPT-3 still has trouble generating entire malware samples from complete descriptions but that it can easily construct malware via building block descriptions. It also still has limitations to understand the described contexts, but once it is done it generates multiple versions of the same semantic (malware variants), whose detection rate significantly varies (from 4 to 55 Virustotal AV s).",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Marcus Botacin"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_BrodinSS23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_BrodinSS23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SPW59333.2023.00021"
+    },
+    "title": "Blind Spots: Identifying Exploitable Program Inputs.",
+    "summary": "A blind spot is any input to a program that can be arbitrarily mutated without affecting the program's output. Blind spots can be used for steganography or to embed malware payloads. If blind spots overlap file format keywords, they indicate parsing bugs that can lead to exploitable differentials. For example, one could craft a document that renders one way in one viewer and a completely different way in another viewer. They have also been used to circumvent code signing in Android binaries, to coerce certificate authorities to misbehave, and to execute HTTP request smuggling and parameter pollution attacks. This paper formalizes the operational semantics of blind spots, leading to a technique based on dynamic information flow tracking that automatically detects blind spots. An efficient implementation is introduced and evaluated against a corpus of over a thousand diverse PDFs parsed through MµPDF <sup xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">1</sup> <sup xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">1</sup> https://mupdf.com/, revealing exploitable bugs in the parser. All of the blind spot classifications are confirmed to be correct and the missed detection rate is no higher than 11 %. On average, at least 5 % of each PDF file is completely ignored by the parser. Our results show promise that this technique is an efficient automated means to detect exploitable parser bugs, over-permissiveness and differentials. Nothing in the technique is tied to PDF in general, so it can be immediately applied to other notoriously difficult-to-parse formats like ELF, X.509, and XML.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Henrik Brodin",
+      "Marek Surovic",
+      "Evan Sultanik"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_HofmannFKV24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_HofmannFKV24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690263"
+    },
+    "title": "Gaussian Elimination of Side-Channels: Linear Algebra for Memory Coloring.",
+    "summary": "Memory coloring is a software-based technique to ensure microarchitectural isolation between trust domains sharing a CPU. Prior coloring schemes target individual microarchitectural components and thus provide only partial solutions. In this paper, we provide theoretical foundations and practical algorithms to infer comprehensive coloring schemes for modern cloud CPUs.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Jana Hofmann",
+      "Cédric Fournet",
+      "Boris Köpf",
+      "Stavros Volos"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_HofmannT24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_HofmannT24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690309"
+    },
+    "title": "End-to-End Encrypted Cloud Storage in the Wild: A Broken Ecosystem.",
+    "summary": "End-to-end encrypted cloud storage offers a way for individuals and organisations to delegate their storage needs to a third-party, while keeping control of their data using cryptographic techniques. We conduct a cryptographic analysis of various products in the ecosystem, showing that many providers fail to provide an adequate level of security. In particular, we provide an in-depth analysis of five end-to-end encrypted cloud storage systems, namely Sync, pCloud, Icedrive, Seafile, and Tresorit, in the setting of a malicious server. These companies cumulatively have over 22 million users and are major providers in the field. We unveil severe cryptographic vulnerabilities in four of them. Our attacks invalidate the marketing claims made by the providers of these systems, showing that a malicious server can, in some cases, inject files in the encrypted storage of users, tamper with file data, and even gain direct access to the content of the files. Many of our attacks affect multiple providers in the same way, revealing common failure patterns in independent cryptographic designs. We conclude by discussing the significance of these patterns beyond the security of the specific providers.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Jonas Hofmann",
+      "Kien Tuong Truong"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_HolohanB024",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_HolohanB024",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690347"
+    },
+    "title": "Securing Floating-Point Arithmetic for Noise Addition.",
+    "summary": "Floating-point arithmetic is ubiquitous across computing, with its wide range of values, large and small, making it the preferred tool for storing, analysing, and manipulating numerical data. Its flexibility comes at the cost of additional risks in some security/privacy-aware settings. In this paper, we discuss the threat of information leakage caused by floating-point arithmetic when adding noise to sensitive values, which can allow the sensitive information to be recovered (e.g., in differential privacy). We present a solution, Mantissa Bit Manipulation (MBM), that is orders of magnitude faster than the current state-of-the-art, applicable to most continuous probability distributions and to all floating-point number formats.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Naoise Holohan",
+      "Stefano Braghin",
+      "Mohamed Suliman 0002"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_Hong0WBH24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Hong0WBH24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690343"
+    },
+    "title": "Certifiable Black-Box Attacks with Randomized Adversarial Examples: Breaking Defenses with Provable Confidence.",
+    "summary": "Black-box adversarial attacks have demonstrated strong potential to compromise machine learning models by iteratively querying the target model or leveraging transferability from a local surrogate model.Recently, such attacks can be effectively mitigated by state-of-the-art (SOTA) defenses, e.g., detection via the pattern of sequential queries, or injecting noise into the model. To our best knowledge, we take the first step to study a new paradigm of black-box attacks with provable guarantees -- certifiable black-box attacks that can guarantee the attack success probability (ASP) of adversarial examples before querying over the target model. This new black-box attack unveils significant vulnerabilities of machine learning models, compared to traditional empirical black-box attacks, e.g., breaking strong SOTA defenses with provable confidence, constructing a space of (infinite) adversarial examples with high ASP, and the ASP of the generated adversarial examples is theoretically guaranteed without verification/queries over the target model. Specifically, we establish a novel theoretical foundation for ensuring the ASP of the black-box attack with randomized adversarial examples (AEs). Then, we propose several novel techniques to craft the randomized AEs while reducing the perturbation size for better imperceptibility. Finally, we have comprehensively evaluated the certifiable black-box attacks on the CIFAR10/100, ImageNet, and LibriSpeech datasets, while benchmarking with 16 SOTA black-box attacks, against various SOTA defenses in the domains of computer vision and speech recognition. Both theoretical and experimental results have validated the significance of the proposed attack.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Hanbin Hong",
+      "Xinyu Zhang 0016",
+      "Binghui Wang",
+      "Zhongjie Ba",
+      "Yuan Hong 0001"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_HongKM24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_HongKM24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3691399"
+    },
+    "title": "Poster: Detecting Ransomware Attacks by Analyzing Replicated Block Snapshots Using Neural Networks.",
+    "summary": "Cloud antivirus solutions address limitations of host-based malware detection such as extensive resource consumption. However, they remain vulnerable to sophisticated polymorphic and privileged malware. Also, existing solutions are not suitable to defend against destructive ransomware attacks. We propose an enhancement to existing cloud antivirus solutions that enables deep learning-based block snapshot analysis to detect evasive and privileged ransomware in virtualized environment without requiring any hardware support. Preliminary results validate the proposed approach.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Seok Min Hong",
+      "Beom Heyn Kim",
+      "Mohammad Mannan"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_NguyenDIV25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_NguyenDIV25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/nguyen"
+    },
+    "title": "&quot;Please don&apos;t send that bot anything&quot;: A Mixed-methods Study of Personal Impersonation Attacks Targeting Digital Payments on Social Media.",
     "summary": "",
-    "published_at": "2026-05-13T04:33:07.384040+00:00",
-    "fetched_at": "2026-05-13T04:33:07.384040+00:00",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
     "authors": [
-      "Sofía Celi",
-      "Alex Davidson",
-      "Hamed Haddadi 0001",
-      "Gonçalo Pestana",
-      "Joe Rowell"
+      "Hoang Dai Nguyen",
+      "Sumit Dhungana",
+      "Madhulika Itha",
+      "Phani Vadrevu"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_ChangSHHZK25",
+    "id": "paper:usenix_security:conf_uss_NiksiratVMMTBHH25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_NiksiratVMMTBHH25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/niksirat"
+    },
+    "title": "Addressing the Address Books&apos; (Interdependent) Privacy Issues.",
+    "summary": "",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Kavous Salehzadeh Niksirat",
+      "Lev Velykoivanenko",
+      "Samuel Mätzler",
+      "Stephan Mulders",
+      "Aurelia Tamò-Larrieux",
+      "Marc-Olivier Boldi",
+      "Mathias Humbert",
+      "Kévin Huguenin"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_NongY0HC25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_NongY0HC25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/nong"
+    },
+    "title": "APPATCH: Automated Adaptive Prompting Large Language Models for Real-World Software Vulnerability Patching.",
+    "summary": "Timely and effective vulnerability patching is essential for cybersecurity defense, for which various approaches have been proposed yet still struggle to generate valid and correct patches for real-world vulnerabilities. In this paper, we leverage the power and merits of pre-trained language language models (LLMs) to enable automated vulnerability patching using no test input/exploit evidence and without model training/fine-tuning. To elicit LLMs to effectively reason about vulnerable code behaviors, which is essential for quality patch generation, we introduce vulnerability semantics reasoning and adaptive prompting on LLMs and instantiate the methodology as APPATCH, an automated LLM-based patching system. Our evaluation of APPATCH on 97 zero-day vulnerabilities and 20 existing vulnerabilities demonstrates its superior performance to both existing prompting methods and state-of-the-art non-LLM-based techniques (by up to 28.33% in F1 and 182.26% in recall over the best baseline). Through APPATCH, we demonstrate what helps for LLM-based patching and how, as well as discussing what still lacks and why.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Yu Nong",
+      "Haoran Yang 0002",
+      "Long Cheng 0005",
+      "Hongxin Hu",
+      "Haipeng Cai"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_Olivier-AnclinB25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_Olivier-AnclinB25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/olivier-anclin"
+    },
+    "title": "Who Pays Whom? Anonymous EMV-Compliant Contactless Payments.",
+    "summary": "International audience",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Charles Olivier-Anclin",
+      "Ioana Boureanu",
+      "Liqun Chen 0002",
+      "Christopher J. P. Newton",
+      "Tom Chothia",
+      "Anna Clee",
+      "Andreas Kokkinis",
+      "Pascal Lafourcade 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_OlszewskiTBT25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_OlszewskiTBT25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/olszewski"
+    },
+    "title": "SoK: Towards a Unified Approach to Applied Replicability for Computer Security.",
+    "summary": "",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Daniel Olszewski",
+      "Tyler Tucker",
+      "Kevin R. B. Butler",
+      "Patrick Traynor"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_YaoLGHP25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ChangSHHZK25",
+      "native_id": "conf_ndss_YaoLGHP25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/magmaw-modality-agnostic-adversarial-attacks-on-machine-learning-based-wireless-communication-systems/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/urvfl-undetectable-data-reconstruction-attack-on-vertical-federated-learning/"
     },
-    "title": "Magmaw: Modality-Agnostic Adversarial Attacks on Machine Learning-Based Wireless Communication Systems.",
-    "summary": "Machine Learning (ML) has been instrumental in enabling joint transceiver optimization by merging all physical layer blocks of the end-to-end wireless communication systems.Although there have been a number of adversarial attacks on ML-based wireless systems, the existing methods do not provide a comprehensive view including multi-modality of the source data, common physical layer protocols, and wireless domain constraints.This paper proposes Magmaw, a novel wireless attack methodology capable of generating universal adversarial perturbations for any multimodal signal transmitted over a wireless channel.We further introduce new objectives for adversarial attacks on downstream applications.We adopt the widely-used defenses to verify the resilience of Magmaw.For proof-of-concept evaluation, we build a real-time wireless attack platform using a software-defined radio system.Experimental results demonstrate that Magmaw causes significant performance degradation even in the presence of strong defense mechanisms.Furthermore, we validate the performance of Magmaw in two case studies: encrypted communication channel and channel modality-based ML model.Our code is available at https://github.com/juc023/Magmaw.",
-    "published_at": "2026-05-13T04:33:07.384040+00:00",
-    "fetched_at": "2026-05-13T04:33:07.384040+00:00",
+    "title": "URVFL: Undetectable Data Reconstruction Attack on Vertical Federated Learning.",
+    "summary": "Vertical Federated Learning (VFL) is a collaborative learning paradigm designed for scenarios where multiple clients share disjoint features of the same set of data samples. Albeit a wide range of applications, VFL is faced with privacy leakage from data reconstruction attacks. These attacks generally fall into two categories: honest-but-curious (HBC), where adversaries steal data while adhering to the protocol; and malicious attacks, where adversaries breach the training protocol for significant data leakage. While most research has focused on HBC scenarios, the exploration of malicious attacks remains limited. Launching effective malicious attacks in VFL presents unique challenges: 1) Firstly, given the distributed nature of clients’ data features and models, each client rigorously guards its privacy and prohibits direct querying, complicating any attempts to steal data; 2) Existing malicious attacks alter the underlying VFL training task, and are hence easily detected by comparing the received gradients with the ones received in honest training. To overcome these challenges, we develop URVFL, a novel attack strategy that evades current detection mechanisms. The key idea is to integrate a discriminator with auxiliary classifier that takes a full advantage of the label information and generates malicious gradients to the victim clients: on one hand, label information helps to better characterize embeddings of samples from distinct classes, yielding an improved reconstruction performance; on the other hand, computing malicious gradients with label information better mimics the honest training, making the malicious gradients indistinguishable from the honest ones, and the attack much more stealthy. Our comprehensive experiments demonstrate that URVFL significantly outperforms existing attacks, and successfully circumvents SOTA detection methods for malicious attacks. Additional ablation studies and evaluations on defenses further underscore the robustness and effectiveness of URVFL.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
     "authors": [
-      "Jung-Woo Chang",
-      "Ke Sun 0012",
-      "Nasimeh Heydaribeni",
-      "Seira Hidano",
-      "Xinyu Zhang 0003",
-      "Farinaz Koushanfar"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_CheLW25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_CheLW25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/manifoldchain-maximizing-blockchain-throughput-via-bandwidth-clustered-sharding/"
-    },
-    "title": "Manifoldchain: Maximizing Blockchain Throughput via Bandwidth-Clustered Sharding.",
-    "summary": "Bandwidth limitation is the major bottleneck that hinders scaling throughput of proof-of-work blockchains.To guarantee security, the mining rate of the blockchain is determined by the miners with the lowest bandwidth, resulting in an inefficient bandwidth utilization among fast miners.We propose Manifoldchain, an innovative blockchain sharding protocol that alleviates the impact of slow miners to maximize blockchain throughput.Manifoldchain utilizes a bandwidth-clustered shard formation mechanism that groups miners with similar bandwidths into the same shard.Consequently, this approach enables us to set an optimal mining rate for each shard based on its bandwidth, effectively reducing the waiting time caused by slow miners.Nevertheless, the adversary could corrupt miners with similar bandwidths, thereby concentrating hashing power and potentially creating an adversarial majority within a single shard.To counter this adversarial strategy, we introduce sharing mining, allowing the honest mining power of the entire network to participate in the secure ledger formation of each shard, thereby achieving the same level of security as an unsharded blockchain.Additionally, we introduce an asynchronous atomic commitment mechanism to ensure transaction atomicity across shards with various mining rates.Our theoretical analysis demonstrates that Manifoldchain scales linearly in throughput with the increase in shard numbers and inversely with network delay in each shard.We implement a full system prototype of Manifoldchain, comprehensively evaluated on both simulated and real-world testbeds.These experiments validate its vertical scalability with network bandwidth and horizontal scalability with network size, achieving a substantial improvement of 186% in throughput over baseline sharding protocols, for scenarios where bandwidths of miners range from 5Mbps to 60Mbps.",
-    "published_at": "2026-05-13T04:33:07.384040+00:00",
-    "fetched_at": "2026-05-13T04:33:07.384040+00:00",
-    "authors": [
-      "Chunjiang Che",
+      "Duanyi Yao",
       "Songze Li",
-      "Xuechao Wang"
+      "Xueluan Gong",
+      "Sizai Hou",
+      "Gaoning Pan"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Chen0ZW0XD25",
+    "id": "paper:ndss:conf_ndss_Ye025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Chen0ZW0XD25",
+      "native_id": "conf_ndss_Ye025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/cross-origin-web-attacks-via-http-2-server-push-and-signed-http-exchange/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/too-subtle-to-notice-investigating-executable-stack-issues-in-linux-systems/"
     },
-    "title": "Cross-Origin Web Attacks via HTTP/2 Server Push and Signed HTTP Exchange.",
-    "summary": "In this paper, we investigate the security implications of HTTP/2 server push and signed HTTP exchange (SXG) on the Same-Origin Policy (SOP), a fundamental web security mechanism designed to prevent cross-origin attacks.We identify a vulnerability introduced by these features, where the traditional strict SOP origin based on URI is undermined by a more permissive HTTP/2 authority based on the SubjectAlternative-Name (SAN) list in the TLS certificate.This relaxation of origin constraints, coupled with the prevalent use of shared certificates among unrelated domains, poses significant security risks, allowing attackers to bypass SOP protections.We introduce two novel attack vectors, CrossPUSH and CrossSXG, which enable an off-path attacker to execute a wide range of cross-origin web attacks, including arbitrary cross-site scripting (XSS), cookie manipulation, and malicious file downloads, across all domains listed in a shared certificate.Our investigation reveals the practicality and prevalence of these threats, with our measurements uncovering vulnerabilities in widely-used web browsers such as Chrome and Edge, and notable websites including Microsoft.We responsibly disclose our findings to affected vendors and receive acknowledgments from Huawei, Baidu, Microsoft, etc.",
-    "published_at": "2026-05-13T04:33:07.384040+00:00",
-    "fetched_at": "2026-05-13T04:33:07.384040+00:00",
+    "title": "Too Subtle to Notice: Investigating Executable Stack Issues in Linux Systems.",
+    "summary": "Code injection was a favored technique for attackers to exploit buffer overflow vulnerabilities decades ago.Subsequently, the widespread adoption of lightweight solutions like write-xor-execute (WX) effectively mitigated most of these attacks by disallowing writable-and-executable memory.However, we observe multiple concerning cases where software developers accidentally disabled WX and reintroduced executable stacks to popular applications.Although each violation has been properly fixed, a lingering question remains: what underlying factors contribute to these recurrent mistakes among developers, even in contemporary software development practices?In this paper, we conduct two investigations to gain a comprehensive understanding of the challenges associated with properly enforcing WX in Linux systems.First, we delve into program-hardening tools to assess whether experienced security developers consistently catch the necessary steps to avoid executable stacks.Second, we analyze the enforcement of WX on Linux by inspecting the source code of the compilation toolchain, the kernel, and the loader.Our investigation reveals that properly enforcing WX on Linux requires close collaboration among multiple components.These tools form a complex chain of trust and dependency to safeguard the program stack.However, developers, including security researchers, may overlook the subtle yet essential .note.GNU-stack section when writing assembly code for various purposes, and inadvertently introduce executable stacks.For example, 11 program-hardening tools implemented as inlined reference monitors (IRM) introduce executable stacks to all \"hardened\" applications.Based on these findings, we discuss potential exploitation scenarios by attackers and provide suggestions to mitigate this issue.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
     "authors": [
-      "Pinji Chen",
-      "Jianjun Chen 0005",
-      "Mingming Zhang 0010",
-      "Qi Wang 0094",
-      "Yiming Zhang 0009",
-      "Mingwei Xu",
-      "Haixin Duan"
+      "Hengkai Ye",
+      "Hong Hu 0004"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_ChenHHL0Z25",
+    "id": "paper:ndss:conf_ndss_YeZZWGS00025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ChenHHL0Z25",
+      "native_id": "conf_ndss_YeZZWGS00025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/dissecting-payload-based-transaction-phishing-on-ethereum/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/reinforcement-unlearning/"
     },
-    "title": "Dissecting Payload-based Transaction Phishing on Ethereum.",
-    "summary": "In recent years, a more advanced form of phishing has arisen on Ethereum, surpassing early-stage, simple transaction phishing.This new form, which we refer to as payload-based transaction phishing (PTXPHISH), manipulates smart contract interactions through the execution of malicious payloads to deceive users.PTXPHISH has rapidly emerged as a significant threat, leading to incidents that caused losses exceeding $70 million in 2023 reports.Despite its substantial impact, no previous studies have systematically explored PTXPHISH.In this paper, we present the first comprehensive study of the PTXPHISH on Ethereum.Firstly, we conduct a long-term data collection and put considerable effort into establishing the first ground-truth PTXPHISH dataset, consisting of 5,000 phishing transactions.Based on the dataset, we dissect PTXPHISH, categorizing phishing tactics into four primary categories and eleven sub-categories.Secondly, we propose a rule-based multidimensional detection approach to identify PTXPHISH, achieving an F1-score of over 99% and processing each block in an average of 390 ms.Finally, we conduct a large-scale detection spanning 300 days and discover a total of 130,637 phishing transactions on Ethereum, resulting in losses exceeding $341.9 million.Our in-depth analysis of these phishing transactions yielded valuable and insightful findings.Scammers consume approximately 13.4 ETH daily, which accounts for 12.5% of the total Ethereum gas, to propagate address poisoning scams.Additionally, our analysis reveals patterns in the cash-out process employed by phishing scammers, and we find that the top five phishing organizations are responsible for 40.7% of all losses.Furthermore, our work has made significant contributions to mitigating real-world threats.We have reported 1,726 phishing addresses to the community, accounting for 42.7% of total community contributions during the same period.Additionally, we have sent 2,539 on-chain alert messages, assisting 1,980 victims.This research serves as a valuable reference in combating the emerging PTXPHISH and safeguarding users' assets.",
-    "published_at": "2026-05-13T04:33:07.384040+00:00",
-    "fetched_at": "2026-05-13T04:33:07.384040+00:00",
+    "title": "Reinforcement Unlearning.",
+    "summary": "Machine unlearning refers to the process of mitigating the influence of specific training data on machine learning models based on removal requests from data owners.However, one important area that has been largely overlooked in the research of unlearning is reinforcement learning.Reinforcement learning focuses on training an agent to make optimal decisions within an environment to maximize its cumulative rewards.During the training, the agent tends to memorize the features of the environment, which raises a significant concern about privacy.As per data protection regulations, the owner of the environment holds the right to revoke access to the agent's training data, thus necessitating the development of a novel research field, termed reinforcement unlearning.Reinforcement unlearning focuses on revoking entire environments rather than individual data samples.This unique characteristic presents three distinct challenges: 1) how to propose unlearning schemes for environments; 2) how to avoid degrading the agent's performance in remaining environments; and 3) how to evaluate the effectiveness of unlearning.To tackle these challenges, we propose two reinforcement unlearning methods.The first method is based on decremental reinforcement learning, which aims to erase the agent's previously acquired knowledge gradually.The second method leverages environment poisoning attacks, which encourage the agent to learn new, albeit incorrect, knowledge to remove the unlearning environment.Particularly, to tackle the third challenge, we introduce the concept of \"environment inference\" to evaluate the unlearning outcomes.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
     "authors": [
-      "Zhuo Chen 0023",
-      "Yufeng Hu",
-      "Bowen He",
-      "Dong Luo",
-      "Lei Wu 0012",
-      "Yajin Zhou"
+      "Dayong Ye",
+      "Tianqing Zhu",
+      "Congcong Zhu",
+      "Derui Wang",
+      "Kun Gao 0006",
+      "Zewei Shi",
+      "Sheng Shen 0005",
+      "Wanlei Zhou 0001",
+      "Minhui Xue 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_YelgundhalliZCC25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_YelgundhalliZCC25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/rethinking-trust-in-forge-based-git-security/"
+    },
+    "title": "Rethinking Trust in Forge-Based Git Security.",
+    "summary": "",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Aditya Sirish A Yelgundhalli",
+      "Patrick Zielinski",
+      "Reza Curtmola",
+      "Justin Cappos"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_Yu0W00S025",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_Yu0W00S025",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/dshield-defending-against-backdoor-attacks-on-graph-neural-networks-via-discrepancy-learning/"
+    },
+    "title": "DShield: Defending against Backdoor Attacks on Graph Neural Networks via Discrepancy Learning.",
+    "summary": "Graph Neural Networks (GNNs) are vulnerable to backdoor attacks, where triggers inserted into original graphs cause adversary-determined predictions.Backdoor attacks on GNNs, typically focusing on node classification tasks, are categorized by dirty-and clean-label attacks and pose challenges due to the interconnected nature of normal and poisoned nodes.Current defenses are indeed circumvented by sophisticated triggers and often rely on strong assumptions borrowed from other domains (e.g., rapid loss drops on poisoned images).They lead to high attack risks, failing to effectively protect against both dirty-and clean-label attacks simultaneously.To tackle these challenges, we propose DShield, a comprehensive defense framework with a discrepancy learning mechanism to defend against various graph backdoor attacks.Specifically, we reveal two vital facts during the attacking process: semantic drift where dirty-label attacks modify the semantic information of poisoned nodes, and attribute overemphasis where clean-label attacks exaggerate specific attributes to enforce adversary-determined predictions.Motivated by those, DShield employs a self-supervised learning framework to construct a model without relying on manipulated label information.Subsequently, it utilizes both the self-supervised and backdoored models to analyze discrepancies in semantic information and attribute importance, effectively filtering out poisoned nodes.Finally, DShield trains normal models using the preserved nodes, thereby minimizing the impact of poisoned nodes.Compared with 6 state-of-the-art defenses under 21 backdoor attacks, we conduct evaluations on 7 datasets with 2 victim models to demonstrate that DShield effectively mitigates backdoor threats with minimal degradation in performance on normal nodes.For instance, on the Cora dataset, DShield reduces the attack success rate to 1.33% from 54.47% achieved by the second-best defense Prune while maintaining an 82.15% performance on normal nodes.",
+    "published_at": "2026-05-14T04:31:35.234908+00:00",
+    "fetched_at": "2026-05-14T04:31:35.234908+00:00",
+    "authors": [
+      "Hao Yu 0017",
+      "Chuan Ma 0001",
+      "Xinhang Wan",
+      "Jun Wang 0118",
+      "Tao Xiang 0001",
+      "Meng Shen 0001",
+      "Xinwang Liu 0002"
     ]
   }
 ]
