@@ -66,28 +66,31 @@ class ArxivFetchError(RuntimeError):
     """arXiv 抓取失败的统一异常。"""
 
 
-import time
+import random
+
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+]
 
 @retry(
     reraise=True,
-    stop=stop_after_attempt(7),
-    wait=wait_exponential(multiplier=2, min=10, max=120),
+    stop=stop_after_attempt(5),
+    wait=wait_exponential(multiplier=2, min=60, max=300),
     retry=retry_if_exception_type((httpx.HTTPError,)),
 )
 def _http_get(url: str) -> str:
     """带重试的 HTTP GET, 失败抛 httpx.HTTPError 触发 tenacity 重试。"""
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
-        headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"},
+        headers={"User-Agent": random.choice(USER_AGENTS)},
         follow_redirects=True,
     ) as client:
         resp = client.get(url)
         if resp.status_code == 429:
-            # Check for Retry-After header, otherwise default to 30 seconds
-            retry_after = int(resp.headers.get("Retry-After", 30))
-            print(f"[WARN] arXiv API rate limit (429) hit. Sleeping for {retry_after} seconds...", file=sys.stderr)
-            time.sleep(retry_after)
-            resp.raise_for_status()
+            print(f"[WARN] arXiv API rate limit (429) hit. Tenacity will retry...", file=sys.stderr)
         resp.raise_for_status()
         return resp.text
 

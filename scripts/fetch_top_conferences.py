@@ -8,6 +8,7 @@ import asyncio
 import argparse
 import random
 import urllib.parse
+import re
 from datetime import datetime, timezone
 import time
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type, AsyncRetrying
@@ -90,7 +91,10 @@ async def _safe_get_async(client: httpx.AsyncClient, url: str, timeout: float = 
 
 async def fetch_abstract_openalex_async(client: httpx.AsyncClient, title: str, sem: asyncio.Semaphore) -> str:
     """Fetch abstract from OpenAlex API based on paper title concurrently."""
-    url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(title)}&select=title,abstract_inverted_index"
+    # 净化标题：去除非字母数字字符，仅保留空格，防止 OpenAlex API 400 报错
+    clean_title = re.sub(r'[^a-zA-Z0-9\s]', ' ', title)
+    clean_title = " ".join(clean_title.split())
+    url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(clean_title)}&select=title,abstract_inverted_index"
     async with sem:
         try:
             res = await _safe_get_async(client, url, timeout=20.0)
