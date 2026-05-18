@@ -1,1 +1,450 @@
-[]
+[
+  {
+    "id": "paper:ieee_sp:conf_sp_CaoHSOZWSBLMLW23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_CaoHSOZWSBLMLW23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179377"
+    },
+    "title": "ODDFuzz: Discovering Java Deserialization Vulnerabilities via Structure-Aware Directed Greybox Fuzzing.",
+    "summary": "Java deserialization vulnerability is a severe threat in practice. Researchers have proposed static analysis solutions to locate candidate vulnerabilities and fuzzing solutions to generate proof-of-concept (PoC) serialized objects to trigger them. However, existing solutions have limited effectiveness and efficiency.In this paper, we propose a novel hybrid solution ODDFuzz to efficiently discover Java deserialization vulnerabilities. First, ODDFuzz performs lightweight static taint analysis to identify candidate gadget chains that may cause deserialization vulnerabilities. In this step, ODDFuzz tries to locate all candidates and avoid false negatives. Then, ODDFuzz performs directed greybox fuzzing (DGF) to explore those candidates and generate PoC testcases to mitigate false positives. Specifically, ODDFuzz applies a structure-aware seed generation method to guarantee the validity of the testcases, and adopts a novel hybrid feedback and a step-forward strategy to guide the directed fuzzing.We implemented a prototype of ODDFuzz and evaluated it on the popular Java deserialization repository ysoserial. Results show that, ODDFuzz could discover 16 out of 34 known gadget chains, while two state-of-the-art baselines only identify three of them. In addition, we evaluated ODDFuzz on real-world applications including Oracle WebLogic Server, Apache Dubbo, Sonatype Nexus, and protostuff, and found six previously unreported exploitable gadget chains with five CVEs assigned.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Sicong Cao",
+      "Biao He 0002",
+      "Xiaobing Sun 0001",
+      "Yu Ouyang",
+      "Chao Zhang 0008",
+      "Xiaoxue Wu 0001",
+      "Ting Su 0001",
+      "Lili Bo",
+      "Bin Li 0006",
+      "Chuanlei Ma",
+      "Jiajia Li",
+      "Tao Wei 0002"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_CaoJZG23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_CaoJZG23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179336"
+    },
+    "title": "FedRecover: Recovering from Poisoning Attacks in Federated Learning using Historical Information.",
+    "summary": "Federated learning is vulnerable to poisoning attacks in which malicious clients poison the global model via sending malicious model updates to the server. Existing defenses focus on preventing a small number of malicious clients from poisoning the global model via robust federated learning methods and detecting malicious clients when there are a large number of them. However, it is still an open challenge how to recover the global model from poisoning attacks after the malicious clients are detected. A naive solution is to remove the detected malicious clients and train a new global model from scratch using the remaining clients. However, such train-from-scratch recovery method incurs a large computation and communication cost, which may be intolerable for resource-constrained clients such as smartphones and IoT devices.In this work, we propose FedRecover, a method that can recover an accurate global model from poisoning attacks with a small computation and communication cost for the clients. Our key idea is that the server estimates the clients’ model updates instead of asking the clients to compute and communicate them during the recovery process. In particular, the server stores the historical information, including the global models and clients’ model updates in each round, when training the poisoned global model before the malicious clients are detected. During the recovery process, the server estimates a client’s model update in each round using its stored historical information. Moreover, we further optimize FedRecover to recover a more accurate global model using warm-up, periodic correction, abnormality fixing, and final tuning strategies, in which the server asks the clients to compute and communicate their exact model updates. Theoretically, we show that the global model recovered by FedRecover is close to or the same as that recovered by train-from-scratch under some assumptions. Empirically, our evaluation on four datasets, three federated learning methods, as well as untargeted and targeted poisoning attacks (e.g., backdoor attacks) shows that FedRecover is both accurate and efficient.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Xiaoyu Cao",
+      "Jinyuan Jia 0001",
+      "Zaixi Zhang",
+      "Neil Zhenqiang Gong"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_CaoXSWXW23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_CaoXSWXW23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179383"
+    },
+    "title": "StyleFool: Fooling Video Classification Systems via Style Transfer.",
+    "summary": "Video classification systems are vulnerable to adversarial attacks, which can create severe security problems in video verification. Current black-box attacks need a large number of queries to succeed, resulting in high computational overhead in the process of attack. On the other hand, attacks with restricted perturbations are ineffective against defenses such as denoising or adversarial training. In this paper, we focus on unrestricted perturbations and propose StyleFool, a black-box video adversarial attack via style transfer to fool the video classification system. StyleFool first utilizes color theme proximity to select the best style image, which helps avoid unnatural details in the stylized videos. Meanwhile, the target class confidence is additionally considered in targeted attacks to influence the output distribution of the classifier by moving the stylized video closer to or even across the decision boundary. A gradient-free method is then employed to further optimize the adversarial perturbations. We carry out extensive experiments to evaluate StyleFool on two standard datasets, UCF-101 and HMDB-51. The experimental results demonstrate that StyleFool outperforms the state-of-the-art adversarial attacks in terms of both the number of queries and the robustness against existing defenses. Moreover, 50% of the stylized videos in untargeted attacks do not need any query since they can already fool the video classification model. Furthermore, we evaluate the indistinguishability through a user study to show that the adversarial samples of StyleFool look imperceptible to human eyes, despite unrestricted perturbations.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Yuxin Cao",
+      "Xi Xiao",
+      "Ruoxi Sun 0001",
+      "Derui Wang",
+      "Minhui Xue 0001",
+      "Sheng Wen"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_CayreCF23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_CayreCF23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SPW59333.2023.00033"
+    },
+    "title": "ESPwn32: Hacking with ESP32 System-on-Chips.",
+    "summary": "In this paper, we analyze the ESP32 from a wireless security perspective. We reverse engineer the hardware and software components dedicated to Bluetooth Low Energy (BLE) on the ESP32 and ANT protocol on Nordic Semiconductors' nRF chips. Exploiting this, we then implement multiple attacks on the repurposed ESP32 targeting various wireless protocols, including ones not natively supported by the chip. We make link-layer attacks on BLE (fuzzing, jamming) and cross-protocol injections, with only software modifications. We also attack proprietary protocols on commercial devices like keyboards and ANT-based sports monitoring devices. Finally, we show the ESP32 can be repurposed to interact with Zigbee or Thread devices. In summary, we show that accessing low-level, non-documented features of the ESP32 can allow, possibly compromised, devices to mount attacks across many IoT devices.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Romain Cayre",
+      "Damien Cauquil",
+      "Aurélien Francillon"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_CeciSK23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_CeciSK23",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179413"
+    },
+    "title": "No Privacy in the Electronics Repair Industry.",
+    "summary": "Electronics repair and service providers offer a range of services to computing device owners across North America—from software installation to hardware repair. Device owners obtain these services and leave their device along with their access credentials at the mercy of technicians, which leads to privacy concerns for owners’ personal data. We conduct a comprehensive four-part study to measure the state of privacy in the electronics repair industry. First, through a field study with 18 service providers, we uncover that most service providers do not have any privacy policy or controls to safeguard device owners’ personal data from snooping by technicians. Second, we drop rigged devices for repair at 16 service providers and collect data on widespread privacy violations by technicians, including snooping on personal data, copying data off the device, and removing tracks of snooping activities. Third, we conduct an online survey (n=112) to collect data on customers’ experiences when getting devices repaired. Fourth, we invite a subset of survey respondents (n=30) for semi-structured interviews to establish a deeper understanding of their experiences and identify potential solutions to curtail privacy violations by technicians. We apply our findings to discuss possible controls and actions different stakeholders and regulatory agencies should take to improve the state of privacy in the repair industry.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Jason Ceci",
+      "Jonah Stegman",
+      "Hassan Khan 0002"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_ChristodorescuG21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_ChristodorescuG21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3485256"
+    },
+    "title": "Amortized Threshold Symmetric-key Encryption.",
+    "summary": "Threshold cryptography enables cryptographic operations while keeping the secret keys distributed at all times. Agrawal et al. (CCS'18) propose a framework for Distributed Symmetric-key Encryption (DiSE). They introduce a new notion of Threshold Symmetric-key Encryption (TSE), in that encryption and decryption are performed by interacting with a threshold number of servers. However, the necessity for interaction on each invocation limits performance when encrypting large datasets, incurring heavy computation and communication on the servers. This paper proposes a new approach to resolve this problem by introducing a new notion called Amortized Threshold Symmetric-key Encryption (ATSE), which allows a privileged client (with access to sensitive data) to encrypt a large group of messages using a single interaction. Importantly, our notion requires a client to interact for decrypting each ciphertext, thus providing the same security (privacy and authenticity) guarantee as DiSE with respect to a not-so-privileged client. We construct an ATSE scheme based on a new primitive that we formalize as flexible threshold key-derivation (FTKD), which allows parties to interactively derive pseudorandom keys in different modes in a threshold manner. Our FTKD construction, which uses bilinear pairings, is based on a distributed variant of left/right constrained PRF by Boneh and Waters (Asiacrypt'13). Despite our use of bilinear maps, our scheme achieves significant speed-ups due to the amortized interaction. Our experiments show 40x lower latency and 30x more throughput in some settings.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Mihai Christodorescu",
+      "Sivanarayana Gaddam",
+      "Pratyay Mukherjee",
+      "Rohit Sinha 0001"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_ColemanS21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_ColemanS21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3485255"
+    },
+    "title": "A One-Pass Distributed and Private Sketch for Kernel Sums with Applications to Machine Learning at Scale.",
+    "summary": "Differential privacy is a compelling privacy definition that explains the privacy-utility tradeoff via formal, provable guarantees. In machine learning, we often wish to release a function over a dataset while preserving differential privacy. Although there are general algorithms to solve this problem for any function, such methods can require hours to days to run on moderately sized datasets. As a result, most private algorithms address task-dependent functions for specific applications. In this work, we propose a general purpose private sketch, or small summary of the dataset, that supports machine learning tasks such as regression, classification, density estimation, and more. Our sketch is ideal for large-scale distributed settings because it is simple to implement, mergeable, and can be created with a one-pass streaming algorithm. At the heart of our proposal is the reduction of many machine learning objectives to kernel sums. Our sketch estimates these sums using randomized contingency tables that are indexed with locality-sensitive hashing. Existing alternatives for kernel sum estimation scale poorly, often exponentially slower with an increase in dimensions. In contrast, our sketch can quickly run on large high-dimensional datasets, such as the 65 million node Friendster graph, in a single pass that takes less than 20 minutes, which is otherwise infeasible with any known alternative. Exhaustive experiments show that the privacy-utility tradeoff of our method is competitive with existing algorithms, but at an order-of-magnitude smaller computational cost. We expect that our sketch will be practically useful for differential privacy in distributed, large-scale machine learning settings.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Benjamin Coleman",
+      "Anshumali Shrivastava"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_CongMGDILR21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_CongMGDILR21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3484760"
+    },
+    "title": "Labeled PSI from Homomorphic Encryption with Reduced Computation and Communication.",
+    "summary": "It is known that fully homomorphic encryption (FHE) can be used to build efficient (labeled) Private Set Intersection protocols in the unbalanced setting, where one of the sets is much larger than the other~(Chen et al. (CCS'17, CCS'18)). In this paper we demonstrate multiple algorithmic improvements upon these works. In particular, our protocol has an asymptotically better computation cost, requiring only O(√|X| ) homomorphic multiplications, and communication complexity sublinear in the larger set size|X|. We demonstrate that our protocol is significantly better than that of Chen et al. (CCS'18) for many practical parameters, especially in terms of online communication cost. For example, when intersecting $228 and 2048 item sets, our protocol reduces the online computation time by more than 71% and communication by more than 63%. When intersecting 224 and 4096 item sets, our protocol reduces the online computation time by 27% and communication by 63%. Our comparison to other state-of-the-art unbalanced PSI protocols shows that our protocol has the best total communication complexity when |X| ≥ 224. For labeled PSI our protocol also outperforms Chen et al. (CCS'18). When intersecting 220 and 256 item sets, with the larger set having associated 288-byte labels, our protocol reduces the online computation time by more than 67% and communication by 34%. Finally, we demonstrate a modification that results in nearly constant communication cost in the larger set size |X|, but impractically high computation complexity on today's CPUs. For example, to intersect a 210-item set with sets of size 222, 224, or 226, our proof-of-concept implementation requires only 0.76 MB of online communication, which is more than a 24-fold improvement over Chen et al. (CCS'18).",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Kelong Cong",
+      "Radames Cruz Moreno",
+      "Mariana Botelho da Gama",
+      "Wei Dai 0007",
+      "Ilia Iliashenko",
+      "Kim Laine",
+      "Michael Rosenberg"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_CourAS21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_CourAS21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3484733"
+    },
+    "title": "Wireless Charging Power Side-Channel Attacks.",
+    "summary": "This paper demonstrates that today's wireless charging interface is vulnerable to power side-channel attacks; a smartphone that charges wirelessly leaks information about its activity to the wireless charger transmitter. We present a website fingerprinting attack and other preliminary attacks through the wireless charging side channel on iOS and Android devices. The website fingerprinting attack monitors the current draw of a wireless charger while the smartphone it charges loads a website from the Alexa top sites list. Our classifier identifies the website loaded on an iPhone 11 or a Google Pixel 4 with over 90% accuracy using wireless charging current traces. This attack represents a considerable security threat because wireless charging will always initiate when a compatible device is within the range of a charging transmitter. We find that the performance of the attack deteriorates as the contents of websites change over time. Additionally, this study finds that the wireless charging side channel is comparable to the wired USB charging side channel. Information leakage in both interfaces heavily depends on the battery level; minimal information leaks at low battery levels.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Alexander S. La Cour",
+      "Khurram K. Afridi",
+      "G. Edward Suh"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_CuiYSSC21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_CuiYSSC21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3484821"
+    },
+    "title": "SmashEx: Smashing SGX Enclaves Using Exceptions.",
+    "summary": "Exceptions are a commodity hardware functionality which is central to multi-tasking OSes as well as event-driven user applications. Normally, the OS assists the user application by lifting the semantics of exceptions received from hardware to program-friendly user signals and exception handling interfaces. However, can exception handlers work securely in user enclaves, such as those enabled by Intel SGX, where the OS is not trusted by the enclave code?",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Jinhua Cui 0002",
+      "Jason Zhijingcheng Yu",
+      "Shweta Shinde",
+      "Prateek Saxena",
+      "Zhiping Cai"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SquarcinaTVCM21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_SquarcinaTVCM21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/squarcina"
+    },
+    "title": "Can I Take Your Subdomain? Exploring Same-Site Attacks in the Modern Web.",
+    "summary": "",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Marco Squarcina",
+      "Mauro Tempesta",
+      "Lorenzo Veronese",
+      "Stefano Calzavara",
+      "Matteo Maffei"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_StuteHLH21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_StuteHLH21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/stute"
+    },
+    "title": "Disrupting Continuity of Apple&apos;s Wireless Ecosystem Security: New Tracking, DoS, and MitM Attacks on iOS and macOS Through Bluetooth Low Energy, AWDL, and Wi-Fi.",
+    "summary": "",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Milan Stute",
+      "Alexander Heinrich",
+      "Jannik Lorenz",
+      "Matthias Hollick"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SuSDL0XL21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_SuSDL0XL21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/su"
+    },
+    "title": "Evil Under the Sun: Understanding and Discovering Attacks on Ethereum Decentralized Applications.",
+    "summary": "",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Liya Su",
+      "Xinyue Shen 0001",
+      "Xiangyu Du",
+      "Xiaojing Liao",
+      "XiaoFeng Wang 0001",
+      "Luyi Xing",
+      "Baoxu Liu"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SunOZRB00SDA21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_SunOZRB00SDA21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/sun-zhibo"
+    },
+    "title": "Having Your Cake and Eating It: An Analysis of Concession-Abuse-as-a-Service.",
+    "summary": "",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Zhibo Sun",
+      "Adam Oest",
+      "Penghui Zhang",
+      "Carlos E. Rubio-Medrano",
+      "Tiffany Bao",
+      "Ruoyu Wang 0001",
+      "Ziming Zhao 0001",
+      "Yan Shoshitaishvili",
+      "Adam Doupé",
+      "Gail-Joon Ahn"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SunSLM21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_SunSLM21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/sun-zhichuang"
+    },
+    "title": "Mind Your Weight(s): A Large-scale Study on Insufficient Machine Learning Model Protection in Mobile Apps.",
+    "summary": "On-device machine learning (ML) is quickly gaining popularity among mobile apps. It allows offline model inference while preserving user privacy. However, ML models, considered as core intellectual properties of model owners, are now stored on billions of untrusted devices and subject to potential thefts. Leaked models can cause both severe financial loss and security consequences. This paper presents the first empirical study of ML model protection on mobile devices. Our study aims to answer three open questions with quantitative evidence: How widely is model protection used in apps? How robust are existing model protection techniques? What impacts can (stolen) models incur? To that end, we built a simple app analysis pipeline and analyzed 46,753 popular apps collected from the US and Chinese app markets. We identified 1,468 ML apps spanning all popular app categories. We found that, alarmingly, 41% of ML apps do not protect their models at all, which can be trivially stolen from app packages. Even for those apps that use model protection or encryption, we were able to extract the models from 66% of them via unsophisticated dynamic analysis techniques. The extracted models are mostly commercial products and used for face recognition, liveness detection, ID/bank card recognition, and malware detection. We quantitatively estimated the potential financial and security impact of a leaked model, which can amount to millions of dollars for different stakeholders. Our study reveals that on-device models are currently at high risk of being leaked; attackers are highly motivated to steal such models. Drawn from our large-scale study, we report our insights into this emerging security problem and discuss the technical challenges, hoping to inspire future research on robust and practical model protection for mobile devices.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Zhichuang Sun",
+      "Ruimin Sun",
+      "Long Lu",
+      "Alan Mislove"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LinKDEK24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LinKDEK24",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/untrustide-exploiting-weaknesses-in-vs-code-extensions/"
+    },
+    "title": "UntrustIDE: Exploiting Weaknesses in VS Code Extensions.",
+    "summary": "With the rise in threats against the software supply chain, developer integrated development environments (IDEs) present an attractive target for attackers.For example, researchers have found extensions for Visual Studio Code (VS Code) that start web servers and can be exploited via JavaScript executing in a web browser on the developer's host.This paper seeks to systematically understand the landscape of vulnerabilities in VS Code's extension marketplace.We identify a set of four sources of untrusted input and three code targets that can be used for code injection and file integrity attacks and use them to design taint analysis rules in CodeQL.We then perform an ecosystemlevel analysis of the VS Code extension marketplace, studying 25,402 extensions that contain code.Our results show that while vulnerabilities are not pervasive, they exist and impact millions of users.Specifically, we find 21 extensions with verified proof of concept exploits of code injection attacks impacting a total of over 6 million installations.Through this study, we demonstrate the need for greater attention to the security of IDE extensions.• We identified and verified code execution vulnerabilities in 21 extensions that amount to over 6 million installations.Data read from VS Code workspace settings and files are the most common source of code injection vulnerabilities in VS Code extensions.• We show the impact of the Node.jsecosystem on VS Code extensions.We discovered 13,655 VS Code extensions where each one has more than 100 npm transitive dependencies.Furthermore, 9,710 extensions depend on vulnerable npm packages with a criticallevel advisory.The remainder of this paper proceeds as follows.Section II provides background on VS Code extensions.Section IV describes our analysis rules.Section V characterizes our dataset.Section VI evaluates our results.Section VII discusses additional considerations.Section VIII describes related work.Section IX concludes.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Elizabeth Lin",
+      "Igibek Koishybayev",
+      "Trevor Dunlap",
+      "William Enck",
+      "Alexandros Kapravelos"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LinLEBRS24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LinLEBRS24",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/group-based-robustness-a-general-framework-for-customized-robustness-in-the-real-world/"
+    },
+    "title": "Group-based Robustness: A General Framework for Customized Robustness in the Real World.",
+    "summary": "Machine-learning models are known to be vulnerable to evasion attacks, which perturb model inputs to induce misclassifications.In this work, we identify real-world scenarios where the threat cannot be assessed accurately by existing attacks.Specifically, we find that conventional metrics measuring targeted and untargeted robustness do not appropriately reflect a model's ability to withstand attacks from one set of source classes to another set of target classes.To address the shortcomings of existing methods, we formally define a new metric, termed groupbased robustness, that complements existing metrics and is bettersuited for evaluating model performance in certain attack scenarios.We show empirically that group-based robustness allows us to distinguish between machine-learning models' vulnerability against specific threat models in situations where traditional robustness metrics do not apply.Moreover, to measure groupbased robustness efficiently and accurately, we 1) propose two loss functions and 2) identify three new attack strategies.We show empirically that, with comparable success rates, finding evasive samples using our new loss functions saves computation by a factor as large as the number of targeted classes, and that finding evasive samples, using our new attack strategies, saves time by up to 99% compared to brute-force search methods.Finally, we propose a defense method that increases group-based robustness by up to 3.52 times.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Weiran Lin",
+      "Keane Lucas",
+      "Neo Eyal",
+      "Lujo Bauer",
+      "Michael K. Reiter",
+      "Mahmood Sharif"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_Liu00LLDZ24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_Liu00LLDZ24",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/understanding-the-implementation-and-security-implications-of-protective-dns-services/"
+    },
+    "title": "Understanding the Implementation and Security Implications of Protective DNS Services.",
+    "summary": "Domain names are often registered and abused for harmful and illegal Internet activities.To mitigate such threats, as an emerging security service, Protective DNS (PDNS) blocks access to harmful content by proactively offering rewritten DNS responses, which resolve malicious domains to controlled hosts.While it has become an effective tool against cybercrime, given their implementation divergence, little has been done from the security community in understanding the deployment, operational status and security policies of PDNS services.In this paper, we present a large-scale measurement study of the deployment and security implications of open PDNS services.We first perform empirical analysis over 28 popular PDNS providers and summarize major formats of DNS rewriting policies.Then, powered by the derived rules, we design a methodology that identifies intentional DNS rewriting enforced by open PDNS servers in the wild.Our findings are multi-faceted.On the plus side, the deployment of PDNS is now starting to scale: we identify 17,601 DNS servers (9.1% of all probed) offering such service.For DNS clients, switching from regular DNS to PDNS induces negligible query latency, despite additional steps (e.g., checking against threat intelligence and rewriting DNS response) being required from the server side.However, we also find flaws and vulnerabilities within PDNS implementation, including evasion of blocking policies and denial of service.Through responsible vulnerability disclosure, we have received 12 audit assessment results of high-risk vulnerabilities.Our study calls for proper guidance and best practices for secure PDNS operation.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Mingxuan Liu 0006",
+      "Yiming Zhang 0009",
+      "Xiang Li 0108",
+      "Chaoyi Lu",
+      "Baojun Liu 0002",
+      "Haixin Duan",
+      "Xiaofeng Zheng"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_Liu00Y0Y24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_Liu00Y0Y24",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/detecting-voice-cloning-attacks-via-timbre-watermarking/"
+    },
+    "title": "Detecting Voice Cloning Attacks via Timbre Watermarking.",
+    "summary": "Nowadays, it is common to release audio content to the public, for social sharing or commercial purposes.However, with the rise of voice cloning technology, attackers have the potential to easily impersonate a specific person by utilizing his publicly released audio without any permission.Therefore, it becomes significant to detect any potential misuse of the released audio content and protect its timbre from being impersonated.To this end, we introduce a novel concept, \"Timbre Watermarking\", which embeds watermark information into the target individual's speech, eventually defeating the voice cloning attacks.However, there are two challenges: 1) robustness: the attacker can remove the watermark with common speech preprocessing before launching voice cloning attacks; 2) generalization: there are a variety of voice cloning approaches for the attacker to choose, making it hard to build a general defense against all of them.To address these challenges, we design an end-to-end voice cloning-resistant detection framework.The core idea of our solution is to embed the watermark into the frequency domain, which is inherently robust against common data processing methods.A repeated embedding strategy is adopted to further enhance the robustness.To acquire generalization across different voice cloning attacks, we modulate their shared process and integrate it into our framework as a distortion layer.Experiments demonstrate that the proposed timbre watermarking can defend against different voice cloning attacks, exhibit strong resistance against various adaptive attacks (e.g., reconstruction-based removal attacks, watermark overwriting attacks), and achieve practicality in real-world services such as PaddleSpeech, Voice-Cloning-App, and so-vits-svc.In addition, ablation studies are also conducted to verify the effectiveness of our design.Some audio samples are available at https://timbrewatermarking.github.io/samples.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Chang Liu 0089",
+      "Jie Zhang 0073",
+      "Tianwei Zhang 0004",
+      "Xi Yang",
+      "Weiming Zhang 0001",
+      "Nenghai Yu"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiuL00X24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiuL00X24",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/pencil-private-and-extensible-collaborative-learning-without-the-non-colluding-assumption/"
+    },
+    "title": "Pencil: Private and Extensible Collaborative Learning without the Non-Colluding Assumption.",
+    "summary": "The escalating focus on data privacy poses significant challenges for collaborative neural network training, where data ownership and model training/deployment responsibilities reside with distinct entities.Our community has made substantial contributions to addressing this challenge, proposing various approaches such as federated learning (FL) and privacy-preserving machine learning based on cryptographic constructs like homomorphic encryption (HE) and secure multiparty computation (MPC).However, FL completely overlooks model privacy, and HE has limited extensibility (confined to only one data provider).While the state-of-the-art MPC frameworks provide reasonable throughput and simultaneously ensure model/data privacy, they rely on a critical non-colluding assumption on the computing servers, and relaxing this assumption is still an open problem.In this paper, we present Pencil, the first private training framework for collaborative learning that simultaneously offers data privacy, model privacy, and extensibility to multiple data providers, without relying on the non-colluding assumption.Our fundamental design principle is to construct the n-party collaborative training protocol based on an efficient two-party protocol, and meanwhile ensuring that switching to different data providers during model training introduces no extra cost.We introduce several novel cryptographic protocols to realize this design principle and conduct a rigorous security and privacy analysis.Our comprehensive evaluations of Pencil demonstrate that (i) models trained in plaintext and models trained privately using Pencil exhibit nearly identical test accuracies; (ii) The training overhead of Pencil is greatly reduced: Pencil achieves 10 ∼ 260× higher throughput and 2 orders of magnitude less communication than prior art; (iii) Pencil is resilient against both existing and adaptive (white-box) attacks.",
+    "published_at": "2026-05-18T13:27:46.565500+00:00",
+    "fetched_at": "2026-05-18T13:27:46.565500+00:00",
+    "authors": [
+      "Xuanqi Liu",
+      "Zhuotao Liu",
+      "Qi Li 0002",
+      "Ke Xu 0002",
+      "Mingwei Xu 0001"
+    ]
+  }
+]
