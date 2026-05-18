@@ -86,7 +86,7 @@ def log_retry(retry_state):
 @retry(
     reraise=True,
     stop=stop_after_attempt(5),
-    wait=wait_exponential(multiplier=2, min=10, max=120),
+    wait=wait_exponential(multiplier=30, min=60, max=300),
     retry=retry_if_exception_type((httpx.HTTPError,)),
     before_sleep=log_retry
 )
