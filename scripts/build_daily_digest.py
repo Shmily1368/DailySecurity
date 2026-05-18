@@ -84,8 +84,8 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
     """
     missing_items = []
     
-    # We only want to display "Daily" items. Skip anything older than 3 days.
-    cutoff_date = datetime.now(timezone.utc) - timedelta(days=3)
+    # We only want to display "Daily" items. Skip anything older than 4 days to bridge weekend gaps.
+    cutoff_date = datetime.now(timezone.utc) - timedelta(days=4)
     
     for filepath in glob.glob(f"{raw_dir}/*.json"):
         # Ignore error files and EPSS scores (which are purely metadata to be merged)

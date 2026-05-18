@@ -29,16 +29,25 @@ def save_state(seen_keys):
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump({"seen_keys": list(seen_keys)}, f)
 
-HEADERS = {"User-Agent": "cyber-daily-radar-dev/0.1 (mailto:dev@example.com)"}
+USER_AGENTS = [
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+]
+
+def get_random_headers():
+    return {"User-Agent": random.choice(USER_AGENTS)}
 
 @retry(
-    stop=stop_after_attempt(3),
-    wait=wait_exponential(multiplier=2, min=2, max=10),
+    stop=stop_after_attempt(4),
+    wait=wait_exponential(multiplier=5, min=30, max=120),
     retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError)),
     reraise=True
 )
 def _safe_get(url: str, timeout: float = 30.0) -> httpx.Response:
-    res = httpx.get(url, headers=HEADERS, timeout=timeout, follow_redirects=True)
+    time.sleep(random.uniform(2.0, 5.0))
+    res = httpx.get(url, headers=get_random_headers(), timeout=timeout, follow_redirects=True)
     res.raise_for_status()
     return res
 
@@ -79,13 +88,14 @@ def fetch_abstract_openalex(title: str) -> str:
 
 async def _safe_get_async(client: httpx.AsyncClient, url: str, timeout: float = 30.0) -> httpx.Response:
     async for attempt in AsyncRetrying(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=2, min=2, max=10),
+        stop=stop_after_attempt(4),
+        wait=wait_exponential(multiplier=5, min=30, max=120),
         retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError)),
         reraise=True
     ):
         with attempt:
-            res = await client.get(url, timeout=timeout, follow_redirects=True)
+            await asyncio.sleep(random.uniform(2.0, 5.0))
+            res = await client.get(url, headers=get_random_headers(), timeout=timeout, follow_redirects=True)
             res.raise_for_status()
             return res
 
@@ -118,7 +128,7 @@ async def process_papers_async(papers, source_id, info, now):
     results = []
     sem = asyncio.Semaphore(10) # 限制并发数为10，防止 OpenAlex 拒绝服务
     
-    async with httpx.AsyncClient(headers=HEADERS) as client:
+    async with httpx.AsyncClient() as client:
         tasks = []
         for i, p in enumerate(papers):
             title = p.get('title', '')
