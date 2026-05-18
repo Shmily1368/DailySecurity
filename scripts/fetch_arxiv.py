@@ -38,7 +38,11 @@ from tenacity import (
     retry_if_exception_type,
     stop_after_attempt,
     wait_exponential,
+    before_sleep_log
 )
+import logging
+
+logger = logging.getLogger(__name__)
 
 # 允许导入 scripts/models.py
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -67,6 +71,7 @@ class ArxivFetchError(RuntimeError):
 
 
 import random
+import time
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -75,22 +80,29 @@ USER_AGENTS = [
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 ]
 
+def log_retry(retry_state):
+    print(f"[WARN] arXiv 请求失败 (尝试次数 {retry_state.attempt_number}), 即将 sleep {retry_state.idle_for} 秒后重试...", file=sys.stderr)
+
 @retry(
     reraise=True,
     stop=stop_after_attempt(5),
-    wait=wait_exponential(multiplier=2, min=60, max=300),
+    wait=wait_exponential(multiplier=2, min=10, max=120),
     retry=retry_if_exception_type((httpx.HTTPError,)),
+    before_sleep=log_retry
 )
 def _http_get(url: str) -> str:
     """带重试的 HTTP GET, 失败抛 httpx.HTTPError 触发 tenacity 重试。"""
+    # 每次请求前强行延时3秒，遵守 arXiv 的速率建议，减少 429 的发生概率
+    time.sleep(3)
+    
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
-        headers={"User-Agent": random.choice(USER_AGENTS)},
+        headers={"User-Agent": "cyber-daily-radar/0.1 (mailto:security@example.com)"},
         follow_redirects=True,
     ) as client:
         resp = client.get(url)
         if resp.status_code == 429:
-            print(f"[WARN] arXiv API rate limit (429) hit. Tenacity will retry...", file=sys.stderr)
+            print(f"[WARN] arXiv API rate limit (429) hit.", file=sys.stderr)
         resp.raise_for_status()
         return resp.text
 
@@ -320,15 +332,25 @@ def main() -> int:
 
     try:
         items = parse_feed(xml_text, fetched_at)
+        print(f"[INFO] 从 arXiv 原始 XML 中成功解析到 {len(items)} 篇论文", file=sys.stderr)
+        if items:
+            dates = [item.published_at for item in items if item.published_at]
+            if dates:
+                print(f"[INFO] 这批论文的发布时间范围为: {min(dates).isoformat()} 到 {max(dates).isoformat()}", file=sys.stderr)
     except ArxivFetchError as e:
         print(f"[ERROR] {e}", file=sys.stderr)
         return 1
         
-    # Filter for today's papers
-    # Use 36 hours rolling window similar to other sources to avoid timezone cutoffs
+    # Filter for recent papers
+    # 【修复 arXiv 周末断层陷阱】：
+    # arXiv 周末不发版，周一（如 5.18）网页上 announced 的论文，其实际提交（published）时间是上周四或周五（5.14-5.15）。
+    # 因此 36 小时的窗口在周一运行会完美错过这些论文。这里将窗口扩大到 96 小时（4天）以跨越周末和节假日。
     from datetime import timedelta
-    cutoff_date = fetched_at - timedelta(hours=36)
+    cutoff_date = fetched_at - timedelta(hours=96)
+    print(f"[INFO] 执行时间截断过滤，保留时间大于 {cutoff_date.isoformat()} 的记录...", file=sys.stderr)
+    
     items = [item for item in items if item.published_at and item.published_at >= cutoff_date]
+    print(f"[INFO] 过滤后，剩余 {len(items)} 篇论文", file=sys.stderr)
 
     if not items:
         print("[WARN] 未解析到任何今日条目", file=sys.stderr)
