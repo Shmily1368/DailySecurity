@@ -1,6 +1,59 @@
 {
   "items": [
     {
+      "id": "osv:CVE-2026-29783",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-29783",
+        "native_id": "CVE-2026-29783"
+      },
+      "title": "GitHub Copilot CLI allows for dangerous shell expansion patterns that enable arbitrary command execution",
+      "summary": "The shell tool within GitHub Copilot CLI versions prior to and including 0.0.422 can allow arbitrary code execution through crafted bash parameter expansion patterns. An attacker who can influence the commands executed by the agent (e.g., via prompt injection through repository files, MCP server responses, or user instructions) can exploit bash parameter transformation operators to execute hidden commands, bypassing the safety assessment that classifies commands as \"read-only.\" This has been patched in version 0.0.423. \n\nThe vulnerability stems from how the CLI's shell safety assessment evaluates commands before execution. The safety layer parses and classifies shell commands as either read-only (safe) or write-capable (requires user approval). However, several bash parameter expansion features can embed executable code within arguments to otherwise read-only commands, causing them to appear safe while actually performing arbitrary operations.\n\nThe specific dangerous patterns are ${var@P}, ${var=value} / ${var:=value}, ${!var}, and nested $(cmd) or <(cmd) inside ${...} expansions. An attacker who can influence command text sent to the shell tool - for example, through prompt injection via malicious repository content (README files, code comments, issue bodies), compromised or malicious MCP server responses, or crafted user instructions containing obfuscated commands - could achieve arbitrary code execution on the user's workstation. This is possible even in permission modes that require user approval for write operations, since the commands can appear to use only read-only utilities to ultimately trigger write operations. Successful exploitation could lead to data exfiltration, file modification, or further system compromise.",
+      "raw_text": null,
+      "published_at": "2026-03-06T16:39:27.424000Z",
+      "updated_at": "2026-04-02T13:23:01.503206Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-29783"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-78"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:A/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/github/copilot-cli/releases/tag/v0.0.423",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/29xxx/CVE-2026-29783.json",
+        "https://github.com/github/copilot-cli/security/advisories/GHSA-g8r9-g2v8-jv6f",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-29783"
+      ]
+    },
+    {
       "id": "osv:CVE-2026-23171",
       "type": "advisory",
       "source_info": {
@@ -15,7 +68,7 @@
       "raw_text": null,
       "published_at": "2026-02-14T16:01:33.489000Z",
       "updated_at": "2026-04-28T18:29:23.598003Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -68,7 +121,7 @@
       "raw_text": null,
       "published_at": "2026-02-14T16:01:19.663000Z",
       "updated_at": "2026-04-28T18:29:31.852820Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -122,7 +175,7 @@
       "raw_text": null,
       "published_at": "2025-12-16T15:39:45.716000Z",
       "updated_at": "2026-04-02T13:03:32.400349Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -179,7 +232,7 @@
       "raw_text": null,
       "published_at": "2025-12-10T10:16:02.330000Z",
       "updated_at": "2026-05-04T08:49:59.658145Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -228,7 +281,7 @@
       "raw_text": null,
       "published_at": "2025-10-15T07:56:00.959000Z",
       "updated_at": "2026-04-02T12:48:13.996022Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -285,7 +338,7 @@
       "raw_text": null,
       "published_at": "2025-08-19T17:03:06.172000Z",
       "updated_at": "2026-04-02T12:48:02.639769Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -339,7 +392,7 @@
       "raw_text": null,
       "published_at": "2025-03-12T09:42:01.252000Z",
       "updated_at": "2026-04-02T12:45:15.322614Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -379,6 +432,57 @@
       ]
     },
     {
+      "id": "osv:CVE-2025-23368",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-23368",
+        "native_id": "CVE-2025-23368"
+      },
+      "title": "CVE-2025-23368",
+      "summary": "A flaw was found in Wildfly Elytron integration. The component does not implement sufficient measures to prevent multiple failed authentication attempts within a short time frame, making it more susceptible to brute force attacks via CLI.",
+      "raw_text": null,
+      "published_at": "2025-03-04T16:15:39.270000Z",
+      "updated_at": "2026-03-14T08:45:38.106060Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-23368"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://access.redhat.com/security/cve/CVE-2025-23368",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2337621",
+        "https://www.gruppotim.it/it/footer/red-team.html"
+      ]
+    },
+    {
       "id": "osv:CVE-2024-56647",
       "type": "advisory",
       "source_info": {
@@ -393,7 +497,7 @@
       "raw_text": null,
       "published_at": "2024-12-27T15:02:47.969000Z",
       "updated_at": "2026-04-02T12:25:03.193980Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -446,7 +550,7 @@
       "raw_text": null,
       "published_at": "2024-11-05T10:09:30.280000Z",
       "updated_at": "2026-04-02T09:31:35.852905Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -486,6 +590,153 @@
       ]
     },
     {
+      "id": "osv:CVE-2021-4195",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-4195",
+        "native_id": "CVE-2021-4195"
+      },
+      "title": "CVE-2021-4195",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Firmanet Software and Technology Customer Relation Manager allows XSS Targeting HTML Attributes.This issue affects Customer Relation Manager: before 2022.03.13.",
+      "raw_text": null,
+      "published_at": "2023-03-14T09:15:11.917000Z",
+      "updated_at": "2026-05-04T08:30:57.879685Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-4195"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0145"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44197",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44197",
+        "native_id": "CVE-2021-44197"
+      },
+      "title": "CVE-2021-44197",
+      "summary": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS) vulnerability in UBIT Information Technologies Student Information Management System.This issue affects Student Information Management System: before 20211126.",
+      "raw_text": null,
+      "published_at": "2023-03-07T14:15:09.550000Z",
+      "updated_at": "2026-05-04T08:38:01.804124Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44197"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0131"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44196",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44196",
+        "native_id": "CVE-2021-44196"
+      },
+      "title": "CVE-2021-44196",
+      "summary": "Improper Neutralization of Script-Related HTML Tags in a Web Page (Basic XSS) vulnerability in UBIT Information Technologies Student Information Management System.This issue affects Student Information Management System: before 20211126.",
+      "raw_text": null,
+      "published_at": "2023-03-07T14:15:09.470000Z",
+      "updated_at": "2026-05-04T08:38:01.822644Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44196"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0131"
+      ]
+    },
+    {
       "id": "osv:CVE-2021-3854",
       "type": "advisory",
       "source_info": {
@@ -500,7 +751,7 @@
       "raw_text": null,
       "published_at": "2023-03-02T12:15:08.957000Z",
       "updated_at": "2026-05-04T08:38:45.794381Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -535,6 +786,596 @@
       ]
     },
     {
+      "id": "osv:CVE-2021-45479",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-45479",
+        "native_id": "CVE-2021-45479"
+      },
+      "title": "CVE-2021-45479",
+      "summary": "Improper Neutralization of Input During Web Page Generation vulnerability in Yordam Information Technologies Library Automation System allows Stored XSS.This issue affects Library Automation System: before 19.2.",
+      "raw_text": null,
+      "published_at": "2023-03-02T09:15:09.297000Z",
+      "updated_at": "2026-05-04T08:31:06.784290Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-45479"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0119"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-45478",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-45478",
+        "native_id": "CVE-2021-45478"
+      },
+      "title": "CVE-2021-45478",
+      "summary": "Improper Handling of Parameters vulnerability in Bordam Information Technologies Library Automation System allows Collect Data as Provided by Users.This issue affects Library Automation System: before 19.2.",
+      "raw_text": null,
+      "published_at": "2023-03-02T09:15:09.223000Z",
+      "updated_at": "2026-05-04T08:31:06.735168Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-45478"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0119"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-45477",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-45477",
+        "native_id": "CVE-2021-45477"
+      },
+      "title": "CVE-2021-45477",
+      "summary": "Improper Handling of Parameters vulnerability in Bordam Information Technologies Library Automation System allows Collect Data as Provided by Users.This issue affects Library Automation System: before 19.2.",
+      "raw_text": null,
+      "published_at": "2023-03-02T09:15:08.993000Z",
+      "updated_at": "2026-05-04T08:31:07.218715Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-45477"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0119"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-3855",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-3855",
+        "native_id": "CVE-2021-3855"
+      },
+      "title": "CVE-2021-3855",
+      "summary": "Improper Neutralization of Special Elements used in a Command ('Command Injection') vulnerability in Liman Central Management System Liman MYS (HTTP/Controllers, CronMail, Jobs modules) allows Command Injection.This issue affects Liman Central Management System: from 1.7.0 before 1.8.3-462.",
+      "raw_text": null,
+      "published_at": "2023-03-01T08:15:10.030000Z",
+      "updated_at": "2026-05-04T08:38:45.798438Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-3855"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0109",
+        "https://docs.liman.dev/baslangic/guvenlik"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-4105",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-4105",
+        "native_id": "CVE-2021-4105"
+      },
+      "title": "CVE-2021-4105",
+      "summary": "Improper Handling of Parameters vulnerability in BG-TEK COSLAT Firewall allows Remote Code Inclusion.This issue affects COSLAT Firewall: from 5.24.0.R.20180630 before 5.24.0.R.20210727.",
+      "raw_text": null,
+      "published_at": "2023-02-24T12:15:30.127000Z",
+      "updated_at": "2026-05-04T08:38:48.253451Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-4105"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0108",
+        "http://blog.coslat.com/2021/07/onemli-kritik-guncelleme-2021-07-27.html"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-45476",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-45476",
+        "native_id": "CVE-2021-45476"
+      },
+      "title": "CVE-2021-45476",
+      "summary": "Yordam Library Information Document Automation product before version 19.02 has an unauthenticated reflected XSS vulnerability.",
+      "raw_text": null,
+      "published_at": "2022-10-27T10:15:10.470000Z",
+      "updated_at": "2026-05-04T08:31:06.733435Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-45476"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0669"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-45475",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-45475",
+        "native_id": "CVE-2021-45475"
+      },
+      "title": "CVE-2021-45475",
+      "summary": "Yordam Library Information Document Automation product before version 19.02 has an unauthenticated Information disclosure vulnerability.",
+      "raw_text": null,
+      "published_at": "2022-10-27T10:15:10.273000Z",
+      "updated_at": "2026-05-04T08:31:06.752247Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-45475"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0669"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-45031",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-45031",
+        "native_id": "CVE-2021-45031"
+      },
+      "title": "CVE-2021-45031",
+      "summary": "A vulnerability in MEPSAN's USC+ before version 3.0 has a weakness in login function which lets attackers to generate high privileged accounts passwords.",
+      "raw_text": null,
+      "published_at": "2022-03-30T20:15:08.477000Z",
+      "updated_at": "2026-05-04T08:35:22.265511Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-45031"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:L/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0269"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44795",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44795",
+        "native_id": "CVE-2021-44795"
+      },
+      "title": "CVE-2021-44795",
+      "summary": "Single Connect does not perform an authorization check when using the \"sc-assigned-credential-ui\" module. A remote attacker could exploit this vulnerability to modify users permissions. The exploitation of this vulnerability might allow a remote attacker to delete permissions from other users without authenticating.",
+      "raw_text": null,
+      "published_at": "2022-01-27T13:15:08.007000Z",
+      "updated_at": "2026-05-04T08:38:04.328565Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44795"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0093"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44794",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44794",
+        "native_id": "CVE-2021-44794"
+      },
+      "title": "CVE-2021-44794",
+      "summary": "Single Connect does not perform an authorization check when using the \"sc-diagnostic-ui\" module. A remote attacker could exploit this vulnerability to access the device information page. The exploitation of this vulnerability might allow a remote attacker to obtain sensitive information.",
+      "raw_text": null,
+      "published_at": "2022-01-27T13:15:07.953000Z",
+      "updated_at": "2026-05-04T08:38:04.266496Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44794"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0093"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44793",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44793",
+        "native_id": "CVE-2021-44793"
+      },
+      "title": "CVE-2021-44793",
+      "summary": "Single Connect does not perform an authorization check when using the sc-reports-ui\" module. A remote attacker could exploit this vulnerability to access the device configuration page and export the data to an external file. The exploitation of this vulnerability might allow a remote attacker to obtain sensitive information including the database credentials. Since the database runs with high privileges it is possible to execute commands with the attained credentials.",
+      "raw_text": null,
+      "published_at": "2022-01-27T13:15:07.903000Z",
+      "updated_at": "2026-05-04T08:38:04.275789Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44793"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:L/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0093"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-44792",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-44792",
+        "native_id": "CVE-2021-44792"
+      },
+      "title": "CVE-2021-44792",
+      "summary": "Single Connect does not perform an authorization check when using the \"log-monitor\" module. A remote attacker could exploit this vulnerability to access the logging interface. The exploitation of this vulnerability might allow a remote attacker to obtain sensitive information.",
+      "raw_text": null,
+      "published_at": "2022-01-27T13:15:07.837000Z",
+      "updated_at": "2026-05-04T08:38:04.446867Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-44792"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0093"
+      ]
+    },
+    {
       "id": "osv:CVE-2021-3825",
       "type": "advisory",
       "source_info": {
@@ -549,7 +1390,7 @@
       "raw_text": null,
       "published_at": "2021-10-01T15:15:07.883000Z",
       "updated_at": "2026-05-04T08:35:16.984224Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -599,7 +1440,7 @@
       "raw_text": null,
       "published_at": "2021-09-18T14:15:07.427000Z",
       "updated_at": "2026-05-04T08:30:48.247381Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -635,6 +1476,56 @@
       ]
     },
     {
+      "id": "osv:CVE-2020-17103",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2020-17103",
+        "native_id": "CVE-2020-17103"
+      },
+      "title": "CVE-2020-17103",
+      "summary": "Windows Cloud Files Mini Filter Driver Elevation of Privilege Vulnerability",
+      "raw_text": null,
+      "published_at": "2020-12-10T00:15:14.357000Z",
+      "updated_at": "2026-05-04T08:33:17.811172Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2020-17103"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:H/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2020-17103",
+        "https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/CVE-2020-17103"
+      ]
+    },
+    {
       "id": "osv:CVE-2019-11840",
       "type": "advisory",
       "source_info": {
@@ -649,7 +1540,7 @@
       "raw_text": null,
       "published_at": "2019-05-09T16:29:00.607000Z",
       "updated_at": "2026-03-15T22:21:16.897136Z",
-      "fetched_at": "2026-05-18T12:50:53.468083Z",
+      "fetched_at": "2026-05-18T13:30:32.823956Z",
       "authors": [],
       "affiliations": [],
       "cves": [
@@ -696,6 +1587,7 @@
   ],
   "meta": {
     "cve_inputs": [
+      "CVE-2026-42009",
       "CVE-2026-8803",
       "CVE-2026-7304",
       "CVE-2026-7302",
@@ -761,42 +1653,49 @@
       "CVE-2026-8759",
       "CVE-2026-8758",
       "CVE-2026-8757",
-      "CVE-2026-8756",
-      "CVE-2026-8755",
-      "CVE-2026-8754",
-      "CVE-2026-8753",
-      "CVE-2018-25339",
-      "CVE-2018-25338",
-      "CVE-2018-25337",
-      "CVE-2018-25336",
-      "CVE-2018-25335",
-      "CVE-2018-25334",
-      "CVE-2018-25333",
-      "CVE-2018-25332",
-      "CVE-2018-25331",
-      "CVE-2018-25330",
-      "CVE-2018-25329",
-      "CVE-2018-25328",
-      "CVE-2018-25327",
-      "CVE-2018-25326",
-      "CVE-2018-25325",
-      "CVE-2018-25324",
-      "CVE-2018-25323",
-      "CVE-2018-25322",
-      "CVE-2018-25321",
-      "CVE-2018-25320",
-      "CVE-2018-25319",
+      "CVE-2026-45347",
+      "CVE-2026-45346",
+      "CVE-2026-45318",
+      "CVE-2026-45317",
+      "CVE-2026-44570",
+      "CVE-2026-44569",
+      "CVE-2026-44565",
+      "CVE-2026-44549",
+      "CVE-2026-45401",
+      "CVE-2026-45395",
       "CVE-2026-46333",
       "CVE-2026-7373",
+      "CVE-2026-42597",
       "CVE-2026-42596",
+      "CVE-2026-42595",
+      "CVE-2026-42594",
+      "CVE-2026-42593",
+      "CVE-2026-42592",
+      "CVE-2026-42591",
       "CVE-2026-42590",
+      "CVE-2026-42589",
+      "CVE-2026-40893",
       "CVE-2026-44248",
       "CVE-2026-42587",
       "CVE-2026-42585",
       "CVE-2026-42584",
       "CVE-2026-42583",
+      "CVE-2026-42582",
+      "CVE-2026-42581",
       "CVE-2026-42579",
+      "CVE-2026-42578",
+      "CVE-2026-8336",
+      "CVE-2026-8202",
+      "CVE-2026-8200",
+      "CVE-2026-8053",
+      "CVE-2026-42854",
+      "CVE-2026-42444",
+      "CVE-2026-40416",
       "CVE-2026-43500",
+      "CVE-2026-42174",
+      "CVE-2026-42137",
+      "CVE-2026-42069",
+      "CVE-2026-42051",
       "CVE-2026-43344",
       "CVE-2026-43343",
       "CVE-2026-43342",
@@ -822,6 +1721,7 @@
       "CVE-2026-31449",
       "CVE-2026-31440",
       "CVE-2026-23468",
+      "CVE-2026-29783",
       "CVE-2026-23171",
       "CVE-2026-23151",
       "CVE-2025-68315",
@@ -829,17 +1729,34 @@
       "CVE-2025-39981",
       "CVE-2025-38584",
       "CVE-2025-21845",
+      "CVE-2025-23368",
       "CVE-2024-56647",
       "CVE-2023-52920",
+      "CVE-2021-4195",
+      "CVE-2021-44197",
+      "CVE-2021-44196",
       "CVE-2021-3854",
+      "CVE-2021-45479",
+      "CVE-2021-45478",
+      "CVE-2021-45477",
+      "CVE-2021-3855",
+      "CVE-2021-4105",
+      "CVE-2021-45476",
+      "CVE-2021-45475",
+      "CVE-2021-45031",
+      "CVE-2021-44795",
+      "CVE-2021-44794",
+      "CVE-2021-44793",
+      "CVE-2021-44792",
       "CVE-2021-3825",
       "CVE-2021-3806",
+      "CVE-2020-17103",
       "CVE-2019-11840"
     ],
-    "osv_id_count": 13,
-    "raw_count": 13,
-    "normalized_count": 13,
-    "fetched_at": "2026-05-18T12:50:53.468083+00:00",
+    "osv_id_count": 31,
+    "raw_count": 31,
+    "normalized_count": 31,
+    "fetched_at": "2026-05-18T13:30:32.823956+00:00",
     "source": "OSV.dev /v1/vulns"
   }
 }
