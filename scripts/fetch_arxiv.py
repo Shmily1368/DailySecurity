@@ -55,7 +55,7 @@ from models import ItemType, RawItem, SourceInfo  # noqa: E402
 
 ARXIV_API_ENDPOINT = "http://export.arxiv.org/api/query"
 ARXIV_CATEGORY = "cs.CR"
-DEFAULT_MAX_RESULTS = 200  # Increased to capture all daily papers
+DEFAULT_MAX_RESULTS = 100  # Lowered to 100 to reduce rate limit risk
 DEFAULT_OUTPUT = Path("data/raw/arxiv_latest.json")
 HTTP_TIMEOUT = 20.0
 USER_AGENT = "cyber-daily-radar/0.1 (+https://github.com/)"
@@ -92,12 +92,14 @@ def log_retry(retry_state):
 )
 def _http_get(url: str) -> str:
     """带重试的 HTTP GET, 失败抛 httpx.HTTPError 触发 tenacity 重试。"""
-    # 每次请求前强行延时3秒，遵守 arXiv 的速率建议，减少 429 的发生概率
-    time.sleep(3)
+    # 每次请求前强行增加随机延时，遵守 arXiv 速率建议，伪装正常行为
+    delay = random.uniform(5.0, 10.0)
+    time.sleep(delay)
     
+    ua = random.choice(USER_AGENTS)
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
-        headers={"User-Agent": "cyber-daily-radar/0.1 (mailto:security@example.com)"},
+        headers={"User-Agent": ua},
         follow_redirects=True,
     ) as client:
         resp = client.get(url)
