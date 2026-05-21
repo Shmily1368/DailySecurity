@@ -1,7 +1,3442 @@
 {
-  "items": [],
+  "items": [
+    {
+      "id": "osv:CVE-2026-23257",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23257",
+        "native_id": "CVE-2026-23257"
+      },
+      "title": "net: liquidio: Fix off-by-one error in PF setup_nic_devices() cleanup",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet: liquidio: Fix off-by-one error in PF setup_nic_devices() cleanup\n\nIn setup_nic_devices(), the initialization loop jumps to the label\nsetup_nic_dev_free on failure. The current cleanup loop while(i--)\nskip the failing index i, causing a memory leak.\n\nFix this by changing the loop to iterate from the current index i\ndown to 0.\n\nAlso, decrement i in the devlink_alloc failure path to point to the\nlast successfully allocated index.\n\nCompile tested only. Issue found using code review.",
+      "raw_text": null,
+      "published_at": "2026-03-18T17:41:04.078000Z",
+      "updated_at": "2026-04-02T13:12:18.487857Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23257"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/293eaad0d6d6b2a37a458c7deb7be345349cd963",
+        "https://git.kernel.org/stable/c/8558aef4e8a1a83049ab906d21d391093cfa7e7f",
+        "https://git.kernel.org/stable/c/a0d2389c8cdc1f05de5eb8663bffe9ed05dca769",
+        "https://git.kernel.org/stable/c/af38d9a5cb49fe9d0d282b44f17fdc1f3270d99d",
+        "https://git.kernel.org/stable/c/d86c58eb005eb99da402452f3db7a6e0eae32815",
+        "https://git.kernel.org/stable/c/f1216b80c9040a904d2ad7c8cd24ca0ff1f36932",
+        "https://git.kernel.org/stable/c/f86bd16280a0f88b538394e0565c56ce4756da99",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23257.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23257",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23256",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23256",
+        "native_id": "CVE-2026-23256"
+      },
+      "title": "net: liquidio: Fix off-by-one error in VF setup_nic_devices() cleanup",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet: liquidio: Fix off-by-one error in VF setup_nic_devices() cleanup\n\nIn setup_nic_devices(), the initialization loop jumps to the label\nsetup_nic_dev_free on failure. The current cleanup loop while(i--)\nskip the failing index i, causing a memory leak.\n\nFix this by changing the loop to iterate from the current index i\ndown to 0.\n\nCompile tested only. Issue found using code review.",
+      "raw_text": null,
+      "published_at": "2026-03-18T17:41:02.964000Z",
+      "updated_at": "2026-04-02T13:12:18.530711Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23256"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/01fbca1e93ec3f39f76c31a8f9afa32ce00da48a",
+        "https://git.kernel.org/stable/c/3bf519e39b51cb08a93c0599870b35a23db1031e",
+        "https://git.kernel.org/stable/c/4640fa5ad5e1a0dbd1c2d22323b7d70a8107dcfd",
+        "https://git.kernel.org/stable/c/52b19b3a22306fe452ec9e8ff96063f4bfb77b99",
+        "https://git.kernel.org/stable/c/6cbba46934aefdfb5d171e0a95aec06c24f7ca30",
+        "https://git.kernel.org/stable/c/71a56b89203ec7e5670d94a61a9b4ae617eca804",
+        "https://git.kernel.org/stable/c/bd680e56e316be92c01568be98d85d7a6c9bd92c",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23256.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23256",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23255",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23255",
+        "native_id": "CVE-2026-23255"
+      },
+      "title": "net: add proper RCU protection to /proc/net/ptype",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet: add proper RCU protection to /proc/net/ptype\n\nYin Fengwei reported an RCU stall in ptype_seq_show() and provided\na patch.\n\nReal issue is that ptype_seq_next() and ptype_seq_show() violate\nRCU rules.\n\nptype_seq_show() runs under rcu_read_lock(), and reads pt->dev\nto get device name without any barrier.\n\nAt the same time, concurrent writers can remove a packet_type structure\n(which is correctly freed after an RCU grace period) and clear pt->dev\nwithout an RCU grace period.\n\nDefine ptype_iter_state to carry a dev pointer along seq_net_private:\n\nstruct ptype_iter_state {\n\tstruct seq_net_private\tp;\n\tstruct net_device\t*dev; // added in this patch\n};\n\nWe need to record the device pointer in ptype_get_idx() and\nptype_seq_next() so that ptype_seq_show() is safe against\nconcurrent pt->dev changes.\n\nWe also need to add full RCU protection in ptype_seq_next().\n(Missing READ_ONCE() when reading list.next values)\n\nMany thanks to Dong Chenchen for providing a repro.",
+      "raw_text": null,
+      "published_at": "2026-03-18T17:41:01.445000Z",
+      "updated_at": "2026-05-01T08:30:10.935684Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23255"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/589a530ae44d0c80f523fcfd1a15af8087f27d35",
+        "https://git.kernel.org/stable/c/f613e8b4afea0cd17c7168e8b00e25bc8d33175d",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23255.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23255",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-71265",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-71265",
+        "native_id": "CVE-2025-71265"
+      },
+      "title": "fs: ntfs3: fix infinite loop in attr_load_runs_range on inconsistent metadata",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nfs: ntfs3: fix infinite loop in attr_load_runs_range on inconsistent metadata\n\nWe found an infinite loop bug in the ntfs3 file system that can lead to a\nDenial-of-Service (DoS) condition.\n\nA malformed NTFS image can cause an infinite loop when an attribute header\nindicates an empty run list, while directory entries reference it as\ncontaining actual data. In NTFS, setting evcn=-1 with svcn=0 is a valid way\nto represent an empty run list, and run_unpack() correctly handles this by\nchecking if evcn + 1 equals svcn and returning early without parsing any run\ndata. However, this creates a problem when there is metadata inconsistency,\nwhere the attribute header claims to be empty (evcn=-1) but the caller\nexpects to read actual data. When run_unpack() immediately returns success\nupon seeing this condition, it leaves the runs_tree uninitialized with\nrun->runs as a NULL. The calling function attr_load_runs_range() assumes\nthat a successful return means that the runs were loaded and sets clen to 0,\nexpecting the next run_lookup_entry() call to succeed. Because runs_tree\nremains uninitialized, run_lookup_entry() continues to fail, and the loop\nincrements vcn by zero (vcn += 0), leading to an infinite loop.\n\nThis patch adds a retry counter to detect when run_lookup_entry() fails\nconsecutively after attr_load_runs_vcn(). If the run is still not found on\nthe second attempt, it indicates corrupted metadata and returns -EINVAL,\npreventing the Denial-of-Service (DoS) vulnerability.",
+      "raw_text": null,
+      "published_at": "2026-03-18T10:05:01.779000Z",
+      "updated_at": "2026-04-02T13:04:59.072217Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-71265"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/3c3a6e951b9b53dab2ac460a655313cf04c4a10a",
+        "https://git.kernel.org/stable/c/4b90f16e4bb5607fb35e7802eb67874038da4640",
+        "https://git.kernel.org/stable/c/6f07a590616ff5f57f7c041d98e463fad9e9f763",
+        "https://git.kernel.org/stable/c/78b61f7eac37a63284774b147f38dd0be6cad43c",
+        "https://git.kernel.org/stable/c/a89bc96d5abd8a4a8d5d911884ea347efcdf460b",
+        "https://git.kernel.org/stable/c/af839013c70a24779f9d1afb1575952009312d38",
+        "https://git.kernel.org/stable/c/c0b43c45d45f59e7faad48675a50231a210c379b",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/71xxx/CVE-2025-71265.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-71265",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23241",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23241",
+        "native_id": "CVE-2026-23241"
+      },
+      "title": "audit: add missing syscalls to read class",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\naudit: add missing syscalls to read class\n\nThe \"at\" variant of getxattr() and listxattr() are missing from the\naudit read class. Calling getxattrat() or listxattrat() on a file to\nread its extended attributes will bypass audit rules such as:\n\n-w /tmp/test -p rwa -k test_rwa\n\nThe current patch adds missing syscalls to the audit read class.",
+      "raw_text": null,
+      "published_at": "2026-03-17T09:11:04.913000Z",
+      "updated_at": "2026-04-02T13:12:16.603776Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23241"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/a2e8c144299c31d3972295ed80d4cb908daf4f6f",
+        "https://git.kernel.org/stable/c/ad37505ce869a8100ff23f24eea117de7a7516bf",
+        "https://git.kernel.org/stable/c/bcb90a2834c7393c26df9609b889a3097b7700cd",
+        "https://www.bencteux.fr/posts/missing_syscalls_audit/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23241.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23241",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-71239",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-71239",
+        "native_id": "CVE-2025-71239"
+      },
+      "title": "audit: add fchmodat2() to change attributes class",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\naudit: add fchmodat2() to change attributes class\n\nfchmodat2(), introduced in version 6.6 is currently not in the change\nattribute class of audit. Calling fchmodat2() to change a file\nattribute in the same fashion than chmod() or fchmodat() will bypass\naudit rules such as:\n\n-w /tmp/test -p rwa -k test_rwa\n\nThe current patch adds fchmodat2() to the change attributes class.",
+      "raw_text": null,
+      "published_at": "2026-03-17T09:11:03.386000Z",
+      "updated_at": "2026-04-29T18:29:24.352123Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-71239"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/3e762a03713e8c25ca0108c075d662c897fc0623",
+        "https://git.kernel.org/stable/c/4f493a6079b588cf1f04ce5ed6cdad45ab0d53dc",
+        "https://git.kernel.org/stable/c/4fed776ca86378da7dd743a7b648e20b025ba8ef",
+        "https://git.kernel.org/stable/c/91e27bc79c3bca93c06bf5a471d47df9a35b3741",
+        "https://git.kernel.org/stable/c/c4334c0d0e7d6f02ed93756fd4ba807e3d00c05f",
+        "https://www.bencteux.fr/posts/missing_syscalls_audit/",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/71xxx/CVE-2025-71239.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-71239",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-4111",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-4111",
+        "native_id": "CVE-2026-4111"
+      },
+      "title": "CVE-2026-4111",
+      "summary": "A flaw was identified in the RAR5 archive decompression logic of the libarchive library, specifically within the archive_read_data() processing path. When a specially crafted RAR5 archive is processed, the decompression routine may enter a state where internal logic prevents forward progress. This condition results in an infinite loop that continuously consumes CPU resources. Because the archive passes checksum validation and appears structurally valid, affected applications cannot detect the issue before processing. This can allow attackers to cause persistent denial-of-service conditions in services that automatically process archives.",
+      "raw_text": null,
+      "published_at": "2026-03-13T19:55:13.917000Z",
+      "updated_at": "2026-03-24T12:14:19.085834Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-4111"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://access.redhat.com/security/cve/CVE-2026-4111",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2446453",
+        "https://github.com/libarchive/libarchive/pull/2877"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23240",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23240",
+        "native_id": "CVE-2026-23240"
+      },
+      "title": "tls: Fix race condition in tls_sw_cancel_work_tx()",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\ntls: Fix race condition in tls_sw_cancel_work_tx()\n\nThis issue was discovered during a code audit.\n\nAfter cancel_delayed_work_sync() is called from tls_sk_proto_close(),\ntx_work_handler() can still be scheduled from paths such as the\nDelayed ACK handler or ksoftirqd.\nAs a result, the tx_work_handler() worker may dereference a freed\nTLS object.\n\nThe following is a simple race scenario:\n\n          cpu0                         cpu1\n\ntls_sk_proto_close()\n  tls_sw_cancel_work_tx()\n                                 tls_write_space()\n                                   tls_sw_write_space()\n                                     if (!test_and_set_bit(BIT_TX_SCHEDULED, &tx_ctx->tx_bitmask))\n    set_bit(BIT_TX_SCHEDULED, &ctx->tx_bitmask);\n    cancel_delayed_work_sync(&ctx->tx_work.work);\n                                     schedule_delayed_work(&tx_ctx->tx_work.work, 0);\n\nTo prevent this race condition, cancel_delayed_work_sync() is\nreplaced with disable_delayed_work_sync().",
+      "raw_text": null,
+      "published_at": "2026-03-10T17:28:27.371000Z",
+      "updated_at": "2026-04-29T18:29:24.621999Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23240"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/17153f154f80be2b47ebf52840f2d8f724eb2f3b",
+        "https://git.kernel.org/stable/c/7bb09315f93dce6acc54bf59e5a95ba7365c2be4",
+        "https://git.kernel.org/stable/c/854cd32bc74fe573353095e90958490e4e4d641b",
+        "https://git.kernel.org/stable/c/a5de36d6cee74a92c1a21b260bc507e64bc451de",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23240.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23240",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23239",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23239",
+        "native_id": "CVE-2026-23239"
+      },
+      "title": "espintcp: Fix race condition in espintcp_close()",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nespintcp: Fix race condition in espintcp_close()\n\nThis issue was discovered during a code audit.\n\nAfter cancel_work_sync() is called from espintcp_close(),\nespintcp_tx_work() can still be scheduled from paths such as\nthe Delayed ACK handler or ksoftirqd.\nAs a result, the espintcp_tx_work() worker may dereference a\nfreed espintcp ctx or sk.\n\nThe following is a simple race scenario:\n\n           cpu0                             cpu1\n\n  espintcp_close()\n    cancel_work_sync(&ctx->work);\n                                     espintcp_write_space()\n                                       schedule_work(&ctx->work);\n\nTo prevent this race condition, cancel_work_sync() is\nreplaced with disable_work_sync().",
+      "raw_text": null,
+      "published_at": "2026-03-10T17:28:26.190000Z",
+      "updated_at": "2026-04-29T18:29:22.575155Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23239"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/022ff7f347588de6e17879a1da6019647b21321b",
+        "https://git.kernel.org/stable/c/664e9df53226b4505a0894817ecad2c610ab11d8",
+        "https://git.kernel.org/stable/c/e1512c1db9e8794d8d130addd2615ec27231d994",
+        "https://git.kernel.org/stable/c/f7ad8b1d0e421c524604d5076b73232093490d5c",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23239.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23239",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-14512",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-14512",
+        "native_id": "CVE-2025-14512"
+      },
+      "title": "CVE-2025-14512",
+      "summary": "A flaw was found in glib. This vulnerability allows a heap buffer overflow and denial-of-service (DoS) via an integer overflow in GLib's GIO (GLib Input/Output) escape_byte_string() function when processing malicious file or remote filesystem attribute values.",
+      "raw_text": null,
+      "published_at": "2025-12-11T07:16:00.463000Z",
+      "updated_at": "2026-05-13T13:14:18.098092Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-14512"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://access.redhat.com/security/cve/CVE-2025-14512",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2421339",
+        "https://gitlab.gnome.org/GNOME/glib/-/issues/3845"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-14087",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-14087",
+        "native_id": "CVE-2025-14087"
+      },
+      "title": "CVE-2025-14087",
+      "summary": "A flaw was found in GLib (Gnome Lib). This vulnerability allows a remote attacker to cause heap corruption, leading to a denial of service or potential code execution via a buffer-underflow in the GVariant parser when processing maliciously crafted input strings.",
+      "raw_text": null,
+      "published_at": "2025-12-10T09:15:47.053000Z",
+      "updated_at": "2026-05-13T13:14:18.542753Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-14087"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://access.redhat.com/security/cve/CVE-2025-14087",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2419093",
+        "https://gitlab.gnome.org/GNOME/glib/-/issues/3834"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-61662",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-61662",
+        "native_id": "CVE-2025-61662"
+      },
+      "title": "CVE-2025-61662",
+      "summary": "A Use-After-Free vulnerability has been discovered in GRUB's gettext module. This flaw stems from a programming error where the gettext command remains registered in memory after its module is unloaded. An attacker can exploit this condition by invoking the orphaned command, causing the application to access a memory location that is no longer valid. An attacker could exploit this vulnerability to cause grub to crash, leading to a Denial of Service. Possible data integrity or confidentiality compromise is not discarded.",
+      "raw_text": null,
+      "published_at": "2025-11-18T19:15:50.203000Z",
+      "updated_at": "2026-05-16T18:29:15.252629Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-61662"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://lists.gnu.org/archive/html/grub-devel/2025-11/msg00155.html",
+        "https://access.redhat.com/security/cve/CVE-2025-61662",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=2414683",
+        "http://www.openwall.com/lists/oss-security/2025/11/18/5"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56009",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56009",
+        "native_id": "CVE-2025-56009"
+      },
+      "title": "CVE-2025-56009",
+      "summary": "Cross site request forgery (CSRF) vulnerability in KeeneticOS before 4.3 at \"/rci\" API endpoint allows attackers to take over the device via adding additional users with full permissions by managing the victim to open page with exploit.",
+      "raw_text": null,
+      "published_at": "2025-10-23T15:15:39.347000Z",
+      "updated_at": "2026-05-04T08:47:59.321277Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56009"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://keenetic.com/",
+        "https://keenetic.com/global/security#october-2025-web-api-vulnerabilities"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56008",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56008",
+        "native_id": "CVE-2025-56008"
+      },
+      "title": "CVE-2025-56008",
+      "summary": "Cross site scripting (XSS) vulnerability in KeeneticOS before 4.3 at \"Wireless ISP\" page allows attackers located near to the router to takeover the device via adding additional users with full permissions.",
+      "raw_text": null,
+      "published_at": "2025-10-23T15:15:39.213000Z",
+      "updated_at": "2026-05-04T08:47:59.062796Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56008"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://keenetic.com/",
+        "https://keenetic.com/global/security#october-2025-web-api-vulnerabilities"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56007",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56007",
+        "native_id": "CVE-2025-56007"
+      },
+      "title": "CVE-2025-56007",
+      "summary": "CRLF-injection in KeeneticOS before 4.3 at \"/auth\" API endpoint allows attackers to take over the device via adding additional users with full permissions by managing the victim to open page with exploit.",
+      "raw_text": null,
+      "published_at": "2025-10-23T15:15:39.097000Z",
+      "updated_at": "2026-05-04T08:47:59.225448Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56007"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://keenetic.com/",
+        "https://keenetic.com/global/security#october-2025-web-api-vulnerabilities"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6047",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6047",
+        "native_id": "CVE-2023-6047"
+      },
+      "title": "CVE-2023-6047",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Algoritim E-commerce Software allows Reflected XSS.This issue affects E-commerce Software: before 3.9.2.",
+      "raw_text": null,
+      "published_at": "2024-03-29T12:15:07.570000Z",
+      "updated_at": "2026-05-04T08:41:48.740041Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6047"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0252"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-7103",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-7103",
+        "native_id": "CVE-2023-7103"
+      },
+      "title": "CVE-2023-7103",
+      "summary": "Authentication Bypass by Primary Weakness vulnerability in ZKSoftware Biometric Security Solutions UFace 5 allows Authentication Bypass.This issue affects UFace 5: through 12022024.",
+      "raw_text": null,
+      "published_at": "2024-03-05T13:15:06.940000Z",
+      "updated_at": "2026-05-04T08:44:45.303894Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-7103"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0173"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-7081",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-7081",
+        "native_id": "CVE-2023-7081"
+      },
+      "title": "CVE-2023-7081",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in POSTAHSİL Online Payment System allows SQL Injection.This issue affects Online Payment System: before 14.02.2024.",
+      "raw_text": null,
+      "published_at": "2024-02-15T16:15:46.373000Z",
+      "updated_at": "2026-05-04T08:44:45.332005Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-7081"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0103"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6255",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6255",
+        "native_id": "CVE-2023-6255"
+      },
+      "title": "CVE-2023-6255",
+      "summary": "Use of Hard-coded Credentials vulnerability in Utarit Information Technologies SoliPay Mobile App allows Read Sensitive Strings Within an Executable.This issue affects SoliPay Mobile App: before 5.0.8.",
+      "raw_text": null,
+      "published_at": "2024-02-15T16:15:46.117000Z",
+      "updated_at": "2026-05-04T08:45:50.844149Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6255"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0104"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5155",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5155",
+        "native_id": "CVE-2023-5155"
+      },
+      "title": "CVE-2023-5155",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Utarit Information Technologies SoliPay Mobile App allows SQL Injection.This issue affects SoliPay Mobile App: before 5.0.8.",
+      "raw_text": null,
+      "published_at": "2024-02-15T16:15:45.910000Z",
+      "updated_at": "2026-05-04T08:43:04.921202Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5155"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0104"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-4993",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-4993",
+        "native_id": "CVE-2023-4993"
+      },
+      "title": "CVE-2023-4993",
+      "summary": "Incorrect Use of Privileged APIs vulnerability in Utarit Information Technologies SoliPay Mobile App allows Collect Data as Provided by Users.This issue affects SoliPay Mobile App: before 5.0.8.",
+      "raw_text": null,
+      "published_at": "2024-02-15T16:15:45.643000Z",
+      "updated_at": "2026-05-04T08:41:47.689745Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-4993"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0104"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6441",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6441",
+        "native_id": "CVE-2023-6441"
+      },
+      "title": "CVE-2023-6441",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in UNI-PA University Marketing & Computer Internet Trade Inc. University Information System allows SQL Injection.This issue affects University Information System: before 12.12.2023.",
+      "raw_text": null,
+      "published_at": "2024-02-14T14:16:06.933000Z",
+      "updated_at": "2026-05-04T08:36:57.569387Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6441"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0102"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6677",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6677",
+        "native_id": "CVE-2023-6677"
+      },
+      "title": "CVE-2023-6677",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Oduyo Financial Technology Online Collection allows SQL Injection.This issue affects Online Collection: before v.1.0.2.",
+      "raw_text": null,
+      "published_at": "2024-02-09T14:15:08.310000Z",
+      "updated_at": "2026-05-04T08:45:51.495617Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6677"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0100"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6724",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6724",
+        "native_id": "CVE-2023-6724"
+      },
+      "title": "CVE-2023-6724",
+      "summary": "Authorization Bypass Through User-Controlled Key vulnerability in Software Engineering Consultancy Machine Equipment Limited Company Hearing Tracking System allows Authentication Abuse.This issue affects Hearing Tracking System: before for IOS 7.0, for Android Latest release 1.0.",
+      "raw_text": null,
+      "published_at": "2024-02-09T13:15:41.570000Z",
+      "updated_at": "2026-05-04T08:45:51.799641Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6724"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0099"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6519",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6519",
+        "native_id": "CVE-2023-6519"
+      },
+      "title": "CVE-2023-6519",
+      "summary": "Exposure of Data Element to Wrong Session vulnerability in Mia Technology Inc. MİA-MED allows Read Sensitive Strings Within an Executable.This issue affects MİA-MED: before 1.0.7.",
+      "raw_text": null,
+      "published_at": "2024-02-08T12:15:55.563000Z",
+      "updated_at": "2026-05-04T08:44:44.502328Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6519"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0087"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6518",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6518",
+        "native_id": "CVE-2023-6518"
+      },
+      "title": "CVE-2023-6518",
+      "summary": "Plaintext Storage of a Password vulnerability in Mia Technology Inc. MİA-MED allows Read Sensitive Strings Within an Executable.This issue affects MİA-MED: before 1.0.7.",
+      "raw_text": null,
+      "published_at": "2024-02-08T12:15:55.350000Z",
+      "updated_at": "2026-05-04T08:44:44.375836Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6518"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0087"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6517",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6517",
+        "native_id": "CVE-2023-6517"
+      },
+      "title": "CVE-2023-6517",
+      "summary": "Exposure of Sensitive Information Due to Incompatible Policies vulnerability in Mia Technology Inc. MİA-MED allows Collect Data as Provided by Users.This issue affects MİA-MED: before 1.0.7.",
+      "raw_text": null,
+      "published_at": "2024-02-08T12:15:55.087000Z",
+      "updated_at": "2026-05-04T08:44:44.350494Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6517"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0087"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6515",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6515",
+        "native_id": "CVE-2023-6515"
+      },
+      "title": "CVE-2023-6515",
+      "summary": "Authorization Bypass Through User-Controlled Key vulnerability in Mia Technology Inc. MİA-MED allows Authentication Abuse.This issue affects MİA-MED: before 1.0.7.",
+      "raw_text": null,
+      "published_at": "2024-02-08T10:15:11.047000Z",
+      "updated_at": "2026-05-04T08:44:44.303498Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6515"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0087"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6676",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6676",
+        "native_id": "CVE-2023-6676"
+      },
+      "title": "CVE-2023-6676",
+      "summary": "Cross-Site Request Forgery (CSRF) vulnerability in National Keep Cyber Security Services CyberMath allows Cross Site Request Forgery.This issue affects CyberMath: from v1.4 before v1.5.",
+      "raw_text": null,
+      "published_at": "2024-02-02T13:15:09.497000Z",
+      "updated_at": "2026-05-04T08:45:51.442835Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6676"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0080"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6675",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6675",
+        "native_id": "CVE-2023-6675"
+      },
+      "title": "CVE-2023-6675",
+      "summary": "Unrestricted Upload of File with Dangerous Type vulnerability in National Keep Cyber Security Services CyberMath allows Upload a Web Shell to a Web Server.This issue affects CyberMath: from v.1.4 before v.1.5.",
+      "raw_text": null,
+      "published_at": "2024-02-02T13:15:09.300000Z",
+      "updated_at": "2026-05-04T08:45:51.494560Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6675"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0080"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6673",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6673",
+        "native_id": "CVE-2023-6673"
+      },
+      "title": "CVE-2023-6673",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in National Keep Cyber Security Services CyberMath allows Reflected XSS.This issue affects CyberMath: from v.1.4 before v.1.5.",
+      "raw_text": null,
+      "published_at": "2024-02-02T13:15:09.100000Z",
+      "updated_at": "2026-05-04T08:45:51.326258Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6673"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0080"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6672",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6672",
+        "native_id": "CVE-2023-6672"
+      },
+      "title": "CVE-2023-6672",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in National Keep Cyber Security Services CyberMath allows Stored XSS.This issue affects CyberMath: from v1.4 before v1.5.",
+      "raw_text": null,
+      "published_at": "2024-02-02T13:15:08.890000Z",
+      "updated_at": "2026-05-04T08:43:08.757023Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6672"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0080"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6919",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6919",
+        "native_id": "CVE-2023-6919"
+      },
+      "title": "CVE-2023-6919",
+      "summary": "Path Traversal: '/../filedir' vulnerability in Biges Safe Life Technologies Electronics Inc. VGuard allows Absolute Path Traversal.This issue affects VGuard: before V500.0003.R008.4011.C0012.B351.C.",
+      "raw_text": null,
+      "published_at": "2024-01-26T08:15:42.203000Z",
+      "updated_at": "2026-05-04T08:41:49.838646Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6919"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0054"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-7153",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-7153",
+        "native_id": "CVE-2023-7153"
+      },
+      "title": "CVE-2023-7153",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Macroturk Software and Internet Technologies Macro-Bel allows Reflected XSS.This issue affects Macro-Bel: before V.1.0.1.",
+      "raw_text": null,
+      "published_at": "2024-01-18T15:15:09.430000Z",
+      "updated_at": "2026-05-04T08:41:50.031254Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-7153"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0041"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5806",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5806",
+        "native_id": "CVE-2023-5806"
+      },
+      "title": "CVE-2023-5806",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Mergen Software Quality Management System allows SQL Injection.This issue affects Quality Management System: before v1.2.",
+      "raw_text": null,
+      "published_at": "2024-01-18T13:15:08.770000Z",
+      "updated_at": "2026-05-04T08:45:50.046051Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5806"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0040"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6436",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6436",
+        "native_id": "CVE-2023-6436"
+      },
+      "title": "CVE-2023-6436",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Ekol Informatics Website Template allows SQL Injection.This issue affects Website Template: through 20231215.",
+      "raw_text": null,
+      "published_at": "2024-01-02T13:15:08.930000Z",
+      "updated_at": "2026-05-04T08:36:57.283304Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6436"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-24-0001"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6190",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6190",
+        "native_id": "CVE-2023-6190"
+      },
+      "title": "CVE-2023-6190",
+      "summary": "Improper Limitation of a Pathname to a Restricted Directory ('Path Traversal') vulnerability in İzmir Katip Çelebi University University Information Management System allows Absolute Path Traversal.This issue affects University Information Management System: before 30.11.2023.",
+      "raw_text": null,
+      "published_at": "2023-12-27T15:15:45.900000Z",
+      "updated_at": "2026-05-04T08:36:56.662563Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6190"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0736"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6145",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6145",
+        "native_id": "CVE-2023-6145"
+      },
+      "title": "CVE-2023-6145",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in İstanbul Soft Informatics and Consultancy Limited Company Softomi Advanced C2C Marketplace Software allows SQL Injection.This issue affects Softomi Advanced C2C Marketplace Software: before 12122023.",
+      "raw_text": null,
+      "published_at": "2023-12-21T14:15:09.430000Z",
+      "updated_at": "2026-05-04T08:36:56.510300Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6145"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0724"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6122",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6122",
+        "native_id": "CVE-2023-6122"
+      },
+      "title": "CVE-2023-6122",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in İstanbul Soft Informatics and Consultancy Limited Company Softomi Gelişmiş C2C Pazaryeri Yazılımı allows Reflected XSS.This issue affects Softomi Gelişmiş C2C Pazaryeri Yazılımı: before 12122023.",
+      "raw_text": null,
+      "published_at": "2023-12-21T14:15:09.063000Z",
+      "updated_at": "2026-05-04T08:36:55.891406Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6122"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0724"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5989",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5989",
+        "native_id": "CVE-2023-5989"
+      },
+      "title": "CVE-2023-5989",
+      "summary": "An Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Uyumsoft Information System and Technologies' LioXERP allows an authenticated user to execute Stored XSS.\n\nThis issue affects LioXERP: before v.146.",
+      "raw_text": null,
+      "published_at": "2023-12-21T10:15:37.990000Z",
+      "updated_at": "2026-05-04T08:41:48.657091Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5989"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0721"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5988",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5988",
+        "native_id": "CVE-2023-5988"
+      },
+      "title": "CVE-2023-5988",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Uyumsoft Information System and Technologies LioXERP allows Reflected XSS.This issue affects LioXERP: before v.146.",
+      "raw_text": null,
+      "published_at": "2023-12-21T10:15:37.383000Z",
+      "updated_at": "2026-05-04T08:41:48.315112Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5988"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0721"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5637",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5637",
+        "native_id": "CVE-2023-5637"
+      },
+      "title": "CVE-2023-5637",
+      "summary": "Unrestricted Upload of File with Dangerous Type vulnerability in ArslanSoft Education Portal allows Read Sensitive Strings Within an Executable.This issue affects Education Portal: before v1.1.",
+      "raw_text": null,
+      "published_at": "2023-12-01T14:15:08.607000Z",
+      "updated_at": "2026-05-04T08:45:48.863088Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5637"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0670"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5636",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5636",
+        "native_id": "CVE-2023-5636"
+      },
+      "title": "CVE-2023-5636",
+      "summary": "Unrestricted Upload of File with Dangerous Type vulnerability in ArslanSoft Education Portal allows Command Injection.This issue affects Education Portal: before v1.1.",
+      "raw_text": null,
+      "published_at": "2023-12-01T14:15:08.393000Z",
+      "updated_at": "2026-05-04T08:45:48.973010Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5636"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0670"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6201",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6201",
+        "native_id": "CVE-2023-6201"
+      },
+      "title": "CVE-2023-6201",
+      "summary": "Improper Neutralization of Special Elements used in an OS Command ('OS Command Injection') vulnerability in Univera Computer System Panorama allows Command Injection.This issue affects Panorama: before 8.0.",
+      "raw_text": null,
+      "published_at": "2023-11-28T12:15:07.443000Z",
+      "updated_at": "2026-05-04T08:36:56.607212Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6201"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0665"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6151",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6151",
+        "native_id": "CVE-2023-6151"
+      },
+      "title": "CVE-2023-6151",
+      "summary": "Incorrect Use of Privileged APIs vulnerability in ESKOM Computer e-municipality module allows Collect Data as Provided by Users.This issue affects e-municipality module: before v.105.",
+      "raw_text": null,
+      "published_at": "2023-11-28T10:15:07.610000Z",
+      "updated_at": "2026-05-04T08:36:56.156270Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6151"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0664"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6150",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6150",
+        "native_id": "CVE-2023-6150"
+      },
+      "title": "CVE-2023-6150",
+      "summary": "Incorrect Use of Privileged APIs vulnerability in ESKOM Computer e-municipality module allows Collect Data as Provided by Users.This issue affects e-municipality module: before v.105.",
+      "raw_text": null,
+      "published_at": "2023-11-28T10:15:07.397000Z",
+      "updated_at": "2026-05-04T08:36:56.368859Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6150"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0664"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6118",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6118",
+        "native_id": "CVE-2023-6118"
+      },
+      "title": "CVE-2023-6118",
+      "summary": "Path Traversal: '/../filedir' vulnerability in Neutron IP Camera allows Absolute Path Traversal.This issue affects IP Camera: before b1130.1.0.1.",
+      "raw_text": null,
+      "published_at": "2023-11-23T15:15:10.583000Z",
+      "updated_at": "2026-05-04T08:36:55.866998Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6118"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0658"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5983",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5983",
+        "native_id": "CVE-2023-5983"
+      },
+      "title": "CVE-2023-5983",
+      "summary": "Exposure of Private Personal Information to an Unauthorized Actor vulnerability in Botanik Software Pharmacy Automation allows Retrieve Embedded Sensitive Data.This issue affects Pharmacy Automation: before 2.1.133.0.",
+      "raw_text": null,
+      "published_at": "2023-11-22T12:15:22.777000Z",
+      "updated_at": "2026-05-04T08:41:48.495645Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5983"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0652"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-6011",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-6011",
+        "native_id": "CVE-2023-6011"
+      },
+      "title": "CVE-2023-6011",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in DECE Software Geodi allows Stored XSS.This issue affects Geodi: before 8.0.0.27396.",
+      "raw_text": null,
+      "published_at": "2023-11-22T09:15:07.927000Z",
+      "updated_at": "2026-05-04T08:41:48.589398Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-6011"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0650"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5921",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5921",
+        "native_id": "CVE-2023-5921"
+      },
+      "title": "CVE-2023-5921",
+      "summary": "Improper Enforcement of Behavioral Workflow vulnerability in DECE Software Geodi allows Functionality Bypass.This issue affects Geodi: before 8.0.0.27396.",
+      "raw_text": null,
+      "published_at": "2023-11-22T09:15:07.690000Z",
+      "updated_at": "2026-05-04T08:45:50.399006Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5921"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0650"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-5807",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-5807",
+        "native_id": "CVE-2023-5807"
+      },
+      "title": "CVE-2023-5807",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in TRtek Software Education Portal allows SQL Injection.This issue affects Education Portal: before 3.2023.29.",
+      "raw_text": null,
+      "published_at": "2023-10-27T13:15:08.387000Z",
+      "updated_at": "2026-05-04T08:45:49.773248Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-5807"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0608"
+      ]
+    },
+    {
+      "id": "osv:CVE-2023-46136",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2023-46136",
+        "native_id": "CVE-2023-46136"
+      },
+      "title": "Werkzeug vulnerable to high resource usage when parsing multipart/form-data containing a large part with CR/LF character at the beginning",
+      "summary": "Werkzeug is a comprehensive WSGI web application library. If an upload of a file that starts with CR or LF and then is followed by megabytes of data without these characters: all of these bytes are appended chunk by chunk into internal bytearray and lookup for boundary is performed on growing buffer. This allows an attacker to cause a denial of service by sending crafted multipart data to an endpoint that will parse it. The amount of CPU time required can block worker processes from handling legitimate requests. This vulnerability has been patched in version 3.0.1.",
+      "raw_text": null,
+      "published_at": "2023-10-24T23:48:56.960000Z",
+      "updated_at": "2026-04-10T05:01:48.858852Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-46136"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "cwe-400",
+        "cwe-407"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2023/46xxx/CVE-2023-46136.json",
+        "https://github.com/pallets/werkzeug/security/advisories/GHSA-hrfv-mqp8-q5rw",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-46136",
+        "https://security.netapp.com/advisory/ntap-20231124-0008/",
+        "https://github.com/pallets/werkzeug/commit/f3c803b3ade485a45f12b6d6617595350c0f03e2"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-23791",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-23791",
+        "native_id": "CVE-2022-23791"
+      },
+      "title": "CVE-2022-23791",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Firmanet Software and Technology Customer Relation Manager allows Cross-Site Scripting (XSS).This issue affects Customer Relation Manager: before 2022.03.13.",
+      "raw_text": null,
+      "published_at": "2023-03-14T09:15:12.773000Z",
+      "updated_at": "2026-05-04T08:40:15.357968Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-23791"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0145"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-23790",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-23790",
+        "native_id": "CVE-2022-23790"
+      },
+      "title": "CVE-2022-23790",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Firmanet Software and Technology Customer Relation Manager allows Cross-Site Scripting (XSS).This issue affects Customer Relation Manager: before 2022.03.13.",
+      "raw_text": null,
+      "published_at": "2023-03-14T09:15:12.663000Z",
+      "updated_at": "2026-05-04T08:40:15.416127Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-23790"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0145"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-3760",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-3760",
+        "native_id": "CVE-2022-3760"
+      },
+      "title": "CVE-2022-3760",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in Mia Technology Mia-Med.This issue affects Mia-Med: before 1.0.0.58.",
+      "raw_text": null,
+      "published_at": "2023-03-07T09:15:08.623000Z",
+      "updated_at": "2026-05-04T08:40:39.245234Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-3760"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0130"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-2178",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-2178",
+        "native_id": "CVE-2022-2178"
+      },
+      "title": "CVE-2022-2178",
+      "summary": "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting') vulnerability in Saysis Computer Starcities allows Cross-Site Scripting (XSS).This issue affects Starcities: before 1.1.",
+      "raw_text": null,
+      "published_at": "2023-03-06T12:15:08.803000Z",
+      "updated_at": "2026-05-04T08:38:08.232287Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-2178"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0128"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-2504",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-2504",
+        "native_id": "CVE-2022-2504"
+      },
+      "title": "CVE-2022-2504",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in SDD Computer Software SDD-Baro allows SQL Injection.This issue affects SDD-Baro: before 2.8.432.",
+      "raw_text": null,
+      "published_at": "2023-02-23T12:15:09.867000Z",
+      "updated_at": "2026-05-04T08:38:12.914735Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-2504"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0107"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-4554",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-4554",
+        "native_id": "CVE-2022-4554"
+      },
+      "title": "CVE-2022-4554",
+      "summary": "B2B Customer Ordering System developed by ID Software Project and Consultancy Services before version 1.0.0.347 has an authenticated Reflected XSS vulnerability. This has been fixed in the version 1.0.0.347.",
+      "raw_text": null,
+      "published_at": "2023-01-24T09:15:09.640000Z",
+      "updated_at": "2026-05-04T08:36:08.199539Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-4554"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0022"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-3693",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-3693",
+        "native_id": "CVE-2022-3693"
+      },
+      "title": "CVE-2022-3693",
+      "summary": "Path Traversal vulnerability in Deytek Informatics FileOrbis File Management System allows Path Traversal.This issue affects FileOrbis File Management System: from unspecified before 10.6.3.",
+      "raw_text": null,
+      "published_at": "2023-01-13T08:15:07.787000Z",
+      "updated_at": "2026-05-04T08:32:01.111502Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-3693"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-23-0021"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-4422",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-4422",
+        "native_id": "CVE-2022-4422"
+      },
+      "title": "CVE-2022-4422",
+      "summary": "Call Center System developed by Bulutses Information Technologies before version 3.0 has an unauthenticated Sql Injection vulnerability. This has been fixed in the version 3.0",
+      "raw_text": null,
+      "published_at": "2023-01-10T14:15:10.643000Z",
+      "updated_at": "2026-05-04T08:38:38.192004Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-4422"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0747"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-3792",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-3792",
+        "native_id": "CVE-2022-3792"
+      },
+      "title": "CVE-2022-3792",
+      "summary": "Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection') vulnerability in GullsEye GullsEye terminal operating system allows SQL Injection.This issue affects GullsEye terminal operating system: from unspecified before 5.0.13.",
+      "raw_text": null,
+      "published_at": "2023-01-10T14:15:10.507000Z",
+      "updated_at": "2026-05-04T08:35:50.295936Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-3792"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://fordefence.com/cve-2022-3792-gullseye-terminal-operation-system/",
+        "https://omrylmz.com/cve-2022-3792-terminal-operation-system/",
+        "https://www.usom.gov.tr/bildirim/tr-22-0747-2"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-2808",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-2808",
+        "native_id": "CVE-2022-2808"
+      },
+      "title": "CVE-2022-2808",
+      "summary": "Authorization Bypass Through User-Controlled Key vulnerability in Algan Software Prens Student Information System allows Object Relational Mapping Injection.This issue affects Prens Student Information System: before 2.1.11.",
+      "raw_text": null,
+      "published_at": "2022-12-02T12:15:09.977000Z",
+      "updated_at": "2026-05-04T08:35:42.102826Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-2808"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0708"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-2807",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-2807",
+        "native_id": "CVE-2022-2807"
+      },
+      "title": "CVE-2022-2807",
+      "summary": "SQL Injection vulnerability in Algan Software Prens Student Information System allows SQL Injection.This issue affects Prens Student Information System: before 2.1.11.",
+      "raw_text": null,
+      "published_at": "2022-12-02T12:15:09.797000Z",
+      "updated_at": "2026-05-04T08:35:42.125898Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-2807"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.usom.gov.tr/bildirim/tr-22-0708"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-24038",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-24038",
+        "native_id": "CVE-2022-24038"
+      },
+      "title": "CVE-2022-24038",
+      "summary": "Karmasis Informatics Infraskope SIEM+\n\nhas an unauthenticated access vulnerability which could allow an unauthenticated attacker to damage the page where the agents are listed.",
+      "raw_text": null,
+      "published_at": "2022-11-18T09:15:09.990000Z",
+      "updated_at": "2026-05-04T08:38:12.160766Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-24038"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://karmasis.com/urunlerimiz/infraskope-siem/",
+        "https://www.usom.gov.tr/bildirim/tr-22-0691"
+      ]
+    },
+    {
+      "id": "osv:CVE-2022-24037",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2022-24037",
+        "native_id": "CVE-2022-24037"
+      },
+      "title": "CVE-2022-24037",
+      "summary": "Karmasis Informatics Infraskope SIEM+\n\n has an unauthenticated access vulnerability which could allow an unauthenticated attacker to obtain critical information.",
+      "raw_text": null,
+      "published_at": "2022-11-18T08:15:09.237000Z",
+      "updated_at": "2026-05-04T08:38:11.939876Z",
+      "fetched_at": "2026-05-21T05:04:21.157397Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-24037"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://karmasis.com/urunlerimiz/infraskope-siem/",
+        "https://www.usom.gov.tr/bildirim/tr-22-0691"
+      ]
+    }
+  ],
   "meta": {
     "cve_inputs": [
+      "CVE-2026-4811",
+      "CVE-2026-9152",
+      "CVE-2026-48172",
+      "CVE-2026-1881",
+      "CVE-2026-9149",
+      "CVE-2026-40165",
+      "CVE-2026-9150",
+      "CVE-2026-8399",
+      "CVE-2026-47782",
+      "CVE-2026-47372",
+      "CVE-2026-40102",
+      "CVE-2026-40094",
+      "CVE-2026-40092",
+      "CVE-2026-39960",
+      "CVE-2026-8632",
+      "CVE-2026-8631",
+      "CVE-2026-47373",
+      "CVE-2026-9144",
+      "CVE-2026-9141",
+      "CVE-2026-9139",
+      "CVE-2026-9137",
+      "CVE-2026-9136",
+      "CVE-2026-9133",
+      "CVE-2026-9129",
+      "CVE-2026-9126",
+      "CVE-2026-9124",
+      "CVE-2026-9123",
+      "CVE-2026-9122",
+      "CVE-2026-9121",
+      "CVE-2026-9120",
+      "CVE-2026-9119",
+      "CVE-2026-9118",
+      "CVE-2026-9117",
+      "CVE-2026-9116",
+      "CVE-2026-9115",
+      "CVE-2026-9114",
+      "CVE-2026-9113",
+      "CVE-2026-9112",
+      "CVE-2026-9111",
+      "CVE-2026-9110",
+      "CVE-2026-9102",
+      "CVE-2026-9082",
+      "CVE-2026-47099",
+      "CVE-2026-45444",
+      "CVE-2026-39850",
+      "CVE-2026-39405",
+      "CVE-2026-39352",
+      "CVE-2026-39311",
+      "CVE-2026-39310",
+      "CVE-2026-35016",
+      "CVE-2026-35015",
+      "CVE-2026-35014",
+      "CVE-2026-35013",
+      "CVE-2026-35012",
+      "CVE-2026-35011",
+      "CVE-2026-35010",
+      "CVE-2026-35009",
+      "CVE-2026-35008",
+      "CVE-2026-35007",
+      "CVE-2026-33137",
+      "CVE-2026-2813",
+      "CVE-2026-2812",
+      "CVE-2026-26028",
+      "CVE-2026-24218",
+      "CVE-2026-24217",
+      "CVE-2026-24216",
+      "CVE-2026-24188",
+      "CVE-2026-23734",
+      "CVE-2026-30691",
+      "CVE-2026-20240",
+      "CVE-2026-20239",
+      "CVE-2026-20238",
+      "CVE-2026-9101",
+      "CVE-2026-9100",
+      "CVE-2026-9087",
+      "CVE-2026-8342",
+      "CVE-2026-7613",
+      "CVE-2026-44926",
+      "CVE-2026-44925",
+      "CVE-2026-44924",
+      "CVE-2026-44923",
+      "CVE-2026-20223",
+      "CVE-2026-20206",
+      "CVE-2026-20199",
+      "CVE-2026-20171",
+      "CVE-2026-9084",
+      "CVE-2026-8598",
+      "CVE-2026-8488",
+      "CVE-2026-8487",
+      "CVE-2026-8486",
+      "CVE-2026-5783",
+      "CVE-2026-4293",
+      "CVE-2026-39047",
+      "CVE-2025-32750",
+      "CVE-2023-7346",
+      "CVE-2026-8485",
+      "CVE-2026-8469",
+      "CVE-2026-8467",
+      "CVE-2026-47068",
+      "CVE-2026-24425",
+      "CVE-2026-22554",
+      "CVE-2026-21836",
+      "CVE-2026-5950",
+      "CVE-2026-5947",
+      "CVE-2026-5946",
+      "CVE-2026-45584",
+      "CVE-2026-45498",
+      "CVE-2026-45443",
+      "CVE-2026-42834",
+      "CVE-2026-42383",
+      "CVE-2026-41091",
+      "CVE-2026-3593",
+      "CVE-2026-3592",
+      "CVE-2026-3039",
+      "CVE-2026-29518",
+      "CVE-2026-27424",
+      "CVE-2026-27405",
+      "CVE-2026-24573",
+      "CVE-2025-11954",
+      "CVE-2025-31985",
+      "CVE-2025-31973",
+      "CVE-2026-25602",
+      "CVE-2026-22315",
+      "CVE-2026-22314",
+      "CVE-2026-0857",
+      "CVE-2026-0856",
+      "CVE-2026-9064",
+      "CVE-2026-6728",
+      "CVE-2026-44933",
+      "CVE-2026-44608",
+      "CVE-2026-44390",
+      "CVE-2026-42960",
+      "CVE-2026-42959",
+      "CVE-2026-42944",
+      "CVE-2026-42923",
+      "CVE-2026-42534",
+      "CVE-2026-41292",
+      "CVE-2026-41054",
+      "CVE-2026-40622",
+      "CVE-2026-35070",
+      "CVE-2026-33278",
+      "CVE-2026-32792",
+      "CVE-2026-9065",
+      "CVE-2026-9059",
+      "CVE-2026-6405",
+      "CVE-2026-5200",
       "CVE-2026-7385",
       "CVE-2026-6566",
       "CVE-2026-5776",
@@ -99,37 +3534,15 @@
       "CVE-2026-32814",
       "CVE-2026-32741",
       "CVE-2025-57798",
-      "CVE-2026-42526",
       "CVE-2026-32740",
       "CVE-2026-32739",
-      "CVE-2026-27173",
-      "CVE-2026-8370",
-      "CVE-2026-8096",
-      "CVE-2026-8073",
-      "CVE-2026-41470",
-      "CVE-2026-34154",
       "CVE-2026-33741",
-      "CVE-2026-33642",
-      "CVE-2026-33637",
       "CVE-2026-32738",
-      "CVE-2026-8605",
-      "CVE-2026-8604",
-      "CVE-2026-8603",
-      "CVE-2026-8602",
-      "CVE-2026-6009",
       "CVE-2026-47107",
-      "CVE-2026-33633",
-      "CVE-2026-32134",
-      "CVE-2025-61081",
-      "CVE-2026-5511",
       "CVE-2026-47358",
       "CVE-2026-47357",
       "CVE-2026-47356",
-      "CVE-2026-36829",
-      "CVE-2026-36828",
-      "CVE-2026-36827",
       "CVE-2026-8706",
-      "CVE-2026-5804",
       "CVE-2026-37281",
       "CVE-2026-31072",
       "CVE-2026-31071",
@@ -137,16 +3550,6 @@
       "CVE-2026-31069",
       "CVE-2026-30118",
       "CVE-2026-30117",
-      "CVE-2026-8711",
-      "CVE-2026-47100",
-      "CVE-2026-45557",
-      "CVE-2026-44159",
-      "CVE-2026-43634",
-      "CVE-2026-34883",
-      "CVE-2026-2587",
-      "CVE-2026-2586",
-      "CVE-2025-70950",
-      "CVE-2025-51427",
       "CVE-2026-8975",
       "CVE-2026-8974",
       "CVE-2026-8973",
@@ -168,344 +3571,231 @@
       "CVE-2026-8957",
       "CVE-2026-8956",
       "CVE-2026-8955",
-      "CVE-2026-8954",
-      "CVE-2026-8953",
       "CVE-2026-8952",
       "CVE-2026-8951",
       "CVE-2026-8950",
       "CVE-2026-8949",
       "CVE-2026-8948",
-      "CVE-2026-8947",
-      "CVE-2026-8946",
-      "CVE-2026-8945",
-      "CVE-2026-6354",
       "CVE-2026-47323",
-      "CVE-2026-43633",
-      "CVE-2026-42100",
-      "CVE-2026-42099",
-      "CVE-2026-42098",
-      "CVE-2026-42097",
-      "CVE-2026-42096",
-      "CVE-2026-23558",
-      "CVE-2026-23557",
-      "CVE-2025-40904",
-      "CVE-2025-40903",
-      "CVE-2025-40902",
-      "CVE-2025-40901",
       "CVE-2025-40900",
-      "CVE-2025-14575",
-      "CVE-2026-8912",
-      "CVE-2026-4883",
-      "CVE-2026-7860",
       "CVE-2026-7571",
       "CVE-2026-7507",
       "CVE-2026-7504",
       "CVE-2026-7307",
       "CVE-2026-4630",
-      "CVE-2026-45442",
       "CVE-2026-43493",
-      "CVE-2026-43492",
-      "CVE-2026-43491",
       "CVE-2026-37982",
       "CVE-2026-37981",
       "CVE-2026-37979",
       "CVE-2026-37978",
-      "CVE-2026-8827",
-      "CVE-2026-8727",
-      "CVE-2026-8726",
-      "CVE-2026-46725",
-      "CVE-2026-46724",
-      "CVE-2026-46723",
-      "CVE-2026-46722",
-      "CVE-2026-46721",
       "CVE-2026-46586",
       "CVE-2026-45434",
-      "CVE-2026-45187",
-      "CVE-2026-41919",
-      "CVE-2026-35086",
-      "CVE-2026-31986",
-      "CVE-2026-31910",
-      "CVE-2026-31909",
-      "CVE-2026-31906",
-      "CVE-2026-31388",
-      "CVE-2026-31387",
-      "CVE-2026-31380",
-      "CVE-2026-31379",
-      "CVE-2026-31378",
-      "CVE-2026-2611",
-      "CVE-2026-29226",
-      "CVE-2026-29220",
-      "CVE-2026-29207",
-      "CVE-2026-44408",
-      "CVE-2026-8922",
-      "CVE-2026-4885",
-      "CVE-2026-47317",
-      "CVE-2026-47316",
-      "CVE-2026-47315",
-      "CVE-2026-47314",
-      "CVE-2026-47313",
-      "CVE-2026-47312",
-      "CVE-2026-8830",
-      "CVE-2026-8814",
-      "CVE-2026-8813",
-      "CVE-2026-47311",
-      "CVE-2026-47310",
-      "CVE-2026-47309",
-      "CVE-2025-15609",
-      "CVE-2026-47308",
-      "CVE-2026-32994",
-      "CVE-2026-47307",
-      "CVE-2026-33565",
-      "CVE-2026-28751",
-      "CVE-2026-28733",
-      "CVE-2026-27781",
-      "CVE-2026-27766",
-      "CVE-2026-27648",
-      "CVE-2026-25850",
-      "CVE-2026-25781",
-      "CVE-2026-25110",
-      "CVE-2026-24792",
-      "CVE-2026-22069",
-      "CVE-2026-33514",
-      "CVE-2026-33234",
-      "CVE-2026-33233",
-      "CVE-2026-33232",
-      "CVE-2026-33052",
-      "CVE-2026-32323",
-      "CVE-2026-32312",
-      "CVE-2026-32244",
-      "CVE-2026-30950",
-      "CVE-2026-27964",
-      "CVE-2026-27892",
-      "CVE-2026-27891",
-      "CVE-2026-27737",
-      "CVE-2026-8851",
-      "CVE-2026-8838",
-      "CVE-2026-4137",
-      "CVE-2026-27130",
-      "CVE-2026-26978",
-      "CVE-2026-25244",
-      "CVE-2026-22810",
-      "CVE-2026-45495",
-      "CVE-2026-45494",
-      "CVE-2026-45492",
-      "CVE-2026-29965",
-      "CVE-2026-29964",
-      "CVE-2026-29963",
-      "CVE-2026-29962",
-      "CVE-2023-24215",
-      "CVE-2026-45829",
-      "CVE-2026-36438",
-      "CVE-2026-41949",
-      "CVE-2026-41948",
-      "CVE-2026-41947",
       "CVE-2026-26462",
-      "CVE-2026-7304",
-      "CVE-2026-7302",
-      "CVE-2026-7301",
       "CVE-2026-6902",
-      "CVE-2026-6333",
-      "CVE-2026-28732",
-      "CVE-2026-8788",
-      "CVE-2026-6340",
-      "CVE-2026-4273",
-      "CVE-2026-3637",
-      "CVE-2026-3495",
-      "CVE-2026-8786",
-      "CVE-2026-8770",
-      "CVE-2026-8769",
-      "CVE-2026-8768",
-      "CVE-2026-8767",
       "CVE-2026-8766",
-      "CVE-2026-8765",
-      "CVE-2026-8757",
-      "CVE-2026-8752",
-      "CVE-2026-8751",
-      "CVE-2026-8750",
-      "CVE-2026-8724",
-      "CVE-2026-46719",
-      "CVE-2026-8657",
-      "CVE-2026-8656",
-      "CVE-2026-45365",
-      "CVE-2026-45315",
-      "CVE-2026-45303",
-      "CVE-2026-44569",
-      "CVE-2026-44567",
-      "CVE-2026-44566",
-      "CVE-2026-44565",
-      "CVE-2026-44549",
-      "CVE-2026-8696",
-      "CVE-2026-45672",
-      "CVE-2026-45401",
-      "CVE-2026-45400",
-      "CVE-2026-45398",
-      "CVE-2026-45397",
-      "CVE-2026-45396",
-      "CVE-2026-45386",
-      "CVE-2026-44721",
-      "CVE-2026-45675",
-      "CVE-2026-45349",
-      "CVE-2026-44558",
-      "CVE-2026-44553",
-      "CVE-2026-8686",
+      "CVE-2026-8741",
       "CVE-2026-45038",
-      "CVE-2026-45037",
       "CVE-2026-45036",
-      "CVE-2026-45035",
-      "CVE-2026-44774",
-      "CVE-2026-41181",
-      "CVE-2026-46508",
-      "CVE-2026-45773",
-      "CVE-2026-45772",
-      "CVE-2026-46483",
-      "CVE-2026-45736",
       "CVE-2026-46333",
-      "CVE-2026-41552",
-      "CVE-2026-44088",
-      "CVE-2026-7373",
-      "CVE-2026-8585",
-      "CVE-2026-8584",
-      "CVE-2026-8583",
-      "CVE-2026-8582",
-      "CVE-2026-8580",
-      "CVE-2026-8579",
-      "CVE-2026-8577",
-      "CVE-2026-8575",
-      "CVE-2026-8574",
-      "CVE-2026-8573",
-      "CVE-2026-8572",
-      "CVE-2026-8571",
-      "CVE-2026-8570",
-      "CVE-2026-8568",
-      "CVE-2026-8567",
-      "CVE-2026-8566",
-      "CVE-2026-8560",
-      "CVE-2026-8559",
-      "CVE-2026-8556",
-      "CVE-2026-8555",
-      "CVE-2026-8554",
-      "CVE-2026-8552",
-      "CVE-2026-8550",
-      "CVE-2026-8549",
-      "CVE-2026-8548",
-      "CVE-2026-8547",
-      "CVE-2026-8546",
-      "CVE-2026-8545",
-      "CVE-2026-8544",
-      "CVE-2026-8543",
-      "CVE-2026-8542",
-      "CVE-2026-8541",
-      "CVE-2026-8539",
-      "CVE-2026-8536",
-      "CVE-2026-8535",
-      "CVE-2026-8534",
-      "CVE-2026-8531",
-      "CVE-2026-8530",
-      "CVE-2026-8525",
-      "CVE-2026-8522",
-      "CVE-2026-8519",
-      "CVE-2026-8517",
-      "CVE-2026-8513",
-      "CVE-2026-8510",
-      "CVE-2026-46470",
-      "CVE-2026-46469",
-      "CVE-2026-24712",
-      "CVE-2026-24711",
-      "CVE-2026-24710",
-      "CVE-2026-8295",
-      "CVE-2026-42304",
-      "CVE-2026-44295",
-      "CVE-2026-44288",
-      "CVE-2026-42290",
-      "CVE-2026-42844",
-      "CVE-2026-44246",
-      "CVE-2026-42338",
-      "CVE-2026-44343",
-      "CVE-2026-44166",
-      "CVE-2026-42832",
-      "CVE-2026-42831",
-      "CVE-2026-42045",
-      "CVE-2026-40421",
-      "CVE-2026-40420",
-      "CVE-2026-40419",
-      "CVE-2026-40418",
-      "CVE-2026-40374",
+      "CVE-2026-43490",
+      "CVE-2026-44919",
+      "CVE-2026-43481",
+      "CVE-2026-43476",
+      "CVE-2026-42266",
+      "CVE-2026-34685",
+      "CVE-2026-34658",
+      "CVE-2026-34656",
+      "CVE-2026-34655",
+      "CVE-2026-34654",
+      "CVE-2026-34653",
+      "CVE-2026-34652",
+      "CVE-2026-34651",
+      "CVE-2026-34650",
+      "CVE-2026-34649",
+      "CVE-2026-34648",
+      "CVE-2026-34647",
+      "CVE-2026-34646",
+      "CVE-2026-34645",
       "CVE-2026-40367",
-      "CVE-2026-40366",
-      "CVE-2026-40364",
-      "CVE-2026-40363",
-      "CVE-2026-40362",
-      "CVE-2026-40361",
-      "CVE-2026-40360",
-      "CVE-2026-40359",
-      "CVE-2026-40358",
-      "CVE-2026-35440",
-      "CVE-2026-35436",
-      "CVE-2026-31226",
-      "CVE-2026-8401",
-      "CVE-2026-8368",
-      "CVE-2026-8391",
-      "CVE-2026-8388",
-      "CVE-2026-1185",
-      "CVE-2026-0804",
-      "CVE-2026-0802",
-      "CVE-2026-0541",
-      "CVE-2026-42883",
-      "CVE-2026-8213",
-      "CVE-2026-8212",
-      "CVE-2026-42346",
+      "CVE-2026-43995",
+      "CVE-2026-4802",
+      "CVE-2026-43471",
+      "CVE-2026-43465",
+      "CVE-2026-43464",
+      "CVE-2026-43463",
+      "CVE-2026-43462",
+      "CVE-2026-43461",
+      "CVE-2026-43460",
+      "CVE-2026-43456",
+      "CVE-2026-43455",
+      "CVE-2026-43454",
+      "CVE-2026-43432",
+      "CVE-2026-43431",
+      "CVE-2026-43430",
+      "CVE-2026-43429",
+      "CVE-2026-43428",
+      "CVE-2026-43427",
+      "CVE-2026-43426",
+      "CVE-2026-43425",
+      "CVE-2026-43424",
       "CVE-2026-43380",
-      "CVE-2026-43379",
       "CVE-2026-43378",
-      "CVE-2026-42278",
-      "CVE-2026-43096",
-      "CVE-2026-43095",
-      "CVE-2026-43094",
-      "CVE-2026-43093",
-      "CVE-2026-43092",
-      "CVE-2026-43091",
-      "CVE-2026-43090",
-      "CVE-2026-7841",
-      "CVE-2026-34000",
-      "CVE-2026-42369",
-      "CVE-2026-7701",
-      "CVE-2026-7163",
-      "CVE-2026-41952",
-      "CVE-2026-41220",
-      "CVE-2026-25852",
-      "CVE-2026-3325",
-      "CVE-2025-15626",
-      "CVE-2026-22077",
-      "CVE-2026-42363",
-      "CVE-2026-31574",
-      "CVE-2026-6947",
-      "CVE-2026-41205",
-      "CVE-2026-34003",
-      "CVE-2026-34001",
-      "CVE-2026-33999",
-      "CVE-2026-6903",
-      "CVE-2026-6887",
-      "CVE-2026-6886",
-      "CVE-2026-6885",
-      "CVE-2026-3960",
-      "CVE-2026-41040",
-      "CVE-2025-10549",
-      "CVE-2026-41179",
-      "CVE-2026-5749",
-      "CVE-2026-31439",
-      "CVE-2026-31438",
-      "CVE-2026-31437",
-      "CVE-2026-31436",
-      "CVE-2026-31435",
-      "CVE-2026-0539",
-      "CVE-2025-41029",
-      "CVE-2025-10354",
-      "CVE-2026-3317",
-      "CVE-2025-13826"
+      "CVE-2026-44916",
+      "CVE-2026-43084",
+      "CVE-2026-43078",
+      "CVE-2026-43077",
+      "CVE-2026-43076",
+      "CVE-2026-43075",
+      "CVE-2026-43074",
+      "CVE-2026-43068",
+      "CVE-2026-43067",
+      "CVE-2026-7668",
+      "CVE-2026-42469",
+      "CVE-2026-42468",
+      "CVE-2026-37541",
+      "CVE-2026-37530",
+      "CVE-2026-42510",
+      "CVE-2026-31434",
+      "CVE-2026-6855",
+      "CVE-2026-6848",
+      "CVE-2026-6846",
+      "CVE-2026-6845",
+      "CVE-2026-6844",
+      "CVE-2026-6843",
+      "CVE-2026-31429",
+      "CVE-2026-31428",
+      "CVE-2026-31427",
+      "CVE-2026-31426",
+      "CVE-2026-31425",
+      "CVE-2026-31424",
+      "CVE-2026-31423",
+      "CVE-2026-31422",
+      "CVE-2026-31421",
+      "CVE-2026-31420",
+      "CVE-2026-31419",
+      "CVE-2026-31418",
+      "CVE-2026-31417",
+      "CVE-2026-31416",
+      "CVE-2026-31415",
+      "CVE-2026-31414",
+      "CVE-2026-31413",
+      "CVE-2026-6068",
+      "CVE-2026-31412",
+      "CVE-2026-4878",
+      "CVE-2026-31411",
+      "CVE-2026-31410",
+      "CVE-2026-31409",
+      "CVE-2026-31408",
+      "CVE-2026-31407",
+      "CVE-2026-31406",
+      "CVE-2026-31405",
+      "CVE-2026-5586",
+      "CVE-2026-31404",
+      "CVE-2026-31403",
+      "CVE-2026-31402",
+      "CVE-2026-31401",
+      "CVE-2026-31400",
+      "CVE-2026-31399",
+      "CVE-2026-31398",
+      "CVE-2026-31397",
+      "CVE-2026-31396",
+      "CVE-2026-31395",
+      "CVE-2026-31394",
+      "CVE-2026-31389",
+      "CVE-2026-23475",
+      "CVE-2026-23466",
+      "CVE-2026-23465",
+      "CVE-2026-23464",
+      "CVE-2026-23463",
+      "CVE-2026-23462",
+      "CVE-2026-23461",
+      "CVE-2026-23451",
+      "CVE-2026-23450",
+      "CVE-2026-23449",
+      "CVE-2026-23448",
+      "CVE-2026-5201",
+      "CVE-2026-5121",
+      "CVE-2026-32846",
+      "CVE-2026-4775",
+      "CVE-2026-4424",
+      "CVE-2026-23257",
+      "CVE-2026-23256",
+      "CVE-2026-23255",
+      "CVE-2025-71265",
+      "CVE-2026-23241",
+      "CVE-2025-71239",
+      "CVE-2026-4111",
+      "CVE-2026-23240",
+      "CVE-2026-23239",
+      "CVE-2025-68065",
+      "CVE-2025-14512",
+      "CVE-2025-14087",
+      "CVE-2025-14010",
+      "CVE-2025-61662",
+      "CVE-2025-56009",
+      "CVE-2025-56008",
+      "CVE-2025-56007",
+      "CVE-2023-6523",
+      "CVE-2023-6522",
+      "CVE-2023-6191",
+      "CVE-2023-6047",
+      "CVE-2023-6437",
+      "CVE-2023-6153",
+      "CVE-2023-6173",
+      "CVE-2023-7103",
+      "CVE-2023-7081",
+      "CVE-2023-6255",
+      "CVE-2023-5155",
+      "CVE-2023-4993",
+      "CVE-2023-6441",
+      "CVE-2023-6677",
+      "CVE-2023-6724",
+      "CVE-2023-6519",
+      "CVE-2023-6518",
+      "CVE-2023-6517",
+      "CVE-2023-6515",
+      "CVE-2023-6676",
+      "CVE-2023-6675",
+      "CVE-2023-6673",
+      "CVE-2023-6672",
+      "CVE-2023-6919",
+      "CVE-2023-7153",
+      "CVE-2023-5806",
+      "CVE-2023-6436",
+      "CVE-2023-6190",
+      "CVE-2023-6145",
+      "CVE-2023-6122",
+      "CVE-2023-5989",
+      "CVE-2023-5988",
+      "CVE-2023-5637",
+      "CVE-2023-5636",
+      "CVE-2023-6201",
+      "CVE-2023-6151",
+      "CVE-2023-6150",
+      "CVE-2023-6118",
+      "CVE-2023-5983",
+      "CVE-2023-6011",
+      "CVE-2023-5921",
+      "CVE-2023-5807",
+      "CVE-2023-46136",
+      "CVE-2022-23791",
+      "CVE-2022-23790",
+      "CVE-2022-3760",
+      "CVE-2022-2178",
+      "CVE-2022-2504",
+      "CVE-2022-4554",
+      "CVE-2022-3693",
+      "CVE-2022-4422",
+      "CVE-2022-3792",
+      "CVE-2022-2808",
+      "CVE-2022-2807",
+      "CVE-2022-24038",
+      "CVE-2022-24037"
     ],
-    "raw_count": 0,
-    "normalized_count": 0,
-    "fetched_at": "2026-05-20T07:29:27.651468+00:00",
+    "osv_id_count": 65,
+    "raw_count": 65,
+    "normalized_count": 65,
+    "fetched_at": "2026-05-21T05:04:21.157397+00:00",
     "source": "OSV.dev /v1/vulns"
   }
 }
