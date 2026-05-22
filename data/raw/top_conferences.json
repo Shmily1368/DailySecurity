@@ -1,330 +1,437 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_BorrelloESC023",
+    "id": "paper:ieee_sp:conf_sp_TschirschnitzPF21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BorrelloESC023",
+      "native_id": "conf_sp_TschirschnitzPF21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW59333.2023.00031"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00013"
     },
-    "title": "CustomProcessingUnit: Reverse Engineering and Customization of Intel Microcode.",
-    "summary": "Microcode provides an abstraction layer over the instruction set to decompose complex instructions into simpler micro-operations that can be more easily implemented in hardware. It is an essential optimization to simplify the design of x86 processors. However, introducing an additional layer of software beneath the instruction set poses security and reliability concerns. The microcode details are confidential to the manufacturers, preventing independent auditing or customization of the microcode. Moreover, microcode patches are signed and encrypted to prevent unauthorized patching and reverse engineering. However, recent research has recovered decrypted microcode and reverse-engineered read/write debug mechanisms on Intel Goldmont (Atom), making analysis and customization of microcode possible on a modern Intel microarchitecture. In this work, we present the first framework for static and dynamic analysis of Intel microcode. Building upon prior research, we reverse-engineer Goldmont microcode semantics and reconstruct the patching primitives for microcode customization. For static analysis, we implement a Ghidra processor module for decompilation and analysis of decrypted microcode. For dynamic analysis, we create a UEFI application that can trace and patch microcode to provide complete microcode control on Goldmont systems. Leveraging our framework, we reverse-engineer the confidential Intel microcode update algorithm and perform the first security analysis of its design and implementation. In three further case studies, we illustrate the potential security and performance benefits of microcode customization. We provide the first x86 Pointer Authentication Code (PAC) microcode implementation and its security evaluation, design and implement fast software breakpoints that are more than 1000x faster than standard breakpoints, and present constant-time microcode division, illustrating the potential security and performance benefits of microcode customization.",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "Method Confusion Attack on Bluetooth Pairing.",
+    "summary": "Bluetooth provides encryption, authentication, and integrity protection of its connections. These protection mechanisms require that Bluetooth devices initially establish trust on first use through a process called pairing. Throughout this process, multiple alternative pairing methods are supported.In this paper, we describe a design flaw in the pairing mechanism of Bluetooth. This flaw permits two devices to perform pairing using differing methods. While successfully interacting with each other, the devices are not aware of the Method Confusion. We explain how an attacker can cause and abuse this Method Confusion to mount a Method Confusion Attack. In contrast to other attacks targeting the pairing method, our attack applies even in Bluetooth’s highest security mode and cannot be mitigated in the protocol. Through the Method Confusion Attack, an adversary can infiltrate the secured connection between the victims and intercept all traffic.Our attack is successful in practically relevant scenarios. We implemented it as an end-to-end Proof of Concept for Bluetooth Low Energy and tested it with off-the-shelf smartphones, a smartwatch and a banking device. Furthermore, we performed a user study where none of the 40 participants noticed the ongoing attack, and 37 (92.5%) of the users completed the pairing process. Finally, we propose changes to the Bluetooth specification that immunize it against our attack.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Pietro Borrello",
-      "Catherine Easdon",
-      "Martin Schwarzl",
-      "Roland Czerny",
-      "Michael Schwarz 0001"
+      "Maximilian von Tschirschnitz",
+      "Ludwig Peuckert",
+      "Fabian Franzen",
+      "Jens Grossklags"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_Botacin23",
+    "id": "paper:ieee_sp:conf_sp_UrozR21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_Botacin23",
+      "native_id": "conf_sp_UrozR21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW59333.2023.00027"
+      "source_url": "https://doi.org/10.1109/SPW53761.2021.00056"
     },
-    "title": "GPThreats-3: Is Automatic Malware Generation a Threat?",
-    "summary": "Recent research advances introduced large textual models, of which GPT-3 is state-of-the-art. They enable many applications, such as generating text and code. Whereas the model's capabilities might be explored for good, they might also cause some negative impact: The model's code generation capabilities might be used by attackers to assist in malware creation, a phenomenon that must be understood. In this work, our goal is to answer the question: Can current large textual models (represented by GPT-3) already be used by attackers to generate malware? If so: How can attackers use these models? We explore multiple coding strategies, ranging from the entire mal ware description to separate descriptions of mal ware functions that can be used as building blocks. We also test the model's ability to rewrite malware code in multiple manners. Our experiments show that GPT-3 still has trouble generating entire malware samples from complete descriptions but that it can easily construct malware via building block descriptions. It also still has limitations to understand the described contexts, but once it is done it generates multiple versions of the same semantic (malware variants), whose detection rate significantly varies (from 4 to 55 Virustotal AV s).",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "Evaluation of the Executional Power in Windows using Return Oriented Programming.",
+    "summary": "Code-reuse techniques have emerged as a way to defeat the control-flow defenses that prevent the injection and execution of new code, as they allow an adversary to hijack the control flow of a victim program without injected code. A well-known code-reuse attack technique is Return-OrientedProgramming (ROP), which considers and links together (relatively short) code snippets, named ROP gadgets, already present in the victim’s memory address space through a controlled use of the stack values of the victim program. Although ROP attacks are known to be Turing-complete, there are still open question such as the quantification of the executional power of an adversary, which is determined by whatever code exists in the memory of a victim program, and whether an adversary can build a ROP chain, made up of ROP gadgets, for any kind of algorithm. To fill these gaps, in this paper we first define a virtual language, dubbed ROPLANG, that defines a set of operations (specifically, arithmetic, assignment, dereference, logical, and branching operations) which are mapped to ROP gadgets. We then use it to evaluate the executional power of an adversary in Windows 7 and Windows 10, in both 32- and 64-bit versions. In addition, we have developed ROP3, a tool that accepts a set of program files and a ROP chain described with our language and returns the code snippets that make up the ROP chain. Our results show that there are enough ROP gadgets to simulate any virtual operation and that branching operations are the less frequent ones. As expected, our results also indicate that the larger a program file is, the more likely to find ROP gadgets within it for every virtual operation.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Marcus Botacin"
+      "Daniel Uroz",
+      "Ricardo J. Rodríguez"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_BrodinSS23",
+    "id": "paper:ieee_sp:conf_sp_ViandJH21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BrodinSS23",
+      "native_id": "conf_sp_ViandJH21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW59333.2023.00021"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00068"
     },
-    "title": "Blind Spots: Identifying Exploitable Program Inputs.",
-    "summary": "A blind spot is any input to a program that can be arbitrarily mutated without affecting the program's output. Blind spots can be used for steganography or to embed malware payloads. If blind spots overlap file format keywords, they indicate parsing bugs that can lead to exploitable differentials. For example, one could craft a document that renders one way in one viewer and a completely different way in another viewer. They have also been used to circumvent code signing in Android binaries, to coerce certificate authorities to misbehave, and to execute HTTP request smuggling and parameter pollution attacks. This paper formalizes the operational semantics of blind spots, leading to a technique based on dynamic information flow tracking that automatically detects blind spots. An efficient implementation is introduced and evaluated against a corpus of over a thousand diverse PDFs parsed through MµPDF <sup xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">1</sup> <sup xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">1</sup> https://mupdf.com/, revealing exploitable bugs in the parser. All of the blind spot classifications are confirmed to be correct and the missed detection rate is no higher than 11 %. On average, at least 5 % of each PDF file is completely ignored by the parser. Our results show promise that this technique is an efficient automated means to detect exploitable parser bugs, over-permissiveness and differentials. Nothing in the technique is tied to PDF in general, so it can be immediately applied to other notoriously difficult-to-parse formats like ELF, X.509, and XML.",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "SoK: Fully Homomorphic Encryption Compilers.",
+    "summary": "Fully Homomorphic Encryption (FHE) allows a third party to perform arbitrary computations on encrypted data, learning neither the inputs nor the computation results. Hence, it provides resilience in situations where computations are carried out by an untrusted or potentially compromised party. This powerful concept was first conceived by Rivest et al. in the 1970s. However, it remained unrealized until Craig Gentry presented the first feasible FHE scheme in 2009.The advent of the massive collection of sensitive data in cloud services, coupled with a plague of data breaches, moved highly regulated businesses to increasingly demand confidential and secure computing solutions. This demand, in turn, has led to a recent surge in the development of FHE tools. To understand the landscape of recent FHE tool developments, we conduct an extensive survey and experimental evaluation to explore the current state of the art and identify areas for future development.In this paper, we survey, evaluate, and systematize FHE tools and compilers. We perform experiments to evaluate these tools’ performance and usability aspects on a variety of applications. We conclude with recommendations for developers intending to develop FHE-based applications and a discussion on future directions for FHE tools development.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Henrik Brodin",
-      "Marek Surovic",
-      "Evan Sultanik"
+      "Alexander Viand",
+      "Patrick Jattke",
+      "Anwar Hithnawi"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_BruggemannHSSY23",
+    "id": "paper:ieee_sp:conf_sp_VotipkaZM21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BruggemannHSSY23",
+      "native_id": "conf_sp_VotipkaZM21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179345"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00092"
     },
-    "title": "FLUTE: Fast and Secure Lookup Table Evaluations.",
-    "summary": "The concept of using Lookup Tables (LUTs) instead of Boolean circuits is well-known and been widely applied in a variety of applications, including FPGAs, image processing, and database management systems. In cryptography, using such LUTs instead of conventional gates like AND and XOR results in more compact circuits and has been shown to substantially improve online performance when evaluated with secure multi-party computation. Several recent works on secure floating-point computations and privacy-preserving machine learning inference rely heavily on existing LUT techniques. However, they suffer from either large overhead in the setup phase or subpar online performance.We propose FLUTE, a novel protocol for secure LUT evaluation with good setup and online performance. In a two-party setting, we show that FLUTE matches or even outperforms the online performance of all prior approaches, while being competitive in terms of overall performance with the best prior LUT protocols. In addition, we provide an open-source implementation of FLUTE written in the Rust programming language, and implementations of the Boolean secure two-party computation protocols of ABY2.0 and silent OT. We find that FLUTE outperforms the state of the art by two orders of magnitude in the online phase while retaining similar overall communication.",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "HackEd: A Pedagogical Analysis of Online Vulnerability Discovery Exercises.",
+    "summary": "Hacking exercises are a common tool for security education, but there is limited investigation of how they teach security concepts and whether they follow pedagogical best practices. This paper enumerates the pedagogical practices of 31 popular online hacking exercises. Specifically, we derive a set of pedagogical dimensions from the general learning sciences and educational literature, tailored to hacking exercises, and review whether and how each exercise implements each pedagogical dimension. In addition, we interview the organizers of 15 exercises to understand challenges and tradeoffs that may occur when choosing whether and how to implement each dimension.We found hacking exercises generally were tailored to students’ prior security experience and support learning by limiting extraneous load and establishing helpful online communities. Conversely, few exercises explicitly provide overarching conceptual structure or direct support for metacognition to help students transfer learned knowledge to new contexts. Immediate and tailored feedback and secure development practice were also uncommon. Additionally, we observed a tradeoff between providing realistic challenges and burdening students with extraneous cognitive load, with benefits and drawbacks at any point on this axis. Based on our results, we make suggestions for exercise improvement and future work to support organizers.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Andreas Brüggemann",
-      "Robin Hundt",
-      "Thomas Schneider 0003",
-      "Ajith Suresh",
-      "Hossein Yalame"
+      "Daniel Votipka",
+      "Eric Zhang",
+      "Michelle L. Mazurek"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_BuiTS23",
+    "id": "paper:ieee_sp:conf_sp_WangC21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BuiTS23",
+      "native_id": "conf_sp_WangC21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179338"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00023"
     },
-    "title": "Detection of Inconsistencies in Privacy Practices of Browser Extensions.",
-    "summary": "All major web browsers support extensions to provide additional functionalities and enhance users’ browsing experience while the extensions can access and collect users’ data during their web browsing. Although the web extensions inform users of their data practices via multiple forms of notices, prior work has overlooked the critical gap between the actual data practices and the published privacy notices of browser extensions. To fill this gap, we propose ExtPrivA that automatically detects the inconsistencies between browser extensions’ data collection and their privacy disclosures. From the privacy policies and Dashboard disclosures, ExtPrivA extracts privacy statements to have a clear interpretation of the privacy practices of an extension. It emulates user interactions to trigger the extension’s functionalities and analyzes the initiators of network requests to accurately extract the users’ data transferred by the extension from the browser to external servers. Our end-to-end evaluation has shown ExtPrivA to detect inconsistencies between the privacy disclosures and data-collection behavior with an 85% precision. In a large-scale study of 47.2k extensions on the Chrome Web Store, we found 820 extensions with 1,290 flows that are inconsistent with their privacy statements. Even worse, we have found 525 pairs of contradictory privacy statements in the Dashboard disclosures and privacy policies of 360 extensions. These discrepancies between the privacy disclosures and the actual data-collection behavior are deemed as serious violations of the Store’s policies. Our findings highlight the critical issues in the privacy disclosures of browser extensions that potentially mislead, and even pose high privacy risks to, end-users.",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "Cross-Domain Access Control Encryption: Arbitrary-policy, Constant-size, Efficient.",
+    "summary": "Access control is a fundamental keystone in security. Damgard, Haagh, and Orlandi (TCC 2016) introduced access˚ control encryption (ACE) that enforces no-read and no-write rules without revealing the senders, receivers, or the content of the encrypted traffic. Existing designs of ACE for arbitrary policy (covering all possibilities of read/write relationship) rely on indistinguishability obfuscation or lattice-based assumptions, with either exponential-size ciphertexts or circuit realization of policy. Also, their designs mandate a private sanitizer key to remain perpetually online for sanitization. The only existing scheme that can afford a public sanitizer key supports only simple policies. To summarize, state-of-the-art ACE schemes only feature at most two of the following desirable properties: arbitrarypolicy, constant-size (ciphertext), and efficient (sanitization). This paper introduces an ACE scheme for arbitrary policy without sanitizer key, which solves the open question posed by Kim and Wu (Asiacrypt 2017). We also put forth the notion of cross-domain ACE, separating the key generator into the sender-authority and receiver-authority. Our scheme requires structure-preserving signatures, non-interactive zero-knowledge proof, and sanitizable identity-based broadcast encryption as the building blocks. It can be instantiated directly from pairing-based assumptions and features constant ciphertext size. We also prototyped our scheme and demonstrated its practical efficiency.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Duc Bui",
-      "Brian Tang",
-      "Kang G. Shin"
+      "Xiuhua Wang 0001",
+      "Sherman S. M. Chow"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_SlocumZAC23",
+    "id": "paper:acm_ccs:conf_ccs_Balle0G23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Balle0G23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3623215"
+    },
+    "title": "Amplification by Shuffling without Shuffling.",
+    "summary": "Motivated by recent developments in the shuffle model of differential privacy, we propose a new approximate shuffling functionality called Alternating Shuffle, and provide a protocol implementing alternating shuffling in a single-server threat model where the adversary observes all communication. Unlike previous shuffling protocols in this threat model, the per-client communication of our protocol only grows sub-linearly in the number of clients. Moreover, we study the concrete efficiency of our protocol and show it can improve per-client communication by one or more orders of magnitude with respect to previous (approximate) shuffling protocols. We also show a differential privacy amplification result for alternating shuffling analogous to the one for uniform shuffling, and demonstrate that shuffling-based protocols for secure summation based a construction of Ishai et al. remain secure under the Alternating Shuffle. In the process we also develop a protocol for exact shuffling in single-server threat model with amortized logarithmic communication per-client which might be of independent interest.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
+    "authors": [
+      "Borja Balle",
+      "James Bell 0001",
+      "Adrià Gascón"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_BalutaNJAS23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_BalutaNJAS23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3623093"
+    },
+    "title": "Unforgeability in Stochastic Gradient Descent.",
+    "summary": "Stochastic Gradient Descent (SGD) is a popular training algorithm, a cornerstone of modern machine learning systems. Several security applications benefit from determining if SGD executions are forgeable, i.e., whether the model parameters seen at a given step are obtainable by more than one distinct set of data samples. In this paper, we present the first attempt at proving impossibility of such forgery. We furnish a set of conditions, which are efficiently checkable on concrete checkpoints seen during training runs, under which checkpoints are provably unforgeable at that step. Our experiments show that the conditions are somewhat mild and hence always satisfied at checkpoints sampled in our experiments. Our results sharply contrast prior findings at a high level: We show that checkpoints we find to be provably unforgeable have been deemed to be forgeable using the same methodology and experimental setup suggested in prior work. This discrepancy arises because of unspecified subtleties in definitions. We experimentally confirm that the distinction matters, i.e., small errors amplify during training to produce significantly observable difference in final models trained. We hope our results serve as a cautionary note on the role of algebraic precision in forgery definitions and related security arguments.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
+    "authors": [
+      "Teodora Baluta",
+      "Ivica Nikolic",
+      "Racchit Jain",
+      "Divesh Aggarwal",
+      "Prateek Saxena"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_BasinGKNO23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_BasinGKNO23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3623196"
+    },
+    "title": "Is Modeling Access Control Worth It?",
+    "summary": "Implementing access control policies is an error-prone task that can have severe consequences for the security of software applications. Model-driven approaches have been proposed in the literature and associated tools have been developed with the goal of reducing the complexity of this task and helping developers to produce secure software efficiently. Nevertheless, there is a lack of empirical data supporting the advantages of model-driven security approaches over code-centric approaches, which are the de-facto industry standard for software development.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
+    "authors": [
+      "David A. Basin",
+      "Juan Guarnizo",
+      "Srdan Krstic",
+      "Hoang Nguyen Phuoc Bao",
+      "Martín Ochoa"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_BatinaCFR23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_BatinaCFR23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3624028"
+    },
+    "title": "ASHES &apos;23: Workshop on Attacks and Solutions in Hardware Security.",
+    "summary": "",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
+    "authors": [
+      "Lejla Batina",
+      "Chip-Hong Chang",
+      "Domenic Forte",
+      "Ulrich Rührmair"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_BeckG00JK23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_BeckG00JK23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3623132"
+    },
+    "title": "Scalable Multiparty Garbling.",
+    "summary": "Multiparty garbling is the most popular approach for constant-round secure multiparty computation (MPC). Despite being the focus of significant research effort, instantiating prior approaches to multiparty garbling results in constant-round MPC that can not realistically accommodate large numbers of parties. In this work we present the first global-scale multiparty garbling protocol. The per-party communication complexity of our protocol decreases as the number of parties participating in the protocol increases - for the first time matching the asymptotic communication complexity of non-constant round MPC protocols. Our protocol achieves malicious security in the honest-majority setting and relies on the hardness of the Learning Party with Noise assumption.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
+    "authors": [
+      "Gabrielle Beck",
+      "Aarushi Goel",
+      "Aditya Hegde 0003",
+      "Abhishek Jain 0002",
+      "Zhengzhong Jin",
+      "Gabriel Kaptchuk"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_StogerBGNP25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SlocumZAC23",
+      "native_id": "conf_uss_StogerBGNP25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/slocum"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/stoeger"
     },
-    "title": "Going through the motions: AR/VR keylogging from user head motions.",
+    "title": "BGP Vortex: Update Message Floods Can Create Internet Instabilities.",
     "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Carter Slocum",
-      "Yicheng Zhang 0004",
-      "Nael B. Abu-Ghazaleh",
-      "Jiasi Chen"
+      "Felix Stöger",
+      "Henry Birge-Lee",
+      "Giacomo Giuliari",
+      "Jordi Subirà Nieto",
+      "Adrian Perrig"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_SmithYDRS23",
+    "id": "paper:usenix_security:conf_uss_Su0L0D025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SmithYDRS23",
+      "native_id": "conf_uss_Su0L0D025",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/smith"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/su-yuan"
     },
-    "title": "&quot;If I could do this, I feel anyone could: &quot; The Design and Evaluation of a Secondary Authentication Factor Manager.",
+    "title": "Dumbo-MPC: Efficient Fully Asynchronous MPC with Optimal Resilience.",
     "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Garrett Smith",
-      "Tarun Kumar Yadav",
-      "Jonathan Dutson",
-      "Scott Ruoti",
-      "Kent E. Seamons"
+      "Yuan Su",
+      "Yuan Lu 0001",
+      "Jiliang Li",
+      "Yuyi Wang 0001",
+      "Chengyi Dong",
+      "Qiang Tang 0005"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_SnyderKELH23",
+    "id": "paper:usenix_security:conf_uss_SuPBZ25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SnyderKELH23",
+      "native_id": "conf_uss_SuPBZ25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/snyder"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/su-zhengyuan"
     },
-    "title": "Pool-Party: Exploiting Browser Resource Pools for Web Tracking.",
-    "summary": "We identify class of covert channels in browsers that are not mitigated by current defenses, which we call \"pool-party\" attacks. Pool-party attacks allow sites to create covert channels by manipulating limited-but-unpartitioned resource pools. These class of attacks have been known, but in this work we show that they are both more prevalent, more practical for exploitation, and allow exploitation in more ways, than previously identified. These covert channels have sufficient bandwidth to pass cookies and identifiers across site boundaries under practical and real-world conditions. We identify pool-party attacks in all popular browsers, and show they are practical cross-site tracking techniques (i.e., attacks take 0.6s in Chrome and Edge, and 7s in Firefox and Tor Browser). In this paper we make the following contributions: first, we describe pool-party covert channel attacks that exploit limits in application-layer resource pools in browsers. Second, we demonstrate that pool-party attacks are practical, and can be used to track users in all popular browsers; we also share open source implementations of the attack and evaluate them through a representative web crawl. Third, we show that in Gecko based-browsers (including the Tor Browser) pool-party attacks can also be used for cross-profile tracking (e.g., linking user behavior across normal and private browsing sessions). Finally, we discuss possible mitigation strategies and defenses",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "FABLE: Batched Evaluation on Confidential Lookup Tables in 2PC.",
+    "summary": "",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Peter Snyder",
-      "Soroush Karami",
-      "Arthur Edelstein",
-      "Benjamin Livshits",
-      "Hamed Haddadi 0001"
+      "Zhengyuan Su",
+      "Qi Pang",
+      "Simon Beyzerov",
+      "Wenting Zheng"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_SombatruangCBFK23",
+    "id": "paper:usenix_security:conf_uss_SunLJLR25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SombatruangCBFK23",
+      "native_id": "conf_uss_SunLJLR25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/sombatruang"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/sun-zekun"
     },
-    "title": "Internet Service Providers&apos; and Individuals&apos; Attitudes, Barriers, and Incentives to Secure IoT.",
+    "title": "Pretender: Universal Active Defense against Diffusion Finetuning Attacks.",
     "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Nissy Sombatruang",
-      "Tristan Caulfield",
-      "Ingolf Becker",
-      "Akira Fujita",
-      "Takahiro Kasama",
-      "Koji Nakao",
-      "Daisuke Inoue"
+      "Zekun Sun",
+      "Zijian Liu",
+      "Shouling Ji",
+      "Chenhao Lin",
+      "Na Ruan"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_SongOKMCB23",
+    "id": "paper:usenix_security:conf_uss_SunX00L025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SongOKMCB23",
+      "native_id": "conf_uss_SunX00L025",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/song"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/sun-shiyu"
     },
-    "title": "Discovering Adversarial Driving Maneuvers against Autonomous Vehicles.",
+    "title": "DISPATCH: Unraveling Security Patches from Entangled Code Changes.",
     "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Ruoyu Song 0001",
-      "Muslum Ozgur Ozmen",
-      "Hyungsub Kim",
-      "Raymond Muller",
-      "Z. Berkay Celik",
-      "Antonio Bianchi"
+      "Shiyu Sun",
+      "Yunlong Xing",
+      "Xinda Wang 0001",
+      "Shu Wang 0004",
+      "Qi Li 0002",
+      "Kun Sun 0001"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HellenthalGMK0S25",
+    "id": "paper:ndss:conf_ndss_ZhaWN00Y22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HellenthalGMK0S25",
+      "native_id": "conf_ndss_ZhaWN00Y22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/the-unusual-suspects-studying-reasons-for-lacking-updates-in-wordpress/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-262/"
     },
-    "title": "The (Un)usual Suspects - Studying Reasons for Lacking Updates in WordPress.",
-    "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "Hazard Integrated: Understanding Security Risks in App Extensions to Team Chat Systems.",
+    "summary": "Team Chat (TACT) systems are now widely used for online collaborations and project management. A unique feature of these systems is their integration of third-party apps, which extends their capabilities but also brings in the complexity that could potentially put the TACT system and its end-users at risk.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Maria Hellenthal",
-      "Lena Gotsche",
-      "Rafael Mrowczynski",
-      "Sarah Kugel",
-      "Michael Schilling 0001",
-      "Ben Stock"
+      "Mingming Zha 0001",
+      "Jice Wang",
+      "Yuhong Nan",
+      "Xiaofeng Wang 0006",
+      "Yuqing Zhang 0001",
+      "Zelin Yang"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HelmkePA25",
+    "id": "paper:ndss:conf_ndss_Zhai0ZCLQSSKJY22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HelmkePA25",
+      "native_id": "conf_ndss_Zhai0ZCLQSSKJY22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/mens-sana-in-corpore-sano-sound-firmware-corpora-for-vulnerability-research/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-249/"
     },
-    "title": "Mens Sana In Corpore Sano: Sound Firmware Corpora for Vulnerability Research.",
-    "summary": "Firmware corpora for vulnerability research should be scientifically sound.Yet, several practical challenges complicate the creation of sound corpora: Sample acquisition, e.g., is hard and one must overcome the barrier of proprietary or encrypted data.As image contents are unknown prior to analysis, it is hard to select high-quality samples that can satisfy scientific demands.Ideally, we help each other out by sharing data.But here, sharing is problematic due to copyright laws.Instead, papers must carefully document each step of corpus creation: If a step is unclear, replicability is jeopardized.This has cascading effects on result verifiability, representativeness, and, thus, soundness.Despite all challenges, how can we maintain the soundness of firmware corpora?This paper thoroughly analyzes the problem space and investigates its impact on research: We distill practical binary analysis challenges that significantly influence corpus creation.We use these insights to derive guidelines that help researchers to nurture corpus replicability and representativeness.We apply them to 44 top tier papers and systematically analyze scientific corpus creation practices.Our comprehensive analysis confirms that there is currently no common ground in related work.It shows the added value of our guidelines, as they discover methodical issues in corpus creation and unveil miniscule step stones in documentation.These blur visions on representativeness, hinder replicability, and, thus, negatively impact the soundness of otherwise excellent work.Finally, we show the feasibility of our guidelines and build a new corpus for large-scale analyses on Linux firmware: LFwC.We share rich meta data for good (and proven) replicability.We verify unpacking, deduplicate, identify contents, provide ground truth, and demonstrate LFwC's utility for research.",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "Progressive Scrutiny: Incremental Detection of UBI bugs in the Linux Kernel.",
+    "summary": "The Linux kernel has a rapid development cycle, with 10 commits every hour, on average. While these updates provide new features and bug fixes, they can also introduce new bugs and security vulnerabilities. Recent techniques showed how to detect some types of vulnerabilities using static analysis, but these tools cannot run quickly enough to keep up with the pace of kernel development. Ideally, an incremental analysis technique could address this problem, by doing a complete analysis once and then only analyzing changed portions of the code subsequently. However, incremental analysis of the Linux kernel poses unique challenges, due to its enormous scale and the high precision required to reduce false positives.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "René Helmke",
-      "Elmar Padilla",
-      "Nils Aschenbruck"
+      "Yizhuo Zhai",
+      "Yu Hao 0006",
+      "Zheng Zhang 0058",
+      "Weiteng Chen",
+      "Guoren Li",
+      "Zhiyun Qian",
+      "Chengyu Song",
+      "Manu Sridharan",
+      "Srikanth V. Krishnamurthy",
+      "Trent Jaeger",
+      "Paul L. Yu"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HoltgraveFFHBKF25",
+    "id": "paper:ndss:conf_ndss_ZhangPHS22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HoltgraveFFHBKF25",
+      "native_id": "conf_ndss_ZhangPHS22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/attributing-open-source-contributions-is-critical-but-difficult-a-systematic-analysis-of-github-practices-and-their-impact-on-software-supply-chain-security/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-209/"
     },
-    "title": "Attributing Open-Source Contributions is Critical but Difficult: A Systematic Analysis of GitHub Practices and Their Impact on Software Supply Chain Security.",
-    "summary": "Critical open-source projects form the basis of many large software systems. They provide trusted and extensible implementations of important functionality for cryptography, compatibility, and security. Verifying commit authorship authenticity in open-source projects is essential and challenging. Git users can freely configure author details such as names and email addresses. Platforms like GitHub use such information to generate profile links to user accounts. We demonstrate three attack scenarios malicious actors can use to manipulate projects and profiles on GitHub to appear trustworthy. We designed a mixed-research study to assess the effect on critical open-source software projects and evaluated countermeasures. First, we conducted a largescale measurement among 50,328 critical open-source projects on GitHub and demonstrated that contribution workflows can be abused in 85.9% of the projects. We identified 573,043 email addresses that a malicious actor can claim to hijack historic contributions and improve the trustworthiness of their accounts. When looking at commit signing as a countermeasure, we found that the majority of users (95.4%) never signed a commit, and for the majority of projects (72.1%), no commit was ever signed. In contrast, only 2.0% of the users signed all their commits, and for 0.2% of the projects all commits were signed. Commit signing is not associated with projects’ programming languages, topics, or other security measures. Second, we analyzed online security advice to explore the awareness of contributor spoofing and identify recommended countermeasures. Most documents exhibit awareness of the simple spoofing technique via Git commits but no awareness of problems with GitHub’s handling of email addresses.",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "HARPO: Learning to Subvert Online Behavioral Advertising.",
+    "summary": "Online behavioral advertising, and the associated tracking paraphernalia, poses a real privacy threat. Unfortunately, existing privacy-enhancing tools are not always effective against online advertising and tracking. We propose HARPO, a principled learning-based approach to subvert online behavioral advertising through obfuscation. HARPO uses reinforcement learning to adaptively interleave real page visits with fake pages to distort a tracker's view of a user's browsing profile. We evaluate HARPO against real-world user profiling and ad targeting models used for online behavioral advertising. The results show that HARPO improves privacy by triggering more than 40% incorrect interest segments and 6 higher bid values. HARPO outperforms existing obfuscation tools by as much as 16 for the same overhead. HARPO is also able to achieve better stealthiness to adversarial detection than existing obfuscation tools. HARPO meaningfully advances the state-of-the-art in leveraging obfuscation to subvert online behavioral advertising.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Jan-Ulrich Holtgrave",
-      "Kay Friedrich",
-      "Fabian Fischer 0009",
-      "Nicolas Huaman",
-      "Niklas Busch",
-      "Jan H. Klemmer",
-      "Marcel Fourné",
-      "Oliver Wiese",
-      "Dominik Wermke",
-      "Sascha Fahl"
+      "Jiang Zhang 0003",
+      "Konstantinos Psounis",
+      "Muhammad Haroon",
+      "Zubair Shafiq"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HuangJSW25",
+    "id": "paper:ndss:conf_ndss_ZhangWYKHZL22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HuangJSW25",
+      "native_id": "conf_ndss_ZhangWYKHZL22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/exploring-user-perceptions-of-security-auditing-in-the-web3-ecosystem/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-199/"
     },
-    "title": "Exploring User Perceptions of Security Auditing in the Web3 Ecosystem.",
-    "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "MobFuzz: Adaptive Multi-objective Optimization in Gray-box Fuzzing.",
+    "summary": "Coverage-guided gray-box fuzzing (CGF) is an efficient software testing technique. There are usually multiple objectives to optimize in CGF. However, existing CGF methods cannot successfully find the optimal values for multiple objectives simultaneously. In this paper, we propose a gray-box fuzzer for multi-objective optimization (MOO) called MobFuzz. We model the multi-objective optimization process as a multiplayer multi-armed bandit (MPMAB). First, it adaptively selects the objective combination that contains the most appropriate objectives for the current situation. Second, our model deals with the power schedule, which adaptively allocates energy to the seeds under the chosen objective combination. In MobFuzz, we propose an evolutionary algorithm called NIC to optimize our chosen objectives simultaneously without incurring additional performance overhead. To prove the effectiveness of MobFuzz, we conduct experiments on 12 real-world programs and the MAGMA data set. Experiment results show that multi-objective optimization in MobFuzz outperforms single-objective fuzzing in the baseline fuzzers. In contrast to them, MobFuzz can select the optimal objective combination and increase the values of multiple objectives up to 107%, with at most a 55% reduction in the energy consumption. Moreover, MobFuzz has up to 6% more program coverage and finds 3x more unique bugs than the baseline fuzzers. The NIC algorithm has at least a 2x improvement with a performance overhead of approximately 3%.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Molly Zhuangtong Huang",
-      "Rui Jiang",
-      "Tanusree Sharma",
-      "Kanye Ye Wang"
+      "Gen Zhang",
+      "Pengfei Wang 0010",
+      "Tai Yue",
+      "Xiangdong Kong",
+      "Shan Huang 0002",
+      "Xu Zhou 0004",
+      "Kai Lu 0001"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HurYMKLL25",
+    "id": "paper:ndss:conf_ndss_ZhaoLWQ22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HurYMKLL25",
+      "native_id": "conf_ndss_ZhaoLWQ22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/dlbox-new-model-training-framework-for-protecting-training-data/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-248/"
     },
-    "title": "DLBox: New Model Training Framework for Protecting Training Data.",
-    "summary": "",
-    "published_at": "2026-05-21T04:58:54.004358+00:00",
-    "fetched_at": "2026-05-21T04:58:54.004358+00:00",
+    "title": "Semantic-Informed Driver Fuzzing Without Both the Hardware Devices and the Emulators.",
+    "summary": "Device drivers are security-critical. In monolithic kernels like Linux, there are hundreds of thousands of drivers which run in the same privilege as the core kernel. Consequently, a bug in a driver can compromise the whole system. More critically, drivers are particularly buggy. First, drivers receive complex and untrusted inputs from not only the user space but also the hardware. Second, the driver code can be developed by less-experienced third parties, and is less tested because running a driver requires the corresponding hardware device or the emulator. Therefore, existing studies show that drivers tend to have a higher bug density and have become a major security threat. Existing testing techniques have to focus the fuzzing on a limited number of drivers that have the corresponding devices or the emulators, thus cannot scale.",
+    "published_at": "2026-05-22T04:47:12.577507+00:00",
+    "fetched_at": "2026-05-22T04:47:12.577507+00:00",
     "authors": [
-      "Jaewon Hur",
-      "Juheon Yi",
-      "Cheolwoo Myung",
-      "Sangyun Kim",
-      "Youngki Lee 0001",
-      "Byoungyoung Lee"
+      "Wenjia Zhao",
+      "Kangjie Lu",
+      "Qiushi Wu",
+      "Yong Qi"
     ]
   }
 ]
