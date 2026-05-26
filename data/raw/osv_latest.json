@@ -1,138 +1,25 @@
 {
   "items": [
     {
-      "id": "osv:CVE-2026-23272",
+      "id": "osv:CVE-2026-28522",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-23272",
-        "native_id": "CVE-2026-23272"
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-28522",
+        "native_id": "CVE-2026-28522"
       },
-      "title": "netfilter: nf_tables: unconditionally bump set->nelems before insertion",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_tables: unconditionally bump set->nelems before insertion\n\nIn case that the set is full, a new element gets published then removed\nwithout waiting for the RCU grace period, while RCU reader can be\nwalking over it already.\n\nTo address this issue, add the element transaction even if set is full,\nbut toggle the set_full flag to report -ENFILE so the abort path safely\nunwinds the set to its previous state.\n\nAs for element updates, decrement set->nelems to restore it.\n\nA simpler fix is to call synchronize_rcu() in the error path.\nHowever, with a large batch adding elements to already maxed-out set,\nthis could cause noticeable slowdown of such batches.",
+      "title": "CVE-2026-28522",
+      "summary": "arduino-TuyaOpen before version 1.2.1 contains a null pointer dereference vulnerability in the WiFiUDP component. An attacker on the same local area network can send a large volume of malicious UDP packets to cause memory exhaustion on the device, triggering a null pointer dereference and resulting in a denial-of-service condition.",
       "raw_text": null,
-      "published_at": "2026-03-20T08:08:52.946000Z",
-      "updated_at": "2026-05-02T08:14:15.574151Z",
-      "fetched_at": "2026-05-24T04:52:41.597691Z",
+      "published_at": "2026-03-16T14:19:28.760000Z",
+      "updated_at": "2026-04-12T20:14:02.471863Z",
+      "fetched_at": "2026-05-26T04:50:04.275865Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-23272"
-      ],
-      "vendors": [],
-      "products": [
-        "Kernel"
-      ],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "linux"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": null,
-        "cvss_vector": null,
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://git.kernel.org/stable/c/6826131c7674329335ca25df2550163eb8a1fd0c",
-        "https://git.kernel.org/stable/c/ccb8c8f3c1127cf34d18c737309897c68046bf21",
-        "https://git.kernel.org/stable/c/def602e498a4f951da95c95b1b8ce8ae68aa733a",
-        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23272.json",
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-23272",
-        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
-      ]
-    },
-    {
-      "id": "osv:CVE-2025-68251",
-      "type": "advisory",
-      "source_info": {
-        "source": "osv",
-        "source_sub": "osv.dev",
-        "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2025-68251",
-        "native_id": "CVE-2025-68251"
-      },
-      "title": "erofs: avoid infinite loops due to corrupted subpage compact indexes",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nerofs: avoid infinite loops due to corrupted subpage compact indexes\n\nRobert reported an infinite loop observed by two crafted images.\n\nThe root cause is that `clusterofs` can be larger than `lclustersize`\nfor !NONHEAD `lclusters` in corrupted subpage compact indexes, e.g.:\n\n  blocksize = lclustersize = 512   lcn = 6   clusterofs = 515\n\nMove the corresponding check for full compress indexes to\n`z_erofs_load_lcluster_from_disk()` to also cover subpage compact\ncompress indexes.\n\nIt also fixes the position of `m->type >= Z_EROFS_LCLUSTER_TYPE_MAX`\ncheck, since it should be placed right after\n`z_erofs_load_{compact,full}_lcluster()`.",
-      "raw_text": null,
-      "published_at": "2025-12-16T14:32:17.979000Z",
-      "updated_at": "2026-04-02T13:03:27.512673Z",
-      "fetched_at": "2026-05-24T04:52:41.597691Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2025-68251"
-      ],
-      "vendors": [],
-      "products": [
-        "Kernel"
-      ],
-      "affected_versions": [],
-      "topics": [
-        "advisory",
-        "linux"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": null,
-        "cvss_vector": null,
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://git.kernel.org/stable/c/8675447a8794983f2b7e694b378112772c17635e",
-        "https://git.kernel.org/stable/c/e13d315ae077bb7c3c6027cc292401bc0f4ec683",
-        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/68xxx/CVE-2025-68251.json",
-        "https://nvd.nist.gov/vuln/detail/CVE-2025-68251",
-        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
-      ]
-    },
-    {
-      "id": "osv:CVE-2025-13118",
-      "type": "advisory",
-      "source_info": {
-        "source": "osv",
-        "source_sub": "osv.dev",
-        "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2025-13118",
-        "native_id": "CVE-2025-13118"
-      },
-      "title": "CVE-2025-13118",
-      "summary": "A vulnerability was detected in macrozheng mall-swarm and mall up to 1.0.3. Affected by this issue is the function paySuccess of the file /order/paySuccess. The manipulation of the argument orderID results in improper authorization. The attack can be launched remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
-      "raw_text": null,
-      "published_at": "2025-11-13T15:15:50.653000Z",
-      "updated_at": "2026-05-04T08:46:33.147856Z",
-      "fetched_at": "2026-05-24T04:52:41.597691Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2025-13118"
+        "CVE-2026-28522"
       ],
       "vendors": [],
       "products": [],
@@ -143,7 +30,7 @@
       "lang": "en",
       "risk": {
         "cvss_score": null,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+        "cvss_vector": "CVSS:4.0/AV:A/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N/E:X/CR:X/IR:X/AR:X/MAV:X/MAC:X/MAT:X/MPR:X/MUI:X/MVC:X/MVI:X/MVA:X/MSC:X/MSI:X/MSA:X/S:X/AU:X/R:X/V:X/RE:X/U:X",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -159,33 +46,151 @@
       },
       "threat_meta": null,
       "references": [
-        "https://vuldb.com/?id.332323",
-        "https://vuldb.com/?submit.683345",
-        "https://vuldb.com/?submit.686531",
-        "https://github.com/Hwwg/cve/issues/14",
-        "https://github.com/Hwwg/cve/issues/9",
-        "https://vuldb.com/?ctiid.332323"
+        "https://src.tuya.com/announcement/32",
+        "https://www.vulncheck.com/advisories/arduino-tuyaopen-wifiudp-null-pointer-dereference-denial-of-service",
+        "https://github.com/tuya/arduino-TuyaOpen"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-26351",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-26351",
+        "native_id": "CVE-2026-26351"
+      },
+      "title": "CVE-2026-26351",
+      "summary": "GetSimpleCMS Community Edition (CE) version 3.3.16 contains a stored cross-site scripting (XSS) vulnerability in the Theme to Components functionality within components.php. User-supplied input provided to the \"slug\" field of a component is stored without proper output encoding. While other fields are sanitized using safe_slash_html(), the slug parameter is written to XML and later rendered in the administrative interface without sanitation, resulting in persistent execution of arbitrary JavaScript. An authenticated administrator can inject malicious script content that executes whenever the affected Components page is viewed by any authenticated user, enabling session hijacking, unauthorized administrative actions, and persistent compromise of the CMS administrative interface.",
+      "raw_text": null,
+      "published_at": "2026-02-24T23:16:04.830000Z",
+      "updated_at": "2026-04-10T05:36:58.161651Z",
+      "fetched_at": "2026-05-26T04:50:04.275865Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-26351"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://getsimple-ce.ovh/",
+        "https://github.com/GetSimpleCMS-CE/GetSimpleCMS-CE/releases/tag/v3.3.22",
+        "https://github.com/GetSimpleCMS-CE/GetSimpleCMS-CE/security/advisories/GHSA-95f7-vm92-8gpx",
+        "https://www.vulncheck.com/advisories/getsimplecms-ce-stored-xss-via-components-php"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-47817",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-47817",
+        "native_id": "CVE-2021-47817"
+      },
+      "title": "CVE-2021-47817",
+      "summary": "OpenEMR 5.0.2.1 contains a cross-site scripting vulnerability that allows authenticated attackers to inject malicious JavaScript through user profile parameters. Attackers can exploit the vulnerability by crafting a malicious payload to download and execute a web shell, enabling remote command execution on the vulnerable OpenEMR instance.",
+      "raw_text": null,
+      "published_at": "2026-01-21T18:16:09.633000Z",
+      "updated_at": "2026-04-10T04:41:05.052232Z",
+      "fetched_at": "2026-05-26T04:50:04.275865Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-47817"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://sourceforge.net/projects/openemr/files/OpenEMR%20Current/5.0.2.1/openemr-5.0.2.tar.gz/download",
+        "https://www.open-emr.org/",
+        "https://www.vulncheck.com/advisories/openemr-remote-code-execution",
+        "https://blog.sonarsource.com/openemr-5-0-2-1-command-injection-vulnerability?utm_medium=cpc&utm_source=twitter&utm_campaign=openemr&utm_term=security&utm_content=tofu",
+        "https://www.exploit-db.com/exploits/49784",
+        "https://www.youtube.com/watch?v=H8VWNwWgYJo&feature=emb_logo"
       ]
     }
   ],
   "meta": {
     "cve_inputs": [
-      "CVE-2026-43494",
-      "CVE-2026-42009",
-      "CVE-2026-43490",
-      "CVE-2026-43245",
-      "CVE-2026-43137",
-      "CVE-2026-31707",
-      "CVE-2026-31613",
-      "CVE-2026-5194",
-      "CVE-2026-23272",
-      "CVE-2025-68251",
-      "CVE-2025-13118"
+      "CVE-2026-22678",
+      "CVE-2018-25336",
+      "CVE-2021-47942",
+      "CVE-2022-50954",
+      "CVE-2023-54348",
+      "CVE-2026-25863",
+      "CVE-2026-28525",
+      "CVE-2018-25269",
+      "CVE-2026-29013",
+      "CVE-2018-25247",
+      "CVE-2025-15620",
+      "CVE-2024-14033",
+      "CVE-2023-7343",
+      "CVE-2026-28522",
+      "CVE-2026-26351",
+      "CVE-2020-37002",
+      "CVE-2021-47817",
+      "CVE-2021-47836",
+      "CVE-2026-0625",
+      "CVE-2023-53888",
+      "CVE-2025-66572",
+      "CVE-2025-34512",
+      "CVE-2010-20042",
+      "CVE-2013-10068",
+      "CVE-2012-10032",
+      "CVE-2012-10024"
     ],
     "osv_id_count": 3,
     "raw_count": 3,
     "normalized_count": 3,
-    "fetched_at": "2026-05-24T04:52:41.597691+00:00",
+    "fetched_at": "2026-05-26T04:50:04.275865+00:00",
     "source": "OSV.dev /v1/vulns"
   }
 }

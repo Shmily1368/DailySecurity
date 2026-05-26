@@ -1,87 +1,37 @@
 {
   "items": [
     {
-      "id": "nvd:CVE-2026-43494",
+      "id": "nvd:CVE-2026-22678",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-43494",
-        "native_id": "CVE-2026-43494"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-22678",
+        "native_id": "CVE-2026-22678"
       },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet/rds: reset op_nents when zerocopy page pin fails\n\nWhen iov_iter_get_pages2() fails in rds_message_zcopy_...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet/rds: reset op_nents when zerocopy page pin fails\n\nWhen iov_iter_get_pages2() fails in rds_message_zcopy_from_user(),\nthe pinned pages are released with put_page(), and\nrm->data.op_mmp_znotifier is cleared.  But we fail to properly\nclear rm->data.op_nents.\n\nLater when rds_message_purge() is called from rds_sendmsg() the\ncleanup loop iterates over the incorrectly non zero number of\nop_nents and frees them again.\n\nFix this by properly resetting op_nents when it should be in\nrds_message_zcopy_from_user().",
+      "title": "Webmin before 2.641 contains a stored cross-site scripting vulnerability in the email template description field of the System and Server Status module that allows low-privilege...",
+      "summary": "Webmin before 2.641 contains a stored cross-site scripting vulnerability in the email template description field of the System and Server Status module that allows low-privileged authenticated attackers to execute arbitrary commands by injecting unsanitized input stored in save_tmpl.cgi and rendered unescaped in list_tmpls.cgi.",
       "raw_text": null,
-      "published_at": "2026-05-21T12:16:19.957000Z",
-      "updated_at": "2026-05-21T16:16:23.157000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-05-21T22:16:46.970000Z",
+      "updated_at": "2026-05-21T22:16:46.970000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-43494"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "cve"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": null,
-        "cvss_vector": null,
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://git.kernel.org/stable/c/e174929793195e0cd6a4adb0cad731b39f9019b4",
-        "http://www.openwall.com/lists/oss-security/2026/05/21/2"
-      ]
-    },
-    {
-      "id": "nvd:CVE-2026-42009",
-      "type": "cve",
-      "source_info": {
-        "source": "nvd",
-        "source_sub": "NIST",
-        "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-42009",
-        "native_id": "CVE-2026-42009"
-      },
-      "title": "A flaw was found in gnutls. A remote attacker could exploit an issue in the Datagram Transport Layer Security (DTLS) packet reordering logic. The comparator function, responsibl...",
-      "summary": "A flaw was found in gnutls. A remote attacker could exploit an issue in the Datagram Transport Layer Security (DTLS) packet reordering logic. The comparator function, responsible for ordering DTLS packets by sequence numbers, did not correctly handle packets with duplicate sequence numbers. This could lead to unstable packet ordering or undefined behavior, resulting in a denial of service.",
-      "raw_text": null,
-      "published_at": "2026-05-18T13:16:32.707000Z",
-      "updated_at": "2026-05-18T19:32:38.777000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-42009"
+        "CVE-2026-22678"
       ],
       "vendors": [],
       "products": [],
       "affected_versions": [],
       "topics": [
         "cve",
-        "cwe-475"
+        "cwe-79"
       ],
       "lang": "en",
       "risk": {
-        "cvss_score": 7.5,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "cvss_score": 5.4,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -97,36 +47,195 @@
       },
       "threat_meta": null,
       "references": [
-        "https://access.redhat.com/security/cve/CVE-2026-42009",
-        "https://bugzilla.redhat.com/show_bug.cgi?id=2467279"
+        "https://webmin.com/changelog/webmin-2.641-released/",
+        "https://www.vulncheck.com/advisories/webmin-stored-xss-via-system-and-server-status"
       ]
     },
     {
-      "id": "nvd:CVE-2026-43490",
+      "id": "nvd:CVE-2018-25336",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-43490",
-        "native_id": "CVE-2026-43490"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2018-25336",
+        "native_id": "CVE-2018-25336"
       },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nksmbd: validate inherited ACE SID length\n\nsmb_inherit_dacl() walks the parent directory DACL loaded from the...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nksmbd: validate inherited ACE SID length\n\nsmb_inherit_dacl() walks the parent directory DACL loaded from the\nsecurity descriptor xattr. It verifies that each ACE contains the fixed\nSID header before using it, but does not verify that the variable-length\nSID described by sid.num_subauth is fully contained in the ACE.\n\nA malformed inheritable ACE can advertise more subauthorities than are\npresent in the ACE. compare_sids() may then read past the ACE.\nsmb_set_ace() also clamps the copied destination SID, but used the\nunchecked source SID count to compute the inherited ACE size. That could\nadvance the temporary inherited ACE buffer pointer and nt_size accounting\npast the allocated buffer.\n\nFix this by validating the parent ACE SID count and SID length before\nusing the SID during inheritance. Compute the inherited ACE size from the\ncopied SID so the size matches the bounded destination SID. Reject the\ninherited DACL if size accumulation would overflow smb_acl.size or the\nsecurity descriptor allocation size.",
+      "title": "Joomla jCart for OpenCart 2.3.0.2 contains a cross-site request forgery vulnerability that allows attackers to modify user account information without authentication. Attackers ...",
+      "summary": "Joomla jCart for OpenCart 2.3.0.2 contains a cross-site request forgery vulnerability that allows attackers to modify user account information without authentication. Attackers can craft malicious HTML forms targeting endpoints , and to change user credentials, passwords, and affiliate account details when victims visit the attacker-controlled page.",
       "raw_text": null,
-      "published_at": "2026-05-15T06:16:20.363000Z",
-      "updated_at": "2026-05-20T17:16:23.387000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-05-17T13:16:45.343000Z",
+      "updated_at": "2026-05-18T17:28:19.823000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-43490"
+        "CVE-2018-25336"
       ],
       "vendors": [],
       "products": [],
       "affected_versions": [],
       "topics": [
-        "cve"
+        "cve",
+        "cwe-352"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 5.3,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://extensions.joomla.org/extensions/extension/e-commerce/e-commerce-integrations/jcart-for-opencart/",
+        "https://www.exploit-db.com/exploits/44788",
+        "https://www.joomlaextensions.co.in/",
+        "https://www.vulncheck.com/advisories/joomla-jcart-for-opencart-cross-site-request-forgery"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2021-47942",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2021-47942",
+        "native_id": "CVE-2021-47942"
+      },
+      "title": "Home Assistant Community Store (HACS) 1.10.0 contains a path traversal vulnerability that allows unauthenticated attackers to read sensitive files by traversing directories via ...",
+      "summary": "Home Assistant Community Store (HACS) 1.10.0 contains a path traversal vulnerability that allows unauthenticated attackers to read sensitive files by traversing directories via the /hacsfiles/ endpoint. Attackers can retrieve the .storage/auth file containing user credentials and refresh tokens, then craft valid JWT tokens to gain administrative access to Home Assistant instances.",
+      "raw_text": null,
+      "published_at": "2026-05-16T16:16:21.390000Z",
+      "updated_at": "2026-05-18T20:16:05.873000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-47942"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-22"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 7.5,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/hacs/integration",
+        "https://www.exploit-db.com/exploits/49495",
+        "https://www.home-assistant.io/",
+        "https://www.vulncheck.com/advisories/home-assistant-community-store-path-traversal-account-takeover"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2022-50954",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2022-50954",
+        "native_id": "CVE-2022-50954"
+      },
+      "title": "WordPress Plugin cab-fare-calculator 1.0.3 contains a local file inclusion vulnerability that allows unauthenticated attackers to read arbitrary files by manipulating the contro...",
+      "summary": "WordPress Plugin cab-fare-calculator 1.0.3 contains a local file inclusion vulnerability that allows unauthenticated attackers to read arbitrary files by manipulating the controller parameter in tblight.php. Attackers can supply path traversal sequences through the controller GET parameter to include and execute files outside the intended controllers directory.",
+      "raw_text": null,
+      "published_at": "2026-05-10T13:16:32.917000Z",
+      "updated_at": "2026-05-12T14:24:15.210000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2022-50954"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-98"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 6.2,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://wordpress.org/plugins/cab-fare-calculator/",
+        "https://www.exploit-db.com/exploits/50843",
+        "https://www.vulncheck.com/advisories/wordpress-plugin-cab-fare-calculator-local-file-inclusion"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2023-54348",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2023-54348",
+        "native_id": "CVE-2023-54348"
+      },
+      "title": "ERPGo SaaS 3.9 contains a CSV injection vulnerability that allows authenticated attackers to execute arbitrary code by injecting formula payloads into vendor name fields. Attack...",
+      "summary": "ERPGo SaaS 3.9 contains a CSV injection vulnerability that allows authenticated attackers to execute arbitrary code by injecting formula payloads into vendor name fields. Attackers can add malicious formulas like =10+20+cmd|' /C calc'!A0 in the vendor creation form, which execute when the exported CSV file is opened in spreadsheet applications.",
+      "raw_text": null,
+      "published_at": "2026-05-05T12:16:17.300000Z",
+      "updated_at": "2026-05-05T19:50:11.910000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-54348"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-1236"
       ],
       "lang": "en",
       "risk": {
@@ -147,42 +256,39 @@
       },
       "threat_meta": null,
       "references": [
-        "https://git.kernel.org/stable/c/1aa60fea7f637c071f529ad6784aecca2f2f0c5f",
-        "https://git.kernel.org/stable/c/47c6e37a77b10e74f70d845ba4ea5d3cafa00336",
-        "https://git.kernel.org/stable/c/996454bc0da84d5a1dedb1a7861823087e01a7ae",
-        "https://git.kernel.org/stable/c/c1d95c995d5bcb24b639200a899eda59cb1e6d64"
+        "https://codecanyon.net/item/erpgo-saas-all-in-one-business-erp-with-project-account-hrm-crm-pos/33263426",
+        "https://rajodiya.com/",
+        "https://www.exploit-db.com/exploits/51220",
+        "https://www.vulncheck.com/advisories/erpgo-saas-csv-injection-via-vendor-creation"
       ]
     },
     {
-      "id": "nvd:CVE-2026-43245",
+      "id": "nvd:CVE-2026-25863",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-43245",
-        "native_id": "CVE-2026-43245"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-25863",
+        "native_id": "CVE-2026-25863"
       },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nntfs: ->d_compare() must not block\n\n... so don't use __getname() there.  Switch it (and ntfs_d_hash(), while...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nntfs: ->d_compare() must not block\n\n... so don't use __getname() there.  Switch it (and ntfs_d_hash(), while\nwe are at it) to kmalloc(PATH_MAX, GFP_NOWAIT).  Yes, ntfs_d_hash()\nalmost certainly can do with smaller allocations, but let ntfs folks\ndeal with that - keep the allocation size as-is for now.\n\nStop abusing names_cachep in ntfs, period - various uses of that thing\nin there have nothing to do with pathnames; just use k[mz]alloc() and\nbe done with that.  For now let's keep sizes as-in, but AFAICS none of\nthe users actually want PATH_MAX.",
+      "title": "Conditional Fields for Contact Form 7 WordPress plugin through version 2.6.7 contains an uncontrolled resource consumption vulnerability in the Wpcf7cfMailParser class where the...",
+      "summary": "Conditional Fields for Contact Form 7 WordPress plugin through version 2.6.7 contains an uncontrolled resource consumption vulnerability in the Wpcf7cfMailParser class where the hide_hidden_mail_fields_regex_callback() method reads an iteration count directly from user-supplied POST parameters without validation or upper bound enforcement. Unauthenticated attackers can supply an arbitrarily large integer value through the REST API endpoint to cause unbounded loop execution with multiple preg_replace() operations, exhausting server memory and crashing the PHP process.",
       "raw_text": null,
-      "published_at": "2026-05-06T12:16:44.997000Z",
-      "updated_at": "2026-05-11T13:34:25.543000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-05-04T19:16:02.953000Z",
+      "updated_at": "2026-05-05T19:47:57.367000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-43245"
+        "CVE-2026-25863"
       ],
-      "vendors": [
-        "linux"
-      ],
-      "products": [
-        "linux kernel"
-      ],
+      "vendors": [],
+      "products": [],
       "affected_versions": [],
       "topics": [
-        "cve"
+        "cve",
+        "cwe-1284"
       ],
       "lang": "en",
       "risk": {
@@ -203,47 +309,43 @@
       },
       "threat_meta": null,
       "references": [
-        "https://git.kernel.org/stable/c/142c444a395f4d26055c8a4473e228bb86283f1e",
-        "https://git.kernel.org/stable/c/ca2a04e84af79596e5cd9cfe697d5122ec39c8ce",
-        "https://git.kernel.org/stable/c/fb4b1f969ba01fa1d4088467a02fc1e5f0806710"
+        "https://wordpress.org/plugins/cf7-conditional-fields/#developers",
+        "https://www.vulncheck.com/advisories/conditional-fields-for-contact-form-7-dos-via-uncontrolled-resource-consumption"
       ]
     },
     {
-      "id": "nvd:CVE-2026-43137",
+      "id": "nvd:CVE-2026-28525",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-43137",
-        "native_id": "CVE-2026-43137"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-28525",
+        "native_id": "CVE-2026-28525"
       },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nASoC: SOF: Intel: hda: Fix NULL pointer dereference\n\nIf there's a mismatch between the DAI links in the mach...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nASoC: SOF: Intel: hda: Fix NULL pointer dereference\n\nIf there's a mismatch between the DAI links in the machine driver and\nthe topology, it is possible that the playback/capture widget is not\nset, especially in the case of loopback capture for echo reference\nwhere we use the dummy DAI link. Return the error when the widget is not\nset to avoid a null pointer dereference like below when the topology is\nbroken.\n\nRIP: 0010:hda_dai_get_ops.isra.0+0x14/0xa0 [snd_sof_intel_hda_common]",
+      "title": "SWUpdate contains an integer underflow vulnerability in the multipart upload parser in mongoose_multipart.c that allows unauthenticated attackers to cause a denial of service by...",
+      "summary": "SWUpdate contains an integer underflow vulnerability in the multipart upload parser in mongoose_multipart.c that allows unauthenticated attackers to cause a denial of service by sending a crafted HTTP POST request to /upload with a malformed multipart boundary and controlled TCP stream timing. Attackers can trigger an integer underflow in the mg_http_multipart_continue_wait_for_chunk() function when the buffer length falls within a specific range, causing an out-of-bounds heap read that writes data beyond the allocated receive buffer to a local IPC socket.",
       "raw_text": null,
-      "published_at": "2026-05-06T12:16:31.007000Z",
-      "updated_at": "2026-05-12T21:15:52.423000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-04-23T21:16:05.367000Z",
+      "updated_at": "2026-04-24T14:50:56.203000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-43137"
+        "CVE-2026-28525"
       ],
-      "vendors": [
-        "linux"
-      ],
-      "products": [
-        "linux kernel"
-      ],
+      "vendors": [],
+      "products": [],
       "affected_versions": [],
       "topics": [
         "cve",
-        "cwe-476"
+        "cwe-125",
+        "cwe-191"
       ],
       "lang": "en",
       "risk": {
-        "cvss_score": 5.5,
-        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+        "cvss_score": 6.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:N/A:H",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -259,48 +361,46 @@
       },
       "threat_meta": null,
       "references": [
-        "https://git.kernel.org/stable/c/10411f1f2c76be67103b1f95822ff629aa25e2aa",
-        "https://git.kernel.org/stable/c/16c589567a956d46a7c1363af3f64de3d420af20",
-        "https://git.kernel.org/stable/c/42068f7dd42b559c4eeae645e1455ff36518866a",
-        "https://git.kernel.org/stable/c/7750d78b4014902bc0ac03d4bb30faa076a913ab"
+        "https://github.com/sbabic/swupdate/commit/beee2dc0feef1cfe84f1aa6fc980e104b2e47a74",
+        "https://www.vulncheck.com/advisories/swupdate-integer-underflow-in-multipart-upload-parser"
       ]
     },
     {
-      "id": "nvd:CVE-2026-31707",
+      "id": "nvd:CVE-2018-25269",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-31707",
-        "native_id": "CVE-2026-31707"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2018-25269",
+        "native_id": "CVE-2018-25269"
       },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nksmbd: validate response sizes in ipc_validate_msg()\n\nipc_validate_msg() computes the expected message size ...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nksmbd: validate response sizes in ipc_validate_msg()\n\nipc_validate_msg() computes the expected message size for each\nresponse type by adding (or multiplying) attacker-controlled fields\nfrom the daemon response to a fixed struct size in unsigned int\narithmetic.  Three cases can overflow:\n\n  KSMBD_EVENT_RPC_REQUEST:\n      msg_sz = sizeof(struct ksmbd_rpc_command) + resp->payload_sz;\n  KSMBD_EVENT_SHARE_CONFIG_REQUEST:\n      msg_sz = sizeof(struct ksmbd_share_config_response) +\n               resp->payload_sz;\n  KSMBD_EVENT_LOGIN_REQUEST_EXT:\n      msg_sz = sizeof(struct ksmbd_login_response_ext) +\n               resp->ngroups * sizeof(gid_t);\n\nresp->payload_sz is __u32 and resp->ngroups is __s32.  Each addition\ncan wrap in unsigned int; the multiplication by sizeof(gid_t) mixes\nsigned and size_t, so a negative ngroups is converted to SIZE_MAX\nbefore the multiply.  A wrapped value of msg_sz that happens to\nequal entry->msg_sz bypasses the size check on the next line, and\ndownstream consumers (smb2pdu.c:6742 memcpy using rpc_resp->payload_sz,\nkmemdup in ksmbd_alloc_user using resp_ext->ngroups) then trust the\nunverified length.\n\nUse check_add_overflow() on the RPC_REQUEST and SHARE_CONFIG_REQUEST\npaths to detect integer overflow without constraining functional\npayload size; userspace ksmbd-tools grows NDR responses in 4096-byte\nchunks for calls like NetShareEnumAll, so a hard transport cap is\nunworkable on the response side.  For LOGIN_REQUEST_EXT, reject\nresp->ngroups outside the signed [0, NGROUPS_MAX] range up front and\nreport the error from ipc_validate_msg() so it fires at the IPC\nboundary; with that bound the subsequent multiplication and addition\nstay well below UINT_MAX.  The now-redundant ngroups check and\npr_err in ksmbd_alloc_user() are removed.\n\nThis is the response-side analogue of aab98e2dbd64 (\"ksmbd: fix\ninteger overflows on 32 bit systems\"), which hardened the request\nside.",
+      "title": "ICEWARP 11.0.0.0 contains a cross-site scripting vulnerability that allows attackers to inject malicious HTML elements into emails by embedding base64-encoded payloads in object...",
+      "summary": "ICEWARP 11.0.0.0 contains a cross-site scripting vulnerability that allows attackers to inject malicious HTML elements into emails by embedding base64-encoded payloads in object and embed tags. Attackers can craft emails containing data URIs with embedded scripts that execute in the client when the email is viewed, compromising user sessions and stealing sensitive information.",
       "raw_text": null,
-      "published_at": "2026-05-01T14:16:20.720000Z",
-      "updated_at": "2026-05-06T20:26:38.560000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-04-22T16:16:47.567000Z",
+      "updated_at": "2026-04-29T23:22:26.817000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-31707"
+        "CVE-2018-25269"
       ],
       "vendors": [
-        "linux"
+        "icewarp"
       ],
       "products": [
-        "linux kernel"
+        "icewarp"
       ],
       "affected_versions": [],
       "topics": [
         "cve",
-        "cwe-787"
+        "cwe-79"
       ],
       "lang": "en",
       "risk": {
-        "cvss_score": 7.1,
-        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:H",
+        "cvss_score": 6.1,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -310,206 +410,50 @@
         "known_ransomware": null,
         "known_exploited": null,
         "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
+        "has_public_exploit": true,
+        "exploit_maturity": "poc",
+        "exploit_references": [
+          {
+            "url": "https://www.exploit-db.com/exploits/45974",
+            "source": "disclosure@vulncheck.com",
+            "label": "NVD reference (Exploit)"
+          }
+        ]
       },
       "threat_meta": null,
       "references": [
-        "https://git.kernel.org/stable/c/299db777ea0cfa5c407e41b045c24a14c034c27b",
-        "https://git.kernel.org/stable/c/7dd0c858e1909769a4c91842724315ee74f1a5f1",
-        "https://git.kernel.org/stable/c/99c631d0366c1eab8fb188fe66425f4581ebdde4",
-        "https://git.kernel.org/stable/c/d6a6aa81eac2c9bff66dc6e191179cb69a14426b"
+        "http://www.icewarp.com/",
+        "https://www.exploit-db.com/exploits/45974",
+        "https://www.vulncheck.com/advisories/icewarp-cross-site-scripting-via-email-html-injection"
       ]
     },
     {
-      "id": "nvd:CVE-2026-31613",
+      "id": "nvd:CVE-2026-29013",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-31613",
-        "native_id": "CVE-2026-31613"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-29013",
+        "native_id": "CVE-2026-29013"
       },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nsmb: client: fix OOB reads parsing symlink error response\n\nWhen a CREATE returns STATUS_STOPPED_ON_SYMLINK, ...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nsmb: client: fix OOB reads parsing symlink error response\n\nWhen a CREATE returns STATUS_STOPPED_ON_SYMLINK, smb2_check_message()\nreturns success without any length validation, leaving the symlink\nparsers as the only defense against an untrusted server.\n\nsymlink_data() walks SMB 3.1.1 error contexts with the loop test \"p <\nend\", but reads p->ErrorId at offset 4 and p->ErrorDataLength at offset\n0.  When the server-controlled ErrorDataLength advances p to within 1-7\nbytes of end, the next iteration will read past it.  When the matching\ncontext is found, sym->SymLinkErrorTag is read at offset 4 from\np->ErrorContextData with no check that the symlink header itself fits.\n\nsmb2_parse_symlink_response() then bounds-checks the substitute name\nusing SMB2_SYMLINK_STRUCT_SIZE as the offset of PathBuffer from\niov_base.  That value is computed as sizeof(smb2_err_rsp) +\nsizeof(smb2_symlink_err_rsp), which is correct only when\nErrorContextCount == 0.\n\nWith at least one error context the symlink data sits 8 bytes deeper,\nand each skipped non-matching context shifts it further by 8 +\nALIGN(ErrorDataLength, 8).  The check is too short, allowing the\nsubstitute name read to run past iov_len.  The out-of-bound heap bytes\nare UTF-16-decoded into the symlink target and returned to userspace via\nreadlink(2).\n\nFix this all up by making the loops test require the full context header\nto fit, rejecting sym if its header runs past end, and bound the\nsubstitute name against the actual position of sym->PathBuffer rather\nthan a fixed offset.\n\nBecause sub_offs and sub_len are 16bits, the pointer math will not\noverflow here with the new greater-than.",
+      "title": "libcoap contains out-of-bounds read vulnerabilities in OSCORE Appendix B.2 CBOR unwrap handling where get_byte_inc() in src/oscore/oscore_cbor.c relies solely on assert() for bo...",
+      "summary": "libcoap contains out-of-bounds read vulnerabilities in OSCORE Appendix B.2 CBOR unwrap handling where get_byte_inc() in src/oscore/oscore_cbor.c relies solely on assert() for bounds checking, which is removed in release builds compiled with NDEBUG. Attackers can send crafted CoAP requests with malformed OSCORE options or responses during OSCORE negotiation to trigger out-of-bounds reads during CBOR parsing and potentially cause heap buffer overflow writes through integer wraparound in allocation size computation.",
       "raw_text": null,
-      "published_at": "2026-04-24T15:16:40.560000Z",
-      "updated_at": "2026-04-28T15:13:18.267000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-04-17T22:16:31.063000Z",
+      "updated_at": "2026-04-20T19:05:30.750000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-31613"
+        "CVE-2026-29013"
       ],
-      "vendors": [
-        "linux"
-      ],
-      "products": [
-        "linux kernel"
-      ],
+      "vendors": [],
+      "products": [],
       "affected_versions": [],
       "topics": [
         "cve",
         "cwe-125"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 8.1,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:N/A:H",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://git.kernel.org/stable/c/3df690bba28edec865cf7190be10708ad0ddd67e",
-        "https://git.kernel.org/stable/c/781902e069f4ecb6c3b83502f181972c1446110a",
-        "https://git.kernel.org/stable/c/a66ef2e7ed837325c5600f8617d5ee0a0a149fdd",
-        "https://git.kernel.org/stable/c/e0dd90d14cbbf318157ea8e3fb62ee68a28655ed"
-      ]
-    },
-    {
-      "id": "nvd:CVE-2026-5194",
-      "type": "cve",
-      "source_info": {
-        "source": "nvd",
-        "source_sub": "NIST",
-        "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-5194",
-        "native_id": "CVE-2026-5194"
-      },
-      "title": "Missing hash/digest size and OID checks allow digests smaller than allowed when verifying ECDSA certificates, or smaller than is appropriate for the relevant key type, to be acc...",
-      "summary": "Missing hash/digest size and OID checks allow digests smaller than allowed when verifying ECDSA certificates, or smaller than is appropriate for the relevant key type, to be accepted by signature verification functions. This could lead to reduced security of ECDSA certificate-based authentication if the public CA key used is also known. This affects ECDSA/ECC verification when EdDSA or ML-DSA is also enabled.",
-      "raw_text": null,
-      "published_at": "2026-04-09T20:16:28.420000Z",
-      "updated_at": "2026-04-16T20:37:11.433000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-5194"
-      ],
-      "vendors": [
-        "wolfssl"
-      ],
-      "products": [
-        "wolfssl"
-      ],
-      "affected_versions": [],
-      "topics": [
-        "cve",
-        "cwe-295"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 9.1,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://github.com/wolfSSL/wolfssl/pull/10131"
-      ]
-    },
-    {
-      "id": "nvd:CVE-2026-23272",
-      "type": "cve",
-      "source_info": {
-        "source": "nvd",
-        "source_sub": "NIST",
-        "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-23272",
-        "native_id": "CVE-2026-23272"
-      },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_tables: unconditionally bump set->nelems before insertion\n\nIn case that the set is full, a new...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_tables: unconditionally bump set->nelems before insertion\n\nIn case that the set is full, a new element gets published then removed\nwithout waiting for the RCU grace period, while RCU reader can be\nwalking over it already.\n\nTo address this issue, add the element transaction even if set is full,\nbut toggle the set_full flag to report -ENFILE so the abort path safely\nunwinds the set to its previous state.\n\nAs for element updates, decrement set->nelems to restore it.\n\nA simpler fix is to call synchronize_rcu() in the error path.\nHowever, with a large batch adding elements to already maxed-out set,\nthis could cause noticeable slowdown of such batches.",
-      "raw_text": null,
-      "published_at": "2026-03-20T09:16:12.700000Z",
-      "updated_at": "2026-04-02T15:16:28.417000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2026-23272"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "cve"
-      ],
-      "lang": "en",
-      "risk": {
-        "cvss_score": 7.8,
-        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
-        "epss_score": null,
-        "epss_percentile": null,
-        "kev_status": "unknown",
-        "kev_listed": false,
-        "kev_date_added": null,
-        "due_date": null,
-        "known_ransomware": null,
-        "known_exploited": null,
-        "exploit_in_the_wild": null,
-        "has_public_exploit": false,
-        "exploit_maturity": "unreported",
-        "exploit_references": []
-      },
-      "threat_meta": null,
-      "references": [
-        "https://git.kernel.org/stable/c/6826131c7674329335ca25df2550163eb8a1fd0c",
-        "https://git.kernel.org/stable/c/ccb8c8f3c1127cf34d18c737309897c68046bf21",
-        "https://git.kernel.org/stable/c/def602e498a4f951da95c95b1b8ce8ae68aa733a"
-      ]
-    },
-    {
-      "id": "nvd:CVE-2025-68251",
-      "type": "cve",
-      "source_info": {
-        "source": "nvd",
-        "source_sub": "NIST",
-        "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2025-68251",
-        "native_id": "CVE-2025-68251"
-      },
-      "title": "In the Linux kernel, the following vulnerability has been resolved:\n\nerofs: avoid infinite loops due to corrupted subpage compact indexes\n\nRobert reported an infinite loop obser...",
-      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nerofs: avoid infinite loops due to corrupted subpage compact indexes\n\nRobert reported an infinite loop observed by two crafted images.\n\nThe root cause is that `clusterofs` can be larger than `lclustersize`\nfor !NONHEAD `lclusters` in corrupted subpage compact indexes, e.g.:\n\n  blocksize = lclustersize = 512   lcn = 6   clusterofs = 515\n\nMove the corresponding check for full compress indexes to\n`z_erofs_load_lcluster_from_disk()` to also cover subpage compact\ncompress indexes.\n\nIt also fixes the position of `m->type >= Z_EROFS_LCLUSTER_TYPE_MAX`\ncheck, since it should be placed right after\n`z_erofs_load_{compact,full}_lcluster()`.",
-      "raw_text": null,
-      "published_at": "2025-12-16T15:15:54.413000Z",
-      "updated_at": "2026-04-15T00:35:42.020000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
-      "authors": [],
-      "affiliations": [],
-      "cves": [
-        "CVE-2025-68251"
-      ],
-      "vendors": [],
-      "products": [],
-      "affected_versions": [],
-      "topics": [
-        "cve"
       ],
       "lang": "en",
       "risk": {
@@ -530,48 +474,45 @@
       },
       "threat_meta": null,
       "references": [
-        "https://git.kernel.org/stable/c/8675447a8794983f2b7e694b378112772c17635e",
-        "https://git.kernel.org/stable/c/e13d315ae077bb7c3c6027cc292401bc0f4ec683"
+        "https://github.com/obgm/libcoap/commit/b7847c4dbb0dbee7c90b09a673d4cae256f03718"
       ]
     },
     {
-      "id": "nvd:CVE-2025-13118",
+      "id": "nvd:CVE-2018-25247",
       "type": "cve",
       "source_info": {
         "source": "nvd",
         "source_sub": "NIST",
         "source_name": "NVD",
-        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2025-13118",
-        "native_id": "CVE-2025-13118"
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2018-25247",
+        "native_id": "CVE-2018-25247"
       },
-      "title": "A vulnerability was detected in macrozheng mall-swarm and mall up to 1.0.3. Affected by this issue is the function paySuccess of the file /order/paySuccess. The manipulation of ...",
-      "summary": "A vulnerability was detected in macrozheng mall-swarm and mall up to 1.0.3. Affected by this issue is the function paySuccess of the file /order/paySuccess. The manipulation of the argument orderID results in improper authorization. The attack can be launched remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+      "title": "MyBB Like Plugin 3.0.0 contains a cross-site scripting vulnerability that allows attackers to inject malicious scripts by creating posts or threads with unvalidated subject cont...",
+      "summary": "MyBB Like Plugin 3.0.0 contains a cross-site scripting vulnerability that allows attackers to inject malicious scripts by creating posts or threads with unvalidated subject content. Attackers can craft post subjects containing script tags that execute when other users view the attacker's profile, where liked posts are displayed without sanitization.",
       "raw_text": null,
-      "published_at": "2025-11-13T15:15:50.653000Z",
-      "updated_at": "2026-04-29T01:00:01.613000Z",
-      "fetched_at": "2026-05-24T04:52:24.568337Z",
+      "published_at": "2026-04-04T14:16:20.500000Z",
+      "updated_at": "2026-04-20T14:30:36.060000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2025-13118"
+        "CVE-2018-25247"
       ],
       "vendors": [
-        "macrozheng"
+        "mybb"
       ],
       "products": [
-        "mall",
-        "mall-swarm"
+        "thankyou\\/like system"
       ],
       "affected_versions": [],
       "topics": [
         "cve",
-        "cwe-266",
-        "cwe-285"
+        "cwe-79"
       ],
       "lang": "en",
       "risk": {
-        "cvss_score": 4.3,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+        "cvss_score": 6.1,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -585,17 +526,578 @@
         "exploit_maturity": "poc",
         "exploit_references": [
           {
-            "url": "https://github.com/Hwwg/cve/issues/14",
-            "source": "cna@vuldb.com",
+            "url": "https://www.exploit-db.com/exploits/45179",
+            "source": "disclosure@vulncheck.com",
+            "label": "NVD reference (Exploit)"
+          }
+        ]
+      },
+      "threat_meta": null,
+      "references": [
+        "https://community.mybb.com/mods.php?action=view&pid=360",
+        "https://www.exploit-db.com/exploits/45179",
+        "https://www.vulncheck.com/advisories/mybb-like-plugin-cross-site-scripting-via-user-profiles"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2025-15620",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2025-15620",
+        "native_id": "CVE-2025-15620"
+      },
+      "title": "HiOS Switch Platform versions 09.1.00 prior to 09.4.05 and 10.3.01 contains a denial-of-service vulnerability in the web interface that allows remote attackers to reboot the aff...",
+      "summary": "HiOS Switch Platform versions 09.1.00 prior to 09.4.05 and 10.3.01 contains a denial-of-service vulnerability in the web interface that allows remote attackers to reboot the affected device by sending a malicious HTTP GET request to a specific endpoint. Attackers can trigger an uncontrolled reboot condition through crafted HTTP requests to cause service disruption and unavailability of the switch.",
+      "raw_text": null,
+      "published_at": "2026-04-02T21:16:40.137000Z",
+      "updated_at": "2026-04-03T23:17:03.417000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-15620"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-306"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 8.6,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://assets.belden.com/m/702a656e81736b04/original/PSIRT-2_Web_Interface_HiOS.pdf",
+        "https://www.vulncheck.com/advisories/hios-switch-platform-denial-of-service-via-web-interface"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2024-14033",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2024-14033",
+        "native_id": "CVE-2024-14033"
+      },
+      "title": "Hirschmann Industrial IT products (BAT-R, BAT-F, BAT450-F, BAT867-R, BAT867-F, WLC, BAT Controller Virtual) contain a heap overflow vulnerability in the HiLCOS web interface tha...",
+      "summary": "Hirschmann Industrial IT products (BAT-R, BAT-F, BAT450-F, BAT867-R, BAT867-F, WLC, BAT Controller Virtual) contain a heap overflow vulnerability in the HiLCOS web interface that allows unauthenticated remote attackers to trigger a denial-of-service condition by sending specially crafted requests to the web interface. Attackers can exploit this heap overflow to crash the affected device and cause service disruption, particularly in configurations where the Public Spot functionality is enabled.",
+      "raw_text": null,
+      "published_at": "2026-04-02T21:16:39.863000Z",
+      "updated_at": "2026-04-03T23:17:01.597000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2024-14033"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-400"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 7.5,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://assets.belden.com/m/774d24c02be5c220/original/Belden_Security_Bulletin_BSECV-2024-16.pdf",
+        "https://www.vulncheck.com/advisories/hirschmann-industrial-it-hilcos-heap-overflow-dos"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2023-7343",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2023-7343",
+        "native_id": "CVE-2023-7343"
+      },
+      "title": "HiSecOS web server versions 05.0.00 to 08.3.01 prior to 08.3.02 contains a privilege escalation vulnerability that allows authenticated users with operator or auditor roles to e...",
+      "summary": "HiSecOS web server versions 05.0.00 to 08.3.01 prior to 08.3.02 contains a privilege escalation vulnerability that allows authenticated users with operator or auditor roles to escalate privileges to the administrator role by sending specially crafted packets to the web server. Attackers can exploit this flaw to gain full administrative access to the affected device.",
+      "raw_text": null,
+      "published_at": "2026-04-02T20:16:19.747000Z",
+      "updated_at": "2026-04-03T23:17:01.433000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-7343"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-269"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 7.8,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://assets.belden.com/m/774e2db2b0100bc1/original/Belden-Security-Bulletin-BSECV-2023-06.pdf",
+        "https://www.vulncheck.com/advisories/belden-industrial-hivision-arbitrary-code-execution-via-malicious-project-file"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2026-28522",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-28522",
+        "native_id": "CVE-2026-28522"
+      },
+      "title": "arduino-TuyaOpen before version 1.2.1 contains a null pointer dereference vulnerability in the WiFiUDP component. An attacker on the same local area network can send a large vol...",
+      "summary": "arduino-TuyaOpen before version 1.2.1 contains a null pointer dereference vulnerability in the WiFiUDP component. An attacker on the same local area network can send a large volume of malicious UDP packets to cause memory exhaustion on the device, triggering a null pointer dereference and resulting in a denial-of-service condition.",
+      "raw_text": null,
+      "published_at": "2026-03-16T14:19:28.760000Z",
+      "updated_at": "2026-03-17T20:27:41.187000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-28522"
+      ],
+      "vendors": [
+        "tuya"
+      ],
+      "products": [
+        "arduino-tuyaopen"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-476"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 6.5,
+        "cvss_vector": "CVSS:3.1/AV:A/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/tuya/arduino-TuyaOpen",
+        "https://src.tuya.com/announcement/32",
+        "https://www.vulncheck.com/advisories/arduino-tuyaopen-wifiudp-null-pointer-dereference-denial-of-service"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2026-26351",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-26351",
+        "native_id": "CVE-2026-26351"
+      },
+      "title": "GetSimpleCMS Community Edition (CE) version 3.3.16 contains a stored cross-site scripting (XSS) vulnerability in the Theme to Components functionality within components.php. Use...",
+      "summary": "GetSimpleCMS Community Edition (CE) version 3.3.16 contains a stored cross-site scripting (XSS) vulnerability in the Theme to Components functionality within components.php. User-supplied input provided to the \"slug\" field of a component is stored without proper output encoding. While other fields are sanitized using safe_slash_html(), the slug parameter is written to XML and later rendered in the administrative interface without sanitation, resulting in persistent execution of arbitrary JavaScript. An authenticated administrator can inject malicious script content that executes whenever the affected Components page is viewed by any authenticated user, enabling session hijacking, unauthorized administrative actions, and persistent compromise of the CMS administrative interface.",
+      "raw_text": null,
+      "published_at": "2026-02-24T23:16:04.830000Z",
+      "updated_at": "2026-02-26T22:01:44.210000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-26351"
+      ],
+      "vendors": [
+        "getsimple-ce"
+      ],
+      "products": [
+        "getsimple cms"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-79"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 4.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://getsimple-ce.ovh/",
+        "https://github.com/GetSimpleCMS-CE/GetSimpleCMS-CE/releases/tag/v3.3.22",
+        "https://github.com/GetSimpleCMS-CE/GetSimpleCMS-CE/security/advisories/GHSA-95f7-vm92-8gpx",
+        "https://www.vulncheck.com/advisories/getsimplecms-ce-stored-xss-via-components-php"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2020-37002",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2020-37002",
+        "native_id": "CVE-2020-37002"
+      },
+      "title": "Ajenti 2.1.36 contains an authentication bypass vulnerability that allows remote attackers to execute arbitrary commands after successful login. Attackers can leverage the /api/...",
+      "summary": "Ajenti 2.1.36 contains an authentication bypass vulnerability that allows remote attackers to execute arbitrary commands after successful login. Attackers can leverage the /api/terminal/create endpoint to send a netcat reverse shell payload targeting a specified IP and port.",
+      "raw_text": null,
+      "published_at": "2026-01-29T15:16:06.913000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2020-37002"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-78"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 9.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/ajenti/ajenti",
+        "https://www.exploit-db.com/exploits/48929",
+        "https://www.vulncheck.com/advisories/ajenti-remote-code-execution"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2021-47817",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2021-47817",
+        "native_id": "CVE-2021-47817"
+      },
+      "title": "OpenEMR 5.0.2.1 contains a cross-site scripting vulnerability that allows authenticated attackers to inject malicious JavaScript through user profile parameters. Attackers can e...",
+      "summary": "OpenEMR 5.0.2.1 contains a cross-site scripting vulnerability that allows authenticated attackers to inject malicious JavaScript through user profile parameters. Attackers can exploit the vulnerability by crafting a malicious payload to download and execute a web shell, enabling remote command execution on the vulnerable OpenEMR instance.",
+      "raw_text": null,
+      "published_at": "2026-01-21T18:16:09.633000Z",
+      "updated_at": "2026-02-02T17:40:10.093000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-47817"
+      ],
+      "vendors": [
+        "open-emr"
+      ],
+      "products": [
+        "openemr"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-79"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 5.4,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": true,
+        "exploit_maturity": "poc",
+        "exploit_references": [
+          {
+            "url": "https://blog.sonarsource.com/openemr-5-0-2-1-command-injection-vulnerability?utm_medium=cpc&utm_source=twitter&utm_campaign=openemr&utm_term=security&utm_content=tofu",
+            "source": "disclosure@vulncheck.com",
             "label": "NVD reference (Exploit)"
           },
           {
-            "url": "https://github.com/Hwwg/cve/issues/9",
-            "source": "cna@vuldb.com",
+            "url": "https://www.exploit-db.com/exploits/49784",
+            "source": "disclosure@vulncheck.com",
             "label": "NVD reference (Exploit)"
           },
           {
-            "url": "https://github.com/Hwwg/cve/issues/9",
+            "url": "https://www.youtube.com/watch?v=H8VWNwWgYJo&feature=emb_logo",
+            "source": "disclosure@vulncheck.com",
+            "label": "NVD reference (Exploit)"
+          }
+        ]
+      },
+      "threat_meta": null,
+      "references": [
+        "https://blog.sonarsource.com/openemr-5-0-2-1-command-injection-vulnerability?utm_medium=cpc&utm_source=twitter&utm_campaign=openemr&utm_term=security&utm_content=tofu",
+        "https://sourceforge.net/projects/openemr/files/OpenEMR%20Current/5.0.2.1/openemr-5.0.2.tar.gz/download",
+        "https://www.exploit-db.com/exploits/49784",
+        "https://www.open-emr.org/",
+        "https://www.vulncheck.com/advisories/openemr-remote-code-execution",
+        "https://www.youtube.com/watch?v=H8VWNwWgYJo&feature=emb_logo"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2021-47836",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2021-47836",
+        "native_id": "CVE-2021-47836"
+      },
+      "title": "Markdown Explorer 0.1.1 contains a cross-site scripting vulnerability that allows attackers to inject malicious code through file uploads and editor inputs. Attackers can upload...",
+      "summary": "Markdown Explorer 0.1.1 contains a cross-site scripting vulnerability that allows attackers to inject malicious code through file uploads and editor inputs. Attackers can upload markdown files with embedded JavaScript payloads to execute remote commands and potentially gain system access.",
+      "raw_text": null,
+      "published_at": "2026-01-16T19:16:09.050000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-47836"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-79"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 6.1,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/jersou/markdown-explorer",
+        "https://imgur.com/a/w4bcPWs",
+        "https://www.exploit-db.com/exploits/49826",
+        "https://www.vulncheck.com/advisories/markdown-explorer-persistent-cross-site-scripting"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2026-0625",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2026-0625",
+        "native_id": "CVE-2026-0625"
+      },
+      "title": "Multiple D-Link DSL/DIR/DNS devices contain an authentication bypass and improper access control vulnerability in the dnscfg.cgi endpoint that allows an unauthenticated attacker...",
+      "summary": "Multiple D-Link DSL/DIR/DNS devices contain an authentication bypass and improper access control vulnerability in the dnscfg.cgi endpoint that allows an unauthenticated attacker to access DNS configuration functionality. By directly requesting this endpoint, an attacker can modify the device’s DNS settings without valid credentials, enabling DNS hijacking (“DNSChanger”) attacks that redirect user traffic to attacker-controlled infrastructure. In 2019, D-Link reported that this behavior was leveraged by the \"GhostDNS\" malware ecosystem targeting consumer and carrier routers. All impacted products were subsequently designated end-of-life/end-of-service, and no longer receive security updates. Exploitation evidence was observed by the Shadowserver Foundation on 2025-11-27 (UTC).",
+      "raw_text": null,
+      "published_at": "2026-01-05T22:15:54.483000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-0625"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-306"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://supportannouncement.us.dlink.com/announcement/publication.aspx?name=SAP10068",
+        "https://supportannouncement.us.dlink.com/security/publication.aspx?name=SAP10118",
+        "https://supportannouncement.us.dlink.com/security/publication.aspx?name=SAP10488",
+        "https://www.vulncheck.com/advisories/dlink-dsl-command-injection-via-dns-configuration-endpoint"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2023-53888",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2023-53888",
+        "native_id": "CVE-2023-53888"
+      },
+      "title": "Zomplog 3.9 contains a remote code execution vulnerability that allows authenticated attackers to inject and execute arbitrary PHP code through file manipulation endpoints. Atta...",
+      "summary": "Zomplog 3.9 contains a remote code execution vulnerability that allows authenticated attackers to inject and execute arbitrary PHP code through file manipulation endpoints. Attackers can upload malicious JavaScript files, rename them to PHP, and execute system commands by exploiting the saveE and rename actions in the application.",
+      "raw_text": null,
+      "published_at": "2025-12-15T21:15:51.973000Z",
+      "updated_at": "2025-12-24T18:11:46.850000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2023-53888"
+      ],
+      "vendors": [
+        "zomp"
+      ],
+      "products": [
+        "zomplog"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-94"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 8.8,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": true,
+        "exploit_maturity": "poc",
+        "exploit_references": [
+          {
+            "url": "https://www.exploit-db.com/exploits/51624",
+            "source": "disclosure@vulncheck.com",
+            "label": "NVD reference (Exploit)"
+          },
+          {
+            "url": "https://www.vulncheck.com/advisories/zomplog-remote-code-execution-via-authenticated-file-manipulation",
+            "source": "disclosure@vulncheck.com",
+            "label": "NVD reference (Exploit)"
+          },
+          {
+            "url": "https://www.exploit-db.com/exploits/51624",
             "source": "134c704f-9b21-4f2e-91b3-4a467353bcc0",
             "label": "NVD reference (Exploit)"
           }
@@ -603,21 +1105,353 @@
       },
       "threat_meta": null,
       "references": [
-        "https://github.com/Hwwg/cve/issues/14",
-        "https://github.com/Hwwg/cve/issues/9",
-        "https://vuldb.com/?ctiid.332323",
-        "https://vuldb.com/?id.332323",
-        "https://vuldb.com/?submit.683345",
-        "https://vuldb.com/?submit.686531"
+        "https://web.archive.org/web/20080616153330/http://zomp.nl/zomplog/",
+        "https://www.exploit-db.com/exploits/51624",
+        "https://www.vulncheck.com/advisories/zomplog-remote-code-execution-via-authenticated-file-manipulation"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2025-66572",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2025-66572",
+        "native_id": "CVE-2025-66572"
+      },
+      "title": "Loaded Commerce 6.6 contains a client-side template injection vulnerability that allows unauthenticated attackers to execute code on the server via the search parameter.",
+      "summary": "Loaded Commerce 6.6 contains a client-side template injection vulnerability that allows unauthenticated attackers to execute code on the server via the search parameter.",
+      "raw_text": null,
+      "published_at": "2025-12-04T21:16:09.920000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-66572"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-78"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://loadedcommerce.com/",
+        "https://www.exploit-db.com/exploits/52084",
+        "https://www.vulncheck.com/advisories/loaded-commerce-66-client-side-template-injectioncsti"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2025-34512",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2025-34512",
+        "native_id": "CVE-2025-34512"
+      },
+      "title": "Ilevia EVE X1 Server firmware versions ≤ 4.7.18.0.eden contain a reflected cross-site scripting (XSS) vulnerability in index.php that allows an unauthenticated attacker to execu...",
+      "summary": "Ilevia EVE X1 Server firmware versions ≤ 4.7.18.0.eden contain a reflected cross-site scripting (XSS) vulnerability in index.php that allows an unauthenticated attacker to execute arbitrary code. Ilevia has declined to service this vulnerability, and recommends that customers not expose port 8080 to the internet.",
+      "raw_text": null,
+      "published_at": "2025-10-16T18:15:35.447000Z",
+      "updated_at": "2025-10-23T19:33:42.077000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-34512"
+      ],
+      "vendors": [
+        "ilevia"
+      ],
+      "products": [
+        "eve x1 server firmware",
+        "eve x1 server"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-79"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": 6.1,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": true,
+        "exploit_maturity": "poc",
+        "exploit_references": [
+          {
+            "url": "https://www.zeroscience.mk/en/vulnerabilities/ZSL-2025-5961.php",
+            "source": "disclosure@vulncheck.com",
+            "label": "NVD reference (Exploit)"
+          }
+        ]
+      },
+      "threat_meta": null,
+      "references": [
+        "https://www.ilevia.com/",
+        "https://www.vulncheck.com/advisories/ilevia-eve-x1-server-reflected-xss",
+        "https://www.zeroscience.mk/en/vulnerabilities/ZSL-2025-5961.php"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2010-20042",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2010-20042",
+        "native_id": "CVE-2010-20042"
+      },
+      "title": "Xion Audio Player versions prior to 1.0.126 are vulnerable to a Unicode-based stack buffer overflow triggered by opening a specially crafted .m3u playlist file. The file contain...",
+      "summary": "Xion Audio Player versions prior to 1.0.126 are vulnerable to a Unicode-based stack buffer overflow triggered by opening a specially crafted .m3u playlist file. The file contains an overly long string that overwrites the Structured Exception Handler (SEH) chain, allowing an attacker to hijack execution flow and run arbitrary code.",
+      "raw_text": null,
+      "published_at": "2025-08-20T16:15:33.413000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2010-20042"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-121"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/windows/fileformat/xion_m3u_sehbof.rb",
+        "https://www.exploit-db.com/exploits/14517",
+        "https://www.exploit-db.com/exploits/14633",
+        "https://www.exploit-db.com/exploits/15598",
+        "https://www.exploit-db.com/exploits/16653",
+        "https://www.r2.com.au/page/products/download/xion-audio-player/",
+        "https://www.vulncheck.com/advisories/xion-audio-player-unicode-stack-buffer-overflow"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2013-10068",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2013-10068",
+        "native_id": "CVE-2013-10068"
+      },
+      "title": "Foxit Reader Plugin version 2.2.1.530, bundled with Foxit Reader 5.4.4.11281, contains a stack-based buffer overflow vulnerability in the npFoxitReaderPlugin.dll module. When a ...",
+      "summary": "Foxit Reader Plugin version 2.2.1.530, bundled with Foxit Reader 5.4.4.11281, contains a stack-based buffer overflow vulnerability in the npFoxitReaderPlugin.dll module. When a PDF file is loaded from a remote host, an overly long query string in the URL can overflow a buffer, allowing remote attackers to execute arbitrary code.",
+      "raw_text": null,
+      "published_at": "2025-08-05T20:15:35.540000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2013-10068"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-121"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/windows/browser/foxit_reader_plugin_url_bof.rb",
+        "https://www.exploit-db.com/exploits/23944",
+        "https://www.exploit-db.com/exploits/24502",
+        "https://www.tenable.com/plugins/nessus/64094",
+        "https://www.vulncheck.com/advisories/foxit-reader-plugin-url-processing-buffer-overflow"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2012-10032",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2012-10032",
+        "native_id": "CVE-2012-10032"
+      },
+      "title": "Maxthon3 versions prior to 3.3 are vulnerable to cross context scripting (XCS) via the about:history page. The browser’s trusted zone improperly handles injected script content,...",
+      "summary": "Maxthon3 versions prior to 3.3 are vulnerable to cross context scripting (XCS) via the about:history page. The browser’s trusted zone improperly handles injected script content, allowing attackers to execute arbitrary JavaScript in a privileged context. This flaw enables modification of browser configuration and execution of arbitrary code through Maxthon’s exposed DOM APIs, including maxthon.program.Program.launch() and maxthon.io.writeDataURL(). Exploitation requires user interaction, typically by visiting a malicious webpage that triggers the injection.",
+      "raw_text": null,
+      "published_at": "2025-08-05T20:15:34.327000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2012-10032"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-79",
+        "cwe-94"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://blog.malerisch.net/2012/12/maxthon-cross-context-scripting-xcs-about-history-rce.html",
+        "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/exploits/windows/browser/maxthon_history_xcs.rb",
+        "https://www.exploit-db.com/exploits/23225",
+        "https://www.fortiguard.com/encyclopedia/ips/34203",
+        "https://www.maxthon.com/",
+        "https://www.vulncheck.com/advisories/maxthon3-xcs-trusted-zone-code-exec"
+      ]
+    },
+    {
+      "id": "nvd:CVE-2012-10024",
+      "type": "cve",
+      "source_info": {
+        "source": "nvd",
+        "source_sub": "NIST",
+        "source_name": "NVD",
+        "source_url": "https://nvd.nist.gov/vuln/detail/CVE-2012-10024",
+        "native_id": "CVE-2012-10024"
+      },
+      "title": "XBMC version 11, including builds up to the 2012-11-04 nightly release, contains a path traversal vulnerability in its embedded HTTP server. When accessed via HTTP Basic Authent...",
+      "summary": "XBMC version 11, including builds up to the 2012-11-04 nightly release, contains a path traversal vulnerability in its embedded HTTP server. When accessed via HTTP Basic Authentication, the server fails to properly sanitize URI input, allowing authenticated users to request files outside the intended document root. An attacker can exploit this flaw to read arbitrary files from the host filesystem, including sensitive configuration or credential files.",
+      "raw_text": null,
+      "published_at": "2025-08-05T20:15:33.033000Z",
+      "updated_at": "2026-04-15T00:35:42.020000Z",
+      "fetched_at": "2026-05-26T04:49:47.243310Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2012-10024"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "cve",
+        "cwe-22"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/xbmc/xbmc",
+        "https://github.com/xbmc/xbmc/commit/bdff099c024521941cb0956fe01d99ab52a65335",
+        "https://raw.githubusercontent.com/rapid7/metasploit-framework/master/modules/auxiliary/gather/xbmc_traversal.rb",
+        "https://www.ioactive.com/wp-content/uploads/pdfs/Security_Advisory_XBMC.pdf",
+        "https://www.vulncheck.com/advisories/xbmc-web-server-path-traversal"
       ]
     }
   ],
   "meta": {
-    "window_start": "2026-05-23T04:52:03.003738+00:00",
-    "window_end": "2026-05-24T04:52:03.003738+00:00",
-    "raw_count": 11,
-    "normalized_count": 11,
-    "fetched_at": "2026-05-24T04:52:24.568337+00:00",
+    "window_start": "2026-05-25T04:49:24.884214+00:00",
+    "window_end": "2026-05-26T04:49:24.884214+00:00",
+    "raw_count": 26,
+    "normalized_count": 26,
+    "fetched_at": "2026-05-26T04:49:47.243310+00:00",
     "source": "NVD CVE API 2.0"
   }
 }
