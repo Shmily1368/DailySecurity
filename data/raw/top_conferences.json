@@ -1,451 +1,447 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_YuGJ21",
+    "id": "paper:ieee_sp:conf_sp_ZhangYHYCZY23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_YuGJ21",
+      "native_id": "conf_sp_ZhangYHYCZY23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00101"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179474"
     },
-    "title": "An I/O Separation Model for Formal Verification of Kernel Implementations.",
-    "summary": "Commodity I/O hardware often fails to separate I/O transfers of isolated OS and applications code. Even when using the best I/O hardware, commodity systems sometimes trade off separation assurance for increased performance. Remarkably, device firmware need not be malicious. Instead, any malicious driver, even if isolated in its own execution domain, can manipulate its device to breach I/O separation. To prevent such vulnerabilities with high assurance, a formal I/O separation model and its use in automatic generation of secure I/O kernel code is necessary.This paper presents a formal I/O separation model, which defines a separation policy based on authorization of I/O transfers and is hardware agnostic. The model, its refinement, and instantiation in the Wimpy kernel design, are formally specified and verified in Dafny. We then specify the kernel implementation and automatically generate verified-correct assembly code that enforces the I/O separation policies. Our formal modeling enables the discovery of heretofore unknown design and implementation vulnerabilities of the original Wimpy kernel. Finally, we outline how the model can be applied to other I/O kernels and conclude with the key lessons learned.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "Understanding the (In)Security of Cross-side Face Verification Systems in Mobile Apps: A System Perspective.",
+    "summary": "Face Verification Systems (FVSes) are more and more deployed by real-world mobile applications (apps) to verify a human’s claimed identity. One popular type of FVSes is called cross-side FVS (XFVS), which splits the FVS functionality into two sides: one at a mobile phone to take pictures or videos and the other at a trusted server for verification. Prior works have studied the security of XFVSes from the machine learning perspective, i.e., whether the learning models used by XFVSes are robust to adversarial attacks. However, the security of other parts of XFVSes, especially the design and implementation of the verification procedure used by XFVSes, is not well understood.In this paper, we conduct the first measurement study on the security of real-world XFVSes used by popular mobile apps from a system perspective. More specifically, we design and implement a semi-automated system, called XFVSChecker, to detect XFVSes in mobile apps and then inspect their compliance with four security properties. Our evaluation reveals that most of existing XFVS apps, including those with billions of downloads, are vulnerable to at least one of four types of attacks. These attacks require only easily available attack prerequisites, such as one photo of the victim, to pose significant security risks, including complete account takeover, identity fraud and financial loss. Our findings result in 14 Chinese National Vulnerability Database (CNVD) IDs and one of them, particularly CNVD-2021-86899, is awarded the most valuable vulnerability in 2021 among all the reported vulnerabilities to CNVD.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Miao Yu",
-      "Virgil D. Gligor",
-      "Limin Jia 0001"
+      "Xiaohan Zhang 0001",
+      "Haoqi Ye",
+      "Ziqi Huang",
+      "Xiao Ye",
+      "Yinzhi Cao",
+      "Yuan Zhang 0009",
+      "Min Yang 0002"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_YurdagulS21",
+    "id": "paper:ieee_sp:conf_sp_ZhaoDWYHCXW23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_YurdagulS21",
+      "native_id": "conf_sp_ZhaoDWYHCXW23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW53761.2021.00035"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179379"
     },
-    "title": "BLEKeeper: Response Time Behavior Based Man-In-The-Middle Attack Detection.",
-    "summary": "Bluetooth Low Energy (BLE) has become one of the most popular wireless communication protocols and is used in billions of smart devices. Despite several security features, the hardware and software limitations of these devices makes them vulnerable to man-in-the-middle (MITM) attacks. Due to the use of these devices in increasingly diverse and safety-critical applications, the capability to detect MITM attacks has become more critical. To address this challenge, we propose the use of the response time behavior of a BLE device observed in relation to select read and write operations and introduce an active MITM attack detection system that identifies changes in response time. Our measurements on several BLE devices show that their response time behavior exhibits very high regularity, making it a very reliable attack indicator that cannot be concealed by an attacker. Test results show that our system can very accurately and quickly detect MITM attacks while requiring a simple learning approach.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "GeeSolver: A Generic, Efficient, and Effortless Solver with Self-Supervised Learning for Breaking Text Captchas.",
+    "summary": "Although text-based captcha, which is used to differentiate between human users and bots, has faced many attack methods, it remains a widely used security mechanism and is employed by some websites. Some deep learning-based text captcha solvers have shown excellent results, but the labor-intensive and time-consuming labeling process severely limits their viability. Previous works attempted to create easy-to-use solvers using a limited collection of labeled data. However, they are hampered by inefficient preprocessing procedures and inability to recognize the captchas with complicated security features.In this paper, we propose GeeSolver, a generic, efficient, and effortless solver for breaking text-based captchas based on self-supervised learning. Our insight is that numerous difficult-to-attack captcha schemes that \"damage\" the standard font of characters are similar to image masks. And we could leverage masked autoencoders (MAE) to improve the captcha solver to learn the latent representation from the \"unmasked\" part of the captcha images. Specifically, our model consists of a ViT encoder as latent representation extractor and a well-designed decoder for captcha recognition. We apply MAE paradigm to train our encoder, which enables the encoder to extract latent representation from local information (i.e., without masking part) that can infer the corresponding character. Further, we freeze the parameters of the encoder and leverage a few labeled captchas and many unlabeled captchas to train our captcha decoder with semi-supervised learning.Our experiments with real-world captcha schemes demonstrate that GeeSolver outperforms the state-of-the-art methods by a large margin using a few labeled captchas. We also show that GeeSolver is highly efficient as it can solve a captcha within 25 ms using a desktop CPU and 9 ms using a desktop GPU. Besides, thanks to latent representation extraction, we successfully break the hard-to-attack captcha schemes, proving the generality of our solver. We hope that our work will help security experts to revisit the design and availability of text-based captchas. The code is available at https://github.com/NSSL-SJTU/GeeSolver.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Muhammed Ali Yurdagul",
-      "Husrev Taha Sencar"
+      "Ruijie Zhao 0001",
+      "Xianwen Deng",
+      "Yanhao Wang",
+      "Zhicong Yan",
+      "Zhengguang Han",
+      "Libo Chen 0001",
+      "Zhi Xue",
+      "Yijun Wang"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_ZhangOCSJWSKBWS21",
+    "id": "paper:ieee_sp:conf_sp_ZhengGSX23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_ZhangOCSJWSKBWS21",
+      "native_id": "conf_sp_ZhengGSX23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00021"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179292"
     },
-    "title": "CrawlPhish: Large-scale Analysis of Client-side Cloaking Techniques in Phishing.",
-    "summary": "Phishing is a critical threat to Internet users. Although an extensive ecosystem serves to protect users, phishing websites are growing in sophistication, and they can slip past the ecosystem’s detection systems—and subsequently cause real-world damage—with the help of evasion techniques. Sophisticated client-side evasion techniques, known as cloaking, leverage JavaScript to enable complex interactions between potential victims and the phishing website, and can thus be particularly effective in slowing or entirely preventing automated mitigations. Yet, neither the prevalence nor the impact of client-side cloaking has been studied.In this paper, we present CrawlPhish, a framework for automatically detecting and categorizing client-side cloaking used by known phishing websites. We deploy CrawlPhish over 14 months between 2018 and 2019 to collect and thoroughly analyze a dataset of 112,005 phishing websites in the wild. By adapting state-of-the-art static and dynamic code analysis, we find that 35,067 of these websites have 1,128 distinct implementations of client-side cloaking techniques. Moreover, we find that attackers’ use of cloaking grew from 23.32% initially to 33.70% by the end of our data collection period. Detection of cloaking by our framework exhibited low false-positive and false-negative rates of 1.45% and 1.75%, respectively. We analyze the semantics of the techniques we detected and propose a taxonomy of eight types of evasion across three high-level categories: User Interaction, Fingerprinting, and Bot Behavior.Using 150 artificial phishing websites, we empirically show that each category of evasion technique is effective in avoiding browser-based phishing detection (a key ecosystem defense). Additionally, through a user study, we verify that the techniques generally do not discourage victim visits. Therefore, we propose ways in which our methodology can be used to not only improve the ecosystem’s ability to mitigate phishing websites with client-side cloaking, but also continuously identify emerging cloaking techniques as they are launched by attackers.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "Leaking Arbitrarily Many Secrets: Any-out-of-Many Proofs and Applications to RingCT Protocols.",
+    "summary": "Ring Confidential Transaction (RingCT) protocol is an effective cryptographic component for preserving the privacy of cryptocurrencies. However, existing RingCT protocols are instantiated from one-out-of-many proofs with only one secret, leading to low efficiency and weak anonymity when handling transactions with multiple inputs. Additionally, current partial knowledge proofs with multiple secrets are neither secure nor efficient to be applied in a RingCT protocol.In this paper, we propose a novel any-out-of-many proof, a logarithmic-sized zero-knowledge proof scheme for showing the knowledge of arbitrarily many secrets out of a public list. Unlike other partial knowledge proofs that have to reveal the number of secrets [ACF21], our approach proves the knowledge of multiple secrets without leaking the exact number of them. Furthermore, we improve the efficiency of our method with a generic inner-product transformation to adopt the Bulletproofs compression [BBB+18], which reduces the proof size to 2⌈log<inf>2</inf>(N)⌉+9.Based on our proposed proof scheme, we further construct a compact RingCT protocol for privacy cryptocurrencies, which can provide a logarithmic-sized communication complexity for transactions with multiple inputs. More importantly, as the only known RingCT protocol instantiated from the partial knowledge proofs, our protocol can achieve the highest anonymity level compared with other approaches like Omniring [LRR+19]. For other applications, such as multiple ring signatures, our protocol can also be applied with some modifications. We believe our techniques are also applicable in other privacy-preserving scenarios, such as multiple ring signatures and coin-mixing in the blockchain.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Penghui Zhang",
-      "Adam Oest",
-      "Haehyun Cho",
-      "Zhibo Sun",
-      "RC Johnson",
-      "Brad Wardman",
-      "Shaown Sarker",
-      "Alexandros Kapravelos",
-      "Tiffany Bao",
-      "Ruoyu Wang 0001",
-      "Yan Shoshitaishvili",
-      "Adam Doupé",
-      "Gail-Joon Ahn"
+      "Tianyu Zheng",
+      "Shang Gao 0006",
+      "Yubo Song",
+      "Bin Xiao 0001"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_ZhangWSN21",
+    "id": "paper:ieee_sp:conf_sp_ZhouGHMZWLJ23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_ZhangWSN21",
+      "native_id": "conf_sp_ZhouGHMZWLJ23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00040"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179372"
     },
-    "title": "ConDySTA: Context-Aware Dynamic Supplement to Static Taint Analysis.",
-    "summary": "Static taint analyses are widely-applied techniques to detect taint flows in software systems. Although they are theoretically conservative and de-signed to detect all possible taint flows, static taint analyses almost always exhibit false negatives due to a variety of implementation limitations. Dynamic programming language features, inaccessible code, and the usage of multiple programming languages in a software project are some of the major causes. To alleviate this problem, we developed a novel approach, DySTA, which uses dynamic taint analysis results as additional sources for static taint analysis. However, naïvely adding sources causes static analysis to lose context sensitivity and thus produce false positives. Thus, we developed a hybrid context matching algorithm and corresponding tool, ConDySTA, to preserve context sensitivity in DySTA. We applied REPRODROID [1], a comprehensive benchmarking framework for Android analysis tools, to evaluate ConDySTA. The results show that across 28 apps (1) ConDySTA was able to detect 12 out of 28 taint flows which were not detected by any of the six state-of-the-art static taint analyses considered in ReproDroid, and (2) ConDySTA reported no false positives, whereas nine were reported by DySTA alone. We further applied ConDySTA and FlowDroid to 100 top Android apps from Google Play, and ConDySTA was able to detect 39 additional taint flows (besides 281 taint flows found by FlowDroid) while preserving the context sensitivity of FlowDroid.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "Limits of I/O Based Ransomware Detection: An Imitation Based Attack.",
+    "summary": "By encrypting the data of infected hosts, cryptographic ransomware has caused billions of dollars in financial losses to a wide range of victims. Many detection techniques have been proposed to counter ransomware threats over the past decade. Their common approach is to monitor I/O behaviors from user space and apply custom heuristics to discriminate ransomware. These techniques implicitly assume that ransomware behaves very differently from benign programs in terms of heuristics. However, when we investigated the behavior of benign and ransomware programs, we found that the boundary between their behaviors was blurred. A ransomware program can still achieve its goal even though it follows the behavior patterns of benign programs. In this paper, we aim to explore the limits of ransomware detection techniques that based on I/O behaviors. To this end, we present Animagus, an imitation-based ransomware attack that imitates behaviors of benign programs to disguise its encryption tasks. It first learns behavior patterns from a benign program, and then spawns and orchestrates child processes to perform encryption tasks behaving the same as the benign program. We evaluate its effectiveness against six state-of-the-art detection techniques, and the results show that it can successfully evade these defenses. We investigate in detail why they are ineffective and how Animagus is different from existing ransomware samples. In the end, we discuss potential countermeasures and the benefits that detection tools can gain from our work.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Xueling Zhang",
-      "Xiaoyin Wang",
-      "Rocky Slavin",
-      "Jianwei Niu 0001"
+      "Chijin Zhou",
+      "Lihua Guo",
+      "Yiwei Hou",
+      "Zhenya Ma",
+      "Quan Zhang 0003",
+      "Mingzhe Wang",
+      "Zhe Liu 0001",
+      "Yu Jiang 0001"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_ZhangYTALZ21",
+    "id": "paper:ieee_sp:conf_sp_ZhouHLLLG23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_ZhangYTALZ21",
+      "native_id": "conf_sp_ZhouHLLLG23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00109"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179404"
     },
-    "title": "StochFuzz: Sound and Cost-effective Fuzzing of Stripped Binaries by Incremental and Stochastic Rewriting.",
-    "summary": "Fuzzing stripped binaries poses many hard challenges as fuzzers require instrumenting binaries to collect runtime feedback for guiding input mutation. However, due to the lack of symbol information, correct instrumentation is difficult on stripped binaries. Existing techniques either rely on hardware and expensive dynamic binary translation engines such as QEMU, or make impractical assumptions such as binaries do not have inlined data. We observe that fuzzing is a highly repetitive procedure providing a large number of trial-and-error opportunities. As such, we propose a novel incremental and stochastic rewriting technique StochFuzz that piggy-backs on the fuzzing procedure. It generates many different versions of rewritten binaries whose validity can be approved/disapproved by numerous fuzzing runs. Probabilistic analysis is used to aggregate evidence collected through the sample runs and improve rewriting. The process eventually converges on a correctly rewritten binary. We evaluate StochFuzz on two sets of real-world programs and compare with five other baselines. The results show that StochFuzz outperforms state-of-the-art binary-only fuzzers (e.g., e9patch, ddisasm, and RetroWrite) in terms of soundness and cost-effectiveness and achieves performance comparable to source-based fuzzers. StochFuzz is publicly available [1].",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "Mew: Enabling Large-Scale and Dynamic Link-Flooding Defenses on Programmable Switches.",
+    "summary": "Link-flooding attacks (LFAs) can cut off the Internet connection to selected server targets and are hard to mitigate because adversaries use normal-looking and low-rate flows and can dynamically adjust the attack strategy. Traditional centralized defense systems cannot locally and efficiently suppress malicious traffic. Though emerging programmable switches offer an opportunity to bring defense systems closer to targeted links, their limited resource and lack of support for runtime reconfiguration limit their usage for link-flooding defenses.We present Mew <sup xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">1</sup> , a resource-efficient and runtime adaptable link-flooding defense system. Mew can counter various LFAs even when a massive number of flows are concentrated on a link, or when the attack strategy changes quickly. We design a distributed storage mechanism and a lossless state migration mechanism to reduce the storage bottleneck of programmable networks. We develop cooperative defense APIs to support multi-grained co-detection and co-mitigation without excessive overhead. Mew's dynamic defense mechanism can constantly analyze network conditions and activate corresponding defenses without rebooting devices or interrupting other running functions. We develop a prototype of Mew by using real-world programmable switches, which are located in five cities. Our experiments show that the real-world prototype can defend against large-scale and dynamic LFAs effectively.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Zhuo Zhang 0002",
-      "Wei You 0001",
-      "Guanhong Tao 0001",
-      "Yousra Aafer",
-      "Xuwei Liu",
-      "Xiangyu Zhang 0001"
+      "Huancheng Zhou",
+      "Sungmin Hong",
+      "Yangyang Liu",
+      "Xiapu Luo",
+      "Weichao Li 0001",
+      "Guofei Gu"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_HanWCZWZYSY21",
+    "id": "paper:acm_ccs:conf_ccs_WeidnerKHB21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_HanWCZWZYSY21",
+      "native_id": "conf_ccs_WeidnerKHB21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484589"
+      "source_url": "https://doi.org/10.1145/3460120.3484542"
     },
-    "title": "DeepAID: Interpreting and Improving Deep Learning-based Anomaly Detection in Security Applications.",
-    "summary": "Unsupervised Deep Learning (DL) techniques have been widely used in various security-related anomaly detection applications, owing to the great promise of being able to detect unforeseen threats and superior performance provided by Deep Neural Networks (DNN). However, the lack of interpretability creates key barriers to the adoption of DL models in practice. Unfortunately, existing interpretation approaches are proposed for supervised learning models and/or non-security domains, which are unadaptable for unsupervised DL models and fail to satisfy special requirements in security domains.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "Key Agreement for Decentralized Secure Group Messaging with Strong Security Guarantees.",
+    "summary": "Secure group messaging protocols, providing end-to-end encryption for group communication, need to handle mobile devices frequently being offline, group members being added or removed, and the possibility of device compromises during long-lived chat sessions. Existing work targets a centralized network model in which all messages are routed through a single server, which is trusted to provide a consistent total order on updates to the group state. In this paper we adapt secure group messaging for decentralized networks that have no central authority. Servers may still optionally be used, but they are trusted less. We define decentralized continuous group key agreement (DCGKA), a new cryptographic primitive encompassing the core of a decentralized secure group messaging protocol; we give a practical construction of a DCGKA protocol and prove its security; and we describe how to construct a full messaging protocol from DCGKA. In the face of device compromise our protocol achieves forward secrecy and post-compromise security. We evaluate the performance of a prototype implementation, and demonstrate that our protocol has practical efficiency.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Dongqi Han",
-      "Zhiliang Wang",
-      "Wenqi Chen",
-      "Ying Zhong",
-      "Su Wang",
-      "Han Zhang 0009",
-      "Jiahai Yang 0001",
-      "Xingang Shi",
-      "Xia Yin 0001"
+      "Matthew Weidner",
+      "Martin Kleppmann",
+      "Daniel Hugenroth",
+      "Alastair R. Beresford"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_HanzlikS21",
+    "id": "paper:acm_ccs:conf_ccs_WengerBCCS0Z21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_HanzlikS21",
+      "native_id": "conf_ccs_WengerBCCS0Z21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484582"
+      "source_url": "https://doi.org/10.1145/3460120.3484742"
     },
-    "title": "With a Little Help from My Friends: Constructing Practical Anonymous Credentials.",
-    "summary": "Anonymous credentials (ACs) are a powerful cryptographic tool for the secure use of digital services, when simultaneously aiming for strong privacy guarantees of users combined with strong authentication guarantees for providers of services. They allow users to selectively prove possession of attributes encoded in a credential without revealing any other meaningful information about themselves. While there is a significant body of research on AC systems, modern use-cases of ACs such as mobile applications come with various requirements not sufficiently considered so far. These include preventing the sharing of credentials and coping with resource constraints of the platforms (e.g., smart cards such as SIM cards in smartphones). Such aspects are typically out of scope of AC constructions, and, thus AC systems that can be considered entirely practical have been elusive so far. In this paper we address this problem by introducing and formalizing the notion of core/helper anonymous credentials (CHAC). The model considers a constrained core device (e.g., a SIM card) and a powerful helper device (e.g., a smartphone). The key idea is that the core device performs operations that do not depend on the size of the credential or the number of attributes, but at the same time the helper device is unable to use the credential without its help. We present a provably secure generic construction of CHACs using a combination of signatures with flexible public keys (SFPK) and the novel notion of aggregatable attribute-based equivalence class signatures (AAEQ) along with a concrete instantiation. The key characteristics of our scheme are that the size of showing tokens is independent of the number of attributes in the credential(s) and that the core device only needs to compute a single elliptic curve scalar multiplication, regardless of the number of attributes. We confirm the practical efficiency of our CHACs with an implementation of our scheme on a Multos smart card as the core and an Android smartphone as the helper device. A credential showing requires less than 500 ms on the smart card and around 200 ms on the smartphone (even for a credential with 1000 attributes).",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Lucjan Hanzlik",
-      "Daniel Slamanig"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_HaoLJ021",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_HaoLJ021",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484559"
-    },
-    "title": "It&apos;s Not What It Looks Like: Manipulating Perceptual Hashing based Applications.",
+    "title": "&quot;Hello, It&apos;s Me&quot;: Deep Learning-based Speech Synthesis Attacks in the Real World.",
     "summary": "",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Qingying Hao",
-      "Licheng Luo",
-      "Steve T. K. Jan",
-      "Gang Wang 0011"
+      "Emily Wenger",
+      "Max Bronckers",
+      "Christian Cianfarani",
+      "Jenna Cryan",
+      "Angela Sha",
+      "Haitao Zheng 0001",
+      "Ben Y. Zhao"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_HashimotoKPPW21",
+    "id": "paper:acm_ccs:conf_ccs_WongLABRA21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_HashimotoKPPW21",
+      "native_id": "conf_ccs_WongLABRA21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484817"
+      "source_url": "https://doi.org/10.1145/3460120.3484759"
     },
-    "title": "A Concrete Treatment of Efficient Continuous Group Key Agreement via Multi-Recipient PKEs.",
-    "summary": "Continuous group key agreements (CGKAs) are a class of protocols that can provide strong security guarantees to secure group messaging protocols such as Signal and MLS. Protection against device compromise is provided by commit messages: at a regular rate, each group member may refresh their key material by uploading a commit message, which is then downloaded and processed by all the other members. In practice, propagating commit messages dominates the bandwidth consumption of existing CGKAs.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "title": "An Inside Look into the Practice of Malware Analysis.",
+    "summary": "Malware analysis aims to understand how malicious software carries out actions necessary for a successful attack and identify the possible impacts of the attack. While there has been substantial research focused on malware analysis and it is an important tool for practitioners in industry, the overall malware analysis process used by practitioners has not been studied. As a result, an understanding of common malware analysis workflows and their goals is lacking. A better understanding of these workflows could help identify new research directions that are impactful in practice. In order to better understand malware analysis processes, we present the results of a user study with 21 professional malware analysts with diverse backgrounds who work at 18 different companies. The study focuses on answering three research questions: (1) What are the different objectives of malware analysts in practice?, (2) What comprises a typical professional malware analyst workflow, and (3) When analysts decide to conduct dynamic analysis, what factors do they consider when setting up a dynamic analysis system? Based on participant responses, we propose a taxonomy of malware analysts and identify five common analysis workflows. We also identify challenges that analysts face during the different stages of their workflow. From the results of the study, we propose two potential directions for future research, informed by challenges described by the participants. Finally, we recommend guidelines for developers of malware analysis tools to consider in order to improve the usability of such tools.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Keitaro Hashimoto",
+      "Miuyin Yong Wong",
+      "Matthew Landen",
+      "Manos Antonakakis",
+      "Douglas M. Blough",
+      "Elissa M. Redmiles",
+      "Mustaque Ahamad"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_XiangZWGL21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_XiangZWGL21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3484801"
+    },
+    "title": "Ghost in the Binder: Binder Transaction Redirection Attacks in Android System Services.",
+    "summary": "Binder, the main mechanism for Android applications to access system services, adopts a client-server role model in its design, assuming the system service as the server and the application as the client. However, a growing number of scenarios require the system service to act as a Binder client and to send queries to a Binder server possibly instantiated by the application. Departing from this role-reversal possibility, this paper proposes the Binder Transaction Redirection (BiTRe) attacks, where the attacker induces the system service to transact with a customized Binder server and then attacks from the Binder server---an often unprotected direction. We demonstrate the scale of the attack surface by enumerating the utilizable Binder interfaces in BiTRe, and discover that the attack surface grows with the Android release version. In Android 11, more than 70% of the Binder interfaces are affected by or can be utilized in BiTRe. We prove the attacks' feasibility by (1) constructing a prototype system that can automatically generate executable programs to reach a substantial part of the attack surface, and (2) identifying a series of vulnerabilities, which are acknowledged by Google and assigned ten CVEs.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Xiaobo Xiang",
+      "Ren Zhang 0003",
+      "Hanxiang Wen",
+      "Xiaorui Gong",
+      "Baoxu Liu"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_XiongWLL21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_XiongWLL21",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3460120.3485372"
+    },
+    "title": "Warmonger: Inflicting Denial-of-Service via Serverless Functions in the Cloud.",
+    "summary": "We debut the Warmonger attack, a novel attack vector that can cause denial-of-service between a serverless computing platform and an external content server. The Warmonger attack exploits the fact that a serverless computing platform shares the same set of egress IPs among all serverless functions, which belong to different users, to access an external content server. As a result, a malicious user on this platform can purposefully misbehave and cause these egress IPs to be blocked by the content server, resulting in a platform-wide denial of service. To validate the Warmonger attack, we ran months-long experiments, collected and analyzed the egress IP usage pattern of four major serverless service providers (SSPs). We also conducted an in-depth evaluation of an attacker's possible moves to inflict an external server and cause IP-blockage. We demonstrate that some SSPs use surprisingly small numbers of egress IPs (as little as only four) and share them among their users, and that the serverless platform provides sufficient leverage for a malicious user to conduct well-known misbehaviors and cause IP-blockage. Our study unveiled a potential security threat on the emerging serverless computing platform, and shed light on potential mitigation approaches.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Junjie Xiong",
+      "Mingkui Wei",
+      "Zhuo Lu",
+      "Yao Liu 0007"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AskinDDK00Z25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AskinDDK00Z25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/askin"
+    },
+    "title": "General-Purpose f-DP Estimation and Auditing in a Black-Box Setting.",
+    "summary": "In this paper we propose new methods to statistically assess $f$-Differential Privacy ($f$-DP), a recent refinement of differential privacy (DP) that remedies certain weaknesses of standard DP (including tightness under algorithmic composition). A challenge when deploying differentially private mechanisms is that DP is hard to validate, especially in the black-box setting. This has led to numerous empirical methods for auditing standard DP, while $f$-DP remains less explored. We introduce new black-box methods for $f$-DP that, unlike existing approaches for this privacy notion, do not require prior knowledge of the investigated algorithm. Our procedure yields a complete estimate of the $f$-DP trade-off curve, with theoretical guarantees of convergence. Additionally, we propose an efficient auditing method that empirically detects $f$-DP violations with statistical certainty, merging techniques from non-parametric estimation and optimal classification theory. Through experiments on a range of DP mechanisms, we demonstrate the effectiveness of our estimation and auditing procedures.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Önder Askin",
+      "Holger Dette",
+      "Martin Dunsche",
+      "Tim Kutta",
+      "Yun Lu 0001",
+      "Yu Wei 0007",
+      "Vassilis Zikas"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AuerbachD0KS25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AuerbachD0KS25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/auerbach"
+    },
+    "title": "How to Compare Bandwidth Constrained Two-Party Secure Messaging Protocols: A Quest for A More Efficient and Secure Post-Quantum Protocol.",
+    "summary": "",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Benedikt Auerbach",
+      "Yevgeniy Dodis",
+      "Daniel Jost 0001",
       "Shuichi Katsumata",
-      "Eamonn W. Postlethwaite",
-      "Thomas Prest",
-      "Bas Westerbaan"
+      "Rolfe Schmidt"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_HeSTV21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_HeSTV21",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484813"
-    },
-    "title": "Learning to Explore Paths for Symbolic Execution.",
-    "summary": "Symbolic execution is a powerful technique that can generate tests steering program execution into desired paths. However, the scalability of symbolic execution is often limited by path explosion, i.e., the number of symbolic states representing the paths under exploration quickly explodes as execution goes on. Therefore, the effectiveness of symbolic execution engines hinges on the ability to select and explore the right symbolic states.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Jingxuan He",
-      "Gishor Sivanrupan",
-      "Petar Tsankov",
-      "Martin T. Vechev"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_ZhangG0D0Z0025",
+    "id": "paper:usenix_security:conf_uss_AvarikiotiWW25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_ZhangG0D0Z0025",
+      "native_id": "conf_uss_AvarikiotiWW25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-yinyuan"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/avarikioti"
     },
-    "title": "Fighting Fire with Fire: Continuous Attack for Adversarial Android Malware Detection.",
+    "title": "Thunderdome: Timelock-Free Rationally-Secure Virtual Channels.",
+    "summary": "Payment channel networks (PCNs) offer a promising solution to address the limited transaction throughput of deployed blockchains. However, several attacks have recently been proposed that stress the vulnerability of PCNs to timelock and censoring attacks. To address such attacks, we introduce Thunderdome, the first timelock-free PCN. Instead, Thunderdome leverages the design rationale of virtual channels to extend a timelock-free payment channel primitive, thereby enabling multi-hop transactions without timelocks. Previous works either utilize timelocks or do not accommodate transactions between parties that do not share a channel. At its core, Thunderdome relies on a committee of non-trusted watchtowers, known as wardens, who ensure that no honest party loses funds, even when offline, during the channel closure process. We introduce tailored incentive mechanisms to ensure that all participants follow the protocol's correct execution. Besides a traditional security proof that assumes an honest majority of the committee, we conduct a formal game-theoretic analysis to demonstrate the security of Thunderdome when all participants, including wardens, act rationally. We implement a proof of concept of Thunderdome on Ethereum to validate its feasibility and evaluate its costs. Our evaluation shows that deploying Thunderdome, including opening the underlying payment channel, costs approximately \\$15 (0.0089 ETH), while the worst-case cost for closing a channel is about \\$7 (0.004 ETH).",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Zeta Avarikioti",
+      "Yuheng Wang",
+      "Yuyi Wang 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AyalaTG25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AyalaTG25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/ayala"
+    },
+    "title": "A Mixed-Methods Study of Open-Source Software Maintainers On Vulnerability Management and Platform Security Features.",
+    "summary": "In open-source software (OSS), software vulnerabilities have significantly increased. Although researchers have investigated the perspectives of vulnerability reporters and OSS contributor security practices, understanding the perspectives of OSS maintainers on vulnerability management and platform security features is currently understudied. In this paper, we investigate the perspectives of OSS maintainers who maintain projects listed in the GitHub Advisory Database. We explore this area by conducting two studies: identifying aspects through a listing survey ($n_1=80$) and gathering insights from semi-structured interviews ($n_2=22$). Of the 37 identified aspects, we find that supply chain mistrust and lack of automation for vulnerability management are the most challenging, and barriers to adopting platform security features include a lack of awareness and the perception that they are not necessary. Surprisingly, we find that despite being previously vulnerable, some maintainers still allow public vulnerability reporting, or ignore reports altogether. Based on our findings, we discuss implications for OSS platforms and how the research community can better support OSS vulnerability management efforts.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Jessy Ayala",
+      "Yu-Jye Tung",
+      "Joshua Garcia"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AyzenshteynWM25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AyzenshteynWM25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/ayzenshteyn"
+    },
+    "title": "Cloak, Honey, Trap: Proactive Defenses Against LLM Agents.",
     "summary": "",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Yinyuan Zhang",
-      "Cuiying Gao",
-      "Yueming Wu 0001",
-      "Shihan Dou",
-      "Cong Wu 0003",
-      "Ying Zhang 0066",
-      "Wei Yuan 0001",
-      "Yang Liu 0003"
+      "Daniel Ayzenshteyn",
+      "Roy Weiss",
+      "Yisroel Mirsky"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_ZhangHHMW25",
+    "id": "paper:ndss:conf_ndss_KimSZT21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ZhangHHMW25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-bosi"
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_KimSZT21",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/refining-indirect-call-targets-at-the-binary-level/"
     },
-    "title": "Following Devils&apos; Footprint: Towards Real-time Detection of Price Manipulation Attacks.",
+    "title": "Refining Indirect Call Targets at the Binary Level.",
+    "summary": "Enforcing fine-grained Control-Flow Integrity (CFI) is critical for increasing software security. However, for commercial off-the-shelf (COTS) binaries, constructing highprecision Control-Flow Graphs (CFGs) is challenging, because there is no source-level information, such as symbols and types, to assist in indirect-branch target inference. The lack of sourcelevel information brings extra challenges to inferring targets for indirect calls compared to other kinds of indirect branches. Points-to analysis could be a promising solution for this problem, but there is no practical points-to analysis framework for inferring indirect call targets at the binary level. Value set analysis (VSA) is the state-of-the-art binary-level points-to analysis but does not scale to large programs. It is also highly conservative by design and thus leads to low-precision CFG construction. In this paper, we present a binary-level points-to analysis framework called BPA to construct sound and high-precision CFGs. It is a new way of performing points-to analysis at the binary level with the focus on resolving indirect call targets. BPA employs several major techniques, including assuming a block memory model and a memory access analysis for partitioning memory into blocks, to achieve a better balance between scalability and precision. In evaluation, we demonstrate that BPA achieves a 34.5% precision improvement rate over the current state-of-theart technique without introducing false negatives.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Sun Hyoung Kim",
+      "Cong Sun 0001",
+      "Dongrui Zeng",
+      "Gang Tan"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_KountourasKAPLP21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_KountourasKAPLP21",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/understanding-the-growth-and-security-considerations-of-ecs/"
+    },
+    "title": "Understanding the Growth and Security Considerations of ECS.",
     "summary": "",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Bosi Zhang",
-      "Ningyu He",
-      "Xiaohui Hu",
-      "Kai Ma",
-      "Haoyu Wang"
+      "Athanasios Kountouras",
+      "Panagiotis Kintis",
+      "Athanasios Avgetidis",
+      "Thomas Papastergiou",
+      "Charles Lever",
+      "Michalis Polychronakis",
+      "Manos Antonakakis"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_ZhangLHWY025",
+    "id": "paper:ndss:conf_ndss_KuchlerMHBB21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ZhangLHWY025",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-jingmiao"
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_KuchlerMHBB21",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/does-every-second-count-time-based-evolution-of-malware-behavior-in-sandboxes/"
     },
-    "title": "SpeechGuard: Recoverable and Customizable Speech Privacy Protection.",
+    "title": "Does Every Second Count? Time-based Evolution of Malware Behavior in Sandboxes.",
+    "summary": "The amount of time in which a sample is executed is one of the key parameters of a malware analysis sandbox. Setting the threshold too high hinders the scalability and reduces the number of samples that can be analyzed in a day; too low and the samples may not have the time to show their malicious behavior, thus reducing the amount and quality of the collected data. Therefore, an analyst needs to find the 'sweet spot' that allows to collect only the minimum amount of information required to properly classify each sample. Anything more is wasting resources, anything less is jeopardizing the experiments. Despite its importance, there are no clear guidelines on how to choose this parameter, nor experiments that can help companies to assess the pros and cons of a choice over another. To fill this gap, in this paper we provide the first large-scale study of the impact that the execution time has on both the amount and the quality of the collected events. We measure the evolution of system calls and code coverage, to draw a precise picture of the fraction of runtime behavior we can expect to observe in a sandbox. Finally, we implemented a machine learning based malware detection method, and applied it to the data collected in different time windows, to also report on the relevance of the events observed at different points in time.",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
+    "authors": [
+      "Alexander Küchler",
+      "Alessandro Mantovani",
+      "Yufei Han 0001",
+      "Leyla Bilge",
+      "Davide Balzarotti"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_KwonHBP21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_KwonHBP21",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/mondrian-comprehensive-inter-domain-network-zoning-architecture/"
+    },
+    "title": "Mondrian: Comprehensive Inter-domain Network Zoning Architecture.",
     "summary": "",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Jingmiao Zhang",
-      "Suyuan Liu",
-      "Jiahui Hou",
-      "Zhiqiang Wang",
-      "Haikuo Yu",
-      "Xiang-Yang Li 0001"
+      "Jonghoon Kwon",
+      "Claude Hähni",
+      "Patrick Bamert",
+      "Adrian Perrig"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_ZhangLW0025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ZhangLW0025",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-kunpeng"
-    },
-    "title": "Low-Cost and Comprehensive Non-textual Input Fuzzing with LLM-Synthesized Input Generators.",
-    "summary": "Modern software often accepts inputs with highly complex grammars. Recent advances in large language models (LLMs) have shown that they can be used to synthesize high-quality natural language text and code that conforms to the grammar of a given input format. Nevertheless, LLMs are often incapable or too costly to generate non-textual outputs, such as images, videos, and PDF files. This limitation hinders the application of LLMs in grammar-aware fuzzing. We present a novel approach to enabling grammar-aware fuzzing over non-textual inputs. We employ LLMs to synthesize and also mutate input generators, in the form of Python scripts, that generate data conforming to the grammar of a given input format. Then, non-textual data yielded by the input generators are further mutated by traditional fuzzers (AFL++) to explore the software input space effectively. Our approach, namely G2FUZZ, features a hybrid strategy that combines a holistic search driven by LLMs and a local search driven by industrial quality fuzzers. Two key advantages are: (1) LLMs are good at synthesizing and mutating input generators and enabling jumping out of local optima, thus achieving a synergistic effect when combined with mutation-based fuzzers; (2) LLMs are less frequently invoked unless really needed, thus significantly reducing the cost of LLM usage. We have evaluated G2FUZZ on a variety of input formats, including TIFF images, MP4 audios, and PDF files. The results show that G2FUZZ outperforms SOTA tools such as AFL++, Fuzztruction, and FormatFuzzer in terms of code coverage and bug finding across most programs tested on three platforms: UNIFUZZ, FuzzBench, and MAGMA.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Kunpeng Zhang",
-      "Zongjie Li",
-      "Daoyuan Wu",
-      "Shuai Wang 0011",
-      "Xin Xia 0001"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_ZhangWYHPCY0Y25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ZhangWYHPCY0Y25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-zhisheng"
-    },
-    "title": "SafeSpeech: Robust and Universal Voice Protection Against Malicious Speech Synthesis.",
-    "summary": "Speech synthesis technology has brought great convenience, while the widespread usage of realistic deepfake audio has triggered hazards. Malicious adversaries may unauthorizedly collect victims' speeches and clone a similar voice for illegal exploitation (\\textit{e.g.}, telecom fraud). However, the existing defense methods cannot effectively prevent deepfake exploitation and are vulnerable to robust training techniques. Therefore, a more effective and robust data protection method is urgently needed. In response, we propose a defensive framework, \\textit{\\textbf{SafeSpeech}}, which protects the users' audio before uploading by embedding imperceptible perturbations on original speeches to prevent high-quality synthetic speech. In SafeSpeech, we devise a robust and universal proactive protection technique, \\textbf{S}peech \\textbf{PE}rturbative \\textbf{C}oncealment (\\textbf{SPEC}), that leverages a surrogate model to generate universally applicable perturbation for generative synthetic models. Moreover, we optimize the human perception of embedded perturbation in terms of time and frequency domains. To evaluate our method comprehensively, we conduct extensive experiments across advanced models and datasets, both subjectively and objectively. Our experimental results demonstrate that SafeSpeech achieves state-of-the-art (SOTA) voice protection effectiveness and transferability and is highly robust against advanced adaptive adversaries. Moreover, SafeSpeech has real-time capability in real-world tests. The source code is available at \\href{https://github.com/wxzyd123/SafeSpeech}{https://github.com/wxzyd123/SafeSpeech}.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Zhisheng Zhang",
-      "Derui Wang",
-      "Qianyi Yang",
-      "Pengyang Huang",
-      "Junhan Pu",
-      "Yuxin Cao",
-      "Kai Ye",
-      "Jie Hao 0001",
-      "Yixian Yang"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_BhatSKN23",
+    "id": "paper:ndss:conf_ndss_KwonWJLP21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_BhatSKN23",
+      "native_id": "conf_ndss_KwonWJLP21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/optrand-optimistically-responsive-reconfigurable-distributed-randomness/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/c2sr-cybercrime-scene-reconstruction-for-post-mortem-forensic-analysis/"
     },
-    "title": "OptRand: Optimistically Responsive Reconfigurable Distributed Randomness.",
-    "summary": "Public random beacons publish random numbers at regular intervals, which anyone can obtain and verify.The design of public distributed random beacons has been an exciting research direction with significant implications for blockchains, voting, and beyond.Distributed random beacons, in addition to being bias-resistant and unpredictable, also need to have low communication overhead and latency, high resilience to faults, and ease of reconfigurability.Existing synchronous random beacon protocols sacrifice one or more of these properties.In this work, we design an efficient unpredictable synchronous random beacon protocol, OptRand, with quadratic (in the number n of system nodes) communication complexity per beacon output.First, we innovate by employing a novel combination of bilinear pairing based publicly verifiable secret-sharing and non-interactive zero-knowledge proofs to build a linear (in n) sized publicly verifiable random sharing.Second, we develop a state machine replication protocol with linear-sized inputs that is also optimistically responsive, i.e., it can progress responsively at actual network speed during optimistic conditions, despite the synchrony assumption, and thus incur low latency.In addition, we present an efficient reconfiguration mechanism for OptRand that allows nodes to leave and join the system.Our experiments show our protocols perform significantly better compared to state-ofthe-art protocols under optimistic conditions and on par with state-of-the-art protocols in the normal case.We are also the first to implement a reconfiguration mechanism for distributed beacons and demonstrate that our protocol continues to be live during reconfigurations.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Adithya Bhat",
-      "Nibesh Shrestha",
-      "Aniket Kate",
-      "Kartik Nayak"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_BockLPDM23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_BockLPDM23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/how-to-count-bots-in-longitudinal-datasets-of-ip-addresses/"
-    },
-    "title": "How to Count Bots in Longitudinal Datasets of IP Addresses.",
-    "summary": "Estimating the size of a botnet is one of the most basic and important queries one can make when trying to understand the impact of a botnet.Surprisingly and unfortunately, this seemingly simple task has confounded many measurement efforts.While it may seem tempting to simply count the number of IP addresses observed to be infected, it is well-known that doing so can lead to drastic overestimates, as ISPs commonly assign new IP addresses to hosts.As a result, estimating the number of infected hosts given longitudinal datasets of IP addresses has remained an open problem.In this paper, we present a new data analysis technique, CARDCount, that provides more accurate size estimations by accounting for IP address reassignments.CARDCount can be applied on longer windows of observations than prior approaches (weeks compared to hours), and is the first technique of its kind to provide confidence intervals for its size estimations.We evaluate CARDCount on three real world datasets and show that it performs equally well to existing solutions on synthetic ideal situations, but drastically outperforms all previous work in realistic botnet situations.For the Hajime and Mirai botnets, we estimate that CARDCount, is 51.6% and 69.1% more accurate than the state of the art techniques when estimating the botnet size over a 28-day window.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Leon Böck",
-      "Dave Levin",
-      "Ramakrishna Padmanabhan",
-      "Christian Doerr",
-      "Max Mühlhäuser"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_BudykhoBWRLRRS23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_BudykhoBWRLRRS23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/fine-grained-trackability-in-protocol-executions/"
-    },
-    "title": "Fine-Grained Trackability in Protocol Executions.",
+    "title": "C2SR: Cybercrime Scene Reconstruction for Post-mortem Forensic Analysis.",
     "summary": "",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
+    "published_at": "2026-05-27T05:03:05.279895+00:00",
+    "fetched_at": "2026-05-27T05:03:05.279895+00:00",
     "authors": [
-      "Ksenia Budykho",
-      "Ioana Boureanu",
-      "Stephan Wesemeyer",
-      "Daniel Romero",
-      "Matt Lewis",
-      "Yogaratnam Rahulan",
-      "Fortunat Rajaona",
-      "Steve Schneider"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_BulekovDHE23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_BulekovDHE23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/no-grammar-no-problem-towards-fuzzing-the-linux-kernel-without-system-call-descriptions/"
-    },
-    "title": "No Grammar, No Problem: Towards Fuzzing the Linux Kernel without System-Call Descriptions.",
-    "summary": "The integrity of the entire computing ecosystem depends on the security of our operating systems (OSes).Unfortunately, due to the scale and complexity of OS code, hundreds of security issues are found in OSes, every year [32].As such, operating systems have constantly been prime use-cases for applying security-analysis tools.In recent years, fuzz-testing has appeared as the dominant technique for automatically finding security issues in software.As such, fuzzing has been adapted to find thousands of bugs in kernels [14].However, modern OS fuzzers, such as Syzkaller, rely on precise, extensive, manuallycreated harnesses and grammars for each interface fuzzed within the kernel.Due to this reliance on grammars, current OS fuzzers are faced with scaling-issues.In this paper, we present FUZZNG, our generic approach to fuzzing system-calls on OSes.Unlike Syzkaller, FUZZNG does not require intricate descriptions of system-call interfaces in order to function.Instead FUZZNG leverages fundamental kernel design features in order to reshape and simplify the fuzzer's input-space.As such FUZZNG only requires a small config, for each new target: essentially a list of files and system-call numbers the fuzzer should explore.We implemented FUZZNG for the Linux kernel.Testing FUZZNG over 10 Linux components with extensive descriptions in Syzkaller showed that, on average, FUZZNG achieves 102.5% of Syzkaller's coverage.FUZZNG found 9 new bugs (5 in components that Syzkaller had already fuzzed extensively, for years).Additionally, FUZZNG's lightweight configs are less than 1.7% the size of Syzkaller's manually-written grammars.Crucially, FUZZNG achieves this without initial seed-inputs, or expert guidance.",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Alexander Bulekov",
-      "Bandan Das",
-      "Stefan Hajnoczi",
-      "Manuel Egele"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_ChandlerWF23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_ChandlerWF23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/binaryinferno-a-semantic-driven-approach-to-field-inference-for-binary-message-formats/"
-    },
-    "title": "BinaryInferno: A Semantic-Driven Approach to Field Inference for Binary Message Formats.",
-    "summary": "We present BinaryInferno, a fully automatic tool for reverse engineering binary message formats.Given a set of messages with the same format, the tool uses an ensemble of detectors to infer a collection of partial descriptions and then automatically integrates the partial descriptions into a semantically-meaningful description that can be used to parse future packets with the same format.As its ensemble, BinaryInferno uses a modular and extensible set of targeted detectors, including detectors for identifying atomic data types such as IEEE floats, timestamps, and integer length fields; for finding boundaries between adjacent fields using Shannon entropy; and for discovering variablelength sequences by searching for common serialization idioms.We evaluate BinaryInferno's performance on sets of packets drawn from 10 binary protocols.Our semantic-driven approach significantly decreases false positive rates and increases precision when compared to the previous state of the art.For top-level protocols we identify field boundaries with an average precision of 0.69, an average recall of 0.73, and an average false positive rate of 0.04, significantly outperforming five other state-of-the-art protocol reverse engineering tools on the same data sets: Awre (0.18, 0.03, 0.04), FieldHunter (0.68, 0.37, 0.01), Nemesys (0.31, 0.44, 0.11), Netplier (0.29, 0.75, 0.22), and Netzob (0.57, 0.42, 0.03).We believe our improvements in precision and false positive rates represent what our target user most wants: semantically meaningful descriptions with fewer false positives.Once the individual detectors have returned their results, we then automatically integrate the partial descriptions into",
-    "published_at": "2026-05-26T04:47:53.461391+00:00",
-    "fetched_at": "2026-05-26T04:47:53.461391+00:00",
-    "authors": [
-      "Jared Chandler",
-      "Adam Wick",
-      "Kathleen Fisher"
+      "Yonghwi Kwon 0001",
+      "Weihang Wang 0001",
+      "Jinho Jung 0001",
+      "Kyu Hyung Lee",
+      "Roberto Perdisci"
     ]
   }
 ]
