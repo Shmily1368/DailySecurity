@@ -1,204 +1,119 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_BartheCGKLOPRS21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BartheCGKLOPRS21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00046"
-    },
-    "title": "High-Assurance Cryptography in the Spectre Era.",
-    "summary": "High-assurance cryptography leverages methods from program verification and cryptography engineering to deliver efficient cryptographic software with machine-checked proofs of memory safety, functional correctness, provable security, and absence of timing leaks. Traditionally, these guarantees are established under a sequential execution semantics. However, this semantics is not aligned with the behavior of modern processors that make use of speculative execution to improve performance. This mismatch, combined with the high-profile Spectre-style attacks that exploit speculative execution, naturally casts doubts on the robustness of high-assurance cryptography guarantees. In this paper, we dispel these doubts by showing that the benefits of high-assurance cryptography extend to speculative execution, costing only a modest performance overhead. We build atop the Jasmin verification framework an end-to-end approach for proving properties of cryptographic software under speculative execution, and validate our approach experimentally with efficient, functionally correct assembly implementations of ChaCha20 and Poly1305, which are secure against both traditional timing and speculative execution attacks.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
-    "authors": [
-      "Gilles Barthe",
-      "Sunjay Cauligi",
-      "Benjamin Grégoire",
-      "Adrien Koutsos",
-      "Kevin Liao",
-      "Tiago Oliveira 0004",
-      "Swarn Priya",
-      "Tamara Rezk",
-      "Peter Schwabe"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BasinST21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BasinST21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00037"
-    },
-    "title": "The EMV Standard: Break, Fix, Verify.",
-    "summary": "EMV is the international protocol standard for smartcard payment and is used in over 9 billion cards worldwide. Despite the standard's advertised security, various issues have been previously uncovered, deriving from logical flaws that are hard to spot in EMV's lengthy and complex specification, running over 2,000 pages. We formalize a comprehensive symbolic model of EMV in Tamarin, a state-of-the-art protocol verifier. Our model is the first that supports a fine-grained analysis of all relevant security guarantees that EMV is intended to offer. We use our model to automatically identify flaws that lead to two critical attacks: one that defrauds the cardholder and a second that defrauds the merchant. First, criminals can use a victim's Visa contactless card to make payments for amounts that require cardholder verification, without knowledge of the card's PIN. We built a proof-of-concept Android application and successfully demonstrated this attack on real-world payment terminals. Second, criminals can trick the terminal into accepting an unauthentic offline transaction, which the issuing bank should later decline, after the criminal has walked away with the goods. This attack is possible for implementations following the standard, although we did not test it on actual terminals for ethical reasons. Finally, we propose and verify improvements to the standard that prevent these attacks, as well as any other attacks that violate the considered security properties. The proposed improvements can be easily implemented in the terminals and do not affect the cards in circulation.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
-    "authors": [
-      "David A. Basin",
-      "Ralf Sasse",
-      "Jorge Toro-Pozo"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BichselSBV21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BichselSBV21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00081"
-    },
-    "title": "DP-Sniper: Black-Box Discovery of Differential Privacy Violations using Classifiers.",
-    "summary": "We present DP-Sniper, a practical black-box method that automatically finds violations of differential privacy.DP-Sniper is based on two key ideas: (i) training a classifier to predict if an observed output was likely generated from one of two possible inputs, and (ii) transforming this classifier into an approximately optimal attack on differential privacy.Our experimental evaluation demonstrates that DP-Sniper obtains up to 12.4 times stronger guarantees than state-of-the-art, while being 15.5 times faster. Further, we show that DP-Sniper is effective in exploiting floating-point vulnerabilities of naively implemented algorithms: it detects that a supposedly 0.1-differentially private implementation of the Laplace mechanism actually does not satisfy even 0.25-differential privacy.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
-    "authors": [
-      "Benjamin Bichsel",
-      "Samuel Steffen",
-      "Ilija Bogunovic",
-      "Martin T. Vechev"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BlazquezPFGKVT21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BlazquezPFGKVT21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00095"
-    },
-    "title": "Trouble Over-The-Air: An Analysis of FOTA Apps in the Android Ecosystem.",
-    "summary": "Android firmware updates are typically managed by the so-called FOTA (Firmware Over-the-Air) apps. Such apps are highly privileged and play a critical role in maintaining devices secured and updated. The Android operating system offers standard mechanisms—available to Original Equipment Manufacturers (OEMs)—to implement their own FOTA apps but such vendor-specific implementations could be a source of security and privacy issues due to poor software engineering practices. This paper performs the first large-scale and systematic analysis of the FOTA ecosystem through a dataset of 2,013 FOTA apps detected with a tool designed for this purpose over 422,121 pre-installed apps. We classify the different stakeholders developing and deploying FOTA apps on the Android update ecosystem, showing that 43% of FOTA apps are developed by third parties. We report that some devices can have as many as 5 apps implementing FOTA capabilities. By means of static analysis of the code of FOTA apps, we show that some apps present behaviors that can be considered privacy intrusive, such as the collection of sensitive user data (e.g., geolocation linked to unique hardware identifiers), and a significant presence of third-party trackers. We also discover implementation issues leading to critical vulnerabilities, such as the use of public AOSP test keys both for signing FOTA apps and for update verification, thus allowing any update signed with the same key to be installed. Finally, we study telemetry data collected from real devices by a commercial security tool. We demonstrate that FOTA apps are responsible for the installation of non-system apps (e.g., entertainment apps and games), including malware and Potentially Unwanted Programs (PUP). Our findings suggest that FOTA development practices are misaligned with Google’s recommendations.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
-    "authors": [
-      "Eduardo Blázquez",
-      "Sergio Pastrana",
-      "Álvaro Feal",
-      "Julien Gamba",
-      "Platon Kotzias",
-      "Narseo Vallina-Rodriguez",
-      "Juan Tapiador"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BonehBCGI21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BonehBCGI21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00048"
-    },
-    "title": "Lightweight Techniques for Private Heavy Hitters.",
-    "summary": "This paper presents a new protocol for solving the private heavy-hitters problem. In this problem, there are many clients and a small set of data-collection servers. Each client holds a private bitstring. The servers want to recover the set of all popular strings, without learning anything else about any client’s string. A web-browser vendor, for instance, can use our protocol to figure out which homepages are popular, without learning any user’s homepage. We also consider the simpler private subset-histogram problem, in which the servers want to count how many clients hold strings in a particular set without revealing this set to the clients.Our protocols use two data-collection servers and, in a protocol run, each client send sends only a single message to the servers. Our protocols protect client privacy against arbitrary misbehavior by one of the servers and our approach requires no public-key cryptography (except for secure channels), nor general-purpose multiparty computation. Instead, we rely on incremental distributed point functions, a new cryptographic tool that allows a client to succinctly secret-share the labels on the nodes of an exponentially large binary tree, provided that the tree has a single non-zero path. Along the way, we develop new general tools for providing malicious security in applications of distributed point functions.A limitation of our heavy-hitters protocol is that it reveals to the servers slightly more information than the set of popular strings itself. We precisely define and quantify this leakage and explain how to ameliorate its effects. In an experimental evaluation with two servers on opposite sides of the U.S., the servers can find the 200 most popular strings among a set of 400,000 client-held 256-bit strings in 54 minutes. Our protocols are highly parallelizable. We estimate that with 20 physical machines per logical server, our protocols could compute heavy hitters over ten million clients in just over one hour of computation.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
-    "authors": [
-      "Dan Boneh",
-      "Elette Boyle",
-      "Henry Corrigan-Gibbs",
-      "Niv Gilboa",
-      "Yuval Ishai"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_ZhangWYKHZL22",
+    "id": "paper:ndss:conf_ndss_Zhang0ZH0025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ZhangWYKHZL22",
+      "native_id": "conf_ndss_Zhang0ZH0025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-199/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/misdirection-of-trust-demystifying-the-abuse-of-dedicated-url-shortening-service/"
     },
-    "title": "MobFuzz: Adaptive Multi-objective Optimization in Gray-box Fuzzing.",
-    "summary": "Coverage-guided gray-box fuzzing (CGF) is an efficient software testing technique. There are usually multiple objectives to optimize in CGF. However, existing CGF methods cannot successfully find the optimal values for multiple objectives simultaneously. In this paper, we propose a gray-box fuzzer for multi-objective optimization (MOO) called MobFuzz. We model the multi-objective optimization process as a multiplayer multi-armed bandit (MPMAB). First, it adaptively selects the objective combination that contains the most appropriate objectives for the current situation. Second, our model deals with the power schedule, which adaptively allocates energy to the seeds under the chosen objective combination. In MobFuzz, we propose an evolutionary algorithm called NIC to optimize our chosen objectives simultaneously without incurring additional performance overhead. To prove the effectiveness of MobFuzz, we conduct experiments on 12 real-world programs and the MAGMA data set. Experiment results show that multi-objective optimization in MobFuzz outperforms single-objective fuzzing in the baseline fuzzers. In contrast to them, MobFuzz can select the optimal objective combination and increase the values of multiple objectives up to 107%, with at most a 55% reduction in the energy consumption. Moreover, MobFuzz has up to 6% more program coverage and finds 3x more unique bugs than the baseline fuzzers. The NIC algorithm has at least a 2x improvement with a performance overhead of approximately 3%.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
+    "title": "Misdirection of Trust: Demystifying the Abuse of Dedicated URL Shortening Service.",
+    "summary": "Dedicated URL shortening services (DUSSs) are designed to transform trusted long URLs into the shortened links.Since DUSSs are widely used in famous corporations to better serve their large number of users (especially mobile users), cyber criminals attempt to exploit DUSS to transform their malicious links and abuse the inherited implicit trust, which is defined as Misdirection Attack in this paper.However, little effort has been made to systematically understand such attacks.To fulfill the research gap, we present the first systematic study of the Misdirection Attack in abusing DUSS to demystify its attack surface, exploitable scope, and security impacts in the real world.Our study reveals that real-world DUSSs commonly rely on custom URL checks, yet they exhibit unreliable security assumptions regarding web domains and lack adherence to security standards.We design and implement a novel tool, Ditto 1 , for empirically studying vulnerable DUSSs from a mobile perspective.Our large-scale study reveals that a quarter of the DUSSs are susceptible to Misdirection Attack.More importantly, we find that DUSSs hold implicit trust from both their users and domainbased checkers, extending the consequences of the attack to stealthy phishing and code injection on users' mobile phones.We have responsibly reported all of our findings to corporations of the affected DUSS and helped them fix their vulnerabilities.",
+    "published_at": "2026-05-30T04:38:35.512269+00:00",
+    "fetched_at": "2026-05-30T04:38:35.512269+00:00",
     "authors": [
-      "Gen Zhang",
-      "Pengfei Wang 0010",
-      "Tai Yue",
-      "Xiangdong Kong",
-      "Shan Huang 0002",
-      "Xu Zhou 0004",
-      "Kai Lu 0001"
+      "Zhibo Zhang 0006",
+      "Lei Zhang 0096",
+      "Zhangyue Zhang",
+      "Geng Hong",
+      "Yuan Zhang 0009",
+      "Min Yang 0002"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_ZhaoLWQ22",
+    "id": "paper:ndss:conf_ndss_ZhangBCM025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ZhaoLWQ22",
+      "native_id": "conf_ndss_ZhangBCM025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-248/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/barbie-robust-backdoor-detection-based-on-latent-separability/"
     },
-    "title": "Semantic-Informed Driver Fuzzing Without Both the Hardware Devices and the Emulators.",
-    "summary": "Device drivers are security-critical. In monolithic kernels like Linux, there are hundreds of thousands of drivers which run in the same privilege as the core kernel. Consequently, a bug in a driver can compromise the whole system. More critically, drivers are particularly buggy. First, drivers receive complex and untrusted inputs from not only the user space but also the hardware. Second, the driver code can be developed by less-experienced third parties, and is less tested because running a driver requires the corresponding hardware device or the emulator. Therefore, existing studies show that drivers tend to have a higher bug density and have become a major security threat. Existing testing techniques have to focus the fuzzing on a limited number of drivers that have the corresponding devices or the emulators, thus cannot scale.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
+    "title": "BARBIE: Robust Backdoor Detection Based on Latent Separability.",
+    "summary": "Backdoor attacks are an essential risk to deep learning model sharing.Fundamentally, backdoored models are different from benign models considering latent separability, i.e., distinguishable differences in model latent representations.However, existing methods quantify latent separability by clustering latent representations or computing distances between latent representations, which are easy to be compromised by adaptive attacks.In this paper, we propose BARBIE, a backdoor detection approach that can pinpoint latent separability under adaptive backdoor attacks.To achieve this goal, we propose a new latent separability metric, named relative competition score (RCS), by characterizing the dominance of latent representations over model output, which is robust against various backdoor attacks and is hard to compromise.Without the need to access any benign or backdoored sample, we invert two sets of latent representations of each label, reflecting the normal latent representations of benign models and intensifying the abnormal ones of backdoored models, to calculate RCS.We compute a series of RCS-based indicators to comprehensively reflect the differences between backdoored models and benign models.We validate the effectiveness of BARBIE on more than 10,000 models on 4 datasets against 14 types of backdoor attacks, including the adaptive attacks against latent separability.Compared with 7 baselines, BARBIE improves the average true positive rate by 17.05% against source-agnostic attacks, 27.72% against source-specific attacks, 43.17% against sample-specific attacks and 11.48% against clean-label attacks.BARBIE also maintains lower false positive rates than baselines.",
+    "published_at": "2026-05-30T04:38:35.512269+00:00",
+    "fetched_at": "2026-05-30T04:38:35.512269+00:00",
     "authors": [
-      "Wenjia Zhao",
-      "Kangjie Lu",
-      "Qiushi Wu",
-      "Yong Qi"
+      "Hanlei Zhang",
+      "Yijie Bai",
+      "Yanjiao Chen",
+      "Zhongming Ma",
+      "Wenyuan Xu 0001"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Zhou00022",
+    "id": "paper:ndss:conf_ndss_ZhangWG0Z25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Zhou00022",
+      "native_id": "conf_ndss_ZhangWG0Z25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-240/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/radsee-see-your-handwriting-through-walls-using-fmcw-radar/"
     },
-    "title": "Property Inference Attacks Against GANs.",
-    "summary": "While machine learning (ML) has made tremendous progress during the past decade, recent research has shown that ML models are vulnerable to various security and privacy attacks. So far, most of the attacks in this field focus on discriminative models, represented by classifiers. Meanwhile, little attention has been paid to the security and privacy risks of generative models, such as generative adversarial networks (GANs). In this paper, we propose the first set of training dataset property inference attacks against GANs. Concretely, the adversary aims to infer the macro-level training dataset property, i.e., the proportion of samples used to train a target GAN with respect to a certain attribute. A successful property inference attack can allow the adversary to gain extra knowledge of the target GAN's training dataset, thereby directly violating the intellectual property of the target model owner. Also, it can be used as a fairness auditor to check whether the target GAN is trained with a biased dataset. Besides, property inference can serve as a building block for other advanced attacks, such as membership inference. We propose a general attack pipeline that can be tailored to two attack scenarios, including the full black-box setting and partial black-box setting. For the latter, we introduce a novel optimization framework to increase the attack efficacy. Extensive experiments over four representative GAN models on five property inference tasks show that our attacks achieve strong performance. In addition, we show that our attacks can be used to enhance the performance of membership inference against GANs.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
+    "title": "RadSee: See Your Handwriting Through Walls Using FMCW Radar.",
+    "summary": "This paper aims to design and implement a radio device capable of detecting a person's handwriting through a wall.Although there is extensive research on radio frequency (RF) based human activity recognition, this task is particularly challenging due to the through-wall requirement and the tinyscale handwriting movements.To address these challenges, we present RadSee-a 6 GHz frequency modulated continuous wave (FMCW) radar system designed for detecting handwriting content behind a wall.RadSee is realized through a joint hardware and software design.On the hardware side, RadSee features a 6 GHz FMCW radar device equipped with two customdesigned, high-gain patch antennas.These two antennas provide a sufficient link power budget, allowing RadSee to \"see\" through most walls with a small transmission power.On the software side, RadSee extracts effective phase features corresponding to the writer's hand movements and employs a bidirectional LSTM (BiLSTM) model with an attention mechanism to classify handwriting letters.As a result, RadSee can detect millimeterlevel handwriting movements and recognize most letters based on their unique phase patterns.Additionally, it is resilient to interference from other moving objects and in-band radio devices.We have built a prototype of RadSee and evaluated its performance in various scenarios.Extensive experimental results demonstrate that RadSee achieves 75% letter recognition accuracy when victims write 62 random letters, and 87% word recognition accuracy when they write articles.Chirp generator ADC Power amp (30dB) Custom-designed and optimized 6GHz FMCW radar circuit on PCB PA Two-stage LNA (38dB) Mixer TX RX Custom-designed and optimized patch antennas coupler",
+    "published_at": "2026-05-30T04:38:35.512269+00:00",
+    "fetched_at": "2026-05-30T04:38:35.512269+00:00",
     "authors": [
-      "Junhao Zhou",
-      "Yufei Chen 0001",
-      "Chao Shen 0001",
-      "Yang Zhang 0016"
+      "Shichen Zhang 0001",
+      "Qijun Wang",
+      "Maolin Gan",
+      "Zhichao Cao 0001",
+      "Huacheng Zeng"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Zhou0L0Z022",
+    "id": "paper:ndss:conf_ndss_ZhangYH0LWH00025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Zhou0L0Z022",
+      "native_id": "conf_ndss_ZhangYH0LWH00025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-190/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/secure-transformer-inference-made-non-interactive/"
     },
-    "title": "Uncovering Cross-Context Inconsistent Access Control Enforcement in Android.",
-    "summary": "Due to the complexity resulted from the huge code base and the multi-context nature of Android, inconsistent access control enforcement exists in Android, which can be exploited by malware to bypass the access control and perform unauthorized security-sensitive operations. Unfortunately, existing studies only focus on the inconsistent access control enforcement in the Java context of Android. In this paper, we conduct the first systematic investigation on the inconsistent access control enforcement across the Java context and native context of Android. In particular, to automatically discover cross-context inconsistencies, we design and implement IAceFinder, a new tool that extracts and contrasts the access control enforced in the Java context and native context of Android. Applying IAceFinder to 14 open-source Android ROMs, we find that it can effectively uncover their cross-context inconsistent access control enforcement. Specifically, IAceFinder discovers 23 inconsistencies that can be abused by attackers to compromise the device and violate user privacy.",
-    "published_at": "2026-05-28T04:54:38.518454+00:00",
-    "fetched_at": "2026-05-28T04:54:38.518454+00:00",
+    "title": "Secure Transformer Inference Made Non-interactive.",
+    "summary": "Secure transformer inference has emerged as a prominent research topic following the proliferation of ChatGPT.Existing solutions are typically interactive, involving substantial communication load and numerous interaction rounds between the client and the server.In this paper, we propose NEXUS, the first non-interactive protocol for secure transformer inference.The protocol requires the client to engage in just one round of communication with the server during the whole inference process: submitting an encrypted input and receiving an encrypted result.NEXUS introduces several novel primitives, including SIMD ciphertext compression/decompression, SIMD slot folding, and secure Argmax, which enable it to significantly surpass the state-of-the-art in communication while maintaining comparable runtime.Specifically, it reduces bandwidth consumption by 372.5 compared to BOLT (Oakland '24) and 53.6 compared to Bumblebee (NDSS '25).Furthermore, its non-interactive property allows for optimal hardware acceleration, with the GPU version achieving a 42.3 speedup in runtime.This enables NEXUS to run inference on a BERT-based model in just 37.3 seconds, consuming only 164 MB of bandwidth.",
+    "published_at": "2026-05-30T04:38:35.512269+00:00",
+    "fetched_at": "2026-05-30T04:38:35.512269+00:00",
     "authors": [
-      "Hao Zhou 0043",
-      "Haoyu Wang 0001",
-      "Xiapu Luo",
-      "Ting Chen 0002",
-      "Yajin Zhou",
-      "Ting Wang 0006"
+      "Jiawen Zhang 0005",
+      "Xinpeng Yang",
+      "Lipeng He",
+      "Kejia Chen 0007",
+      "Wen-jie Lu",
+      "Yinghao Wang",
+      "Xiaoyang Hou",
+      "Jian Liu 0012",
+      "Kui Ren 0001",
+      "Xiaohu Yang 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_ZhangYXA0S25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_ZhangYXA0S25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/hitchhiking-vaccine-enhancing-botnet-remediation-with-remote-code-deployment-reuse/"
+    },
+    "title": "Hitchhiking Vaccine: Enhancing Botnet Remediation With Remote Code Deployment Reuse.",
+    "summary": "For decades, law enforcement and commercial entities have attempted botnet takedowns with mixed success.These efforts, relying on DNS sink-holing or seizing C&C infrastructure, require months of preparation and often omit the cleanup of left-over infected machines.This allows botnet operators to push updates to the bots and re-establish their control.In this paper, we expand the goal of malware takedowns to include the covert and timely removal of frontend bots from infected devices.Specifically, this work proposes seizing the malware's built-in update mechanism to distribute crafted remediation payloads.Our research aims to enable this necessary but challenging remediation step after obtaining legal permission.We developed ECHO, an automated malware forensics pipeline that extracts payload deployment routines and generates remediation payloads to disable or remove the frontend bots on infected devices.Our study of 702 Android malware shows that 523 malware can be remediated via ECHO's takedown approach, ranging from covertly warning users about malware infection to uninstalling the malware.",
+    "published_at": "2026-05-30T04:38:35.512269+00:00",
+    "fetched_at": "2026-05-30T04:38:35.512269+00:00",
+    "authors": [
+      "Runze Zhang",
+      "Mingxuan Yao",
+      "Haichuan Xu",
+      "Omar Alrawi",
+      "Jeman Park 0001",
+      "Brendan Saltaformaggio"
     ]
   }
 ]
