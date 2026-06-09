@@ -1,428 +1,330 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_RogersRB25",
+    "id": "paper:ieee_sp:conf_sp_RatheeRGGSCR21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_RogersRB25",
+      "native_id": "conf_sp_RatheeRGGSCR21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW67851.2025.00026"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00086"
     },
-    "title": "Destabilizing a Social Network Model via Intrinsic Feedback Vulnerabilities.",
-    "summary": "Social influence plays a significant role in shaping individual sentiments and actions, particularly in a world of ubiquitous digital interconnection. The rapid development of generative AI has engendered well-founded concerns regarding the potential scalable implementation of radicalization techniques in social media. Motivated by these developments, we present a case study investigating the effects of small but intentional perturbations on a simple social network. We employ Taylor's classic model of social influence and tools from robust control theory (most notably the Dynamical Structure Function (DSF)), to identify perturbations that qualitatively alter the system's behavior while remaining as unobtrusive as possible. We examine two such scenarios: perturbations to an existing link and perturbations that introduce a new link to the network. In each case, we identify destabilizing perturbations of minimal norm and simulate their effects. Remarkably, we find that small but targeted alterations to network structure may lead to the radicalization of all agents, exhibiting the potential for large-scale shifts in collective behavior to be triggered by comparatively minuscule adjustments in social influence. Given that this method of identifying perturbations that are innocuous yet destabilizing applies to any suitable dynamical system, our findings emphasize a need for similar analyses to be carried out on real systems (e.g., real social networks), to identify the places where such dynamics may already exist.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "title": "SiRnn: A Math Library for Secure RNN Inference.",
+    "summary": "Complex machine learning (ML) inference algorithms like recurrent neural networks (RNNs) use standard functions from math libraries like exponentiation, sigmoid, tanh, and reciprocal of square root. Although prior work on secure 2-party inference provides specialized protocols for convolutional neural networks (CNNs), existing secure implementations of these math operators rely on generic 2-party computation (2PC) protocols that suffer from high communication. We provide new specialized 2PC protocols for math functions that crucially rely on lookup-tables and mixed-bitwidths to address this performance overhead; our protocols for math functions communicate up to 423× less data than prior work. Furthermore, our math implementations are numerically precise, which ensures that the secure implementations preserve model accuracy of cleartext. We build on top of our novel protocols to build SiRnn, a library for end-to-end secure 2-party DNN inference, that provides the first secure implementations of an RNN operating on time series sensor data, an RNN operating on speech data, and a state-of-the-art ML architecture that combines CNNs and RNNs for identifying all heads present in images. Our evaluation shows that SiRnn achieves up to three orders of magnitude of performance improvement when compared to inference of these models using an existing state-of-the-art 2PC framework.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Lane H. Rogers",
-      "Emma J. Reid",
-      "Robert A. Bridges"
+      "Deevashwer Rathee",
+      "Mayank Rathee",
+      "Rahul Kranti Kiran Goli",
+      "Divya Gupta 0001",
+      "Rahul Sharma 0001",
+      "Nishanth Chandran",
+      "Aseem Rastogi"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_RossiAZT25",
+    "id": "paper:ieee_sp:conf_sp_RediniCDPSMBKV21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_RossiAZT25",
+      "native_id": "conf_sp_RediniCDPSMBKV21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW67851.2025.00014"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00066"
     },
-    "title": "Membership Inference Attacks on Sequence Models.",
-    "summary": "Sequence models, such as Large Language Models (LLMs) and autoregressive image generators, have a tendency to memorize and inadvertently leak sensitive information. While this tendency has critical legal implications, existing tools are insufficient to audit the resulting risks. We hypothesize that those tools' shortcomings are due to mismatched assumptions. Thus, we argue that effectively measuring privacy leakage in sequence models requires leveraging the correlations inherent in sequential generation. To illustrate this, we adapt a state-of-the-art membership inference attack to explicitly model within-sequence correlations, thereby demonstrating how a strong existing attack can be naturally extended to suit the structure of sequence models. Through a case study, we show that our adaptations consistently improve the effectiveness of memorization audits without introducing additional computational costs. Our work hence serves as an important stepping stone toward reliable memorization audits for large sequence models.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "title": "Diane: Identifying Fuzzing Triggers in Apps to Generate Under-constrained Inputs for IoT Devices.",
+    "summary": "Internet of Things (IoT) devices have rooted themselves in the everyday life of billions of people. Thus, researchers have applied automated bug finding techniques to improve their overall security. However, due to the difficulties in extracting and emulating custom firmware, black-box fuzzing is often the only viable analysis option. Unfortunately, this solution mostly produces invalid inputs, which are quickly discarded by the targeted IoT device and do not penetrate its code. Another proposed approach is to leverage the companion app (i.e., the mobile app typically used to control an IoT device) to generate well-structured fuzzing inputs. Unfortunately, the existing solutions produce fuzzing inputs that are constrained by app-side validation code, thus significantly limiting the range of discovered vulnerabilities.In this paper, we propose a novel approach that overcomes these limitations. Our key observation is that there exist functions inside the companion app that can be used to generate optimal (i.e., valid yet under-constrained) fuzzing inputs. Such functions, which we call fuzzing triggers, are executed before any data-transforming functions (e.g., network serialization), but after the input validation code. Consequently, they generate inputs that are not constrained by app-side sanitization code, and, at the same time, are not discarded by the analyzed IoT device due to their invalid format. We design and develop Diane, a tool that combines static and dynamic analysis to find fuzzing triggers in Android companion apps, and then uses them to fuzz IoT devices automatically. We use Diane to analyze 11 popular IoT devices, and identify 11 bugs, 9 of which are zero days. Our results also show that without using fuzzing triggers, it is not possible to generate bug-triggering inputs for many devices.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Lorenzo Rossi",
-      "Michael Aerni",
-      "Jie Zhang 0107",
-      "Florian Tramèr"
+      "Nilo Redini",
+      "Andrea Continella",
+      "Dipanjan Das 0002",
+      "Giulio De Pasquale",
+      "Noah Spahn",
+      "Aravind Machiry",
+      "Antonio Bianchi",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_RotthalerRSFA25",
+    "id": "paper:ieee_sp:conf_sp_RescioFSMD21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_RotthalerRSFA25",
+      "native_id": "conf_sp_RescioFSMD21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00100"
+      "source_url": "https://doi.org/10.1109/SPW53761.2021.00014"
     },
-    "title": "&quot;It&apos;s Time. Time for Digital Security.&quot;: An End User Study on Actionable Security and Privacy Advice.",
-    "summary": "",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "title": "DPI Solutions in Practice: Benchmark and Comparison.",
+    "summary": "Having a clear insight on the protocols carrying traffic is crucial for network applications. Deep Packet Inspection (DPI) has been a key technique to provide visibility into traffic. DPI has proven effective in various scenarios, and indeed several open source DPI solutions are maintained by the community. Yet, these solutions provide different classifications, and it is hard to establish a common ground truth. Independent works approaching the question of the quality of DPI are already aged and rely on limited datasets. Here, we test if open source DPI solutions can provide useful information in practical scenarios, e.g., supporting security applications. We provide an evaluation of the performance of four open-source DPI solutions, namely nDPI, Libprotoident, Tstat and Zeek. We use datasets covering various traffic scenarios, including operational networks, IoT scenarios and malware. As no ground truth is available, we study the consistency of classification across the solutions, investigating rootcauses of conflicts. Important for on-line security applications, we check whether DPI solutions provide reliable classification with a limited number of packets per flow. All in all, we confirm that DPI solutions still perform satisfactorily for well-known protocols. They however struggle with some P2P traffic and security scenarios (e.g., with malware traffic). All tested solutions reach a final classification after observing few packets with payload, showing adequacy for on-line applications.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Anna Lena Rotthaler",
-      "Harshini Sri Ramulu",
-      "Lucy Simko",
-      "Sascha Fahl",
-      "Yasemin Acar"
+      "Tommaso Rescio",
+      "Thomas Favale",
+      "Francesca Soro",
+      "Marco Mellia",
+      "Idilio Drago"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_SabirBA025",
+    "id": "paper:ieee_sp:conf_sp_Robinson21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SabirBA025",
+      "native_id": "conf_sp_Robinson21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00257"
+      "source_url": "https://doi.org/10.1109/SPW53761.2021.00032"
     },
-    "title": "Analyzing Ad Prevalence, Characteristics, and Compliance in Alexa Skills.",
-    "summary": "With the rapid adoption of smart voice assistants like Amazon Alexa and the potential for more growth with large language model-powered assistants, as well as the introduction of “advertising ID” within Alexa, it is inevitable that advertisements (ads) will become prevalent on such platforms if not already. Although Alexa permits third-party developers to include ads within voice apps (known as “skills”) and enables targeted advertisement through ad identifiers, Alexa also lists an ad policy that restricts ads within skill responses, notifications, or reminders except in defined cases. However, it remains unclear whether all developers comply with these policies or attempt to bypass vetting processes to publish noncompliant ads. This paper presents the first large-scale analysis of advertising on the Alexa platform, examining ad prevalence, characteristics, and adherence to platform policies. We introduce an automated ad detection method using a fine-tuned large language model (LLM) with 88.92% accuracy and, using chain-of-thought (CoT) prompting, achieve 94.52% accuracy in identifying potential policy-violating ads. Analyzing 45,477 Alexa skills, we find that 13.58% include ads or promotional content, with themes such as travel and entertainment. Notably, some ads come from skills by Amazon-promoted agencies like “Vixen Labs” while others are generated by agencies solely focused on voice assistant platforms, such as “Skilled Creative.” Our model identifies approximately 29.18% of ads as possible policy violations. We reported our findings to Amazon, resulting in a bug bounty reward. The proposed system aims to enhance Alexa's vetting by automatically flagging potential ad violations and demonstrates how fine-tuned LLMs can support policy enforcement on voice platforms.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "title": "Looking for non-compliant documents using error messages from multiple parsers.",
+    "summary": "Whether a file is accepted by a single parser is not a reliable indication of whether a file complies with its stated format and presents minimal risk to the user. Bugs within both the parser and the format specification mean that a compliant file may fail to parse, or that a non-compliant file might be read without any apparent trouble. The latter situation presents a significant security risk, and should be avoided. This paper suggests that a better way to assess format specification compliance is to examine the set of error messages produced by a set of parsers rather than a single parser. If both a sample of compliant files and a sample of non-compliant files are available, then we show how a statistical test based on a pseudo-likelihood ratio can be very effective at determining a file’s compliance and safety. Our method is format agnostic, and does not directly rely upon a formal specification of the format. Although this paper focuses upon the case of the PDF format (ISO 32000-2), we make no attempt to use any specific details of the format. Furthermore, we show how principal components analysis can be useful for a format specification designer to assess the quality and structure of these samples of files and parsers. While these tests are absolutely rudimentary, it appears that their use to measure file format variability and to identify non-compliant files is both novel and surprisingly effective.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Aafaq Sabir",
-      "Abhinaya S. B.",
-      "Dilawer Ahmed",
-      "Anupam Das 0001"
+      "Michael Robinson 0001"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_SamperF25",
+    "id": "paper:ieee_sp:conf_sp_RohlmannMMS21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SamperF25",
+      "native_id": "conf_sp_RohlmannMMS21",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00234"
+      "source_url": "https://doi.org/10.1109/SP40001.2021.00110"
     },
-    "title": "SoK: Self-Generated Nudes over Private Chats: How can Technology Contribute to a Safer Sexting?",
-    "summary": "More and more people take advantage of mobile apps to strike up relationships and casual contacts. This sometimes results in the sharing of self-generated nudes. While this opens a way for sexual exploration, it also raises concerns. In this paper, we review existing technology-assisted permissive proposals/features that provide security, privacy or accountability benefits when sharing nudes online. To do so, we performed a systematic literature review combing through 10,026 search results and cross-references, and we identified real-world solutions by surveying OS features and 52 dating, messaging and social network apps. We systematized knowledge by defining a sexting threat model, deriving a taxonomy of the proposals/features, discussing some of their shortcomings, organizing privacy-related concepts, and providing take-aways with some directions for future research and development. Our study found a very diverse ecosystem of academic proposals and app features, showing that safer sexting goes far beyond nude detection. None of the techniques represents the ultimate solution for all threats, but each contributes to a safer sexting in a different way.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "title": "Breaking the Specification: PDF Certification.",
+    "summary": "The Portable Document Format (PDF) is the de-facto standard for document exchange. The PDF specification defines two different types of digital signatures to guarantee the authenticity and integrity of documents: approval signatures and certification signatures. Approval signatures testify one specific state of the PDF document. Their security has been investigated at CCS’19. Certification signatures are more powerful and flexible. They cover more complex workflows, such as signing contracts by multiple parties. To achieve this goal, users can make specific changes to a signed document without invalidating the signature.This paper presents the first comprehensive security evaluation on certification signatures in PDFs. We describe two novel attack classes – Evil Annotation and Sneaky Signature attacks which abuse flaws in the current PDF specification. Both attack classes allow an attacker to significantly alter a certified document’s visible content without raising any warnings. Our practical evaluation shows that an attacker could change the visible content in 15 of 26 viewer applications by using Evil Annotation attacks and in 8 applications using Sneaky Signature by using PDF specification compliant exploits. We improved both attacks’ stealthiness with applications’ implementation issues and found only two applications secure to all attacks. On top, we show how to gain high privileged JavaScript execution in Adobe.We responsibly disclosed these issues and supported the vendors to fix the vulnerabilities. We also propose concrete countermeasures and improvements to the current specification to fix the issues.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Joel Samper",
-      "Bernardo Ferreira"
+      "Simon Rohlmann",
+      "Vladislav Mladenov",
+      "Christian Mainka",
+      "Jörg Schwenk"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_0001PPSS24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_0001PPSS24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3691371"
-    },
-    "title": "Poster: A Secure Multiparty Computation Platform for Squeaky-Clean Data Rooms.",
-    "summary": "Modern approaches for multiparty secure collaboration must strike the right balance between rich analytics and requisite data privacy guarantees, especially in the face of new regulations.While cryptographic technologies such as fully homomorphic encryption (FHE) and secure multiparty computation (MPC) provide strong, provable security guarantees as standalone tools, deploying them in practice throws up a myriad of challenges, including usability constraints and lack of precise specification of privacy guarantees.In this work, we propose a novel framework for real-world deployment of cryptographic privacy preserving techniques that achieves the twin goals of practical usability in real-world setting and provable privacy guarantees from users' perspective.To this end, we formalize the notion of a secure computation platform (SCP) for privacy preserving data collaboration, and introduce a model for precise specification of privacy guarantees for multiparty workflows.We then describe abstractions of a set of cryptoprimitives, that are usable by non-experts in cryptography.We present two demo workflows that empirically validate our claims, and serve as potential building blocks for the development of squeaky-clean data rooms with practical performance and privacy guarantees.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Pankaj Dayama 0001",
-      "Vinayaka Pandit",
-      "Sikhar Patranabis",
-      "Abhishek Singh",
-      "Nitin Singh"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_0001PSW24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_0001PSW24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3670357"
-    },
-    "title": "Multi-Verifier Zero-Knowledge Proofs for Any Constant Fraction of Corrupted Verifiers.",
-    "summary": "In this work we study the efficiency of Zero-Knowledge (ZK) arguments of knowledge, particularly exploring Multi-Verifier ZK (MVZK) protocols as a midway point between Non-Interactive ZK and Designated-Verifier ZK, offering versatile applications across various domains. We introduce a new MVZK protocol designed for the preprocessing model, allowing any constant fraction of verifiers to be corrupted, potentially colluding with the prover. Our contributions include the first MVZK over rings. Unlike recent prior works on fields in the dishonest majority case, our protocol demonstrates communication complexity independent of the number of verifiers, contrasting the linear complexity of previous approaches. This key advancement ensures improved scalability and efficiency. We provide an end-to-end implementation of our protocol. The benchmark shows that it achieves a throughput of 1.47 million gates per second for 64 verifiers with 50% corruption, and 0.88 million gates per second with 75% corruption.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Daniel Escudero 0001",
-      "Antigoni Polychroniadou",
-      "Yifan Song 0001",
-      "Chenkai Weng"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_0001RT24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_0001RT24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3690360"
-    },
-    "title": "On the Tight Security of the Double Ratchet.",
-    "summary": "The Signal Protocol is a two-party secure messaging protocol used in applications such as Signal, WhatsApp, Google Messages and Facebook Messenger and is used by billions daily. It consists of two core components, one of which is the Double Ratchet protocol that has been the subject of a line of work that aims to understand and formalise exactly what security it provides. Existing models capture strong guarantees including resilience to state exposure in both forward security (protecting past secrets) and post-compromise security (restoring security), adaptive state corruptions, message injections and out-of-order message delivery. Due to this complexity, prior work has failed to provide security guarantees that do not degrade in the number of interactions, even in the single-session setting.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Daniel Collins 0001",
-      "Doreen Riepel",
-      "Si An Oliver Tran"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_0001SC0024",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_0001SC0024",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3670344"
-    },
-    "title": "MGTBench: Benchmarking Machine-Generated Text Detection.",
-    "summary": "Nowadays, powerful large language models (LLMs) such as ChatGPT have demonstrated revolutionary power in a variety of natural language processing (NLP) tasks such as text classification, sentiment analysis, language translation, and question-answering. Consequently, the detection of machine-generated texts (MGTs) is becoming increasingly crucial as LLMs become more advanced and prevalent. These models have the ability to generate human-like language, making it challenging to discern whether a text is authored by a human or a machine. This raises concerns regarding authenticity, accountability, and potential bias. However, existing methods for detecting MGTs are evaluated using different model architectures, datasets, and experimental settings, resulting in a lack of a comprehensive evaluation framework that encompasses various methodologies. Furthermore, it remains unclear how existing detection methods would perform against powerful LLMs.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Xinlei He 0001",
-      "Xinyue Shen 0001",
-      "Zeyuan Chen 0002",
-      "Michael Backes 0001",
-      "Yang Zhang 0016"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_0001SV24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_0001SV24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3690220"
-    },
-    "title": "Obfuscated Key Exchange.",
-    "summary": "Censorship circumvention tools enable clients to access endpoints in a network despite the presence of a censor. Censors use a variety of techniques to identify content they wish to block, including filtering traffic patterns that are characteristic of proxy or circumvention protocols and actively probing potential proxy servers. Circumvention practitioners have developed fully encrypted protocols (FEPs), intended to have traffic that appears indistinguishable from random. A FEP is typically composed of a key exchange protocol to establish shared secret keys, and then a secure channel protocol to encrypt application data; both must avoid revealing to observers that an obfuscated protocol is in use.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Felix Günther 0001",
-      "Douglas Stebila",
-      "Shannon Veitch"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SchrammelWSM22",
+    "id": "paper:usenix_security:conf_uss_AlbayaydhF24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SchrammelWSM22",
+      "native_id": "conf_uss_AlbayaydhF24",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/schrammel"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/albayaydh"
     },
-    "title": "Jenny: Securing Syscalls for PKU-based Memory Isolation Systems.",
+    "title": "Co-Designing a Mobile App for Bystander Privacy Protection in Jordanian Smart Homes: A Step Towards Addressing a Complex Privacy Landscape.",
     "summary": "",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "David Schrammel",
-      "Samuel Weiser",
-      "Richard Sadek",
-      "Stefan Mangard"
+      "Wael S. Albayaydh",
+      "Ivan Flechais"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_SchulteBF22",
+    "id": "paper:usenix_security:conf_uss_AliGKP24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_SchulteBF22",
+      "native_id": "conf_uss_AliGKP24",
       "source_name": "USENIX Security",
-      "source_url": "https://doi.org/10.1145/3546096.3546112"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/ali"
     },
-    "title": "A Broad Comparative Evaluation of x86-64 Binary Rewriters.",
-    "summary": "Binary rewriting is a rapidly-maturing technique for modifying software for instrumentation, customization, optimization, and hardening without access to source code. Unfortunately, the practical applications of binary rewriting tools are often unclear to users because their limitations are glossed over in the literature. This, among other challenges, has prohibited the widespread adoption of these tools. To address this shortcoming, we collect ten popular binary rewriters and assess their generality across a broad range of input binary classes and the functional reliability of the resulting rewritten binaries. Additionally, we evaluate the performance of the rewriters themselves as well as the rewritten binaries they produce.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Eric Schulte",
-      "Michael D. Brown",
-      "Vlad Folts"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SenolAHB22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SenolAHB22",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/senol"
-    },
-    "title": "Leaky Forms: A Study of Email and Password Exfiltration Before Form Submission.",
+    "title": "Rise of Inspectron: Automated Black-box Auditing of Cross-platform Electron Apps.",
     "summary": "",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Asuman Senol",
-      "Gunes Acar",
-      "Mathias Humbert",
-      "Frederik J. Zuiderveen Borgesius"
+      "Mir Masood Ali",
+      "Mohammad Ghasemisharif",
+      "Chris Kanich",
+      "Jason Polakis"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_ShakevskyRW22",
+    "id": "paper:usenix_security:conf_uss_AllenYXLPL24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_ShakevskyRW22",
+      "native_id": "conf_uss_AllenYXLPL24",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/shakevsky"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/allen"
     },
-    "title": "Trust Dies in Darkness: Shedding Light on Samsung&apos;s TrustZone Keymaster Design.",
+    "title": "WEBRR: A Forensic System for Replaying and Investigating Web-Based Attacks in The Modern Web.",
     "summary": "",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Alon Shakevsky",
-      "Eyal Ronen",
-      "Avishai Wool"
+      "Joey Allen",
+      "Zheng Yang",
+      "Feng Xiao",
+      "Matthew Landen",
+      "Roberto Perdisci",
+      "Wenke Lee"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_ShanB0Z22",
+    "id": "paper:usenix_security:conf_uss_AmmarAV24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_ShanB0Z22",
+      "native_id": "conf_uss_AmmarAV24",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/shan"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/ammar"
     },
-    "title": "Poison Forensics: Traceback of Data Poisoning Attacks in Neural Networks.",
-    "summary": "In adversarial machine learning, new defenses against attacks on deep learning systems are routinely broken soon after their release by more powerful attacks. In this context, forensic tools can offer a valuable complement to existing defenses, by tracing back a successful attack to its root cause, and offering a path forward for mitigation to prevent similar attacks in the future. In this paper, we describe our efforts in developing a forensic traceback tool for poison attacks on deep neural networks. We propose a novel iterative clustering and pruning solution that trims \"innocent\" training samples, until all that remains is the set of poisoned data responsible for the attack. Our method clusters training samples based on their impact on model parameters, then uses an efficient data unlearning method to prune innocent clusters. We empirically demonstrate the efficacy of our system on three types of dirty-label (backdoor) poison attacks and three types of clean-label poison attacks, across domains of computer vision and malware classification. Our system achieves over 98.4% precision and 96.8% recall across all attacks. We also show that our system is robust against four anti-forensics measures specifically designed to attack it.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Shawn Shan",
-      "Arjun Nitin Bhagoji",
-      "Haitao Zheng 0001",
-      "Ben Y. Zhao"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_TangTMC25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_TangTMC25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/a-multifaceted-study-on-the-use-of-tls-and-auto-detect-in-email-ecosystems/"
-    },
-    "title": "A Multifaceted Study on the Use of TLS and Auto-detect in Email Ecosystems.",
-    "summary": "Various email protocols, including IMAP, POP3, and SMTP, were originally designed as \"plaintext\" protocols without inbuilt confidentiality and integrity guarantees.To protect the communication traffic, TLS can either be used implicitly before the start of those email protocols, or introduced as an opportunistic upgrade in a post-hoc fashion.In order to improve user experience, many email clients nowadays provide a so-called \"auto-detect\" feature to automatically determine a functional set of configuration parameters for the users.In this paper, we present a multifaceted study on the security of the use of TLS and auto-detect in email clients.First, to evaluate the design and implementation of client-side TLS and auto-detect, we tested 49 email clients and uncovered various flaws that can lead to covert security downgrade and exposure of user credentials to attackers.Second, to understand whether current deployment practices adequately avoid the security traps introduced by opportunistic TLS and auto-detect, we collected and analyzed 1102 email setup guides from academic institutes across the world, and observed problems that can drive users to adopt insecure email settings.Finally, with the server addresses obtained from the setup guides, we evaluate the sever-side support for implicit and opportunistic TLS, as well as the characteristics of their certificates.Our results suggest that many users suffer from an inadvertent loss of security due to careless handling of TLS and auto-detect, and organizations in general are better off prescribing concrete and detailed manual configuration to their users.In this study, we consider three perspectives of the email ecosystem in tandem.First, we evaluate the designs and implementations of client applications (apps).This allows us to identify flaws in the clients that can lead to inadvertent security downgrades, which could in turn nullify the protections of TLS and leak sensitive messages and user credentials.Second, with the potential security traps due to auto-detect and other design weaknesses already identified, we evaluate email setup guides that are prescribed by IT admins of academic institutes around the world, to see if they adequately instruct users on how to avoid the traps, and adequately protect the sensitive traffic of the email protocols.This allows us to observe and better understand the current deployment practices embraced by real-world production setups.Finally, using the server addresses identified from the setup guides, we evaluate the server-side support for implicit and opportunistic TLS, as well",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Ka Fun Tang",
-      "Che Wei Tu",
-      "Sui Ling Angela Mak",
-      "Sze Yiu Chau"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Tian0LXPYLLW25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Tian0LXPYLLW25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/be-careful-of-what-you-embed-demystifying-ole-vulnerabilities/"
-    },
-    "title": "Be Careful of What You Embed: Demystifying OLE Vulnerabilities.",
-    "summary": "Microsoft Office is a comprehensive suite of productivity tools and Object Linking & Embedding (OLE) is a specification that standardizes the linking and embedding of a diverse set of objects across different applications.OLE facilitates data interchange and streamlines user experience when dealing with composite documents (e.g., an embedded Excel sheet in a Word document).However, inherent security weaknesses within the design of OLE present risks, as the design of OLE inherently blurs the trust boundary between first-party and third-party code, which may lead to unintended library loading and parsing vulnerabilities which could be exploited by malicious actors.Addressing this issue, this paper introduces OLExplore, a novel tool designed for security assessment of Office OLE objects.With an in-depth examination of historical OLE vulnerabilities, we have identified three key categories of vulnerabilities and subjected them to dynamic analysis and verification.Our evaluation of various Windows operating system versions has led to the discovery of 26 confirmed vulnerabilities, with 17 assigned CVE numbers that all have remote code execution potential.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Yunpeng Tian",
-      "Feng Dong 0008",
-      "Haoyi Liu",
-      "Meng Xu",
-      "Zhiniang Peng",
-      "Zesen Ye",
-      "Shenghui Li",
-      "Xiapu Luo",
-      "Haoyu Wang 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_TianKGWGQ0K25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_TianKGWGQ0K25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/density-boosts-everything-a-one-stop-strategy-for-improving-performance-robustness-and-sustainability-of-malware-detectors/"
-    },
-    "title": "Density Boosts Everything: A One-stop Strategy for Improving Performance, Robustness, and Sustainability of Malware Detectors.",
-    "summary": "In the contemporary landscape of cybersecurity, AI-driven detectors have emerged as pivotal in the realm of malware detection.However, existing AI-driven detectors encounter a myriad of challenges, including poisoning attacks, evasion attacks, and concept drift, which stem from the inherent characteristics of AI methodologies.While numerous solutions have been proposed to address these issues, they often concentrate on isolated problems, neglecting the broader implications for other facets of malware detection.This paper diverges from the conventional approach by not targeting a singular issue but instead identifying one of the fundamental causes of these challenges, sparsity.Sparsity refers to a scenario where certain feature values occur with low frequency, being represented only a minimal number of times across the dataset.The authors elevate the significance of sparsity and link it to core challenges in the domain of malware detection, and then aim to improve performance, robustness, and sustainability simultaneously by solving sparsity problems.To address the sparsity problems, a novel compression technique is designed to effectively alleviate the sparsity.Concurrently, a density boosting training method is proposed to consistently fill sparse regions.The proposed strategies are applied to PE, Android and PDF datasets, respectively.Empirical results demonstrate that the proposed methodologies not only successfully bolster the model's resilience against different attacks but also enhance the performance and sustainability over time.For instance, on EMBER (PE) dataset, the backdoor attack success rate decreased from 99.99% to 23.71% while the F1 score increased from 99.301% to 99.488%; the AUT (a metric for evaluating sustainability) increased from 92.850% to 95.135% on SOREL-20M dataset (a larger and long spanning PE dataset).Moreover, the proposals are complementary to existing defensive technologies and successfully demonstrate practical classifiers with improved performance and robustness to attacks.At last, such observation is verified to be consistent on DREBIN (Android) and Contagio (PDF) datasets.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
-    "authors": [
-      "Jianwen Tian",
-      "Wei Kong",
-      "Debin Gao",
-      "Tong Wang",
-      "Taotao Gu",
-      "Kefan Qiu",
-      "Zhi Wang 0014",
-      "Xiaohui Kuang"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_TianNG025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_TianNG025",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/horcrux-synthesize-split-shift-and-stay-alive-preventing-channel-depletion-via-universal-and-enhanced-multi-hop-payments/"
-    },
-    "title": "Horcrux: Synthesize, Split, Shift and Stay Alive; Preventing Channel Depletion via Universal and Enhanced Multi-hop Payments.",
+    "title": "On Bridging the Gap between Control Flow Integrity and Attestation Schemes.",
     "summary": "",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Anqi Tian",
-      "Peifang Ni",
-      "Yingzi Gao",
-      "Jing Xu 0002"
+      "Mahmoud Ammar",
+      "Ahmed Abdelraoof",
+      "Silviu Vlasceanu"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Trampert00R025",
+    "id": "paper:usenix_security:conf_uss_AnY0S0X0024",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AnY0S0X0024",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/an"
+    },
+    "title": "Rethinking the Invisible Protection against Unauthorized Image Usage in Stable Diffusion.",
+    "summary": "",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
+    "authors": [
+      "Shengwei An",
+      "Lu Yan",
+      "Siyuan Cheng 0005",
+      "Guangyu Shen",
+      "Kaiyuan Zhang 0002",
+      "Qiuling Xu",
+      "Guanhong Tao 0001",
+      "Xiangyu Zhang 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_DinisD023",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Trampert00R025",
+      "native_id": "conf_ndss_DinisD023",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/cascading-spy-sheets-exploiting-the-complexity-of-modern-css-for-email-and-browser-fingerprinting/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/rr-a-fault-model-for-efficient-tee-replication/"
     },
-    "title": "Cascading Spy Sheets: Exploiting the Complexity of Modern CSS for Email and Browser Fingerprinting.",
-    "summary": "In an attempt to combat user tracking, both privacyaware browsers (e.g., Tor) and email applications usually disable JavaScript.This effectively closes a major angle for user fingerprinting.However, recent findings hint at the potential for privacy leakage through selected Cascading Style Sheets (CSS) features.Nevertheless, the full fingerprinting potential of CSS remains unknown, and it is unclear if attacks apply to more restrictive settings such as email.In this paper, we systematically investigate the modern dynamic features of CSS and their applicability for script-less fingerprinting, bypassing many state-of-the-art mitigations.We present three innovative techniques based on fuzzing and templating that exploit nuances in CSS container queries, arithmetic functions, and complex selectors.This allows us to infer detailed application, OS, and hardware configurations at high accuracy.For browsers, we can distinguish 97.95 % of 1176 tested browser-OS combinations.Our methods also apply to email applicationsas shown for 8 out of 21 tested web, desktop or mobile email applications.This demonstrates that fingerprinting is possible in the highly restrictive setting of HTML emails and expands the scope of tracking beyond traditional web environments.In response to these and potential future CSS-based tracking capabilities, we propose two defense mechanisms that eliminate the root causes of privacy leakage.For browsers, we propose to preload conditional resources, which eliminates featuredependent leakage.For the email setting, we design an email proxy service that retains privacy and email integrity while largely preserving feature compatibility.Our work provides new insights and solutions to the ongoing privacy debate, highlighting the importance of robust defenses against emerging tracking methods.",
-    "published_at": "2026-06-08T05:17:45.503111+00:00",
-    "fetched_at": "2026-06-08T05:17:45.503111+00:00",
+    "title": "RR: A Fault Model for Efficient TEE Replication.",
+    "summary": "Trusted Execution Environments (TEEs) ensure the confidentiality and integrity of computations in hardware.Subject to the TEE's threat model, the hardware shields a computation from most externally induced fault behavior except crashes.As a result, a crash-fault tolerant (CFT) replication protocol should be sufficient when replicating trusted code inside TEEs.However, TEEs do not provide efficient and general means of ensuring the freshness of external, persistent state.Therefore, CFT replication is insufficient for TEE computations with external state, as this state could be rolled back to an earlier version when a TEE restarts.Furthermore, using BFT protocols in this setting is too conservative, because these protocols are designed to tolerate arbitrary behavior, not just rollback during a restart.In this paper, we propose the restart-rollback (RR) fault model for replicating TEEs, which precisely captures the possible fault behaviors of TEEs with external state.Then, we show that existing replication protocols can be easily adapted to this fault model with few changes, while retaining their original performance.We adapted two widely used crash fault tolerant protocols -the ABD [6] read/write register protocol and the Paxos [34] consensus protocol -to the RR model.Furthermore, we leverage these protocols to build a replicated metadata service called TEEMS, and then show that it can be used to add TEEgrade confidentiality, integrity, and freshness to untrusted cloud storage services.Our evaluation shows that our protocols perform significantly better than their BFT counterparts (between 1.25 and 55× better throughput), while performing identically to the CFT versions, which do not protect against rollback attacks.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
     "authors": [
-      "Leon Trampert",
-      "Daniel Weber 0007",
-      "Lukas Gerlach 0001",
-      "Christian Rossow",
-      "Michael Schwarz 0001"
+      "Baltasar Dinis",
+      "Peter Druschel",
+      "Rodrigo Rodrigues 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_DioKBG23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_DioKBG23",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/copy-on-flip-hardening-ecc-memory-against-rowhammer-attacks/"
+    },
+    "title": "Copy-on-Flip: Hardening ECC Memory Against Rowhammer Attacks.",
+    "summary": "Despite nearly decade-long mitigation efforts in academia and industry, the community is yet to find a practical solution to the Rowhammer vulnerability. Comprehensive software mitigations require complex changes to commodity systems, yielding significant run-time overhead and deterring practical adoption. Hardware mitigations, on the other hand, have generally grown more robust and efficient, but are difficult to deploy on commodity systems. Until recently, ECC memory implemented by the memory controller on server platforms seemed to provide the best of both worlds: use hardware features already on commodity systems to efficiently turn Rowhammer into a denial-of-service attack vector. Unfortunately, researchers have recently shown that attackers can perform one-bit-at-a-time memory templating and mount ECC-aware Rowhammer attacks.<br/><br/>In this paper, we reconsider ECC memory as an avenue for Rowhammer mitigations and show that not all hope is lost. In particular, we show that it is feasible to devise a software-based design to both efficiently and effectively harden commodity ECC memory against ECC-aware Rowhammer attacks. To support this claim, we present Copy-on-Flip (CoF), an ECC-based software mitigation which uses a combination of memory _migration_ and _offlining_ to stop Rowhammer attacks on commodity server systems in a practical way. The key idea is to let the operating system interpose on all the error correction events and offline the vulnerable victim page as soon as the attacker has successfully templated a sufficient number of bit flips---while transparently migrating the victim data to a new page. We present a CoF prototype on Linux, where we also show it is feasible to operate simple memory management changes to support migration for the relevant user and kernel memory pages. Our evaluation shows CoF incurs low performance and memory overhead, while significantly reducing the Rowhammer attack surface. On typical benchmarks such as SPEC CPU2017 and Google Chrome, CoF reports a $&lt;1.5%$ overhead, and, on extreme I/O-intensive scenarios (saturated nginx), up to $sim11%$.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
+    "authors": [
+      "Andrea Di Dio",
+      "Koen Koning",
+      "Herbert Bos",
+      "Cristiano Giuffrida"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_Dong0L0TYCH23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_Dong0L0TYCH23",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/fusion-efficient-and-secure-inference-resilient-to-malicious-servers/"
+    },
+    "title": "Fusion: Efficient and Secure Inference Resilient to Malicious Servers.",
+    "summary": "In secure machine learning inference, most of the schemes assume that the server is semi-honest (honestly following the protocol but attempting to infer additional information). However, the server may be malicious (e.g., using a low-quality model or deviating from the protocol) in the real world. Although a few studies have considered a malicious server that deviates from the protocol, they ignore the verification of model accuracy (where the malicious server uses a low-quality model) meanwhile preserving the privacy of both the server's model and the client's inputs. To address these issues, we propose \\textit{Fusion}, where the client mixes the public samples (which have known query results) with their own samples to be queried as the inputs of multi-party computation to jointly perform the secure inference. Since a server that uses a low-quality model or deviates from the protocol can only produce results that can be easily identified by the client, \\textit{Fusion} forces the server to behave honestly, thereby addressing all those aforementioned issues without leveraging expensive cryptographic techniques. Our evaluation indicates that \\textit{Fusion} is 48.06$\\times$ faster and uses 30.90$\\times$ less communication than the existing maliciously secure inference protocol (which currently does not support the verification of the model accuracy). In addition, to show the scalability, we conduct ImageNet-scale inference on the practical ResNet50 model and it costs 8.678 minutes and 10.117 GiB of communication in a WAN setting, which is 1.18$\\times$ faster and has 2.64$\\times$ less communication than those of the semi-honest protocol.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
+    "authors": [
+      "Caiqin Dong",
+      "Jian Weng 0001",
+      "Jia-Nan Liu",
+      "Yue Zhang 0025",
+      "Yao Tong",
+      "Anjia Yang",
+      "Yudan Cheng",
+      "Shun Hu"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_DongLCXZ023",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_DongLCXZ023",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/rai2-responsible-identity-audit-governing-the-artificial-intelligence/"
+    },
+    "title": "RAI2: Responsible Identity Audit Governing the Artificial Intelligence.",
+    "summary": "",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
+    "authors": [
+      "Tian Dong",
+      "Shaofeng Li 0001",
+      "Guoxing Chen",
+      "Minhui Xue 0001",
+      "Haojin Zhu",
+      "Zhen Liu 0008"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_DrakonakisIP23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_DrakonakisIP23",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/rescan-a-middleware-framework-for-realistic-and-robust-black-box-web-application-scanning/"
+    },
+    "title": "ReScan: A Middleware Framework for Realistic and Robust Black-box Web Application Scanning.",
+    "summary": "Black-box web vulnerability scanners are invaluable for security researchers and practitioners.Despite recent approaches tackling some of the inherent limitations of scanners, many have not sufficiently evolved alongside web browsers and applications, and often lack the capabilities for handling the inherent challenges of navigating and interacting with modern web applications.Instead of building an alternative scanner that could naturally only incorporate a limited set of the wide range of vulnerability-finding capabilities offered by the multitude of existing scanners, in this paper we propose an entirely different strategy.We present ReScan, a scanner-agnostic middleware framework that transparently enhances scanners' capabilities by mediating their interaction with web applications in a realistic and robust manner, using an orchestrated, fully-fledged modern browser.In essence, our framework can be used in conjunction with any vulnerability scanner, thus allowing users to benefit from the capabilities of existing and future scanners.Our extensible and modular framework includes a collection of enhancement techniques that address limitations and obstacles commonly faced by state-ofthe-art scanners.Our experimental evaluation demonstrates that despite the considerable (and expected) overhead introduced by a fully-fledged browser, our framework significantly improves the code coverage achieved by popular scanners (168% on average), resulting in a 66% and 161% increase in the number of reflected and stored XSS vulnerabilities detected, respectively.",
+    "published_at": "2026-06-09T04:50:02.981401+00:00",
+    "fetched_at": "2026-06-09T04:50:02.981401+00:00",
+    "authors": [
+      "Kostas Drakonakis",
+      "Sotiris Ioannidis",
+      "Jason Polakis"
     ]
   }
 ]
