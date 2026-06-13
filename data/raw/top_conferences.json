@@ -1,437 +1,316 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_MoriconiNGAF23",
+    "id": "paper:ieee_sp:conf_sp_ChengWHBLLLR24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MoriconiNGAF23",
+      "native_id": "conf_sp_ChengWHBLLLR24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW59333.2023.00025"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00056"
     },
-    "title": "Reflections on Trusting Docker: Invisible Malware in Continuous Integration Systems.",
-    "summary": "Continuous integration (CI) is a widely adopted methodology for supporting software development. It provides automated generation of artifacts (e.g., binaries, container images) which are then deployed in production. However, to which extent should you trust the generated artifacts even if the source code is clean of malicious code? Revisiting the famous compiler backdoor from Ken Thompson, we show that a container-based CI system can be compromised without leaving any trace in the source code. Therefore, detecting such malware is challenging or even impossible with common practices such as peer review or static code analysis. We detail multiple ways to do the initial infection process. Then, we show how to persist during CI system updates, allowing long-term compromise. We detail possible malicious attack payloads such as sensitive data extraction or backdooring production software. We show that infected CI systems can be remotely controlled using covert channels to update attack payload or adapt malware to mitigation strategies. Finally, we propose a proof of concept implementation tested on GitLab CI and applicable to major CI providers.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "ALIF: Low-Cost Adversarial Audio Attacks on Black-Box Speech Platforms using Linguistic Features.",
+    "summary": "Extensive research has revealed that adversarial examples (AE) pose a significant threat to voice-controllable smart devices. Recent studies have proposed black-box adversarial attacks that require only the final transcription from an automatic speech recognition (ASR) system. However, these attacks typically involve many queries to the ASR, resulting in substantial costs. Moreover, AE-based adversarial audio samples are susceptible to ASR updates. In this paper, we identify the root cause of these limitations, namely the inability to construct AE attack samples directly around the decision boundary of deep learning (DL) models. Building on this observation, we propose ALIF, the first black-box adversarial linguistic feature-based attack pipeline. We leverage the reciprocal process of text-to-speech (TTS) and ASR models to generate perturbations in the linguistic embedding space where the decision boundary resides. Based on the ALIF pipeline, we present the ALIF-OTL and ALIF-OTA schemes for launching attacks in both the digital domain and the physical playback environment on four commercial ASRs and voice assistants. Extensive evaluations demonstrate that ALIF-OTL and -OTA significantly improve query efficiency by 97.7% and 73.3%, respectively, while achieving competitive performance compared to existing methods. Notably, ALIF-OTL can generate an attack sample with only one query. Furthermore, our test-of-time experiment validates the robustness of our approach against ASR updates.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Florent Moriconi",
-      "Axel Ilmari Neergaard",
-      "Lucas Georget",
-      "Samuel Aubertin",
-      "Aurélien Francillon"
+      "Peng Cheng 0007",
+      "Yuwei Wang 0009",
+      "Peng Huang",
+      "Zhongjie Ba",
+      "Xiaodong Lin 0001",
+      "Feng Lin 0004",
+      "Li Lu 0008",
+      "Kui Ren 0001"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_MugheesR23",
+    "id": "paper:ieee_sp:conf_sp_ChileseMOTAS24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MugheesR23",
+      "native_id": "conf_sp_ChileseMOTAS24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179329"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00251"
     },
-    "title": "Vectorized Batch Private Information Retrieval.",
-    "summary": "This paper studies Batch Private Information Retrieval (BatchPIR), a variant of private information retrieval (PIR) where the client wants to retrieve multiple entries from the server in one batch. BatchPIR matches the use case of many practical applications and holds the potential for substantial efficiency improvements over PIR in terms of amortized cost per query. Existing BatchPIR schemes have achieved decent computation efficiency but have not been able to improve communication efficiency at all. Using vectorized homomorphic encryption, we present the first BatchPIR protocol that is efficient in both computation and communication for a variety of database configurations. Specifically, to retrieve a batch of 256 entries from a database with one million entries of 256 bytes each, the communication cost of our scheme is 7.5x to 98.5x better than state-of-the-art solutions.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "One for All and All for One: GNN-based Control-Flow Attestation for Embedded Devices.",
+    "summary": "Control-Flow Attestation (CFA) is a security service that allows an entity (verifier) to verify the integrity of code execution on a remote computer system (prover). Existing CFA schemes suffer from impractical assumptions, such as requiring access to the prover’s internal state (e.g., memory or code), the complete Control-flow graph (CFG) of the prover’s software, large sets of measurements, or tailor-made hardware. Moreover, current CFA schemes are inadequate for attesting embedded systems due to their high computational overhead and resource usage.In this paper, we overcome the limitations of existing CFA schemes for embedded devices by introducing RAGE, a novel, lightweight CFA approach with minimal requirements. RAGE can detect Code Reuse Attacks (CRA), including control-and non-control-data attacks. It efficiently extracts features from one execution trace and leverages Unsupervised Graph Neural Networks (GNNs) to identify deviations from benign executions. The core intuition behind RAGE is to exploit the correspondence between execution trace, execution graph, and execution embeddings to eliminate the unrealistic requirement of having access to a complete CFG.We evaluate RAGE on embedded benchmarks and demonstrate that (i) it detects 40 real-world attacks on embedded software; (ii) Further, we stress our scheme with synthetic returnoriented programming (ROP) and data-oriented programming (DOP) attacks on the real-world embedded software benchmark Embench, achieving 98.03% (ROP) and 91.01% (DOP) F1-Score while maintaining a low False Positive Rate of 3.19%; (iii) Additionally, we evaluate RAGE on OpenSSL, used by millions of devices and achieve 97.49% and 84.42% F1-Score for ROP and DOP attack detection, with an FPR of 5.47%.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Muhammad Haris Mughees",
-      "Ling Ren 0001"
+      "Marco Chilese",
+      "Richard Mitev",
+      "Meni Orenbach",
+      "Robert Thorburn",
+      "Ahmad Atamli",
+      "Ahmad-Reza Sadeghi"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_MunyendoAA23",
+    "id": "paper:ieee_sp:conf_sp_ChoudharyKS24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MunyendoAA23",
+      "native_id": "conf_sp_ChoudharyKS24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179410"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00217"
     },
-    "title": "&quot;In Eighty Percent of the Cases, I Select the Password for Them&quot;: Security and Privacy Challenges, Advice, and Opportunities at Cybercafes in Kenya.",
-    "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Attacking Byzantine Robust Aggregation in High Dimensions.",
+    "summary": "Training modern neural networks or models typically requires averaging over a sample of high-dimensional vectors. Poisoning attacks can skew or bias the average vectors used to train the model, forcing the model to learn specific patterns or avoid learning anything useful. Byzantine robust aggregation is a principled algorithmic defense against such biasing. Robust aggregators can bound the maximum bias in computing centrality statistics, such as mean, even when some fraction of inputs are arbitrarily corrupted. Designing such aggregators is challenging when dealing with high dimensions. However, the first polynomial-time algorithms with strong theoretical bounds on the bias have recently been proposed. Their bounds are independent of the number of dimensions, promising a conceptual limit on the power of poisoning attacks in their ongoing arms race against defenses.In this paper, we show a new attack called HiDRA on practical realization of strong defenses which subverts their claim of dimension-independent bias. HiDRA highlights a novel computational bottleneck that has not been a concern of prior information-theoretic analysis. Our experimental evaluation shows that our attacks almost completely destroy the model performance, whereas existing attacks with the same goal fail to have much effect. Our findings leave the arms race between poisoning attacks and provable defenses wide open.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Collins W. Munyendo",
-      "Yasemin Acar",
-      "Adam J. Aviv"
+      "Sarthak Choudhary",
+      "Aashish Kolluri",
+      "Prateek Saxena"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_MusDTRS23",
+    "id": "paper:ieee_sp:conf_sp_CongHSZ24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_MusDTRS23",
+      "native_id": "conf_sp_CongHSZ24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179450"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00072"
     },
-    "title": "Jolt: Recovering TLS Signing Keys via Rowhammer Faults.",
-    "summary": "Digital Signature Schemes such as DSA, ECDSA, and RSA are widely deployed to protect the integrity of security protocols such as TLS, SSH, and IPSec. In TLS, for instance, RSA and (EC)DSA are used to sign the state of the agreed upon protocol parameters during the handshake phase. Naturally, RSA and (EC)DSA implementations have become the target of numerous attacks, including powerful side-channel attacks. Hence, cryptographic libraries were patched repeatedly over the years.Here we introduce Jolt, a novel attack targeting signature scheme implementations. Our attack exploits faulty signatures gained by injecting faults during signature generation. By using the signature verification primitive, we correct faulty signatures and, in the process deduce bits of the secret signing key. Compared to recent attacks that exploit single bit biases in the nonce that require 2 <sup xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">45</sup> signatures, our attack requires less than a thousand faulty signatures for a 256-bit (EC)DSA. The performance improvement is due to the fact that our attack targets the secret signing key, which does not change across signing sessions. We show that the proposed attack also works on Schnorr and RSA signatures with minor modifications.We demonstrate the viability of Jolt by running experiments targeting TLS handshakes in common cryptographic libraries such as WolfSSL, OpenSSL, Microsoft SymCrypt, LibreSSL, and Amazon s2n. On our target platform, the online phase takes less than 2 hours to recover 192 bits of a 256-bit ECDSA key, which is sufficient for full key recovery. We note that while RSA signatures are protected in popular cryptographic libraries, OpenSSL remains vulnerable to double fault injection. We have also reviewed their Federal Information Processing Standard (FIPS) hardened versions which are slightly less efficient but still vulnerable to our attack. We found that (EC)DSA signatures remain largely unprotected against software-only faults, posing a threat to real-life deployments such as TLS, and potentially other security protocols such as SSH and IPSec. This highlights the need for a thorough review and implementation of faults checking in security protocol implementations.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Test-Time Poisoning Attacks Against Test-Time Adaptation Models.",
+    "summary": "Deploying machine learning (ML) models in the wild is challenging as it suffers from distribution shifts, where the model trained on an original domain cannot generalize well to unforeseen diverse transfer domains. To address this challenge, several test-time adaptation (TTA) methods have been proposed to improve the generalization ability of the target pre-trained models under test data to cope with the shifted distribution. The success of TTA can be credited to the continuous fine-tuning of the target model according to the distributional hint from the test samples during test time. Despite being powerful, it also opens a new attack surface, i.e., test-time poisoning attacks, which are substantially different from previous poisoning attacks that occur during the training time of ML models (i.e., adversaries cannot intervene in the training process). In this paper, we perform the first test-time poisoning attack against four mainstream TTA methods, including TTT, DUA, TENT, and RPL. Concretely, we generate poisoned samples based on the surrogate models and feed them to the target TTA models. Experimental results show that the TTA methods are generally vulnerable to test-time poisoning attacks. For instance, the adversary can feed as few as 10 poisoned samples to degrade the performance of the target model from 76.20% to 41.83%. Our results demonstrate that TTA algorithms lacking a rigorous security assessment are unsuitable for deployment in real-life scenarios. As such, we advocate for the integration of defenses against test-time poisoning attacks into the design of TTA methods.<sup>1</sup>",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Koksal Mus",
-      "Yarkin Doröz",
-      "M. Caner Tol",
-      "Kristi Rahman",
-      "Berk Sunar"
+      "Tianshuo Cong",
+      "Xinlei He 0001",
+      "Yun Shen",
+      "Yang Zhang 0016"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_NassiSSZE23",
+    "id": "paper:ieee_sp:conf_sp_CremersRZ24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_NassiSSZE23",
+      "native_id": "conf_sp_CremersRZ24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW59333.2023.00032"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00037"
     },
-    "title": "The Little Seal Bug: Optical Sound Recovery from Lightweight Reflective Objects.",
-    "summary": "In recent years, various studies have demonstrated methods to recover sound/speech with an optical sensor. Fortunately, each of these methods possess drawbacks limiting their utility (e.g., limited to recovering sounds at high volumes, utilize a sensor indicating their use, rely on objects not commonly found in offices, require preliminary data collection, etc.). One unaddressed method of recovering speech optically is via observing lightweight reflective objects (e.g., iced coffee can, smartphone stand, desk ornament) with a photodiode, an optical sensor used to convert photons to electricity. In this paper, we present the ‘little seal bug’ attack, an optical side-channel attack which exploits fluctuations in air pressure on the surface of a shiny object occurring in response to sound, to recover speech optically and passively using a photodiode. These air pressure fluctuations cause the shiny object to vibrate and reflect light modulated by the nearby sound; as a result, these objects can be used by eavesdroppers (e.g., private investigator, surveilling spouse) to recover the content of a victim's conversation when the victim is near such objects. We show how to determine the sensitivity specifications of the optical equipment (photodiode, ADC, etc.) needed to recover the minuscule vibrations of lightweight shiny objects caused by the surrounding sound waves. Given the optical measurements obtained from light reflected off shiny objects, we design and utilize an algorithm to isolate the speech contents from the optical measurements. In our evaluation of the ‘little seal bug’ attack, we compare its performance to that of related methods. We find eavesdroppers can exploit various lightweight shiny objects to optically recover the content of conversations at equal/higher quality than prior methods (fair-excellent intelligibility) while doing so from greater distances (up to 35 meters) and lower speech volumes (75 dB). We conclude that lightweight shiny objects are a potent attack vector for recovering speech optically, and can be harmful to victims being targeted for sensitive information conveyed in a spoken conversation (e.g., in cases of corporate espionage or intimate partner violence/surveillance) when seated at a desk near a lightweight reflective object.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Multi-Stage Group Key Distribution and PAKEs: Securing Zoom Groups against Malicious Servers without New Security Elements.",
+    "summary": "Video conferencing apps like Zoom have hundreds of millions of daily users, making them a high-value target for surveillance and subversion. While such apps claim to achieve some forms of end-to-end encryption, they usually assume an incorruptible server that is able to identify and authenticate all the parties in a meeting. Concretely this means that, e.g., even when using the \"end-to-end encrypted\" setting, malicious Zoom servers could eavesdrop or impersonate in arbitrary groups.In this work, we show how security against malicious servers can be improved by changing the way in which such protocols use passwords (known as passcodes in Zoom) and integrating a password-authenticated key exchange (PAKE) protocol.To formally prove that our approach achieves its goals, we formalize a class of cryptographic protocols suitable for this setting, and define a basic security notion for them, in which group security can be achieved assuming the server is trusted to correctly authorize the group members. We prove that Zoom indeed meets this notion. We then propose a stronger security notion that can provide security against malicious servers, and propose a transformation that can achieve this notion. We show how we can apply our transformation to Zoom to provably achieve stronger security against malicious servers, notably without introducing new security elements.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Ben Nassi",
-      "Raz Swissa",
-      "Jacob Shams",
-      "Boris Zadov",
-      "Yuval Elovici"
+      "Cas Cremers",
+      "Eyal Ronen",
+      "Mang Zhao"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_KimLRJ0K22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_KimLRJ0K22",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560558"
-    },
-    "title": "DriveFuzz: Discovering Autonomous Driving Bugs through Driving Quality-Guided Fuzzing.",
-    "summary": "This is the full version of the paper published at ACM CCS 2022. This version includes the appendices (pages 14 and 15)",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
-    "authors": [
-      "Seulbae Kim",
-      "Major Liu",
-      "Junghwan John Rhee",
-      "Yuseok Jeon",
-      "Yonghwi Kwon 0001",
-      "Chung Hwan Kim"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_KimPHK22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_KimPHK22",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560615"
-    },
-    "title": "Phishing URL Detection: A Network-based Approach Robust to Evasion.",
-    "summary": "Many cyberattacks start with disseminating phishing URLs. When clicking these phishing URLs, the victim's private information is leaked to the attacker. There have been proposed several machine learning methods to detect phishing URLs. However, it still remains under-explored to detect phishing URLs with evasion, i.e., phishing URLs that pretend to be benign by manipulating patterns. In many cases, the attacker i) reuses prepared phishing web pages because making a completely brand-new set costs non-trivial expenses, ii) prefers hosting companies that do not require private information and are cheaper than others, iii) prefers shared hosting for cost efficiency, and iv) sometimes uses benign domains, IP addresses, and URL string patterns to evade existing detection methods. Inspired by those behavioral characteristics, we present a network-based inference method to accurately detect phishing URLs camouflaged with legitimate patterns, i.e., robust to evasion. In the network approach, a phishing URL will be still identified as phishy even after evasion unless a majority of its neighbors in the network are evaded at the same time. Our method consistently shows better detection performance throughout various experimental tests than state-of-the-art methods, e.g., F-1 of 0.89 for our method vs. 0.84 for the best feature-based method.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
-    "authors": [
-      "Taeri Kim 0001",
-      "Noseong Park",
-      "Jiwon Hong",
-      "Sang-Wook Kim"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Kluczniak22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Kluczniak22",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560700"
-    },
-    "title": "NTRU-v-um: Secure Fully Homomorphic Encryption from NTRU with Small Modulus.",
-    "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
-    "authors": [
-      "Kamil Kluczniak"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Knichel022",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Knichel022",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3559362"
-    },
-    "title": "Low-Latency Hardware Private Circuits.",
-    "summary": "Over the last years, the rise of the IoT, and the connection of mobile - and hence physically accessible - devices, immensely enhanced the demand for fast and secure hardware implementations of cryptographic algorithms which offer thorough protection against SCA attacks. Among a variety of proposed countermeasures against SCA, masking has transpired to be a promising candidate, attracting significant attention in both, academia and industry. Here, abstract adversary models have been derived, aiming to accurately model real-world attack scenarios, while being sufficiently simple to enable formally proving the SCA resilience of masked implementations on an algorithmic level. In the context of hardware implementations, the robust probing model has become highly relevant for proving SCA resilience due to its capability to model physical defaults like glitches and data transitions. As constructing a correct and secure masked variant of large and complex circuits is a challenging task, a new line of research has recently emerged, aiming to design small, masked subcircuits - realizing for instance a simple AND gate - which still guarantee security when composed to a larger circuit. Although several designs realizing such composable subcircuits - commonly referred to as gadgets - have been proposed, negligible research was conducted in order to find trade-offs between different overhead metrics, like randomness requirement, latency, and area consumption.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
-    "authors": [
-      "David Knichel",
-      "Amir Moradi 0001"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Kohler0SM22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Kohler0SM22",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3563489"
-    },
-    "title": "Demo: End-to-End Wireless Disruption of CCS EV Charging.",
-    "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
-    "authors": [
-      "Sebastian Köhler 0005",
-      "Richard Baker 0008",
-      "Martin Strohmeier",
-      "Ivan Martinovic"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_LiZWLC21",
+    "id": "paper:usenix_security:conf_uss_RidderJR25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_LiZWLC21",
+      "native_id": "conf_uss_RidderJR25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/li-mengyuan"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/de-ridder"
     },
-    "title": "CIPHERLEAKS: Breaking Constant-time Cryptography on AMD SEV via the Ciphertext Side Channel.",
+    "title": "Posthammer: Pervasive Browser-based Rowhammer Attacks with Postponed Refresh Commands.",
     "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Mengyuan Li 0004",
-      "Yinqian Zhang",
-      "Huibo Wang",
-      "Kang Li",
-      "Yueqiang Cheng"
+      "Finn de Ridder",
+      "Patrick Jattke",
+      "Kaveh Razavi"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_LiljestrandNGEA21",
+    "id": "paper:usenix_security:conf_uss_RosselMWS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_LiljestrandNGEA21",
+      "native_id": "conf_uss_RosselMWS25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/liljestrand"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/rossel"
     },
-    "title": "PACStack: an Authenticated Call Stack.",
-    "summary": "A popular run-time attack technique is to compromise the control-flow integrity of a program by modifying function return addresses on the stack. So far, shadow stacks have proven to be essential for comprehensively preventing return address manipulation. Shadow stacks record return addresses in integrity-protected memory secured with hardware-assistance or software access control. Software shadow stacks incur high overheads or trade off security for efficiency. Hardware-assisted shadow stacks are efficient and secure, but require the deployment of special-purpose hardware. We present authenticated call stack (ACS), an approach that uses chained message authentication codes (MACs). Our prototype, PACStack, uses the ARM general purpose hardware mechanism for pointer authentication (PA) to implement ACS. Via a rigorous security analysis, we show that PACStack achieves security comparable to hardware-assisted shadow stacks without requiring dedicated hardware. We demonstrate that PACStack's performance overhead is small (~3%).",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Security Implications of Malicious G-Codes in 3D Printing.",
+    "summary": "",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Hans Liljestrand",
-      "Thomas Nyman",
-      "Lachlan J. Gunn",
-      "Jan-Erik Ekberg",
-      "N. Asokan"
+      "Jost Rossel",
+      "Vladislav Mladenov",
+      "Nico Wördenweber",
+      "Juraj Somorovsky"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_LinLDNCLSZD21",
+    "id": "paper:usenix_security:conf_uss_RoudotS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_LinLDNCLSZD21",
+      "native_id": "conf_uss_RoudotS25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/lin"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/roudot"
     },
-    "title": "Phishpedia: A Hybrid Deep Learning Based Approach to Visually Identify Phishing Webpages.",
-    "summary": "Recent years have seen the development of phishing detection and identification approaches to defend against phishing attacks. Phishing detection solutions often report binary results, i.e., phishing or not, without any explanation. In contrast, phishing identification approaches identify phishing webpages by visually comparing webpages with predefined legitimate references and report phishing along with its target brand, thereby having explainable results. However, there are technical challenges in visual analyses that limit existing solutions from being effective (with high accuracy) and efficient (with low runtime overhead), to be put to practical use. In this work, we design a hybrid deep learning system, Phishpedia, to address two prominent technical challenges in phishing identification, i.e., (i) accurate recognition of identity logos on webpage screenshots, and (ii) matching logo variants of the same brand. Phishpedia achieves both high accuracy and low runtime overhead. And very importantly, different from common approaches, Phishpedia does not require training on any phishing samples. We carry out extensive experiments using real phishing data; the results demonstrate that Phishpedia significantly outperforms baseline identification approaches (EMD, PhishZoo, and LogoSENSE) in accurately and efficiently identifying phishing pages. We also deployed Phishpedia with CertStream service and discovered 1,704 new real phishing websites within 30 days, significantly more than other solutions; moreover, 1,133 of them are not reported by any engines in VirusTotal.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Narrowbeer: A Practical Replay Attack Against the Widevine DRM.",
+    "summary": "International audience",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Yun Lin 0001",
-      "Ruofan Liu",
-      "Dinil Mon Divakaran",
-      "Jun Yang Ng",
-      "Qing Zhou Chan",
-      "Yiwen Lu",
-      "Yuxuan Si",
-      "Fan Zhang",
-      "Jin Song Dong 0001"
+      "Florian Roudot",
+      "Mohamed Sabt"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_LiuCYSWGZ0Y21",
+    "id": "paper:usenix_security:conf_uss_RoyVKN25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_LiuCYSWGZ0Y21",
+      "native_id": "conf_uss_RoyVKN25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/liu-shinan"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/roy"
     },
-    "title": "Stars Can Tell: A Robust Method to Defend against GPS Spoofing Attacks using Off-the-shelf Chipset.",
-    "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "DarkGram: A Large-Scale Analysis of Cybercriminal Activity Channels on Telegram.",
+    "summary": "We present the first large-scale analysis of 339 cybercriminal activity channels (CACs). Followed by over 23.8 million users, these channels share a wide array of malicious and unethical content with their subscribers, including compromised credentials, pirated software and media, social media manipulation tools, and blackhat hacking resources such as malware, exploit kits, and social engineering scams. To evaluate these channels, we developed DarkGram, a BERT-based framework that automatically identifies malicious posts from the CACs with an accuracy of 96%. Using DarkGram, we conducted a quantitative analysis of 53,605 posts shared on these channels between February and May 2024, revealing key characteristics of the content. While much of this content is distributed for free, channel administrators frequently employ strategies such as promotions and giveaways to engage users and boost the sales of premium cybercriminal content. Interestingly, these channels sometimes pose significant risks to their own subscribers. Notably, 28.1% of the links shared in these channels contained phishing attacks, and 38% of executable files were bundled with malware. Analyzing how subscribers consume and positively react to the shared content paints a dangerous picture of the perpetuation of cybercriminal content at scale. We also found that the CACs can evade scrutiny or platform takedowns by quickly migrating to new channels with minimal subscriber loss, highlighting the resilience of this ecosystem. To counteract this, we utilized DarkGram to detect emerging channels and reported malicious content to Telegram and affected organizations. This resulted in the takedown of 196 channels over three months. Our findings underscore the urgent need for coordinated efforts to combat the growing threats posed by these channels. To aid this effort, we open-source our dataset and the DarkGram framework.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Shinan Liu",
-      "Xiang Cheng",
-      "Hanchao Yang",
-      "Yuanchao Shu",
-      "Xiaoran Weng",
-      "Ping Guo 0007",
-      "Kexiong Curtis Zeng",
-      "Gang Wang 0011",
-      "Yaling Yang"
+      "Sayak Saha Roy",
+      "Elham Pourabbas Vafa",
+      "Kobra Khanmohamaddi",
+      "Shirin Nilizadeh"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_LiuNNLK0BYS21",
+    "id": "paper:usenix_security:conf_uss_RuanLZLYH25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_LiuNNLK0BYS21",
+      "native_id": "conf_uss_RuanLZLYH25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/liu-zaoxing"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/ruan"
     },
-    "title": "Jaqen: A High-Performance Switch-Native Approach for Detecting and Mitigating Volumetric DDoS Attacks with Programmable Switches.",
-    "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "HawkEye: Statically and Accurately Profiling the Communication Cost of Models in Multi-party Learning.",
+    "summary": "Multi-party computation (MPC) based machine learning, referred to as multi-party learning (MPL), has become an important technology for utilizing data from multiple parties with privacy preservation. In recent years, in order to apply MPL in more practical scenarios, various MPC-friendly models have been proposedto reduce the extraordinary communication overhead of MPL. Within the optimization of MPC-friendly models, a critical element to tackle the challenge is profiling the communication cost of models. However, the current solutions mainly depend on manually establishing the profiles to identify communication bottlenecks of models, often involving burdensome human efforts in a monotonous procedure. In this paper, we propose HawkEye, a static model communication cost profiling framework, which enables model designers to get the accurate communication cost of models in MPL frameworks without dynamically running the secure model training or inference processes on a specific MPL framework. Firstly, to profile the communication cost of models with complex structures, we propose a static communication cost profiling method based on a prefix structure that records the function calling chain during the static analysis. Secondly, HawkEye employs an automatic differentiation library to assist model designers in profiling the communication cost of models in PyTorch. Finally, we compare the static profiling results of HawkEye against the profiling results obtained through dynamically running secure model training and inference processes on five popular MPL frameworks, CryptFlow2, CrypTen, Delphi, Cheetah, and SecretFlow-SEMI2K. The experimental results show that HawkEye can accurately profile the model communication cost without dynamic profiling.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Zaoxing Liu",
-      "Hun Namkung",
-      "Georgios Nikolaidis",
-      "Jeongkeun Lee",
-      "Changhoon Kim",
-      "Xin Jin 0008",
-      "Vladimir Braverman",
-      "Minlan Yu",
-      "Vyas Sekar"
+      "Wenqiang Ruan",
+      "Xin Lin",
+      "Ruisheng Zhou",
+      "Guopeng Lin",
+      "Shui Yu",
+      "Weili Han"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DiwangkaraC26",
+    "id": "paper:ndss:conf_ndss_CaoF0G21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DiwangkaraC26",
+      "native_id": "conf_ndss_CaoF0G21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/transparent-taint-style-vulnerability-detection-in-generic-single-page-applications-through-automated-framework-abstraction/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/fltrust-byzantine-robust-federated-learning-via-trust-bootstrapping/"
     },
-    "title": "TranSPArent: Taint-style Vulnerability Detection in Generic Single Page Applications through Automated Framework Abstraction.",
-    "summary": "Single Page Application (SPA) frameworks allow developers to build complex web applications in a single HTML page with high-level components (e.g., search box).One research problem for SPAs is how to detect taint-style vulnerabilities, because the SPA framework reintroduces insecure DOM APIs in a new format, such as SPA component parameters as taint sinks.Although previous work has focused on improving vulnerability detection in SPAs, to the best of our knowledge, they rely heavily on hard-coded taint sinks, which not only need to be manually curated for each different SPA framework but may also miss certain insecure SPA APIs, introducing false negatives in detected vulnerabilities.In this paper, we present TRANSPARENT, an SPA vulnerability detection tool that automatically abstracts SPA frameworks using a combination of static and dynamic analysis to reveal framework-specific sinks, thus facilitating end-to-end static vulnerability detection.TRANSPARENT first performs a backward taint analysis from a list of insecure DOM APIs up to the framework interface to reveal which part of the interface could taint the DOM API.This automated framework abstraction is done once per SPA framework.Then, TRANSPARENT finds dataflow paths between the detected SPA sinks and attackercontrolled sources to detect taint-style vulnerabilities in each application.We evaluated TRANSPARENT against a database of GitHub repositories and found 11 zero-day vulnerabilities, including a repository with 24k+ GitHub stargazers and 30 million requests/month.So far, four zero-day vulnerabilities has been fixed and/or acknowledged by their developers.During our evaluation, TRANSPARENT found a total of 19 intermediate SPA sinks from the three most widely used SPA frameworks, Vue, React, and Angular.14 of the newly discovered sinks are not listed by the CodeQL standard library, the state-of-the-art static analysis tool.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "FLTrust: Byzantine-robust Federated Learning via Trust Bootstrapping.",
+    "summary": "Byzantine-robust federated learning aims to enable a service provider to learn an accurate global model when a bounded number of clients are malicious. The key idea of existing Byzantine-robust federated learning methods is that the service provider performs statistical analysis among the clients' local model updates and removes suspicious ones, before aggregating them to update the global model. However, malicious clients can still corrupt the global models in these methods via sending carefully crafted local model updates to the service provider. The fundamental reason is that there is no root of trust in existing federated learning methods. In this work, we bridge the gap via proposing FLTrust, a new federated learning method in which the service provider itself bootstraps trust. In particular, the service provider itself collects a clean small training dataset (called root dataset) for the learning task and the service provider maintains a model (called server model) based on it to bootstrap trust. In each iteration, the service provider first assigns a trust score to each local model update from the clients, where a local model update has a lower trust score if its direction deviates more from the direction of the server model update. Then, the service provider normalizes the magnitudes of the local model updates such that they lie in the same hyper-sphere as the server model update in the vector space. Our normalization limits the impact of malicious local model updates with large magnitudes. Finally, the service provider computes the average of the normalized local model updates weighted by their trust scores as a global model update, which is used to update the global model. Our extensive evaluations on six datasets from different domains show that our FLTrust is secure against both existing attacks and strong adaptive attacks.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Senapati Diwangkara",
-      "Yinzhi Cao"
+      "Xiaoyu Cao",
+      "Minghong Fang",
+      "Jia Liu 0002",
+      "Neil Zhenqiang Gong"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DongRLLSBDOW26",
+    "id": "paper:ndss:conf_ndss_Chi0DL21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DongRLLSBDOW26",
+      "native_id": "conf_ndss_Chi0DL21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/discovering-blind-trust-vulnerabilities-in-plc-binaries-via-state-machine-recovery/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/pfirewall-semantics-aware-customizable-data-flow-control-for-smart-home-privacy-protection/"
     },
-    "title": "Discovering Blind-Trust Vulnerabilities in PLC Binaries via State Machine Recovery.",
-    "summary": "",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "PFirewall: Semantics-Aware Customizable Data Flow Control for Smart Home Privacy Protection.",
+    "summary": "Internet of Things (IoT) platforms enable users to deploy home automation applications. Meanwhile, privacy issues arise as large amounts of sensitive device data flow out to IoT platforms. Most of the data flowing to a platform actually do not trigger automation actions, while homeowners currently have no control once devices are bound to the platform. We present PFIREWALL, a customizable data-flow control system to enhance the privacy of IoT platform users. PFIREWALL automatically generates data-minimization policies, which only disclose minimum amount of data to fulfill automation. In addition, PFIRE-WALL provides interfaces for homeowners to customize individual privacy preferences by defining user-specified policies. To enforce these policies, PFIREWALL transparently intervenes and mediates the communication between IoT devices and the platform, without modifying the platform, IoT devices, or hub. Evaluation results on four real-world testbeds show that PFIREWALL reduces IoT data sent to the platform by 97% without impairing home automation, and effectively mitigates user-activity inference/tracking attacks and other privacy risks.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Fangzhou Dong",
-      "Arvind S. Raj",
-      "Efrén López-Morales",
-      "Siyu Liu",
-      "Yan Shoshitaishvili",
-      "Tiffany Bao",
-      "Adam Doupé",
-      "Muslum Ozgur Ozmen",
-      "Ruoyu Wang 0001"
+      "Haotian Chi",
+      "Qiang Zeng 0001",
+      "Xiaojiang Du",
+      "Lannan Luo"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DouNGX26",
+    "id": "paper:ndss:conf_ndss_CuiZL21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DouNGX26",
+      "native_id": "conf_ndss_CuiZL21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/mobius-enabling-byzantine-resilient-single-secret-leader-election-with-uniquely-verifiable-state/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/emilia-catching-iago-in-legacy-code/"
     },
-    "title": "Mobius: Enabling Byzantine-Resilient Single Secret Leader Election with Uniquely Verifiable State.",
-    "summary": "Leader election serves as a fundamental component of distribute systems, designed to select one or more nodes to perform tasks such as distributing proposals or aggregating cryptographic certificates, thereby ensuring both system security and efficiency.With the rapid rise of decentralized Hanyue Dou and Peifang Ni are co-first authors.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Emilia: Catching Iago in Legacy Code.",
+    "summary": "There has been interest in mechanisms that enable the secure use of legacy code to implement trusted code in a Trusted Execution Environment (TEE), such as Intel SGX. However, because legacy code generally assumes the presence of an operating system, this naturally raises the spectre of Iago attacks on the legacy code. We observe that not all legacy code is vulnerable to Iago attacks and that legacy code must use return values from system calls in an unsafe way to have Iago vulnerabilities.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Hanyue Dou",
-      "Peifang Ni",
-      "Yingzi Gao",
-      "Jing Xu 0002"
+      "Rongzhen Cui",
+      "Lianying Zhao",
+      "David Lie"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DramkoGS26",
+    "id": "paper:ndss:conf_ndss_DanielBR21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DramkoGS26",
+      "native_id": "conf_ndss_DanielBR21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/idioms-a-simple-and-effective-framework-for-turbo-charging-local-neural-decompilation-with-well-defined-types/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/hunting-the-haunter-efficient-relational-symbolic-execution-for-spectre-with-haunted-relse/"
     },
-    "title": "Idioms: A Simple and Effective Framework for Turbo-Charging Local Neural Decompilation with Well-Defined Types.",
-    "summary": "Decompilers help reverse engineers analyze software at a higher level of abstraction than assembly code.Unfortunately, because compilation is lossy, traditional decompilers, which are deterministic, produce code that lacks many characteristics that make source code readable in the first place, such as variable and type names.Neural decompilers offer the exciting possibility of statistically filling in these details.Unfortunately, existing work in neural decompilation suffers from substantial limitations that preclude its use on real code, such as the inability to provide definitions for user-defined composite types.In this work, we introduce IDIOMS, a simple, generalizable, and effective neural decompilation approach that can finetune any LLM into a neural decompiler capable of generating the appropriate user-defined type definitions alongside the decompiled code, and a new dataset, REALTYPE, that includes substantially more complicated and realistic types than existing neural decompilation benchmarks.We show that our approach yields state-of-the-art results in neural decompilation.On the most challenging existing benchmark-EXEBENCH-our model achieves 54.4% accuracy vs. 46.3%for LLM4Decompile and 37.5% for Nova; on REALTYPE, our model performs at least 95% better.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Hunting the Haunter - Efficient Relational Symbolic Execution for Spectre with Haunted RelSE.",
+    "summary": "Spectre are microarchitectural attacks which were made public in January 2018. They allow an attacker to recover secrets by exploiting speculations. Detection of Spectre is particularly important for cryptographic libraries and defenses at the software level have been proposed. Yet, defenses correctness and Spectre detection pose challenges due on one hand to the explosion of the exploration space induced by speculative paths, and on the other hand to the introduction of new Spectre vulnerabilities at different compilation stages. We propose an optimization, coined Haunted RelSE, that allows scalable detection of Spectre vulnerabilities at binary level. We prove the optimization semantically correct w.r.t. the more naive explicit speculative exploration approach used in state-of-the-art tools. We implement Haunted RelSE in a symbolic analysis tool, and extensively test it on a wellknown litmus testset for Spectre-PHT, and on a new litmus testset for Spectre-STL, which we propose. Our technique finds more violations and scales better than state-of-the-art techniques and tools, analyzing real-world cryptographic libraries and finding new violations. Thanks to our tool, we discover that indexmasking-a standard defense for Spectre-PHT-and well-known gcc options to compile position independent executables introduce Spectre-STL violations. We propose and verify a correction to index-masking to avoid the problem.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Luke Dramko",
-      "Claire Le Goues",
-      "Edward J. Schwartz"
+      "Lesly-Ann Daniel",
+      "Sébastien Bardin",
+      "Tamara Rezk"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DrescherKJ26",
+    "id": "paper:ndss:conf_ndss_DawoudB21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DrescherKJ26",
+      "native_id": "conf_ndss_DawoudB21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/are-your-sites-truly-isolated-automatically-detecting-logic-bugs-in-site-isolation-implementations/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/bringing-balance-to-the-force-dynamic-analysis-of-the-android-application-framework/"
     },
-    "title": "Are your Sites Truly Isolated? Automatically Detecting Logic Bugs in Site Isolation Implementations.",
-    "summary": "Site Isolation (SI) is a recent browser security architecture that isolates web applications by site in separate, sandboxed renderer processes to mitigate Spectre and renderer compromises [2].A site is defined as the tuple of scheme (e.g., https) and extended Top-Level Domain plus one subdomain (short eTLD+1, e.g., example.com).The security of Site Isolation relies on process isolation provided by the operating system.It also relies on the security of the privileged browser process.The browser process communicates with all renderer processes via inter-process communication (IPC) to provide them with cross-site networking and communication capabilities.These capabilities are restricted by the sameorigin policy and Cross-Origin Resource Sharing (CORS).The browser process must correctly track the site context of every renderer process and enforce these security policies.Bugs in the site mapping or the policy enforcement lead to Site Isolation bypass vulnerabilities that allow an attacker to execute malicious JavaScript in the context of another site or steal cookies.Site Isolation was rolled out in 2018 in Chrome [2] and in 2021 in Firefox [3].At the moment of writing, Safari developers started implementing Site Isolation.Most Site Isolation bypass bugs discovered since then required the attacker to have compromised the sandboxed renderer process to be exploitable.This produced a relatively high barrier.But assuming that the sandbox is secure and sandbox escapes are impossible, Site Isolation bypasses are the most lucrative attack vector to utilize a renderer compromise.The vendors of Chrome and Firefox rank Site Isolation bypass vulnerabilities in the secondhighest tier of their security bug bounty programs.In contrast to memory corruptions that the Address Sanitizer [4] can detect, detecting semantic bugs such as Site Isolation bypass bugs is hard because they do not produce easily visible crashes [5].To detect these vulnerabilities, we need to infer which process is under the control of the attacker (i.e., processes attacker-provided inputs) and if this process is able to access cross-site data, leading to our first research question:RQ1 How can SI bypass vulnerabilities (i.e., cross-process data leaks) be reliably detected?Abstract-Site Isolation is one of the core security mechanisms of a modern browser.By confining a spects s uch a s t he JavaScript Just-in-Time compiler or the HTML rendering to a sandboxed process, web browsers significantly r educe t he i mpact o f memory corruption errors.In addition, the mechanism protects against microarchitectural attacks such as Spectre.When using Site Isolation, the browser confines all processing related to a site to its own sandboxed process.All communication with the privileged browser process is done via exchanging IPC messages.This, however, requires the browser process to keep track of which renderer processbelongs to which site, as otherwise, an attacker can abuse a memory corruption issue in the renderer to attack other sites by sending malicious IPC messages.This, in turn, would allow attackers to leak sensitive data, such as cookies, or even achieve Universal Cross-Site Scripting.This work presents the first automatic approach to detect such vulnerabilities, called Site Isolation bypasses, in Firefox and Chrome.For this, we propose a novel oracle to detect the semantic bugs that cause Site Isolation bypass vulnerabilities by flagging cross-site data leaks on the process level.In addition, we design a fuzzer that simulates a compromised renderer process, trying to use the browser process as a confused deputy by hooking into the IPC communication.Our work uncovered four security vulnerabilities in Chrome and Firefox: three less severe bugs leak data cross-site while the fourth bug facilitates complete control over the victim site.",
-    "published_at": "2026-06-12T05:19:26.570755+00:00",
-    "fetched_at": "2026-06-12T05:19:26.570755+00:00",
+    "title": "Bringing Balance to the Force: Dynamic Analysis of the Android Application Framework.",
+    "summary": "problem is best exemplified by the seemingly simple task to determine which API of the application framework is guarded by which security conditions (i.e., a permission mapping), something that has not been satisfyingly solved until today.",
+    "published_at": "2026-06-13T05:09:02.926229+00:00",
+    "fetched_at": "2026-06-13T05:09:02.926229+00:00",
     "authors": [
-      "Jan Drescher",
-      "David Klein 0001",
-      "Martin Johns"
+      "Abdallah Dawoud",
+      "Sven Bugiel"
     ]
   }
 ]
