@@ -141,6 +141,14 @@ interface DailyIndex {
     dates: string[];
 }
 
+export interface TopicEntry {
+    topic: string;
+    slug: string;
+}
+
+let topicEntriesCache: TopicEntry[] | null = null;
+let topicSlugMapCache: Map<string, string> | null = null;
+
 /** 读取最新 digest (data/daily/latest.json)。 */
 export function getLatestDigest(): DailyDigest {
     const raw = fs.readFileSync(LATEST_DIGEST_PATH, 'utf-8');
@@ -211,4 +219,46 @@ export function getAllTopics(): string[] {
         }
     }
     return Array.from(topics).sort();
+}
+
+function slugifyTopic(topic: string): string {
+    const normalized = topic.normalize('NFKC').trim();
+    const slug = normalized
+        .replace(/\+/g, ' plus ')
+        .replace(/[\\/]/g, '-')
+        .replace(/[^\p{Letter}\p{Number}._\-\s]/gu, '-')
+        .replace(/[\s-]+/g, '-')
+        .replace(/^[.-]+|[.-]+$/g, '');
+    return slug || 'topic';
+}
+
+function buildTopicEntries(): TopicEntry[] {
+    const topics = getAllTopics();
+    const slugCounts = new Map<string, number>();
+
+    return topics.map((topic) => {
+        const baseSlug = slugifyTopic(topic);
+        const currentCount = (slugCounts.get(baseSlug) ?? 0) + 1;
+        slugCounts.set(baseSlug, currentCount);
+
+        return {
+            topic,
+            slug: currentCount === 1 ? baseSlug : `${baseSlug}-${currentCount}`,
+        };
+    });
+}
+
+export function getAllTopicEntries(): TopicEntry[] {
+    if (!topicEntriesCache || !topicSlugMapCache) {
+        topicEntriesCache = buildTopicEntries();
+        topicSlugMapCache = new Map(topicEntriesCache.map((entry) => [entry.topic, entry.slug]));
+    }
+    return topicEntriesCache;
+}
+
+export function getTopicSlug(topic: string): string {
+    if (!topicSlugMapCache) {
+        getAllTopicEntries();
+    }
+    return topicSlugMapCache?.get(topic) ?? slugifyTopic(topic);
 }

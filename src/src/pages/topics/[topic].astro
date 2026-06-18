@@ -1,12 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ItemCard from '../../components/ItemCard.astro';
-import { getAllTopics, getAllItems } from '../../lib/data';
+import { getAllTopicEntries, getAllItems } from '../../lib/data';
 
 export async function getStaticPaths() {
-  const topics = getAllTopics();
-  return topics.map(topic => {
-    const slug = topic.replace(/\//g, '-').replace(/\+/g, 'plus');
+  const topics = getAllTopicEntries();
+  return topics.map(({ topic, slug }) => {
     return {
       params: { topic: slug },
       props: { originalTopic: topic }

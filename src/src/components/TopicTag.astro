@@ -1,10 +1,12 @@
 ---
+import { getTopicSlug } from '../lib/data';
+
 export interface Props {
   topic: string;
 }
 
 const { topic } = Astro.props;
-const slug = topic.replace(/\//g, '-').replace(/\+/g, 'plus');
+const slug = getTopicSlug(topic);
 const href = `/topics/${encodeURIComponent(slug)}`;
 ---
 <a href={import.meta.env.BASE_URL.replace(/\/$/, '') + href} class="topic-tag">
