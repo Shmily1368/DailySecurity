@@ -1,439 +1,327 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_FultonKSCMMV23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_FultonKSCMMV23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179478"
-    },
-    "title": "Vulnerability Discovery for All: Experiences of Marginalization in Vulnerability Discovery.",
-    "summary": "Vulnerability discovery is an essential aspect of software security. Currently, the demand for security experts significantly exceeds the available vulnerability discovery workforce. Further, the existing vulnerability discovery workforce is highly homogeneous, dominated by white and Asian men. As such, one promising avenue for increasing the capacity of the vulnerability discovery community is through recruitment and retention from a broader population. Although significant prior research has explored the challenges of equity and inclusion in computing broadly, the competitive and frequently self-taught nature of vulnerability discovery work may create new variations on these challenges. This paper reports on a semi-structured interview study (N = 16) investigating how people from marginalized populations come to participate in vulnerability discovery, whether they feel welcomed by the vulnerability discovery community, and what challenges they face when joining the vulnerability discovery community. We find that members of marginalized populations face some unique challenges, while other challenges common in vulnerability discovery are exacerbated by marginalization.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Kelsey R. Fulton",
-      "Samantha Katcher",
-      "Kevin Song",
-      "Marshini Chetty",
-      "Michelle L. Mazurek",
-      "Chloé Messdaghi",
-      "Daniel Votipka"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GancherGSDP23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GancherGSDP23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179477"
-    },
-    "title": "Owl: Compositional Verification of Security Protocols via an Information-Flow Type System.",
-    "summary": "Computationally sound protocol verification tools promise to deliver full-strength cryptographic proofs for security protocols. Unfortunately, current tools lack either modularity or automation. We propose a new approach based on a novel use of information flow and refinement types for sound cryptographic proofs. Our framework, Owl, allows type-based modular descriptions of security protocols, wherein disjoint subprotocols can be programmed and automatically proved secure separately.We give a formal security proof for Owl via a core language which supports symmetric and asymmetric primitives, Diffie-Hellman operations, and hashing via random oracles. We also implement a type checker for Owl and a prototype extraction mechanism to Rust, and evaluate both on 14 case studies, including (simplified forms of) SSH key exchange and Kerberos.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Joshua Gancher",
-      "Sydney Gibson",
-      "Pratap Singh",
-      "Samvid Dharanikota",
-      "Bryan Parno"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GastJSSKFKG23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GastJSSKFKG23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179368"
-    },
-    "title": "SQUIP: Exploiting the Scheduler Queue Contention Side Channel.",
-    "summary": "Modern superscalar CPUs have multiple execution units that independently execute operations from the instruction stream. Previous work has shown that numerous side channels exist around these out-of-order execution pipelines, particularly for an attacker running on an SMT core.In this paper, we present the SQUIP attack, the first side-channel attack on scheduler queues, which are critical for deciding the schedule of instructions to be executed in superscalar CPUs. Scheduler queues have not been explored as a side channel so far, as Intel CPUs only have a single scheduler queue, and contention thereof would be virtually the same as contention of the reorder buffer. However, the Apple M1, AMD Zen 2, and Zen 3 microarchitectures have separate scheduler queues per execution unit. We first reverse-engineer the behavior of the scheduler queues on these CPUs and show that they can be primed and probed. The SQUIP attack observes the occupancy level from within the same hardware core and across SMT threads. We evaluate the performance of the SQUIP attack in a covert channel, exfiltrating 0.89 Mbit/s from a co-located virtual machine at an error rate below 0.8 %, and 2.70 Mbit/s from a co-located process at an error rate below 0.8 %. We then demonstrate the side channel on an mbedTLS RSA signature process in a co-located process and in a co-located virtual machine. Our attack recovers full RSA-4096 keys with only 50 500 traces and less than 5 to 18 bit errors on average. Finally, we discuss mitigations necessary, especially for Zen 2 and Zen 3 systems, to prevent our attacks.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Stefan Gast",
-      "Jonas Juffinger",
-      "Martin Schwarzl",
-      "Gururaj Saileshwar",
-      "Andreas Kogler",
-      "Simone Franza",
-      "Markus Köstl",
-      "Daniel Gruss"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GehlharM0SWY23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GehlharM0SWY23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW59333.2023.00012"
-    },
-    "title": "SafeFL: MPC-friendly Framework for Private and Robust Federated Learning.",
-    "summary": "Federated learning (FL) has gained widespread popularity in a variety of industries due to its ability to locally train models on devices while preserving privacy. However, FL systems are susceptible to i) privacy inference attacks and ii) poisoning attacks, which can compromise the system by corrupt actors. Despite a significant amount of work being done to tackle these attacks individually, the combination of these two attacks has received limited attention in the research community. To address this gap, we introduce SafeFL, a secure multiparty computation (MPC)-based framework designed to assess the efficacy of FL techniques in addressing both privacy inference and poisoning attacks. The heart of the SafeFL framework is a communicator interface that enables PyTorch-based implementations to utilize the well-established MP-SPDZ framework, which implements various MPC protocols. The goal of SafeFL is to facilitate the development of more efficient FL systems that can effectively address privacy inference and poisoning attacks.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Till Gehlhar",
-      "Felix Marx",
-      "Thomas Schneider 0003",
-      "Ajith Suresh",
-      "Tobias Wehrle",
-      "Hossein Yalame"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GeierhaasOHS23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GeierhaasOHS23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179417"
-    },
-    "title": "Attitudes towards Client-Side Scanning for CSAM, Terrorism, Drug Trafficking, Drug Use and Tax Evasion in Germany.",
-    "summary": "In recent years, there have been a rising number of legislative efforts and proposed technical measures to weaken privacy-preserving technology, with the stated goal of countering serious crimes like child abuse. One of these proposed measures is Client-Side Scanning (CSS). CSS has been hotly debated both in the context of Apple stating their intention to deploy it in 2021 as well as EU legislation being proposed in 2022. Both sides of the argument state that they are working in the best interests of the people. To shed some light on this, we conducted a survey with a representative sample of German citizens. We investigated the general acceptance of CSS vs cloud-based scanning for different types of crimes and analyzed how trust in the German government and companies such as Google and Apple influenced our participants’ views. We found that, by and large, the majority of participants were willing to accept CSS measures to combat serious crimes such as child abuse or terrorism, but support dropped significantly for other illegal activities. However, the majority of participants who supported CSS were also worried about potential abuse, with only 20% stating that they were not concerned. These results suggest that many of our participants would be willing to have their devices scanned and accept some risks in the hope of aiding law enforcement. In our analysis, we argue that there are good reasons to not see this as a carte blanche for the introduction of CSS but as a call to action for the S&P community. More research is needed into how a population’s desire to prevent serious crime online can be achieved while mitigating the risks to privacy and society.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Lisa Geierhaas",
-      "Fabian Otto",
-      "Maximilian Häring",
-      "Matthew Smith 0001"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Kohler0SM22",
+    "id": "paper:acm_ccs:conf_ccs_FuLSX21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Kohler0SM22",
+      "native_id": "conf_ccs_FuLSX21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3563489"
+      "source_url": "https://doi.org/10.1145/3460120.3484585"
     },
-    "title": "Demo: End-to-End Wireless Disruption of CCS EV Charging.",
-    "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "Realtime Robust Malicious Traffic Detection via Frequency Domain Analysis.",
+    "summary": "Machine learning (ML) based malicious traffic detection is an emerging security paradigm, particularly for zero-day attack detection, which is complementary to existing rule based detection. However, the existing ML based detection achieves low detection accuracy and low throughput incurred by inefficient traffic features extraction. Thus, they cannot detect attacks in realtime, especially in high throughput networks. Particularly, these detection systems similar to the existing rule based detection can be easily evaded by sophisticated attacks. To this end, we propose Whisper, a realtime ML based malicious traffic detection system that achieves both high accuracy and high throughput by utilizing frequency domain features. It utilizes sequential information represented by the frequency domain features to achieve bounded information loss, which ensures high detection accuracy, and meanwhile constrains the scale of features to achieve high detection throughput. In particular, attackers cannot easily interfere with the frequency domain features and thus Whisper is robust against various evasion attacks. Our experiments with 42 types of attacks demonstrate that, compared with the state-of-the-art systems, Whisper can accurately detect various sophisticated and stealthy attacks, achieving at most 18.36% improvement of AUC, while achieving two orders of magnitude throughput. Even under various evasion attacks, Whisper is still able to maintain around 90% detection accuracy.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Sebastian Köhler 0005",
-      "Richard Baker 0008",
-      "Martin Strohmeier",
-      "Ivan Martinovic"
+      "Chuanpu Fu",
+      "Qi Li 0002",
+      "Meng Shen 0001",
+      "Ke Xu 0002"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_KolluriBHS22",
+    "id": "paper:acm_ccs:conf_ccs_FullerKSXAVAS21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_KolluriBHS22",
+      "native_id": "conf_ccs_FullerKSXAVAS21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560705"
+      "source_url": "https://doi.org/10.1145/3460120.3484537"
     },
-    "title": "LPGNet: Link Private Graph Networks for Node Classification.",
-    "summary": "Classification tasks on labeled graph-structured data have many important applications ranging from social recommendation to financial modeling. Deep neural networks are increasingly being used for node classification on graphs, wherein nodes with similar features have to be given the same label. Graph convolutional networks (GCNs) are one such widely studied neural network architecture that perform well on this task. However, powerful link-stealing attacks on GCNs have recently shown that even with black-box access to the trained model, inferring which links (or edges) are present in the training graph is practical. In this paper, we present a new neural network architecture called LPGNet for training on graphs with privacy-sensitive edges. LPGNet provides differential privacy (DP) guarantees for edges using a novel design for how graph edge structure is used during training. We empirically show that LPGNet models often lie in the sweet spot between providing privacy and utility: They can offer better utility than \"trivially\" private architectures which use no edge information (e.g., vanilla MLPs) and better resilience against existing link-stealing attacks than vanilla GCNs which use the full edge structure. LPGNet also offers consistently better privacy-utility tradeoffs than DPGCN, which is the state-of-the-art mechanism for retrofitting differential privacy into conventional GCNs, in most of our evaluated datasets.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "C3PO: Large-Scale Study Of Covert Monitoring of C&amp;C Servers via Over-Permissioned Protocol Infiltration.",
+    "summary": "Current techniques to monitor botnets towards disruption or takedown are likely to result in inaccurate data gathered about the botnet or be detected by C&C orchestrators. Seeking a covert and scalable solution, we look to an evolving pattern in modern malware that integrates standardized over-permissioned protocols, exposing privileged access to C&C servers. We implement techniques to detect and exploit these protocols from over-permissioned bots toward covert C&C server monitoring. Our empirical study of 200k malware captured since 2006 revealed 62,202 over-permissioned bots (nearly 1 in 3) and 443,905 C&C monitoring capabilities, with a steady increase of over-permissioned protocol use over the last 15 years. Due to their ubiquity, we conclude that even though over-permissioned protocols allow for C&C server infiltration, the efficiency and ease of use they provide continue to make them prevalent in the malware operational landscape. This paper presents C3PO, a pipeline that enables our study and empowers incident responders to automatically identify over-permissioned protocols, infiltration vectors to spoof bot-to-C&C communication, and C&C monitoring capabilities that guide covert monitoring post infiltration. Our findings suggest the over-permissioned protocol weakness provides a scalable approach to covertly monitor C&C servers, which is a fundamental enabler of botnet disruptions and takedowns.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Aashish Kolluri",
-      "Teodora Baluta",
-      "Bryan Hooi",
-      "Prateek Saxena"
+      "Jonathan Fuller 0001",
+      "Ranjita Pai Kasturi",
+      "Amit Kumar Sikder",
+      "Haichuan Xu",
+      "Berat Arik",
+      "Vivek Verma",
+      "Ehsan Asdar",
+      "Brendan Saltaformaggio"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_KornaropoulosMP22",
+    "id": "paper:acm_ccs:conf_ccs_GeNBCHGC21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_KornaropoulosMP22",
+      "native_id": "conf_ccs_GeNBCHGC21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560593"
+      "source_url": "https://doi.org/10.1145/3460120.3484748"
     },
-    "title": "Leakage Inversion: Towards Quantifying Privacy in Searchable Encryption.",
-    "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "HyperFuzzer: An Efficient Hybrid Fuzzer for Virtual CPUs.",
+    "summary": "In this cloud computing era, the security of hypervisors is critical to the overall security of the cloud. In particular, the security of CPU virtualization in hypervisors is paramount because it is implemented in the most privileged CPU mode. Blackbox and graybox fuzzing are limited to finding shallow virtual CPU bugs due to its huge search space. Whitebox fuzzing can be used for systematic analysis of CPU virtualization, but existing implementations rely on slow hardware emulators to enable dynamic symbolic execution.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Evgenios M. Kornaropoulos",
-      "Nathaniel Moyer",
-      "Charalampos Papamanthou",
-      "Alexandros Psomas 0001"
+      "Xinyang Ge",
+      "Ben Niu 0007",
+      "Robert Brotzman",
+      "Yaohui Chen 0001",
+      "HyungSeok Han",
+      "Patrice Godefroid",
+      "Weidong Cui"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_KotiKPG22",
+    "id": "paper:acm_ccs:conf_ccs_GirgisDDSK21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_KotiKPG22",
+      "native_id": "conf_ccs_GirgisDDSK21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3559369"
+      "source_url": "https://doi.org/10.1145/3460120.3484794"
     },
-    "title": "PentaGOD: Stepping beyond Traditional GOD with Five Parties.",
+    "title": "On the Rényi Differential Privacy of the Shuffle Model.",
     "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Nishat Koti",
-      "Varsha Bhat Kukkala",
-      "Arpita Patra",
-      "Bhavish Raj Gopal"
+      "Antonious M. Girgis",
+      "Deepesh Data",
+      "Suhas N. Diggavi",
+      "Ananda Theertha Suresh",
+      "Peter Kairouz"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_KotiPPS22",
+    "id": "paper:acm_ccs:conf_ccs_GleissenthallKS21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_KotiPPS22",
+      "native_id": "conf_ccs_GleissenthallKS21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3563496"
+      "source_url": "https://doi.org/10.1145/3460120.3484810"
     },
-    "title": "Poster MPClan: : Protocol Suite for Privacy-Conscious Computations.",
+    "title": "Solver-Aided Constant-Time Hardware Verification.",
+    "summary": "We present Xenon, a solver-aided, interactive method for formally verifying that Verilog hardware executes in constant-time. Xenon scales to realistic hardware designs by drastically reducing the effort needed to localize the root cause of verification failures via a new notion of constant-time counterexamples, which Xenon uses to synthesize a minimal set of secrecy assumptions in an interactive verification loop. To reduce verification time Xenon exploits modularity in Verilog code via module summaries, thereby avoiding duplicate work across multiple module instantiations. We show how Xenon's assumption synthesis and summaries enable us to verify different kinds of circuits, including a highly modular AES- 256 implementation where modularity cuts verification from six hours to under three seconds, and the ScarVside-channel hardened RISC-V micro-controller whose size exceeds previously verified designs by an order of magnitude. In a small study, we also find that Xenon helps non-expert users complete verification tasks correctly and faster than previous state-of-art tools.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
+    "authors": [
+      "Klaus von Gleissenthall",
+      "Rami Gökhan Kici",
+      "Deian Stefan",
+      "Ranjit Jhala"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_TangS23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_TangS23",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/tang"
+    },
+    "title": "Eye-Shield: Real-Time Protection of Mobile Device Screen Information from Shoulder Surfing.",
+    "summary": "People use mobile devices ubiquitously for computing, communication, storage, web browsing, and more. As a result, the information accessed and stored within mobile devices, such as financial and health information, text messages, and emails, can often be sensitive. Despite this, people frequently use their mobile devices in public areas, becoming susceptible to a simple yet effective attack, shoulder surfing. Shoulder surfing occurs when a person near a mobile user peeks at the user's mobile device, potentially acquiring passcodes, PINs, browsing behavior, or other personal information. We propose Eye-Shield, a solution to prevent shoulder surfers from accessing or stealing sensitive on-screen information. Eye-Shield is designed to protect all types of on-screen information in real time, without any serious impediment to users' interactions with their mobile devices. Eye-Shield generates images that appear readable at close distances, but appear blurry or pixelated at farther distances and wider angles. It is capable of protecting on-screen information from shoulder surfers, operating in real time, and being minimally intrusive to the intended users. Eye-Shield protects images and text from shoulder surfers by reducing recognition rates to 24.24% and 15.91%. Our implementations of Eye-Shield, with frame rates of 24 FPS for Android and 43 FPS for iOS, effectively work on screen resolutions as high as 1440x3088. Eye-Shield also incurs acceptable memory usage, CPU utilization, and energy overhead. Finally, our MTurk and in-person user studies indicate that Eye-Shield protects on-screen information without a large usability cost for privacy-conscious users.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
+    "authors": [
+      "Brian Tang",
+      "Kang G. Shin"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_TanveerSPN23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_TanveerSPN23",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/bin-tanveer"
+    },
+    "title": "Glowing in the Dark: Uncovering IPv6 Address Discovery and Scanning Strategies in the Wild.",
+    "summary": "In this work we identify scanning strategies of IPv6 scanners on the Internet. We offer a unique perspective on the behavior of IPv6 scanners by conducting controlled experiments leveraging a large and unused /56 IPv6 subnet. We selectively make parts of the subnet visible to scanners by hosting applications that make direct or indirect contact with IPv6- capable servers on the Internet. By careful experiment design, we mitigate the effects of hidden variables on scans sent to our /56 subnet and establish causal relationships between IPv6 host activity types and the scanner attention they evoke. We show that IPv6 host activities e.g., Web browsing, membership in the NTP pool and Tor network, cause scanners to send a magnitude higher number of unsolicited IP scans and reverse DNS queries to our subnet than before. DNS scanners focus their scans in narrow regions of the address space where our applications are hosted whereas IP scanners broadly scan the entire subnet. Even after the host activity from our subnet subsides, we observe persistent residual scanning to portions of the address space that previously hosted applications",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
+    "authors": [
+      "Hammas Bin Tanveer",
+      "Rachee Singh",
+      "Paul Pearce",
+      "Rishab Nithyanand"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_TaoA0S023",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_TaoA0S023",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/tao"
+    },
+    "title": "Hard-label Black-box Universal Adversarial Patch Attack.",
     "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Nishat Koti",
-      "Shravani Patil",
-      "Arpita Patra",
-      "Ajith Suresh"
+      "Guanhong Tao 0001",
+      "Shengwei An",
+      "Siyuan Cheng 0005",
+      "Guangyu Shen",
+      "Xiangyu Zhang 0001"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_GegenhuberFGJ25",
+    "id": "paper:usenix_security:conf_uss_TavernaP23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_woot_GegenhuberFGJ25",
+      "native_id": "conf_uss_TavernaP23",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot25/presentation/gegenhuber"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/taverna"
     },
-    "title": "Prekey Pogo: Investigating Security and Privacy Issues in WhatsApp&apos;s Handshake Mechanism.",
+    "title": "Snapping Snap Sync: Practical Attacks on Go Ethereum Synchronising Nodes.",
     "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Gabriel Karl Gegenhuber",
-      "Philipp É. Frenzel",
-      "Maximilian Günther",
-      "Aljosha Judmayer"
+      "Massimiliano Taverna",
+      "Kenneth G. Paterson"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_HajizadehGNRVGC25",
+    "id": "paper:usenix_security:conf_uss_TayZVRDRGBDSDBS23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_woot_HajizadehGNRVGC25",
+      "native_id": "conf_uss_TayZVRDRGBDSDBS23",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot25/presentation/hajizadeh"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/tay"
     },
-    "title": "DeepRed: A Deep Learning-Powered Command and Control Framework for Multi-Stage Red Teaming Against ML-based Network Intrusion Detection Systems.",
-    "summary": "Emerging studies demonstrate that machine learning (ML) has the potential to improve the detection capabilities of network intrusion detection systems (NIDS) against evolving cyber threats. However, recent adversarial ML (AML) studies have revealed critical ML vulnerabilities. This paper presents innovative multistage red-teaming techniques to evaluate the robustness of ML-NIDS in real-world adversarial settings. Although extensive research has been conducted in this area, existing studies have critical shortcomings: (1) relying on unrealistic threat models, (2) focusing on traffic flow perturbation for evasion while neglecting that malicious activity occurs at the packet level, and (3) failing to preserve attack functionality after perturbation. Guided by offensive security principles, we present DeepRed, an ML-powered Command and Control (C2) framework designed to evade targeted ML-NIDS while maintaining a stealthy post-exploitation communication channel. DeepRed leverages Generative Adversarial Networks (GANs) to generate adversarial examples that comply with TCP/IP constraints and are realizable as packet-level perturbations. We further propose two novel attack strategies, Single-Packet Single-Feature (SPSF) and Single-Feature Perturbation (SFP), to achieve evasion under highly constrained conditions with minimal perturbation. To enable robust evaluation, we built a comprehensive ML-NIDS benchmarking dataset containing benign and malicious traffic from our red-team exercises. Additionally, we introduce pipeline-independent adversarial testing to evaluate state-of-the-art models, such as FlowTransformer and SSCL-IDS, across varying features, training data, and preprocessing pipelines--while preserving attack functionality. Results demonstrate that DeepRed can reduce detection rates by up to 20%, highlighting the framework's ability to bypass ML-NIDS while maintaining operational integrity.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "Greenhouse: Single-Service Rehosting of Linux-Based Firmware Binaries in User-Space Emulation.",
+    "summary": "Docker container for Greenhouse paper artifact evaluation. Contains scripts for running Greenhouse, a small subset of the dataset used for evaluation, and .csv files that breakdown the results from the paper.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Mehrdad Hajizadeh",
-      "Pegah Golchin",
-      "Ehsan Nowroozi",
-      "Maria Rigaki",
-      "Veronica Valeros",
-      "Sebastián García",
-      "Mauro Conti",
-      "Thomas Bauschert"
+      "Hui Jun Tay",
+      "Kyle Zeng",
+      "Jayakrishna Menon Vadayath",
+      "Arvind S. Raj",
+      "Audrey Dutcher",
+      "Tejesh Reddy",
+      "Wil Gibbs",
+      "Zion Leonahenahe Basque",
+      "Fangzhou Dong",
+      "Zack Smith",
+      "Adam Doupé",
+      "Tiffany Bao",
+      "Yan Shoshitaishvili",
+      "Ruoyu Wang 0001"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_Hartung0J25",
+    "id": "paper:ndss:conf_ndss_AbadiDS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_Hartung0J25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot25/presentation/hartung"
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_AbadiDS25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/privacy-preserving-data-deduplication-for-enhancing-federated-learning-of-language-models/"
     },
-    "title": "Extract: A PHP Foot-Gun Case Study.",
+    "title": "Privacy-Preserving Data Deduplication for Enhancing Federated Learning of Language Models.",
+    "summary": "Deduplication is a vital preprocessing step that enhances machine learning model performance and saves training time and energy.However, enhancing federated learning through deduplication poses challenges, especially regarding scalability and potential privacy violations if deduplication involves sharing all clients' data.In this paper, we address the problem of deduplication in a federated setup by introducing a pioneering protocol, Efficient Privacy-Preserving Multi-Party Deduplication (EP-MPD).It efficiently removes duplicates from multiple clients' datasets without compromising data privacy.EP-MPD is constructed in a modular fashion, utilizing two novel variants of the Private Set Intersection protocol.Our extensive experiments demonstrate the significant benefits of deduplication in federated learning of large language models.For instance, we observe up to 19.62% improvement in perplexity and up to 27.95% reduction in running time while varying the duplication level between 10% and 30%.EP-MPD effectively balances privacy and performance in federated learning, making it a valuable solution for large-scale applications.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
+    "authors": [
+      "Aydin Abadi",
+      "Vishnu Asutosh Dasu",
+      "Sumanta Sarkar"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_AdhikariDD25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_AdhikariDD25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/policypulse-precision-semantic-role-extraction-for-enhanced-privacy-policy-comprehension/"
+    },
+    "title": "PolicyPulse: Precision Semantic Role Extraction for Enhanced Privacy Policy Comprehension.",
     "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Jannik Hartung",
-      "Simon Koch 0001",
-      "Martin Johns"
+      "Andrick Adhikari",
+      "Sanchari Das 0001",
+      "Rinku Dewri"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_HuberS25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_HuberS25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot25/presentation/huber"
-    },
-    "title": "Be Write Back: An in-depth Study of Fault Injection Effects on FRAM Technology.",
-    "summary": "159",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Valentin Huber",
-      "Marc Schink"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_Jo025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_Jo025",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot25/presentation/jo"
-    },
-    "title": "Oops, It Halted Again: Exploiting PLC Memory for Fun and Profit in Industrial Control Systems.",
-    "summary": "",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Wooyeon Jo",
-      "Irfan Ahmed 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_ChengALS24",
+    "id": "paper:ndss:conf_ndss_AdjibiAABM25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ChengALS24",
+      "native_id": "conf_ndss_AdjibiAABM25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/trustsketch-trustworthy-sketch-based-telemetry-on-cloud-hosts/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/the-guardians-of-name-street-studying-the-defensive-registration-practices-of-the-fortune-500/"
     },
-    "title": "TrustSketch: Trustworthy Sketch-based Telemetry on Cloud Hosts.",
-    "summary": "Cloud providers deploy telemetry tools in software to perform end-host network analytics.Recent efforts show that sketches, a kind of approximate data structure, are a promising basis for software-based telemetry, as they provide high fidelity for many statistics with a low resource footprint.However, an attacker can compromise sketch-based telemetry results via software vulnerabilities.Consequently, they can nullify the use of telemetry; e.g., avoiding attack detection or inducing accounting discrepancies.In this paper, we formally define the requirements for trustworthy sketch-based telemetry and show that prior work cannot meet those due to the sketch's probabilistic nature and performance requirements.We present the design and implementation TRUSTSKETCH, a general framework for trustworthy sketch telemetry that can support a wide spectrum of sketching algorithms.We show that TRUSTSKETCH is able to detect a wide range of attacks on sketch-based telemetry in a timely fashion while incurring only minimal overhead.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "The Guardians of Name Street: Studying the Defensive Registration Practices of the Fortune 500.",
+    "summary": "Using orthographic, phonetic, and semantic models, we study the prevalence of defensive registrations related to a wide spectrum of transformations of the base domain names of Fortune 500 companies.As part of a large-scale evaluation, we explore several questions aimed at (a) understanding whether there are explainable factors (e.g., the size of the company's security team or its domain name's popularity rank) that correlate with a company's level of engagement regarding defensive registrations; (b) identifying the main actors in the defensive registration ecosystem that Fortune 500 companies rely upon; (c) uncovering the strategies used by these actors, and d) assessing the efficacy of those strategies from the perspective of queries emanating from a large Internet Service Provider (ISP).Overall, we identified 19,523 domain names defensively registered by 447 Fortune 500 companies.These companies engage in defensive registrations sparingly, with almost 200 companies having fewer than ten defensive registrations.By analyzing the registrations, we found many similarities between the types of domain names the companies registered.For instance, they all registered many TLD-squatting domain names.As it turns out, those similarities are due to the companies' reliance on online brand protection (OBP) service providers to protect their brands.Our analysis of the efficacy of the strategies of those OBPs showed that they register domain names that receive most of the potential squatting traffic.Using regression models, we learned from those strategies to provide recommendations for future defensive registrants.Our measurement also revealed many domain names that received high proportions of traffic over long periods of time and could be registered for only 15 USD.To prevent the abusive use of such domain names, we recommend that OBP providers proactively leverage passive DNS data to identify and preemptively register highly queried available domain names.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Zhuo Cheng",
-      "Maria Apostolaki",
-      "Zaoxing Liu",
-      "Vyas Sekar"
+      "Boladji Vinny Adjibi",
+      "Athanasios Avgetidis",
+      "Manos Antonakakis",
+      "Michael D. Bailey",
+      "Fabian Monrose"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DasX024",
+    "id": "paper:ndss:conf_ndss_AktypiR25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DasX024",
+      "native_id": "conf_ndss_AktypiR25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/powers-of-tau-in-asynchrony/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/iris-dynamic-privacy-preserving-search-in-authenticated-chord-peer-to-peer-networks/"
     },
-    "title": "Powers of Tau in Asynchrony.",
-    "summary": "The q-Strong Diffie-Hellman (q-SDH) parameters are foundational to efficient constructions of many cryptographic primitives such as zero-knowledge succinct non-interactive arguments of knowledge, polynomial/vector commitments, verifiable secret sharing, and randomness beacon.The only existing method to generate these parameters securely is highly sequential, requires synchrony assumptions, and has very high communication and computation costs.For example, to generate parameters for any given q, each party incurs a communication cost of Ω(nq) and requires Ω(n) rounds.Here n is the number of parties in the secure multiparty computation protocol.Since q is typically large, i.e., on the order of billions, the cost is highly prohibitive.In this paper, we present a distributed protocol to generate q-SDH parameters in an asynchronous network.In a network of n parties, our protocol tolerates up to one-third of malicious parties.Each party incurs a communication cost of O(q+n 2 log q) and the protocol finishes in O(log q + log n) expected rounds.We provide a rigorous security analysis of our protocol.We implement our protocol and evaluate it with up to 128 geographically distributed parties.Our evaluation illustrates that our protocol is highly scalable and results in a 2-6× better runtime and 4-13× better per-party bandwidth usage compared to the state-of-theart synchronous protocol for generating q-SDH parameters.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "Iris: Dynamic Privacy Preserving Search in Authenticated Chord Peer-to-Peer Networks.",
+    "summary": "In structured peer-to-peer networks, like Chord, users find data by asking a number of intermediate nodes in the network.Each node provides the identity of the closet known node to the address of the data, until eventually the node responsible for the data is reached.This structure means that the intermediate nodes learn the address of the sought after data.Revealing this information to other nodes makes Chord unsuitable for applications that require query privacy so in this paper we present a scheme IRIS to provide query privacy while maintaining compatibility with the existing Chord protocol.This means that anyone using it will be able to execute a privacy preserving query but it does not require other nodes in the network to use it (or even know about it).In order to better capture the privacy achieved by the iterative nature of the search we propose a new privacy notion, inspired by k-anonymity.This new notion called (, )-privacy, allows us to formulate privacy guarantees against adversaries that collude and take advantage of the total amount of information leaked in all iterations of the search.We present a security analysis of the proposed algorithm based on the privacy notion we introduce.We also develop a prototype of the algorithm in Matlab and evaluate its performance.Our analysis proves IRIS to be (, )-private while introducing a modest performance overhead.Importantly the overhead is tunable and proportional to the required level of privacy, so no privacy means no overhead.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Sourav Das 0001",
-      "Zhuolun Xiang",
-      "Ling Ren 0001"
+      "Angeliki Aktypi",
+      "Kasper Rasmussen"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DavidCKKY24",
+    "id": "paper:ndss:conf_ndss_AlHamdanS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DavidCKKY24",
+      "native_id": "conf_ndss_AlHamdanS25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/quack-hindering-deserialization-attacks-via-static-duck-typing/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/welcome-to-jurassic-park-a-comprehensive-study-of-security-risks-in-deno-and-its-ecosystem/"
     },
-    "title": "QUACK: Hindering Deserialization Attacks via Static Duck Typing.",
-    "summary": "Managed languages facilitate convenient ways for serializing objects, allowing applications to persist and transfer them easily, yet this feature opens them up to attacks.By manipulating serialized objects, attackers can trigger a chained execution of existing code segments, using them as gadgets to form an exploit.Protecting deserialization calls against attacks is cumbersome and tedious, leading to many developers avoiding deploying defenses properly.We present QUACK, a framework for automatically protecting applications by fixing calls to deserialization APIs.This \"binding\" limits the classes allowed for usage in the deserialization process, severely limiting the code available for (ab)use as part of exploits.QUACK computes the set of classes that should be allowed using a novel static duck typing inference technique.In particular, it statically collects all statements in the program code that manipulate objects after they are deserialized, and puts together a filter for the list of classes that should be available at runtime.We have implemented QUACK for PHP and evaluated it on a set of applications with known CVEs, and popular applications crawled from GitHub.QUACK managed to fix the applications in a way that prevented any attempt at automatically generating an exploit against them, by blocking, on average, 97% of the application's code that could be used as gadgets.We submitted a sample of three fixes generated by QUACK as pull requests, and their developers merged them.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
+    "title": "Welcome to Jurassic Park: A Comprehensive Study of Security Risks in Deno and its Ecosystem.",
+    "summary": "Node.js and its ecosystem npm are notoriously insecure, enabling the proliferation of supply chain attacks.Deno is an emerging runtime that promises to offer a safer alternative for running untrusted JavaScript code outside of the browser.Learning from Node.js's mistakes, Deno is written in Rust, a memory-safe programming language, and it includes a strict permission system that checks all accesses to sensitive APIs via static or runtime permissions.Deno also allows the inclusion of third-party code via URLs, which promises a more transparent way of handling dependencies, advocating for a fully decentralized software supply chain.In this paper, we study if Deno delivers on its promise of increased security.We find that indeed Deno has a smaller attack surface than Node.js, but there still are known attacks that are not addressed (ReDoS) or only partially mitigated (prototype pollution).Moreover, we find several weaknesses in Deno's permission system, which allow sophisticated supply chain attacks.First, coarse-grained permissions allow attackers to abuse the ambient authority of the operating system to sidestep the permission system.Second, we find that URL imports are exempted from the permission checks, allowing attackers to perform unlawful network requests.We also identify timeof-check to time-of-use issues when handling symbolic links, making fine-grained file system access control ineffective.We then perform an empirical study of Deno's main ecosystem deno.land to understand how developers consume third-party code and how permissions are used and communicated.We identify classical URL-related issues such as expired domains and reliance on insecure transport protocols, but we also find that it is challenging to guarantee uniform immutability and version control when multiple domains are involved in code distribution.We also provide initial evidence that developers poorly document required permissions on deno.land and that they tend to abuse coarsegrained permissions, reducing the benefits of the permission system.Our findings resulted in two security advisories for Deno and a redesign of its import mechanism.We also make concrete recommendations for improving Deno's security model to further prevent supply chain attacks: add import permissions, additional access control at file system level, support for compartmentalization, and a manifest file that persists fine-grained permissions.",
+    "published_at": "2026-06-23T04:45:01.406500+00:00",
+    "fetched_at": "2026-06-23T04:45:01.406500+00:00",
     "authors": [
-      "Yaniv David",
-      "Neophytos Christou",
-      "Andreas D. Kellas",
-      "Vasileios P. Kemerlis",
-      "Junfeng Yang"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_DengLLWZLW0L24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_DengLLWZLW0L24",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/masterkey-automated-jailbreaking-of-large-language-model-chatbots/"
-    },
-    "title": "MASTERKEY: Automated Jailbreaking of Large Language Model Chatbots.",
-    "summary": "lenge in ensuring the secure and ethical usage of LLMs [31].Jailbreaking, in this context, refers to the strategic manipulation of input prompts to LLMs, devised to outsmart the chatbots' safeguards and generate content otherwise moderated or blocked.By exploiting such carefully crafted prompts, a malicious user can induce LLM chatbots to produce harmful outputs that contravene the defined policies.Past efforts have been made to investigate the jailbreak vulnerabilities of LLMs [31], [27], [62], [51].However, with the rapid evolution of LLM technology, these studies exhibit two significant limitations.First, the current focus is mainly limited on CHATGPT.We lack the understanding of potential vulnerabilities in other commercial LLM chatbots such as Bing Chat and Bard.In Section III, we will show that these services demonstrate distinct jailbreak resilience from CHATGPT.Second, in response to the jailbreak threat, service providers have deployed a variety of mitigation measures.These measures aim to monitor and regulate the input and output of LLM chatbots, effectively preventing the creation of harmful or inappropriate content.Each service provider deploys its proprietary solutions adhering to their respective usage policies.For instance, OpenAI [40] has laid out a stringent usage policy [42], designed to halt the generation of inappropriate content.This policy covers a range of topics from inciting violence to explicit content and political propaganda, serving as a fundamental guideline for their AI models.The black-box nature of these services, especially their defense mechanisms, poses a challenge to comprehending the underlying principles of both jailbreak attacks and their preventative measures.As of now, there is a noticeable lack of public disclosures or reports on jailbreak prevention techniques used in commercially available LLM-based chatbot solutions.To close these gaps and further obtain an in-depth and generalized understanding of the jailbreak mechanisms among various LLM chatbots, we first undertake an empirical study to examine the effectiveness of existing jailbreak attacks.We evaluate four mainstream LLM chatbots: CHATGPT powered",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Gelei Deng",
-      "Yi Liu 0069",
-      "Yuekang Li",
-      "Kailong Wang 0001",
-      "Ying Zhang 0066",
-      "Zefeng Li",
-      "Haoyu Wang 0001",
-      "Tianwei Zhang 0004",
-      "Yang Liu 0003"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Du0SJ00024",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Du0SJ00024",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/orl-auditor-dataset-auditing-in-offline-deep-reinforcement-learning/"
-    },
-    "title": "ORL-AUDITOR: Dataset Auditing in Offline Deep Reinforcement Learning.",
-    "summary": "Data is a critical asset in AI, as high-quality datasets can significantly improve the performance of machine learning models. In safety-critical domains such as autonomous vehicles, offline deep reinforcement learning (offline DRL) is frequently used to train models on pre-collected datasets, as opposed to training these models by interacting with the real-world environment as the online DRL. To support the development of these models, many institutions make datasets publicly available with opensource licenses, but these datasets are at risk of potential misuse or infringement. Injecting watermarks to the dataset may protect the intellectual property of the data, but it cannot handle datasets that have already been published and is infeasible to be altered afterward. Other existing solutions, such as dataset inference and membership inference, do not work well in the offline DRL scenario due to the diverse model behavior characteristics and offline setting constraints. In this paper, we advocate a new paradigm by leveraging the fact that cumulative rewards can act as a unique identifier that distinguishes DRL models trained on a specific dataset. To this end, we propose ORL-AUDITOR, which is the first trajectory-level dataset auditing mechanism for offline RL scenarios. Our experiments on multiple offline DRL models and tasks reveal the efficacy of ORL-AUDITOR, with auditing accuracy over 95% and false positive rates less than 2.88%. We also provide valuable insights into the practical implementation of ORL-AUDITOR by studying various parameter settings. Furthermore, we demonstrate the auditing capability of ORL-AUDITOR on open-source datasets from Google and DeepMind, highlighting its effectiveness in auditing published datasets. ORL-AUDITOR is open-sourced at https://github.com/link-zju/ORL-Auditor.",
-    "published_at": "2026-06-22T06:10:55.323948+00:00",
-    "fetched_at": "2026-06-22T06:10:55.323948+00:00",
-    "authors": [
-      "Linkang Du",
-      "Min Chen 0032",
-      "Mingyang Sun",
-      "Shouling Ji",
-      "Peng Cheng 0001",
-      "Jiming Chen 0001",
-      "Zhikun Zhang 0001"
+      "Abdullah AlHamdan",
+      "Cristian-Alexandru Staicu"
     ]
   }
 ]
