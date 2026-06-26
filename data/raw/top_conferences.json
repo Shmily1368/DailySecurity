@@ -1,430 +1,324 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_BartheCGKLOPRS21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BartheCGKLOPRS21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00046"
-    },
-    "title": "High-Assurance Cryptography in the Spectre Era.",
-    "summary": "High-assurance cryptography leverages methods from program verification and cryptography engineering to deliver efficient cryptographic software with machine-checked proofs of memory safety, functional correctness, provable security, and absence of timing leaks. Traditionally, these guarantees are established under a sequential execution semantics. However, this semantics is not aligned with the behavior of modern processors that make use of speculative execution to improve performance. This mismatch, combined with the high-profile Spectre-style attacks that exploit speculative execution, naturally casts doubts on the robustness of high-assurance cryptography guarantees. In this paper, we dispel these doubts by showing that the benefits of high-assurance cryptography extend to speculative execution, costing only a modest performance overhead. We build atop the Jasmin verification framework an end-to-end approach for proving properties of cryptographic software under speculative execution, and validate our approach experimentally with efficient, functionally correct assembly implementations of ChaCha20 and Poly1305, which are secure against both traditional timing and speculative execution attacks.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
-    "authors": [
-      "Gilles Barthe",
-      "Sunjay Cauligi",
-      "Benjamin Grégoire",
-      "Adrien Koutsos",
-      "Kevin Liao",
-      "Tiago Oliveira 0004",
-      "Swarn Priya",
-      "Tamara Rezk",
-      "Peter Schwabe"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BasinST21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BasinST21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00037"
-    },
-    "title": "The EMV Standard: Break, Fix, Verify.",
-    "summary": "EMV is the international protocol standard for smartcard payment and is used in over 9 billion cards worldwide. Despite the standard’s advertised security, various issues have been previously uncovered, deriving from logical flaws that are hard to spot in EMV’s lengthy and complex specification, running over 2,000 pages.We formalize a comprehensive symbolic model of EMV in Tamarin, a state-of-the-art protocol verifier. Our model is the first that supports a fine-grained analysis of all relevant security guarantees that EMV is intended to offer. We use our model to automatically identify flaws that lead to two critical attacks: one that defrauds the cardholder and a second that defrauds the merchant. First, criminals can use a victim’s Visa contactless card to make payments for amounts that require cardholder verification, without knowledge of the card’s PIN. We built a proof-of-concept Android application and successfully demonstrated this attack on real-world payment terminals. Second, criminals can trick the terminal into accepting an unauthentic offline transaction, which the issuing bank should later decline, after the criminal has walked away with the goods. This attack is possible for implementations following the standard, although we did not test it on actual terminals for ethical reasons. Finally, we propose and verify improvements to the standard that prevent these attacks, as well as any other attacks that violate the considered security properties. The proposed improvements can be easily implemented in the terminals and do not affect the cards in circulation.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
-    "authors": [
-      "David A. Basin",
-      "Ralf Sasse",
-      "Jorge Toro-Pozo"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BichselSBV21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BichselSBV21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00081"
-    },
-    "title": "DP-Sniper: Black-Box Discovery of Differential Privacy Violations using Classifiers.",
-    "summary": "We present DP-Sniper, a practical black-box method that automatically finds violations of differential privacy.DP-Sniper is based on two key ideas: (i) training a classifier to predict if an observed output was likely generated from one of two possible inputs, and (ii) transforming this classifier into an approximately optimal attack on differential privacy.Our experimental evaluation demonstrates that DP-Sniper obtains up to 12.4 times stronger guarantees than state-of-the-art, while being 15.5 times faster. Further, we show that DP-Sniper is effective in exploiting floating-point vulnerabilities of naively implemented algorithms: it detects that a supposedly 0.1-differentially private implementation of the Laplace mechanism actually does not satisfy even 0.25-differential privacy.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
-    "authors": [
-      "Benjamin Bichsel",
-      "Samuel Steffen",
-      "Ilija Bogunovic",
-      "Martin T. Vechev"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BlazquezPFGKVT21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BlazquezPFGKVT21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00095"
-    },
-    "title": "Trouble Over-The-Air: An Analysis of FOTA Apps in the Android Ecosystem.",
-    "summary": "Android firmware updates are typically managed by the so-called FOTA (Firmware Over-the-Air) apps. Such apps are highly privileged and play a critical role in maintaining devices secured and updated. The Android operating system offers standard mechanisms—available to Original Equipment Manufacturers (OEMs)—to implement their own FOTA apps but such vendor-specific implementations could be a source of security and privacy issues due to poor software engineering practices. This paper performs the first large-scale and systematic analysis of the FOTA ecosystem through a dataset of 2,013 FOTA apps detected with a tool designed for this purpose over 422,121 pre-installed apps. We classify the different stakeholders developing and deploying FOTA apps on the Android update ecosystem, showing that 43% of FOTA apps are developed by third parties. We report that some devices can have as many as 5 apps implementing FOTA capabilities. By means of static analysis of the code of FOTA apps, we show that some apps present behaviors that can be considered privacy intrusive, such as the collection of sensitive user data (e.g., geolocation linked to unique hardware identifiers), and a significant presence of third-party trackers. We also discover implementation issues leading to critical vulnerabilities, such as the use of public AOSP test keys both for signing FOTA apps and for update verification, thus allowing any update signed with the same key to be installed. Finally, we study telemetry data collected from real devices by a commercial security tool. We demonstrate that FOTA apps are responsible for the installation of non-system apps (e.g., entertainment apps and games), including malware and Potentially Unwanted Programs (PUP). Our findings suggest that FOTA development practices are misaligned with Google’s recommendations.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
-    "authors": [
-      "Eduardo Blázquez",
-      "Sergio Pastrana",
-      "Álvaro Feal",
-      "Julien Gamba",
-      "Platon Kotzias",
-      "Narseo Vallina-Rodriguez",
-      "Juan Tapiador"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_BonehBCGI21",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_BonehBCGI21",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP40001.2021.00048"
-    },
-    "title": "Lightweight Techniques for Private Heavy Hitters.",
-    "summary": "This paper presents a new protocol for solving the private heavy-hitters problem. In this problem, there are many clients and a small set of data-collection servers. Each client holds a private bitstring. The servers want to recover the set of all popular strings, without learning anything else about any client’s string. A web-browser vendor, for instance, can use our protocol to figure out which homepages are popular, without learning any user’s homepage. We also consider the simpler private subset-histogram problem, in which the servers want to count how many clients hold strings in a particular set without revealing this set to the clients.Our protocols use two data-collection servers and, in a protocol run, each client send sends only a single message to the servers. Our protocols protect client privacy against arbitrary misbehavior by one of the servers and our approach requires no public-key cryptography (except for secure channels), nor general-purpose multiparty computation. Instead, we rely on incremental distributed point functions, a new cryptographic tool that allows a client to succinctly secret-share the labels on the nodes of an exponentially large binary tree, provided that the tree has a single non-zero path. Along the way, we develop new general tools for providing malicious security in applications of distributed point functions.A limitation of our heavy-hitters protocol is that it reveals to the servers slightly more information than the set of popular strings itself. We precisely define and quantify this leakage and explain how to ameliorate its effects. In an experimental evaluation with two servers on opposite sides of the U.S., the servers can find the 200 most popular strings among a set of 400,000 client-held 256-bit strings in 54 minutes. Our protocols are highly parallelizable. We estimate that with 20 physical machines per logical server, our protocols could compute heavy hitters over ten million clients in just over one hour of computation.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
-    "authors": [
-      "Dan Boneh",
-      "Elette Boyle",
-      "Henry Corrigan-Gibbs",
-      "Niv Gilboa",
-      "Yuval Ishai"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_CohenTHGKOY22",
+    "id": "paper:acm_ccs:conf_ccs_Hallman22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_CohenTHGKOY22",
+      "native_id": "conf_ccs_Hallman22",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560688"
+      "source_url": "https://doi.org/10.1145/3548606.3563493"
     },
-    "title": "HammerScope: Observing DRAM Power Consumption Using Rowhammer.",
+    "title": "Poster EveGAN: Using Generative Deep Learning for Cryptanalysis.",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Yaakov Cohen",
-      "Kevin Sam Tharayil",
-      "Arie Haenel",
-      "Daniel Genkin",
-      "Angelos D. Keromytis",
-      "Yossi Oren",
-      "Yuval Yarom"
+      "Roger A. Hallman"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_Cong00P22",
+    "id": "paper:acm_ccs:conf_ccs_HammoudehL22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Cong00P22",
+      "native_id": "conf_ccs_HammoudehL22",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560702"
+      "source_url": "https://doi.org/10.1145/3548606.3559335"
     },
-    "title": "SortingHat: Efficient Private Decision Tree Evaluation via Homomorphic Encryption and Transciphering.",
+    "title": "Identifying a Training-Set Attack&apos;s Target Using Renormalized Influence Estimation.",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Kelong Cong",
-      "Debajyoti Das 0001",
-      "Jeongeun Park 0001",
-      "Hilder V. L. Pereira"
+      "Zayd Hammoudeh",
+      "Daniel Lowd"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_CongHZ22",
+    "id": "paper:acm_ccs:conf_ccs_HanXSLL22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_CongHZ22",
+      "native_id": "conf_ccs_HanXSLL22",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3559355"
+      "source_url": "https://doi.org/10.1145/3548606.3560623"
     },
-    "title": "SSLGuard: A Watermarking Scheme for Self-supervised Learning Pre-trained Encoders.",
-    "summary": "Self-supervised learning is an emerging machine learning paradigm. Compared to supervised learning which leverages high-quality labeled datasets, self-supervised learning relies on unlabeled datasets to pre-train powerful encoders which can then be treated as feature extractors for various downstream tasks. The huge amount of data and computational resources consumption makes the encoders themselves become the valuable intellectual property of the model owner. Recent research has shown that the machine learning model's copyright is threatened by model stealing attacks, which aim to train a surrogate model to mimic the behavior of a given model. We empirically show that pre-trained encoders are highly vulnerable to model stealing attacks. However, most of the current efforts of copyright protection algorithms such as watermarking concentrate on classifiers. Meanwhile, the intrinsic challenges of pre-trained encoder's copyright protection remain largely unstudied. We fill the gap by proposing SSLGuard, the first watermarking scheme for pre-trained encoders. Given a clean pre-trained encoder, SSLGuard injects a watermark into it and outputs a watermarked version. The shadow training technique is also applied to preserve the watermark under potential model stealing attacks. Our extensive evaluation shows that SSLGuard is effective in watermark injection and verification, and it is robust against model stealing and other watermark removal attacks such as input noising, output perturbing, overwriting, model pruning, and fine-tuning.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "Location Heartbleeding: The Rise of Wi-Fi Spoofing Attack Via Geolocation API.",
+    "summary": "",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Tianshuo Cong",
-      "Xinlei He 0001",
-      "Yang Zhang 0016"
+      "Xiao Han 0009",
+      "Junjie Xiong",
+      "Wenbo Shen",
+      "Zhuo Lu",
+      "Yao Liu 0007"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_CorettiKMR22",
+    "id": "paper:acm_ccs:conf_ccs_HaqueNAR22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_CorettiKMR22",
+      "native_id": "conf_ccs_HaqueNAR22",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560638"
+      "source_url": "https://doi.org/10.1145/3548606.3563547"
     },
-    "title": "The Generals&apos; Scuttlebutt: Byzantine-Resilient Gossip Protocols.",
+    "title": "Poster: A Novel Formal Threat Analyzer for Activity Monitoring-based Smart Home Heating, Ventilation, and Cooling Control System.",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Sandro Coretti",
-      "Aggelos Kiayias",
-      "Cristopher Moore",
-      "Alexander Russell"
+      "Nur Imtiazul Haque",
+      "Maurice Ngouen",
+      "Yazen Al-Wahadneh",
+      "Mohammad Ashiqur Rahman"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_CouteauGKR22",
+    "id": "paper:acm_ccs:conf_ccs_HashimotoKP22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_CouteauGKR22",
+      "native_id": "conf_ccs_HashimotoKP22",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3548606.3560628"
+      "source_url": "https://doi.org/10.1145/3548606.3560679"
     },
-    "title": "Sharp: Short Relaxed Range Proofs.",
+    "title": "How to Hide MetaData in MLS-Like Secure Group Messaging: Simple, Modular, and Post-Quantum.",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Geoffroy Couteau",
-      "Dahmun Goudarzi",
-      "Michael Klooß",
-      "Michael Reichle"
+      "Keitaro Hashimoto",
+      "Shuichi Katsumata",
+      "Thomas Prest"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_HenzingerHCMV23",
+    "id": "paper:usenix_security:conf_uss_MengLPDBSZ022",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_HenzingerHCMV23",
+      "native_id": "conf_uss_MengLPDBSZ022",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/henzinger"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/meng"
     },
-    "title": "One Server for the Price of Two: Simple and Fast Single-Server Private Information Retrieval.",
+    "title": "Your Microphone Array Retains Your Identity: A Robust Voice Liveness Detection System for Smart Speakers.",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Alexandra Henzinger",
-      "Matthew M. Hong",
-      "Henry Corrigan-Gibbs",
-      "Sarah Meiklejohn",
-      "Vinod Vaikuntanathan"
+      "Yan Meng 0001",
+      "Jiachun Li 0001",
+      "Matthew Pillari",
+      "Arjun Deopujari",
+      "Liam Brennan",
+      "Hafsah Shamsie",
+      "Haojin Zhu",
+      "Yuan Tian 0001"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_HesseSS23",
+    "id": "paper:usenix_security:conf_uss_MinaeiMK22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_HesseSS23",
+      "native_id": "conf_uss_MinaeiMK22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/hesse"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/minaei"
     },
-    "title": "How to Bind Anonymous Credentials to Humans.",
-    "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "Empirical Understanding of Deletion Privacy: Experiences, Expectations, and Measures.",
+    "summary": "Social platforms are heavily used by individuals to share their thoughts and personal information. However, due to regret over time about posting inappropriate social content, embarrassment, or even life or relationship changes, some past posts might also pose serious privacy concerns for them. To cope with these privacy concerns, social platforms offer deletion mechanisms that allow users to remove their contents. Quite naturally, these deletion mechanisms are really useful for removing past posts as and when needed. However, these same mechanisms also leave the users potentially vulnerable to attacks by adversaries who specifically seek the users' damaging content and exploit the act of deletion as a strong signal for identifying such content. Unfortunately, today user experiences and contextual expectations regarding such attacks on deletion privacy and deletion privacy in general are not well understood. To that end, in this paper, we conduct a user survey-based exploration involving 191 participants to unpack their prior deletion experiences, their expectations of deletion privacy, and how effective they find the current deletion mechanisms. We find that more than 80% of the users have deleted at least a social media post, and users self-reported that, on average, around 35% of their deletions happened after a week of posting. While the participants identified the irrelevancy (due to time passing) as the main reason for content removal, most of them believed that deletions indicate that the deleted content includes some damaging information to the owner. Importantly, the participants are significantly more concerned about their deletions being noticed by large-scale data collectors (e.g., the government) than individuals from their social circle. Finally, the participants felt that popular deletion mechanisms are not very effective in protecting the privacy of those deletions.",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Julia Hesse",
-      "Nitin Singh",
-      "Alessandro Sorniotti"
+      "Mohsen Minaei",
+      "Mainack Mondal",
+      "Aniket Kate"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_HielscherMPKS23",
+    "id": "paper:usenix_security:conf_uss_MinkLBF0022",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_HielscherMPKS23",
+      "native_id": "conf_uss_MinkLBF0022",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/hielscher"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/mink"
     },
-    "title": "&quot;Employees Who Don&apos;t Accept the Time Security Takes Are Not Aware Enough&quot;: The CISO View of Human-Centred Security.",
+    "title": "DeepPhish: Understanding User Trust Towards Artificially Generated Profiles in Online Social Networks.",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Jonas Hielscher",
-      "Uta Menges",
-      "Simon Parkin",
-      "Annette Kluge",
-      "M. Angela Sasse"
+      "Jaron Mink",
+      "Licheng Luo",
+      "Natã M. Barbosa",
+      "Olivia Figueira",
+      "Yang Wang 0005",
+      "Gang Wang 0011"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_HiltonDD23",
+    "id": "paper:usenix_security:conf_uss_MirheidariGOKC22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_HiltonDD23",
+      "native_id": "conf_uss_MirheidariGOKC22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/hilton"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/mirheidari"
     },
-    "title": "Fourteen Years in the Life: A Root Server&apos;s Perspective on DNS Resolver Security.",
+    "title": "Web Cache Deception Escalates!",
     "summary": "",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Alden Hilton",
-      "Casey T. Deccio",
-      "Jacob Davis"
+      "Seyed Ali Mirheidari",
+      "Matteo Golinelli",
+      "Kaan Onarlioglu",
+      "Engin Kirda",
+      "Bruno Crispo"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_HlavacekSVW23",
+    "id": "paper:usenix_security:conf_uss_Moju-IgbeneALD22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_HlavacekSVW23",
+      "native_id": "conf_uss_Moju-IgbeneALD22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/hlavacek"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/moju-igbene"
     },
-    "title": "Keep Your Friends Close, but Your Routeservers Closer: Insights into RPKI Validation in the Internet.",
-    "summary": "IP prefix hijacks allow adversaries to redirect and intercept traffic, posing a threat to the stability and security of the Internet. To prevent prefix hijacks, networks should deploy RPKI and filter bogus BGP announcements with invalid routes. In this work we evaluate the impact of RPKI deployments on the security and resilience of the Internet. We aim to understand which networks filter invalid routes and how effective that filtering is in blocking prefix hijacks. We extend previous data acquisition and analysis methodologies to obtain more accurate identification of networks that filter invalid routes with RPKI. We find that more than 27% of networks enforce RPKI filtering and show for the first time that deployments follow the business incentives of inter-domain routing: providers have an increased motivation to filter in order to avoid losing customers' traffic. Analyzing the effectiveness of RPKI, we find that the current trend to deploy RPKI on routeservers of Internet Exchange Points (IXPs) only provides a localized protection against hijacks but has negligible impact on preventing their spread globally. In contrast, we show that RPKI filtering in Tier-1 providers greatly benefits the security of the Internet as it limits the spread of hijacks to a localized scope. Based on our observations, we provide recommendations on the future roadmap of RPKI deployment. We make our datasets available for public use [https://sit4.me/rpki].",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "&quot;How Do You Not Lose Friends?&quot;: Synthesizing a Design Space of Social Controls for Securing Shared Digital Resources Via Participatory Design Jams.",
+    "summary": "",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Tomas Hlavacek",
-      "Haya Schulmann",
-      "Niklas Vogel",
-      "Michael Waidner"
+      "Eyitemi Moju-Igbene",
+      "Hanan Abdi",
+      "Alan Lu",
+      "Sauvik Das"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_ChenY023",
+    "id": "paper:ndss:conf_ndss_JinKLBKK24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ChenY023",
+      "native_id": "conf_ndss_JinKLBKK24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/obsan-an-out-of-bound-sanitizer-to-harden-dnn-executables/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/sharing-cyber-threat-intelligence-does-it-really-help/"
     },
-    "title": "OBSan: An Out-Of-Bound Sanitizer to Harden DNN Executables.",
-    "summary": "The rapid adoption of deep neural network (DNN) models on a variety of hardware platforms has boosted the development of deep learning (DL) compilers. DL compilers take as input the high-level DNN model specifications and generate optimized DNN executables for diverse hardware architectures like CPUs and GPUs. Despite the emerging adoption of DL compilers in real-world scenarios, no solutions exist to protect DNN executables. To fill this critical gap, this paper introduces OBSAN, a fast sanitizer designed to check out-of-bound (OOB) behavior of DNN executables. From a holistic view, DNN incorporates bidirectional computation: forward propagation that predicts an output based on an input, and backward propagation that characterizes how the forward prediction is made. Both neuron activations in forward propagation and the gradients in backward propagation should fall within valid ranges, and deviations from the valid ranges would be considered as OOB. OOB is primarily related to unsafe behavior of DNNs, which root from anomalous inputs and may cause mispredictions or even exploitation via adversarial examples (AEs). We thus design OBSAN, which includes two variants, FOBSAN and BOBSAN, that can detect OOB in the forward and backward propagations, respectively. Each OBSAN is designed as extra passes of DL compilers to integrate with large-scale DNN models, and we design various optimization schemes to reduce the overhead of OBSAN. Evaluations over various anomalous inputs show that OBSAN manifests promising OOB detectability with low overhead. We further present two downstream applications to show how OBSAN prevents online AE generation and facilitates feedback-driven fuzz testing toward DNN executables.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "Sharing cyber threat intelligence: Does it really help?",
+    "summary": "The sharing of Cyber Threat Intelligence (CTI) across organizations is gaining traction, as it can automate threat analysis and improve security awareness.However, limited empirical studies exist on the prevalent types of cybersecurity threat data and their effectiveness in mitigating cyber attacks.We propose a framework named CTI-Lense to collect and analyze the volume, timeliness, coverage, and quality of Structured Threat Information eXpression (STIX) data, a de facto standard CTI format, from a list of publicly available CTI sources.We collected about 6 million STIX data objects from October 31, 2014 to April 10, 2023 from ten data sources and analyzed their characteristics.Our analysis reveals that STIX data sharing has steadily increased in recent years, but the volume of STIX data shared is still relatively low to cover all cyber threats.Additionally, only a few types of threat data objects have been shared, with malware signatures and URLs accounting for more than 90% of the collected data.While URLs are usually shared promptly, with about 72% of URLs shared earlier than or on the same day as VirusTotal, the sharing of malware signatures is significantly slower.Furthermore, we found that 19% of the Threat actor data contained incorrect information, and only 0.09% of the Indicator data provided security rules to detect cyber attacks.Based on our findings, we recommend practical considerations for effective and scalable STIX data sharing among organizations.",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Yanzuo Chen",
-      "Yuanyuan Yuan 0001",
-      "Shuai Wang 0011"
+      "Beomjin Jin",
+      "Eunsoo Kim",
+      "Hyunwoo Lee 0001",
+      "Elisa Bertino",
+      "Doowon Kim",
+      "Hyoungshick Kim"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_ChuGISL23",
+    "id": "paper:ndss:conf_ndss_KangLRKC24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ChuGISL23",
+      "native_id": "conf_ndss_KangLRKC24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/securing-federated-sensitive-topic-classification-against-poisoning-attacks/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/irredicator-pruning-irr-with-rpki-valid-bgp-insights/"
     },
-    "title": "Securing Federated Sensitive Topic Classification against Poisoning Attacks.",
-    "summary": "We present a Federated Learning (FL) based solution for building a distributed classifier capable of detecting URLs containing sensitive content, i.e., content related to categories such as health, political beliefs, sexual orientation, etc. Although such a classifier addresses the limitations of previous offline/centralised classifiers, it is still vulnerable to poisoning attacks from malicious users that may attempt to reduce the accuracy for benign users by disseminating faulty model updates. To guard against this, we develop a robust aggregation scheme based on subjective logic and residual-based attack detection. Employing a combination of theoretical analysis, trace-driven simulation, as well as experimental validation with a prototype and real users, we show that our classifier can detect sensitive content with high accuracy, learn new labels fast, and remain robust in view of poisoning attacks from malicious users, as well as imperfect input from non-malicious ones.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "IRRedicator: Pruning IRR with RPKI-Valid BGP Insights.",
+    "summary": "Border Gateway Protocol (BGP) provides a way of exchanging routing information to help routers construct their routing tables. However, due to the lack of security considerations, BGP has been suffering from vulnerabilities such as BGP hijacking attacks. To mitigate these issues, two data sources have been used, Internet Routing Registry (IRR) and Resource Public Key Infrastructure (RPKI), to provide reliable mappings between IP prefixes and their authorized Autonomous Systems (ASes). Each of the data sources, however, has its own limitations. IRR has been well-known for its stale Route objects with outdated AS information since network operators do not have enough incentives to keep them up to date, and RPKI has been slowly deployed due to its operational complexities. In this paper, we measure the prevalent inconsistencies between Route objects in IRR and ROA objects in RPKI. We next characterize inconsistent and consistent Route objects, respectively, by focusing on their BGP announcement patterns. Based on this insight, we develop a technique that identifies stale Route objects by leveraging<br/>a machine learning algorithm and evaluate its performance. From real trace-based experiments, we show that our technique can offer advantages against the status quo by reducing the percentage of potentially stale Route objects from 72% to 40% (of the whole IRR Route objects). In this way, we achieve 93% of the accuracy of validating BGP announcements while covering 87% of BGP announcements.<br/>",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Tianyue Chu",
-      "Álvaro García-Recuero",
-      "Costas Iordanou",
-      "Georgios Smaragdakis",
-      "Nikolaos Laoutaris"
+      "Minhyeok Kang",
+      "Weitong Li",
+      "Roland van Rijswijk-Deij",
+      "Ted Taekyoung Kwon",
+      "Taejoong Chung"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DarirDB23",
+    "id": "paper:ndss:conf_ndss_KannanWSMFH24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DarirDB23",
+      "native_id": "conf_ndss_KannanWSMFH24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/probflow-using-probabilistic-programming-in-anonymous-communication-networks/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/acoustic-keystroke-leakage-on-smart-televisions/"
     },
-    "title": "ProbFlow : Using Probabilistic Programming in Anonymous Communication Networks.",
-    "summary": "We present ProbFlow , a probabilistic programming approach for estimating relay capacities in the Tor network.We refine previously derived probabilistic model of the network to take into account more of the complexity of the real-world Tor network.We use this model to perform inference in a probabilistic programming language called NumPyro which allows us to overcome the analytical barrier present in purely analytical approach.We integrate the implementation of ProbFlow to the current implementation of capacity estimation algorithms in the Tor network.We demonstrate the practical benefits of ProbFlow by simulating it in flow-based Python simulator and packetbased Shadow simulations, the highest fidelity simulator available for the Tor network.In both simulators, ProbFlow provides significantly more accurate estimates that results in improved user performance, with average download speeds increasing by 25% in the Shadow simulations.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "Acoustic Keystroke Leakage on Smart Televisions.",
+    "summary": "Smart Televisions (TVs) are internet-connected TVs that support video streaming applications and web browsers.Users enter information into Smart TVs through on-screen virtual keyboards.These keyboards require users to navigate between keys with directional commands from a remote controller.Given the extensive functionality of Smart TVs, users type sensitive information (e.g., passwords) into these devices, making keystroke privacy necessary.This work develops and demonstrates a new side-channel attack that exposes keystrokes from the audio of two popular Smart TVs: Apple and Samsung.This side-channel attack exploits how Smart TVs make different sounds when selecting a key, moving the cursor, and deleting a character.These properties allow an attacker to extract the number of cursor movements between selections from the TV's audio.Our attack uses this extracted information to identify the likeliest typed strings.Against realistic users, the attack finds up to 33.33% of credit card details and 60.19% of common passwords within 100 guesses.This vulnerability has been acknowledged by Samsung and highlights how Smart TVs must better protect sensitive data.",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Hussein Darir",
-      "Geir E. Dullerud",
-      "Nikita Borisov"
+      "Tejas Kannan",
+      "Synthia Qia Wang 0001",
+      "Max Sunog",
+      "Abraham Bueno de Mesquita",
+      "Nick Feamster",
+      "Henry Hoffmann"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DinisD023",
+    "id": "paper:ndss:conf_ndss_Kermabon-Bobinnec24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DinisD023",
+      "native_id": "conf_ndss_Kermabon-Bobinnec24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/rr-a-fault-model-for-efficient-tee-replication/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/phoenix-surviving-unpatched-vulnerabilities-via-accurate-and-efficient-filtering-of-syscall-sequences/"
     },
-    "title": "RR: A Fault Model for Efficient TEE Replication.",
-    "summary": "Trusted Execution Environments (TEEs) ensure the confidentiality and integrity of computations in hardware.Subject to the TEE's threat model, the hardware shields a computation from most externally induced fault behavior except crashes.As a result, a crash-fault tolerant (CFT) replication protocol should be sufficient when replicating trusted code inside TEEs.However, TEEs do not provide efficient and general means of ensuring the freshness of external, persistent state.Therefore, CFT replication is insufficient for TEE computations with external state, as this state could be rolled back to an earlier version when a TEE restarts.Furthermore, using BFT protocols in this setting is too conservative, because these protocols are designed to tolerate arbitrary behavior, not just rollback during a restart.In this paper, we propose the restart-rollback (RR) fault model for replicating TEEs, which precisely captures the possible fault behaviors of TEEs with external state.Then, we show that existing replication protocols can be easily adapted to this fault model with few changes, while retaining their original performance.We adapted two widely used crash fault tolerant protocols -the ABD [6] read/write register protocol and the Paxos [34] consensus protocol -to the RR model.Furthermore, we leverage these protocols to build a replicated metadata service called TEEMS, and then show that it can be used to add TEEgrade confidentiality, integrity, and freshness to untrusted cloud storage services.Our evaluation shows that our protocols perform significantly better than their BFT counterparts (between 1.25 and 55× better throughput), while performing identically to the CFT versions, which do not protect against rollback attacks.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "Phoenix: Surviving Unpatched Vulnerabilities via Accurate and Efficient Filtering of Syscall Sequences.",
+    "summary": "Known, but unpatched vulnerabilities represent one of the most concerning threats for businesses today.The average time-to-patch of zero-day vulnerabilities remains around 100 days in recent years.The lack of means to mitigate an unpatched vulnerability may force businesses to temporarily shut down their services, which can lead to significant financial loss.Existing solutions for filtering system calls unused by a container can effectively reduce the general attack surface, but cannot prevent a specific vulnerability that shares the same system calls with the container.On the other hand, existing provenance analysis solutions can help identify a sequence of system calls behind the vulnerability, although they do not provide a direct solution for filtering such a sequence.To bridge such a research gap, we propose Phoenix, a solution for preventing exploits of unpatched vulnerabilities by accurately and efficiently filtering sequences of system calls identified through provenance analysis.To achieve this, Phoenix cleverly combines the efficiency of Seccomp filters with the accuracy of Ptrace-based deep argument inspection, and it provides the novel capability of filtering system call sequences through a dynamic Seccomp design.Our implementation and experiments show that Phoenix can effectively mitigate real-world vulnerabilities which evade existing solutions, while introducing negligible delay (less than 4%) and less overhead (e.g., 98% less CPU consumption than existing solution).",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Baltasar Dinis",
-      "Peter Druschel",
-      "Rodrigo Rodrigues 0001"
+      "Hugo Kermabon-Bobinnec",
+      "Yosr Jarraya",
+      "Lingyu Wang 0001",
+      "Suryadipta Majumdar",
+      "Makan Pourzandi"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_DioKBG23",
+    "id": "paper:ndss:conf_ndss_KhairiCPC24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_DioKBG23",
+      "native_id": "conf_ndss_KhairiCPC24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/copy-on-flip-hardening-ecc-memory-against-rowhammer-attacks/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/replicawatcher-training-less-anomaly-detection-in-containerized-microservices/"
     },
-    "title": "Copy-on-Flip: Hardening ECC Memory Against Rowhammer Attacks.",
-    "summary": "Despite nearly decade-long mitigation efforts in academia and industry, the community is yet to find a practical solution to the Rowhammer vulnerability. Comprehensive software mitigations require complex changes to commodity systems, yielding significant run-time overhead and deterring practical adoption. Hardware mitigations, on the other hand, have generally grown more robust and efficient, but are difficult to deploy on commodity systems. Until recently, ECC memory implemented by the memory controller on server platforms seemed to provide the best of both worlds: use hardware features already on commodity systems to efficiently turn Rowhammer into a denial-of-service attack vector. Unfortunately, researchers have recently shown that attackers can perform one-bit-at-a-time memory templating and mount ECC-aware Rowhammer attacks.<br/><br/>In this paper, we reconsider ECC memory as an avenue for Rowhammer mitigations and show that not all hope is lost. In particular, we show that it is feasible to devise a software-based design to both efficiently and effectively harden commodity ECC memory against ECC-aware Rowhammer attacks. To support this claim, we present Copy-on-Flip (CoF), an ECC-based software mitigation which uses a combination of memory _migration_ and _offlining_ to stop Rowhammer attacks on commodity server systems in a practical way. The key idea is to let the operating system interpose on all the error correction events and offline the vulnerable victim page as soon as the attacker has successfully templated a sufficient number of bit flips---while transparently migrating the victim data to a new page. We present a CoF prototype on Linux, where we also show it is feasible to operate simple memory management changes to support migration for the relevant user and kernel memory pages. Our evaluation shows CoF incurs low performance and memory overhead, while significantly reducing the Rowhammer attack surface. On typical benchmarks such as SPEC CPU2017 and Google Chrome, CoF reports a $&lt;1.5%$ overhead, and, on extreme I/O-intensive scenarios (saturated nginx), up to $sim11%$.",
-    "published_at": "2026-06-25T04:49:18.987858+00:00",
-    "fetched_at": "2026-06-25T04:49:18.987858+00:00",
+    "title": "REPLICAWATCHER: Training-less Anomaly Detection in Containerized Microservices.",
+    "summary": "Despite its detection capabilities against previously unseen threats, anomaly detection suffers from critical limitations, which often prevent its deployment in real-world settings.In fact, anomaly-based intrusion detection systems rely on comprehensive pre-established baselines for effectively identifying suspicious activities.Unfortunately, prior research showed that these baselines age and gradually lose their effectiveness over time, especially in dynamic deployments such as microservices-based environments, where the concept of \"normality\" is frequently redefined due to shifting operational conditions.This scenario reinforces the need for periodic retraining to uphold optimal performance -a process that proves challenging, particularly in the context of security applications.We propose a novel, training-less approach to monitoring microservices-based environments.Our system, REPLI-CAWATCHER, observes the behavior of identical container instances (i.e., replicas) and detects anomalies without requiring prior training.Our key insight is that replicas, adopted for fault tolerance or scalability reasons, execute analogous tasks and exhibit similar behavioral patterns, which allow anomalous containers to stand out as a notable deviation from their corresponding replicas, thereby serving as a crucial indicator of security threats.The results of our experimental evaluation show that our approach is resilient against normality shifts and maintains its effectiveness without the necessity for retraining.Besides, despite not relying on a training phase, REPLICAWATCHER performs comparably to state-of-the-art, training-based solutions, achieving an average precision of 91.08% and recall of 98.35%.",
+    "published_at": "2026-06-26T04:54:23.999511+00:00",
+    "fetched_at": "2026-06-26T04:54:23.999511+00:00",
     "authors": [
-      "Andrea Di Dio",
-      "Koen Koning",
-      "Herbert Bos",
-      "Cristiano Giuffrida"
+      "Asbat El Khairi",
+      "Marco Caselli",
+      "Andreas Peter 0001",
+      "Andrea Continella"
     ]
   }
 ]
