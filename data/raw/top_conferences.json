@@ -1,439 +1,436 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_WillboldCWBSDH25",
+    "id": "paper:ieee_sp:conf_sp_KlischiesGHMMM25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_WillboldCWBSDH25",
+      "native_id": "conf_sp_KlischiesGHMMM25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00139"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00142"
     },
-    "title": "Space RADSIM: Binary-Agnostic Fault Injection to Evaluate Cosmic Radiation Impact on Exploit Mitigation Techniques in Space.",
-    "summary": "Over the past decade, the proliferation of Low Earth Orbit satellites, driven by lower launch costs, has revolutionized space applications, from communication to earth observation and weather forecasting. This trend also introduced a shift in hardware: Specialized radiation-resistant hardware was displaced by cheaper commercial off-the-shelf components. As a critical part of modern infrastructure, satellites attract cyber attacks and are subject to terrestrial and space-specific threats, necessitating effective security measures. However, cryptographic protections and exploit mitigations remain limited in productive satellite firmware. Academic research on satellite security only focuses on cryptographic protections, which raises the question if exploit mitigation strategies are suitable for satellites or impacted by space-specific factors, such as cosmic radiation. In this paper, we present the first systematic analysis of 381 small satellite designs, identifying the prevalence of commercial off-the-shelf hardware platforms in space projects and the availability of ready-to-use exploit mitigation strategies for satellite platforms. Since mitigations are seemingly available, we explore the effects of cosmic radiation on software-based exploit mitigations by implementing RADSIM, an automated tool for simulating single event errors (bitflips). Our study simulated over 21 billion faults in differently hardened satellite firmware binaries to assess the fault tolerance of exploit mitigation strategies in the presence of cosmic radiation. Our results reveal that some mitigations barely impact the fault tolerance, while others increase the error probability of hardened satellite firmware by up to 19%. These findings provide novel insights into the tradeoffs between exploit mitigation effectiveness and radiation resilience, offering guidance to satellite developers on optimizing security in space-based systems.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "BaseBridge: Bridging the Gap Between Over-the-Air and Emulation Testing for Cellular Baseband Firmware.",
+    "summary": "Current approaches for emulating cellular base-bands inherently fall short in comparison to over-the-air testing due to their limited support for the complex peripherals involved in a modern baseband, such as DSPs, SIM cards and RF frontends. Improving such support is a daunting task, requiring deep reverse-engineering which is extremely time consuming - resulting in slow progress. Consequently, techniques such as fuzzing are only able to find relatively shallow bugs, since they are unable to reach the states required for the majority of the baseband to function. To fill this gap, we propose Basebridge, which enables far more comprehensive simulation of baseband behavior by restoring relevant state from memory dumps of real devices. Our prototype implementation supports baseband firmware from two major vendors (MediaTek and Samsung), and - in contrast to current state-of-the-art emulators - correctly responds to 97% of tested RRC and NAS messages while improving coverage by an average factor of 2.41 (Samsung) and 5.54 (MediaTek). Basebridge also passes several LTE conformance tests. Our empirical evaluation demonstrates that this enhanced fidelity enables faster discovery of a wider range of bugs thanks to the scalability of emulation; our fuzzing campaign shows that coverage improves by a factor of 2.3-5x overall, and by a factor of 9.0-22.5x for functionality targeted by our approach. Basebridge unveiled 5 new vulnerabilities, which we have disclosed to affected vendors.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Johannes Willbold",
-      "Tobias Cloosters",
-      "Simon Wörner",
-      "Felix Buchmann",
-      "Moritz Schloegel",
-      "Lucas Davi",
-      "Thorsten Holz"
+      "Daniel Klischies",
+      "Dyon Goos",
+      "David Hirsch 0001",
+      "Alyssa Milburn",
+      "Marius Muench",
+      "Veelasha Moonsamy"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_WooOSPG25",
+    "id": "paper:ieee_sp:conf_sp_KonkaVCZ25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_WooOSPG25",
+      "native_id": "conf_sp_KonkaVCZ25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00080"
+      "source_url": "https://doi.org/10.1109/SPW67851.2025.00047"
     },
-    "title": "Efficient Proofs of Possession for Legacy Signatures.",
-    "summary": "Digital signatures underpin identity, authenticity, and trust in modern computer systems. Cryptography research has shown that it is possible to prove possession of a valid message and signature for some public key, without revealing the message or signature. These proofs of possession work only for specially-designed signature schemes. Though these proofs of possession have many useful applications to improving security, privacy, and anonymity, they are not currently usable for widely deployed, legacy signature schemes—like RSA, ECDSA, and Ed25519. Unlocking practical proofs of possession for these legacy signature schemes requires closing a huge efficiency gap. This work brings proofs of possession for legacy signature schemes very close to practicality. Our design strategy is to encode the signature's verification algorithm as a rank-one constraint system (R1CS), then use a zkSNARK to prove knowledge of a solution. To do this efficiently we (1) design and analyze a new zkSNARK called Dorian that supports randomized computations, (2) introduce several new techniques for encoding hashes, elliptic curve operations, and modular arithmetic, (3) give a new approach that allows performing the most expensive parts of ECDSA and Ed25519 verifications outside R1CS, and (4) generate a novel elliptic curve that allows expressing Ed25519 curve operations very efficiently. Our techniques reduce R1CS sizes by up to 200× and prover times by more than 20×. We can generate a 240-byte proof of possession of an RSA signature over a message the size of a typical TLS certificate—two kilobytes—in only three seconds.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "An Agent-Based Model for Evaluating Connected and Autonomous Vehicles, Collective Behaviors and Traffic System Performance.",
+    "summary": "The rapid advancement of Connected and Autonomous Vehicles (CAVs) has the potential to revolutionize transportation systems by improving traffic efficiency, safety, and adaptability. While many studies have examined the performance, behavior, and decision-making of individual vehicles or small groups, evaluating the performance of large-scale traffic systems with CAVs remains underexplored. This study presents an agent-based modeling (ABM) framework to examine the CAVs dynamics and evaluate overall traffic system performance by simulating individual vehicle behavior and their dynamic interactions. The model focuses on decentralized vehicle decision-making, where each CAV independently perceives its surroundings, exchanges information via Vehicle to Vehicle (V2V) communication, and dynamically adjusts its speed and route based on real-time traffic conditions. The simulation is conducted on the road network of Katy, Texas, extracted from OpenStreetMap, with vehicles navigating dynamically through entry, exit, and internal road segments. Results demonstrate the proposed model has the capability of simulating various CAVs traffic systems at different scenarios. Furthermore, simulation findings suggest that an appropriate approach of decentralized decision-making enhances traffic stability and adaptability, underscoring this model's value for assessing CAV coordination strategies in urban environments.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Anna P. Y. Woo",
-      "Alex Ozdemir",
-      "Chad Sharp",
-      "Thomas Pornin",
-      "Paul Grubbs"
+      "Rajkumar Konka",
+      "Rakesh M. Verma",
+      "Shun Cao",
+      "Yunpeng Zhang"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_WuZDHW25",
+    "id": "paper:ieee_sp:conf_sp_KuchlerVLH25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_WuZDHW25",
+      "native_id": "conf_sp_KuchlerVLH25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00152"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00256"
     },
-    "title": "A Wall Behind A Wall: Emerging Regional Censorship in China.",
-    "summary": "China has long orchestrated its Internet censorship through relatively centralized policies and a unified imple-mentation, known as the Great Firewall of China (GFW). However, since August 2023, anecdotes suggest that the Henan Province has deployed its own regional censorship. In this work, we characterize provincial-level censorship in Henan, and compare it with the national-level GFW. We find that Henan has established TLS SNI-based and HTTP Host-based censorship that inspects and blocks traffic leaving the province. While the Henan Firewall is less sophisticated and less robust against typical network variability, its volatile and aggressive blocking of second-level domains made it block ten times more web sites than the GFW at some points in time. Based on the observed parsing flaws and injection behaviors, we introduce simple client-side methods to bypass censorship in the Henan province. Our work documents an alarming sign of regional censorship emerging in China.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "DPolicy: Managing Privacy Risks Across Multiple Releases with Differential Privacy.",
+    "summary": "Differential Privacy (DP) has emerged as a robust framework for privacy-preserving data releases and has been successfully applied in high-profile cases, such as the 2020 US Census. However, in organizational settings, the use of DP remains largely confined to isolated data releases. This approach restricts the potential of DP to serve as a framework for comprehensive privacy risk management at an organizational level. Although one might expect that the cumulative privacy risk of isolated releases could be assessed using DP's compositional property, in practice, individual DP guarantees are frequently tailored to specific releases, making it difficult to reason about their interaction or combined impact. At the same time, less tailored DP guarantees, which compose more easily, also offer only limited insight because they lead to excessively large privacy budgets that convey limited meaning. To address these limitations, we present DPolicy, a system designed to manage cumulative privacy risks across multiple data releases using DP. Unlike traditional approaches that treat each release in isolation or rely on a single (global) DP guarantee, our system employs a flexible framework that considers multiple DP guarantees simultaneously, reflecting the diverse contexts and scopes typical of real-world DP deployments. DPolicy introduces a high-level policy language to formalize privacy guarantees, making traditionally implicit assumptions on scopes and contexts explicit. By deriving the DP guarantees required to enforce complex privacy semantics from these high-level policies, DPolicy enables fine-grained privacy risk management on an organizational scale. We implement and evaluate DPolicy, demonstrating how it mitigates privacy risks that can emerge without comprehensive, organization-wide privacy risk management.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Mingshi Wu",
-      "Ali Zohaib",
-      "Zakir Durumeric",
-      "Amir Houmansadr",
-      "Eric Wustrow"
+      "Nicolas Küchler",
+      "Alexander Viand",
+      "Hidde Lycklama",
+      "Anwar Hithnawi"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_WyssFKP25",
+    "id": "paper:ieee_sp:conf_sp_KunzKKHSPB25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_WyssFKP25",
+      "native_id": "conf_sp_KunzKKHSPB25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00167"
+      "source_url": "https://doi.org/10.1109/SPW67851.2025.00018"
     },
-    "title": "Low-Cost and Robust Global Time Synchronization.",
-    "summary": "Numerous vital applications depend on accurately synchronized time, and disruptions can yield severe consequences in terms of safety and security. Yet, establishing cost-efficient and robust synchronization across geographically distributed devices is challenging. Many solutions for global time synchronization require placing trust in a single entity or system, for example in Global Navigation Satellite Systems (G NSSes) or leased infrastructure providers, constituting a single point of failure and often incurring high costs. An alternative, cost-effective solution is to run time synchronization over the Internet. However, this approach faces challenges in achieving (i) precise time synchronization, (ii) robustness to failing, misconfigured, or compromised nodes, and (iii) robustness to congestion-related issues such as volumetric DDoS attacks. Existing proposals mostly attempt to solve challenges (i) and (ii), but none provide robustness against congestion and volumetric DDoS. We address the challenges identified in previous work with Everdeen. Everdeen minimizes costs by running on existing Internet infrastructure and avoids relying on any single en-tity by enabling nodes to mutually synchronize time. The core innovation of Everdeen is its weighted neighbor-based (WNB) synchronization mode, where participants synchronize exclusively with their direct neighbors. Our evaluation shows that Everdeen provides better time synchronization quality at lower communication overhead compared to prior work. It is also considerably more robust against failing, misconfigured, or compromised hosts. Most importantly, we experimentally demonstrate that time synchronization traffic protected with Everdeen is unaffected by network congestion, including vol-umetric DDoS attacks.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Using LLMs to Identify Personal Data Processing in Source Code.",
+    "summary": "Assessing the privacy impact of software products is essential for adhering to regulatory requirements but it is also highly challenging. This is due to the need for expertise in both software engineering and data protection, and the time-intensive and error-prone nature of the task, particularly when dealing with large and frequently changing applications. In this study, we present a Large Language Model-based approach to automatically classify source code for its privacy impact. Our contributions are (1) a dataset of code snippets, labeled with personal data from a W3C personal data taxonomy (2) an extensible approach and framework to auto-classify source code using the taxonomy and different prompting strategies, and (3) a demonstration of multiple experiments that give insight into an effective use of such a framework. Our results demonstrate that LLM-based detection of personal data processing in source code is feasible with levels of accuracy that can effectively support human reviewers in assessing software at scale.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Marc Wyss",
-      "Marc Frei",
-      "Jonghoon Kwon",
-      "Adrian Perrig"
+      "Immanuel Kunz",
+      "Ching-Yu Kao",
+      "Daniel Kowatsch",
+      "Jens Hiller",
+      "Julian Schütte",
+      "Dmitry Prokhorenkov",
+      "Konstantin Böttinger"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_XiaoDZ0YZK25",
+    "id": "paper:ieee_sp:conf_sp_KysterNOS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_XiaoDZ0YZK25",
+      "native_id": "conf_sp_KysterNOS25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00187"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00176"
     },
-    "title": "Click Without Compromise: Online Advertising Measurement via Per User Differential Privacy.",
-    "summary": "Online advertising is a cornerstone of the Internet ecosystem, with advertising measurement playing a crucial role in optimizing efficiency. Ad measurement entails attributing desired behaviors, such as purchases, to ad exposures across various platforms, necessitating the collection of user activities across these platforms. As this practice faces increasing restrictions due to rising privacy concerns, safeguarding user privacy in this context is imperative. Our work is the first to formulate the real-world challenge of advertising measurement systems with real-time reporting of streaming data in advertising campaigns. We introduce AdsBPC, a novel user-level differential privacy protection scheme for online advertising measurement results. This approach optimizes global noise power and results in a non-identically distributed noise distribution that preserves differential privacy while enhancing measurement accuracy. Through experiments on both real-world advertising campaigns and synthetic datasets, AdsBPC achieves a 33% to 95% increase in accuracy over existing streaming DP mechanisms applied to advertising measurement. This highlights our method's effectiveness in achieving superior accuracy alongside a formal privacy guarantee, thereby advancing the state-of-the-art in privacy-preserving advertising measurement.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Rushing at SPDZ: On the Practical Security of Malicious MPC Implementations.",
+    "summary": "Secure multi-party computation (MPC) enables parties to compute a function over private inputs while maintaining confidentiality. Although MPC has advanced significantly and attracts a growing industry interest, open-source imple-mentations are still at an early stage, with no production-ready code and a poor understanding of their actual security guarantees. In this work, we study the real-world security of modern MPC implementations, focusing on the SPDZ protocol (Damgard et al., CRYPTO 2012, ESORICS 2013), which provides security against malicious adversaries when all-but-one of the participants may be corrupted. We identify a novel type of MAC key leakage in the MAC check protocol of SPDZ, which can be exploited in concurrent, multi-threaded settings, com-promising output integrity and, in some cases, input privacy. In our analysis of three SPDZ implementations (MP-SPDZ, SCALE-MAMBA, and FRESCO), two are vulnerable to this attack, while we also uncover further issues and vulnerabilities with all implementations. We propose mitigation strategies and some recommendations for researchers, developers and users, which we hope can bring more awareness to these issues and avoid them reoccurring in future.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Yingtai Xiao",
-      "Jian Du",
-      "Shikun Zhang",
-      "Wanrong Zhang 0004",
-      "Qian Yang",
-      "Danfeng Zhang",
-      "Daniel Kifer"
+      "Alexander Kyster",
+      "Frederik Huss Nielsen",
+      "Sabine Oechsner",
+      "Peter Scholl"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_JacobsenS24",
+    "id": "paper:acm_ccs:conf_ccs_WeiW25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_JacobsenS24",
+      "native_id": "conf_ccs_WeiW25",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3691395"
+      "source_url": "https://doi.org/10.1145/3719027.3760731"
     },
-    "title": "Poster: Patching NSEC3-Encloser: The Good, the Bad, and the Ugly.",
-    "summary": "This paper evaluates the effectiveness of patches designed to mitigate the NSEC3-encloser attack in DNS resolvers. NSEC3, used in DNSSEC to authenticate non-existence of records, can be exploited to exhaust resolver resources through excessive SHA-1 hashing. Despite recent patches, our study reveals that major DNS resolvers remain vulnerable. We test the NSEC3 exhaustion attacks against pre- and post-patch versions of popular DNS resolvers (Unbound, BIND9, PowerDNS, and Knot Resolver), and observe a 72-fold increase in CPU instructions during attacks. PowerDNS 5.0.5 and Knot Resolver 5.7.3 showed improvements, limiting CPU load with strict hash limits. Conversely, BIND9 exhibited marginal improvement, and Unbound 1.20.0 experienced increased CPU load. At an attack rate of 150 malicious NSEC3 records per second, benign DNS request loss rates ranged from 2.7% to 30%. Our study indicates the need for robust countermeasures to address NSEC3 vulnerabilities.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Poster: Agentic Shell Honeypot Using Structured Logging.",
+    "summary": "A shell honeypot emulates a command-line interface to record the behaviors of attackers. Traditional honeypots, however, rely on static, rule-based responses that fail to capture the complexity of real-world multi-turn adversarial interactions. Recent efforts have introduced large language model (LLM) driven honeypots. However, existing LLM-based shell honeypots still fall short of realism due to vulnerabilities such as prompt injection, state inconsistency, and response latency. In this work, we present HoneyAgents, an agent-based honeypot system designed to address the aforementioned limitations. HoneyAgents introduces three key innovations: (i) a role-delegate architecture with strategic and response agents that jointly cope with prompt injection; (ii) a structured logging mechanism that achieves long-term memory for interaction state alignment; (iii) a hierarchical planning design within multi-agent cooperation to generate exploitable shell responses within a dynamic interaction time. The evaluation shows that HoneyAgents improves robustness, realism, and efficiency, making LLM-powered honeypots more viable for real-world security operations.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Oliver Jacobsen",
-      "Haya Schulmann"
+      "Kai Wei",
+      "Guangjing Wang 0001"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_JacobsenSVW24",
+    "id": "paper:acm_ccs:conf_ccs_WeissG25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_JacobsenSVW24",
+      "native_id": "conf_ccs_WeissG25",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3691387"
+      "source_url": "https://doi.org/10.1145/3719027.3765154"
     },
-    "title": "Poster: From Fort to Foe: The Threat of RCE in RPKI.",
-    "summary": "In this work, we present a novel severe buffer-overflow vulnerability in the RPKI validator Fort, that allows an attacker to achieve Remote Code Execution (RCE) on the machine running the software. We discuss the unique impact of this RCE on networks that use RPKI, illustrating that RCE vulnerabilities are especially severe in the context of RPKI. The design of RPKI makes RCE easy to exploit on a large scale, allows compromise of RPKI validation integrity, and enables a powerful vector for additional attacks on other critical components of the network, like the border routers. We analyze the vulnerability exposing to this RCE and identify indications that the discovered vulnerability could constitute an intentional backdoor to compromise systems running the software over a benign coding mistake. We disclosed the vulnerability, which has been assigned a CVE rated 9.8 critical (CVE-2024-45237).",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "SlicedPIR: Offloading Heavyweight Work with NTT.",
+    "summary": "We present SlicedPIR, a distributed Private Information Retrieval (PIR) protocol. SlicedPIR efficiently alleviates the server's compute bottleneck by offloading its load across multiple untrusted client machines. In contrast to prior work, SlicedPIR induces only a modest network overhead when the server offloads its work. It achieves those communication savings by exploiting the polynomial encoding of homomorphic encryption schemes typically used in PIR protocols. This encoding lets the server make novel use of the Number Theoretic Transform (NTT) to distribute points on the polynomials as ''slices'' of its data rather than the polynomials themselves. Using NTT allows the clients to process recursive PIR queries on their slices and return a succinct result to the server. The server efficiently verifies the clients' results by leveraging the Schwartz-Zippel lemma, which we adapt to the PIR use case. We show how to integrate SlicedPIR into a private messaging system, where clients write messages to the server's database and then use PIR to secretly query for messages from their friends. We implement a prototype of SlicedPIR and run experiments to show that it scales well with the number of clients and database size. Concretely, SlicedPIR achieves better performance and cuts network usage by over 95% compared to the state-of-the-art.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Oliver Jacobsen",
-      "Haya Schulmann",
-      "Niklas Vogel",
-      "Michael Waidner"
+      "Jonathan Weiss",
+      "Yossi Gilad"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_JangKS24",
+    "id": "paper:acm_ccs:conf_ccs_WiedemeierKFZPC25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_JangKS24",
+      "native_id": "conf_ccs_WiedemeierKFZPC25",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3690189"
+      "source_url": "https://doi.org/10.1145/3719027.3765040"
     },
-    "title": "SysBumps: Exploiting Speculative Execution in System Calls for Breaking KASLR in macOS for Apple Silicon.",
-    "summary": "Apple silicon is the proprietary ARM-based processor that powers the mainstream of Apple devices. The move to this proprietary architecture presents unique challenges in addressing security issues, requiring huge research efforts into the security of Apple silicon-based systems. In this paper, we study the security of KASLR, the randomization-based kernel hardening technique, on the state-of-the-art macOS system equipped with Apple silicon processors. Because KASLR has been subject to many microarchitectural side-channel attacks, the latest operating systems, including macOS, use kernel isolation, which separates the kernel page table from the userspace table. Kernel isolation in macOS provides a barrier to KASLR break attacks. To overcome this, we exploit speculative execution in system calls. By using Spectre-type gadgets in system calls, an unprivileged attacker can cause translations of the attacker's chosen kernel addresses, causing the TLB to change according to the validity of the address. This allows the construction of an attack primitive that breaks KASLR bypassing kernel isolation. Since the TLB is used as a side-channel source, we reverse-engineer the hidden internals of the TLB on various M-series processors using a hardware performance monitoring unit. Based on our attack primitive, we implement SysBumps, the first KASLR break attack on macOS for Apple silicon. Throughout evaluation, we show that SysBumps can effectively break KASLR across different M-series processors and macOS versions. We also discuss possible mitigations against the proposed attack.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Walking The Last Mile: Studying Decompiler Output Correction in Practice.",
+    "summary": "The increasing prevalence of Python has spurred interest in decompiling Python PYC bytecode. This work presents the first large-scale study on human-assisted Python decompilation in the wild, leveraging extensive data from pylingual.io, spanning 181,646 PYC binaries, 9,003 user-submitted patches, and 393 accuracy-verified patches. We investigate how reverse engineers respond to inaccurate decompilation and identify factors influencing their efforts to achieve accurate decompilation. We complement this unprecedented observational data with a controlled user study that isolates the technical difficulty of patching imperfect Python decompilations.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Hyerean Jang",
-      "Taehun Kim",
-      "Youngjoo Shin"
+      "Joshua Wiedemeier",
+      "Simon Klancher",
+      "Joel Flores",
+      "Max Zheng",
+      "Jaehyun Park",
+      "Sang Kil Cha",
+      "Kangkook Jee"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_JiDTH24",
+    "id": "paper:acm_ccs:conf_ccs_WongHGYLLC25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_JiDTH24",
+      "native_id": "conf_ccs_WongHGYLLC25",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3691419"
+      "source_url": "https://doi.org/10.1145/3719027.3760722"
     },
-    "title": "Poster: Whether We Are Good Enough to Detect Server-Side Request Forgeries in PHP-native Applications?",
-    "summary": "Server-side request forgeries (SSRFs) are inevitable in PHP web applications. Existing static taint analysis tools for PHP suffer from both high rates of false positives and false negatives in detecting SSRF because they do not incorporate application-specific sources and sinks, account for PHP's dynamic type characteristics, and include SSRF-specific taint analysis rules, leading to over-tainting and under-tainting. In this work, we propose a technique to accurately detect SSRF vulnerabilities in PHP web applications. First, we extract both PHP built-in and application-specific functions as candidate source and sink functions. Second, we extract explicit and implicit function calls to construct applications' call graphs. Third, we perform a taint analysis based on a set of rules that prevent over-tainting and under-tainting. We have implemented a prototype and evaluated it with different types of PHP web applications. Our preliminary experiment shows that we detect 24 SSRF vulnerabilities in 13 different types of applications. 20 of the vulnerabilities are known and 4 of the vulnerabilities are new.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Poster: When Logs Misbehave: Retrieving Known APTs from Noisy Graphs.",
+    "summary": "The task of retrieving known Advanced Persistent Threat (APT) campaigns from system activity graphs, where nodes represent MITRE ATT&CK techniques and edges encode temporal or resource-level relationships, requires reasoning over structures. In operational settings, these target graphs are often noisy due to incomplete detection, technique misclassification, and benign-induced structural artifacts. To address this issue, we formulate the task as approximate subgraph matching between a known APT query graph and a noisy, partially observed technique graph. In this poster, we introduce a preliminary embedding-based retrieval method, aiming to promote it as a robust and practical framework for retrieving known APTs in real-world environments.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Yuchen Ji",
-      "Ting Dai",
-      "Yutian Tang",
-      "Jingzhu He"
+      "Guo-Wei Wong",
+      "Yi-Ting Huang",
+      "Ying-Ren Guo",
+      "Ming-Chuan Yang",
+      "Shou-De Lin",
+      "Wang-Chien Lee",
+      "Meng Chang Chen"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_JiaMK24",
+    "id": "paper:acm_ccs:conf_ccs_WongTHGJWC25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_JiaMK24",
+      "native_id": "conf_ccs_WongTHGJWC25",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3670381"
+      "source_url": "https://doi.org/10.1145/3719027.3760736"
     },
-    "title": "HomeRun: High-efficiency Oblivious Message Retrieval, Unrestricted.",
+    "title": "Poster: LogCraft: Crafting CVE-Aware Synthetic Worlds (Logs).",
     "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Yanxue Jia",
-      "Varun Madathil",
-      "Aniket Kate"
+      "Kai-Xian Wong",
+      "Chan-Jien Tan",
+      "Yi-Ting Huang",
+      "Ying-Ren Guo",
+      "Yu-Zih Jheng",
+      "Guo-Wei Wong",
+      "Meng Chang Chen"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_soups_ZibaeiST23",
+    "id": "paper:usenix_security:conf_uss_0002CVK0F25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_soups_ZibaeiST23",
+      "native_id": "conf_uss_0002CVK0F25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/soups2023/presentation/zibaei"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-shirley"
     },
-    "title": "Dissecting Nudges in Password Managers: Simple Defaults are Powerful.",
+    "title": "Abusability of Automation Apps in Intimate Partner Violence.",
     "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Samira Zibaei",
-      "Amirali Salehi-Abari",
-      "Julie Thorpe"
+      "Shirley Zhang 0002",
+      "Paul Chung",
+      "Jacob Vervelde",
+      "Nishant Korapati",
+      "Rahul Chatterjee 0001",
+      "Kassem Fawaz"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_0001BK23",
+    "id": "paper:usenix_security:conf_uss_0002GYSL25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_0001BK23",
+      "native_id": "conf_uss_0002GYSL25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/park"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/zhang-lan"
     },
-    "title": "ACon2: Adaptive Conformal Consensus for Provable Blockchain Oracles.",
+    "title": "Exploiting Task-Level Vulnerabilities: An Automatic Jailbreak Attack and Defense Benchmarking for LLMs.",
     "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Sangdon Park 0001",
-      "Osbert Bastani",
-      "Taesoo Kim"
+      "Lan Zhang 0002",
+      "Xinben Gao",
+      "Liuyi Yao",
+      "Jinke Song",
+      "Yaliang Li"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_0001D023",
+    "id": "paper:usenix_security:conf_uss_0002H0GT025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_0001D023",
+      "native_id": "conf_uss_0002H0GT025",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/chen-yizheng"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/yao-xin"
     },
-    "title": "Continuous Learning for Android Malware Detection.",
-    "summary": "Machine learning methods can detect Android malware with very high accuracy. However, these classifiers have an Achilles heel, concept drift: they rapidly become out of date and ineffective, due to the evolution of malware apps and benign apps. Our research finds that, after training an Android malware classifier on one year's worth of data, the F1 score quickly dropped from 0.99 to 0.76 after 6 months of deployment on new test samples. In this paper, we propose new methods to combat the concept drift problem of Android malware classifiers. Since machine learning technique needs to be continuously deployed, we use active learning: we select new samples for analysts to label, and then add the labeled samples to the training set to retrain the classifier. Our key idea is, similarity-based uncertainty is more robust against concept drift. Therefore, we combine contrastive learning with active learning. We propose a new hierarchical contrastive learning scheme, and a new sample selection technique to continuously train the Android malware classifier. Our evaluation shows that this leads to significant improvements, compared to previously published methods for active learning. Our approach reduces the false negative rate from 14% (for the best baseline) to 9%, while also reducing the false positive rate (from 0.86% to 0.48%). Also, our approach maintains more consistent performance across a seven-year time period than past methods.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "EchoLLM: LLM-Augmented Acoustic Eavesdropping Attack on Bone Conduction Headphones with mmWave Radar.",
+    "summary": "",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Yizheng Chen 0001",
-      "Zhoujie Ding",
-      "David A. Wagner 0001"
+      "Xin Yao 0002",
+      "Kecheng Huang",
+      "Yimin Chen 0004",
+      "Jiawei Guo",
+      "Jie Tang",
+      "Ming Zhao 0007"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_0001GLLM0Y23",
+    "id": "paper:usenix_security:conf_uss_0002HKBL25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_0001GLLM0Y23",
+      "native_id": "conf_uss_0002HKBL25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/bell"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/suliman"
     },
-    "title": "ACORN: Input Validation for Secure Aggregation.",
-    "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Towards a Re-evaluation of Data Forging Attacks in Practice.",
+    "summary": "Data forging attacks provide counterfactual proof that a model was trained on a given dataset, when in fact, it was trained on another. These attacks work by forging (replacing) mini-batches with ones containing distinct training examples that produce nearly identical gradients. Data forging appears to break any potential avenues for data governance, as adversarial model owners may forge their training set from a dataset that is not compliant to one that is. Given these serious implications on data auditing and compliance, we critically analyse data forging from both a practical and theoretical point of view, finding that a key practical limitation of current attack methods makes them easily detectable by a verifier; namely that they cannot produce sufficiently identical gradients. Theoretically, we analyse the question of whether two distinct mini-batches can produce the same gradient. Generally, we find that while there may exist an infinite number of distinct mini-batches with real-valued training examples and labels that produce the same gradient, finding those that are within the allowed domain e.g. pixel values between 0-255 and one hot labels is a non trivial task. Our results call for the reevaluation of the strength of existing attacks, and for additional research into successful data forging, given the serious consequences it may have on machine learning and privacy.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "James Bell 0001",
-      "Adrià Gascón",
-      "Tancrède Lepoint",
-      "Baiyu Li",
-      "Sarah Meiklejohn",
-      "Mariana Raykova 0001",
-      "Cathie Yun"
+      "Mohamed Suliman 0002",
+      "Anisa Halimi",
+      "Swanand Ravindra Kadhe",
+      "Nathalie Baracaldo",
+      "Douglas J. Leith"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_0001JG0Z023",
+    "id": "paper:usenix_security:conf_uss_0002L0025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_0001JG0Z023",
+      "native_id": "conf_uss_0002L0025",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/shen-meng"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/wen"
     },
-    "title": "Subverting Website Fingerprinting Defenses with Robust Traffic Representation.",
-    "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "SoK: Data Reconstruction Attacks Against Machine Learning Models: Definition, Metrics, and Benchmark.",
+    "summary": "Data reconstruction attacks, which aim to recover the training dataset of a target model with limited access, have gained increasing attention in recent years. However, there is currently no consensus on a formal definition of data reconstruction attacks or appropriate evaluation metrics for measuring their quality. This lack of rigorous definitions and universal metrics has hindered further advancement in this field. In this paper, we address this issue in the vision domain by proposing a unified attack taxonomy and formal definitions of data reconstruction attacks. We first propose a set of quantitative evaluation metrics that consider important criteria such as quantifiability, consistency, precision, and diversity. Additionally, we leverage large language models (LLMs) as a substitute for human judgment, enabling visual evaluation with an emphasis on high-quality reconstructions. Using our proposed taxonomy and metrics, we present a unified framework for systematically evaluating the strengths and limitations of existing attacks and establishing a benchmark for future research. Empirical results, primarily from a memorization perspective, not only validate the effectiveness of our metrics but also offer valuable insights for designing new attacks.Additionally, we leverage large language models (LLMs) as a substitute for human judgment, enabling visual evaluation with an emphasis on high-quality reconstructions. Using our proposed taxonomy and metrics, we present a unified framework for systematically evaluating the strengths and limitations of existing attacks and establishing a benchmark for future research. Empirical results, primarily from a memorization perspective, not only validate the effectiveness of our metrics but also offer valuable insights for designing new attacks.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Meng Shen 0001",
-      "Kexin Ji",
-      "Zhenbo Gao",
-      "Qi Li 0002",
-      "Liehuang Zhu",
-      "Ke Xu 0002"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Luo0WTXZLL23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Luo0WTXZLL23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/vulhawk-cross-architecture-vulnerability-detection-with-entropy-based-binary-code-search/"
-    },
-    "title": "VulHawk: Cross-architecture Vulnerability Detection with Entropy-based Binary Code Search.",
-    "summary": "Code reuse is widespread in software development.It brings a heavy spread of vulnerabilities, threatening software security.Unfortunately, with the development and deployment of the Internet of Things (IoT), the harms of code reuse are magnified.Binary code search is a viable way to find these hidden vulnerabilities.Facing IoT firmware images compiled by different compilers with different optimization levels from different architectures, the existing methods are hard to fit these complex scenarios.In this paper, we propose a novel intermediate representation function model, which is an architecture-agnostic model for cross-architecture binary code search.It lifts binary code into microcode and preserves the main semantics of binary functions via complementing implicit operands and pruning redundant instructions.Then, we use natural language processing techniques and graph convolutional networks to generate function embeddings.We call the combination of a compiler, architecture, and optimization level as a file environment, and take a divideand-conquer strategy to divide a similarity calculation problem of C 2 N cross-file-environment scenarios into N -1 embedding transferring sub-problems.We propose an entropy-based adapter to transfer function embeddings from different file environments into the same file environment to alleviate the differences caused by various file environments.To precisely identify vulnerable functions, we propose a progressive search strategy to supplement function embeddings with fine-grained features to reduce false positives caused by patched functions.We implement a prototype named VulHawk and conduct experiments under seven different tasks to evaluate its performance and robustness.The experiments show VulHawk outperforms Asm2Vec, Asteria, BinDiff, GMN, PalmTree, SAFE, and Trex.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
-    "authors": [
-      "Zhenhao Luo",
-      "Pengfei Wang 0010",
-      "Baosheng Wang",
-      "Yong Tang 0005",
-      "Wei Xie 0007",
-      "Xu Zhou 0004",
-      "Danjun Liu",
-      "Kai Lu 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Lyastani0B23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Lyastani0B23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/a-systematic-study-of-the-consistency-of-two-factor-authentication-user-journeys-on-top-ranked-websites/"
-    },
-    "title": "A Systematic Study of the Consistency of Two-Factor Authentication User Journeys on Top-Ranked Websites.",
-    "summary": "Heuristics for user experience state that users will transfer their expectations from one product to another. A lack of consistency between products can increase users' cognitive friction, leading to frustration and rejection. This paper presents the first systematic study of the external, functional consistency of two-factor authentication user journeys on top-ranked websites. We find that these websites implement only a minimal number of design aspects consistently (e.g., naming and location of settings) but exhibit mixed design patterns for setup and usage of a second factor. Moreover, we find that some of the more consistently realized aspects, such as descriptions of two-factor authentication, have been described in the literature as problematic and adverse to user experience. Our results advocate for more general UX guidelines for 2FA implementers and raise new research questions about the 2FA user journeys.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
-    "authors": [
-      "Sanam Ghorbani Lyastani",
+      "Rui Wen 0002",
+      "Yiyong Liu",
       "Michael Backes 0001",
-      "Sven Bugiel"
+      "Yang Zhang 0016"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_MaCRZ00L023",
+    "id": "paper:ndss:conf_ndss_0088LL022",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_MaCRZ00L023",
+      "native_id": "conf_ndss_0088LL022",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/loki-state-aware-fuzzing-framework-for-the-implementation-of-blockchain-consensus-protocols/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-261/"
     },
-    "title": "LOKI: State-Aware Fuzzing Framework for the Implementation of Blockchain Consensus Protocols.",
-    "summary": "Blockchain consensus protocols are responsible for coordinating the nodes to make agreements on the transaction results.Their implementation bugs, including memory-related and consensus logic vulnerabilities, may pose serious threats.Fuzzing is a promising technique for protocol vulnerability detection.However, existing fuzzers cannot deal with complex consensus states of distributed nodes, thus generating a large number of useless packets, inhibiting their effectiveness in reaching the deep logic of consensus protocols.In this work, we propose LOKI, a blockchain consensus protocol fuzzing framework that detects consensus memoryrelated and logic bugs.LOKI fetches consensus states in realtime by masquerading as a node.First, LOKI dynamically builds a state model that records the state transition of each node.After that, LOKI adaptively generates the input targets, types, and contents according to the state model.With a bug analyzer, LOKI detects the consensus protocol implementation bugs with well-defined oracles.We implemented and evaluated LOKI on four widely used commercial blockchain systems, including Go-Ethereum, Meta Diem, IBM Fabric, and WeBank FISCO-BCOS.LOKI has detected 20 serious previously unknown vulnerabilities with 9 CVEs assigned.14 of them are memory-related bugs, and 6 are consensus logic bugs.Compared with state-of-the-art tools such as Peach, Fluffy, and Twins, LOKI improves the branch coverage by an average of 43.21%, 182.05%, and 291.58%.",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Demystifying Local Business Search Poisoning for Illicit Drug Promotion.",
+    "summary": "A new type of underground illicit drug promotion, illicit drug business listings on local search services (e.g., local knowledge panel, map search, voice search), is increasingly being utilized by miscreants to advertise and sell controlled substances on the Internet. Miscreants exploit the problematic upstream local data brokers featuring loose control on data quality to post listings that promote illicit drug business. Such a promotion, in turn, pollutes the major downstream search providers' knowledge bases and further reaches a large audience through web, map, and voice searches. To the best of our knowledge, little has been done so far to understand this new illicit promotion in terms of its scope, impact, and techniques, not to mention any effort to identify such illicit drug business listings on a large scale. In this paper, we report the first measurement study of the illicit drug business listings on local search services. Our findings have brought to light the vulnerable and less regulated local business listing ecosystem and the pervasiveness of such illicit activities, as well as the impact on local search audience.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Fuchen Ma",
-      "Yuanliang Chen",
-      "Meng Ren",
-      "Yuanhang Zhou",
-      "Yu Jiang 0001",
-      "Ting Chen 0002",
-      "Huizhong Li",
-      "Jiaguang Sun 0001"
+      "Peng Wang 0088",
+      "Zilong Lin 0001",
+      "Xiaojing Liao",
+      "XiaoFeng Wang 0001"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_MaWSXWX23",
+    "id": "paper:ndss:conf_ndss_AbidiNAS22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_MaWSXWX23",
+      "native_id": "conf_ndss_AbidiNAS22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/the-beatrix-resurrections-robust-backdoor-detection-via-gram-matrices/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-233/"
     },
-    "title": "The &quot;Beatrix&quot; Resurrections: Robust Backdoor Detection via Gram Matrices.",
-    "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "Privacy in Urban Sensing with Instrumented Fleets, Using Air Pollution Monitoring As A Usecase.",
+    "summary": "Companies providing services like cab sharing, ecommerce logistics and food delivery are willing to instrument their vehicles for scaling up measurements of traffic congestion, travel time, road surface quality, air quality, etc. Analyzing fine-grained sensors data from such large fleets can be highly beneficial; however, this sensor information reveals the locations and the number of vehicles in the deployed fleet. This sensitive data is of high business value to rival companies in the same business domain, e.g., Uber vs. Ola, Uber vs. Lyft in cab sharing, or Amazon vs. Alibaba in the e-commerce domain. This paper provides privacy guarantees for the scenario mentioned above using Gaussian Process Regression (GPR) based interpolation, Differential Privacy (DP), and Secure two-party computations (2PC). The sensed values from instrumented vehicle fleets are made available preserving fleet and client privacy, along with client utility. Our system has efficient latency and bandwidth overheads, even for resource-constrained mobile clients. To demonstrate our end-to-end system, we build a sample Android application that gives the least polluted route alternatives given a source-destination pair in a privacy preserved manner.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Wanlun Ma",
-      "Derui Wang",
-      "Ruoxi Sun 0001",
-      "Minhui Xue 0001",
-      "Sheng Wen",
-      "Yang Xiang 0001"
+      "Ismi Abidi",
+      "Ishan Nangia",
+      "Paarijaat Aditya",
+      "Rijurekha Sen"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_MadathilTVFMM23",
+    "id": "paper:ndss:conf_ndss_BabunSAU22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_MadathilTVFMM23",
+      "native_id": "conf_ndss_BabunSAU22",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/cryptographic-oracle-based-conditional-payments/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-192/"
     },
-    "title": "Cryptographic Oracle-based Conditional Payments.",
-    "summary": "",
-    "published_at": "2026-06-27T04:39:24.135676+00:00",
-    "fetched_at": "2026-06-27T04:39:24.135676+00:00",
+    "title": "The Truth Shall Set Thee Free: Enabling Practical Forensic Capabilities in Smart Environments.",
+    "summary": "scale, the analysis performed on data collected from multiple devices may reveal substantially more forensic details about the activities occurring in the smart environment at any time. In fact, in some countries, insurance companies have started giving incentives to customers if they install measures like smart lighting, smart energy management systems, smart fire, or water monitoring devices",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
     "authors": [
-      "Varun Madathil",
-      "Sri Aravinda Krishnan Thyagarajan",
-      "Dimitrios Vasilopoulos",
-      "Lloyd Fournier",
-      "Giulio Malavolta",
-      "Pedro Moreno-Sanchez"
+      "Leonardo Babun",
+      "Amit Kumar Sikder",
+      "Abbas Acar",
+      "A. Selcuk Uluagac"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_Blanton022",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_Blanton022",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-224/"
+    },
+    "title": "Binary Search in Secure Computation.",
+    "summary": "Binary search is one of the most popular algorithms in computer science. Realizing it in the context of secure multiparty computation which demands data-oblivious execution, however, is extremely non-trivial. It has been previously implemented only using oblivious RAM (ORAM) for secure computation and in this work we initiate the study of this topic using conventional secure computation techniques based on secret sharing. We develop a suite of protocols with different properties and of different structure for searching a private dataset of m elements by a private numeric key. Our protocols result in O(m) and O( m) communication using only standard and readily available operations based on secret sharing. We further extend our protocols to support write operations, namely, binary search that obliviously updates the selected element, and realize two variants: updating non-key fields and updating the key field. Our implementation results indicate that even after applying known and our own optimizations to the fastest ORAM constructions, our solutions are faster than optimized ORAM schemes for datasets of up to 2 30 elements and by up to two orders of magnitude. We hope that this work will prompt further interest in seeking efficient realizations of this important problem.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
+    "authors": [
+      "Marina Blanton",
+      "Chen Yuan 0002"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_ChenHGY22",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_ChenHGY22",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-234/"
+    },
+    "title": "Titanium: A Metadata-Hiding File-Sharing System with Malicious Security.",
+    "summary": "End-to-end encrypted file-sharing systems enable users to share files without revealing the file contents to the storage servers. However, the servers still learn metadata, including user identities and access patterns. Prior work tried to remove such leakage but relied on strong assumptions. Metal (NDSS '20) is not secure against malicious servers. MCORAM (ASIACRYPT '20) provides confidentiality against malicious servers, but not integrity.",
+    "published_at": "2026-06-28T05:07:08.428494+00:00",
+    "fetched_at": "2026-06-28T05:07:08.428494+00:00",
+    "authors": [
+      "Weikeng Chen",
+      "Thang Hoang",
+      "Jorge Guajardo",
+      "Attila A. Yavuz"
     ]
   }
 ]
