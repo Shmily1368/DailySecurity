@@ -1,449 +1,427 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_GongZZZ0P25",
+    "id": "paper:ieee_sp:conf_sp_WangHV24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GongZZZ0P25",
+      "native_id": "conf_sp_WangHV24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00251"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00086"
     },
-    "title": "Not All Edges are Equally Robust: Evaluating the Robustness of Ranking-Based Federated Learning.",
-    "summary": "Federated Ranking Learning (FRL) is a state-of-the-art FL framework that stands out for its communication efficiency and resilience to poisoning attacks. It diverges from the traditional FL framework in two ways: 1) it leverages discrete rankings instead of gradient updates, significantly reducing communication costs and limiting the potential space for malicious updates, and 2) it uses majority voting on the server side to establish the global ranking, ensuring that individual updates have minimal influence since each client contributes only a single vote. These features enhance the system's scalability and position FRL as a promising paradigm for FL training. However, our analysis reveals that FRL is not inherently robust, as certain edges are particularly vulnerable to poisoning attacks. Through a theoretical investigation, we prove the existence of these vulnerable edges and establish a lower bound and an upper bound for identifying them in each layer. Based on this finding, we introduce a novel local model poisoning attack against FRL, namely Vulnerable Edge Manipulation (VEM) attack. The VEM attack focuses on identifying and perturbing the most vulnerable edges in each layer and leveraging an optimization-based approach to maximize the attack's impact. Through extensive experiments on benchmark datasets, we demonstrate that our attack achieves an overall 53.23 % attack impact and is 3.7× more impactful than existing methods. Our findings highlight significant vulnerabilities in ranking-based FL systems and underline the urgency for the development of new robust FL frameworks.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
+    "title": "Ligetron: Lightweight Scalable End-to-End Zero-Knowledge Proofs Post-Quantum ZK-SNARKs on a Browser.",
+    "summary": "Zero-Knowledge (ZK) proofs were introduced in the seminal work of Goldwasser, Micali, and Rackoff (STOC 1985) and remain one of the cornerstones of modern cryptography. With the advent of Blockchains, there has been reinvigorated interest in deploying ZK-proof systems in the form of ZK-SNARKs. ZKSNARKs are an attractive variant as they are non-interactive (in fact, publicly verifiable) and succinct. Yet, current deployments require huge running times and/or very large memory, and scaling them to large circuits cannot be accomplished on commodity hardware. We design and implement an efficient sublinear non-interactive zero-knowledge system, Ligetron that can be deployed as a web application and scales to billions of gates. Core to our construction is identifying a good intermediate representation, namely Web Assembly (WASM) that is: (1) versatile to represent complex computations, (2) can be compiled from most popular high-level languages, and (3) embodies rich semantics to derive space-efficiency. On the backend, we design and implement a space-efficient variant of the Ligero ZK system introduced in the work of Ames et al. (ACM CCS 2017) that can leverage the semantics of WASM. Ligetron is the first post-quantum ZK-SNARK to scale to billion gates and run from a browser. On commodity hardware, Ligetron scales to arbitrarily large circuits while showcasing competitive prover/verifier running times and better proof lengths than all previous post-quantum ZK-SNARKs.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
     "authors": [
-      "Zirui Gong",
-      "Yanjun Zhang",
-      "Leo Yu Zhang",
-      "Zhaoxi Zhang 0001",
-      "Yong Xiang 0001",
-      "Shirui Pan"
+      "Ruihan Wang",
+      "Carmit Hazay",
+      "Muthuramakrishnan Venkitasubramaniam"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GuTZGY25",
+    "id": "paper:ieee_sp:conf_sp_WangMFSWXB24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GuTZGY25",
+      "native_id": "conf_sp_WangMFSWXB24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00011"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00233"
     },
-    "title": "EPScan: Automated Detection of Excessive RBAC Permissions in Kubernetes Applications.",
-    "summary": "As the dominant container orchestration system, Kubernetes has a large ecosystem of third-party applications. The third-party Kubernetes applications access various cluster resources to extend the cluster functionality and Kubernetes adopts the RBAC mechanism to manage the resource access permissions. Recently, researchers revealed that third-party applications are granted excessive permissions and proposed an excessive permission attack. The attacker can exploit some critical excessive permissions to escape from the worker node and take over the whole Kubernetes cluster. However, this attack assumes that the attacker has compromised a worker node via container escape, which is difficult to realize in real scenarios. Therefore, we propose a new excessive permission attack with simpler attack conditions in this paper. We reveal that an attacker who has compromised one pod (less difficult than compromising a worker node) can exploit some other excessive privileges to take over worker nodes or break the availability and data confidentiality of other pods. Although excessive permissions of third-party applications pose a great threat to the security of Kubernetes clusters, there is no effective approach for detecting them. In this paper, we propose a novel approach, namely EPScan, which automatically detects exploitable excessive permissions in third-party applications. To achieve this, EPScan employs a novel pod-oriented program analysis, which utilizes several new techniques to accurately identify the resource access behavior of the programs running in each pod. EPScan then compares the permissions required for these behaviors with those requested by the pod in its configuration file and finally reports the exploitable permissions that can be abused to launch an excessive permissions attack. We applied EPScan on 108 third-party applications from the CNCF projects and discovered previously unknown exploitable excessive permissions in 106 pods across 50 applications with a precision of 94.6% and 9 CVE identifiers assigned.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
+    "title": "CORELOCKER: Neuron-level Usage Control.",
+    "summary": "The growing complexity of deep neural network models in modern application domains necessitates a complex training process that involves extensive data, sophisticated design, and substantial computation. The trained model inherently encapsulates the intellectual property owned by the model developer (or the model owner). Consequently, safeguarding the model from unauthorized use by entities who obtain access to the model (or the model controllers), i.e., preserving the fundamental rights and proprietary interests of the model owner, has become a critical necessity.In this work, we propose CORELOCKER, employing the strategic extraction of a small subset of significant weights from the neural network. This subset serves as the access key to unlock the model’s complete capability. The extraction of the key can be customized to varying levels of utility that the model owner intends to release. Authorized users with the access key have full access to the model, while unauthorized users can have access to only part of its capability. We establish a formal foundation to underpin CORELOCKER, which provides crucial lower and upper bounds for the utility disparity between pre- and post-protected networks. We evaluate CORELOCKER using representative datasets such as Fashion-MNIST, CIFAR-10, and CIFAR-100, as well as real-world models including Vg-gNet, ResNet, and DenseNet. Our experimental results confirm its efficacy. We also demonstrate CORELOCKER’s resilience against advanced model restoration attacks based on fine-tuning and pruning.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
     "authors": [
-      "Yue Gu",
-      "Xin Tan",
-      "Yuan Zhang",
-      "Siyan Gao",
-      "Min Yang"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GuZA25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GuZA25",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00209"
-    },
-    "title": "I know What You Sync: Covert and Side Channel Attacks on File Systems via syncfs.",
-    "summary": "Operating Systems enforce logical isolation using abstractions such as processes, containers, and isolation tech-nologies to protect a system from malicious or buggy code. In this paper, we show new types of side channels through the file system that break this logical isolation. The file system plays a critical role in the operating system, managing all I/O activities between the application layer and the physical storage device. We observe that the file system implementation is shared, leading to timing leakage when using common I/O system calls. Specifically, we found that modern operating systems take advantage of any flush operation (which saves cached blocks in memory to the SSD or disk) to flush all of the I/O buffers, even those used by other isolation domains. Thus, by measuring the delay of syncfs, the attacker can infer the I/O behavior of victim programs. We then demonstrate a syncfs covert channel attack on multiple file systems, including both Linux native file systems and the Windows file system, achieving a maximum bandwidth of 5 Kbps with an error rate of 0.15% on Linux and 7.6 Kbps with an error rate of 1.9% on Windows. In addition, we construct three side-channel attacks targeting both Linux and Android devices. On Linux devices, we implement a website fingerprinting attack and a video fingerprinting attack by tracking the write patterns of temporary buffering files. On Android devices, we design an application fingerprinting attack that leaks application write patterns during boot-up. The attacks achieve over 90% F1 score, precision, and recall. Finally, we demonstrate that these attacks can be exploited across containers implementing a container detection technique and a cross-container covert channel attack.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Cheng Gu",
-      "Yicheng Zhang 0004",
-      "Nael B. Abu-Ghazaleh"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GuanYSHQWW25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GuanYSHQWW25",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00042"
-    },
-    "title": "Security Perceptions of Users in Stablecoins: Advantages and Risks within the Cryptocurrency Ecosystem.",
-    "summary": "Stablecoins, a type of cryptocurrency pegged to another asset to maintain a stable price, have become an important part of the cryptocurrency ecosystem. Prior studies have primarily focused on examining the security of stablecoins from technical and theoretical perspectives, with limited investigation into users' risk perceptions and security behaviors in stablecoin practices. To address this research gap, we conducted a mixed-method study that included constructing a stablecoin interaction framework based on the literature, which informed the design of our interview protocol, semi-structured interviews (n=21), and Reddit data analysis (9,326 posts). We found that participants see stable value and regulatory compliance as key security advantages of stablecoins over other cryptocurrencies. However, participants also raised concerns about centralization risks in fiat-backed stablecoins, perceived challenges in crypto-backed stablecoins due to limited reliance on fully automated execution, and confusion regarding the complex mechanisms of algorithmic stablecoins. We proposed improving user education and optimizing mechanisms to address these concerns and promote the safer use of stablecoins.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Maggie Yongqi Guan",
-      "Yaman Yu",
-      "Tanusree Sharma",
-      "Molly Zhuangtong Huang",
-      "Kaihua Qin",
-      "Yang Wang 0005",
-      "Kanye Ye Wang"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GulmezEMN25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GulmezEMN25",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00133"
-    },
-    "title": "Mon CHERI: Mitigating Uninitialized Memory Access with Conditional Capabilities.",
-    "summary": "Up to 10% of memory-safety vulnerabilities in languages like C and C++ stem from uninitialized variables. This work addresses the prevalence and lack of adequate software mitigations for uninitialized memory issues, proposing architectural protections in hardware. Capability-based addressing, such as the University of Cambridge's CHERI, mitigates many memory defects, including spatial and temporal safety violations at an architectural level. CHERI, however, does not handle undefined behavior from uninitialized variables. We extend the CHERI capability model to include “conditional capabilities”, enabling memory-access policies based on prior operations. This allows enforcement of policies that satisfy memory-safety objectives such as “no reads to memory without at least one prior write” (Write-before-Read). We present our architecture extension, compiler support, and detailed evaluation of our approach on the QEMU full-system simulator and a modified FPGA-based CHERI-RISCV softcore. Our evaluation shows conditional capabilities are practical, with high detection accuracy while adding a small (≈3.5%) overhead which is comparable to the cost of baseline CHERI capabilities.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Merve Gülmez",
-      "Håkan Englund",
-      "Jan Tobias Mühlberg",
-      "Thomas Nyman"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Liang023",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Liang023",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3623068"
-    },
-    "title": "Concentrated Geo-Privacy.",
-    "summary": "This paper proposes concentrated geo-privacy (CGP), a privacy notion that can be considered as the counterpart of concentrated differential privacy (CDP) for geometric data. Compared with the previous notion of geo-privacy [1,5], which is the counterpart of standard differential privacy, CGP offers many benefits including simplicity of the mechanism, lower noise scale in high dimensions, and better composability known as advanced composition. The last one is the most important, as it allows us to design complex mechanisms using smaller building blocks while achieving better utilities. To complement this result, we show that the previous notion of geo-privacy inherently does not admit advanced composition even using its approximate version. Next, we study three problems on private geometric data: the identity query, k nearest neighbors, and convex hulls. While the first problem has been previously studied, we give the first mechanisms for the latter two under geo-privacy. For all three problems, composability is essential in obtaining good utility guarantees on the privatized query answer.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Yuting Liang",
-      "Ke Yi 0001"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Liao0CGH23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Liao0CGH23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3616650"
-    },
-    "title": "SkillScanner: Detecting Policy-Violating Voice Applications Through Static Analysis at the Development Phase.",
-    "summary": "The Amazon Alexa marketplace is the largest Voice Personal Assistant (VPA) platform with over 100,000 voice applications (i.e., skills) published to the skills store. In an effort to maintain the quality and trustworthiness of voice-apps, Amazon Alexa has implemented a set of policy requirements to be adhered to by third-party skill developers. However, recent works reveal the prevalence of policy-violating skills in the current skills store. To understand the causes of policy violations in skills, we first conduct a user study with 34 third-party skill developers focusing on whether they are aware of the various policy requirements defined by the Amazon Alexa platform. Our user study results show that there is a notable gap between VPA's policy requirements and skill developers' practices. As a result, it is inevitable that policy-violating skills will be published.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Song Liao",
-      "Long Cheng 0005",
-      "Haipeng Cai",
-      "Linke Guo",
-      "Hongxin Hu"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_LinL23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_LinL23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3624023"
-    },
-    "title": "SaTS&apos;23: The 1st ACM Workshop on Secure and Trustworthy Superapps.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Zhiqiang Lin 0001",
-      "Xiaojing Liao"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_LinLLMGM23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_LinLLMGM23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3623214"
-    },
-    "title": "TypeSqueezer: When Static Recovery of Function Signatures for Binary Executables Meets Dynamic Analysis.",
-    "summary": "Control-Flow Integrity (CFI) is considered a promising solution in thwarting advanced code-reuse attacks. While the problem of backward-edge protection in CFI is nearly closed, effective forward-edge protection is still a major challenge. The keystone of protecting the forward edge is to resolve indirect call targets, which although can be done quite accurately using type-based solutions given the program source code, it faces difficulties when carried out at the binary level. Since the actual type information is unavailable in COTS binaries, type-based indirect call target matching typically resorts to approximate function signatures inferred using the arity and argument width of indirect callsites and calltargets. Doing so with static analysis, therefore, forces the existing solutions to assume the arity/width boundaries in a too-permissive way to defeat sophisticated attacks.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Ziyi Lin",
-      "Jinku Li",
-      "Bowen Li",
-      "Haoyu Ma",
-      "Debin Gao",
-      "Jianfeng Ma 0001"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_LinkerB23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_LinkerB23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3616578"
-    },
-    "title": "ADEM: An Authentic Digital EMblem.",
-    "summary": "In times of armed conflict, the emblems of the red cross, red crescent, and red crystal are used to mark physical infrastructure. This enables military units to identify assets as protected under international humanitarian law to avoid attacking them. In this paper, we tackle the novel security problem of how to extend such protection to digital, network-connected infrastructure through a digital emblem. A digital emblem has a unique combination of security requirements, namely, authentication, accountability, and a property that we call covert inspection. Covert inspection states that those wishing to authenticate assets as protected must be able to do so without revealing that they may attack unprotected entities.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Felix Linker",
-      "David A. Basin"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_RuthOSLGHD25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_RuthOSLGHD25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/ruth"
-    },
-    "title": "A First Look at Governments&apos; Enterprise Security Guidance.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Kimberly Ruth",
-      "Raymond Buernor Obu",
-      "Ifeoluwa Shode",
-      "Gavin Li",
-      "Carrie Gates",
-      "Grant Ho",
-      "Zakir Durumeric"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SahaMBCVL25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SahaMBCVL25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/saha"
-    },
-    "title": "Expert Insights into Advanced Persistent Threats: Analysis, Attribution, and Challenges.",
-    "summary": "Advanced Persistent Threats (APTs) are sophisticated and targeted threats that demand significant effort from analysts for detection and attribution. Researchers have developed various techniques to support these efforts. However, security practitioners’ perceptions and challenges in analyzing APTlevel threats are not yet well understood. To address this gap, we conducted semi-structured interviews with 15 security practitioners across diverse roles and expertise. From the interview responses, we identify a three-layer approach to APT attribution, each having its own goals and challenges. We find that practitioners typically prioritize understanding the adversary’s tactics, techniques, procedures (TTPs), and motivations over identifying the specific entity behind an attack. We also find challenges in existing tools and processes mostly stemming from their inability to handle diverse and complex data and issues with both internal and external collaboration. Based on these findings, we provide four recommendations for improving attribution approaches and discuss how these improvements can address the identified challenges.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Aakanksha Saha",
-      "James Mattei",
-      "Jorge Blasco",
-      "Lorenzo Cavallaro",
-      "Daniel Votipka",
-      "Martina Lindorfer"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SarabiH0KL25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SarabiH0KL25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/sarabi"
-    },
-    "title": "The Ransomware Decade: The Creation of a Fine-Grained Dataset and a Longitudinal Study.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Armin Sarabi",
-      "Ziyuan Huang 0004",
-      "Chenlan Wang 0001",
-      "Tai Karir",
-      "Mingyan Liu"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SasakiIYPEYM25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SasakiIYPEYM25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/sasaki"
-    },
-    "title": "Am I Infected? Lessons from Operating a Large-Scale IoT Security Diagnostic Service.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Takayuki Sasaki",
-      "Tomoya Inazawa",
-      "Youhei Yamaguchi",
-      "Simon Parkin",
-      "Michel van Eeten",
-      "Katsunari Yoshioka",
-      "Tsutomu Matsumoto"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_ScharnowskiHBWK25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ScharnowskiHBWK25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/scharnowski"
-    },
-    "title": "GDMA: Fully Automated DMA Rehosting via Iterative Type Overlays.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Tobias Scharnowski",
-      "Simeon Hoffmann",
-      "Moritz Bley",
-      "Simon Wörner",
-      "Daniel Klischies",
-      "Felix Buchmann",
-      "Nils Ole Tippenhauer",
-      "Thorsten Holz",
-      "Marius Muench"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Luo0WTXZLL23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Luo0WTXZLL23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/vulhawk-cross-architecture-vulnerability-detection-with-entropy-based-binary-code-search/"
-    },
-    "title": "VulHawk: Cross-architecture Vulnerability Detection with Entropy-based Binary Code Search.",
-    "summary": "Code reuse is widespread in software development.It brings a heavy spread of vulnerabilities, threatening software security.Unfortunately, with the development and deployment of the Internet of Things (IoT), the harms of code reuse are magnified.Binary code search is a viable way to find these hidden vulnerabilities.Facing IoT firmware images compiled by different compilers with different optimization levels from different architectures, the existing methods are hard to fit these complex scenarios.In this paper, we propose a novel intermediate representation function model, which is an architecture-agnostic model for cross-architecture binary code search.It lifts binary code into microcode and preserves the main semantics of binary functions via complementing implicit operands and pruning redundant instructions.Then, we use natural language processing techniques and graph convolutional networks to generate function embeddings.We call the combination of a compiler, architecture, and optimization level as a file environment, and take a divideand-conquer strategy to divide a similarity calculation problem of C 2 N cross-file-environment scenarios into N -1 embedding transferring sub-problems.We propose an entropy-based adapter to transfer function embeddings from different file environments into the same file environment to alleviate the differences caused by various file environments.To precisely identify vulnerable functions, we propose a progressive search strategy to supplement function embeddings with fine-grained features to reduce false positives caused by patched functions.We implement a prototype named VulHawk and conduct experiments under seven different tasks to evaluate its performance and robustness.The experiments show VulHawk outperforms Asm2Vec, Asteria, BinDiff, GMN, PalmTree, SAFE, and Trex.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Zhenhao Luo",
-      "Pengfei Wang 0010",
-      "Baosheng Wang",
-      "Yong Tang 0005",
-      "Wei Xie 0007",
-      "Xu Zhou 0004",
-      "Danjun Liu",
-      "Kai Lu 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Lyastani0B23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Lyastani0B23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/a-systematic-study-of-the-consistency-of-two-factor-authentication-user-journeys-on-top-ranked-websites/"
-    },
-    "title": "A Systematic Study of the Consistency of Two-Factor Authentication User Journeys on Top-Ranked Websites.",
-    "summary": "Heuristics for user experience state that users will transfer their expectations from one product to another. A lack of consistency between products can increase users' cognitive friction, leading to frustration and rejection. This paper presents the first systematic study of the external, functional consistency of two-factor authentication user journeys on top-ranked websites. We find that these websites implement only a minimal number of design aspects consistently (e.g., naming and location of settings) but exhibit mixed design patterns for setup and usage of a second factor. Moreover, we find that some of the more consistently realized aspects, such as descriptions of two-factor authentication, have been described in the literature as problematic and adverse to user experience. Our results advocate for more general UX guidelines for 2FA implementers and raise new research questions about the 2FA user journeys.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Sanam Ghorbani Lyastani",
-      "Michael Backes 0001",
-      "Sven Bugiel"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_MaCRZ00L023",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_MaCRZ00L023",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/loki-state-aware-fuzzing-framework-for-the-implementation-of-blockchain-consensus-protocols/"
-    },
-    "title": "LOKI: State-Aware Fuzzing Framework for the Implementation of Blockchain Consensus Protocols.",
-    "summary": "Blockchain consensus protocols are responsible for coordinating the nodes to make agreements on the transaction results.Their implementation bugs, including memory-related and consensus logic vulnerabilities, may pose serious threats.Fuzzing is a promising technique for protocol vulnerability detection.However, existing fuzzers cannot deal with complex consensus states of distributed nodes, thus generating a large number of useless packets, inhibiting their effectiveness in reaching the deep logic of consensus protocols.In this work, we propose LOKI, a blockchain consensus protocol fuzzing framework that detects consensus memoryrelated and logic bugs.LOKI fetches consensus states in realtime by masquerading as a node.First, LOKI dynamically builds a state model that records the state transition of each node.After that, LOKI adaptively generates the input targets, types, and contents according to the state model.With a bug analyzer, LOKI detects the consensus protocol implementation bugs with well-defined oracles.We implemented and evaluated LOKI on four widely used commercial blockchain systems, including Go-Ethereum, Meta Diem, IBM Fabric, and WeBank FISCO-BCOS.LOKI has detected 20 serious previously unknown vulnerabilities with 9 CVEs assigned.14 of them are memory-related bugs, and 6 are consensus logic bugs.Compared with state-of-the-art tools such as Peach, Fluffy, and Twins, LOKI improves the branch coverage by an average of 43.21%, 182.05%, and 291.58%.",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Fuchen Ma",
-      "Yuanliang Chen",
-      "Meng Ren",
-      "Yuanhang Zhou",
-      "Yu Jiang 0001",
-      "Ting Chen 0002",
-      "Huizhong Li",
-      "Jiaguang Sun 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_MaWSXWX23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_MaWSXWX23",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/the-beatrix-resurrections-robust-backdoor-detection-via-gram-matrices/"
-    },
-    "title": "The &quot;Beatrix&quot; Resurrections: Robust Backdoor Detection via Gram Matrices.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
-    "authors": [
-      "Wanlun Ma",
-      "Derui Wang",
+      "Zihan Wang",
+      "Zhongkui Ma",
+      "Xinguo Feng",
       "Ruoxi Sun 0001",
+      "Hu Wang 0005",
       "Minhui Xue 0001",
-      "Sheng Wen",
-      "Yang Xiang 0001"
+      "Guangdong Bai"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_MadathilTVFMM23",
+    "id": "paper:ieee_sp:conf_sp_WangPGVKSF24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_WangPGVKSF24",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00084"
+    },
+    "title": "GPU.zip: On the Side-Channel Implications of Hardware-Based Graphical Data Compression.",
+    "summary": "",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Yingchen Wang",
+      "Riccardo Paccagnella",
+      "Zhao Gang",
+      "Willy R. Vasquez",
+      "David Kohlbrenner",
+      "Hovav Shacham",
+      "Christopher W. Fletcher"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_WangPY24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_WangPY24",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00126"
+    },
+    "title": "SmartInv: Multimodal Learning for Smart Contract Invariant Inference.",
+    "summary": "Smart contracts are software programs that enable diverse business activities on the blockchain. Recent research has identified new classes of \"machine un-auditable\" bugs that arise from source code not meeting underlying transaction contexts. Existing detection methods require human understanding of underlying transaction logic and manual reasoning across different sources of context (i.e., modalities), such as code and natural language specifying the expected transaction behavior.To automate the detection of \"machine un-auditable\" bugs, we present SmartInv, an accurate and fast smart contract invariant inference framework. Our key insight is that the expected behavior of smart contracts, as specified by invariants, relies on understanding and reasoning across multimodal information, such as source code and natural language. We propose a new finetuning and prompting strategy to foundation models, Tier of Thought (ToT), to reason across multiple modalities of smart contracts and to generate invariants. SmartInv then localizes potential vulnerabilities by checking the violation of those generated invariants.We evaluate SmartInv on real-world smart contract bugs that resulted in financial losses over the past 2.5 years (from January 1, 2021 to May 31, 2023). Extensive evaluation shows that SmartInv can generate useful invariants to effectively localize \"machine un-auditable\" bugs, from which SmartInv uncovers 119 zero-day bugs. We sampled eight bugs and reported them to the respective developers. Six vulnerabilities were quickly fixed by the developers, five of which are confirmed as \"high severity.\"",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Sally Junsong Wang",
+      "Kexin Pei",
+      "Junfeng Yang"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_WangXMK24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_WangXMK24",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00015"
+    },
+    "title": "MM-BD: Post-Training Detection of Backdoor Attacks with Arbitrary Backdoor Pattern Types Using a Maximum Margin Statistic.",
+    "summary": "Backdoor attacks are an important type of adversarial threat against deep neural network classifiers, wherein test samples from one or more source classes will be (mis)classified to the attacker’s target class when a backdoor pattern is embedded. In this paper, we focus on the post-training backdoor defense scenario commonly considered in the literature, where the defender aims to detect whether a trained classifier was backdoor-attacked without any access to the training set. Many post-training detectors are designed to detect attacks that use either one or a few specific backdoor embedding functions (e.g., patch-replacement or additive attacks). These detectors may fail when the backdoor embedding function used by the attacker (unknown to the defender) is different from the backdoor embedding function assumed by the defender. In contrast, we propose a post-training defense that detects backdoor attacks with arbitrary types of backdoor embeddings, without making any assumptions about the backdoor embedding type. Our detector leverages the influence of the backdoor attack, independent of the backdoor embedding mechanism, on the landscape of the classifier’s outputs prior to the softmax layer. For each class, a maximum margin statistic is estimated. Detection inference is then performed by applying an unsupervised anomaly detector to these statistics. Thus, our detector does not need any legitimate clean samples, and can efficiently detect backdoor attacks with arbitrary numbers of source classes. These advantages over several state-of-the-art methods are demonstrated on four datasets, for three different types of backdoor patterns, and for a variety of attack configurations. Finally, we propose a novel, general approach for backdoor mitigation once a detection is made. The mitigation approach was the runner-up at the first IEEE Trojan Removal Competition. The code is online available.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Hang Wang",
+      "Zhen Xiang",
+      "David J. Miller 0001",
+      "George Kesidis"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_AharoniDS23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_AharoniDS23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3624030"
+    },
+    "title": "Tutorial-HEPack4ML &apos;23: Advanced HE Packing Methods with Applications to ML.",
+    "summary": "",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Ehud Aharoni",
+      "Nir Drucker",
+      "Hayim Shaul"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_AhmadpanahHS23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_AhmadpanahHS23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3624376"
+    },
+    "title": "Poster: Data Minimization by Construction for Trigger-Action Applications.",
+    "summary": "Trigger-Action Platforms (TAPs) enable applications to integrate various devices and services otherwise unconnected. Recent features of TAPs introduce additional sources of data such as queries in IFTTT. The current TAPs, like IFTTT, demand that trigger and query services transmit excessive amounts of user data to the TAP. To limit the data to what is actually necessary for the execution to comply with the principle of data minimization, input services should send no more than the necessary data. LazyTAP proposes a new paradigm of data minimization by construction in TAPs, introducing a novel perspective for data collection from input services. While the existing push-all approach of TAPs entails coarse-grained data over-approximation, LazyTAP pulls input data on-demand at the level of attributes, once accessed by the app execution. Thanks to the fine granularity provided by LazyTAP, multiple trigger and query services can be naturally minimized while the behavior of app executions is preserved. In addition, a great benefit of LazyTAP is being seamless for third-party app developers. By leveraging laziness, LazyTAP defers computation and proxies objects to load necessary remote data behind the scenes. Our evaluation study on app benchmarks shows that on average LazyTAP improves minimization by 95% over IFTTT and by 38% over minTAP, with a tolerable performance overhead. This poster goes into further details about LazyTAP and elaborates on its prototype implementation.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Mohammad M. Ahmadpanah",
+      "Daniel Hedin",
+      "Andrei Sabelfeld"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_AkonYDH23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_AkonYDH23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3623113"
+    },
+    "title": "Formal Analysis of Access Control Mechanism of 5G Core Network.",
+    "summary": "We present 5GCVerif, a model-based testing framework designed to formally analyze the access control framework of the 5G Core. With its modular design, 5GCVerif employs various abstraction techniques to craft an abstract model that captures the intricate details of the 5G Core's access control mechanism. This approach offers customizability and extensibility in constructing the abstract model and addresses the state explosion problem in model checking. 5GCVerif also sidesteps the challenge of exhaustively generating models for all possible core network configurations by restricting the model checker to explore policy violations only within the valid network configurations. Using 5GCVerif, we evaluated 55 security properties, leading to the discovery of five new vulnerabilities in 5G Core's access control mechanism. The uncovered vulnerabilities can result in multiple attacks including unauthorized entry to sensitive information, illegitimate access to services, and denial-of-services.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Mujtahid Akon",
+      "Tianchang Yang",
+      "Yilu Dong",
+      "Syed Rafiul Hussain"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_AlmgrenF23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_AlmgrenF23",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3624020"
+    },
+    "title": "CPSIoTSec&apos;23: Fifth Workshop on CPS &amp; IoT Security and Privacy.",
+    "summary": "",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Magnus Almgren",
+      "Earlence Fernandes"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_Alroomi023",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Alroomi023",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3576915.3623156"
+    },
+    "title": "Measuring Website Password Creation Policies At Scale.",
+    "summary": "Researchers have extensively explored how password creation policies influence the security and usability of user-chosen passwords, producing evidence-based policy guidelines. However, for web authentication to improve in practice, websites must actually implement these recommendations. To date, there has been limited investigation into what password creation policies are actually deployed by sites. Existing works are mostly dated and all studies relied on manual evaluations, assessing a small set of sites (at most 150, skewed towards top sites). Thus, we lack a broad understanding of the password policies used today. In this paper, we develop an automated technique for inferring a website's password creation policy, and apply it at scale to measure the policies of over 20K sites, over two orders of magnitude (~135x) more sites than prior work. Our findings identify the common policies deployed, potential causes of weak policies, and directions for improving authentication in practice. Ultimately, our study provides the first large-scale understanding of password creation policies on the web.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Suood Alroomi",
+      "Frank Li 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_soups_DanilovaNR021",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_soups_DanilovaNR021",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/soups2021/presentation/danilova"
+    },
+    "title": "Code Reviewing as Methodology for Online Security Studies with Developers - A Case Study with Freelancers on Password Storage.",
+    "summary": "While ample experience with end-user studies exists, only little is known about studies with software developers in a security context. In past research investigating the security behavior of software developers, participants often had to complete programming tasks. However, programming tasks require a large amount of participants' time and effort, which often results in high costs and small sample sizes. We therefore tested a new methodology for security developer studies. In an online study, we asked freelance developers to write code reviews for password-storage code snippets. Since developers often tend to focus on functionality first and security later, similar to end users, we prompted half the participants for security. Although the freelancers indicated that they feel responsible for security, our results showed that they did not focus on security in their code reviews, even in a security-critical task such as password-storage. Almost half the participants wante d to release the insecure code snippets. However, we found that security prompting had a significant effect on the security awareness. To provide further insight into this line of work, we compared our results with similar password-storage studies containing programming tasks, and discussed code reviewing as a new methodology for future security research with developers.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Anastasia Danilova",
+      "Alena Naiakshina",
+      "Anna Rasgauski",
+      "Matthew Smith 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_soups_FranzZAH0B021",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_soups_FranzZAH0B021",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/soups2021/presentation/franz"
+    },
+    "title": "SoK: Still Plenty of Phish in the Sea - A Taxonomy of User-Oriented Phishing Interventions and Avenues for Future Research.",
+    "summary": "Phishing is a prevalent cyber threat, targeting individuals and organizations alike. Previous approaches on anti-phishing measures have started to recognize the role of the user, who, at the center of the target, builds the last line of defense. However, user-oriented phishing interventions are fragmented across a diverse research landscape, which has not been systematized to date. This makes it challenging to gain an overview of the various approaches taken by prior works. In this paper, we present a taxonomy of phishing interventions based on a systematic literature analysis. We shed light on the diversity of existing approaches by analyzing them with respect to the intervention type, the addressed phishing attack vector, the time at which the intervention takes place, and the required user interaction. Furthermore, we highlight shortcomings and challenges emerging from both our literature sample and prior meta-analyses, and discuss them in the light of current movements in the field of usable security. With this article, we hope to provide useful directions for future works on phishing interventions.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Anjuli Franz",
+      "Verena Zimmermann",
+      "Gregor Albrecht",
+      "Katrin Hartwig",
+      "Christian Reuter 0001",
+      "Alexander Benlian",
+      "Joachim Vogt 0002"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_soups_FultonCV0M21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_soups_FultonCV0M21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/soups2021/presentation/fulton"
+    },
+    "title": "Benefits and Drawbacks of Adopting a Secure Programming Language: Rust as a Case Study.",
+    "summary": "",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Kelsey R. Fulton",
+      "Anna Chan",
+      "Daniel Votipka",
+      "Michael Hicks 0001",
+      "Michelle L. Mazurek"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_soups_GerlitzH021",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_soups_GerlitzH021",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/soups2021/presentation/gerlitz"
+    },
+    "title": "Please do not use !?_ or your License Plate Number: Analyzing Password Policies in German Companies.",
+    "summary": "Password composition policies (PCPs) set rules that are intended to increase the security of user-chosen passwords. We conducted an online survey and investigated the employee-facing authentication methods of 83 German companies and the extracted 64 PCPs. We compared the password policies to recommendations proposed by institutions and related work. We found that many companies still require several character classes to be used as well as mandating regular password changes. Short and complex passwords are more often enforced than alternative mechanisms, such as minimum-strength requirements, that related work found more usable. Many of the policies were in line with recommendations given through the German Federal Office for Information Security (BSI). At the same time, there is high heterogeneity in the reported elements. Based on a selection of the main elements (password age, complexity, minimal length), at most seven out of the 64 PCPs are identical. The company siz e does not seem to play a significant role in the configuration of the PCPs.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Eva Gerlitz",
+      "Maximilian Häring",
+      "Matthew Smith 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_soups_HarborthF21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_soups_HarborthF21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/soups2021/presentation/harborth"
+    },
+    "title": "Evaluating and Redefining Smartphone Permissions with Contextualized Justifications for Mobile Augmented Reality Apps.",
+    "summary": "",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "David Harborth",
+      "Alisa Frik"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_00020025",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_MadathilTVFMM23",
+      "native_id": "conf_ndss_00020025",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/cryptographic-oracle-based-conditional-payments/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/understanding-data-importance-in-machine-learning-attacks-does-valuable-data-pose-greater-harm/"
     },
-    "title": "Cryptographic Oracle-based Conditional Payments.",
-    "summary": "",
-    "published_at": "2026-06-29T05:17:05.460361+00:00",
-    "fetched_at": "2026-06-29T05:17:05.460361+00:00",
+    "title": "Understanding Data Importance in Machine Learning Attacks: Does Valuable Data Pose Greater Harm?",
+    "summary": "Machine learning has revolutionized numerous domains, playing a crucial role in driving advancements and enabling data-centric processes.The significance of data in training models and shaping their performance cannot be overstated.Recent research has highlighted the heterogeneous impact of individual data samples, particularly the presence of valuable data that significantly contributes to the utility and effectiveness of machine learning models.However, a critical question remains unanswered: are these valuable data samples more vulnerable to machine learning attacks?In this work, we investigate the relationship between data importance and machine learning attacks by analyzing five distinct attack types.Our findings reveal notable insights.For example, we observe that high importance data samples exhibit increased vulnerability in certain attacks, such as membership inference and model stealing.By analyzing the linkage between membership inference vulnerability and data importance, we demonstrate that sample characteristics can be integrated into membership metrics by introducing samplespecific criteria, therefore enhancing the membership inference performance.These findings emphasize the urgent need for innovative defense mechanisms that strike a balance between maximizing utility and safeguarding valuable data against potential exploitation.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
     "authors": [
-      "Varun Madathil",
-      "Sri Aravinda Krishnan Thyagarajan",
-      "Dimitrios Vasilopoulos",
-      "Lloyd Fournier",
-      "Giulio Malavolta",
-      "Pedro Moreno-Sanchez"
+      "Rui Wen 0002",
+      "Michael Backes 0001",
+      "Yang Zhang 0016"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_000200F25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_000200F25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/revisiting-em-based-estimation-for-locally-differentially-private-protocols/"
+    },
+    "title": "Revisiting EM-based Estimation for Locally Differentially Private Protocols.",
+    "summary": "This paper investigates the fundamental estimation problem in local differential privacy (LDP).We categorize existing estimation methods into two approaches, the unbiased estimation approach, which, under LDP, often gives unreasonable results (negative results or the sum of estimation does not equal to the total number of participating users), due to the excessive amount of noise added in LDP, and the maximal likelihood estimation (MLE)-based approach, which, can give reasonable results, but often suffers from the overfitting issue.To address this challenge, we propose a reduction framework inspired by Gaussian mixture models (GMM).We adapt the reduction framework to LDP estimation by transferring the estimation problem to the density estimation problem of the mixture model.Through the merging operation of the smallest weight component in this mixture model, the EM algorithm converges faster and produces a more robust distribution estimation.We show this framework offers a general and efficient way of modeling various LDP protocols.Through extensive evaluations, we demonstrate the superiority of our approach in terms of mean estimation, categorical distribution estimation, and numerical distribution estimation.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Yutong Ye 0002",
+      "Tianhao Wang 0001",
+      "Min Zhang 0043",
+      "Dengguo Feng"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_00020S0AC0L25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_00020S0AC0L25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/censor-defense-against-gradient-inversion-via-orthogonal-subspace-bayesian-sampling/"
+    },
+    "title": "CENSOR: Defense Against Gradient Inversion via Orthogonal Subspace Bayesian Sampling.",
+    "summary": "Federated learning collaboratively trains a neural network on a global server, where each local client receives the current global model weights and sends back parameter updates (gradients) based on its local private data.The process of sending these model updates may leak client's private data information.Existing gradient inversion attacks can exploit this vulnerability to recover private training instances from a client's gradient vectors.Recently, researchers have proposed advanced gradient inversion techniques that existing defenses struggle to handle effectively.In this work, we present a novel defense tailored for large neural network models.Our defense capitalizes on the high dimensionality of the model parameters to perturb gradients within a subspace orthogonal to the original gradient.By leveraging cold posteriors over orthogonal subspaces, our defense implements a refined gradient update mechanism.This enables the selection of an optimal gradient that not only safeguards against gradient inversion attacks but also maintains model utility.We conduct comprehensive experiments across three different datasets and evaluate our defense against various state-of-the-art attacks and defenses.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Kaiyuan Zhang 0002",
+      "Siyuan Cheng 0005",
+      "Guangyu Shen",
+      "Bruno Ribeiro 0001",
+      "Shengwei An",
+      "Pin-Yu Chen",
+      "Xiangyu Zhang 0001",
+      "Ninghui Li 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_00020YHQ025",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_00020YHQ025",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/explanation-as-a-watermark-towards-harmless-and-multi-bit-model-ownership-verification-via-watermarking-feature-attribution/"
+    },
+    "title": "Explanation as a Watermark: Towards Harmless and Multi-bit Model Ownership Verification via Watermarking Feature Attribution.",
+    "summary": "Ownership verification is currently the most critical and widely adopted post-hoc method to safeguard model copyright.In general, model owners exploit it to identify whether a given suspicious third-party model is stolen from them by examining whether it has particular properties 'inherited' from their released models.Currently, backdoor-based model watermarks are the primary and cutting-edge methods to implant such properties in the released models.However, backdoor-based methods have two fatal drawbacks, including harmfulness and ambiguity.The former indicates that they introduce maliciously controllable misclassification behaviors (i.e., backdoor) to the watermarked released models.The latter denotes that malicious users can easily pass the verification by finding other misclassified samples, leading to ownership ambiguity.In this paper, we argue that both limitations stem from the 'zero-bit' nature of existing watermarking schemes, where they exploit the status (i.e., misclassified) of predictions for verification.Motivated by this understanding, we design a new watermarking paradigm, i.e., Explanation as a Watermark (EaaW), that implants verification behaviors into the explanation of feature attribution instead of model predictions.Specifically, EaaW embeds a 'multi-bit' watermark into the feature attribution explanation of specific trigger samples without changing the original prediction.We correspondingly design the watermark embedding and extraction algorithms inspired by explainable artificial intelligence.In particular, our approach can be used for different tasks (e.g., image classification and text generation).Extensive experiments verify the effectiveness and harmlessness of our EaaW and its resistance to potential attacks.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Shuo Shao 0002",
+      "Yiming Li 0004",
+      "Hongwei Yao",
+      "Yiling He",
+      "Zhan Qin",
+      "Kui Ren 0001"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_0002CH0H25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_0002CH0H25",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/lend-me-your-beam-privacy-implications-of-plaintext-beamforming-feedback-in-wifi/"
+    },
+    "title": "Lend Me Your Beam: Privacy Implications of Plaintext Beamforming Feedback in WiFi.",
+    "summary": "In recent years, the proliferation of WiFi-connected devices and related research has led to novel techniques of utilizing WiFi as sensors, i.e., capturing human movements through channel state information (CSI) perturbations.While this enables passive occupant sensing, it also introduces privacy risks from leaked WiFi signals that attackers can intercept, leading to threats like occupancy detection, critical in scenarios such as burglaries or stalking.We propose LeakyBeam, a novel and improved occupancy detection attack that leverages a new side channel from WiFi CSI, namely beamforming feedback information (BFI).BFI retains victim's movement information, even when transmitted through walls, and is easily captured since BFI packets are unencrypted, making them a rich source of privacy-sensitive information.Furthermore, we also introduce a defense mechanism that obfuscates BFI packets, requiring minimal hardware changes.We demonstrate LeakyBeam's effectiveness through a comprehensive real-world evaluation at a distance of 20 meters, achieving true positive and negative rates of 82.7% and 96.7%, respectively.",
+    "published_at": "2026-06-30T04:49:21.920339+00:00",
+    "fetched_at": "2026-06-30T04:49:21.920339+00:00",
+    "authors": [
+      "Rui Xiao 0002",
+      "Xiankai Chen",
+      "Yinghui He",
+      "Jun Han 0001",
+      "Jinsong Han"
     ]
   }
 ]
