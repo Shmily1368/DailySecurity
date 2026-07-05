@@ -1,37 +1,39 @@
 {
   "items": [
     {
-      "id": "osv:CVE-2026-33871",
+      "id": "osv:CVE-2026-23302",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-33871",
-        "native_id": "CVE-2026-33871"
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23302",
+        "native_id": "CVE-2026-23302"
       },
-      "title": "Netty HTTP/2 CONTINUATION Frame Flood DoS via Zero-Byte Frame Bypass",
-      "summary": "Netty is an asynchronous, event-driven network application framework. In versions prior to 4.1.132.Final and 4.2.10.Final, a remote user can trigger a Denial of Service (DoS) against a Netty HTTP/2 server by sending a flood of `CONTINUATION` frames. The server's lack of a limit on the number of `CONTINUATION` frames, combined with a bypass of existing size-based mitigations using zero-byte frames, allows an user to cause excessive CPU consumption with minimal bandwidth, rendering the server unresponsive. Versions 4.1.132.Final and 4.2.10.Final fix the issue.",
+      "title": "net: annotate data-races around sk->sk_{data_ready,write_space}",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet: annotate data-races around sk->sk_{data_ready,write_space}\n\nskmsg (and probably other layers) are changing these pointers\nwhile other cpus might read them concurrently.\n\nAdd corresponding READ_ONCE()/WRITE_ONCE() annotations\nfor UDP, TCP and AF_UNIX.",
       "raw_text": null,
-      "published_at": "2026-03-27T19:55:23.135000Z",
-      "updated_at": "2026-04-16T08:44:16.818359Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-03-25T10:26:57.470000Z",
+      "updated_at": "2026-04-02T13:12:20.415991Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-33871"
+        "CVE-2026-23302"
       ],
       "vendors": [],
-      "products": [],
+      "products": [
+        "Kernel"
+      ],
       "affected_versions": [],
       "topics": [
         "advisory",
-        "cwe-770"
+        "linux"
       ],
       "lang": "en",
       "risk": {
         "cvss_score": null,
-        "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+        "cvss_vector": null,
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -47,43 +49,48 @@
       },
       "threat_meta": null,
       "references": [
-        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/33xxx/CVE-2026-33871.json",
-        "https://github.com/netty/netty/security/advisories/GHSA-w9fj-cfpg-grvv",
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-33871"
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git",
+        "https://git.kernel.org/stable/c/27fccdbcbbfc4651b6f66756e6fa3f52e051ec23",
+        "https://git.kernel.org/stable/c/2ef2b20cf4e04ac8a6ba68493f8780776ff84300",
+        "https://git.kernel.org/stable/c/f17c1c4acbe2bd702abce73a847a04a196fab2c5",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23302.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23302"
       ]
     },
     {
-      "id": "osv:CVE-2026-33870",
+      "id": "osv:CVE-2026-23278",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-33870",
-        "native_id": "CVE-2026-33870"
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23278",
+        "native_id": "CVE-2026-23278"
       },
-      "title": "Netty: HTTP Request Smuggling via Chunked Extension Quoted-String Parsing",
-      "summary": "Netty is an asynchronous, event-driven network application framework. In versions prior to 4.1.132.Final and 4.2.10.Final, Netty incorrectly parses quoted strings in HTTP/1.1 chunked transfer encoding extension values, enabling request smuggling attacks. Versions 4.1.132.Final and 4.2.10.Final fix the issue.",
+      "title": "netfilter: nf_tables: always walk all pending catchall elements",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_tables: always walk all pending catchall elements\n\nDuring transaction processing we might have more than one catchall element:\n1 live catchall element and 1 pending element that is coming as part of the\nnew batch.\n\nIf the map holding the catchall elements is also going away, its\nrequired to toggle all catchall elements and not just the first viable\ncandidate.\n\nOtherwise, we get:\n WARNING: ./include/net/netfilter/nf_tables.h:1281 at nft_data_release+0xb7/0xe0 [nf_tables], CPU#2: nft/1404\n RIP: 0010:nft_data_release+0xb7/0xe0 [nf_tables]\n [..]\n __nft_set_elem_destroy+0x106/0x380 [nf_tables]\n nf_tables_abort_release+0x348/0x8d0 [nf_tables]\n nf_tables_abort+0xcf2/0x3ac0 [nf_tables]\n nfnetlink_rcv_batch+0x9c9/0x20e0 [..]",
       "raw_text": null,
-      "published_at": "2026-03-27T19:54:15.586000Z",
-      "updated_at": "2026-04-16T08:44:18.427652Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-03-20T08:08:58.566000Z",
+      "updated_at": "2026-07-04T18:29:52.762747Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-33870"
+        "CVE-2026-23278"
       ],
       "vendors": [],
-      "products": [],
+      "products": [
+        "Kernel"
+      ],
       "affected_versions": [],
       "topics": [
         "advisory",
-        "cwe-444"
+        "linux"
       ],
       "lang": "en",
       "risk": {
         "cvss_score": null,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "cvss_vector": null,
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -99,34 +106,142 @@
       },
       "threat_meta": null,
       "references": [
-        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/33xxx/CVE-2026-33870.json",
-        "https://github.com/netty/netty/security/advisories/GHSA-pwqr-wmgm-9rr8",
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-33870",
-        "https://w4ke.info/2025/06/18/funky-chunks.html",
-        "https://w4ke.info/2025/10/29/funky-chunks-2.html",
-        "https://www.rfc-editor.org/rfc/rfc9110"
+        "https://git.kernel.org/stable/c/77c26b5056d693ffe5e9f040e946251cdb55ae55",
+        "https://git.kernel.org/stable/c/7cb9a23d7ae40a702577d3d8bacb7026f04ac2a9",
+        "https://git.kernel.org/stable/c/de47a88c6b807910f05703fb6605f7efdaa11417",
+        "https://git.kernel.org/stable/c/eb0948fa13298212c5f8b30ee48efdae4389ab09",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23278.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23278",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
       ]
     },
     {
-      "id": "osv:CVE-2026-24308",
+      "id": "osv:CVE-2026-23272",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-24308",
-        "native_id": "CVE-2026-24308"
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23272",
+        "native_id": "CVE-2026-23272"
       },
-      "title": "CVE-2026-24308",
-      "summary": "Improper handling of configuration values in ZKConfig in Apache ZooKeeper 3.8.5 and 3.9.4 on all platforms allows an attacker to expose sensitive information stored in client configuration in the client's logfile. Configuration values are exposed at INFO level logging rendering potential production systems affected by the issue. Users are recommended to upgrade to version 3.8.6 or 3.9.5 which fixes this issue.",
+      "title": "netfilter: nf_tables: unconditionally bump set->nelems before insertion",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnetfilter: nf_tables: unconditionally bump set->nelems before insertion\n\nIn case that the set is full, a new element gets published then removed\nwithout waiting for the RCU grace period, while RCU reader can be\nwalking over it already.\n\nTo address this issue, add the element transaction even if set is full,\nbut toggle the set_full flag to report -ENFILE so the abort path safely\nunwinds the set to its previous state.\n\nAs for element updates, decrement set->nelems to restore it.\n\nA simpler fix is to call synchronize_rcu() in the error path.\nHowever, with a large batch adding elements to already maxed-out set,\nthis could cause noticeable slowdown of such batches.",
       "raw_text": null,
-      "published_at": "2026-03-07T09:16:07.660000Z",
-      "updated_at": "2026-03-14T15:05:46.153908Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-03-20T08:08:52.946000Z",
+      "updated_at": "2026-05-02T08:14:15.574151Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-24308"
+        "CVE-2026-23272"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/6826131c7674329335ca25df2550163eb8a1fd0c",
+        "https://git.kernel.org/stable/c/ccb8c8f3c1127cf34d18c737309897c68046bf21",
+        "https://git.kernel.org/stable/c/def602e498a4f951da95c95b1b8ce8ae68aa733a",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23272.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23272",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56422",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56422",
+        "native_id": "CVE-2025-56422"
+      },
+      "title": "CVE-2025-56422",
+      "summary": "A deserialization vulnerability in LimeSurvey before v6.15.0+250623 allows a remote attacker to execute arbitrary code on the server.",
+      "raw_text": null,
+      "published_at": "2026-03-10T18:17:58.883000Z",
+      "updated_at": "2026-04-10T05:30:13.903840Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56422"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://limesurvey.com/",
+        "https://github.com/hongancalif/security-advisories/blob/main/CVE-2025-56422.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56421",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56421",
+        "native_id": "CVE-2025-56421"
+      },
+      "title": "CVE-2025-56421",
+      "summary": "SQL Injection vulnerability in LimeSurvey before v.6.15.4+250710 allows a remote attacker to obtain sensitive information from the database.",
+      "raw_text": null,
+      "published_at": "2026-03-10T18:17:58.753000Z",
+      "updated_at": "2026-04-10T05:30:14.445575Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56421"
       ],
       "vendors": [],
       "products": [],
@@ -153,30 +268,30 @@
       },
       "threat_meta": null,
       "references": [
-        "https://lists.apache.org/thread/qng3rtzv2pqkmko4rhv85jfplkyrgqdr",
-        "http://www.openwall.com/lists/oss-security/2026/03/07/5"
+        "http://limesurvey.com/",
+        "https://github.com/hongancalif/security-advisories/blob/main/CVE-2025-56421.md"
       ]
     },
     {
-      "id": "osv:CVE-2026-24281",
+      "id": "osv:CVE-2025-69725",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-24281",
-        "native_id": "CVE-2026-24281"
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-69725",
+        "native_id": "CVE-2025-69725"
       },
-      "title": "CVE-2026-24281",
-      "summary": "Hostname verification in Apache ZooKeeper ZKTrustManager falls back to reverse DNS (PTR) when IP SAN validation fails, allowing attackers who control or spoof PTR records to impersonate ZooKeeper servers or clients with a valid certificate for the PTR name. It's important to note that attacker must present a certificate which is trusted by ZKTrustManager which makes the attack vector harder to exploit. Users are recommended to upgrade to version 3.8.6 or 3.9.5, which fixes this issue by introducing a new configuration option to disable reverse DNS lookup in client and quorum protocols.",
+      "title": "CVE-2025-69725",
+      "summary": "An Open Redirect vulnerability in the go-chi/chi >=5.2.2 RedirectSlashes function allows remote attackers to redirect victim users to malicious websites using the legitimate website domain.",
       "raw_text": null,
-      "published_at": "2026-03-07T09:16:07.437000Z",
-      "updated_at": "2026-03-14T12:47:22.777443Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-02-19T17:24:39.830000Z",
+      "updated_at": "2026-06-30T18:30:05.832559Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-24281"
+        "CVE-2025-69725"
       ],
       "vendors": [],
       "products": [],
@@ -187,7 +302,7 @@
       "lang": "en",
       "risk": {
         "cvss_score": null,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:H/I:H/A:N",
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:N/A:N",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -203,30 +318,243 @@
       },
       "threat_meta": null,
       "references": [
-        "https://lists.apache.org/thread/088ddsbrzhd5lxzbqf5n24yg0mwh9jt2",
-        "http://www.openwall.com/lists/oss-security/2026/03/07/4"
+        "http://go-chichi.com/",
+        "https://github.com/go-chi/chi/security/advisories/GHSA-mqqf-5wvp-8fh8"
       ]
     },
     {
-      "id": "osv:CVE-2026-23864",
+      "id": "osv:CVE-2025-70397",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-23864",
-        "native_id": "CVE-2026-23864"
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-70397",
+        "native_id": "CVE-2025-70397"
       },
-      "title": "CVE-2026-23864",
-      "summary": "Multiple denial of service vulnerabilities exist in React Server Components, affecting the following packages: react-server-dom-parcel, react-server-dom-turbopack, react-server-dom-webpack.\n\nThe vulnerabilities are triggered by sending specially crafted HTTP requests to Server Function endpoints, and could lead to server crashes, out-of-memory exceptions or excessive CPU usage; depending on the vulnerable code path being exercised, the application configuration and application code.\n\nStrongly consider upgrading to the latest package versions to reduce risk and prevent availability issues in applications using React Server Components.",
+      "title": "CVE-2025-70397",
+      "summary": "jizhicms 2.5.6 is vulnerable to SQL Injection in Article/deleteAll and Extmolds/deleteAll via the data parameter.",
       "raw_text": null,
-      "published_at": "2026-01-26T20:16:16.773000Z",
-      "updated_at": "2026-04-10T05:39:16.396175Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-02-17T16:20:25.467000Z",
+      "updated_at": "2026-04-10T05:35:29.674353Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-23864"
+        "CVE-2025-70397"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://jizhicms.com/",
+        "https://www.23882.me/index.php/2026/02/15/jizhicms-%e5%90%8e%e5%8f%b0%e5%ad%98%e5%9c%a8sql%e6%b3%a8%e5%85%a5/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23204",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23204",
+        "native_id": "CVE-2026-23204"
+      },
+      "title": "net/sched: cls_u32: use skb_header_pointer_careful()",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nnet/sched: cls_u32: use skb_header_pointer_careful()\n\nskb_header_pointer() does not fully validate negative @offset values.\n\nUse skb_header_pointer_careful() instead.\n\nGangMin Kim provided a report and a repro fooling u32_classify():\n\nBUG: KASAN: slab-out-of-bounds in u32_classify+0x1180/0x11b0\nnet/sched/cls_u32.c:221",
+      "raw_text": null,
+      "published_at": "2026-02-14T16:27:27.708000Z",
+      "updated_at": "2026-06-07T23:29:17.502495Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23204"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/13336a6239b9d7c6e61483017bb8bdfe3ceb10a5",
+        "https://git.kernel.org/stable/c/8a672f177ebe19c93d795fbe967846084fbc7943",
+        "https://git.kernel.org/stable/c/cabd1a976375780dabab888784e356f574bbaed8",
+        "https://git.kernel.org/stable/c/cfa745830e45ecb75c061aa34330ee0cac941cc7",
+        "https://git.kernel.org/stable/c/e41a23e61259f5526af875c3b86b3d42a9bae0e5",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23204.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23204",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2026-23052",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2026-23052",
+        "native_id": "CVE-2026-23052"
+      },
+      "title": "ftrace: Do not over-allocate ftrace memory",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\nftrace: Do not over-allocate ftrace memory\n\nThe pg_remaining calculation in ftrace_process_locs() assumes that\nENTRIES_PER_PAGE multiplied by 2^order equals the actual capacity of the\nallocated page group. However, ENTRIES_PER_PAGE is PAGE_SIZE / ENTRY_SIZE\n(integer division). When PAGE_SIZE is not a multiple of ENTRY_SIZE (e.g.\n4096 / 24 = 170 with remainder 16), high-order allocations (like 256 pages)\nhave significantly more capacity than 256 * 170. This leads to pg_remaining\nbeing underestimated, which in turn makes skip (derived from skipped -\npg_remaining) larger than expected, causing the WARN(skip != remaining)\nto trigger.\n\nExtra allocated pages for ftrace: 2 with 654 skipped\nWARNING: CPU: 0 PID: 0 at kernel/trace/ftrace.c:7295 ftrace_process_locs+0x5bf/0x5e0\n\nA similar problem in ftrace_allocate_records() can result in allocating\ntoo many pages. This can trigger the second warning in\nftrace_process_locs().\n\nExtra allocated pages for ftrace\nWARNING: CPU: 0 PID: 0 at kernel/trace/ftrace.c:7276 ftrace_process_locs+0x548/0x580\n\nUse the actual capacity of a page group to determine the number of pages\nto allocate. Have ftrace_allocate_pages() return the number of allocated\npages to avoid having to calculate it. Use the actual page group capacity\nwhen validating the number of unused pages due to skipped entries.\nDrop the definition of ENTRIES_PER_PAGE since it is no longer used.",
+      "raw_text": null,
+      "published_at": "2026-02-04T16:04:21.739000Z",
+      "updated_at": "2026-04-02T13:11:51.902077Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2026-23052"
+      ],
+      "vendors": [],
+      "products": [
+        "Kernel"
+      ],
+      "affected_versions": [],
+      "topics": [
+        "advisory",
+        "linux"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/9aef476717994e96dadfb359641c4b82b521aa36",
+        "https://git.kernel.org/stable/c/be55257fab181b93af38f8c4b1b3cb453a78d742",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/23xxx/CVE-2026-23052.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-23052",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-71001",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-71001",
+        "native_id": "CVE-2025-71001"
+      },
+      "title": "CVE-2025-71001",
+      "summary": "A segmentation violation in the flow.column_stack component of OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
+      "raw_text": null,
+      "published_at": "2026-01-28T19:16:24.127000Z",
+      "updated_at": "2026-04-10T05:35:34.282130Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-71001"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/Daisy2ang",
+        "http://oneflow.com/",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10658"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-71000",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-71000",
+        "native_id": "CVE-2025-71000"
+      },
+      "title": "CVE-2025-71000",
+      "summary": "An issue in the flow.cuda.BoolTensor component of OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
+      "raw_text": null,
+      "published_at": "2026-01-28T18:16:51.977000Z",
+      "updated_at": "2026-03-15T14:53:30.602793Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-71000"
       ],
       "vendors": [],
       "products": [],
@@ -253,29 +581,31 @@
       },
       "threat_meta": null,
       "references": [
-        "https://www.facebook.com/security/advisories/cve-2026-23864"
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10659"
       ]
     },
     {
-      "id": "osv:CVE-2025-13465",
+      "id": "osv:CVE-2025-70999",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2025-13465",
-        "native_id": "CVE-2025-13465"
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-70999",
+        "native_id": "CVE-2025-70999"
       },
-      "title": "CVE-2025-13465",
-      "summary": "Lodash versions 4.0.0 through 4.17.22 are vulnerable to prototype pollution in the _.unset and _.omit functions. An attacker can pass crafted paths which cause Lodash to delete methods from global prototypes.\n\nThe issue permits deletion of properties but does not allow overwriting their original behavior.\n\nThis issue is patched on 4.17.23",
+      "title": "CVE-2025-70999",
+      "summary": "A GPU device-ID validation flaw in the flow.cuda.get_device_capability() component of OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) via a crafted device ID.",
       "raw_text": null,
-      "published_at": "2026-01-21T20:16:05.250000Z",
-      "updated_at": "2026-06-26T08:29:30.512591Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-01-28T18:16:51.867000Z",
+      "updated_at": "2026-03-14T15:05:07.066911Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2025-13465"
+        "CVE-2025-70999"
       ],
       "vendors": [],
       "products": [],
@@ -286,7 +616,7 @@
       "lang": "en",
       "risk": {
         "cvss_score": null,
-        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:L/A:N",
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -302,41 +632,42 @@
       },
       "threat_meta": null,
       "references": [
-        "https://github.com/lodash/lodash/security/advisories/GHSA-xxjr-mmjv-4gpg"
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10660"
       ]
     },
     {
-      "id": "osv:CVE-2026-21441",
+      "id": "osv:CVE-2025-65891",
       "type": "advisory",
       "source_info": {
         "source": "osv",
         "source_sub": "osv.dev",
         "source_name": "OSV.dev",
-        "source_url": "https://osv.dev/vulnerability/CVE-2026-21441",
-        "native_id": "CVE-2026-21441"
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65891",
+        "native_id": "CVE-2025-65891"
       },
-      "title": "urllib3 vulnerable to decompression-bomb safeguard bypass when following HTTP redirects (streaming API)",
-      "summary": "urllib3 is an HTTP client library for Python. urllib3's streaming API is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once. urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption. Starting in version 1.22 and prior to version 2.6.3, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client. Applications and libraries are affected when they stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects. Users should upgrade to at least urllib3 v2.6.3, in which the library does not decode content of redirect responses when `preload_content=False`. If upgrading is not immediately possible, disable redirects by setting `redirect=False` for requests to untrusted source.",
+      "title": "CVE-2025-65891",
+      "summary": "A GPU device-ID validation flaw in OneFlow v0.9.0 allows attackers to trigger a Denial of Dervice (DoS) by invoking flow.cuda.get_device_properties() with an invalid or negative device index.",
       "raw_text": null,
-      "published_at": "2026-01-07T22:09:01.936000Z",
-      "updated_at": "2026-04-17T13:29:29.883432Z",
-      "fetched_at": "2026-07-04T04:27:37.765012Z",
+      "published_at": "2026-01-28T18:16:50.067000Z",
+      "updated_at": "2026-03-15T22:51:27.565634Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
       "authors": [],
       "affiliations": [],
       "cves": [
-        "CVE-2026-21441"
+        "CVE-2025-65891"
       ],
       "vendors": [],
       "products": [],
       "affected_versions": [],
       "topics": [
-        "advisory",
-        "cwe-409"
+        "advisory"
       ],
       "lang": "en",
       "risk": {
         "cvss_score": null,
-        "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
         "epss_score": null,
         "epss_percentile": null,
         "kev_status": "unknown",
@@ -352,289 +683,3755 @@
       },
       "threat_meta": null,
       "references": [
-        "https://lists.debian.org/debian-lts-announce/2026/01/msg00017.html",
-        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2026/21xxx/CVE-2026-21441.json",
-        "https://github.com/urllib3/urllib3/security/advisories/GHSA-38jv-5279-wg99",
-        "https://nvd.nist.gov/vuln/detail/CVE-2026-21441",
-        "https://github.com/urllib3/urllib3/commit/8864ac407bba8607950025e0979c4c69bc7abc7b"
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10661",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65890",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65890",
+        "native_id": "CVE-2025-65890"
+      },
+      "title": "CVE-2025-65890",
+      "summary": "A device-ID validation flaw in OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) by calling flow.cuda.synchronize() with an invalid or out-of-range GPU device index.",
+      "raw_text": null,
+      "published_at": "2026-01-28T17:16:08.677000Z",
+      "updated_at": "2026-03-14T12:46:16.136578Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65890"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10662",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65889",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65889",
+        "native_id": "CVE-2025-65889"
+      },
+      "title": "CVE-2025-65889",
+      "summary": "A type validation flaw in the flow.dstack() component of OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
+      "raw_text": null,
+      "published_at": "2026-01-28T17:16:08.560000Z",
+      "updated_at": "2026-03-15T22:51:27.589284Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65889"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10663",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65888",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65888",
+        "native_id": "CVE-2025-65888"
+      },
+      "title": "CVE-2025-65888",
+      "summary": "A dimension validation flaw in the flow.empty() component of OneFlow 0.9.0 allows attackers to cause a Denial of Service (DoS) via a negative or excessively large dimension value.",
+      "raw_text": null,
+      "published_at": "2026-01-28T17:16:08.437000Z",
+      "updated_at": "2026-04-10T05:35:01.856182Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65888"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10664",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65887",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65887",
+        "native_id": "CVE-2025-65887"
+      },
+      "title": "CVE-2025-65887",
+      "summary": "A division-by-zero vulnerability in the flow.floor_divide() component of OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) via a crafted input tensor with zero.",
+      "raw_text": null,
+      "published_at": "2026-01-28T17:16:08.313000Z",
+      "updated_at": "2026-03-15T22:51:27.407713Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65887"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/Daisy2ang",
+        "http://oneflow.com/",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10665",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65886",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65886",
+        "native_id": "CVE-2025-65886"
+      },
+      "title": "CVE-2025-65886",
+      "summary": "A shape mismatch vulnerability in OneFlow v0.9.0 allows attackers to cause a Denial of Service (DoS) via supplying crafted tensor shapes.",
+      "raw_text": null,
+      "published_at": "2026-01-28T17:16:08.183000Z",
+      "updated_at": "2026-04-10T05:35:01.845808Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65886"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10666",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2024-54855",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2024-54855",
+        "native_id": "CVE-2024-54855"
+      },
+      "title": "CVE-2024-54855",
+      "summary": "fabricators Ltd Vanilla OS 2 Core image v1.1.0 was discovered to contain static keys for the SSH service, allowing attackers to possibly execute a man-in-the-middle attack during connections with other hosts.",
+      "raw_text": null,
+      "published_at": "2026-01-13T16:15:54.730000Z",
+      "updated_at": "2026-03-13T11:31:14.445830Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2024-54855"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:R/S:U/C:H/I:L/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://fabricators.com/",
+        "http://vanilla.com/",
+        "https://github.com/Vanilla-OS/core-image/security/advisories/GHSA-67pc-hqr2-g34h"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-50334",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-50334",
+        "native_id": "CVE-2025-50334"
+      },
+      "title": "CVE-2025-50334",
+      "summary": "An issue in Technitium DNS Server v.13.5 allows a remote attacker to cause a denial of service via the rate-limiting component",
+      "raw_text": null,
+      "published_at": "2026-01-08T17:15:47.603000Z",
+      "updated_at": "2026-04-10T05:29:15.376189Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-50334"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://technitium.com/",
+        "https://github.com/TechnitiumSoftware/DnsServer/blob/v13.3/DnsServerCore/Dns/DnsServer.cs",
+        "https://github.com/TechnitiumSoftware/DnsServer/blob/master/CHANGELOG.md",
+        "https://github.com/TechnitiumSoftware/DnsServer/commit/7229b217238213cc6275eea68a7e17d73df1603e",
+        "https://github.com/FPokerFace/Security-Advisory/tree/main/CVE-2025-50334"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-67109",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-67109",
+        "native_id": "CVE-2025-67109"
+      },
+      "title": "CVE-2025-67109",
+      "summary": "Improper verification of the time certificate in Eclipse Cyclone DDS before v0.10.5 allows attackers to bypass certificate checks and execute commands with System privileges.",
+      "raw_text": null,
+      "published_at": "2025-12-23T16:16:23.057000Z",
+      "updated_at": "2026-04-10T05:35:43.191208Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-67109"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://eclipse.com/",
+        "https://github.com/eclipse-cyclonedds/cyclonedds/blob/master/src/ddsrt/src/time/posix/time.c#L28",
+        "https://github.com/eclipse-cyclonedds/cyclonedds/blob/master/src/security/builtin_plugins/authentication/src/auth_utils.c#L84",
+        "https://gist.github.com/lkloliver/669e15bc7e6194133e4ee1026ce157e6"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-67108",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-67108",
+        "native_id": "CVE-2025-67108"
+      },
+      "title": "CVE-2025-67108",
+      "summary": "eProsima Fast-DDS v3.3 was discovered to contain improper validation for ticket revocation, resulting in insecure communications and connections.",
+      "raw_text": null,
+      "published_at": "2025-12-23T16:16:22.897000Z",
+      "updated_at": "2026-04-10T05:34:38.908954Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-67108"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://eprosima.com/",
+        "http://fast-dds.com/",
+        "https://github.com/eProsima/Fast-DDS/blob/master/src/cpp/security/accesscontrol/Permissions.cpp#L263",
+        "https://gist.github.com/lkloliver/81b5d5a8328d712dbfd497bf11dbe913"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65865",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65865",
+        "native_id": "CVE-2025-65865"
+      },
+      "title": "CVE-2025-65865",
+      "summary": "An integer overflow in eProsima Fast-DDS v3.3 allows attackers to cause a Denial of Service (DoS) via a crafted input.",
+      "raw_text": null,
+      "published_at": "2025-12-23T16:16:22.733000Z",
+      "updated_at": "2026-04-10T05:34:09.313288Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65865"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://eprosima.com/",
+        "http://fast-dds.com/",
+        "https://gist.github.com/lkloliver/7aa48cb9fc7a1dd74cb595212bb69d33",
+        "https://github.com/lkloliver/poc/blob/main/Detail.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-67418",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-67418",
+        "native_id": "CVE-2025-67418"
+      },
+      "title": "CVE-2025-67418",
+      "summary": "ClipBucket 5.5.2 is affected by an improper access control issue where the product is shipped or deployed with hardcoded default administrative credentials. An unauthenticated remote attacker can log in to the administrative panel using these default credentials, resulting in full administrative control of the application.",
+      "raw_text": null,
+      "published_at": "2025-12-22T20:15:45.303000Z",
+      "updated_at": "2026-04-10T05:34:42.047788Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-67418"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://clipbucket.com/",
+        "https://medium.com/@arpit03sharma2003/cve-2025-67418-when-default-credentials-become-a-remote-root-button-03be5ee4b927"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-67291",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-67291",
+        "native_id": "CVE-2025-67291"
+      },
+      "title": "CVE-2025-67291",
+      "summary": "A stored cross-site scripting (XSS) vulnerability in the Media module of Piranha CMS v12.1 allows attackers to execute arbitrary web scripts or HTML via injecting a crafted payload into the Name field.",
+      "raw_text": null,
+      "published_at": "2025-12-22T20:15:45.200000Z",
+      "updated_at": "2026-04-10T05:34:42.550705Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-67291"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://piranha.com/",
+        "https://github.com/vuquyen03/CVE/tree/main/CVE-2025-67291"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-67290",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-67290",
+        "native_id": "CVE-2025-67290"
+      },
+      "title": "CVE-2025-67290",
+      "summary": "A stored cross-site scripting (XSS) vulnerability in the Page Settings module of Piranha CMS v12.1 allows attackers to execute arbitrary web scripts or HTML via injecting a crafted payload into the Excerpt field.",
+      "raw_text": null,
+      "published_at": "2025-12-22T20:15:45.100000Z",
+      "updated_at": "2026-04-10T05:34:40.912065Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-67290"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://piranha.com/",
+        "https://github.com/vuquyen03/CVE/tree/main/CVE-2025-67290"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-67289",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-67289",
+        "native_id": "CVE-2025-67289"
+      },
+      "title": "CVE-2025-67289",
+      "summary": "An arbitrary file upload vulnerability in the Attachments module of Frappe Framework v15.89.0 allows attackers to execute arbitrary code via uploading a crafted XML file.",
+      "raw_text": null,
+      "published_at": "2025-12-22T18:16:16.947000Z",
+      "updated_at": "2026-04-10T05:34:41.248146Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-67289"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://frappe.com/",
+        "http://erpnext.com/",
+        "https://github.com/vuquyen03/CVE/blob/main/CVE-2025-67289/README.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56157",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56157",
+        "native_id": "CVE-2025-56157"
+      },
+      "title": "CVE-2025-56157",
+      "summary": "Default credentials in Dify thru 1.5.1. PostgreSQL username and password specified in the docker-compose.yaml file included in its source code. NOTE: the Supplier reports that the Docker configuration does not make PostgreSQL (on TCP port 5432) exposed by default in version 1.0.1 or later.",
+      "raw_text": null,
+      "published_at": "2025-12-18T19:16:26.687000Z",
+      "updated_at": "2026-04-10T05:30:08.762704Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56157"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://gist.github.com/Cristliu/298f51cbc72c45d91632cd0d65aa8161",
+        "https://github.com/langgenius/dify/releases/tag/1.0.1",
+        "http://dify.com/",
+        "https://github.com/langgenius/dify/issues/15285",
+        "https://github.com/langgenius/dify/pull/15286",
+        "https://github.com/langgenius/dify/pull/15286.diff",
+        "https://github.com/langgenius/dify",
+        "https://gist.github.com/Cristliu/216ddbadaf3258498c93d408683ecabd"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65807",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65807",
+        "native_id": "CVE-2025-65807"
+      },
+      "title": "CVE-2025-65807",
+      "summary": "An issue in sd command v1.0.0 and before allows attackers to escalate privileges to root via a crafted command.",
+      "raw_text": null,
+      "published_at": "2025-12-10T16:16:27.387000Z",
+      "updated_at": "2026-04-10T05:35:00.186627Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65807"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://sd.com/",
+        "https://github.com/chmln/sd",
+        "https://gist.github.com/faabbi/827f10e144fdd342e13a3dd838902e83"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65882",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65882",
+        "native_id": "CVE-2025-65882"
+      },
+      "title": "CVE-2025-65882",
+      "summary": "An issue was discovered in openmptcprouter thru 0.64 in file common/package/utils/sys-upgrade-helper/src/tools/sysupgrade.c in function create_xor_ipad_opad allowing attackers to potentially write arbitrary files or execute arbitrary commands.",
+      "raw_text": null,
+      "published_at": "2025-12-09T19:15:49.770000Z",
+      "updated_at": "2026-04-10T05:38:52.783064Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65882"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://openmptcprouter.com/",
+        "https://github.com/Ysurac/openmptcprouter/commit/09393d1c41a227bea7d5b85c0a06221b1302b25f",
+        "https://gist.github.com/AradCohen/939ee50d60c4d2bd555a364615a5ab9c"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65594",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65594",
+        "native_id": "CVE-2025-65594"
+      },
+      "title": "CVE-2025-65594",
+      "summary": "OpenSIS 9.2 and below is vulnerable to Incorrect Access Control in Student.php, which allows an authenticated low-privilege user to perform unauthorized database write operations relating to the data of other users.",
+      "raw_text": null,
+      "published_at": "2025-12-09T18:16:08.143000Z",
+      "updated_at": "2026-04-10T05:34:06.135679Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65594"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://opensis.com/",
+        "https://gitlab.com/tsuretettee/cve-2025-65594"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-61078",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-61078",
+        "native_id": "CVE-2025-61078"
+      },
+      "title": "CVE-2025-61078",
+      "summary": "Cross-site scripting (XSS) vulnerability in Request IP form in phpIPAM v1.7.3 allows remote attackers to inject arbitrary web script or HTML via the instructions parameter for the /app/admin/instructions/edit-result.php endpoint.",
+      "raw_text": null,
+      "published_at": "2025-12-09T18:15:55.973000Z",
+      "updated_at": "2026-04-10T05:32:31.309368Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-61078"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://phpipam.com/",
+        "https://glitch0ne.com/2025/12/05/cve-2025-61078-cross-site-scripting-xss-vulnerability-in-request-ip-form-in-phpipam-v1-7-3/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65799",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65799",
+        "native_id": "CVE-2025-65799"
+      },
+      "title": "CVE-2025-65799",
+      "summary": "A lack of file name validation or verification in the Attachment service of usememos memos v0.25.2 allows attackers to execute a path traversal.",
+      "raw_text": null,
+      "published_at": "2025-12-08T17:16:21.340000Z",
+      "updated_at": "2026-04-10T05:34:08.146769Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65799"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://usememos.com/",
+        "http://memos.com/",
+        "https://github.com/usememos/memos/pull/5218",
+        "https://herolab.usd.de/security-advisories/usd-2025-0056/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65797",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65797",
+        "native_id": "CVE-2025-65797"
+      },
+      "title": "CVE-2025-65797",
+      "summary": "Incorrect access control in the Identity Provider service of usememos memos v0.25.2 allows attackers with low-level privileges to arbitrarily modify or delete registered identity providers, leading to an account takeover or Denial of Service (DoS).",
+      "raw_text": null,
+      "published_at": "2025-12-08T17:16:21.207000Z",
+      "updated_at": "2026-04-10T05:34:08.171909Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65797"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://usememos.com/",
+        "http://memos.com/",
+        "https://github.com/usememos/memos/pull/5217",
+        "https://herolab.usd.de/security-advisories/usd-2025-0057/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65795",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65795",
+        "native_id": "CVE-2025-65795"
+      },
+      "title": "CVE-2025-65795",
+      "summary": "Incorrect access control in the /api/v1/user endpoint of usememos memos v0.25.2 allows unauthorized attackers to create arbitrary accounts via a crafted request.",
+      "raw_text": null,
+      "published_at": "2025-12-08T17:16:21.073000Z",
+      "updated_at": "2026-04-10T05:34:07.833448Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65795"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://usememos.com/",
+        "http://memos.com/",
+        "https://github.com/usememos/memos/pull/5217",
+        "https://herolab.usd.de/usd-2025-0058/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65798",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65798",
+        "native_id": "CVE-2025-65798"
+      },
+      "title": "CVE-2025-65798",
+      "summary": "Incorrect access control in usememos memos v0.25.2 allows attackers with low-level privileges to arbitrarily modify or delete attachments made by other users.",
+      "raw_text": null,
+      "published_at": "2025-12-08T16:15:53.737000Z",
+      "updated_at": "2026-04-10T05:34:08.138687Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65798"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://usememos.com/",
+        "http://memos.com/",
+        "https://github.com/usememos/memos/pull/5217",
+        "https://herolab.usd.de/security-advisories/usd-2025-0059/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65796",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65796",
+        "native_id": "CVE-2025-65796"
+      },
+      "title": "CVE-2025-65796",
+      "summary": "Incorrect access control in usememos memos v0.25.2 allows attackers with low-level privileges to arbitrarily delete reactions made to other users' Memos.",
+      "raw_text": null,
+      "published_at": "2025-12-08T16:15:53.587000Z",
+      "updated_at": "2026-03-23T05:05:40.559771Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65796"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:N/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://usememos.com/",
+        "http://memos.com/",
+        "https://github.com/usememos/memos/pull/5217",
+        "https://herolab.usd.de/security-advisories/usd-2025-0060/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65622",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65622",
+        "native_id": "CVE-2025-65622"
+      },
+      "title": "CVE-2025-65622",
+      "summary": "Snipe-IT before 8.3.4 allows stored XSS via the Locations \"Country\" field, enabling a low-privileged authenticated user to inject JavaScript that executes in another user's session.",
+      "raw_text": null,
+      "published_at": "2025-12-01T22:15:48.697000Z",
+      "updated_at": "2026-04-10T05:34:06.412546Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65622"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://snipeitapp.com/",
+        "https://github.com/firef0x00/vulnerability-research/tree/main/CVE-2025-65622"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65621",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65621",
+        "native_id": "CVE-2025-65621"
+      },
+      "title": "CVE-2025-65621",
+      "summary": "Snipe-IT before 8.3.4 allows stored XSS, allowing a low-privileged authenticated user to inject JavaScript that executes in an administrator's session, enabling privilege escalation.",
+      "raw_text": null,
+      "published_at": "2025-12-01T21:15:52.193000Z",
+      "updated_at": "2026-04-10T05:34:06.925067Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65621"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://snipeitapp.com/",
+        "https://github.com/firef0x00/vulnerability-research/tree/main/CVE-2025-65621"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65670",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65670",
+        "native_id": "CVE-2025-65670"
+      },
+      "title": "CVE-2025-65670",
+      "summary": "An Insecure Direct Object Reference (IDOR) in classroomio 0.1.13 allows students to access sensitive admin/teacher endpoints by manipulating course IDs in URLs, resulting in unauthorized disclosure of sensitive course, admin, and student data. The leak occurs momentarily before the system reverts to a normal state restricting access.",
+      "raw_text": null,
+      "published_at": "2025-11-26T20:15:49.947000Z",
+      "updated_at": "2026-04-10T05:37:48.590000Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65670"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://classroomio.com/",
+        "https://github.com/classroomio/classroomio",
+        "https://github.com/Rivek619/CVE-2025-65670"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65676",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65676",
+        "native_id": "CVE-2025-65676"
+      },
+      "title": "CVE-2025-65676",
+      "summary": "Stored Cross site scripting (XSS) vulnerability in Classroomio LMS 0.1.13 allows authenticated attackers to execute arbitrary code via crafted SVG cover images.",
+      "raw_text": null,
+      "published_at": "2025-11-26T19:15:48.473000Z",
+      "updated_at": "2026-03-14T12:44:55.506397Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65676"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://classroomio.com/",
+        "https://github.com/classroomio/classroomio",
+        "https://github.com/Rivek619/CVE-2025-65676"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65675",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65675",
+        "native_id": "CVE-2025-65675"
+      },
+      "title": "CVE-2025-65675",
+      "summary": "Stored Cross site scripting (XSS) vulnerability in Classroomio LMS 0.1.13 allows authenticated attackers to execute arbitrary code via crafted SVG profile pictures.",
+      "raw_text": null,
+      "published_at": "2025-11-26T19:15:48.313000Z",
+      "updated_at": "2026-03-14T12:45:50.810409Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65675"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://classroomio.com/",
+        "https://github.com/classroomio/classroomio",
+        "https://github.com/Rivek619/CVE-2025-65675"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65672",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65672",
+        "native_id": "CVE-2025-65672"
+      },
+      "title": "CVE-2025-65672",
+      "summary": "Insecure Direct Object Reference (IDOR) in classroomio 0.1.13 allows unauthorized share and invite access to course settings.",
+      "raw_text": null,
+      "published_at": "2025-11-26T19:15:47.963000Z",
+      "updated_at": "2026-04-10T05:37:48.564556Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65672"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://classroomio.com/",
+        "https://github.com/classroomio/classroomio",
+        "https://github.com/Rivek619/CVE-2025-65672"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-65669",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-65669",
+        "native_id": "CVE-2025-65669"
+      },
+      "title": "CVE-2025-65669",
+      "summary": "An issue was discovered in classroomio 0.1.13. Student accounts are able to delete courses from the Explore page without any authorization or authentication checks, bypassing the expected admin-only deletion restriction.",
+      "raw_text": null,
+      "published_at": "2025-11-26T19:15:47.483000Z",
+      "updated_at": "2026-03-14T12:45:50.607956Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-65669"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://classroomio.com/",
+        "https://github.com/classroomio/classroomio",
+        "https://github.com/Rivek619/CVE-2025-65669"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-51741",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-51741",
+        "native_id": "CVE-2025-51741"
+      },
+      "title": "CVE-2025-51741",
+      "summary": "An issue was discovered in Veal98 Echo Open-Source Community System 2.2 thru 2.3 allowing an unauthenticated attacker to cause the server to send email verification messages to arbitrary users via the /sendEmailCodeForResetPwd endpoint potentially causing a denial of service to the server or the downstream users.",
+      "raw_text": null,
+      "published_at": "2025-11-25T21:15:55.743000Z",
+      "updated_at": "2026-04-10T05:32:20.763748Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-51741"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://echo.com/",
+        "https://gist.github.com/Paxsizy/9d92e8746778cf0926705d89b4f3618c",
+        "https://github.com/Veal98/Echo"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-64047",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-64047",
+        "native_id": "CVE-2025-64047"
+      },
+      "title": "CVE-2025-64047",
+      "summary": "OpenRapid RapidCMS 1.3.1 is vulnerable to Cross Site Scripting (XSS) in /user/user-move.php.",
+      "raw_text": null,
+      "published_at": "2025-11-24T20:15:50.497000Z",
+      "updated_at": "2026-04-10T05:33:40.206754Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-64047"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://gist.github.com/b1uel0n3/b105ad05dbcd3fe148a26e8180dddda7",
+        "http://rapidcms.com/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-64046",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-64046",
+        "native_id": "CVE-2025-64046"
+      },
+      "title": "CVE-2025-64046",
+      "summary": "OpenRapid RapidCMS 1.3.1 is vulnerable to Cross Site Scripting (XSS) in /system/update-run.php.",
+      "raw_text": null,
+      "published_at": "2025-11-17T16:15:50.820000Z",
+      "updated_at": "2026-04-10T05:33:39.191590Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-64046"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://rapidcms.com/",
+        "https://gist.github.com/b1uel0n3/c8467f156f523fcf16dc572a34693126"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-63396",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-63396",
+        "native_id": "CVE-2025-63396"
+      },
+      "title": "CVE-2025-63396",
+      "summary": "An issue was discovered in PyTorch v2.5 and v2.7.1. Omission of profiler.stop() can cause torch.profiler.profile (PythonTracer) to crash or hang during finalization, leading to a Denial of Service (DoS).",
+      "raw_text": null,
+      "published_at": "2025-11-12T21:15:52.397000Z",
+      "updated_at": "2026-05-20T08:11:18.181654Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-63396"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:L/AC:L/PR:L/UI:N/S:U/C:N/I:N/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://pytorch.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/pytorch/pytorch/issues/156563",
+        "https://github.com/pytorch/pytorch"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-63397",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-63397",
+        "native_id": "CVE-2025-63397"
+      },
+      "title": "CVE-2025-63397",
+      "summary": "Improper input validation in OneFlow v0.9.0 allows attackers to cause a segmentation fault via adding a Python sequence to the native code during broadcasting/type conversion.",
+      "raw_text": null,
+      "published_at": "2025-11-10T22:15:36.390000Z",
+      "updated_at": "2026-04-10T05:34:12.960144Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-63397"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://oneflow.com/",
+        "https://github.com/Daisy2ang",
+        "https://github.com/Oneflow-Inc/oneflow/issues/10666",
+        "https://github.com/Oneflow-Inc/oneflow"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-60735",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-60735",
+        "native_id": "CVE-2025-60735"
+      },
+      "title": "CVE-2025-60735",
+      "summary": "PerfreeBlog v4.0.11 has a File Upload vulnerability in the installPlugin function",
+      "raw_text": null,
+      "published_at": "2025-10-24T18:15:41.160000Z",
+      "updated_at": "2026-04-02T12:58:06.323389Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-60735"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/dengxmenglihua/cve/blob/main/PerfreeBlog/File%20Upload%202/Arbitrary%20File%20Upload%20Vulnerability%20in%20PerfreeBlog%20System.md",
+        "https://perfree.org.cn/",
+        "http://perfreeblog.com/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-60731",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-60731",
+        "native_id": "CVE-2025-60731"
+      },
+      "title": "CVE-2025-60731",
+      "summary": "PerfreeBlog v4.0.11 has a File Upload vulnerability in the installTheme function",
+      "raw_text": null,
+      "published_at": "2025-10-24T18:15:41.043000Z",
+      "updated_at": "2026-04-02T12:58:06.266861Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-60731"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:L/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://perfree.org.cn/",
+        "https://github.com/dengxmenglihua/cve/blob/main/PerfreeBlog/File%20Upload/Arbitrary%20File%20Upload%20Vulnerability%20in%20PerfreeBlog%20System.md",
+        "http://perfreeblog.com/"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-60730",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-60730",
+        "native_id": "CVE-2025-60730"
+      },
+      "title": "CVE-2025-60730",
+      "summary": "PerfreeBlog v4.0.11 has an arbitrary file deletion vulnerability in the unInstallTheme function",
+      "raw_text": null,
+      "published_at": "2025-10-24T18:15:40.930000Z",
+      "updated_at": "2026-04-10T05:32:28.025635Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-60730"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:L/A:L",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://perfree.org.cn/",
+        "http://perfreeblog.com/",
+        "https://github.com/dengxmenglihua/cve/blob/main/PerfreeBlog/File%20Deletion/Arbitrary%20File%20Deletion%20Vulnerability%20in%20PerfreeBlog%20System.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-60729",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-60729",
+        "native_id": "CVE-2025-60729"
+      },
+      "title": "CVE-2025-60729",
+      "summary": "PerfreeBlog v4.0.11 has an arbitrary file read vulnerability in the validThemeFilePath function",
+      "raw_text": null,
+      "published_at": "2025-10-24T18:15:40.797000Z",
+      "updated_at": "2026-04-10T05:32:27.947999Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-60729"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://perfree.org.cn/",
+        "http://perfreeblog.com/",
+        "https://github.com/dengxmenglihua/cve/blob/main/PerfreeBlog/File%20Read/Arbitrary%20File%20Read%20Vulnerability%20in%20PerfreeBlog%20System.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-60639",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-60639",
+        "native_id": "CVE-2025-60639"
+      },
+      "title": "CVE-2025-60639",
+      "summary": "Hardcoded credentials in gsigel14 ATLAS-EPIC commit f29312c (2025-05-26).",
+      "raw_text": null,
+      "published_at": "2025-10-16T18:15:37.053000Z",
+      "updated_at": "2026-04-10T05:33:43.588115Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-60639"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://atlas-epic.com/",
+        "https://xancatos.org/cve202560639",
+        "https://github.com/gsiegel14/ATLAS-EPIC/commit/f29312cf782ec5a6537fceaeb6a9ced7d7d04e1f",
+        "https://github.com/gsiegel14/ATLAS-EPIC"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-61524",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-61524",
+        "native_id": "CVE-2025-61524"
+      },
+      "title": "CVE-2025-61524",
+      "summary": "An issue in the permission verification module and organization/application editing interface in Casdoor v2.26.0 and before, and fixed in v.2.63.0, allows remote authenticated administrators of any organization within the system to bypass the system's permission verification mechanism by directly concatenating URLs after login",
+      "raw_text": null,
+      "published_at": "2025-10-08T19:15:44.720000Z",
+      "updated_at": "2026-03-23T05:04:02.123800Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-61524"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://casdoor.com/",
+        "https://gist.github.com/DevHjz/e75cea851d48e5f5478ac2a90757851a",
+        "https://github.com/casdoor/casdoor/releases/tag/v2.63.0",
+        "https://github.com/casdoor/casdoor/commit/d883db907bb6e0b95737ef8e8b57b7da9078cbdd"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-39931",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-39931",
+        "native_id": "CVE-2025-39931"
+      },
+      "title": "crypto: af_alg - Set merge to zero early in af_alg_sendmsg",
+      "summary": "In the Linux kernel, the following vulnerability has been resolved:\n\ncrypto: af_alg - Set merge to zero early in af_alg_sendmsg\n\nIf an error causes af_alg_sendmsg to abort, ctx->merge may contain\na garbage value from the previous loop.  This may then trigger a\ncrash on the next entry into af_alg_sendmsg when it attempts to do\na merge that can't be done.\n\nFix this by setting ctx->merge to zero near the start of the loop.",
+      "raw_text": null,
+      "published_at": "2025-10-04T07:30:55.964000Z",
+      "updated_at": "2026-04-16T04:39:49.956933Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-39931"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": null,
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://git.kernel.org/stable/c/045ee26aa3920a47ec46d7fcb302420bf01fd753",
+        "https://git.kernel.org/stable/c/2374c11189ef704a3e4863646369f1b8e6a27d71",
+        "https://git.kernel.org/stable/c/24c1106504c625fabd3b7229611af617b4c27ac7",
+        "https://git.kernel.org/stable/c/6241b9e2809b12da9130894cf5beddf088dc1b8a",
+        "https://git.kernel.org/stable/c/9574b2330dbd2b5459b74d3b5e9619d39299fc6f",
+        "https://github.com/CVEProject/cvelistV5/tree/main/cves/2025/39xxx/CVE-2025-39931.json",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-39931",
+        "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git"
+      ]
+    },
+    {
+      "id": "osv:CVE-2021-42193",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2021-42193",
+        "native_id": "CVE-2021-42193"
+      },
+      "title": "CVE-2021-42193",
+      "summary": "nopCommerce 4.40.3 is vulnerable to XSS in the Product Name at /Admin/Product/Edit/[id]. Each time a user views the product in the shop, the XSS payload fires.",
+      "raw_text": null,
+      "published_at": "2025-10-03T17:15:45.883000Z",
+      "updated_at": "2026-04-10T04:39:00.018288Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2021-42193"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://nop.com/",
+        "http://nopcommerce.com/",
+        "https://cxsecurity.com/issue/WLB-2025100002"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-60787",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-60787",
+        "native_id": "CVE-2025-60787"
+      },
+      "title": "CVE-2025-60787",
+      "summary": "MotionEye v0.43.1b4 and before is vulnerable to OS Command Injection in configuration parameters such as image_file_name. Unsanitized user input is written to Motion configuration files, allowing remote authenticated attackers with admin access to achieve code execution when Motion is restarted.",
+      "raw_text": null,
+      "published_at": "2025-10-03T16:16:20.293000Z",
+      "updated_at": "2026-04-10T05:32:28.385627Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-60787"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://motioneye-project.com/",
+        "https://github.com/prabhatverma47/motionEye-RCE-through-config-parameter"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56588",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56588",
+        "native_id": "CVE-2025-56588"
+      },
+      "title": "CVE-2025-56588",
+      "summary": "Dolibarr ERP & CRM v21.0.1 were discovered to contain a remote code execution (RCE) vulnerability in the User module configuration via the computed field parameter.",
+      "raw_text": null,
+      "published_at": "2025-10-01T20:18:36.937000Z",
+      "updated_at": "2026-04-10T05:30:17.301862Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56588"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://dolibarr.com/",
+        "https://github.com/PhDg1410/Research"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56200",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56200",
+        "native_id": "CVE-2025-56200"
+      },
+      "title": "CVE-2025-56200",
+      "summary": "A URL validation bypass vulnerability exists in validator.js through version 13.15.15. The isURL() function uses '://' as a delimiter to parse protocols, while browsers use ':' as the delimiter. This parsing difference allows attackers to bypass protocol and domain validation by crafting URLs leading to XSS and Open Redirect attacks.",
+      "raw_text": null,
+      "published_at": "2025-09-30T18:15:50.307000Z",
+      "updated_at": "2026-04-10T05:30:09.201188Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56200"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://validatorjs.com/",
+        "https://github.com/validatorjs/validator.js",
+        "https://gist.github.com/junan-98/27ae092aa40e2a057d41a0f95148f666",
+        "https://gist.github.com/junan-98/a93130505b258b9e4ec9f393e7533596"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56572",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56572",
+        "native_id": "CVE-2025-56572"
+      },
+      "title": "CVE-2025-56572",
+      "summary": "An issue in finance.js v.4.1.0 allows a remote attacker to cause a denial of service via the seekZero() parameter.",
+      "raw_text": null,
+      "published_at": "2025-09-30T16:15:52.990000Z",
+      "updated_at": "2026-04-02T12:55:26.752302Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56572"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://financejs.com/",
+        "https://raw.githack.com/ebradyjobory/finance.js/6d571ea2a86d08491ceb584e292e9b76b0a60636/finance.js",
+        "https://medium.com/@nakah_/cve-2025-56571-and-cve-2025-56572-denial-of-service-vulnerabilities-in-finance-js-78f8b399f53b",
+        "https://github.com/ebradyjobory/finance.js"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56571",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56571",
+        "native_id": "CVE-2025-56571"
+      },
+      "title": "CVE-2025-56571",
+      "summary": "Finance.js v4.1.0 contains a Denial of Service (DoS) vulnerability via the IRR function’s depth parameter. Improper handling of the recursion/iteration limit can lead to excessive CPU usage, causing application stalls or crashes.",
+      "raw_text": null,
+      "published_at": "2025-09-30T16:15:52.867000Z",
+      "updated_at": "2026-03-15T14:53:11.137969Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56571"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://financejs.com/",
+        "https://raw.githack.com/ebradyjobory/finance.js/6d571ea2a86d08491ceb584e292e9b76b0a60636/finance.js",
+        "https://medium.com/@nakah_/cve-2025-56571-and-cve-2025-56572-denial-of-service-vulnerabilities-in-finance-js-78f8b399f53b",
+        "https://github.com/ebradyjobory/finance.js"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-56304",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-56304",
+        "native_id": "CVE-2025-56304"
+      },
+      "title": "CVE-2025-56304",
+      "summary": "Cross-site scripting (XSS) vulnerability in YzmCMS thru 7.3 via the referer header in the register page.",
+      "raw_text": null,
+      "published_at": "2025-09-23T17:15:33.297000Z",
+      "updated_at": "2026-03-13T22:13:37.971108Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-56304"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://yzmcms.com/",
+        "https://www.yzmcms.com/",
+        "https://gitee.com/cyjsyj/cve/wikis/CVE-2025-56304?sort_id=14635721"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-52367",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-52367",
+        "native_id": "CVE-2025-52367"
+      },
+      "title": "CVE-2025-52367",
+      "summary": "Cross Site Scripting vulnerability in PivotX CMS v.3.0.0 RC 3 allows a remote attacker to execute arbitrary code via the subtitle field.",
+      "raw_text": null,
+      "published_at": "2025-09-22T19:15:40.857000Z",
+      "updated_at": "2026-03-14T12:45:01.419284Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-52367"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://pivotx.com/",
+        "https://medium.com/@hayton1088/cve-2025-52367-stored-xss-to-rce-via-privilege-escalation-in-pivotx-cms-v3-0-0-rc-3-a1b870bcb7b3"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-57631",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-57631",
+        "native_id": "CVE-2025-57631"
+      },
+      "title": "CVE-2025-57631",
+      "summary": "SQL Injection vulnerability in TDuckCloud v.5.1 allows a remote attacker to execute arbitrary code via the Add a file upload module",
+      "raw_text": null,
+      "published_at": "2025-09-16T20:15:36.527000Z",
+      "updated_at": "2026-04-10T05:32:40.051864Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-57631"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://tduck-platform.com/",
+        "https://github.com/TDuckCloud/tduck-platform",
+        "https://gist.github.com/Theresasu1/b1b57b3763a286d9491541180c99368b",
+        "https://github.com/TDuckCloud/tduck-platform/issues/31"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-52277",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-52277",
+        "native_id": "CVE-2025-52277"
+      },
+      "title": "CVE-2025-52277",
+      "summary": "Cross Site Scripting vulnerability in YesWiki v.4.54 allows a remote attacker to execute arbitrary code via a crafted payload to the meta configuration robots field",
+      "raw_text": null,
+      "published_at": "2025-09-09T15:15:33.357000Z",
+      "updated_at": "2026-04-10T05:30:34.256705Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-52277"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://yeswiki.com/",
+        "https://github.com/nakkouchtarek/CVE/tree/main/CVE-2025-52277"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-50383",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-50383",
+        "native_id": "CVE-2025-50383"
+      },
+      "title": "CVE-2025-50383",
+      "summary": "alextselegidis Easy!Appointments v1.5.1 was discovered to contain a SQL injection vulnerability via the order_by parameter.",
+      "raw_text": null,
+      "published_at": "2025-08-25T18:15:30.703000Z",
+      "updated_at": "2026-04-10T05:29:14.091126Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-50383"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://alextselegidis.com/",
+        "https://easyappointments.org/",
+        "https://github.com/Abdullah4eb/CVE-2025-50383"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-55371",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-55371",
+        "native_id": "CVE-2025-55371"
+      },
+      "title": "CVE-2025-55371",
+      "summary": "Incorrect access control in the component /controller/PersonController.java of jshERP v3.5 allows unauthorized attackers to obtain all the information of the handler by executing the getAllList method.",
+      "raw_text": null,
+      "published_at": "2025-08-21T15:15:34.283000Z",
+      "updated_at": "2026-03-11T13:45:18.078392Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-55371"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://jsherp.com/",
+        "https://github.com/cina666/CVE/blob/main/jshERP/%E8%B6%8A%E6%9D%83%E8%87%B4%E4%BB%BB%E6%84%8F%E6%8E%A5%E7%AE%A1%E8%B4%A6%E5%8F%B7.md",
+        "https://github.com/jishenghua/jshERP"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-55370",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-55370",
+        "native_id": "CVE-2025-55370"
+      },
+      "title": "CVE-2025-55370",
+      "summary": "Incorrect access control in the component \\controller\\ResourceController.java of jshERP v3.5 allows unauthorized attackers to obtain all the corresponding ID data by modifying the ID value.",
+      "raw_text": null,
+      "published_at": "2025-08-21T14:15:41.773000Z",
+      "updated_at": "2026-04-10T05:29:56.404122Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-55370"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://jsherp.com/",
+        "https://github.com/jishenghua/jshERP",
+        "https://github.com/cina666/CVE/blob/main/jshERP/%E8%B6%8A%E6%9D%83%E8%8E%B7%E5%8F%96%E4%BB%BB%E6%84%8F%E8%B4%A6%E5%8F%B7%E4%BF%A1%E6%81%AF%E5%AE%9E%E7%8E%B0%E4%BB%BB%E6%84%8F%E7%99%BB%E5%BD%95.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-55368",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-55368",
+        "native_id": "CVE-2025-55368"
+      },
+      "title": "CVE-2025-55368",
+      "summary": "Incorrect access control in the component \\controller\\RoleController.java of jshERP v3.5 allows unauthorized attackers to arbitrarily modify the supplier status under any account.",
+      "raw_text": null,
+      "published_at": "2025-08-21T14:15:41.630000Z",
+      "updated_at": "2026-03-13T11:36:44.208818Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-55368"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:H/I:H/A:H",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://jsherp.com/",
+        "https://github.com/cina666/CVE/blob/main/jshERP/CVE-2025-55368.md",
+        "https://github.com/jishenghua/jshERP"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-55367",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-55367",
+        "native_id": "CVE-2025-55367"
+      },
+      "title": "CVE-2025-55367",
+      "summary": "Incorrect access control in the component \\controller\\SupplierController.java of jshERP v3.5 allows unauthorized attackers to arbitrarily modify the supplier status under any account.",
+      "raw_text": null,
+      "published_at": "2025-08-21T14:15:41.483000Z",
+      "updated_at": "2026-03-15T14:53:10.477496Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-55367"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://jsherp.com/",
+        "https://github.com/cina666/CVE/blob/main/jshERP/CVE-2025-55367.md",
+        "https://github.com/jishenghua/jshERP"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-55366",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-55366",
+        "native_id": "CVE-2025-55366"
+      },
+      "title": "CVE-2025-55366",
+      "summary": "Incorrect access control in the component \\controller\\UserController.java of jshERP v3.5 allows attackers to arbitrarily reset user account passwords and execute a horizontal privilege escalation attack.",
+      "raw_text": null,
+      "published_at": "2025-08-21T14:15:41.323000Z",
+      "updated_at": "2026-04-10T05:29:57.188595Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-55366"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:L/I:N/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://jsherp.com/",
+        "https://github.com/cina666/CVE/blob/main/jshERP/CVE-2025-55366.md",
+        "https://github.com/jishenghua/jshERP"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-50864",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-50864",
+        "native_id": "CVE-2025-50864"
+      },
+      "title": "CVE-2025-50864",
+      "summary": "An Origin Validation Error in the elysia-cors library thru 1.3.0 allows attackers to bypass Cross-Origin Resource Sharing (CORS) restrictions. The library incorrectly validates the supplied origin by checking if it is a substring of any domain in the site's CORS policy, rather than performing an exact match. For example, a malicious origin like \"notexample.com\", \"example.common.net\" is whitelisted when the site's CORS policy specifies \"example.com.\" This vulnerability enables unauthorized access to user data on sites using the elysia-cors library for CORS validation.",
+      "raw_text": null,
+      "published_at": "2025-08-20T15:15:32.990000Z",
+      "updated_at": "2026-04-02T12:51:53.683897Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-50864"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:U/C:N/I:H/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/elysiajs/elysia-cors/blob/main/src/index.ts",
+        "https://github.com/elysiajs/elysia-cors/tree/main",
+        "https://medium.com/@raghavagrawal_23036/cors-bypass-in-popular-opensource-library-ad27fb41e16a",
+        "http://elysiajs.com/",
+        "https://github.com/elysiajs/elysia-cors/commit/9b9eb92e32a7a4b43b6d5108668941701c33e221"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-45313",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-45313",
+        "native_id": "CVE-2025-45313"
+      },
+      "title": "CVE-2025-45313",
+      "summary": "A cross-site scripting (XSS) vulnerability in the /tasks endpoint of hortusfox-web v4.4 allows attackers to execute arbitrary JavaScript in the context of a user's browser via a crafted payload injected into the title parameter.",
+      "raw_text": null,
+      "published_at": "2025-08-13T19:15:29.220000Z",
+      "updated_at": "2026-04-10T05:27:04.353951Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-45313"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://hortusfox-web.com/",
+        "https://github.com/chrisWalker11/Cves/blob/main/CVE-2025-45313/CVE-2025-45313.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-45315",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-45315",
+        "native_id": "CVE-2025-45315"
+      },
+      "title": "CVE-2025-45315",
+      "summary": "A cross-site scripting (XSS) vulnerability in the /controller/admin.php endpoint of hortusfox-web v4.4 allows attackers to execute arbitrary JavaScript in the context of a user's browser via a crafted payload injected into the email parameter.",
+      "raw_text": null,
+      "published_at": "2025-08-13T18:15:31.367000Z",
+      "updated_at": "2026-04-02T12:48:35.343150Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-45315"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "https://github.com/danielbrendel/hortusfox-web/blob/8ab851101a62d8eb311235c118eeeb32a9b36978/app/controller/admin.php#L192",
+        "http://hortusfox-web.com/",
+        "https://github.com/danielbrendel/hortusfox-web",
+        "https://github.com/chrisWalker11/Cves/blob/main/CVE-2025-45315/CVE-2025-45315.md"
+      ]
+    },
+    {
+      "id": "osv:CVE-2025-45314",
+      "type": "advisory",
+      "source_info": {
+        "source": "osv",
+        "source_sub": "osv.dev",
+        "source_name": "OSV.dev",
+        "source_url": "https://osv.dev/vulnerability/CVE-2025-45314",
+        "native_id": "CVE-2025-45314"
+      },
+      "title": "CVE-2025-45314",
+      "summary": "A cross-site scripting (XSS) vulnerability in the /Calendar endpoint of hortusfox-web v4.4 allows attackers to execute arbitrary JavaScript in the context of a user's browser via a crafted payload injected into the add function.",
+      "raw_text": null,
+      "published_at": "2025-08-13T18:15:31.237000Z",
+      "updated_at": "2026-04-10T05:27:07.316084Z",
+      "fetched_at": "2026-07-05T04:51:18.340210Z",
+      "authors": [],
+      "affiliations": [],
+      "cves": [
+        "CVE-2025-45314"
+      ],
+      "vendors": [],
+      "products": [],
+      "affected_versions": [],
+      "topics": [
+        "advisory"
+      ],
+      "lang": "en",
+      "risk": {
+        "cvss_score": null,
+        "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N",
+        "epss_score": null,
+        "epss_percentile": null,
+        "kev_status": "unknown",
+        "kev_listed": false,
+        "kev_date_added": null,
+        "due_date": null,
+        "known_ransomware": null,
+        "known_exploited": null,
+        "exploit_in_the_wild": null,
+        "has_public_exploit": false,
+        "exploit_maturity": "unreported",
+        "exploit_references": []
+      },
+      "threat_meta": null,
+      "references": [
+        "http://hortusfox-web.com/",
+        "https://github.com/danielbrendel/hortusfox-web",
+        "https://github.com/chrisWalker11/Cves/blob/main/CVE-2025-45314/CVE-2025-45314.md"
       ]
     }
   ],
   "meta": {
     "cve_inputs": [
-      "CVE-2026-12252",
-      "CVE-2025-71380",
-      "CVE-2025-71375",
-      "CVE-2025-71373",
-      "CVE-2025-71372",
-      "CVE-2025-71369",
-      "CVE-2025-71367",
-      "CVE-2025-71366",
-      "CVE-2025-71364",
-      "CVE-2025-71362",
-      "CVE-2025-71360",
-      "CVE-2025-71359",
-      "CVE-2025-71356",
-      "CVE-2025-71353",
-      "CVE-2025-71347",
-      "CVE-2025-71345",
-      "CVE-2025-71343",
-      "CVE-2025-71342",
-      "CVE-2026-54424",
-      "CVE-2026-58523",
-      "CVE-2026-14617",
-      "CVE-2026-58597",
-      "CVE-2026-58524",
-      "CVE-2026-58522",
-      "CVE-2026-58426",
-      "CVE-2026-58424",
-      "CVE-2026-58423",
-      "CVE-2026-58422",
-      "CVE-2026-58421",
-      "CVE-2026-58419",
-      "CVE-2026-58418",
-      "CVE-2026-58300",
-      "CVE-2026-58299",
-      "CVE-2026-58298",
-      "CVE-2026-58297",
-      "CVE-2026-58296",
-      "CVE-2026-58295",
-      "CVE-2026-58294",
-      "CVE-2026-58293",
-      "CVE-2026-58292",
-      "CVE-2026-58291",
-      "CVE-2026-58290",
-      "CVE-2026-58289",
-      "CVE-2026-58288",
-      "CVE-2026-58287",
-      "CVE-2026-58286",
-      "CVE-2026-58285",
-      "CVE-2026-58284",
-      "CVE-2026-58283",
-      "CVE-2026-58282",
-      "CVE-2026-58278",
-      "CVE-2026-58276",
-      "CVE-2026-57993",
-      "CVE-2026-57992",
-      "CVE-2026-57991",
-      "CVE-2026-57988",
-      "CVE-2026-57987",
-      "CVE-2026-57986",
-      "CVE-2026-57985",
-      "CVE-2026-57984",
-      "CVE-2026-57983",
-      "CVE-2026-57981",
-      "CVE-2026-57977",
-      "CVE-2026-57975",
-      "CVE-2026-57974",
-      "CVE-2026-56646",
-      "CVE-2026-56645",
-      "CVE-2026-55945",
-      "CVE-2026-45489",
-      "CVE-2026-45488",
-      "CVE-2026-28744",
-      "CVE-2026-28740",
-      "CVE-2026-28737",
-      "CVE-2026-28705",
-      "CVE-2026-28699",
-      "CVE-2026-27783",
-      "CVE-2026-27780",
-      "CVE-2026-27779",
-      "CVE-2026-27775",
-      "CVE-2026-27771",
-      "CVE-2026-27761",
-      "CVE-2026-27660",
-      "CVE-2026-27657",
-      "CVE-2026-26307",
-      "CVE-2026-26292",
-      "CVE-2026-26247",
-      "CVE-2026-26232",
-      "CVE-2026-26231",
-      "CVE-2026-25782",
-      "CVE-2026-25779",
-      "CVE-2026-25718",
-      "CVE-2026-25714",
-      "CVE-2026-25712",
-      "CVE-2026-25038",
-      "CVE-2026-24690",
-      "CVE-2026-24451",
-      "CVE-2026-22874",
-      "CVE-2026-22555",
-      "CVE-2026-22547",
-      "CVE-2026-20909",
-      "CVE-2026-20896",
-      "CVE-2026-20779",
-      "CVE-2026-20706",
-      "CVE-2026-14611",
-      "CVE-2026-14610",
-      "CVE-2026-14609",
+      "CVE-2026-14695",
+      "CVE-2026-14694",
+      "CVE-2026-14693",
+      "CVE-2026-14692",
+      "CVE-2026-14691",
+      "CVE-2026-14690",
+      "CVE-2026-14689",
+      "CVE-2026-14570",
+      "CVE-2026-14688",
+      "CVE-2026-14687",
+      "CVE-2026-14686",
+      "CVE-2026-14685",
+      "CVE-2026-14684",
+      "CVE-2026-14683",
+      "CVE-2026-14660",
+      "CVE-2026-14659",
+      "CVE-2026-14658",
+      "CVE-2026-14657",
+      "CVE-2026-14656",
+      "CVE-2026-14655",
+      "CVE-2026-14654",
+      "CVE-2026-14653",
+      "CVE-2026-14652",
+      "CVE-2026-14651",
+      "CVE-2024-1248",
+      "CVE-2026-14650",
+      "CVE-2026-14649",
+      "CVE-2026-14648",
+      "CVE-2026-14647",
+      "CVE-2026-14642",
+      "CVE-2026-14641",
+      "CVE-2026-14640",
+      "CVE-2026-14639",
+      "CVE-2026-14638",
+      "CVE-2026-14637",
+      "CVE-2026-12746",
+      "CVE-2026-12740",
+      "CVE-2026-14636",
+      "CVE-2026-14635",
+      "CVE-2026-14634",
+      "CVE-2026-14633",
+      "CVE-2026-14632",
+      "CVE-2026-14630",
+      "CVE-2026-14629",
+      "CVE-2026-14535",
+      "CVE-2026-14534",
+      "CVE-2026-14628",
+      "CVE-2026-14627",
+      "CVE-2025-13475",
+      "CVE-2026-53362",
+      "CVE-2026-53361",
+      "CVE-2026-53360",
+      "CVE-2026-53359",
+      "CVE-2026-14626",
+      "CVE-2026-14625",
+      "CVE-2026-12196",
+      "CVE-2026-12195",
+      "CVE-2026-14624",
+      "CVE-2026-14623",
+      "CVE-2026-14622",
+      "CVE-2026-14621",
+      "CVE-2026-14619",
+      "CVE-2026-12194",
+      "CVE-2026-14618",
       "CVE-2026-14355",
-      "CVE-2026-12481",
-      "CVE-2026-14608",
-      "CVE-2026-14607",
-      "CVE-2026-14606",
-      "CVE-2026-14605",
-      "CVE-2026-58379",
-      "CVE-2026-14604",
-      "CVE-2026-14631",
-      "CVE-2026-14620",
-      "CVE-2026-14615",
-      "CVE-2026-14614",
-      "CVE-2026-14613",
-      "CVE-2026-14612",
-      "CVE-2026-53478",
-      "CVE-2026-49815",
-      "CVE-2026-49814",
-      "CVE-2026-49813",
-      "CVE-2026-14460",
-      "CVE-2026-14459",
-      "CVE-2026-46466",
-      "CVE-2026-46465",
-      "CVE-2026-46464",
-      "CVE-2026-46463",
-      "CVE-2026-59234",
-      "CVE-2026-56085",
-      "CVE-2026-56015",
-      "CVE-2026-54483",
-      "CVE-2026-46730",
-      "CVE-2026-46468",
-      "CVE-2026-46467",
-      "CVE-2026-44269",
-      "CVE-2026-44268",
-      "CVE-2026-41124",
-      "CVE-2026-41123",
-      "CVE-2026-26355",
-      "CVE-2026-50238",
-      "CVE-2026-13341",
-      "CVE-2026-10055",
-      "CVE-2026-10054",
-      "CVE-2026-5137",
-      "CVE-2026-4322",
-      "CVE-2026-4321",
-      "CVE-2026-9756",
-      "CVE-2026-4804",
-      "CVE-2026-47896",
-      "CVE-2026-35159",
-      "CVE-2026-11900",
-      "CVE-2026-11778",
-      "CVE-2026-11398",
-      "CVE-2026-9230",
-      "CVE-2026-9148",
-      "CVE-2026-8804",
-      "CVE-2026-8351",
-      "CVE-2026-47898",
-      "CVE-2026-47897",
-      "CVE-2026-14544",
-      "CVE-2026-9547",
-      "CVE-2026-9546",
-      "CVE-2026-9545",
-      "CVE-2026-9080",
-      "CVE-2026-9079",
-      "CVE-2026-8932",
-      "CVE-2026-8927",
-      "CVE-2026-8926",
-      "CVE-2026-8925",
-      "CVE-2026-8924",
-      "CVE-2026-8458",
-      "CVE-2026-8286",
-      "CVE-2026-4967",
-      "CVE-2026-12064",
-      "CVE-2026-11856",
-      "CVE-2026-11586",
-      "CVE-2026-11564",
-      "CVE-2026-11352",
-      "CVE-2026-10536",
-      "CVE-2026-9725",
-      "CVE-2026-9626",
-      "CVE-2026-9180",
-      "CVE-2026-8892",
-      "CVE-2026-8489",
-      "CVE-2026-14352",
-      "CVE-2026-13040",
-      "CVE-2026-12557",
-      "CVE-2026-11397",
-      "CVE-2026-13374",
-      "CVE-2026-12912",
-      "CVE-2026-54371",
-      "CVE-2026-53202",
-      "CVE-2026-11998",
-      "CVE-2026-49980",
-      "CVE-2026-54513",
-      "CVE-2026-50556",
-      "CVE-2026-12823",
-      "CVE-2026-50559",
-      "CVE-2026-56211",
-      "CVE-2026-56210",
-      "CVE-2026-56209",
-      "CVE-2026-56208",
+      "CVE-2026-53341",
+      "CVE-2026-53332",
+      "CVE-2026-53329",
+      "CVE-2026-53327",
+      "CVE-2026-53326",
+      "CVE-2026-53325",
+      "CVE-2026-50767",
+      "CVE-2026-50766",
+      "CVE-2026-50765",
+      "CVE-2026-36478",
+      "CVE-2026-53179",
+      "CVE-2026-53177",
+      "CVE-2026-53167",
+      "CVE-2026-53163",
+      "CVE-2026-53159",
+      "CVE-2026-53158",
+      "CVE-2026-53157",
+      "CVE-2026-53151",
+      "CVE-2026-53142",
+      "CVE-2026-53139",
+      "CVE-2026-53138",
+      "CVE-2026-53101",
+      "CVE-2026-53070",
+      "CVE-2026-52975",
+      "CVE-2026-52928",
+      "CVE-2026-52673",
+      "CVE-2026-52909",
       "CVE-2026-46331",
-      "CVE-2026-44172",
-      "CVE-2026-50010",
-      "CVE-2026-48059",
-      "CVE-2026-48043",
-      "CVE-2026-47691",
-      "CVE-2026-45674",
-      "CVE-2026-45416",
-      "CVE-2026-44893",
-      "CVE-2026-44249",
-      "CVE-2026-5497",
-      "CVE-2025-71319",
-      "CVE-2026-46316",
-      "CVE-2025-10263",
-      "CVE-2026-11577",
-      "CVE-2026-46244",
-      "CVE-2026-35085",
-      "CVE-2026-35084",
-      "CVE-2026-35083",
-      "CVE-2026-35082",
-      "CVE-2026-35081",
-      "CVE-2026-35080",
-      "CVE-2026-35079",
-      "CVE-2026-35078",
-      "CVE-2026-35077",
-      "CVE-2026-35076",
-      "CVE-2026-35075",
-      "CVE-2026-8643",
-      "CVE-2026-45292",
-      "CVE-2026-4408",
-      "CVE-2026-9673",
-      "CVE-2026-45998",
-      "CVE-2026-1933",
-      "CVE-2026-3012",
-      "CVE-2026-42508",
-      "CVE-2026-39835",
-      "CVE-2026-39832",
-      "CVE-2026-39830",
-      "CVE-2026-42587",
-      "CVE-2026-45109",
-      "CVE-2026-44579",
-      "CVE-2026-44578",
-      "CVE-2026-44577",
-      "CVE-2026-44575",
-      "CVE-2026-44574",
-      "CVE-2026-44573",
-      "CVE-2026-42264",
-      "CVE-2026-43112",
-      "CVE-2026-39852",
-      "CVE-2026-6322",
-      "CVE-2026-42440",
-      "CVE-2026-42044",
-      "CVE-2026-33810",
-      "CVE-2026-4800",
-      "CVE-2026-33871",
-      "CVE-2026-33870",
-      "CVE-2026-1519",
-      "CVE-2026-24308",
-      "CVE-2026-24281",
-      "CVE-2026-23864",
-      "CVE-2025-13465",
-      "CVE-2026-21441",
-      "CVE-2025-40910"
+      "CVE-2026-36182",
+      "CVE-2026-36180",
+      "CVE-2026-36178",
+      "CVE-2026-36176",
+      "CVE-2026-36175",
+      "CVE-2026-36174",
+      "CVE-2026-37700",
+      "CVE-2026-46252",
+      "CVE-2026-36748",
+      "CVE-2026-35718",
+      "CVE-2026-35716",
+      "CVE-2026-30652",
+      "CVE-2026-30650",
+      "CVE-2026-30649",
+      "CVE-2026-35717",
+      "CVE-2026-46242",
+      "CVE-2026-46140",
+      "CVE-2026-46135",
+      "CVE-2026-38931",
+      "CVE-2026-38930",
+      "CVE-2026-46054",
+      "CVE-2026-36540",
+      "CVE-2026-36538",
+      "CVE-2026-36239",
+      "CVE-2026-37470",
+      "CVE-2026-36228",
+      "CVE-2026-36227",
+      "CVE-2025-45145",
+      "CVE-2023-24215",
+      "CVE-2026-31156",
+      "CVE-2026-36734",
+      "CVE-2026-36906",
+      "CVE-2026-43355",
+      "CVE-2026-36388",
+      "CVE-2026-36387",
+      "CVE-2026-36358",
+      "CVE-2026-43219",
+      "CVE-2026-43216",
+      "CVE-2025-52206",
+      "CVE-2026-36356",
+      "CVE-2026-36355",
+      "CVE-2025-70071",
+      "CVE-2025-70072",
+      "CVE-2025-70070",
+      "CVE-2025-70069",
+      "CVE-2025-70067",
+      "CVE-2026-43010",
+      "CVE-2026-31755",
+      "CVE-2026-31732",
+      "CVE-2026-36960",
+      "CVE-2026-36959",
+      "CVE-2026-36958",
+      "CVE-2026-36957",
+      "CVE-2026-36956",
+      "CVE-2025-60889",
+      "CVE-2025-60887",
+      "CVE-2026-38936",
+      "CVE-2026-38935",
+      "CVE-2026-38934",
+      "CVE-2026-30462",
+      "CVE-2026-30352",
+      "CVE-2026-39087",
+      "CVE-2026-31451",
+      "CVE-2026-31019",
+      "CVE-2026-31018",
+      "CVE-2026-30266",
+      "CVE-2026-30459",
+      "CVE-2026-30461",
+      "CVE-2025-69893",
+      "CVE-2025-61260",
+      "CVE-2025-69627",
+      "CVE-2025-63743",
+      "CVE-2026-31419",
+      "CVE-2025-70365",
+      "CVE-2026-31017",
+      "CVE-2025-69515",
+      "CVE-2026-30460",
+      "CVE-2026-30613",
+      "CVE-2026-31313",
+      "CVE-2026-30603",
+      "CVE-2026-26895",
+      "CVE-2026-29598",
+      "CVE-2026-30283",
+      "CVE-2026-30282",
+      "CVE-2026-30279",
+      "CVE-2026-30278",
+      "CVE-2026-30277",
+      "CVE-2026-30284",
+      "CVE-2026-29597",
+      "CVE-2026-30082",
+      "CVE-2025-61190",
+      "CVE-2026-30463",
+      "CVE-2026-30458",
+      "CVE-2026-30457",
+      "CVE-2026-23302",
+      "CVE-2025-52204",
+      "CVE-2025-63260",
+      "CVE-2025-67260",
+      "CVE-2026-23278",
+      "CVE-2026-23272",
+      "CVE-2026-30695",
+      "CVE-2025-50881",
+      "CVE-2025-66955",
+      "CVE-2025-66956",
+      "CVE-2025-70082",
+      "CVE-2025-67041",
+      "CVE-2025-67039",
+      "CVE-2025-67038",
+      "CVE-2025-67037",
+      "CVE-2025-67036",
+      "CVE-2025-67035",
+      "CVE-2025-67034",
+      "CVE-2025-70330",
+      "CVE-2025-56422",
+      "CVE-2025-56421",
+      "CVE-2025-70363",
+      "CVE-2025-71057",
+      "CVE-2025-63409",
+      "CVE-2025-67445",
+      "CVE-2025-71056",
+      "CVE-2025-69725",
+      "CVE-2025-70397",
+      "CVE-2025-65753",
+      "CVE-2026-23204",
+      "CVE-2025-69752",
+      "CVE-2025-65480",
+      "CVE-2025-69619",
+      "CVE-2026-23052",
+      "CVE-2025-70545",
+      "CVE-2025-69618",
+      "CVE-2025-69621",
+      "CVE-2025-69620",
+      "CVE-2025-69929",
+      "CVE-2025-69604",
+      "CVE-2025-71001",
+      "CVE-2025-71000",
+      "CVE-2025-70999",
+      "CVE-2025-65891",
+      "CVE-2025-65890",
+      "CVE-2025-65889",
+      "CVE-2025-65888",
+      "CVE-2025-65887",
+      "CVE-2025-65886",
+      "CVE-2025-52026",
+      "CVE-2025-52025",
+      "CVE-2025-52024",
+      "CVE-2025-52023",
+      "CVE-2025-52022",
+      "CVE-2025-67264",
+      "CVE-2025-56590",
+      "CVE-2025-56589",
+      "CVE-2025-69612",
+      "CVE-2025-67246",
+      "CVE-2025-65397",
+      "CVE-2025-65396",
+      "CVE-2025-67399",
+      "CVE-2025-65784",
+      "CVE-2025-66698",
+      "CVE-2025-65783",
+      "CVE-2024-54855",
+      "CVE-2025-55462",
+      "CVE-2025-29329",
+      "CVE-2025-63314",
+      "CVE-2025-65553",
+      "CVE-2025-65552",
+      "CVE-2025-65518",
+      "CVE-2025-50334",
+      "CVE-2025-60534",
+      "CVE-2025-67160",
+      "CVE-2025-67159",
+      "CVE-2025-67158",
+      "CVE-2024-55374",
+      "CVE-2025-66835",
+      "CVE-2025-66848",
+      "CVE-2025-66737",
+      "CVE-2025-66738",
+      "CVE-2025-67109",
+      "CVE-2025-67108",
+      "CVE-2025-65865",
+      "CVE-2025-65857",
+      "CVE-2025-65856",
+      "CVE-2025-67418",
+      "CVE-2025-67291",
+      "CVE-2025-67290",
+      "CVE-2025-67289",
+      "CVE-2025-65568",
+      "CVE-2025-56157",
+      "CVE-2025-65427",
+      "CVE-2025-65319",
+      "CVE-2025-65318",
+      "CVE-2025-66963",
+      "CVE-2024-44599",
+      "CVE-2024-44598",
+      "CVE-2025-65854",
+      "CVE-2025-65530",
+      "CVE-2025-65828",
+      "CVE-2025-63895",
+      "CVE-2025-65807",
+      "CVE-2025-65882",
+      "CVE-2025-65594",
+      "CVE-2025-61078",
+      "CVE-2025-56704",
+      "CVE-2025-65799",
+      "CVE-2025-65797",
+      "CVE-2025-65795",
+      "CVE-2025-65363",
+      "CVE-2025-65798",
+      "CVE-2025-65796",
+      "CVE-2025-64056",
+      "CVE-2025-64054",
+      "CVE-2025-64053",
+      "CVE-2025-64052",
+      "CVE-2025-64057",
+      "CVE-2025-63896",
+      "CVE-2025-29269",
+      "CVE-2025-29268",
+      "CVE-2025-64055",
+      "CVE-2025-63402",
+      "CVE-2025-63401",
+      "CVE-2025-65841",
+      "CVE-2025-57202",
+      "CVE-2025-57201",
+      "CVE-2025-57199",
+      "CVE-2025-57198",
+      "CVE-2025-57200",
+      "CVE-2025-65622",
+      "CVE-2025-65621",
+      "CVE-2025-51683",
+      "CVE-2025-51682",
+      "CVE-2025-63365",
+      "CVE-2025-61229",
+      "CVE-2025-61228",
+      "CVE-2025-57489",
+      "CVE-2025-65670",
+      "CVE-2025-50433",
+      "CVE-2025-65676",
+      "CVE-2025-65675",
+      "CVE-2025-65672",
+      "CVE-2025-65669",
+      "CVE-2025-51741",
+      "CVE-2025-61168",
+      "CVE-2025-61167",
+      "CVE-2025-63674",
+      "CVE-2025-64048",
+      "CVE-2025-64047",
+      "CVE-2025-56400",
+      "CVE-2025-56401",
+      "CVE-2025-25613",
+      "CVE-2025-63258",
+      "CVE-2025-63892",
+      "CVE-2025-64046",
+      "CVE-2025-63748",
+      "CVE-2025-63747",
+      "CVE-2025-63891",
+      "CVE-2025-60679",
+      "CVE-2025-60676",
+      "CVE-2025-60675",
+      "CVE-2025-60674",
+      "CVE-2025-60673",
+      "CVE-2025-60672",
+      "CVE-2025-60693",
+      "CVE-2025-60671",
+      "CVE-2025-60696",
+      "CVE-2025-60695",
+      "CVE-2025-60694",
+      "CVE-2025-60692",
+      "CVE-2025-60691",
+      "CVE-2025-60690",
+      "CVE-2025-60689",
+      "CVE-2025-60688",
+      "CVE-2025-60687",
+      "CVE-2025-60686",
+      "CVE-2025-60685",
+      "CVE-2025-60684",
+      "CVE-2025-60683",
+      "CVE-2025-60682",
+      "CVE-2025-63396",
+      "CVE-2025-56385",
+      "CVE-2025-63397",
+      "CVE-2025-63560",
+      "CVE-2025-56231",
+      "CVE-2025-57130",
+      "CVE-2025-63293",
+      "CVE-2025-60749",
+      "CVE-2025-61498",
+      "CVE-2025-60898",
+      "CVE-2025-60805",
+      "CVE-2025-60349",
+      "CVE-2025-56399",
+      "CVE-2023-49440",
+      "CVE-2025-60419",
+      "CVE-2025-60735",
+      "CVE-2025-60731",
+      "CVE-2025-60730",
+      "CVE-2025-60729",
+      "CVE-2025-56438",
+      "CVE-2025-60837",
+      "CVE-2025-56447",
+      "CVE-2025-60511",
+      "CVE-2025-61220",
+      "CVE-2025-61301",
+      "CVE-2025-56224",
+      "CVE-2025-56223",
+      "CVE-2025-56219",
+      "CVE-2025-56218",
+      "CVE-2025-57567",
+      "CVE-2025-60641",
+      "CVE-2025-60639",
+      "CVE-2025-60535",
+      "CVE-2025-60838",
+      "CVE-2025-60308",
+      "CVE-2025-60306",
+      "CVE-2025-60307",
+      "CVE-2025-60305",
+      "CVE-2025-60378",
+      "CVE-2025-60304",
+      "CVE-2025-60302",
+      "CVE-2025-61524",
+      "CVE-2025-57457",
+      "CVE-2025-60969",
+      "CVE-2025-60967",
+      "CVE-2025-60965",
+      "CVE-2025-60964",
+      "CVE-2025-60963",
+      "CVE-2025-60962",
+      "CVE-2025-60961",
+      "CVE-2025-60960",
+      "CVE-2025-60959",
+      "CVE-2025-60958",
+      "CVE-2025-60957",
+      "CVE-2025-60956",
+      "CVE-2025-39931",
+      "CVE-2021-42193",
+      "CVE-2025-60787",
+      "CVE-2025-57305",
+      "CVE-2025-56588",
+      "CVE-2025-57393",
+      "CVE-2025-28357",
+      "CVE-2025-56200",
+      "CVE-2025-56572",
+      "CVE-2025-56571",
+      "CVE-2025-57197",
+      "CVE-2025-56807",
+      "CVE-2025-56304",
+      "CVE-2025-57685",
+      "CVE-2025-55887",
+      "CVE-2025-52367",
+      "CVE-2025-55888",
+      "CVE-2025-55885",
+      "CVE-2023-49367",
+      "CVE-2025-57631",
+      "CVE-2025-56557",
+      "CVE-2025-56562",
+      "CVE-2025-57145",
+      "CVE-2025-56295",
+      "CVE-2025-56293",
+      "CVE-2025-56289",
+      "CVE-2025-57119",
+      "CVE-2025-57117",
+      "CVE-2025-56274",
+      "CVE-2025-57174",
+      "CVE-2025-55835",
+      "CVE-2025-50892",
+      "CVE-2025-57573",
+      "CVE-2025-57572",
+      "CVE-2025-57571",
+      "CVE-2025-57570",
+      "CVE-2025-57569",
+      "CVE-2025-52277",
+      "CVE-2025-55849",
+      "CVE-2025-52161",
+      "CVE-2025-55373",
+      "CVE-2024-48705",
+      "CVE-2024-46484",
+      "CVE-2025-55618",
+      "CVE-2025-55422",
+      "CVE-2025-56432",
+      "CVE-2025-50753",
+      "CVE-2025-50383",
+      "CVE-2025-55409",
+      "CVE-2025-57105",
+      "CVE-2025-50674",
+      "CVE-2025-51989",
+      "CVE-2025-55371",
+      "CVE-2025-55564",
+      "CVE-2025-55370",
+      "CVE-2025-55368",
+      "CVE-2025-55367",
+      "CVE-2025-55366",
+      "CVE-2025-50864",
+      "CVE-2025-51543",
+      "CVE-2025-51529",
+      "CVE-2025-50567",
+      "CVE-2025-51965",
+      "CVE-2025-50862",
+      "CVE-2025-50861",
+      "CVE-2025-52335",
+      "CVE-2025-45313",
+      "CVE-2025-45315",
+      "CVE-2025-45314",
+      "CVE-2025-51451",
+      "CVE-2025-51452",
+      "CVE-2025-51629",
+      "CVE-2024-55401",
+      "CVE-2024-52680",
+      "CVE-2025-51058",
+      "CVE-2025-51057"
     ],
-    "osv_id_count": 7,
-    "raw_count": 7,
-    "normalized_count": 7,
-    "fetched_at": "2026-07-04T04:27:37.765012+00:00",
+    "osv_id_count": 76,
+    "raw_count": 76,
+    "normalized_count": 76,
+    "fetched_at": "2026-07-05T04:51:18.340210+00:00",
     "source": "OSV.dev /v1/vulns"
   }
 }
