@@ -1,337 +1,124 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_JancarFBSSBFA22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_JancarFBSSBFA22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833713"
-    },
-    "title": "&quot;They&apos;re not that hard to mitigate&quot;: What Cryptographic Library Developers Think About Timing Attacks.",
-    "summary": "",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Jan Jancar",
-      "Marcel Fourné",
-      "Daniel De Almeida Braga",
-      "Mohamed Sabt",
-      "Peter Schwabe",
-      "Gilles Barthe",
-      "Pierre-Alain Fouque",
-      "Yasemin Acar"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_JattkeVFGR22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_JattkeVFGR22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833772"
-    },
-    "title": "BLACKSMITH: Scalable Rowhammering in the Frequency Domain.",
-    "summary": "We present the new class of non-uniform Rowhammer access patterns that bypass undocumented, proprietary in-DRAM Target Row Refresh (TRR) while operating in a production setting. We show that these patterns trigger bit flips on all 40 DDR4 DRAM devices in our test pool. We make a key observation that all published Rowhammer access patterns always hammer “aggressor” rows uniformly. While uniform accesses maximize the number of aggressor activations, we find that in-DRAM TRR exploits this behavior to catch aggressor rows and refresh neighboring “victims” before they fail. There is no reason, however, to limit Rowhammer attacks to uniform access patterns: smaller technology nodes make underlying DRAM technologies more vulnerable, and significantly fewer accesses are nowadays required to trigger bit flips, making it interesting to investigate less predictable access patterns. The search space for non-uniform access patterns, however, is tremendous. We design experiments to explore this space with respect to the deployed mitigations, highlighting the importance of the order, regularity, and intensity of accessing aggressor rows in non-uniform access patterns. We show how randomizing parameters in the frequency domain captures these aspects and use this insight in the design of Blacksmith, a scalable Rowhammer fuzzer that generates access patterns that hammer aggressor rows with different phases, frequencies, and amplitudes. Blacksmith finds complex patterns that trigger Rowhammer bit flips on all 40 of our recently purchased DDR4 DIMMs, $2.6 \\times$ more than state of the art, and generating on average $87 \\times$ more bit flips. We also demonstrate the effectiveness of these patterns on Low Power DDR4X devices. Our extensive analysis using Blacksmith further provides new insights on the properties of currently deployed TRR mitigations. We conclude that after almost a decade of research and deployed in-DRAM mitigations, we are perhaps in a worse situation than when Rowhammer was first discovered.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Patrick Jattke",
-      "Victor van der Veen",
-      "Pietro Frigo",
-      "Stijn Gunter",
-      "Kaveh Razavi"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_JiaLG22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_JiaLG22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833644"
-    },
-    "title": "BadEncoder: Backdoor Attacks to Pre-trained Encoders in Self-Supervised Learning.",
-    "summary": "Self-supervised learning in computer vision aims to pre-train an image encoder using a large amount of unlabeled images or (image, text) pairs. The pre-trained image encoder can then be used as a feature extractor to build downstream classifiers for many downstream tasks with a small amount of or no labeled training data. In this work, we propose BadEncoder, the first backdoor attack to self-supervised learning. In particular, our BadEncoder injects backdoors into a pre-trained image encoder such that the downstream classifiers built based on the backdoored image encoder for different downstream tasks simultaneously inherit the backdoor behavior. We formulate our BadEncoder as an optimization problem and we propose a gradient descent based method to solve it, which produces a backdoored image encoder from a clean one. Our extensive empirical evaluation results on multiple datasets show that our BadEncoder achieves high attack success rates while preserving the accuracy of the downstream classifiers. We also show the effectiveness of BadEncoder using two publicly available, real-world image encoders, i.e., Google’s image encoder pre-trained on ImageNet and OpenAI’s Contrastive Language-Image Pre-training (CLIP) image encoder pre-trained on 400 million (image, text) pairs collected from the Internet. Moreover, we consider defenses including Neural Cleanse and MNTD (empirical defenses) as well as PatchGuard (a provable defense). Our results show that these defenses are insufficient to defend against BadEncoder, highlighting the needs for new defenses against our BadEncoder. Our code is publicly available at: https://github.com/jjy1994/BadEncoder.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Jinyuan Jia 0001",
-      "Yupei Liu",
-      "Neil Zhenqiang Gong"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_Jiang0WYMSX22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_Jiang0WYMSX22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833740"
-    },
-    "title": "WIGHT: Wired Ghost Touch Attack on Capacitive Touchscreens.",
-    "summary": "The security of capacitive touchscreens is crucial since they have become the primary human-machine interface on smart devices. To the best of our knowledge, this paper presents WIGHT, the first wired attack that creates ghost touches on capacitive touchscreens via charging cables, and can manipulate the victim devices with undesired consequences, e.g., allowing malicious Bluetooth connections, accepting files with viruses, etc. Our study calls for attention to a new threat vector against touchscreens that only requires connecting to a malicious charging port, which could be a public charging station, and is effective across various power adapters and even USB data blockers. Despite the fact that smartphones employ abundant noise reduction and voltage management techniques, we manage to inject carefully crafted signals that can induce ghost touches within a chosen range. The underlying principle is to inject common-mode noises over the power line to avoid being effectively filtered yet affect the touch measurement mechanism, and synchronize the malicious noise with the screen measurement scanning cycles to place the ghost touches at target locations. We achieve three types of attacks: injection attacks that create ghost touches without users touching the screen, alteration attacks that change the detected legitimate touch position, and Denial-of-Service attacks that prevent the device from identifying legitimate touches. Our evaluation on 6 smartphones, 1 tablet, 2 standalone touchscreen panels, 6 power adapters, and 13 charging cables demonstrates the feasibility of all three type attacks.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Yan Jiang",
-      "Xiaoyu Ji 0001",
-      "Kai Wang 0073",
-      "Chen Yan 0001",
-      "Richard Mitev",
-      "Ahmad-Reza Sadeghi",
-      "Wenyuan Xu 0001"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_JinKCD22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_JinKCD22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833710"
-    },
-    "title": "Timing-Based Browsing Privacy Vulnerabilities Via Site Isolation.",
-    "summary": "Chromium’s site isolation ensures that different sites are rendered by different processes, which is a vision that academic researchers set forth over a decade ago. The journey from academic prototypes to the commercial availability represents a holistic rethinking about the security architecture for modern browsers. In this paper, we emphasize that the timing issues under site isolation need a thorough study. Specifically, we show that site isolation enables a realistic timing attack, which allows the attacker to identify which websites in a given target-sites set are loaded into the browser, as well as the website the user is currently interacting with. Through these vulnerabilities, the user’s site-visit behavior is leaked to the attacker. Our evaluation using Alexa Top 3000 websites gives very high vulnerability percentages – 99%, 99% and 95% for our three key metrics of vulnerabilities. Moreover, the attack is very robust without any special assumption, so will be effective if deployed in the field. The main challenge revealed by our work is the tension between the scarcity of processes and the obligation to isolate cross-site frames in different processes. We are working with the Google Chrome team and Microsoft Edge team to propose and evaluate mitigation options.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Zihao Jin",
-      "Ziqiao Kong",
-      "Shuo Chen 0001",
-      "Haixin Duan"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_ChouLWLKH25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ChouLWLKH25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/chou"
-    },
-    "title": "Bots can Snoop: Uncovering and Mitigating Privacy Risks of Bots in Group Chats.",
-    "summary": "New privacy concerns arise with chatbots on group messaging platforms. Chatbots may access information beyond their intended functionalities, such as sender identities or messages unintended for chatbots. Chatbot developers may exploit such information to infer personal information and link users across groups, potentially leading to data breaches, pervasive tracking, or targeted advertising. Our analysis of conversation datasets shows that (1) chatbots often access far more messages than needed, and (2) when a user joins a new group with chatbots, there is a 3.6% chance that at least one of the chatbots can recognize and associate the user with their previous interactions in other groups. Although state-of-the-art (SoA) group messaging protocols provide robust end-to-end encryption and some platforms have implemented policies to limit chatbot access, no platforms successfully combine these features. This paper introduces SnoopGuard, a secure group messaging protocol that ensures user privacy against chatbots while maintaining strong end-to-end security. Our protocol offers (1) selective message access, preventing chatbots from accessing unrelated messages, and (2) sender anonymity, hiding user identities from chatbots. SnoopGuard achieves $O(\\log n + m)$ message-sending complexity for a group of $n$ users and $m$ chatbots, compared to $O(\\log(n + m))$ in SoA protocols, with acceptable overhead for enhanced privacy. Our prototype implementation shows that sending a message to a group of 50 users and 10 chatbots takes about 10 milliseconds when integrated with Message Layer Security (MLS).",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Kai-Hsiang Chou",
-      "Yi-Min Lin",
-      "Yi-An Wang",
-      "Jonathan Weiping Li",
-      "Tiffany Hyun-Jin Kim",
-      "Hsu-Chun Hsiao"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_ChoudhuriGP025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ChoudhuriGP025",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/choudhuri"
-    },
-    "title": "Practical Mempool Privacy via One-time Setup Batched Threshold Encryption.",
-    "summary": "",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Arka Rai Choudhuri",
-      "Sanjam Garg",
-      "Guru-Vamsi Policharla",
-      "Mingyuan Wang 0001"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_ChungZMH25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_ChungZMH25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/chung-yunsung"
-    },
-    "title": "SoK: Can Synthetic Images Replace Real Data? A Survey of Utility and Privacy of Synthetic Image Generation.",
-    "summary": "",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Yunsung Chung",
-      "Yunbei Zhang",
-      "Nassir Marrouche",
-      "Jihun Hamm"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_CoppolaMCSSC25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_CoppolaMCSSC25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/coppola"
-    },
-    "title": "LEO-Range: Physical Layer Design for Secure Ranging with Low Earth Orbiting Satellites.",
-    "summary": "",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Daniele Coppola",
-      "Arslan Mumtaz",
-      "Giovanni Camurati",
-      "Harshad Sathaye",
-      "Mridula Singh",
-      "Srdjan Capkun"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_DaffallaBW0DBR25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_DaffallaBW0DBR25",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/daffalla"
-    },
-    "title": "A Framework for Abusability Analysis: The Case of Passkeys in Interpersonal Threat Models.",
-    "summary": "",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
-    "authors": [
-      "Alaa Daffalla",
-      "Arkaprabha Bhattacharya",
-      "Jacob Wilder",
-      "Rahul Chatterjee 0001",
-      "Nicola Dell",
-      "Rosanna Bellini",
-      "Thomas Ristenpart"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_AnnamalaiBHC26",
+    "id": "paper:ndss:conf_ndss_YangF00W024",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_AnnamalaiBHC26",
+      "native_id": "conf_ndss_YangF00W024",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/to-shuffle-or-not-to-shuffle-auditing-dp-sgd-with-shuffling/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/exploiting-sequence-number-leakage-tcp-hijacking-in-nat-enabled-wi-fi-networks/"
     },
-    "title": "To Shuffle or not to Shuffle: Auditing DP-SGD with Shuffling.",
-    "summary": "The Differentially Private Stochastic Gradient Descent (DP-SGD) algorithm supports the training of machine learning (ML) models with formal Differential Privacy (DP) guarantees.Traditionally, DP-SGD processes training data in batches using Poisson subsampling to select each batch at every iteration.More recently, shuffling has become a common alternative due to its better compatibility and lower computational overhead.However, computing tight theoretical DP guarantees under shuffling remains an open problem.As a result, models trained with shuffling are often evaluated as if Poisson subsampling were used, which might result in incorrect privacy guarantees.This raises a compelling research question: can we verify whether there are gaps between the theoretical DP guarantees reported by state-of-the-art models using shuffling and their actual leakage?To do so, we define novel DP-auditing procedures to analyze DP-SGD with shuffling and measure their ability to tightly estimate privacy leakage vis--vis batch sizes, privacy budgets, and threat models.Overall, we demonstrate that DP models trained using this approach have considerably overestimated their privacy guarantees (by up to 4 times).However, we also find that the gap between the theoretical Poisson DP guarantees and the actual privacy leakage from shuffling is not uniform across all parameter settings and threat models.Finally, we study two common variations of the shuffling procedure that result in even further privacy leakage (up to 10 times).Overall, our work highlights the risk of using shuffling instead of Poisson subsampling in the absence of rigorous analysis methods.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
+    "title": "Exploiting Sequence Number Leakage: TCP Hijacking in NAT-Enabled Wi-Fi Networks.",
+    "summary": "In this paper, we uncover a new side-channel vulnerability in the widely used NAT port preservation strategy and an insufficient reverse path validation strategy of Wi-Fi routers, which allows an off-path attacker to infer if there is one victim client in the same network communicating with another host on the Internet using TCP. After detecting the presence of TCP connections between the victim client and the server, the attacker can evict the original NAT mapping and reconstruct a new mapping at the router by sending fake TCP packets due to the routers' vulnerability of disabling TCP window tracking strategy, which has been faithfully implemented in most of the routers for years. In this way, the attacker can intercept TCP packets from the server and obtain the current sequence and acknowledgment numbers, which in turn allows the attacker to forcibly close the connection, poison the traffic in plain text, or reroute the server's incoming packets to the attacker. We test 67 widely used routers from 30 vendors and discover that 52 of them are affected by this attack. Also, we conduct an extensive measurement study on 93 real-world Wi-Fi networks. The experimental results show that 75 of these evaluated Wi-Fi networks (81%) are fully vulnerable to our attack. Our case study shows that it takes about 17.5, 19.4, and 54.5 seconds on average to terminate an SSH connection, download private files from FTP servers, and inject fake HTTP response packets with success rates of 87.4%, 82.6%, and 76.1%. We responsibly disclose the vulnerability and suggest mitigation strategies to all affected vendors and have received positive feedback, including acknowledgments, CVEs, rewards, and adoption of our suggestions.",
+    "published_at": "2026-07-09T04:36:18.226811+00:00",
+    "fetched_at": "2026-07-09T04:36:18.226811+00:00",
     "authors": [
-      "Meenatchi Sundaram Muthu Selva Annamalai",
-      "Borja Balle",
-      "Jamie Hayes",
-      "Emiliano De Cristofaro"
+      "Yuxiang Yang",
+      "Xuewei Feng",
+      "Qi Li 0002",
+      "Kun Sun 0001",
+      "Ziqiang Wang",
+      "Ke Xu 0002"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_AwasthiVMBG26",
+    "id": "paper:ndss:conf_ndss_Yu0LLLLDWSBH24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_AwasthiVMBG26",
+      "native_id": "conf_ndss_Yu0LLLLDWSBH24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/pandora-lightweight-adversarial-defense-for-edge-iot-using-uncertainty-aware-metric-learning/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/file-hijacking-vulnerability-the-elephant-in-the-room/"
     },
-    "title": "PANDORA: Lightweight Adversarial Defense for Edge IoT using Uncertainty-Aware Metric Learning.",
-    "summary": "The rapid augmentation of Internet of Things (IoT) devices that are resource-constrained in nature has significantly expanded the attack surface, exposed critical vulnerabilities in the network.As a result, traditional Intrusion Detection Systems (IDS), which rely on static, signature-based approaches, have become increasingly obsolete.Modern adversaries now employ sophisticated, automated, and often novel (zero-day) attacks that can easily bypass such conventional defenses.Moreover, the existing IDS models with machine learning often fail in real-world scenarios to handle challenges like concept drift and an inability to generalize to unseen threats.To address these gaps, we introduce PANDORA (Probabilistic Adversarial Network Defense Over Resource-constrained Architectures), a novel, end-to-end framework for detecting zero-day attacks on edge devices.PANDORA makes three key contributions: 1) It learns uncertainty-aware probabilistic embeddings to create robust representations of network traffic; 2) It introduces a novel Probabilistic Manifold Structuring and Distance (PMSD) Loss function that enables effective zero-shot generalization; and 3) It utilizes an efficient Mamba-Mixture of Experts (MoE) architecture for on-device deployment.To validate our approach, we also introduce the TTDFIoTIDS2025 dataset, a new, high-fidelity benchmark featuring complex, programmatically generated attacks.Our extensive evaluations demonstrate that PANDORA significantly outperforms state-of-the-art models, achieving an F1-score of 0.971 with just 10-shot adaptation on CICIDS2017.Critically, it achieves up to 99% accuracy in zero-shot detection under domain shift and, when deployed on a Raspberry Pi, maintains a low memory footprint of 24 MB and a throughput of up to 4.26 flows/sec, proving its practical viability for real-time edge security.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
+    "title": "File Hijacking Vulnerability: The Elephant in the Room.",
+    "summary": "Files are a significant attack vector for security boundary violation, yet a systematic understanding of the vulnerabilities underlying these attacks is lacking.To bridge this gap, we present a comprehensive analysis of File Hijacking Vulnerabilities (FHVulns), a type of vulnerability that enables attackers to breach security boundaries through the manipulation of file content or file paths.We provide an in-depth empirical study on 268 welldocumented FHVuln CVE records from January 2020 to October 2022.Our study reveals the origins and triggering mechanisms of FHVulns and highlights that existing detection techniques have overlooked the majority of FHVulns.As a result, we anticipate a significant prevalence of zero-day FHVulns in software.We developed a dynamic analysis tool, JERRY, which effectively detects FHVulns at runtime by simulating hijacking actions during program execution.We applied JERRY to 438 popular software programs from vendors including Microsoft, Google, Adobe, and Intel, and found 339 zero-day FHVulns.We reported all vulnerabilities identified by JERRY to the corresponding vendors, and as of now, 84 of them have been confirmed or fixed, with 51 CVE IDs granted and $83,400 bug bounties earned.",
+    "published_at": "2026-07-09T04:36:18.226811+00:00",
+    "fetched_at": "2026-07-09T04:36:18.226811+00:00",
     "authors": [
-      "Avinash Awasthi",
-      "Pritam Vediya",
-      "Hemant Miranka",
-      "Ramesh Babu Battula",
-      "Manoj Singh Gaur"
+      "Chendong Yu",
+      "Yang Xiao 0011",
+      "Jie Lu 0009",
+      "Yuekang Li",
+      "Yeting Li",
+      "Lian Li 0002",
+      "Yifan Dong",
+      "Jian Wang 0067",
+      "Jingyi Shi",
+      "Defang Bo",
+      "Wei Huo 0005"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_BajaberJG26",
+    "id": "paper:ndss:conf_ndss_YuD0KWG0L24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_BajaberJG26",
+      "native_id": "conf_ndss_YuD0KWG0L24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/netcap-data-plane-capability-based-defense-against-token-theft-in-network-access/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/aaka-an-anti-tracking-cellular-authentication-scheme-leveraging-anonymous-credentials/"
     },
-    "title": "NetCap: Data-Plane Capability-Based Defense Against Token Theft in Network Access.",
-    "summary": "Tokens play a vital role in enterprise network access control by enabling secure authentication and authorization across various protocols (e.g., JSON Web Tokens, OAuth 2.0).This allows users to access authorized resources using valid access tokens, without the need to repeatedly submit credentials.However, the ambient trust granted to all processes within an authorized host, combined with long token lifetimes, creates an opportunity for malicious processes to hijack tokens and impersonate legitimate users.This threat affects a wide range of protocols and has led to numerous real-world incidents.In this paper, we present NETCAP, a new defense mechanism designed to prevent attackers from using stolen tokens to access unauthorized resources in enterprise environments.The core idea is to introduce unforgeable, process-level capabilities that are bound to authorized processes.These capabilities are continuously embedded in the processes' network traffic to target resources for validation and are frequently refreshed.This binding between process identity and capability ensures that even if access tokens are stolen by malicious processes, they cannot be used to pass authentication without valid capabilities.To support the high volume of requests generated by processes in the network, NETCAP introduces a novel data-plane design based on programmable switches and eBPF.Through multiple optimization techniques, our system supports inline generation and embedding of capabilities, allowing large volumes of traffic to be processed at line rate with little overhead.Our extensive evaluations show that NETCAP maintains line-rate network performance across a variety of protocols and real-world applications with negligible overhead, while effectively securing these applications against token theft attacks.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
+    "title": "AAKA: An Anti-Tracking Cellular Authentication Scheme Leveraging Anonymous Credentials.",
+    "summary": "Mobile tracking has long been a privacy problem, where the geographic data and timestamps gathered by mobile network operators (MNOs) are used to track the locations and movements of mobile subscribers.Additionally, selling the geolocation information of subscribers has become a lucrative business.Many mobile carriers have violated user privacy agreements by selling users' location history to third parties without user consent, exacerbating privacy issues related to mobile tracking and profiling.This paper presents AAKA, an anonymous authentication and key agreement scheme designed to protect against mobile tracking by honest-but-curious MNOs.AAKA leverages anonymous credentials and introduces a novel mobile authentication protocol that allows legitimate subscribers to access the network anonymously, without revealing their unique (real) IDs.It ensures the integrity of user credentials, preventing forgery, and ensures that connections made by the same user at different times cannot be linked.While the MNO alone cannot identify or profile a user, AAKA enables identification of a user under legal intervention, such as when the MNOs collaborate with an authorized law enforcement agency.Our design is compatible with the latest cellular architecture and SIM standardized by 3GPP, meeting 3GPP's fundamental security requirements for User Equipment (UE) authentication and key agreement processes.A comprehensive security analysis demonstrates the scheme's effectiveness.The evaluation shows that the scheme is practical, with a credential presentation generation taking ∼52 ms on a constrained host device equipped with a standard cellular SIM.",
+    "published_at": "2026-07-09T04:36:18.226811+00:00",
+    "fetched_at": "2026-07-09T04:36:18.226811+00:00",
     "authors": [
-      "Osama Bajaber",
-      "Bo Ji 0001",
-      "Peng Gao 0008"
+      "Hexuan Yu",
+      "Changlai Du",
+      "Yang Xiao 0010",
+      "Angelos D. Keromytis",
+      "Chonggang Wang",
+      "Robert Gazda",
+      "Y. Thomas Hou 0001",
+      "Wenjing Lou"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_BasqueDSGDSLWA26",
+    "id": "paper:ndss:conf_ndss_Zhang0XXZW24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_BasqueDSGDSLWA26",
+      "native_id": "conf_ndss_Zhang0XXZW24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/decompiling-the-synergy-an-empirical-study-of-human-llm-teaming-in-software-reverse-engineering/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/shapfuzz-efficient-fuzzing-via-shapley-guided-byte-selection/"
     },
-    "title": "Decompiling the Synergy: An Empirical Study of Human-LLM Teaming in Software Reverse Engineering.",
-    "summary": "Large Language Models (LLMs) are revolutionizing fields previously dominated by human effort.This work presents the first systematic investigation of how LLMs can team with analysts during software reverse engineering (SRE).To accomplish this, we first document the state of LLMs in SRE with an online survey of 153 practitioners, and then we design a finegrained human study on two Capture-The-Flag-style binaries representative of real-world software.In our human study, we instrumented the SRE workflow of 48 participants (split between 24 novices and 24 experts), observing over 109 hours of SRE.Through 18 findings, we found various benefits and harms of LLMs in SRE.Remarkably, we found that LLM assistance narrows the expertise gap: novices' comprehension rate rises by approximately 98%, matching that of experts, whereas experts gain little; however, they also had harmful hallucinations, unhelpful suggestions, and ineffective results.Known-algorithm functions are triaged up to 2.4 faster, and artifact recovery (symbols, comments, types) increases by at least 66%.Overall, our findings identify powerful synergies of humans and LLMs in SRE, but also emphasize the significant shortcomings of LLMs in their current integration.",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
+    "title": "ShapFuzz: Efficient Fuzzing via Shapley-Guided Byte Selection.",
+    "summary": "Mutation-based fuzzing is popular and effective in discovering unseen code and exposing bugs. However, only a few studies have concentrated on quantifying the importance of input bytes, which refers to the degree to which a byte contributes to the discovery of new code. They often focus on obtaining the relationship between input bytes and path constraints, ignoring the fact that not all constraint-related bytes can discover new code. In this paper, we conduct Shapely analysis to understand the effect of byte positions on fuzzing performance, and find that some byte positions contribute more than others and this property often holds across seeds. Based on this observation, we propose a novel fuzzing solution, ShapFuzz, to guide byte selection and mutation. Specifically, ShapFuzz updates Shapley values (importance) of bytes when each input is tested during fuzzing with a low overhead, and utilizes contextual multi-armed bandit to trade off between mutating high Shapley value bytes and low-frequently chosen bytes. We implement a prototype of this solution based on AFL++, i.e., ShapFuzz. We evaluate ShapFuzz against ten state-of-the-art fuzzers, including five byte schedule-reinforced fuzzers and five commonly used fuzzers. Compared with byte schedule-reinforced fuzzers, ShapFuzz discovers more edges and exposes more bugs than the best baseline on three different sets of initial seeds. Compared with commonly used fuzzers, ShapFuzz exposes 20 more bugs than the best comparison fuzzer, and discovers 6 more CVEs than the best baseline on MAGMA. Furthermore, ShapFuzz discovers 11 new bugs on the latest versions of programs, and 3 of them are confirmed by vendors.",
+    "published_at": "2026-07-09T04:36:18.226811+00:00",
+    "fetched_at": "2026-07-09T04:36:18.226811+00:00",
     "authors": [
-      "Zion Leonahenahe Basque",
-      "Samuele Doria",
-      "Ananta Soneji",
-      "Wil Gibbs",
-      "Adam Doupé",
-      "Yan Shoshitaishvili",
-      "Eleonora Losiouk",
-      "Ruoyu Wang 0001",
-      "Simone Aonzo"
+      "Kunpeng Zhang",
+      "Xiaogang Zhu 0001",
+      "Xi Xiao 0001",
+      "Minhui Xue 0001",
+      "Chao Zhang 0008",
+      "Sheng Wen"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_BernsteinBASM26",
+    "id": "paper:ndss:conf_ndss_ZhangCLGHK24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_BernsteinBASM26",
+      "native_id": "conf_ndss_ZhangCLGHK24",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/trust-me-i-know-this-function-hijacking-llm-static-analysis-using-bias/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/front-running-attack-in-sharded-blockchains-and-fair-cross-shard-consensus/"
     },
-    "title": "Trust Me, I Know This Function: Hijacking LLM Static Analysis using Bias.",
-    "summary": "No description supplied",
-    "published_at": "2026-07-08T03:57:49.601384+00:00",
-    "fetched_at": "2026-07-08T03:57:49.601384+00:00",
+    "title": "Front-running Attack in Sharded Blockchains and Fair Cross-shard Consensus.",
+    "summary": "Sharding is a prominent technique for scaling blockchains.By dividing the network into smaller components known as shards, a sharded blockchain can process transactions in parallel without introducing inconsistencies through the coordination of intra-shard and cross-shard consensus protocols.However, we observe a critical security issue with sharded systems: transaction ordering manipulations can occur when coordinating intra-shard and cross-shard consensus protocols, leaving the system vulnerable to attack.Specifically, we identify a novel security issue known as finalization fairness, which can be exploited through a front-running attack.This attack allows an attacker to manipulate the execution order of transactions, even if the victim's transaction has already been processed and added to the blockchain by a fair intra-shard consensus.To address the issue, we offer Haechi, a novel cross-shard protocol that is immune to front-running attacks.Haechi introduces an ordering phase between transaction processing and execution, ensuring that the execution order of transactions is the same as the processing order and achieving finalization fairness.To accommodate different consensus speeds among shards, Haechi incorporates a finalization fairness algorithm to achieve a globally fair order with minimal performance loss.By providing a global order, Haechi ensures strong consistency among shards, enabling better parallelism in handling conflicting transactions across shards.These features make Haechi a promising solution for supporting popular smart contracts in the real world.To evaluate Haechi's performance and effectiveness in preventing the attack, we implemented the protocol using Tendermint and conducted extensive experiments on a geo-distributed AWS environment.Our results demonstrate that Haechi can effectively prevent the presented front-running attack with little performance sacrifice compared to existing cross-shard consensus protocols.",
+    "published_at": "2026-07-09T04:36:18.226811+00:00",
+    "fetched_at": "2026-07-09T04:36:18.226811+00:00",
     "authors": [
-      "Shir Bernstein",
-      "David Beste",
-      "Daniel Ayzenshteyn",
-      "Lea Schönherr",
-      "Yisroel Mirsky"
+      "Jianting Zhang",
+      "Wuhui Chen",
+      "Sifu Luo",
+      "Tiantian Gong",
+      "Zicong Hong",
+      "Aniket Kate"
     ]
   }
 ]
