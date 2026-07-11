@@ -1,340 +1,442 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_GongHPK24",
+    "id": "paper:ieee_sp:conf_sp_SangLZK25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GongHPK24",
+      "native_id": "conf_sp_SangLZK25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP54263.2024.00095"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00013"
     },
-    "title": "More is Merrier: Relax the Non-Collusion Assumption in Multi-Server PIR.",
-    "summary": "A long line of research on secure computation has confirmed that anything that can be computed, can be computed securely using a set of non-colluding parties. Indeed, this non-collusion assumption makes a number of problems solvable, as well as reduces overheads and bypasses computational hardness results, and it is pervasive across different privacy-enhancing technologies. However, it remains highly susceptible to covert, undetectable collusion among computing parties. This work stems from an observation that if the number of available computing parties is much higher than the number of parties required to perform a secure computation task, collusion attempts in privacy-preserving computations could be deterred.We focus on the prominent privacy-preserving computation task of multi-server 1-private information retrieval (PIR) that inherently assumes no pair-wise collusion. For PIR application scenarios, such as those for blockchain light clients, where the available servers can be plentiful, a single server’s deviating action is not tremendously beneficial to itself. We can make deviations undesired via small amounts of rewards and penalties, thus significantly raising the bar for collusion resistance. We design and implement a collusion mitigation mechanism on a public bulletin board with payment execution functions, considering only rational and malicious parties with no honest non-colluding servers. Privacy protection is offered for an extended period after the query executions.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Portal: Fast and Secure Device Access with Arm CCA for Modern Arm Mobile System-on-Chips (SoCs).",
+    "summary": "The increasing integration of diverse co-processors and peripherals within mobile Arm System-on-Chips (SoCs) presents significant challenges for secure and efficient device I/O. Existing approaches relying on memory encryption introduce substantial performance and power overheads, which are exacerbated by the need for real-time data processing and strict power efficiency requirements in mobile platforms. These issues hinder the wider adoption of Arm Confidential Compute Architecture (CCA), which aims to provide robust security guarantees. To address these challenges, we present Portal, a secure and efficient device I/O interface for Arm CCA on mobile Arm SoCs. Portal achieves secure I/O through strict memory isolation without the need for memory encryption. By leveraging the memory isolation mechanism in Arm CCA, Portal enforces hardware-level access control, ensuring that only designated Realm virtual machines and peripherals can access the Portal-protected plaintext memory regions. This design eliminates the overhead associated with encryption, supports dynamic peripheral integration, and maintains robust security guarantees. The evaluation results demonstrate that Portal incurs a minimal one-time overhead of 9.8%, while enhancing scalability and power efficiency, making it a pivotal solution for fostering the adoption of the upcoming Arm CCA in mobile and resource-constrained environments.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Tiantian Gong",
-      "Ryan Henry",
-      "Alexandros Psomas 0001",
-      "Aniket Kate"
+      "Fan Sang",
+      "Jaehyuk Lee",
+      "Xiaokuan Zhang",
+      "Taesoo Kim"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GongLAYXL24",
+    "id": "paper:ieee_sp:conf_sp_SantriajiXZLS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GongLAYXL24",
+      "native_id": "conf_sp_SantriajiXZLS25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP54263.2024.00093"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00078"
     },
-    "title": "Efficient Zero-Knowledge Arguments For Paillier Cryptosystem.",
-    "summary": "We present an efficient zero-knowledge argument of knowledge system customized for the Paillier cryptosystem. Our system enjoys sublinear proof size, low verification cost, and acceptable proof generation effort, while also supporting batch proof generation/verification. Existing works specialized for Paillier cryptosystem feature linear proof size and verification time. Using existing sublinear argument systems for generic statements (e.g., zk-SNARK) results in unaffordable proof generation cost since it involves translating the relations to be proven into an inhibitive large Boolean or arithmetic circuit over a prime order field. Our system does not suffer from these limitations.The core of our argument systems is a constraint system defined over the ring of residue classes modulo a composite number, together with novel techniques tailored for arguing binary values in this setting. We then adapt the approach from Bootle et al. (EUROCRYPT 2016) to compile the constraint system into a sublinear argument system. Our constraint system is generic and can be used to express typical relations in Paillier cryptosystems including range proof, correctness proof, relationships between bits of plaintext, relationships of plaintexts among multiple ciphertexts, and more. Our argument supports batch proof generation and verification, with the amortized cost outperforming state-of-the-art protocol specialized for Paillier when the number of Paillier ciphertext is in the order of hundreds.We report an end-to-end prototype and conduct comprehensive experiments across multiple scenarios. Scenario 1 is Paillier with packing. When we pack 25.6K bits into 400 ciphertexts, a proof that all these ciphertexts are correctly computed is 17 times smaller and is 3 times faster to verify compared with the naive implementation: using 25.6K OR-proofs without packing. Furthermore, we can prove additional statements almost for free, e.g., one can prove that the sum of a subset of the witness bits is less than a threshold t. Another scenario is range proof. To prove that each plaintext in 200 Paillier ciphertexts is of size 256 bits, our proof size is 10 times smaller than the state-of-the-art. Our analysis suggests that our system is asymptotically more efficient than existing protocols, and is highly suitable for scenarios involving a large number (more than 100) of Paillier ciphertexts, which is often the case for data analytics applications.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "DataSeal: Ensuring the Verifiability of Private Computation on Encrypted Data.",
+    "summary": "Fully Homomorphic Encryption (FHE) allows computations to be performed directly on encrypted data without needing to decrypt it first. This “encryption-in-use” feature is crucial for securely outsourcing computations in privacy-sensitive areas such as healthcare and finance. Nevertheless, in the context of FHE-based cloud computing, clients often worry about the integrity and accuracy of the outcomes. This concern arises from the potential for a malicious server or server-side vulnerabilities that could result in tampering with the data, computations, and results. Ensuring integrity and verifiability with low overhead remains an open problem, as prior attempts have not yet achieved this goal. To tackle this challenge and ensure the verification of FHE's private computations on encrypted data, we introduce DataSeal, which combines the low overhead of the algorithm-based fault tolerance (ABFT) technique with the confidentiality of FHE, offering high efficiency and verification capability. Through thorough testing in diverse contexts, we demonstrate that DataSeal achieves much lower overheads for providing computation verifiability for FHE than other techniques that include MAC, ZKP, and TEE. DataSeal's space and computation overheads decrease to nearly negligible as the problem size increases.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Borui Gong",
-      "Wang Fat Lau",
-      "Man Ho Au",
-      "Rupeng Yang",
-      "Haiyang Xue",
-      "Lichun Li"
+      "Muhammad Husni Santriaji",
+      "Jiaqi Xue",
+      "Yancheng Zhang",
+      "Qian Lou",
+      "Yan Solihin"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GongYBHSLSXHLW24",
+    "id": "paper:ieee_sp:conf_sp_Schanck25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GongYBHSLSXHLW24",
+      "native_id": "conf_sp_Schanck25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP54263.2024.00224"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00128"
     },
-    "title": "Baffle: Hiding Backdoors in Offline Reinforcement Learning Datasets.",
-    "summary": "Reinforcement learning (RL) makes an agent learn from trial-and-error experiences gathered during the interaction with the environment. Recently, offline RL has become a popular RL paradigm because it saves the interactions with environments. In offline RL, data providers share large pre-collected datasets, and others can train high-quality agents without interacting with the environments. This paradigm has demonstrated effectiveness in critical tasks like robot control, autonomous driving, etc. However, less attention is paid to investigating the security threats to the offline RL system. This paper focuses on backdoor attacks, where some perturbations are added to the data (observations) such that given normal observations, the agent takes high-rewards actions, and low-reward actions on observations injected with triggers. In this paper, we propose Baffle (Backdoor Attack for Offline Reinforcement Learning), an approach that automatically implants backdoors to RL agents by poisoning the offline RL dataset, and evaluate how different offline RL algorithms react to this attack. Our experiments conducted on four tasks and nine offline RL algorithms expose a disquieting fact: none of the existing offline RL algorithms has been immune to such a backdoor attack. More specifically, Baffle modifies 10% of the datasets for four tasks (3 robotic controls and 1 autonomous driving). Agents trained on the poisoned datasets perform well in normal settings. However, when triggers are presented, the agents’ performance decreases drastically by 63.2%, 53.9%, 64.7%, and 47.4% in the four tasks on average. The backdoor still persists after fine-tuning poisoned agents on clean datasets. We further show that the inserted backdoor is also hard to be detected by a popular defensive method. This paper calls attention to developing more effective protection for the open-source offline RL dataset.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Clubcards for the WebPKI: Smaller Certificate Revocation Tests in Theory and Practice.",
+    "summary": "CRLite is a low-bandwidth, low-latency, privacy-preserving mechanism for distributing certificate revocation data. A CRLite aggregator periodically encodes revocation data into a compact static hash set, or membership test, which can can be downloaded by clients and queried privately. We present a novel data-structure for membership tests, which we call a clubcard, and we evaluate the encoding efficiency of clubcards using data from Mozilla's CRLite infrastructure. As of November 2024, the WebPKI contains over 900 million valid certificates and over 8 million revoked certificates. We describe an instantiation of CRLite that encodes the revocation status of these certificates in a 6.7 MB package. This is 54% smaller than the original instantiation of CRLite presented at the 2017 IEEE Symposium on Security and Privacy, and it is 21% smaller than the lower bound claimed in that work. A sequence of clubcards can encode a dynamic dataset like the WebPKI revocation set. Using data from late 2024 again, we find that clubcards encoding 6 hour delta updates to the WebPKI can be compressed to 26.8 kB on average-a size that makes CRLite truly practical. We have extended Mozilla's CRLite infrastructure so that it can generate clubcards, and we have added client-side support for this system to Firefox. We report on some performance aspects of our implementation, which is currently the default revocation checking mechanism in Firefox Nightly, and we propose strategies for further reducing the bandwidth requirements of CRLite.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Chen Gong 0005",
-      "Zhou Yang 0003",
-      "Yunpeng Bai",
-      "Junda He",
-      "Jieke Shi",
-      "Kecen Li",
-      "Arunesh Sinha",
-      "Bowen Xu",
-      "Xinwen Hou",
-      "David Lo 0001",
-      "Tianhao Wang 0001"
+      "John M. Schanck"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GongyeLXF24",
+    "id": "paper:ieee_sp:conf_sp_SchmidtPSKL25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GongyeLXF24",
+      "native_id": "conf_sp_SchmidtPSKL25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP54263.2024.00001"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00045"
     },
-    "title": "Side-Channel-Assisted Reverse-Engineering of Encrypted DNN Hardware Accelerator IP and Attack Surface Exploration.",
-    "summary": "Deep Neural Networks (DNNs) have revolutionized numerous application domains with their unparalleled performance. As the models become larger and more complex, hardware DNN accelerators are increasingly popular. Field-Programmable Gate Array (FPGA)-based DNN accelerators offer near-Application Specific Integrated Circuit (ASIC) efficiency and exceptional flexibility, establishing them as one of the primary hardware platforms for rapidly evolving deep learning implementations, particularly on edge devices. This prominence renders them lucrative targets for attackers. Existing attacks aimed at compromising the confidentiality of DNN models deployed on FPGA DNN accelerators often assume complete knowledge of the accelerators. However, this assumption does not hold for real-world, proprietary, high-performance FPGA DNN accelerators. In this study, we introduce a comprehensive and effective reverse-engineering methodology for demystifying FPGA DNN accelerator soft Intellectual Property (IP) cores. We demonstrate its application on the cutting-edge AMD-Xilinx Deep Learning Processing Unit (DPU). Our method relies on schematic analysis and, innovatively, electromagnetic (EM) side-channel analysis to reveal the data flow and scheduling of the DNN accelerators. To the best of our knowledge, this research is the first successful endeavor to reverse-engineer a commercial encrypted DNN accelerator IP. Moreover, we investigate attack surfaces exposed by the reverse-engineering findings, including the successful recovery of DNN model architectures and extraction of model parameters. These outcomes pose a significant threat to real-world commercial FPGA-DNN acceleration systems. We discuss potential countermeasures and offer recommendations for FPGA-based IP protection.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Analyzing the iOS Local Network Permission from a Technical and User Perspective.",
+    "summary": "In the past, malicious apps attacked routers or identified locations through local network communication. To mitigate security and privacy risks from local network access, Apple introduced a new permission with iOS 14. To be effective, the permission needs to protect against technical threats, and users must be able to make an informed permission decision. The latter is presumably hindered by the intrinsic technicality of the concept of the local network. In this paper, we perform the first comprehensive analysis of the local network permission by studying four key aspects. We investigate the security of its implementation by systematically accessing the local network. We explore local network accesses via a large-scale dynamic analysis of 10,862 iOS and Android apps. We analyze the concepts that constitute the permission prompts, as this is all the information users get before making a decision. Based on the identified concepts, we conduct an online survey <tex xmlns:mml=\"http://www.w3.org/1998/Math/MathML\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">$(N=150)$</tex> to comprehend users' understanding of the permission, their threat awareness, and common misconceptions. Our work reveals two methods to bypass the permission from webviews, and that the protected local network addresses are insufficient. We show how and when apps access the local network, and how the situation differs between iOS and Android. Finally, we present the light and shadow of users' understanding of the permission. While nearly every participant is aware of at least one threat (83.11%), misconceptions are even more common (84.46%).",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Cheng Gongye",
-      "Yukui Luo",
-      "Xiaolin Xu 0001",
-      "Yunsi Fei"
+      "David Schmidt",
+      "Alexander Ponticello",
+      "Magdalena Steinböck",
+      "Katharina Krombholz",
+      "Martina Lindorfer"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GorterKBG24",
+    "id": "paper:ieee_sp:conf_sp_SchmiedelH0SY25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GorterKBG24",
+      "native_id": "conf_sp_SchmiedelH0SY25",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP54263.2024.00263"
+      "source_url": "https://doi.org/10.1109/SP61157.2025.00246"
     },
-    "title": "Sticky Tags: Efficient and Deterministic Spatial Memory Error Mitigation using Persistent Memory Tags.",
-    "summary": "Spatial memory errors such as buffer overflows still rank among the top vulnerabilities in C/C++ programs. Despite much research in the area, the performance overhead of (even partial) mitigations is still too high for practical adoption. To reduce the cost, recent solutions are shifting towards hardware-assisted techniques such as Arm’s Memory Tagging Extension (MTE). Unfortunately, state-of-the-art MTE solutions incur high overhead due to frequent memory (re)tagging, especially on the stack. Moreover, they rely on the secrecy of random memory tags and offer probabilistic security guarantees.In this paper, we first provide evidence that random tagging offers limited protection as attackers can deduce the memory tags by means of speculative probing. We then present StickyTags, a deterministic MTE solution that efficiently mitigates bounded spatial memory errors. By organizing the stack and heap layout into per-size-class regions, we can apply persistent memory tags to each region in a predetermined pattern. Hence, the memory tags need only be initialized once, after which they can be reused by objects of the same size class. This eliminates the need for costly memory retagging and allows for a fixed, round-robin assignment of the tags, surrounding every object with large implicit spatial guards. While the size of such guards is bounded by the 4-bit MTE entropy (16 tags), the protection is efficient and deterministic. Indeed, we show StickyTags significantly outperforms existing solutions with realistic runtime overheads for practical adoption (≤ 4% on SPEC CPU2006), while fully mitigating 7 out of 8 spatial CVEs evaluated by a recent probabilistic MTE solution.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Constant Latency and Finality for Dynamically Available DAG.",
+    "summary": "Directed Acyclic Graph (DAG) based protocols have shown great promise to improve the performance of blockchains. The CAP theorem shows that it is impossible to have a single system that achieves both liveness (known as dynamic availability) and safety under network partition. This paper explores two types of DAG-based protocols prioritizing liveness or safety, named structured dissemination and Graded Common Prefix (GCP), respectively. For the former, we introduce the first DAG-based protocol with constant expected latency, providing high throughput dynamic availability under the sleepy model. Its expected latency is 3Δ and its throughput linearly scales with participation. We validate these expected performance improvements over existing constant latency sleepy model BFT by running prototypes of each protocol across multiple machines. The latter, GCP, is a primitive that provides safety under network partition, while being weaker than standard consensus. As a result, we are able to obtain a construction that runs in only 2 communication steps, as opposed to the 4 steps of existing low latency partially synchronous BFT. In addition, GCP can easily avoid relying on single leaders' proposals, becoming more resilient to crashes. We also validate these theoretical benefits of GCP experimentally. We leverage our findings to extend the Ebb-and-Flow framework, where two BFT sub-protocols allow different types of clients in the same system to prioritize either liveness or safety. Our extension integrates our two types of DAG-based protocols. This provides a hybrid DAG-based protocol with high throughput, dynamical availability, and finality under network partitions, without running a standard consensus protocol twice as required in existing work.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Floris Gorter",
-      "Taddeus Kroes",
-      "Herbert Bos",
-      "Cristiano Giuffrida"
+      "Hans Schmiedel",
+      "Runchao Han",
+      "Qiang Tang 0005",
+      "Ron Steinfeld",
+      "Jiangshan Yu"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_NisenoffSC25",
+    "id": "paper:acm_ccs:conf_ccs_LiJL24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_NisenoffSC25",
+      "native_id": "conf_ccs_LiJL24",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3744848"
+      "source_url": "https://doi.org/10.1145/3658644.3690324"
     },
-    "title": "Exploiting the Shared Storage API.",
-    "summary": "As part of an effort to replace third-party cookies, Google introduced the Shared Storage API as one of their ''Privacy Sandbox'' proposals. The Shared Storage API seeks to replace some of the benign functionalities that third-party cookies facilitate while mitigating the potential privacy harms that they can cause, such as reidentifying users across websites. Shared Storage seeks to do this by allowing third parties to store data that is not partitioned by top-level website, but limiting read access to those data. We find that the implementation and design of the API have flaws that allow for both the reidentification of users across sites and the leakage of more data than intended by Google. With the API being deployed in Google Chrome and major advertisers and trackers having completed the processes required to gain access to the API, the Shared Storage API may not do as much as intended to improve the state of privacy on the web. We present several attacks on the API that circumvent the key goals laid out by Google as well as discuss potential extensions and mitigation strategies. While we have responsibly disclosed our attacks to Google, most attacks remain possible in Chrome.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "CAPSID: A Private Session ID System for Small UAVs.",
+    "summary": "The US Federal Aviation Administration (FAA) has recently mandated that small unmanned aerial vehicles (UAVs) be equipped with a transmitter that broadcasts the UAV's serial number, location, and altitude. The inclusion of a unique identifier in the form of a UAV serial number has stoked fears that the identifier will be used to track UAV operators and has even led some UAV operators to file a lawsuit against the FAA.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Alexandra Nisenoff",
-      "Deian Stefan",
-      "Nicolas Christin"
+      "Yueshen Li",
+      "Jianli Jin",
+      "Kirill Levchenko"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_NishimuraTS25",
+    "id": "paper:acm_ccs:conf_ccs_LiLCX0X24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_NishimuraTS25",
+      "native_id": "conf_ccs_LiLCX0X24",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3744808"
+      "source_url": "https://doi.org/10.1145/3658644.3691402"
     },
-    "title": "Surpassing the Word Size Limitation of TFHE with Noise Calibration.",
-    "summary": "Torus fully homomorphic encryption (TFHE) is a promising solution for secure computation, offering low computational cost and simple setup requirements. A key feature of TFHE is programmable bootstrap (PBS), which enables efficient homomorphic evaluation of arbitrary functions over small domains. However, the domain size of PBS is constrained by the word size limitation of TFHE, an unavoidable restriction to ensure data security. This limitation raises scalability challenges for extending homomorphic function evaluation to larger domains. Existing approaches attempt to overcome this limitation but suffer from high computational costs. The vertical packing technique (Chillotti et al., 2020) supports function evaluations beyond the word size limitation but depends on circuit bootstrap, a computationally expensive primitive. The tree-based method (Guimarães et al., 2021) avoids using circuit bootstrap but introduces significant computational overhead, requiring O(2W) PBS calls for a W-bit domain.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Poster: Few-Shot Inter-Domain Routing Threat Detection with Large-Scale Multi-Modal Pre-Training.",
+    "summary": "Border Gateway Protocol (BGP) plays a pivotal role as the de facto inter-domain routing protocol on the Internet. However, BGP threats continually emerge and undermine the Internet reliability. Existing BGP threat detection methods based on machine learning require substantial labeled data and expert involvement, making them costly and labor-intensive. Moreover, they fail to learn rich information from massive unlabeled BGP data consistently generated on the Internet. In this paper, we propose FIRE that enables few-shot inter-domain routing threat detection with large-scale multi-modal pre-training. FIRE conducts domain-specific pre-training tasks to acquire rich BGP implicit knowledge from massive unlabeled BGP data for few-shot learning. Our experiments show that FIRE can be fine-tuned to precisely identify BGP threats with only a few labeled samples, e.g., a 93.2% precision in route leak detection with merely 8 events for fine-tuning.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Takumi Nishimura 0001",
-      "Kazunari Tozawa",
-      "Kunihiko Sadakane"
+      "Yizhi Li",
+      "Jiang Li",
+      "Jiahao Cao 0001",
+      "Renjie Xie",
+      "Yangyang Wang 0001",
+      "Mingwei Xu 0001"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_NonnenkampGG025",
+    "id": "paper:acm_ccs:conf_ccs_LiLLKPM024",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_NonnenkampGG025",
+      "native_id": "conf_ccs_LiLLKPM024",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3765147"
+      "source_url": "https://doi.org/10.1145/3658644.3690304"
     },
-    "title": "Hidden in Plain Bytes: Investigating Interpersonal Account Compromise with Data Exports.",
-    "summary": "When survivors of technology-facilitated abuse (TFA) suspect someone has accessed their online accounts, they often rely on built-in account security interfaces (ASIs), such as trusted device lists within settings, to assess account compromise. However, these interfaces typically offer limited or ambiguous details about past account accesses and security-critical events. Under right of access provisions in data protection laws, users can request structured exports of their personal data from online services. In this study, we explore whether and how data exports can supplement ASIs to support compromise investigations, particularly in interpersonal threat contexts. We simulated four types of account compromise attacks across six popular platforms, analyzing the resulting data exports and ASIs. Our findings show that data exports consistently contain more granular login histories and richer device/network identifiers than interfaces. Some even link security-related actions (e.g., password changes) and other post-authentication activity to specific devices, offering forensic value for identifying compromise. We discuss usability and other practical challenges of using data exports during TFA interventions.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Analyzing Inference Privacy Risks Through Gradients In Machine Learning.",
+    "summary": "In distributed learning settings, models are iteratively updated with shared gradients computed from potentially sensitive user data. While previous work has studied various privacy risks of sharing gradients, our paper aims to provide a systematic approach to analyze private information leakage from gradients. We present a unified game-based framework that encompasses a broad range of attacks including attribute, property, distributional, and user disclosures. We investigate how different uncertainties of the adversary affect their inferential power via extensive experiments on five datasets across various data modalities. Our results demonstrate the inefficacy of solely relying on data aggregation to achieve privacy against inference attacks in distributed learning. We further evaluate five types of defenses, namely, gradient pruning, signed gradient descent, adversarial perturbations, variational information bottleneck, and differential privacy, under both static and adaptive adversary settings. We provide an information-theoretic view for analyzing the effectiveness of these defenses against inference from gradients. Finally, we introduce a method for auditing attribute inference privacy, improving the empirical estimation of worst-case privacy through crafting adversarial canary records.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Julia Nonnenkamp",
-      "Naman Gupta",
-      "Abhimanyu Dev Gupta",
-      "Rahul Chatterjee 0001"
+      "Zhuohang Li",
+      "Andrew Lowy",
+      "Jing Liu 0009",
+      "Toshiaki Koike-Akino",
+      "Kieran Parsons",
+      "Bradley A. Malin",
+      "Ye Wang 0001"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_NosykKGMBOTD25",
+    "id": "paper:acm_ccs:conf_ccs_LiLZYJX24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_NosykKGMBOTD25",
+      "native_id": "conf_ccs_LiLZYJX24",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3744869"
+      "source_url": "https://doi.org/10.1145/3658644.3670285"
     },
-    "title": "Exposing the Roots of DNS Abuse: A Data-Driven Analysis of Key Factors Behind Phishing Domain Registrations.",
-    "summary": "Cybercriminals have long depended on domain names for phishing, spam, malware distribution, and botnet operation. To facilitate the malicious activities, they continually register new domain names for exploitation. Previous work revealed an abnormally high concentration of malicious registrations in a handful of registrars and TLDs. However, no existing study systematically analyzed the factors driving abuse, leaving a critical gap in understanding how different variables influence malicious registrations. In this paper, we carefully distill the inclinations and aversions of malicious actors during the registration of new phishing domain names. Having compiled a list of 14.5 k malicious and 15.4 k benign domains, we collect a comprehensive set of 73 features for all the domains encompassing three main latent factors: registration attributes, proactive verification, and reactive security practices. With a GLM regression analysis, we found that each dollar reduction in registration fees corresponds to a 49% increase in malicious domain registrations. The availability of free bundled services, such as web hosting, drives an 88% surge in phishing activities. Conversely, stringent registration restrictions cut down abuse by 63%, while registrars providing API access for domain registration or account creation experience a staggering 401% rise in malicious domains. The results enable intermediaries involved in domain registration to develop tailored anti-abuse practices, yet aligning them with their economic interests.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "SafeEar: Content Privacy-Preserving Audio Deepfake Detection.",
+    "summary": "Text-to-Speech (TTS) and Voice Conversion (VC) models have exhibited remarkable performance in generating realistic and natural audio. However, their dark side, audio deepfake poses a significant threat to both society and individuals. Existing countermeasures largely focus on determining the genuineness of speech based on complete original audio recordings, which however often contain private content. This oversight may refrain deepfake detection from many applications, particularly in scenarios involving sensitive information like business secrets. In this paper, we propose SafeEar, a novel framework that aims to detect deepfake audios without relying on accessing the speech content within. Our key idea is to devise a neural audio codec into a novel decoupling model that well separates the semantic and acoustic information from audio samples, and only use the acoustic information (e.g., prosody and timbre) for deepfake detection. In this way, no semantic content will be exposed to the detector. To overcome the challenge of identifying diverse deepfake audio without semantic clues, we enhance our deepfake detector with real-world codec augmentation. Extensive experiments conducted on four benchmark datasets demonstrate SafeEar's effectiveness in detecting various deepfake techniques with an equal error rate (EER) down to 2.02%. Simultaneously, it shields five-language speech content from being deciphered by both machine and human auditory analysis, demonstrated by word error rates (WERs) all above 93.93% and our user study. Furthermore, our benchmark constructed for anti-deepfake and anti-content recovery evaluation helps provide a basis for future research in the realms of audio privacy preservation and deepfake detection.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Yevheniya Nosyk",
-      "Maciej Korczynski",
-      "Carlos Gañán",
-      "Sourena Maroofi",
-      "Jan Bayer",
-      "Zul Odgerel",
-      "Samaneh Tajalizadehkhoob",
-      "Andrzej Duda"
+      "Xinfeng Li",
+      "Kai Li 0047",
+      "Yifan Zheng 0001",
+      "Chen Yan 0001",
+      "Xiaoyu Ji 0001",
+      "Wenyuan Xu 0001"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_Olszewski25",
+    "id": "paper:acm_ccs:conf_ccs_LiMLBWJZ24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Olszewski25",
+      "native_id": "conf_ccs_LiMLBWJZ24",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3719027.3765573"
+      "source_url": "https://doi.org/10.1145/3658644.3691410"
     },
-    "title": "On Defining Reproducible Outcomes for the Computer Security Community.",
-    "summary": "Reproducibility is crucial to the advancement of science; it strengthens confidence in seemingly contradictory results and expands the boundaries of known discoveries. Computer Security has the natural benefit of creating artifacts that should facilitate computational reproducibility, the ability for others to use someone else's code and data to independently recreate results, in a relatively straightforward fashion. While the Security community has recently increased its attention on reproducibility, whether the current approach to increasing reproducible research is effective remains an open question. In this dissertation, we measure the impact of current approaches to reproducible research, construct frameworks and tools to increase reproducible outcomes, and analyze the approach we have taken. The goal of this dissertation is to provide tools for security researchers that simplify and increase the reproducibility of research.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Poster: Towards Real-Time Intrusion Detection with Explainable AI-Based Detector.",
+    "summary": "Identifying malicious traffic is crucial for safeguarding internal networks from privacy breaches.Intrusion Detection Systems (IDS) traditionally rely on inefficient and outdated rule-sets, necessitating a shift towards AI-driven, learning-based algorithms for enhanced detection capabilities.Despite their promise, AI-integrated IDS face deployment challenges due to complex, opaque decision-making processes that can lead to latency and an increased risk of false positives.This paper presents the Explainable AI-based Intrusion Detection System (XAI-IDS), addressing the limitations of both rule-based and AI-driven IDS by integrating interpretable deep learning models.XAI-IDS employs tree regularization to transform complex models into efficient, transparent decision trees, facilitating real-time detection with improved accuracy and explainability.Experiments on two benchmark datasets demonstrate XAI-IDS's superior performance, offering a scalable solution to the challenge of identifying malicious traffic with reduced risk of false positives.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Daniel Olszewski"
+      "Wenhao Li 0005",
+      "Duohe Ma",
+      "Zhaoxuan Li",
+      "Huaifeng Bao",
+      "Shuai Wang 0079",
+      "Huamin Jin",
+      "Xiaoyu Zhang 0002"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HarbachBBCUPKWE24",
+    "id": "paper:usenix_security:conf_uss_AlsaheelNMYWC0X21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_HarbachBBCUPKWE24",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/dont-interrupt-me-a-large-scale-study-of-on-device-permission-prompt-quieting-in-chrome/"
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AlsaheelNMYWC0X21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/alsaheel"
     },
-    "title": "Don&apos;t Interrupt Me - A Large-Scale Study of On-Device Permission Prompt Quieting in Chrome.",
+    "title": "ATLAS: A Sequence-based Learning Approach for Attack Investigation.",
     "summary": "",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Marian Harbach",
-      "Igor Bilogrevic",
-      "Enrico Bacis",
-      "Serena Chen",
-      "Ravjit Uppal",
-      "Andy Paicu",
-      "Elias Klim",
-      "Meggyn Watkins",
-      "Balazs Engedy"
+      "Abdulellah Alsaheel",
+      "Yuhong Nan",
+      "Shiqing Ma",
+      "Le Yu",
+      "Gregory Walkup",
+      "Z. Berkay Celik",
+      "Xiangyu Zhang 0001",
+      "Dongyan Xu"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_He0ZZHB0024",
+    "id": "paper:usenix_security:conf_uss_AnthoineDJMPHR21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AnthoineDJMPHR21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/anthoine"
+    },
+    "title": "Dynamic proofs of retrievability with low server storage.",
+    "summary": "Proofs of Retrievability (PoRs) are protocols which allow a client to store data remotely and to efficiently ensure, via audits, that the entirety of that data is still intact. A dynamic PoR system also supports efficient retrieval and update of any small portion of the data. We propose new, simple protocols for dynamic PoR that are designed for practical efficiency, trading decreased persistent storage for increased server computation, and show in fact that this tradeoff is inherent via a lower bound proof of time-space for any PoR scheme. Notably, ours is the first dynamic PoR which does not require any special encoding of the data stored on the server, meaning it can be trivially composed with any database service or with existing techniques for encryption or redundancy. Our implementation and deployment on Google Cloud Platform demonstrates our solution is scalable: for example, auditing a 1TB file takes just less than 5 minutes and costs less than $0.08 USD. We also present several further enhancements, reducing the amount of client storage, or the communication bandwidth, or allowing public verifiability, wherein any untrusted third party may conduct an audit.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
+    "authors": [
+      "Gaspard Anthoine",
+      "Jean-Guillaume Dumas",
+      "Mélanie de Jonghe",
+      "Aude Maignan",
+      "Clément Pernet",
+      "Michael Hanling",
+      "Daniel S. Roche"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_ArdiHS21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_ArdiHS21",
+      "source_name": "USENIX Security",
+      "source_url": "https://doi.org/10.1145/3474718.3474721"
+    },
+    "title": "Building Reproducible Video Streaming Traffic Generators.",
+    "summary": "Video streaming traffic dominates Internet traffic. However, there is a dearth of tools to generate such traffic on emulation-based testbeds. In this paper we present tools to create representative and reproducible video streaming traffic to evaluate the next generation of traffic classification, Quality of Service (QoS) algorithms and traffic engineering systems. We discuss 27 different combinations of streaming video traffic types in this preliminary work, and illustrate the diversity of network-level dynamics in these protocols.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
+    "authors": [
+      "Calvin Ardi",
+      "Alefiya Hussain",
+      "Stephen Schwab"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AumayrMKM21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AumayrMKM21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/aumayr"
+    },
+    "title": "Blitz: Secure Multi-Hop Payments Without Two-Phase Commits.",
+    "summary": "",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
+    "authors": [
+      "Lukas Aumayr",
+      "Pedro Moreno-Sanchez",
+      "Aniket Kate",
+      "Matteo Maffei"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_AvllazagajZBBD21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_AvllazagajZBBD21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/avllazagaj"
+    },
+    "title": "When Malware Changed Its Mind: An Empirical Study of Variable Program Behaviors in the Real World.",
+    "summary": "",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
+    "authors": [
+      "Erin Avllazagaj",
+      "Ziyun Zhu",
+      "Leyla Bilge",
+      "Davide Balzarotti",
+      "Tudor Dumitras"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_BockLPDM23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_He0ZZHB0024",
+      "native_id": "conf_ndss_BockLPDM23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/dorpatch-distributed-and-occlusion-robust-adversarial-patch-to-evade-certifiable-defenses/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/how-to-count-bots-in-longitudinal-datasets-of-ip-addresses/"
     },
-    "title": "DorPatch: Distributed and Occlusion-Robust Adversarial Patch to Evade Certifiable Defenses.",
-    "summary": "Adversarial patch attacks are among the most practical adversarial attacks.Recent efforts focus on providing a certifiable guarantee on correct predictions in the presence of white-box adversarial patch attacks.In this paper, we propose DorPatch, an effective adversarial patch attack to evade both certifiably robust defenses and empirical defenses.DorPatch employs group lasso on a patch's mask, image dropout, density regularization, and structural loss to generate a fully optimized, distributed, occlusion-robust, and inconspicuous adversarial patch that can be deployed in physical-world adversarial patch attacks.Our extensive experimental evaluation with both digitaldomain and physical-world tests indicates that DorPatch can effectively evade PatchCleanser [64], the state-of-the-art certifiable defense, and empirical defenses against adversarial patch attacks.More critically, mispredicted results of adversarially patched examples generated by DorPatch can receive certification from PatchCleanser, producing a false trust in guaranteed predictions.DorPatch achieves state-of-the-art attacking performance and perceptual quality among all adversarial patch attacks.DorPatch poses a significant threat to real-world applications of DNN models and calls for developing effective defenses to thwart the attack.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "How to Count Bots in Longitudinal Datasets of IP Addresses.",
+    "summary": "Estimating the size of a botnet is one of the most basic and important queries one can make when trying to understand the impact of a botnet.Surprisingly and unfortunately, this seemingly simple task has confounded many measurement efforts.While it may seem tempting to simply count the number of IP addresses observed to be infected, it is well-known that doing so can lead to drastic overestimates, as ISPs commonly assign new IP addresses to hosts.As a result, estimating the number of infected hosts given longitudinal datasets of IP addresses has remained an open problem.In this paper, we present a new data analysis technique, CARDCount, that provides more accurate size estimations by accounting for IP address reassignments.CARDCount can be applied on longer windows of observations than prior approaches (weeks compared to hours), and is the first technique of its kind to provide confidence intervals for its size estimations.We evaluate CARDCount on three real world datasets and show that it performs equally well to existing solutions on synthetic ideal situations, but drastically outperforms all previous work in realistic botnet situations.For the Hajime and Mirai botnets, we estimate that CARDCount, is 51.6% and 69.1% more accurate than the state of the art techniques when estimating the botnet size over a 28-day window.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Chaoxiang He",
-      "Xiaojing Ma 0002",
-      "Bin B. Zhu",
-      "Yimiao Zeng",
-      "Hanqing Hu",
-      "Xiaofan Bai",
-      "Hai Jin 0001",
-      "Dongmei Zhang 0001"
+      "Leon Böck",
+      "Dave Levin",
+      "Ramakrishna Padmanabhan",
+      "Christian Doerr",
+      "Max Mühlhäuser"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HeFBZM024",
+    "id": "paper:ndss:conf_ndss_BudykhoBWRLRRS23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HeFBZM024",
+      "native_id": "conf_ndss_BudykhoBWRLRRS23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/symphony-path-validation-at-scale/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/fine-grained-trackability-in-protocol-executions/"
     },
-    "title": "Symphony: Path Validation at Scale.",
-    "summary": "Path validation has long been explored as a fundamental solution to secure future Internet architectures.It enables end-hosts to specify forwarding paths for their traffic and to verify whether the traffic follows the specified paths.In comparison with the current Internet architecture that keeps packet forwarding uncontrolled and transparent to end-hosts, path validation benefits end-hosts with flexibility, security, and privacy.The key design enforces routers to embed their credentials into cryptographic proofs in packet headers.Such proofs require sufficiently complex computation to guarantee unforgeability.This imposes an inevitable barrier on validation efficiency for a single packet.In this paper, we propose aggregate validation to implement path validation in a group-wise way.Amortizing overhead across packets in a group, aggregate validation promises higher validation efficiency without sacrificing security.We implement aggregation validation through Symphony, with various design techniques integrated and security properties formally proved.In comparison with state-of-the-art EPIC, Symphony speeds up packet processing by 3.78×∼18.40×and increases communication throughput by 1.13×∼6.11×.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "Fine-Grained Trackability in Protocol Executions.",
+    "summary": "",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Anxiao He",
-      "Jiandong Fu",
-      "Kai Bu",
-      "Ruiqi Zhou",
-      "Chenlu Miao",
-      "Kui Ren 0001"
+      "Ksenia Budykho",
+      "Ioana Boureanu",
+      "Stephan Wesemeyer",
+      "Daniel Romero",
+      "Matt Lewis",
+      "Yogaratnam Rahulan",
+      "Fortunat Rajaona",
+      "Steve Schneider"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HeJZFWF0024",
+    "id": "paper:ndss:conf_ndss_BulekovDHE23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HeJZFWF0024",
+      "native_id": "conf_ndss_BulekovDHE23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/maginot-line-assessing-a-new-cross-app-threat-to-pii-as-factor-authentication-in-chinese-mobile-apps/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/no-grammar-no-problem-towards-fuzzing-the-linux-kernel-without-system-call-descriptions/"
     },
-    "title": "Maginot Line: Assessing a New Cross-app Threat to PII-as-Factor Authentication in Chinese Mobile Apps.",
-    "summary": "Authentication is one of the established practices to ensure user security.Personally identifiable information (PII), such as national identity card number (ID number) and bank card number, is used widely in China's mobile apps as an additional secret to authenticate users, i.e., PII-as-Factor Authentication (PaFA).In this paper, we found a new threat that calls on the cautiousness of PaFA: the simultaneous usages and business-related interactions of apps make the authentication strength of a target app weaker than designed.An adversary, who knows fewer authentication factors (only SMS OTP) than a PaFA system required, can break the authentication by gathering information or abusing cross-app authorization from other apps.To systematically study the potential risks, we proposed a semiautomatic system, MAGGIE, to evaluate the security of PaFA in target apps.By measuring 234 real-world apps in Chinese app markets with the help of MAGGIE, we found 75.4% of apps that deployed PaFA can be bypassed, including the popular and sensitive ones (e.g., AliPay, WeChat, UnionPay), leading to severe consequences like hijack user accounts and making unauthorized purchases.Additionally, we conducted a survey to demonstrate the practical implications of the new risk on users.Finally, we reported our findings to the vendors and provided several mitigation measures.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "No Grammar, No Problem: Towards Fuzzing the Linux Kernel without System-Call Descriptions.",
+    "summary": "The integrity of the entire computing ecosystem depends on the security of our operating systems (OSes).Unfortunately, due to the scale and complexity of OS code, hundreds of security issues are found in OSes, every year [32].As such, operating systems have constantly been prime use-cases for applying security-analysis tools.In recent years, fuzz-testing has appeared as the dominant technique for automatically finding security issues in software.As such, fuzzing has been adapted to find thousands of bugs in kernels [14].However, modern OS fuzzers, such as Syzkaller, rely on precise, extensive, manuallycreated harnesses and grammars for each interface fuzzed within the kernel.Due to this reliance on grammars, current OS fuzzers are faced with scaling-issues.In this paper, we present FUZZNG, our generic approach to fuzzing system-calls on OSes.Unlike Syzkaller, FUZZNG does not require intricate descriptions of system-call interfaces in order to function.Instead FUZZNG leverages fundamental kernel design features in order to reshape and simplify the fuzzer's input-space.As such FUZZNG only requires a small config, for each new target: essentially a list of files and system-call numbers the fuzzer should explore.We implemented FUZZNG for the Linux kernel.Testing FUZZNG over 10 Linux components with extensive descriptions in Syzkaller showed that, on average, FUZZNG achieves 102.5% of Syzkaller's coverage.FUZZNG found 9 new bugs (5 in components that Syzkaller had already fuzzed extensively, for years).Additionally, FUZZNG's lightweight configs are less than 1.7% the size of Syzkaller's manually-written grammars.Crucially, FUZZNG achieves this without initial seed-inputs, or expert guidance.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Fannv He",
-      "Yan Jia 0009",
-      "Jiayu Zhao",
-      "Yue Fang",
-      "Jice Wang",
-      "Mengyue Feng",
-      "Peng Liu 0005",
-      "Yuqing Zhang 0001"
+      "Alexander Bulekov",
+      "Bandan Das",
+      "Stefan Hajnoczi",
+      "Manuel Egele"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_HoodaLKF24",
+    "id": "paper:ndss:conf_ndss_ChandlerWF23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_HoodaLKF24",
+      "native_id": "conf_ndss_ChandlerWF23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/experimental-analyses-of-the-physical-surveillance-risks-in-client-side-content-scanning/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/binaryinferno-a-semantic-driven-approach-to-field-inference-for-binary-message-formats/"
     },
-    "title": "Experimental Analyses of the Physical Surveillance Risks in Client-Side Content Scanning.",
-    "summary": "Content scanning systems employ perceptual hashing algorithms to scan user content for illicit material, such as child pornography or terrorist recruitment flyers. Perceptual hashing algorithms help determine whether two images are visually similar while preserving the privacy of the input images. Several efforts from industry and academia propose scanning on client devices such as smartphones due to the impending rollout of end-to-end encryption that will make server-side scanning difficult. These proposals have met with strong criticism because of the potential for the technology to be misused for censorship. However, the risks of this technology in the context of surveillance are not well understood. Our work informs this conversation by experimentally characterizing the potential for one type of misuse -attackers manipulating the content scanning system to perform physical surveillance on target locations. Our contributions are threefold: (1) we offer a definition of physical surveillance in the context of client-side image scanning systems; (2) we experimentally characterize this risk and create a surveillance algorithm that achieves physical surveillance rates more than 30% by poisoning 0.2% of the perceptual hash database; (3) we experimentally study the trade-off between the robustness of client-side image scanning systems and surveillance, showing that more robust detection of illicit material leads to an increased potential for physical surveillance in most settings.",
-    "published_at": "2026-07-10T04:38:14.804553+00:00",
-    "fetched_at": "2026-07-10T04:38:14.804553+00:00",
+    "title": "BinaryInferno: A Semantic-Driven Approach to Field Inference for Binary Message Formats.",
+    "summary": "We present BinaryInferno, a fully automatic tool for reverse engineering binary message formats.Given a set of messages with the same format, the tool uses an ensemble of detectors to infer a collection of partial descriptions and then automatically integrates the partial descriptions into a semantically-meaningful description that can be used to parse future packets with the same format.As its ensemble, BinaryInferno uses a modular and extensible set of targeted detectors, including detectors for identifying atomic data types such as IEEE floats, timestamps, and integer length fields; for finding boundaries between adjacent fields using Shannon entropy; and for discovering variablelength sequences by searching for common serialization idioms.We evaluate BinaryInferno's performance on sets of packets drawn from 10 binary protocols.Our semantic-driven approach significantly decreases false positive rates and increases precision when compared to the previous state of the art.For top-level protocols we identify field boundaries with an average precision of 0.69, an average recall of 0.73, and an average false positive rate of 0.04, significantly outperforming five other state-of-the-art protocol reverse engineering tools on the same data sets: Awre (0.18, 0.03, 0.04), FieldHunter (0.68, 0.37, 0.01), Nemesys (0.31, 0.44, 0.11), Netplier (0.29, 0.75, 0.22), and Netzob (0.57, 0.42, 0.03).We believe our improvements in precision and false positive rates represent what our target user most wants: semantically meaningful descriptions with fewer false positives.Once the individual detectors have returned their results, we then automatically integrate the partial descriptions into",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
     "authors": [
-      "Ashish Hooda",
-      "Andrey Labunets",
-      "Tadayoshi Kohno",
-      "Earlence Fernandes"
+      "Jared Chandler",
+      "Adam Wick",
+      "Kathleen Fisher"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_ChangJHK23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_ChangJHK23",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/rovisq-reduction-of-video-service-quality-via-adversarial-attacks-on-deep-learning-based-video-compression/"
+    },
+    "title": "RoVISQ: Reduction of Video Service Quality via Adversarial Attacks on Deep Learning-based Video Compression.",
+    "summary": "Video compression plays a crucial role in video streaming and classification systems by maximizing the end-user quality of experience (QoE) at a given bandwidth budget. In this paper, we conduct the first systematic study for adversarial attacks on deep learning-based video compression and downstream classification systems. Our attack framework, dubbed RoVISQ, manipulates the Rate-Distortion ($\\textit{R}$-$\\textit{D}$) relationship of a video compression model to achieve one or both of the following goals: (1) increasing the network bandwidth, (2) degrading the video quality for end-users. We further devise new objectives for targeted and untargeted attacks to a downstream video classification service. Finally, we design an input-invariant perturbation that universally disrupts video compression and classification systems in real time. Unlike previously proposed attacks on video classification, our adversarial perturbations are the first to withstand compression. We empirically show the resilience of RoVISQ attacks against various defenses, i.e., adversarial training, video denoising, and JPEG compression. Our extensive experimental results on various video datasets show RoVISQ attacks deteriorate peak signal-to-noise ratio by up to 5.6dB and the bit-rate by up to $\\sim$ 2.4$\\times$ while achieving over 90$\\%$ attack success rate on a downstream classifier. Our user study further demonstrates the effect of RoVISQ attacks on users' QoE.",
+    "published_at": "2026-07-11T03:55:47.415972+00:00",
+    "fetched_at": "2026-07-11T03:55:47.415972+00:00",
+    "authors": [
+      "Jung-Woo Chang",
+      "Mojan Javaheripi",
+      "Seira Hidano",
+      "Farinaz Koushanfar"
     ]
   }
 ]
