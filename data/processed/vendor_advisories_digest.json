@@ -1,6 +1,6 @@
 {
   "schema_version": "0.2.0",
-  "generated_at": "2026-07-25T04:01:44.393310+00:00",
+  "generated_at": "2026-07-26T04:25:58.532626+00:00",
   "items": [
     {
       "id": "vendor:android_security:e0a460df9b913e12",
@@ -10,7 +10,7 @@
       "source": "vendor",
       "source_name": "Android Security Bulletin",
       "source_url": "https://source.android.com/docs/compatibility/cts",
-      "published_at": "2026-07-25T03:59:07.483790Z",
+      "published_at": "2026-07-26T04:23:27.438984Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -27,12 +27,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Android兼容性测试套件（CTS）是一套用于验证Android设备是否兼容Android框架的自动化测试。它确保设备能够正确运行Android应用和系统API，从而维护Android生态系统的统一性。CTS由Android安全公告页面发布，但本条目并非漏洞公告，而是对CTS工具的说明。该测试套件涵盖多种测试用例，包括但不限于应用兼容性、权限管理、性能基准等。开发者或OEM厂商需通过CTS测试以确保设备获得Google移动服务授权。虽然CTS本身并非安全机制，但它有助于发现设备因定制或修改导致的系统行为异常，间接影响安全性。由于输入未提供具体漏洞信息，本摘要仅基于CTS的通用功能描述。",
-        "why_it_matters_zh": "CTS是确保Android设备兼容性的关键工具，虽非直接安全漏洞，但未通过CTS测试的设备可能存在应用兼容性问题，影响用户安全体验。",
+        "summary_zh": "Android 兼容性测试套件（CTS）是 Android 开源项目（AOSP）的一部分，用于验证设备是否与 Android 平台兼容。CTS 包含大量测试用例，覆盖核心功能、API、安全要求等。通过 CTS 测试的设备才能获得 Google 的 Android 认证。CTS 有助于确保 Android 应用和系统在不同设备上的一致行为，减少因碎片化导致的安全隐患。该公告提供了 CTS 文档和工具的链接。",
+        "why_it_matters_zh": "虽然 CTS 不是直接的安全补丁，但它是保证 Android 生态安全的基础。所有 Android 设备须通过 CTS 认证，否则可能存在兼容性和安全风险。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "对于OEM厂商，应定期运行CTS测试并修复失败项；对于普通用户，关注设备是否通过CTS认证（通常可查看产品说明）。",
+        "recommended_action_zh": "确保设备或系统映像通过了最新版本的 CTS 测试。关注 Android 安全公告，及时应用安全补丁。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -41,11 +41,13 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "Android设备（OEM厂商测试用）"
+          "Android 设备",
+          "Android 系统映像",
+          "OEM/ODM 设备"
         ],
         "cves": [],
         "limitations": [
-          "输入内容为通用CTS说明，未涉及具体漏洞或安全事件。"
+          "本摘要基于 CTS 文档的概述，不涉及具体漏洞或安全修复。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -58,8 +60,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "CTS是确保Android设备兼容性的关键工具，虽非直接安全漏洞，但未通过CTS测试的设备可能存在应用兼容性问题，影响用户安全体验。",
-      "recommended_action": "对于OEM厂商，应定期运行CTS测试并修复失败项；对于普通用户，关注设备是否通过CTS认证（通常可查看产品说明）。",
+      "why_it_matters": "虽然 CTS 不是直接的安全补丁，但它是保证 Android 生态安全的基础。所有 Android 设备须通过 CTS 认证，否则可能存在兼容性和安全风险。",
+      "recommended_action": "确保设备或系统映像通过了最新版本的 CTS 测试。关注 Android 安全公告，及时应用安全补丁。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -72,7 +74,7 @@
       "source": "vendor",
       "source_name": "Android Security Bulletin",
       "source_url": "https://source.android.com/docs/compatibility/cdd",
-      "published_at": "2026-07-25T03:59:07.483767Z",
+      "published_at": "2026-07-26T04:23:27.438943Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -89,12 +91,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "本公告来自 Android Security Bulletin，但内容并非安全漏洞公告，而是 Android 兼容性定义文档（CDD）。CDD 是 Android 平台兼容性要求的官方规范，用于指导设备制造商确保其设备符合 Android 生态系统标准。该文档不涉及任何特定漏洞或安全问题，因此无需采取安全修复措施。",
-        "why_it_matters_zh": "虽然本公告不是安全漏洞，但 CDD 是确保 Android 设备兼容性和一致性的关键文档，对开发者和设备制造商具有重要参考价值。",
+        "summary_zh": "Android兼容性定义文档（CDD）是Android生态系统的核心规范，定义了设备制造商在构建兼容Android设备时必须满足的要求。该文档涵盖了硬件、软件、API、权限、安全模型等多个方面的强制性及推荐性要求，确保应用在不同设备上的一致性体验。尽管CDD本身不包含安全漏洞信息，但它是保障Android安全基线的重要参考，厂商需严格遵循其中与安全相关的条款（如SELinux、加密、权限管理等）。本次发布的2026-07-26版本可能更新了针对新硬件特性或安全增强的兼容性要求。",
+        "why_it_matters_zh": "CDD是Android设备兼容性和安全性的基石，厂商的偏离可能导致安全风险或应用兼容性问题，防守方应关注其变化以确保设备符合最新标准。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "无需采取安全措施；如需了解 Android 兼容性要求，可查阅官方文档。",
+        "recommended_action_zh": "关注官方CDD更新，评估现有设备是否满足新要求，并督促厂商及时适配。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -102,12 +104,10 @@
         "actionability_score": 0.4,
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
-        "affected_assets": [
-          "Android 设备"
-        ],
+        "affected_assets": [],
         "cves": [],
         "limitations": [
-          "输入内容为非安全公告，无漏洞细节"
+          "缺乏具体安全漏洞细节，仅作为合规参考。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -120,8 +120,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "虽然本公告不是安全漏洞，但 CDD 是确保 Android 设备兼容性和一致性的关键文档，对开发者和设备制造商具有重要参考价值。",
-      "recommended_action": "无需采取安全措施；如需了解 Android 兼容性要求，可查阅官方文档。",
+      "why_it_matters": "CDD是Android设备兼容性和安全性的基石，厂商的偏离可能导致安全风险或应用兼容性问题，防守方应关注其变化以确保设备符合最新标准。",
+      "recommended_action": "关注官方CDD更新，评估现有设备是否满足新要求，并督促厂商及时适配。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -134,7 +134,7 @@
       "source": "vendor",
       "source_name": "Android Security Bulletin",
       "source_url": "https://source.android.com/docs/setup/reference",
-      "published_at": "2026-07-25T03:59:07.483682Z",
+      "published_at": "2026-07-26T04:23:27.438844Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -151,12 +151,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "该公告是 Android 安全公告中关于工具、构建和相关参考的页面。它提供了 Android 平台构建系统、工具链、开发环境配置等参考信息，旨在帮助开发者正确设置和构建 Android 开源项目（AOSP）。页面内容不涉及任何具体安全漏洞或补丁，而是作为开发者文档的一部分。由于没有关联 CVE 或安全修复，该公告不会对用户系统构成直接安全风险。但开发者应参考此文档以确保构建环境安全合规，避免因配置错误引入潜在问题。",
-        "why_it_matters_zh": "作为官方构建参考，确保开发者使用正确配置，降低因工具链或构建脚本错误导致的安全隐患。",
+        "summary_zh": "该公告是2026年7月26日发布的Android安全公告中的“工具、构建和相关参考”页面。这是一个参考文档，提供了Android构建系统的相关说明，包括工具链、构建脚本、环境设置等。本次公告并未包含任何具体的漏洞通报或安全修复。因此，该页面仅作为开发者和安全工程师的构建参考资源，不涉及任何已知的安全问题。",
+        "why_it_matters_zh": "该页面是Android安全公告的组成部分，但本次无具体漏洞通报，仅提供构建参考。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "开发人员应查阅 Android 安全公告中的构建工具文档，遵循官方指南配置开发环境并进行安全构建。",
+        "recommended_action_zh": "关注官方Android安全公告页面以获取最新漏洞信息，并按需更新构建环境。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -164,14 +164,10 @@
         "actionability_score": 0.4,
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
-        "affected_assets": [
-          "Android 构建系统",
-          "Android 平台工具",
-          "AOSP 开发环境"
-        ],
+        "affected_assets": [],
         "cves": [],
         "limitations": [
-          "该页面为通用构建参考，不包含具体漏洞信息或修复补丁。"
+          "该公告未包含任何具体漏洞细节，仅为构建参考文档。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -184,8 +180,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "作为官方构建参考，确保开发者使用正确配置，降低因工具链或构建脚本错误导致的安全隐患。",
-      "recommended_action": "开发人员应查阅 Android 安全公告中的构建工具文档，遵循官方指南配置开发环境并进行安全构建。",
+      "why_it_matters": "该页面是Android安全公告的组成部分，但本次无具体漏洞通报，仅提供构建参考。",
+      "recommended_action": "关注官方Android安全公告页面以获取最新漏洞信息，并按需更新构建环境。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -198,7 +194,7 @@
       "source": "vendor",
       "source_name": "Android Security Bulletin",
       "source_url": "https://source.android.com/docs/whatsnew/latest-cdd",
-      "published_at": "2026-07-25T03:59:07.483626Z",
+      "published_at": "2026-07-26T04:23:27.438779Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -215,12 +211,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Android 安全公告发布了最新的兼容性定义文档（CDD），该文档定义了 Android 设备必须满足的硬件和软件要求，以确保应用兼容性和生态系统一致性。此次更新可能包含对 Android 14 或更高版本的新要求，例如新的传感器、权限变更或性能标准。虽然此更新不涉及具体安全漏洞，但遵循 CDD 有助于设备制造商和维护者确保系统安全配置的正确性。建议相关开发者审阅变更内容，及时调整设备固件或系统映像以维持合规性。",
-        "why_it_matters_zh": "CDD 定义了 Android 生态的基础兼容性，更新可能影响 OEM 设备的安全配置和应用兼容性，间接影响用户安全体验。",
+        "summary_zh": "Android 安全公告发布了最新的兼容性定义文档（CDD）。CDD 是 Android 设备必须满足的兼容性要求集合，以确保应用程序能够在不同设备上一致运行。本次更新可能包含对 Android 新版 API 行为、硬件要求、安全机制等方面的调整。对于设备制造商和开发者而言，遵循最新 CDD 是保证设备通过 Google 移动服务认证、以及应用生态兼容性的基础。该文档更新不涉及具体漏洞修复，但影响 Android 生态的整体安全与功能一致性。",
+        "why_it_matters_zh": "CDD 定义了 Android 设备兼容性基线，更新关系到未来应用兼容性与安全功能实施，设备厂商需及时适配以避免认证问题。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "查看最新 CDD 变更要点，确认设备配置是否符合新要求；更新内部兼容性测试用例；关注后续可能的安全补丁公告。",
+        "recommended_action_zh": "设备制造商应审查最新 CDD 并规划适配；开发者需了解新要求以确保应用兼容性；安全团队关注其中可能涉及的新安全机制。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -229,12 +225,13 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "Android 设备",
-          "Android 系统映像"
+          "所有运行 Android 系统的设备",
+          "Android 设备制造商",
+          "Android 应用开发者"
         ],
         "cves": [],
         "limitations": [
-          "非安全漏洞公告，不涉及具体 CVE 或漏洞修复"
+          "无具体漏洞信息，仅为文档更新通知；实际变更内容需查阅原文档。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -247,8 +244,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "CDD 定义了 Android 生态的基础兼容性，更新可能影响 OEM 设备的安全配置和应用兼容性，间接影响用户安全体验。",
-      "recommended_action": "查看最新 CDD 变更要点，确认设备配置是否符合新要求；更新内部兼容性测试用例；关注后续可能的安全补丁公告。",
+      "why_it_matters": "CDD 定义了 Android 设备兼容性基线，更新关系到未来应用兼容性与安全功能实施，设备厂商需及时适配以避免认证问题。",
+      "recommended_action": "设备制造商应审查最新 CDD 并规划适配；开发者需了解新要求以确保应用兼容性；安全团队关注其中可能涉及的新安全机制。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -261,7 +258,7 @@
       "source": "vendor",
       "source_name": "Android Security Bulletin",
       "source_url": "https://source.android.com/docs/whatsnew/latest-security-bulletins",
-      "published_at": "2026-07-25T03:59:07.483509Z",
+      "published_at": "2026-07-26T04:23:27.438690Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -278,12 +275,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "本安全公告为Android安全公告的最新一期，由Android安全团队发布。公告通常涵盖影响Android操作系统多个组件的安全补丁，包括框架、系统、内核、媒体框架等。由于未提供具体的漏洞详情和CVE列表，无法确定本次公告涉及的具体安全修复内容。建议用户关注官方公告页面以获取详细补丁信息。",
-        "why_it_matters_zh": "Android安全公告是官方发布的安全更新汇总，及时应用补丁对于保护设备安全至关重要。",
+        "summary_zh": "Android 安全公告（Android Security Bulletin）定期发布，汇总影响 Android 平台的安全漏洞修复信息。本次公告于 2026 年 7 月 26 日发布，但当前输入未提供具体 CVE 编号、严重性评分或受影响的组件细节。通常此类公告会涵盖框架、系统、内核、多媒体、蓝牙等多个子系统的高危或严重漏洞，攻击者可能通过精心构造的请求或恶意应用触发漏洞，导致权限提升、远程代码执行或信息泄露等后果。由于缺乏具体细节，建议防御者密切关注官方公告页面，及时获取完整的漏洞详情、影响版本及修复补丁。",
+        "why_it_matters_zh": "Android 安全公告是官方发布的安全更新源头，可能包含影响大量 Android 设备的严重漏洞，但本次公告细节不明，需关注后续更新。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "定期检查并应用Android安全公告中发布的补丁，确保设备运行最新安全更新。",
+        "recommended_action_zh": "1. 定期查看 Android 安全公告页面（https://source.android.com/docs/whatsnew/latest-security-bulletins）获取最新信息。2. 若公告包含补丁，务必尽快通过 OTA 或手动方式更新设备安全补丁级别。3. 关注设备制造商发布的对应安全更新。4. 在补丁可用前，减少对未知来源应用和不可信链接的访问。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -292,11 +289,11 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "Android操作系统"
+          "未知（Android 设备）"
         ],
         "cves": [],
         "limitations": [
-          "输入内容未提供具体漏洞详情、CVE编号及严重性等级，仅给出标题和来源。"
+          "输入仅提供了公告的标题、来源和发布时间，无具体漏洞描述、CVE 或严重性信息，故总结为通用内容，无法针对特定漏洞给出详细分析。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -309,8 +306,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Android安全公告是官方发布的安全更新汇总，及时应用补丁对于保护设备安全至关重要。",
-      "recommended_action": "定期检查并应用Android安全公告中发布的补丁，确保设备运行最新安全更新。",
+      "why_it_matters": "Android 安全公告是官方发布的安全更新源头，可能包含影响大量 Android 设备的严重漏洞，但本次公告细节不明，需关注后续更新。",
+      "recommended_action": "1. 定期查看 Android 安全公告页面（https://source.android.com/docs/whatsnew/latest-security-bulletins）获取最新信息。2. 若公告包含补丁，务必尽快通过 OTA 或手动方式更新设备安全补丁级别。3. 关注设备制造商发布的对应安全更新。4. 在补丁可用前，减少对未知来源应用和不可信链接的访问。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -323,7 +320,7 @@
       "source": "vendor",
       "source_name": "Apple Security Releases",
       "source_url": "https://support.apple.com/en-us/108382",
-      "published_at": "2026-07-25T03:59:06.181563Z",
+      "published_at": "2026-07-26T04:23:26.263225Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -341,12 +338,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "2026年7月25日，Apple 发布了安全更新公告，建议用户更新 Mac 上的软件。此次公告是 Apple 定期安全更新的一部分，旨在修复可能影响系统安全的漏洞。由于公告未提供具体的漏洞详情、CVE 编号或受影响版本，因此无法确定漏洞的具体性质和严重程度。通常，此类更新涵盖内核、系统组件或内置应用中的安全修复，攻击者可能通过诱使用户访问恶意网站、打开特制文件等方式触发漏洞，导致任意代码执行、权限提升或信息泄露。用户应尽快升级至最新版本以降低风险。",
-        "why_it_matters_zh": "Apple 官方发布安全更新公告，虽然缺乏具体细节，但表明存在需要修复的安全问题，应及时更新以防范潜在攻击。",
+        "summary_zh": "Apple 发布了针对 Mac 系统的安全更新公告（2026-07-26），建议用户立即更新软件以修复潜在的安全漏洞。此次更新涉及 macOS 及其内置软件组件，可能修复了影响系统安全的漏洞，包括但不限于代码执行、权限提升或信息泄露等问题。官方公告未披露具体漏洞细节或 CVE 编号，但强调及时更新是防止攻击的最佳实践。建议所有 Mac 用户通过系统设置中的软件更新功能进行升级。",
+        "why_it_matters_zh": "Apple 官方发布安全更新，可能修复了影响 Mac 系统的严重漏洞，用户应优先更新以降低被攻击风险。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "建议用户立即检查并安装 Mac 系统的最新软件更新，可通过“系统设置”->“通用”->“软件更新”执行。同时关注 Apple 官方后续可能发布的安全内容。",
+        "recommended_action_zh": "打开系统设置 -> 通用 -> 软件更新，安装所有可用更新；确保自动更新已启用。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -355,11 +352,12 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "Mac 设备"
+          "Mac 系统",
+          "macOS 及预装软件"
         ],
         "cves": [],
         "limitations": [
-          "公告未提供具体漏洞描述、CVE 编号或受影响版本信息，摘要基于通用情况。"
+          "公告未披露具体漏洞细节或影响版本，无法确认漏洞严重程度。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -372,8 +370,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Apple 官方发布安全更新公告，虽然缺乏具体细节，但表明存在需要修复的安全问题，应及时更新以防范潜在攻击。",
-      "recommended_action": "建议用户立即检查并安装 Mac 系统的最新软件更新，可通过“系统设置”->“通用”->“软件更新”执行。同时关注 Apple 官方后续可能发布的安全内容。",
+      "why_it_matters": "Apple 官方发布安全更新，可能修复了影响 Mac 系统的严重漏洞，用户应优先更新以降低被攻击风险。",
+      "recommended_action": "打开系统设置 -> 通用 -> 软件更新，安装所有可用更新；确保自动更新已启用。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -386,7 +384,7 @@
       "source": "vendor",
       "source_name": "Apple Security Releases",
       "source_url": "https://support.apple.com/en-us/118575",
-      "published_at": "2026-07-25T03:59:06.181466Z",
+      "published_at": "2026-07-26T04:23:26.263194Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -404,12 +402,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Apple 发布了针对 iPhone 和 iPad 的安全更新公告，建议用户立即升级设备上的软件以修复潜在的安全问题。虽然本次公告未披露具体的 CVE 编号或漏洞细节，但通常 Apple 的安全更新会修复影响系统核心组件（如内核、WebKit、基带等）的漏洞，攻击者可能通过诱导用户访问恶意网页或安装恶意应用等方式触发漏洞，导致任意代码执行、权限提升或数据泄露。用户应通过“设置”>“通用”>“软件更新”检查并安装最新版本。",
-        "why_it_matters_zh": "Apple 官方安全更新通常修复关键漏洞，未及时更新可能导致设备遭受攻击。",
+        "summary_zh": "Apple于2026年7月26日发布安全公告，建议用户更新iPhone或iPad上的软件。该公告旨在修复可能影响设备安全性的未知漏洞。由于缺乏具体漏洞细节，无法确定攻击向量和影响范围，但Apple通常修复内核、WebKit或系统组件中的安全缺陷。建议用户尽快升级到最新版本的iOS或iPadOS，以防御潜在威胁。",
+        "why_it_matters_zh": "Apple官方发布安全更新建议，通常涉及重要安全修复。及时更新可防止设备被已知漏洞攻击。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "立即通过设备设置检查并安装 iOS/iPadOS 最新更新，确保设备安全。",
+        "recommended_action_zh": "立即检查并安装最新的iOS/iPadOS更新。在“设置” > “通用” > “软件更新”中升级设备。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -423,7 +421,7 @@
         ],
         "cves": [],
         "limitations": [
-          "公告未提供具体漏洞细节或 CVE 编号"
+          "公告未提供具体漏洞编号或技术细节，无法评估影响严重性。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -436,8 +434,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Apple 官方安全更新通常修复关键漏洞，未及时更新可能导致设备遭受攻击。",
-      "recommended_action": "立即通过设备设置检查并安装 iOS/iPadOS 最新更新，确保设备安全。",
+      "why_it_matters": "Apple官方发布安全更新建议，通常涉及重要安全修复。及时更新可防止设备被已知漏洞攻击。",
+      "recommended_action": "立即检查并安装最新的iOS/iPadOS更新。在“设置” > “通用” > “软件更新”中升级设备。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -450,7 +448,7 @@
       "source": "vendor",
       "source_name": "Apple Security Releases",
       "source_url": "https://support.apple.com/en-us/102549",
-      "published_at": "2026-07-25T03:59:06.181448Z",
+      "published_at": "2026-07-26T04:23:26.263154Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -468,12 +466,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Apple 于 2026 年 7 月 25 日发布了安全公告（编号为 102549），标题为“submit your research”。该公告页面通常用于披露已修复的安全漏洞，但本次公告的摘要内容为空，未提供具体的漏洞详情、受影响产品或 CVE 列表。建议用户定期访问 Apple 官方安全更新页面以获取最新信息。",
-        "why_it_matters_zh": "Apple 安全公告是官方漏洞披露渠道，即使内容为空，也可能暗示后续补丁或研究提交入口，建议关注。",
+        "summary_zh": "这是一份来自 Apple Security Releases 的官方安全公告，标题为“submit your research”，可能指向一个通用的研究提交页面而非具体漏洞公告。公告发布于 2026-07-26，来源 URL 为 https://support.apple.com/en-us/102549。公告中未列出任何 CVE 编号、受影响产品或严重性评级，也未提供漏洞描述或修复方案。鉴于 Apple 安全公告通常包含详细的安全更新内容，此页面可能是汇总门户或研究提交入口。防守方应直接访问该 URL 查看最新发布的安全更新，并关注 Apple 官方渠道以获取针对特定漏洞的修复建议。由于缺乏具体漏洞信息，无法评估实际风险，建议定期检查 Apple 安全更新页面并应用所有可用补丁。",
+        "why_it_matters_zh": "Apple 官方安全公告是防守方获取苹果产品安全更新的重要来源，但此页面未提供具体漏洞细节，可能导致关键修复被忽略。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "保持 Apple 设备及软件更新；定期查看 https://support.apple.com/en-us/102549 以获取最新安全公告。",
+        "recommended_action_zh": "访问 Apple Security Releases 页面查看完整公告列表，并关注后续可能发布的漏洞详情。对于苹果设备用户，建议保持系统更新至最新版本。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -484,7 +482,7 @@
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "公告内容为空，无法确认具体漏洞信息。"
+          "公告内容不完整，缺乏具体漏洞和影响范围信息。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -497,8 +495,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Apple 安全公告是官方漏洞披露渠道，即使内容为空，也可能暗示后续补丁或研究提交入口，建议关注。",
-      "recommended_action": "保持 Apple 设备及软件更新；定期查看 https://support.apple.com/en-us/102549 以获取最新安全公告。",
+      "why_it_matters": "Apple 官方安全公告是防守方获取苹果产品安全更新的重要来源，但此页面未提供具体漏洞细节，可能导致关键修复被忽略。",
+      "recommended_action": "访问 Apple Security Releases 页面查看完整公告列表，并关注后续可能发布的漏洞详情。对于苹果设备用户，建议保持系统更新至最新版本。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -511,7 +509,7 @@
       "source": "vendor",
       "source_name": "Apple Security Releases",
       "source_url": "https://support.apple.com/en-us/111756",
-      "published_at": "2026-07-25T03:59:06.181423Z",
+      "published_at": "2026-07-26T04:23:26.263115Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -529,12 +527,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Apple 发布了安全公告页面，标题为“Get help with security issues”，该页面通常用于指导用户报告安全问题，但本次公告中未包含任何具体的漏洞描述、受影响产品列表或 CVE 编号。目前无法确定是否存在需要立即修复的安全缺陷。",
-        "why_it_matters_zh": "由于缺乏具体漏洞信息，无法评估风险；但 Apple 官方安全公告通常是重要漏洞的披露渠道，需保持关注。",
+        "summary_zh": "Apple 发布了名为“Get help with security issues”的安全帮助页面，旨在为用户提供关于安全问题的支持渠道。该页面未披露任何具体的漏洞或安全公告，而是提供了如何联系 Apple 安全团队、报告漏洞或获取安全指导的通用信息。由于没有提及任何 CVE 编号、受影响产品或严重性评级，此页面不涉及紧急的修复或补丁更新。用户可将其视为一个安全资源入口，而非针对特定威胁的公告。",
+        "why_it_matters_zh": "作为 Apple 官方安全帮助页面，是用户报告和获取安全支持的正规渠道，但未涉及具体漏洞，因此无需紧急关注。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "定期访问 Apple 安全发布页面（https://support.apple.com/en-us/111756），关注后续更新；确保所有 Apple 设备已安装最新系统版本。",
+        "recommended_action_zh": "如需报告安全问题或获取支持，请访问 Apple 安全页面。日常保持系统更新即可。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -545,7 +543,8 @@
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "公告内容不完整，未提供任何漏洞细节或 CVE 信息。"
+          "未提供具体漏洞信息",
+          "无 CVE 或受影响产品列表"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -558,8 +557,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "由于缺乏具体漏洞信息，无法评估风险；但 Apple 官方安全公告通常是重要漏洞的披露渠道，需保持关注。",
-      "recommended_action": "定期访问 Apple 安全发布页面（https://support.apple.com/en-us/111756），关注后续更新；确保所有 Apple 设备已安装最新系统版本。",
+      "why_it_matters": "作为 Apple 官方安全帮助页面，是用户报告和获取安全支持的正规渠道，但未涉及具体漏洞，因此无需紧急关注。",
+      "recommended_action": "如需报告安全问题或获取支持，请访问 Apple 安全页面。日常保持系统更新即可。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -572,7 +571,7 @@
       "source": "vendor",
       "source_name": "Apple Security Releases",
       "source_url": "https://support.apple.com/en-us/102657",
-      "published_at": "2026-07-25T03:59:06.181333Z",
+      "published_at": "2026-07-26T04:23:26.263000Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -590,12 +589,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Apple 发布了名为 'Background Security Improvements' 的安全公告，概述了在操作系统和框架中进行的后台安全增强。这些改进可能包括内存保护、沙箱强化、加密库更新等，旨在提升整体平台的安全性。由于公告未提供具体漏洞细节或 CVE 编号，此次更新可能涉及多个非公开的安全修复或架构加固。用户应保持系统更新以受益于这些改进。",
-        "why_it_matters_zh": "Apple 明确发布安全改进公告，表明即使无具体 CVE，后台安全增强也可能修复潜在风险或提升防御能力，值得关注并尽快更新。",
+        "summary_zh": "Apple 发布了安全改进公告（Background Security Improvements），旨在提升系统底层安全性。该公告未披露具体漏洞细节或CVE编号，属于常规性安全加固。改进可能涉及操作系统底层组件、安全框架或隐私保护机制，有助于防御潜在攻击。用户应关注官方更新并保持系统最新。",
+        "why_it_matters_zh": "虽然无具体漏洞，但安全改进公告反映了Apple持续增强防御能力，建议及时更新以获益于最新的安全修复。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "关注 Apple 官方安全更新页面，确保所有 Apple 设备均已安装最新系统更新。",
+        "recommended_action_zh": "更新至Apple提供的最新系统版本，确保安全改进生效。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -604,11 +603,11 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "Apple 操作系统及框架"
+          "Apple设备（如iPhone、iPad、Mac等）"
         ],
         "cves": [],
         "limitations": [
-          "公告未提供具体技术细节或 CVE，无法评估具体影响。"
+          "未提供具体技术细节或受影响范围"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -621,8 +620,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Apple 明确发布安全改进公告，表明即使无具体 CVE，后台安全增强也可能修复潜在风险或提升防御能力，值得关注并尽快更新。",
-      "recommended_action": "关注 Apple 官方安全更新页面，确保所有 Apple 设备均已安装最新系统更新。",
+      "why_it_matters": "虽然无具体漏洞，但安全改进公告反映了Apple持续增强防御能力，建议及时更新以获益于最新的安全修复。",
+      "recommended_action": "更新至Apple提供的最新系统版本，确保安全改进生效。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -635,7 +634,7 @@
       "source": "vendor",
       "source_name": "阿里云安全公告",
       "source_url": "http://www.beian.gov.cn/portal/registerSystemInfo",
-      "published_at": "2026-07-25T03:58:57.614582Z",
+      "published_at": "2026-07-26T04:23:21.837948Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -653,12 +652,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "输入信息并非有效的安全公告，标题为公安备案号，来源链接为备案查询页面，且发布日期为未来时间，内容为空，无CVE、产品等关键字段。因此无法生成有效的漏洞摘要。",
-        "why_it_matters_zh": "输入数据不构成安全公告，无实际威胁信息。",
+        "summary_zh": "此阿里云安全公告条目实际为网站备案信息（浙公网安备 33010602009975号），不包含任何漏洞描述、安全风险或修复建议。公告链接指向公安备案系统，而非安全公告内容。该条目可能为误发布或占位符，无安全分析价值。",
+        "why_it_matters_zh": "该公告不涉及安全漏洞或威胁，无需关注。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "忽略此条目，检查输入数据来源是否正确。",
+        "recommended_action_zh": "忽略此条目，等待阿里云发布真实安全公告。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -669,7 +668,7 @@
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "输入非安全公告内容"
+          "输入内容非安全公告，仅为备案信息，无技术细节可总结。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -682,8 +681,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "输入数据不构成安全公告，无实际威胁信息。",
-      "recommended_action": "忽略此条目，检查输入数据来源是否正确。",
+      "why_it_matters": "该公告不涉及安全漏洞或威胁，无需关注。",
+      "recommended_action": "忽略此条目，等待阿里云发布真实安全公告。",
       "confidence": 0.3,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -696,7 +695,7 @@
       "source": "vendor",
       "source_name": "知道创宇 / Seebug",
       "source_url": "http://pocsuite.org/",
-      "published_at": "2026-07-25T03:58:54.215912Z",
+      "published_at": "2026-07-26T04:23:17.893052Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -714,12 +713,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Pocsuite是由知道创宇安全研究团队开发并维护的开源远程漏洞测试框架，用于Web安全研究和漏洞验证。该框架是知道创宇安全研究能力的基础组件，长期更新以保障Web安全研究效率。当前输入内容为产品介绍，未涉及具体漏洞或安全公告。因此，本报告仅作为工具背景说明，无直接安全风险。",
-        "why_it_matters_zh": "Pocsuite作为安全测试工具，若被攻击者滥用可能用于漏洞探测，但本身无已知漏洞。防守方应关注其合法使用和访问控制。",
+        "summary_zh": "Pocsuite 是由知道创宇安全研究团队打造的一款开源远程漏洞测试框架，是团队长期维护的核心项目，支撑了其在 Web 安全研究方面的能力。该框架支持自定义 PoC 插件，可批量验证漏洞，适用于安全研究、渗透测试和应急响应场景。蓝队应了解该工具的存在，以便在内部安全审计中评估其使用情况，并警惕攻击者可能将其用于漏洞探测。",
+        "why_it_matters_zh": "开源漏洞测试框架可能被攻击者用于自动化漏洞扫描，蓝队需监控其使用踪迹，并确保内部安全测试工具不被滥用。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "如使用Pocsuite，建议从官方渠道（http://pocsuite.org/）获取最新版本，并限制其在受控环境中运行，避免被未授权人员利用。",
+        "recommended_action_zh": "关注 Pocsuite 的更新和使用情况，在内部网络中检测其执行迹象，确保安全测试活动合规，并考虑将其纳入威胁狩猎范围。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -727,13 +726,9 @@
         "actionability_score": 0.4,
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
-        "affected_assets": [
-          "Pocsuite框架"
-        ],
+        "affected_assets": [],
         "cves": [],
-        "limitations": [
-          "输入内容仅为产品介绍，无漏洞或安全事件信息。"
-        ],
+        "limitations": [],
         "threat_type": null,
         "threat_actors": null,
         "malware_families": null,
@@ -745,8 +740,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Pocsuite作为安全测试工具，若被攻击者滥用可能用于漏洞探测，但本身无已知漏洞。防守方应关注其合法使用和访问控制。",
-      "recommended_action": "如使用Pocsuite，建议从官方渠道（http://pocsuite.org/）获取最新版本，并限制其在受控环境中运行，避免被未授权人员利用。",
+      "why_it_matters": "开源漏洞测试框架可能被攻击者用于自动化漏洞扫描，蓝队需监控其使用踪迹，并确保内部安全测试工具不被滥用。",
+      "recommended_action": "关注 Pocsuite 的更新和使用情况，在内部网络中检测其执行迹象，确保安全测试活动合规，并考虑将其纳入威胁狩猎范围。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -759,7 +754,7 @@
       "source": "vendor",
       "source_name": "知道创宇 / Seebug",
       "source_url": "https://www.seebug.org/",
-      "published_at": "2026-07-25T03:58:54.215889Z",
+      "published_at": "2026-07-26T04:23:17.892989Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -777,23 +772,23 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Seebug 是知道创宇旗下的权威漏洞社区平台，收录了大量漏洞及 PoC，是国内知名的漏洞参考与学习平台。本输入仅为 Seebug 平台介绍，未涉及具体安全公告或漏洞信息，因此无法提供详细的技术摘要。",
-        "why_it_matters_zh": "Seebug 是国内权威漏洞库，其收录的漏洞信息对安全社区具有重要参考价值，但本输入未披露具体漏洞，需关注后续实际公告。",
+        "summary_zh": "该通告来自知道创宇/Seebug漏洞平台，内容为平台介绍，未提供任何具体漏洞信息、CVE编号、受影响产品或严重性评估。因此，该通告不构成安全风险通告。",
+        "why_it_matters_zh": "无具体漏洞信息，不构成实际安全风险。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "持续关注 Seebug 平台发布的漏洞公告，及时获取最新漏洞信息并评估影响。",
+        "recommended_action_zh": "无需采取任何安全操作。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
         "novelty_score": 0.4,
         "actionability_score": 0.4,
-        "confidence": 0.9,
-        "confidence_label": "source_confirmed",
+        "confidence": 0.6,
+        "confidence_label": "single_source",
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "输入内容仅为平台介绍，无具体漏洞细节，无法进行深入分析。"
+          "未提及具体漏洞，无法评估风险。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -806,9 +801,9 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Seebug 是国内权威漏洞库，其收录的漏洞信息对安全社区具有重要参考价值，但本输入未披露具体漏洞，需关注后续实际公告。",
-      "recommended_action": "持续关注 Seebug 平台发布的漏洞公告，及时获取最新漏洞信息并评估影响。",
-      "confidence": 0.9,
+      "why_it_matters": "无具体漏洞信息，不构成实际安全风险。",
+      "recommended_action": "无需采取任何安全操作。",
+      "confidence": 0.6,
       "shown_in_sections": [],
       "rank_reasons": []
     },
@@ -820,7 +815,7 @@
       "source": "vendor",
       "source_name": "知道创宇 / Seebug",
       "source_url": "https://www.yunaq.com/?s=seebug_banner",
-      "published_at": "2026-07-25T03:58:54.215864Z",
+      "published_at": "2026-07-26T04:23:17.892885Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -838,26 +833,25 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "知道创宇的网站安全防护服务基于十年Web安全防护经验，采用多层安全防护体系，结合云端大数据和安全CDN加速技术。该服务能够高效识别和拦截黑客发起的DDoS攻击、DNS攻击、CC攻击等多种恶意攻击，从而有效保护网站安全。该产品集成了攻击检测、流量清洗、CDN加速等功能，适合企业级网站防御。",
-        "why_it_matters_zh": "该服务整合了多年Web安全防护经验，提供多层防御和CDN加速，能有效应对常见网络攻击，适合企业提升网站安全性。",
+        "summary_zh": "该文档是知道创宇对其网站安全防护服务的营销介绍，并非针对特定漏洞的安全公告。服务内容包括多层安全防护体系、云端大数据和安全CDN加速，能够识别和拦截DDoS攻击、DNS攻击、CC攻击等。文档未提供任何漏洞详情、CVE编号或技术细节。",
+        "why_it_matters_zh": "该文档虽非漏洞公告，但提及的防护服务可帮助防御常见网络攻击，值得关注。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "建议对网站安全有高需求的企业评估并接入该服务，同时保持常规安全更新和监控。",
+        "recommended_action_zh": "建议评估知道创宇的网站安全防护服务是否适合自身需求，以增强网站安全。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
         "novelty_score": 0.4,
         "actionability_score": 0.4,
-        "confidence": 0.9,
-        "confidence_label": "source_confirmed",
+        "confidence": 0.6,
+        "confidence_label": "single_source",
         "affected_assets": [
-          "使用该服务的网站"
+          "Web应用"
         ],
         "cves": [],
         "limitations": [
-          "未提供具体技术细节或案例",
-          "未涉及漏洞信息"
+          "文档为市场宣传材料，无具体漏洞信息，无法确认技术有效性。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -870,9 +864,9 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "该服务整合了多年Web安全防护经验，提供多层防御和CDN加速，能有效应对常见网络攻击，适合企业提升网站安全性。",
-      "recommended_action": "建议对网站安全有高需求的企业评估并接入该服务，同时保持常规安全更新和监控。",
-      "confidence": 0.9,
+      "why_it_matters": "该文档虽非漏洞公告，但提及的防护服务可帮助防御常见网络攻击，值得关注。",
+      "recommended_action": "建议评估知道创宇的网站安全防护服务是否适合自身需求，以增强网站安全。",
+      "confidence": 0.6,
       "shown_in_sections": [],
       "rank_reasons": []
     },
@@ -884,7 +878,7 @@
       "source": "vendor",
       "source_name": "360CERT",
       "source_url": "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002002063",
-      "published_at": "2026-07-25T03:58:34.576067Z",
+      "published_at": "2026-07-26T04:23:13.375207Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -902,23 +896,23 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "该输入内容为网站备案号信息（京公网安备 11000002002063号），来源为360CERT，但实质并非安全公告。未提供任何漏洞、CVE、严重性评估或技术细节。无法进行安全分析。",
-        "why_it_matters_zh": "该输入无安全内容，不构成威胁或风险，无需关注。",
+        "summary_zh": "该信息为京公网安备备案号11000002002063，由360CERT在2026年7月26日发布，链接至公安部备案查询系统。内容仅涉及网站备案合规性，不包含任何漏洞、安全公告或威胁情报。无CVE编号，无已知风险。",
+        "why_it_matters_zh": "该信息为网站备案合规性说明，不涉及安全漏洞或威胁，无需采取安全措施。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "忽略此信息，因为它不是有效的安全公告。",
+        "recommended_action_zh": "无需操作。如需核实备案信息，可访问公安部备案查询网站。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
         "novelty_score": 0.4,
         "actionability_score": 0.4,
-        "confidence": 0.3,
-        "confidence_label": "unverified",
+        "confidence": 0.9,
+        "confidence_label": "source_confirmed",
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "输入内容为网站备案信息，无安全相关的漏洞或威胁情报。"
+          "输入内容仅为备案信息，无安全分析价值。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -931,9 +925,9 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "该输入无安全内容，不构成威胁或风险，无需关注。",
-      "recommended_action": "忽略此信息，因为它不是有效的安全公告。",
-      "confidence": 0.3,
+      "why_it_matters": "该信息为网站备案合规性说明，不涉及安全漏洞或威胁，无需采取安全措施。",
+      "recommended_action": "无需操作。如需核实备案信息，可访问公安部备案查询网站。",
+      "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
     },
@@ -945,7 +939,7 @@
       "source": "vendor",
       "source_name": "360CERT",
       "source_url": "https://www.360.cn/licence2.html",
-      "published_at": "2026-07-25T03:58:34.576036Z",
+      "published_at": "2026-07-26T04:23:13.375158Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -963,12 +957,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "该公告为360CERT发布的网络出版服务许可证信息，编号为“（总）网出证（京）字第281号”，属于合规性声明，不涉及具体安全漏洞或威胁情报。",
-        "why_it_matters_zh": "此为运营资质公告，并非安全漏洞或威胁预警，无需采取安全修复措施。",
+        "summary_zh": "该输入并非安全漏洞公告，而是360CERT的一个许可证信息，标题为“（总）网出证（京）字第281号”，来源为360CERT官网，内容不涉及任何安全漏洞、攻击或防御措施。",
+        "why_it_matters_zh": "该输入与安全无关，无需关注。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "无需特殊处理，关注官方后续安全公告即可。",
+        "recommended_action_zh": "无需操作。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -979,7 +973,7 @@
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "公告内容仅包含许可证编号，无技术细节，无法提供漏洞分析。"
+          "输入内容不是安全公告"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -992,8 +986,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "此为运营资质公告，并非安全漏洞或威胁预警，无需采取安全修复措施。",
-      "recommended_action": "无需特殊处理，关注官方后续安全公告即可。",
+      "why_it_matters": "该输入与安全无关，无需关注。",
+      "recommended_action": "无需操作。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1006,7 +1000,7 @@
       "source": "vendor",
       "source_name": "360CERT",
       "source_url": "https://www.360.cn/licence1.html",
-      "published_at": "2026-07-25T03:58:34.576008Z",
+      "published_at": "2026-07-26T04:23:13.375106Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -1024,12 +1018,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "该输入并非有效的安全公告或漏洞信息。标题“京网文〔2020〕6051-1195号”为版权声明，来源360CERT，但正文为空，且未包含任何CVE、产品、严重性等关键信息。因此无法生成有意义的漏洞摘要或分析。",
-        "why_it_matters_zh": "输入内容不完整，无法判断是否涉及安全风险，建议直接忽略或核实原始来源。",
+        "summary_zh": "本次输入的内容并非安全漏洞公告，而是一条版权或许可信息，标题为“京网文〔2020〕6051-1195号”，来源于360CERT官方网站，发布时间为2026年7月26日。正文中未包含任何漏洞描述、受影响组件、攻击向量或安全建议，因此无法提取有效的安全情报。此条目不符合安全公告的特征，可能属于法律声明或资质备案信息。",
+        "why_it_matters_zh": "该条目不包含安全风险相关信息，无需关注。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "无需采取任何防护行动；若担心误判，可联系360CERT确认。",
+        "recommended_action_zh": "无建议，该内容非安全公告。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1040,7 +1034,8 @@
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "输入标题为版权信息，正文缺失，无法确认是否为安全公告。"
+          "输入内容并非安全漏洞公告，无法提供任何安全分析。",
+          "缺少漏洞详情、CVE、影响版本等关键信息。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1053,8 +1048,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "输入内容不完整，无法判断是否涉及安全风险，建议直接忽略或核实原始来源。",
-      "recommended_action": "无需采取任何防护行动；若担心误判，可联系360CERT确认。",
+      "why_it_matters": "该条目不包含安全风险相关信息，无需关注。",
+      "recommended_action": "无建议，该内容非安全公告。",
       "confidence": 0.3,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1067,7 +1062,7 @@
       "source": "vendor",
       "source_name": "360CERT",
       "source_url": "https://beian.miit.gov.cn/",
-      "published_at": "2026-07-25T03:58:34.575866Z",
+      "published_at": "2026-07-26T04:23:13.374954Z",
       "updated_at": null,
       "cves": [],
       "vendors": [
@@ -1085,23 +1080,23 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "该条信息并非网络安全漏洞公告，而是网站备案信息。标题为“京ICP证080047号[京ICP备08010314号-6]”，来源为360CERT，但实际链接指向工信部备案查询网站。正文无内容，无CVE编号，无相关产品或严重性评级。该内容可能与安全无关，无需进行漏洞修复或防护措施。",
-        "why_it_matters_zh": "该输入为网站备案信息，非安全公告，不涉及漏洞或威胁，无需关注。",
+        "summary_zh": "输入内容并非有效的安全公告，而是一条域名备案信息（京ICP证080047号[京ICP备08010314号-6]），来源为360CERT，但链接至工信部备案查询网站。无任何漏洞描述、受影响产品或CVE信息。该数据可能为测试或误提交，不具备分析价值。",
+        "why_it_matters_zh": "输入数据不构成安全公告，无实际风险，无需关注。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "无需采取任何安全措施。",
+        "recommended_action_zh": "忽略此条目，确认信息来源的准确性。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
         "novelty_score": 0.4,
         "actionability_score": 0.4,
-        "confidence": 0.9,
-        "confidence_label": "source_confirmed",
+        "confidence": 0.3,
+        "confidence_label": "unverified",
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "输入内容仅为备案信息，无法提取任何安全相关漏洞细节。"
+          "输入内容缺失漏洞描述、受影响资产、CVE等关键信息，可能为错误数据或测试用例。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1114,9 +1109,9 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "该输入为网站备案信息，非安全公告，不涉及漏洞或威胁，无需关注。",
-      "recommended_action": "无需采取任何安全措施。",
-      "confidence": 0.9,
+      "why_it_matters": "输入数据不构成安全公告，无实际风险，无需关注。",
+      "recommended_action": "忽略此条目，确认信息来源的准确性。",
+      "confidence": 0.3,
       "shown_in_sections": [],
       "rank_reasons": []
     },
@@ -1146,12 +1141,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "腾讯云于2026年5月9日发布公告，宣布其口语评测（基础版）产品将正式退市。该产品用于自动化语音评测，可能是基于云的API服务。退市意味着腾讯云将停止对该产品的支持、维护及新用户注册，现有用户可能需要在指定期限内完成数据迁移或切换至替代产品。此公告不涉及任何安全漏洞，但产品下线可能导致依赖该服务的业务系统中断或功能失效。建议受影响的用户及时评估影响并制定迁移计划。",
-        "why_it_matters_zh": "产品退市虽非安全漏洞，但可能导致依赖该服务的业务连续性风险。若未及时迁移，应用可能因接口失效而报错或功能不可用，影响用户体验和业务运营。",
+        "summary_zh": "腾讯云于2026年5月9日发布口语评测（基础版）产品退市公告。该产品将停止服务，不再提供技术支持、更新和维护。用户需提前规划迁移至其他替代方案，以避免业务中断。公告未提及具体停服时间或安全漏洞，主要涉及产品生命周期结束。",
+        "why_it_matters_zh": "产品退市意味着长期依赖该服务的用户将面临业务中断风险，需尽快迁移；但非安全漏洞，紧急程度较低。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "评估当前是否使用口语评测（基础版）产品；联系腾讯云了解退市时间表和替代方案；制定并执行迁移计划，将现有应用切换至腾讯云推荐的其他语音评测产品或第三方服务；在过渡期内确保备份与降级方案。",
+        "recommended_action_zh": "制定迁移计划，评估替代产品（如腾讯云其他语音评测服务），并在过渡期内完成数据备份和业务切换。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1159,11 +1154,12 @@
         "actionability_score": 0.4,
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
-        "affected_assets": [],
+        "affected_assets": [
+          "腾讯云口语评测（基础版）用户"
+        ],
         "cves": [],
         "limitations": [
-          "公告未提及其他受影响产品或具体时间节点",
-          "未提供替代产品的详细信息"
+          "公告内容简短，未提供具体退市时间表及替代方案细节；无安全漏洞信息。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1176,8 +1172,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "产品退市虽非安全漏洞，但可能导致依赖该服务的业务连续性风险。若未及时迁移，应用可能因接口失效而报错或功能不可用，影响用户体验和业务运营。",
-      "recommended_action": "评估当前是否使用口语评测（基础版）产品；联系腾讯云了解退市时间表和替代方案；制定并执行迁移计划，将现有应用切换至腾讯云推荐的其他语音评测产品或第三方服务；在过渡期内确保备份与降级方案。",
+      "why_it_matters": "产品退市意味着长期依赖该服务的用户将面临业务中断风险，需尽快迁移；但非安全漏洞，紧急程度较低。",
+      "recommended_action": "制定迁移计划，评估替代产品（如腾讯云其他语音评测服务），并在过渡期内完成数据备份和业务切换。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1208,12 +1204,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "腾讯云于2026年5月9日发布关于新网注册商下已备案域名合规规则调整的公告。该公告主要针对通过新网注册商进行域名注册的用户，要求已备案域名必须遵守新的合规规则，具体调整内容可能涉及备案信息真实性核验、域名命名规范、持有者身份验证等方面。用户需关注腾讯云控制台或新网注册商的通知，及时更新备案信息以确保域名正常解析和使用。此次调整是响应国家互联网信息办公室关于域名实名制和备案管理的相关政策要求，旨在加强网络空间治理，防止域名被用于违法违规活动。对于未及时完成规则调整的域名，可能会面临解析停止、域名锁定等处置措施。公告并未提及任何安全漏洞或攻击事件。",
-        "why_it_matters_zh": "此调整影响所有通过新网注册商备案的域名，若不及时合规，可能导致域名解析异常、业务中断，需引起运维人员重视。",
+        "summary_zh": "腾讯云发布关于新网注册商下已备案域名合规规则调整的公告。根据公告内容，新网注册商对已备案域名的合规规则进行了调整，涉及域名管理相关要求。该调整可能影响域名持有者的备案状态或域名使用。目前未提供具体技术细节或漏洞信息。",
+        "why_it_matters_zh": "域名合规规则调整可能影响已备案域名的正常使用或备案状态，需及时关注并遵守新规以避免域名被暂停解析。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "1. 登录腾讯云控制台及新网注册商后台，查看具体的合规规则更新详情；2. 按照要求及时完成备案信息修正或补充；3. 确保域名所有者联系方式有效，以便接收后续通知；4. 监控域名状态，避免因未合规导致服务中断。",
+        "recommended_action_zh": "登录腾讯云控制台查看具体规则调整内容，确保域名符合新合规要求；如涉及备案信息变更，及时提交更新。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1222,11 +1218,12 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "已备案域名（通过新网注册商管理）"
+          "已备案域名"
         ],
         "cves": [],
         "limitations": [
-          "公告未提供具体规则细节，需登录平台查看完整文档；不涉及安全漏洞，无修复补丁。"
+          "未提供规则调整的详细内容",
+          "未涉及安全漏洞"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1239,8 +1236,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "此调整影响所有通过新网注册商备案的域名，若不及时合规，可能导致域名解析异常、业务中断，需引起运维人员重视。",
-      "recommended_action": "1. 登录腾讯云控制台及新网注册商后台，查看具体的合规规则更新详情；2. 按照要求及时完成备案信息修正或补充；3. 确保域名所有者联系方式有效，以便接收后续通知；4. 监控域名状态，避免因未合规导致服务中断。",
+      "why_it_matters": "域名合规规则调整可能影响已备案域名的正常使用或备案状态，需及时关注并遵守新规以避免域名被暂停解析。",
+      "recommended_action": "登录腾讯云控制台查看具体规则调整内容，确保域名符合新合规要求；如涉及备案信息变更，及时提交更新。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1271,12 +1268,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "腾讯云于2026年5月7日发布了五一假期服务公告，内容主要涉及2026年五一劳动节期间（4月30日至5月4日）腾讯云各项服务的正常运行安排、技术支持响应时效调整以及客户服务保障措施。公告强调五一假期期间，腾讯云核心服务（包括计算、存储、网络、数据库等）将保持正常运行，但部分人工服务（如工单处理、电话支持）可能会有延迟响应。建议用户提前做好资源规划和备份，并关注官方控制台和公告渠道获取最新动态。该公告未提及任何安全漏洞或风险，属于常规的节假日服务通知。",
-        "why_it_matters_zh": "该公告为腾讯云五一假期服务安排通知，虽然不涉及安全漏洞，但用户在假期运维时需注意支持响应延迟，提前做好应急预案。",
+        "summary_zh": "腾讯云于2026年5月7日发布了五一假期服务公告，旨在提前告知用户在假期期间（预计为2026年五一劳动节前后）可能受到的服务影响及腾讯云提供的保障措施。公告内容通常涵盖：假期期间技术支持响应时效调整、部分产品维护窗口变更、工单处理延迟说明、紧急联系渠道等。用户需关注具体服务可用性承诺，以便合理安排业务。本次公告不涉及具体安全漏洞或攻击事件，属于常规运维通知。",
+        "why_it_matters_zh": "帮助用户提前了解假期期间腾讯云服务的变更与支持调整，避免业务因服务中断或响应延迟受损。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "腾讯云用户在五一假期前检查资源健康状况，做好数据备份，并关注官方公告与工单响应时效变化。",
+        "recommended_action_zh": "阅读完整公告，根据公告内容调整业务运维计划，提前提交工单或配置应急联系人。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1285,12 +1282,10 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "腾讯云服务（计算、存储、网络、数据库等）"
+          "腾讯云全部或部分服务"
         ],
         "cves": [],
-        "limitations": [
-          "该公告为常规服务通知，不涉及安全漏洞或攻击事件。"
-        ],
+        "limitations": [],
         "threat_type": null,
         "threat_actors": null,
         "malware_families": null,
@@ -1302,8 +1297,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "该公告为腾讯云五一假期服务安排通知，虽然不涉及安全漏洞，但用户在假期运维时需注意支持响应延迟，提前做好应急预案。",
-      "recommended_action": "腾讯云用户在五一假期前检查资源健康状况，做好数据备份，并关注官方公告与工单响应时效变化。",
+      "why_it_matters": "帮助用户提前了解假期期间腾讯云服务的变更与支持调整，避免业务因服务中断或响应延迟受损。",
+      "recommended_action": "阅读完整公告，根据公告内容调整业务运维计划，提前提交工单或配置应急联系人。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1334,26 +1329,27 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "腾讯云于2026年5月7日发布了关于发信域名升级频率策略调整的公告。本次调整主要涉及发信域名的升级频率限制，具体调整内容可能包括对每日允许的升级次数、升级间隔或触发条件进行修改。该变更旨在优化系统稳定性，但可能影响用户日常运维中频繁调整域名配置的操作。用户需根据新策略调整发信域名的升级计划，避免因超出频率限制导致操作失败或延迟。公告未提及具体的漏洞或安全事件，属于服务策略的正常更新。建议用户关注腾讯云控制台及邮件通知，及时了解新策略的生效时间和具体参数。",
-        "why_it_matters_zh": "本次域名升级频率策略调整可能影响企业邮件发送业务的配置灵活性，若未及时适配新策略，可能导致域名升级操作被限速或拒绝，需运维人员提前规划变更窗口。",
+        "summary_zh": "腾讯云于2026年5月7日发布公告，宣布对发信域名升级频率策略进行调整。此次调整涉及邮件推送服务中的发信域名配置，可能影响用户在使用邮件发送时的频率限制和稳定送达。公告未提供具体的技术细节或变更参数，建议用户关注官方文档获取详细说明。此变更属于服务策略优化，非安全漏洞或紧急事件，但用户需注意调整后可能出现的发送延迟或拒信问题，并及时更新相关业务配置。",
+        "why_it_matters_zh": "发信域名频率策略的调整可能影响邮件发送的速率和到达率，尤其是高频率发送业务，需及时适配以避免投递失败。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "关注腾讯云官方公告，通过控制台或API查询最新的升级频率限制参数，调整自动化脚本或手动操作计划，确保在允许频率内完成域名升级。",
+        "recommended_action_zh": "登录腾讯云控制台，查看邮件推送服务的官方公告和帮助文档，了解具体策略变化；根据新频率限制调整业务发送逻辑，确保符合升级后的规则。",
         "tags": [],
-        "category": "vuln",
+        "category": "advisory",
         "severity_hint": "info",
         "novelty_score": 0.4,
         "actionability_score": 0.4,
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "腾讯云发信域名服务"
+          "腾讯云邮件推送服务",
+          "发信域名"
         ],
         "cves": [],
         "limitations": [
-          "公告未提供具体的频率数值调整细节",
-          "未说明是否涉及所有用户或仅部分区域"
+          "未提供策略调整的具体参数，需依赖官方后续详细说明",
+          "未涉及任何安全漏洞或潜在风险"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1366,8 +1362,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "本次域名升级频率策略调整可能影响企业邮件发送业务的配置灵活性，若未及时适配新策略，可能导致域名升级操作被限速或拒绝，需运维人员提前规划变更窗口。",
-      "recommended_action": "关注腾讯云官方公告，通过控制台或API查询最新的升级频率限制参数，调整自动化脚本或手动操作计划，确保在允许频率内完成域名升级。",
+      "why_it_matters": "发信域名频率策略的调整可能影响邮件发送的速率和到达率，尤其是高频率发送业务，需及时适配以避免投递失败。",
+      "recommended_action": "登录腾讯云控制台，查看邮件推送服务的官方公告和帮助文档，了解具体策略变化；根据新频率限制调整业务发送逻辑，确保符合升级后的规则。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1398,12 +1394,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "腾讯云发布公告，宣布其天御验证码服务将停止支持微信小程序插件V1.0版本。自停止支持之日起，腾讯云将不再对该版本提供任何技术维护、安全更新或故障修复。建议使用该插件的用户尽快迁移至最新版本（V2.0或更高），以确保服务的连续性和安全性。该决定是基于产品技术演进和用户需求变化，旨在提供更稳定、安全的验证码解决方案。",
-        "why_it_matters_zh": "停止支持后，旧版本插件将无法获得安全更新，可能暴露于未修复的漏洞中，且功能可能逐渐退化，影响业务正常运行。",
+        "summary_zh": "腾讯云于2026年5月5日发布公告，宣布天御验证码产品将停止对微信小程序插件 V1.0 版本的支持。该版本插件自公告发布后将不再获得安全更新、技术维护及客户服务，继续使用可能存在兼容性、稳定性及安全风险。受影响用户需要尽快将微信小程序验证码插件升级至最新版本 V2.0，以确保持续获得官方支持和安全保障。公告未提及具体漏洞或安全隐患，但停止支持意味着任何后续发现的问题将不予修复，因此建议用户主动迁移。",
+        "why_it_matters_zh": "官方停止支持后，V1.0 插件将不再获得安全更新，可能遗留未修补的漏洞，长期使用会增加业务风险。升级至 V2.0 是保持安全合规的必要措施。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "立即规划并执行升级，将天御验证码微信小程序插件从V1.0迁移至最新版本，避免因停止支持带来的安全与运维风险。",
+        "recommended_action_zh": "将微信小程序中的天御验证码插件从 V1.0 升级至 V2.0，并验证新版本集成正常。若无法立即升级，建议加强监控并在合理时间内完成迁移。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1412,11 +1408,11 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "天御验证码微信小程序插件V1.0"
+          "天御验证码微信小程序插件 V1.0 用户"
         ],
         "cves": [],
         "limitations": [
-          "公告未提及具体漏洞或安全影响，仅说明停止支持。"
+          "公告未提及具体漏洞或影响范围，仅涉及版本废止更新"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1429,8 +1425,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "停止支持后，旧版本插件将无法获得安全更新，可能暴露于未修复的漏洞中，且功能可能逐渐退化，影响业务正常运行。",
-      "recommended_action": "立即规划并执行升级，将天御验证码微信小程序插件从V1.0迁移至最新版本，避免因停止支持带来的安全与运维风险。",
+      "why_it_matters": "官方停止支持后，V1.0 插件将不再获得安全更新，可能遗留未修补的漏洞，长期使用会增加业务风险。升级至 V2.0 是保持安全合规的必要措施。",
+      "recommended_action": "将微信小程序中的天御验证码插件从 V1.0 升级至 V2.0，并验证新版本集成正常。若无法立即升级，建议加强监控并在合理时间内完成迁移。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1461,12 +1457,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Microsoft Entra ID Entitlement Management 中存在服务器端请求伪造（SSRF）漏洞。该漏洞允许未经授权的攻击者通过网络进行欺骗攻击。SSRF 漏洞通常允许攻击者向内部网络或敏感端点发起请求，可能导致信息泄露、权限提升或访问内部资源。目前 Microsoft 已发布相关安全公告，但未提供 CVE 编号、具体受影响版本或严重性评级。建议用户关注 Microsoft 官方更新，及时应用补丁。",
-        "why_it_matters_zh": "SSRF 漏洞可能被攻击者利用以探测内网、窃取凭证或绕过访问控制，影响身份和授权管理的安全性。",
+        "summary_zh": "微软安全响应中心（MSRC）发布公告，披露Microsoft Entra ID权利管理（Entitlement Management）组件中存在一个服务器端请求伪造（SSRF）漏洞。该漏洞允许未经授权的攻击者通过网络向内部系统发起假冒请求，从而执行欺骗（spoofing）攻击。攻击者可能利用此漏洞绕过网络访问控制，探测内部网络拓扑，或访问非公开的内部资源，进而导致敏感信息泄露或横向移动。建议相关用户立即关注微软官方更新动态，并在补丁发布后优先部署修复。",
+        "why_it_matters_zh": "SSRF漏洞可被未授权攻击者利用，绕过边界防护，探测内网并访问敏感资源，可能导致凭证泄露或权限提升，需优先重视。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "关注 Microsoft MSRC 官方公告，升级 Microsoft Entra ID Entitlement Management 至最新版本；实施网络隔离和输入验证缓解 SSRF 风险。",
+        "recommended_action_zh": "关注微软官方安全更新公告，待补丁发布后立即升级至修复版本；未修复前可启用网络隔离和严格的主机名白名单策略。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1479,7 +1475,8 @@
         ],
         "cves": [],
         "limitations": [
-          "输入信息有限：无 CVE 编号、无具体受影响版本、无严重性评级、无利用细节。"
+          "厂商尚未发布补丁或CVE编号",
+          "严重性暂未评估"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1492,8 +1489,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "SSRF 漏洞可能被攻击者利用以探测内网、窃取凭证或绕过访问控制，影响身份和授权管理的安全性。",
-      "recommended_action": "关注 Microsoft MSRC 官方公告，升级 Microsoft Entra ID Entitlement Management 至最新版本；实施网络隔离和输入验证缓解 SSRF 风险。",
+      "why_it_matters": "SSRF漏洞可被未授权攻击者利用，绕过边界防护，探测内网并访问敏感资源，可能导致凭证泄露或权限提升，需优先重视。",
+      "recommended_action": "关注微软官方安全更新公告，待补丁发布后立即升级至修复版本；未修复前可启用网络隔离和严格的主机名白名单策略。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1524,12 +1521,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "微软MSRC发布安全公告，披露Microsoft Power Apps中存在一个未受控制的搜索路径元素漏洞。该漏洞允许未经授权的攻击者通过网络远程执行任意代码。Power Apps是微软的低代码应用开发平台，广泛用于企业构建自定义业务应用。漏洞成因是程序在加载外部库或资源时，未正确限制搜索路径，攻击者可能通过诱导用户访问恶意链接或通过网络投递特制文件，触发代码执行。成功利用后，攻击者可在目标系统上以应用程序权限执行任意代码，可能导致数据泄露、服务中断或进一步横向移动。目前微软尚未发布CVE编号及严重性评级，但该漏洞影响重大，建议相关用户密切关注后续更新。",
-        "why_it_matters_zh": "Microsoft Power Apps在企业中广泛使用，该漏洞允许网络远程代码执行，若被利用可能造成大范围数据泄露或系统控制，需优先关注官方修复。",
+        "summary_zh": "Microsoft Power Apps 存在一个未受控的搜索路径元素漏洞。该漏洞允许未经授权的攻击者通过网络远程执行任意代码。未受控搜索路径元素通常发生在应用程序加载外部库或资源时使用了不受信任的搜索顺序，攻击者可能通过将恶意文件放置在特定路径中，诱使应用程序加载并执行恶意代码。由于是远程代码执行，攻击者可能能够完全控制受影响的系统或窃取敏感数据。目前微软已发布安全公告，但未提供具体 CVE 编号或严重性评级。建议用户立即关注微软官方更新，并采取缓解措施。",
+        "why_it_matters_zh": "该漏洞影响广泛使用的 Microsoft Power Apps 平台，且可实现远程代码执行，攻击者无需身份验证即可在网络层面触发，可能导致整个应用程序环境被攻陷，数据泄露风险极高。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "1. 密切关注微软官方安全更新，应用针对Power Apps的最新补丁或配置建议。2. 限制网络暴露面，确保Power Apps服务仅对可信网络开放。3. 审查应用程序的加载路径设置，启用安全加载策略。4. 监控异常行为，如非预期的进程创建或网络连接。",
+        "recommended_action_zh": "1. 关注 Microsoft MSRC 官方安全公告，及时安装微软发布的补丁或更新。2. 限制对 Power Apps 环境的网络访问，仅允许可信 IP 和用户。3. 审核应用程序依赖项的搜索路径配置，避免使用不安全路径。4. 实施应用程序白名单和端点检测响应（EDR）以监控异常加载行为。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1542,9 +1539,9 @@
         ],
         "cves": [],
         "limitations": [
-          "未提供CVE编号",
-          "受影响版本未明确",
-          "严重性暂未评估"
+          "缺乏漏洞的具体技术细节",
+          "无 CVE 编号或严重性评分",
+          "可能不涉及所有 Power Apps 版本"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1557,8 +1554,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Microsoft Power Apps在企业中广泛使用，该漏洞允许网络远程代码执行，若被利用可能造成大范围数据泄露或系统控制，需优先关注官方修复。",
-      "recommended_action": "1. 密切关注微软官方安全更新，应用针对Power Apps的最新补丁或配置建议。2. 限制网络暴露面，确保Power Apps服务仅对可信网络开放。3. 审查应用程序的加载路径设置，启用安全加载策略。4. 监控异常行为，如非预期的进程创建或网络连接。",
+      "why_it_matters": "该漏洞影响广泛使用的 Microsoft Power Apps 平台，且可实现远程代码执行，攻击者无需身份验证即可在网络层面触发，可能导致整个应用程序环境被攻陷，数据泄露风险极高。",
+      "recommended_action": "1. 关注 Microsoft MSRC 官方安全公告，及时安装微软发布的补丁或更新。2. 限制对 Power Apps 环境的网络访问，仅允许可信 IP 和用户。3. 审核应用程序依赖项的搜索路径配置，避免使用不安全路径。4. 实施应用程序白名单和端点检测响应（EDR）以监控异常加载行为。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1589,12 +1586,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "微软 MSRC 安全公告披露，Azure IoT Central 中存在一个敏感信息泄露漏洞（暴露给未经授权的行为者）。该漏洞允许已获得授权的攻击者通过网络利用此漏洞，实现权限提升。攻击者可能通过获取敏感信息来进一步扩大其在 Azure IoT Central 环境中的控制范围。目前微软已发布相关修复，建议用户及时更新。",
-        "why_it_matters_zh": "该漏洞可能导致授权攻击者通过网络提升权限，进而访问未授权的敏感信息，对 Azure IoT Central 环境的安全性构成威胁。",
+        "summary_zh": "Microsoft MSRC 发布的安全公告指出，Azure IoT Central 中存在一个敏感信息泄露漏洞。该漏洞允许已获得授权的攻击者通过网络利用该漏洞提升权限。Azure IoT Central 是一个云托管的物联网平台，用于构建、部署和管理 IoT 设备。漏洞的具体成因和攻击方式未详细说明，但涉及将敏感信息暴露给未经授权的参与者。攻击者可能利用此漏洞获取更高权限，进而访问或控制其他资源。目前暂未提供 CVSS 评分或 CVE 编号，官方尚未发布补丁或缓解措施。建议用户持续关注 MSRC 官方更新，并部署必要的网络访问控制以降低风险。",
+        "why_it_matters_zh": "Azure IoT Central 是微软重要的物联网 SaaS 服务，该漏洞允许授权攻击者提升权限，可能导致未授权访问敏感数据或控制物联网设备，影响企业 IoT 部署的安全性。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "立即应用微软官方提供的安全更新或补丁；定期检查 Azure IoT Central 的配置权限，确保最小权限原则；监控异常活动。",
+        "recommended_action_zh": "持续关注微软安全响应中心（MSRC）官方公告，等待官方修复补丁或缓解指南。同时，审查和限制对 Azure IoT Central 的网络访问权限，遵循最小权限原则。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1607,9 +1604,9 @@
         ],
         "cves": [],
         "limitations": [
-          "漏洞名称和 CVE 编号未提供",
-          "严重性等级未明确",
-          "攻击复杂度等细节未知"
+          "公告未提供漏洞技术细节",
+          "未明确受影响版本",
+          "暂未发布修复补丁"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1622,8 +1619,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "该漏洞可能导致授权攻击者通过网络提升权限，进而访问未授权的敏感信息，对 Azure IoT Central 环境的安全性构成威胁。",
-      "recommended_action": "立即应用微软官方提供的安全更新或补丁；定期检查 Azure IoT Central 的配置权限，确保最小权限原则；监控异常活动。",
+      "why_it_matters": "Azure IoT Central 是微软重要的物联网 SaaS 服务，该漏洞允许授权攻击者提升权限，可能导致未授权访问敏感数据或控制物联网设备，影响企业 IoT 部署的安全性。",
+      "recommended_action": "持续关注微软安全响应中心（MSRC）官方公告，等待官方修复补丁或缓解指南。同时，审查和限制对 Azure IoT Central 的网络访问权限，遵循最小权限原则。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1654,12 +1651,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "Microsoft Edge (基于 Chromium) 存在一个由 Chrome 分配编号的漏洞。该漏洞源自 Chromium 开源项目，被 Microsoft Edge 所继承。攻击者可能通过诱导用户访问特制的网页来触发漏洞，成功利用后可能导致浏览器崩溃或潜在任意代码执行。由于公告未提供具体 CVE 编号和严重性等级，具体影响范围取决于漏洞细节。Microsoft 通过集成 Chromium 更新已修复该漏洞，建议用户尽快更新至最新版 Edge。",
-        "why_it_matters_zh": "Microsoft Edge 是广泛使用的浏览器，Chromium 内核漏洞可能影响大量用户，且通常技术细节较丰富，防御方需关注官方更新。",
+        "summary_zh": "Microsoft MSRC 发布安全公告，指出 Microsoft Edge（基于 Chromium）存在一个由 Chrome 分配编号的漏洞（具体 CVE 未在公告中列出）。该漏洞源于 Edge 继承的 Chromium 代码缺陷，细节请参阅 Google Chrome Releases。由于公告信息有限，漏洞的触发条件、攻击向量及实际影响尚不明确。建议用户关注 Google 和 Microsoft 的后续更新以获取完整修复信息。",
+        "why_it_matters_zh": "Microsoft Edge 是广泛使用的浏览器，Chromium 内核漏洞可能影响用户安全，但公告未提供严重性评级，需等待官方详细信息。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "将 Microsoft Edge 更新至最新版本，并确保自动更新功能开启；关注 Google Chrome Release 公告获取详细漏洞信息。",
+        "recommended_action_zh": "密切关注 Google Chrome Releases 和 Microsoft 安全更新，及时安装 Edge 的补丁；可考虑暂缓使用 Edge 直至修复发布。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1672,8 +1669,9 @@
         ],
         "cves": [],
         "limitations": [
-          "公告未提供具体 CVE 编号和严重性评级",
-          "漏洞细节需参考 Google Chrome Release 信息"
+          "未提供具体 CVE 编号",
+          "未指明受影响版本",
+          "漏洞细节需参考第三方来源"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1686,8 +1684,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Microsoft Edge 是广泛使用的浏览器，Chromium 内核漏洞可能影响大量用户，且通常技术细节较丰富，防御方需关注官方更新。",
-      "recommended_action": "将 Microsoft Edge 更新至最新版本，并确保自动更新功能开启；关注 Google Chrome Release 公告获取详细漏洞信息。",
+      "why_it_matters": "Microsoft Edge 是广泛使用的浏览器，Chromium 内核漏洞可能影响用户安全，但公告未提供严重性评级，需等待官方详细信息。",
+      "recommended_action": "密切关注 Google Chrome Releases 和 Microsoft 安全更新，及时安装 Edge 的补丁；可考虑暂缓使用 Edge 直至修复发布。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1718,12 +1716,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "此公告涉及一个由 Chrome 分配的 CVE 漏洞，影响基于 Chromium 的 Microsoft Edge 浏览器。由于 Microsoft Edge (Chromium-based) 使用了 Chromium 开源项目，当 Chromium 修复漏洞时，Edge 也会自动继承该修复。公告未提供具体 CVE 编号或漏洞细节，仅指示参考 Google Chrome 发布说明。因此，该漏洞的具体类型、攻击向量和影响范围尚未明确，但通常 Chromium 漏洞可能涉及远程代码执行、信息泄露或沙箱逃逸等。用户需关注 Chrome 安全公告，并确保 Edge 浏览器及时更新。",
-        "why_it_matters_zh": "Microsoft Edge 基于 Chromium，Chrome 的漏洞直接影响 Edge 用户。由于 Edge 是企业环境常用浏览器，未修复的漏洞可能导致敏感信息泄露或远程攻击。",
+        "summary_zh": "微软安全响应中心(MSRC)发布公告，指出Microsoft Edge (基于Chromium)中存在一个源自Chromium引擎的安全漏洞。该漏洞由Chrome团队发现并分配了CVE编号，具体细节可参考Google Chrome发布说明。攻击者可能通过构造恶意网页，利用该漏洞在用户浏览器上下文中执行任意代码或导致信息泄露。由于Edge继承了Chromium的代码库，因此受此漏洞影响。目前微软已通过吸收Chromium的修复补丁来解决此问题。建议用户确保Edge浏览器已更新到最新版本，以防御潜在攻击。",
+        "why_it_matters_zh": "Microsoft Edge是广泛使用的浏览器，其底层Chromium漏洞影响所有基于该内核的浏览器，攻击者可能远程利用此漏洞控制用户系统，需及时修复。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "立即升级 Microsoft Edge 至最新版本；关注 Google Chrome Releases 公告；排查 Edge 版本是否在受影响范围内；启用自动更新机制。",
+        "recommended_action_zh": "更新Microsoft Edge至最新版本，可通过浏览器内置更新或Microsoft官网获取。同时关注Chrome安全公告以了解漏洞详情。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1736,10 +1734,8 @@
         ],
         "cves": [],
         "limitations": [
-          "未提供具体 CVE 编号",
-          "无漏洞技术细节",
-          "严重性未知",
-          "影响范围不明确"
+          "未提供具体CVE编号",
+          "未知漏洞严重性评分"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1752,8 +1748,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "Microsoft Edge 基于 Chromium，Chrome 的漏洞直接影响 Edge 用户。由于 Edge 是企业环境常用浏览器，未修复的漏洞可能导致敏感信息泄露或远程攻击。",
-      "recommended_action": "立即升级 Microsoft Edge 至最新版本；关注 Google Chrome Releases 公告；排查 Edge 版本是否在受影响范围内；启用自动更新机制。",
+      "why_it_matters": "Microsoft Edge是广泛使用的浏览器，其底层Chromium漏洞影响所有基于该内核的浏览器，攻击者可能远程利用此漏洞控制用户系统，需及时修复。",
+      "recommended_action": "更新Microsoft Edge至最新版本，可通过浏览器内置更新或Microsoft官网获取。同时关注Chrome安全公告以了解漏洞详情。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1784,12 +1780,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "此条目为华为PSIRT官方漏洞公告列表页（http://www.huawei.com/cn/psirt/all-bulletins），发布日期为2026年4月27日。页面本身不包含具体漏洞详情、受影响产品或缓解措施。作为公告列表索引，用户需点击具体公告获取单个漏洞的完整信息。当前无任何CVE、严重性评级或受影响资产可报告。建议定期访问该页面以获取最新安全公告，并关注华为官方安全更新通知。",
-        "why_it_matters_zh": "华为官方安全公告列表是获取华为产品漏洞信息的权威入口，但本条目仅提供列表页，无具体漏洞细节。",
+        "summary_zh": "华为PSIRT发布了安全公告列表页面（http://www.huawei.com/cn/psirt/all-bulletins），该页面汇总了所有华为产品的安全公告。截至2026年4月27日，该页面已更新，但本次输入未提供具体漏洞详情、CVE编号或受影响产品信息。该页面是获取华为官方安全公告的唯一权威来源，防守方应定期关注以获取最新漏洞修复信息。",
+        "why_it_matters_zh": "该页面是华为官方安全公告的集中发布平台，防守方需持续监控以获取华为产品漏洞修复信息，避免因信息滞后导致安全风险。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "定期访问华为PSIRT页面并订阅公告，及时应用安全补丁和缓解措施。",
+        "recommended_action_zh": "建议定期访问该页面或订阅华为PSIRT通知，及时了解并处理华为产品的安全漏洞更新。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "info",
@@ -1800,7 +1796,7 @@
         "affected_assets": [],
         "cves": [],
         "limitations": [
-          "本条目仅包含公告列表页，无具体漏洞描述；实际影响需参考单个公告。"
+          "输入未提供具体漏洞内容，无法进行详细分析。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1813,8 +1809,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "华为官方安全公告列表是获取华为产品漏洞信息的权威入口，但本条目仅提供列表页，无具体漏洞细节。",
-      "recommended_action": "定期访问华为PSIRT页面并订阅公告，及时应用安全补丁和缓解措施。",
+      "why_it_matters": "该页面是华为官方安全公告的集中发布平台，防守方需持续监控以获取华为产品漏洞修复信息，避免因信息滞后导致安全风险。",
+      "recommended_action": "建议定期访问该页面或订阅华为PSIRT通知，及时了解并处理华为产品的安全漏洞更新。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
@@ -1848,12 +1844,12 @@
       "risk_score": 0.0,
       "recommendation_score": 0.0,
       "llm_summary": {
-        "summary_zh": "2026年4月22日，GitLab发布安全补丁版本18.11.1、18.10.4和18.9.6，修复了多个安全漏洞。这些漏洞影响GitLab Community Edition (CE)和Enterprise Edition (EE)的多个版本。其中三个已分配CVE的漏洞较为严重：CVE-2026-4922（高危，CVSS 8.1）是GraphQL API中的跨站请求伪造(CSRF)漏洞，未认证用户可能诱导认证用户执行GraphQL变更操作，导致机密性和完整性受影响；CVE-2026-5816（高危，CVSS 8.0）是Web IDE资产中的路径解析不当漏洞，在一定条件下未认证用户可在用户浏览器会话中执行任意JavaScript，造成跨站脚本攻击；CVE-2026-5262（高危，未提供CVSS）是Storybook中的跨站脚本漏洞，未认证用户可能通过不当输入验证访问Storybook开发环境中的令牌。此外，公告还修复了多个中危和低危漏洞，包括讨论端点、Jira导入、备注端点、GraphQL API中的拒绝服务(DoS)漏洞，以及虚拟注册表凭据验证的会话过期不足、问题描述渲染器的访问控制不当、Mermaid沙箱的UI层限制不当、项目分支关系API的访问控制不当等问题。GitLab强烈建议所有自管理实例立即升级到修复版本，GitLab.com和GitLab Dedicated客户无需操作。",
-        "why_it_matters_zh": "这些高危漏洞可导致CSRF、XSS和任意JavaScript执行，攻击者可能窃取用户会话、执行未授权操作或破坏数据完整性。由于GitLab广泛应用于开发及CI/CD流程，漏洞影响范围大，需优先修复。",
+        "summary_zh": "2026年4月22日，GitLab发布了针对社区版（CE）和企业版（EE）的安全补丁版本18.11.1、18.10.4和18.9.6。这些版本修复了多个安全漏洞，包括：\n1. CVE-2026-4922：GraphQL API中的跨站请求伪造（CSRF）漏洞，允许未认证攻击者在认证用户不知情的情况下执行GraphQL变更操作，CVSS评分8.1（高）。\n2. CVE-2026-5816：Web IDE资产中的路径验证不当漏洞，允许未认证攻击者在特定条件下在用户浏览器中执行任意JavaScript脚本，CVSS评分8.0（高）。\n3. CVE-2026-5262：Storybook中的跨站脚本（XSS）漏洞，允许未认证攻击者通过输入验证缺陷访问Storybook开发环境中的令牌。\n此外，还修复了多个中危和低危漏洞，涉及讨论端点、Jira导入、注释端点、GraphQL API的拒绝服务问题，以及虚拟注册表凭证会话过期不足、问题描述渲染器访问控制不当、Mermaid沙箱UI层限制不足、项目分叉关系API访问控制不当等。GitLab强烈建议所有自托管实例立即升级，GitLab.com已自动更新，专用客户无需操作。",
+        "why_it_matters_zh": "多个高危漏洞（包括CSRF、XSS和任意JS执行）影响广泛使用的GitLab版本，可能导致未授权操作、会话劫持和数据泄露，需立即修复。",
         "impact_zh": null,
         "detection_signals_zh": [],
         "defense_advice_zh": [],
-        "recommended_action_zh": "立即将所有自管理GitLab实例升级到18.11.1、18.10.4或18.9.6版本（根据当前使用的版本线）。GitLab.com已自动修复，GitLab Dedicated客户无需操作。在升级前，可加强访问控制和监控可疑活动。",
+        "recommended_action_zh": "将自托管的GitLab实例升级至18.11.1、18.10.4或18.9.6版本；GitLab.com和Dedicated用户无需操作。关注官方后续公告。",
         "tags": [],
         "category": "vuln",
         "severity_hint": "high",
@@ -1862,8 +1858,9 @@
         "confidence": 0.9,
         "confidence_label": "source_confirmed",
         "affected_assets": [
-          "GitLab Community Edition (CE)",
-          "GitLab Enterprise Edition (EE)"
+          "GitLab CE/EE 17.0至18.9.6之前版本",
+          "GitLab CE/EE 18.10至18.10.4之前版本",
+          "GitLab CE/EE 18.11至18.11.1之前版本"
         ],
         "cves": [
           "CVE-2026-4922",
@@ -1871,8 +1868,7 @@
           "CVE-2026-5262"
         ],
         "limitations": [
-          "公告未提供所有漏洞的CVE编号，仅列举了三个；其他漏洞的详细技术细节需等待30天后公开。",
-          "部分漏洞的CVSS评分未完整提供。"
+          "未提供完整的CVE详情，仅包含三个主要CVE；部分中低危漏洞未列出CVE编号。"
         ],
         "threat_type": null,
         "threat_actors": null,
@@ -1885,8 +1881,8 @@
         "refusal_reason": null,
         "prompt_version": "v1"
       },
-      "why_it_matters": "这些高危漏洞可导致CSRF、XSS和任意JavaScript执行，攻击者可能窃取用户会话、执行未授权操作或破坏数据完整性。由于GitLab广泛应用于开发及CI/CD流程，漏洞影响范围大，需优先修复。",
-      "recommended_action": "立即将所有自管理GitLab实例升级到18.11.1、18.10.4或18.9.6版本（根据当前使用的版本线）。GitLab.com已自动修复，GitLab Dedicated客户无需操作。在升级前，可加强访问控制和监控可疑活动。",
+      "why_it_matters": "多个高危漏洞（包括CSRF、XSS和任意JS执行）影响广泛使用的GitLab版本，可能导致未授权操作、会话劫持和数据泄露，需立即修复。",
+      "recommended_action": "将自托管的GitLab实例升级至18.11.1、18.10.4或18.9.6版本；GitLab.com和Dedicated用户无需操作。关注官方后续公告。",
       "confidence": 0.9,
       "shown_in_sections": [],
       "rank_reasons": []
