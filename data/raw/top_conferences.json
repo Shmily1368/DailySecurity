@@ -1,333 +1,326 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_GeierhaasMA025",
+    "id": "paper:ieee_sp:conf_sp_MarazziJSR22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GeierhaasMA025",
+      "native_id": "conf_sp_MarazziJSR22",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00086"
+      "source_url": "https://doi.org/10.1109/SP46214.2022.9833664"
     },
-    "title": "&quot;Not the Right Question?&quot; A Study on Attitudes Toward Client-Side Scanning with Security and Privacy Researchers and a U.S. Population Sample.",
-    "summary": "",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "title": "ProTRR: Principled yet Optimal In-DRAM Target Row Refresh.",
+    "summary": "The DRAM substrate is becoming increasingly more vulnerable to Rowhammer as we move to smaller technology nodes. We introduce ProTRR, the first principled in-DRAM Target Row Refresh mitigation with formal security guarantees and low bounds on overhead. Unlike existing proposals that require changes to the memory controllers, the in-DRAM nature of ProTRR enables its seamless integration. However, this means that ProTRR must respect the synchronous nature of the DRAM protocol, which limits the number of DRAM rows that can be protected at any given time. To overcome this challenge, ProTRR proactively refreshes each row that is most likely to observe bit flips in the future. While this strategy catches the rows that are hammered the most, some others may still fly under the radar. We use this observation to construct Feinting, a new Rowhammer attack that we formally prove to be optimal in this setting. We then conFigure ProTRR to be secure against Feinting. To achieve this, ProTRR should keep track of accesses to each row, which is prohibitively expensive to implement in hardware. Instead, ProTRR uses a new frequent item counting scheme that leverages Feinting to provide a provably optimal yet flexible trade-off between the tolerated DRAM vulnerability, the number of counters, and the number of additional refreshes. Our extensive evaluation using an ASIC implementation of ProTRR and cycle-accurate simulation shows that ProTRR can provide principled protection for current and future DRAM technologies with a negligible performance, power, and area impact. ProTRR is fully compatible with DDR4 and the new Refresh Management (RFM) extension in DDR5.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Lisa Geierhaas",
-      "Florin Martius",
-      "Arthi Arumugam",
-      "Matthew Smith 0001"
+      "Michele Marazzi",
+      "Patrick Jattke",
+      "Flavien Solt",
+      "Kaveh Razavi"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GongZZZ0P25",
+    "id": "paper:ieee_sp:conf_sp_MarthHSG22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GongZZZ0P25",
+      "native_id": "conf_sp_MarthHSG22",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00251"
+      "source_url": "https://doi.org/10.1109/SPW54247.2022.9833891"
     },
-    "title": "Not All Edges are Equally Robust: Evaluating the Robustness of Ranking-Based Federated Learning.",
-    "summary": "Federated Ranking Learning (FRL) is a state-of-the-art FL framework that stands out for its communication efficiency and resilience to poisoning attacks. It diverges from the traditional FL framework in two ways: 1) it leverages discrete rankings instead of gradient updates, significantly reducing communication costs and limiting the potential space for malicious updates, and 2) it uses majority voting on the server side to establish the global ranking, ensuring that individual updates have minimal influence since each client contributes only a single vote. These features enhance the system's scalability and position FRL as a promising paradigm for FL training. However, our analysis reveals that FRL is not inherently robust, as certain edges are particularly vulnerable to poisoning attacks. Through a theoretical investigation, we prove the existence of these vulnerable edges and establish a lower bound and an upper bound for identifying them in each layer. Based on this finding, we introduce a novel local model poisoning attack against FRL, namely Vulnerable Edge Manipulation (VEM) attack. The VEM attack focuses on identifying and perturbing the most vulnerable edges in each layer and leveraging an optimization-based approach to maximize the attack's impact. Through extensive experiments on benchmark datasets, we demonstrate that our attack achieves an overall 53.23 % attack impact and is 3.7× more impactful than existing methods. Our findings highlight significant vulnerabilities in ranking-based FL systems and underline the urgency for the development of new robust FL frameworks.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "title": "Abusing Trust: Mobile Kernel Subversion via TrustZone Rootkits.",
+    "summary": "The Arm TrustZone is the de facto standard for hardware-backed Trusted Execution Environments (TEEs) on mobile devices, providing isolation for secure computations to be shielded from the normal world, and thus from the rest of the system. Most real-world TEEs are proprietary, difficult-to-inspect, and notoriously insecure: In the past years, it has been demonstrated over and over again that TEEs of millions of devices worldwide, and the Trusted Applications (TAs) they harbor, are often vulnerable to attacks such as control flow hijacking. Not only do we have to trust these TEEs to provide a secure environment for TAs such as keystore and Digital Rights Management (DRM), code running in the secure world provided by the Arm TrustZone also has full access to the memory of the regular operating system (OS). Since Thomas Roth first proposed a TrustZone-based rootkit in 2013, progress regarding such rootkits seems to have stalled in the offensive research community. The biggest challenge for TrustZone rootkits is that no interpretation of normal world memory is available in the secure world. Automated reverse engineering of kernel data structures at runtime is one way to implement rootkit functions. We present mechanisms to engineer the interpretation of Linux kernel memory for malicious subversion and the circumvention of basic protection mechanisms from the secure world. We provide a fully working proof-of-concept rootkit located in the Arm TrustZone to demonstrate the proposed mechanisms. We evaluate and show compatibility of the rootkit across different versions of the Linux kernel despite changing data structures. Our results highlight the feasibility of TrustZone rootkits that potentially survive kernel updates and raise awareness about the real danger of having to put trust into unvetted proprietary vendor code, which, as we show, can easily be abused.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Zirui Gong",
-      "Yanjun Zhang",
-      "Leo Yu Zhang",
-      "Zhaoxi Zhang 0001",
-      "Yong Xiang 0001",
-      "Shirui Pan"
+      "Daniel Marth",
+      "Clemens Hlauschek",
+      "Christian Schanes",
+      "Thomas Grechenig"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GuTZGY25",
+    "id": "paper:ieee_sp:conf_sp_MenonW22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GuTZGY25",
+      "native_id": "conf_sp_MenonW22",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00011"
+      "source_url": "https://doi.org/10.1109/SP46214.2022.9833700"
     },
-    "title": "EPScan: Automated Detection of Excessive RBAC Permissions in Kubernetes Applications.",
-    "summary": "As the dominant container orchestration system, Kubernetes has a large ecosystem of third-party applications. The third-party Kubernetes applications access various cluster resources to extend the cluster functionality and Kubernetes adopts the RBAC mechanism to manage the resource access permissions. Recently, researchers revealed that third-party applications are granted excessive permissions and proposed an excessive permission attack. The attacker can exploit some critical excessive permissions to escape from the worker node and take over the whole Kubernetes cluster. However, this attack assumes that the attacker has compromised a worker node via container escape, which is difficult to realize in real scenarios. Therefore, we propose a new excessive permission attack with simpler attack conditions in this paper. We reveal that an attacker who has compromised one pod (less difficult than compromising a worker node) can exploit some other excessive privileges to take over worker nodes or break the availability and data confidentiality of other pods. Although excessive permissions of third-party applications pose a great threat to the security of Kubernetes clusters, there is no effective approach for detecting them. In this paper, we propose a novel approach, namely EPScan, which automatically detects exploitable excessive permissions in third-party applications. To achieve this, EPScan employs a novel pod-oriented program analysis, which utilizes several new techniques to accurately identify the resource access behavior of the programs running in each pod. EPScan then compares the permissions required for these behaviors with those requested by the pod in its configuration file and finally reports the exploitable permissions that can be abused to launch an excessive permissions attack. We applied EPScan on 108 third-party applications from the CNCF projects and discovered previously unknown exploitable excessive permissions in 106 pods across 50 applications with a precision of 94.6% and 9 CVE identifiers assigned.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "title": "SPIRAL: Fast, High-Rate Single-Server PIR via FHE Composition.",
+    "summary": "We introduce the SPIRAL family of single-server private information retrieval (PIR) protocols. SPIRAL relies on a composition of two lattice-based homomorphic encryption schemes: the Regev encryption scheme and the GentrySahai-Waters encryption scheme. We introduce new ciphertext translation techniques to convert between these two schemes and in doing so, enable new trade-offs in communication and computation. Across a broad range of database configurations, the basic version of SPIRAL simultaneously achieves at least a 4.5 × reduction in query size, 1.5 × reduction in response size, and 2 × increase in server throughput compared to previous systems. A variant of our scheme, SPIRALSTREAMPACK, is optimized for the streaming setting and achieves a server throughput of 1.9 GB/s for databases with over a million records (compared to 200 MB/s for previous protocols) and a rate of 0.81 (compared to 0.24 for previous protocols). For streaming large records (e.g., a private video stream), we estimate the monetary cost of SPIRALSTREAMPACK to be only 1.9 × greater than that of the no-privacy baseline where the client directly downloads the desired record.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Yue Gu",
-      "Xin Tan",
-      "Yuan Zhang",
-      "Siyan Gao",
-      "Min Yang"
+      "Samir Jordan Menon",
+      "David J. Wu 0001"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GuZA25",
+    "id": "paper:ieee_sp:conf_sp_MilburnKG22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GuZA25",
+      "native_id": "conf_sp_MilburnKG22",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00209"
+      "source_url": "https://doi.org/10.1109/SP46214.2022.9833675"
     },
-    "title": "I know What You Sync: Covert and Side Channel Attacks on File Systems via syncfs.",
-    "summary": "Operating Systems enforce logical isolation using abstractions such as processes, containers, and isolation tech-nologies to protect a system from malicious or buggy code. In this paper, we show new types of side channels through the file system that break this logical isolation. The file system plays a critical role in the operating system, managing all I/O activities between the application layer and the physical storage device. We observe that the file system implementation is shared, leading to timing leakage when using common I/O system calls. Specifically, we found that modern operating systems take advantage of any flush operation (which saves cached blocks in memory to the SSD or disk) to flush all of the I/O buffers, even those used by other isolation domains. Thus, by measuring the delay of syncfs, the attacker can infer the I/O behavior of victim programs. We then demonstrate a syncfs covert channel attack on multiple file systems, including both Linux native file systems and the Windows file system, achieving a maximum bandwidth of 5 Kbps with an error rate of 0.15% on Linux and 7.6 Kbps with an error rate of 1.9% on Windows. In addition, we construct three side-channel attacks targeting both Linux and Android devices. On Linux devices, we implement a website fingerprinting attack and a video fingerprinting attack by tracking the write patterns of temporary buffering files. On Android devices, we design an application fingerprinting attack that leaks application write patterns during boot-up. The attacks achieve over 90% F1 score, precision, and recall. Finally, we demonstrate that these attacks can be exploited across containers implementing a container detection technique and a cross-container covert channel attack.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "title": "Mitigating Information Leakage Vulnerabilities with Type-based Data Isolation.",
+    "summary": "Information leakage vulnerabilities (or simply info leaks) such as out-of-bounds/uninitialized reads in the architectural or speculative domain pose a significant security threat, allowing attackers to leak sensitive data such as crypto keys. At the same time, such vulnerabilities are hard to efficiently mitigate, as every (even speculative) memory load operation needs to be potentially instrumented against unauthorized reads. Existing confidentiality-preserving solutions based on data isolation label memory objects with different (e.g., sensitive vs. nonsensitive) colors, color load operations accordingly using static pointsto analysis, and instrument them to enforce color-matching invariants at run time. Unfortunately, the reliance on conservative points-to analysis introduces overapproximations that are detrimental to security (or further degrade performance). In this paper, we propose Type-based Data Isolation (TDI), a new practical design point in the data isolation space to mitigate info leaks. TDI isolates memory objects of different colors in separate memory arenas and uses efficient compiler instrumentation to constrain loads to the arena of the intended color by construction. TDI’s arena-based design moves the instrumentation from loads to pointer arithmetic operations, enabling new aggressive speculation-aware performance optimizations and eliminating the need for points-to analysis. Moreover, TDI’s color management is flexible. TDI can support a few-color scheme with sensitive data annotations similar to prior work (e.g., 2 colors) or a many-color scheme based on basic type analysis (i.e., one color per object type). The latter approach provides fine-grained data isolation, eliminates the need for annotations, and enforces strong color-matching invariants equivalent to ideal (context-sensitive) type-based points-to analysis. Our results show that TDI can efficiently support such strong security invariants, at average performance overheads of <10% on SPEC CPU2006 and nginx.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Cheng Gu",
-      "Yicheng Zhang 0004",
-      "Nael B. Abu-Ghazaleh"
+      "Alyssa Milburn",
+      "Erik van der Kouwe",
+      "Cristiano Giuffrida"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_GuanYSHQWW25",
+    "id": "paper:ieee_sp:conf_sp_MohammedSDGML22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GuanYSHQWW25",
+      "native_id": "conf_sp_MohammedSDGML22",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00042"
+      "source_url": "https://doi.org/10.1109/SPW54247.2022.9833877"
     },
-    "title": "Security Perceptions of Users in Stablecoins: Advantages and Risks within the Cryptocurrency Ecosystem.",
-    "summary": "Stablecoins, a type of cryptocurrency pegged to another asset to maintain a stable price, have become an important part of the cryptocurrency ecosystem. Prior studies have primarily focused on examining the security of stablecoins from technical and theoretical perspectives, with limited investigation into users' risk perceptions and security behaviors in stablecoin practices. To address this research gap, we conducted a mixed-method study that included constructing a stablecoin interaction framework based on the literature, which informed the design of our interview protocol, semi-structured interviews (n=21), and Reddit data analysis (9,326 posts). We found that participants see stable value and regulatory compliance as key security advantages of stablecoins over other cryptocurrencies. However, participants also raised concerns about centralization risks in fiat-backed stablecoins, perceived challenges in crypto-backed stablecoins due to limited reliance on fully automated execution, and confusion regarding the complex mechanisms of algorithmic stablecoins. We proposed improving user education and optimizing mechanisms to address these concerns and promote the safer use of stablecoins.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "title": "Towards Wireless Spiking of Smart Locks.",
+    "summary": "The rapid growth of the Internet-of-Things (IoT) has made Smart Homes not only possible but popular in our society. While devices such as wireless security cameras, smart locks, etc. can be more convenient than their traditional counterparts, and may even lead to an increased sense of security, they may actually cause an increase in the attack surface of a home. For example, successful cyber attacks against these smart devices has been extensively documented in the literature. In contrast to existing work we discuss the vulnerabilities of these devices from a cyber-physical perspective; specifically, the threat posed by intentional electromagnetic interference (IEMI). In this paper, we present a methodology to carry out ‘wireless spiking’ attacks on smart lock devices that would allow an unauthenticated adversary to open a lock, without direct physical tampering, through the manipulation of its electrical control circuitry using IEMI. We demonstrate the proposed methodology—reverse engineering, identification of attack points, development of an attack vector, and design and transmission of attack signals—on a commercially popular smart lock. In doing so we lay the groundwork for wireless spiking attacks on smart locks, in general.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Maggie Yongqi Guan",
-      "Yaman Yu",
-      "Tanusree Sharma",
-      "Molly Zhuangtong Huang",
-      "Kaihua Qin",
-      "Yang Wang 0005",
-      "Kanye Ye Wang"
+      "Abdullah Zubair Mohammed",
+      "Alok K. Singh",
+      "Gökçen Yilmaz Dayanikli",
+      "Ryan M. Gerdes",
+      "Mani Mina",
+      "Ming Li 0003"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_DengM0LXC23",
+    "id": "paper:usenix_security:conf_uss_0001C22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_DengM0LXC23",
+      "native_id": "conf_uss_0001C22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/deng-zizhuang"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/wang-jiafan"
     },
-    "title": "Differential Testing of Cross Deep Learning Framework APIs: Revealing Inconsistencies and Vulnerabilities.",
+    "title": "Omnes pro uno: Practical Multi-Writer Encrypted Database.",
     "summary": "",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Zizhuang Deng",
-      "Guozhu Meng",
-      "Kai Chen 0012",
-      "Tong Liu 0027",
-      "Lu Xiang",
-      "Chunyang Chen 0001"
+      "Jiafan Wang 0001",
+      "Sherman S. M. Chow"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_DengTCCW023",
+    "id": "paper:usenix_security:conf_uss_0001LLZLYLZG22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_DengTCCW023",
+      "native_id": "conf_uss_0001LLZLYLZG22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/deng-jiangyi-v-cloak"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/xue-lei"
     },
-    "title": "V-Cloak: Intelligibility-, Naturalness- &amp; Timbre-Preserving Real-Time Voice Anonymization.",
-    "summary": "Voice data generated on instant messaging or social media applications contains unique user voiceprints that may be abused by malicious adversaries for identity inference or identity theft. Existing voice anonymization techniques, e.g., signal processing and voice conversion/synthesis, suffer from degradation of perceptual quality. In this paper, we develop a voice anonymization system, named V-Cloak, which attains real-time voice anonymization while preserving the intelligibility, naturalness and timbre of the audio. Our designed anonymizer features a one-shot generative model that modulates the features of the original audio at different frequency levels. We train the anonymizer with a carefully-designed loss function. Apart from the anonymity loss, we further incorporate the intelligibility loss and the psychoacoustics-based naturalness loss. The anonymizer can realize untargeted and targeted anonymization to achieve the anonymity goals of unidentifiability and unlinkability. We have conducted extensive experiments on four datasets, i.e., LibriSpeech (English), AISHELL (Chinese), CommonVoice (French) and CommonVoice (Italian), five Automatic Speaker Verification (ASV) systems (including two DNN-based, two statistical and one commercial ASV), and eleven Automatic Speech Recognition (ASR) systems (for different languages). Experiment results confirm that V-Cloak outperforms five baselines in terms of anonymity performance. We also demonstrate that V-Cloak trained only on the VoxCeleb1 dataset against ECAPA-TDNN ASV and DeepSpeech2 ASR has transferable anonymity against other ASVs and cross-language intelligibility for other ASRs. Furthermore, we verify the robustness of V-Cloak against various de-noising techniques and adaptive attacks. Hopefully, V-Cloak may provide a cloak for us in a prism world.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Jiangyi Deng",
-      "Fei Teng",
-      "Yanjiao Chen",
-      "Xiaofu Chen",
-      "Zhaohui Wang",
-      "Wenyuan Xu 0001"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_DengZLL00YW23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_DengZLL00YW23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/deng-gelei"
-    },
-    "title": "NAUTILUS: Automated RESTful API Vulnerability Detection.",
+    "title": "SAID: State-aware Defense Against Injection Attacks on In-vehicle Network.",
     "summary": "",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
     "authors": [
-      "Gelei Deng",
-      "Zhiyi Zhang 0005",
-      "Yuekang Li",
-      "Yi Liu 0069",
-      "Tianwei Zhang 0004",
-      "Yang Liu 0003",
-      "Guo Yu",
-      "Dongjin Wang"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_DeuberKC23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_DeuberKC23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/deuber"
-    },
-    "title": "Assessing Anonymity Techniques Employed in German Court Decisions: A De-Anonymization Experiment.",
-    "summary": "",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Dominic Deuber",
-      "Michael Keuchen",
-      "Nicolas Christin"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_DharseeC23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_DharseeC23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/dharsee"
-    },
-    "title": "Jinn: Hijacking Safe Programs with Trojans.",
-    "summary": "",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Komail Dharsee",
-      "John Criswell"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Song0JXC25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Song0JXC25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/silence-false-alarms-identifying-anti-reentrancy-patterns-on-ethereum-to-refine-smart-contract-reentrancy-detection/"
-    },
-    "title": "Silence False Alarms: Identifying Anti-Reentrancy Patterns on Ethereum to Refine Smart Contract Reentrancy Detection.",
-    "summary": "Reentrancy vulnerabilities in Ethereum smart contracts have caused significant financial losses, prompting the creation of several automated reentrancy detectors.However, these detectors frequently yield a high rate of false positives due to coarse detection rules, often misclassifying contracts protected by anti-reentrancy patterns as vulnerable.Thus, there is a critical need for the development of specialized automated tools to assist these detectors in accurately identifying anti-reentrancy patterns.While existing code analysis techniques show promise for this specific task, they still face significant challenges in recognizing anti-reentrancy patterns.These challenges are primarily due to the complex and varied features of anti-reentrancy patterns, compounded by insufficient prior knowledge about these features.This paper introduces AutoAR, an automated recognition system designed to explore and identify prevalent anti-reentrancy patterns in Ethereum contracts.AutoAR utilizes a specialized graph representation, RentPDG, combined with a data filtration approach, to effectively capture anti-reentrancy-related semantics from a large pool of contracts.Based on RentPDGs extracted from these contracts, AutoAR employs a recognition model that integrates a graph auto-encoder with a clustering technique, specifically tailored for precise anti-reentrancy pattern identification.Experimental results show AutoAR can assist existing detectors in identifying 12 prevalent anti-reentrancy patterns with 89% accuracy, and when integrated into the detection workflow, it significantly reduces false positives by over 85%.* The corresponding authors.a reentrancy vulnerability in Ethereum, leading to substantial financial losses.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Qiyang Song",
-      "Heqing Huang 0001",
-      "Xiaoqi Jia",
-      "Yuanbo Xie",
-      "Jiahao Cao 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_SongZ025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_SongZ025",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/oreo-protecting-aslr-against-microarchitectural-attacks/"
-    },
-    "title": "Oreo: Protecting ASLR Against Microarchitectural Attacks.",
-    "summary": "Space Layout Randomization (ASLR) is one of the most prominently deployed mitigations against memory corruption attacks.ASLR randomly shuffles program virtual addresses to prevent attackers from knowing the location of program contents in memory.Microarchitectural side channels have been shown to defeat ASLR through various hardware mechanisms.We systematically analyze existing microarchitectural attacks and identify multiple leakage paths.Given the vast attack surface exposed by ASLR, it is challenging to effectively prevent leaking the ASLR secret against microarchitectural attacks.Motivated by this, we present Oreo, a software-hardware codesign mitigation that strengthens ASLR against these attacks.Oreo uses a new memory mapping interface to remove secret randomized bits in virtual addresses before translating them to their corresponding physical addresses.This extra step hides randomized virtual addresses from microarchitecture structures, preventing side channels from leaking ASLR secrets.Oreo is transparent to user programs and incurs low overhead.We prototyped and evaluated our design on Linux using the hardware simulator gem5.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Shixin Song",
-      "Joseph Zhang",
-      "Mengjia Yan 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_StafeevRSKP25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_StafeevRSKP25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/yurascanner-leveraging-llms-for-task-driven-web-app-scanning/"
-    },
-    "title": "YuraScanner: Leveraging LLMs for Task-driven Web App Scanning.",
-    "summary": "",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Aleksei Stafeev",
-      "Tim Recktenwald",
-      "Gianluca De Stefano",
-      "Soheil Khodayari",
-      "Giancarlo Pellegrino"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_TangTMC25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_TangTMC25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/a-multifaceted-study-on-the-use-of-tls-and-auto-detect-in-email-ecosystems/"
-    },
-    "title": "A Multifaceted Study on the Use of TLS and Auto-detect in Email Ecosystems.",
-    "summary": "Various email protocols, including IMAP, POP3, and SMTP, were originally designed as \"plaintext\" protocols without inbuilt confidentiality and integrity guarantees.To protect the communication traffic, TLS can either be used implicitly before the start of those email protocols, or introduced as an opportunistic upgrade in a post-hoc fashion.In order to improve user experience, many email clients nowadays provide a so-called \"auto-detect\" feature to automatically determine a functional set of configuration parameters for the users.In this paper, we present a multifaceted study on the security of the use of TLS and auto-detect in email clients.First, to evaluate the design and implementation of client-side TLS and auto-detect, we tested 49 email clients and uncovered various flaws that can lead to covert security downgrade and exposure of user credentials to attackers.Second, to understand whether current deployment practices adequately avoid the security traps introduced by opportunistic TLS and auto-detect, we collected and analyzed 1102 email setup guides from academic institutes across the world, and observed problems that can drive users to adopt insecure email settings.Finally, with the server addresses obtained from the setup guides, we evaluate the sever-side support for implicit and opportunistic TLS, as well as the characteristics of their certificates.Our results suggest that many users suffer from an inadvertent loss of security due to careless handling of TLS and auto-detect, and organizations in general are better off prescribing concrete and detailed manual configuration to their users.In this study, we consider three perspectives of the email ecosystem in tandem.First, we evaluate the designs and implementations of client applications (apps).This allows us to identify flaws in the clients that can lead to inadvertent security downgrades, which could in turn nullify the protections of TLS and leak sensitive messages and user credentials.Second, with the potential security traps due to auto-detect and other design weaknesses already identified, we evaluate email setup guides that are prescribed by IT admins of academic institutes around the world, to see if they adequately instruct users on how to avoid the traps, and adequately protect the sensitive traffic of the email protocols.This allows us to observe and better understand the current deployment practices embraced by real-world production setups.Finally, using the server addresses identified from the setup guides, we evaluate the server-side support for implicit and opportunistic TLS, as well",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Ka Fun Tang",
-      "Che Wei Tu",
-      "Sui Ling Angela Mak",
-      "Sze Yiu Chau"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_Tian0LXPYLLW25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_Tian0LXPYLLW25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/be-careful-of-what-you-embed-demystifying-ole-vulnerabilities/"
-    },
-    "title": "Be Careful of What You Embed: Demystifying OLE Vulnerabilities.",
-    "summary": "Microsoft Office is a comprehensive suite of productivity tools and Object Linking & Embedding (OLE) is a specification that standardizes the linking and embedding of a diverse set of objects across different applications.OLE facilitates data interchange and streamlines user experience when dealing with composite documents (e.g., an embedded Excel sheet in a Word document).However, inherent security weaknesses within the design of OLE present risks, as the design of OLE inherently blurs the trust boundary between first-party and third-party code, which may lead to unintended library loading and parsing vulnerabilities which could be exploited by malicious actors.Addressing this issue, this paper introduces OLExplore, a novel tool designed for security assessment of Office OLE objects.With an in-depth examination of historical OLE vulnerabilities, we have identified three key categories of vulnerabilities and subjected them to dynamic analysis and verification.Our evaluation of various Windows operating system versions has led to the discovery of 26 confirmed vulnerabilities, with 17 assigned CVE numbers that all have remote code execution potential.",
-    "published_at": "2026-07-26T04:17:27.906939+00:00",
-    "fetched_at": "2026-07-26T04:17:27.906939+00:00",
-    "authors": [
-      "Yunpeng Tian",
-      "Feng Dong 0008",
-      "Haoyi Liu",
-      "Meng Xu",
-      "Zhiniang Peng",
-      "Zesen Ye",
-      "Shenghui Li",
+      "Lei Xue 0001",
+      "Yangyang Liu",
+      "Tianqi Li",
+      "Kaifa Zhao",
+      "Jianfeng Li 0006",
+      "Le Yu 0002",
       "Xiapu Luo",
-      "Haoyu Wang 0001"
+      "Yajin Zhou",
+      "Guofei Gu"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_0001MM22",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_0001MM22",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/xiang"
+    },
+    "title": "PatchCleanser: Certifiably Robust Defense against Adversarial Patches for Any Image Classifier.",
+    "summary": "The adversarial patch attack against image classification models aims to inject adversarially crafted pixels within a restricted image region (i.e., a patch) for inducing model misclassification. This attack can be realized in the physical world by printing and attaching the patch to the victim object; thus, it imposes a real-world threat to computer vision systems. To counter this threat, we design PatchCleanser as a certifiably robust defense against adversarial patches. In PatchCleanser, we perform two rounds of pixel masking on the input image to neutralize the effect of the adversarial patch. This image-space operation makes PatchCleanser compatible with any state-of-the-art image classifier for achieving high accuracy. Furthermore, we can prove that PatchCleanser will always predict the correct class labels on certain images against any adaptive white-box attacker within our threat model, achieving certified robustness. We extensively evaluate PatchCleanser on the ImageNet, ImageNette, CIFAR-10, CIFAR-100, SVHN, and Flowers-102 datasets and demonstrate that our defense achieves similar clean accuracy as state-of-the-art classification models and also significantly improves certified robustness from prior works. Remarkably, PatchCleanser achieves 83.9% top-1 clean accuracy and 62.1% top-1 certified robust accuracy against a 2%-pixel square patch anywhere on the image for the 1000-class ImageNet dataset.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Chong Xiang 0001",
+      "Saeed Mahloujifar",
+      "Prateek Mittal"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_0001ZLLX022",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_0001ZLLX022",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/gu-jinyu"
+    },
+    "title": "A Hardware-Software Co-design for Efficient Intra-Enclave Isolation.",
+    "summary": "",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Jinyu Gu 0001",
+      "Bojun Zhu",
+      "Mingyu Li",
+      "Wentai Li",
+      "Yubin Xia",
+      "Haibo Chen 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_0001ZRA22",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_0001ZRA22",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/ma"
+    },
+    "title": "Incremental Offline/Online PIR.",
+    "summary": "",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Yiping Ma 0001",
+      "Ke Zhong",
+      "Tal Rabin",
+      "Sebastian Angel"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_AnnamalaiBHC26",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_AnnamalaiBHC26",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/to-shuffle-or-not-to-shuffle-auditing-dp-sgd-with-shuffling/"
+    },
+    "title": "To Shuffle or not to Shuffle: Auditing DP-SGD with Shuffling.",
+    "summary": "The Differentially Private Stochastic Gradient Descent (DP-SGD) algorithm supports the training of machine learning (ML) models with formal Differential Privacy (DP) guarantees.Traditionally, DP-SGD processes training data in batches using Poisson subsampling to select each batch at every iteration.More recently, shuffling has become a common alternative due to its better compatibility and lower computational overhead.However, computing tight theoretical DP guarantees under shuffling remains an open problem.As a result, models trained with shuffling are often evaluated as if Poisson subsampling were used, which might result in incorrect privacy guarantees.This raises a compelling research question: can we verify whether there are gaps between the theoretical DP guarantees reported by state-of-the-art models using shuffling and their actual leakage?To do so, we define novel DP-auditing procedures to analyze DP-SGD with shuffling and measure their ability to tightly estimate privacy leakage vis--vis batch sizes, privacy budgets, and threat models.Overall, we demonstrate that DP models trained using this approach have considerably overestimated their privacy guarantees (by up to 4 times).However, we also find that the gap between the theoretical Poisson DP guarantees and the actual privacy leakage from shuffling is not uniform across all parameter settings and threat models.Finally, we study two common variations of the shuffling procedure that result in even further privacy leakage (up to 10 times).Overall, our work highlights the risk of using shuffling instead of Poisson subsampling in the absence of rigorous analysis methods.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Meenatchi Sundaram Muthu Selva Annamalai",
+      "Borja Balle",
+      "Jamie Hayes",
+      "Emiliano De Cristofaro"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_AwasthiVMBG26",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_AwasthiVMBG26",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/pandora-lightweight-adversarial-defense-for-edge-iot-using-uncertainty-aware-metric-learning/"
+    },
+    "title": "PANDORA: Lightweight Adversarial Defense for Edge IoT using Uncertainty-Aware Metric Learning.",
+    "summary": "The rapid augmentation of Internet of Things (IoT) devices that are resource-constrained in nature has significantly expanded the attack surface, exposed critical vulnerabilities in the network.As a result, traditional Intrusion Detection Systems (IDS), which rely on static, signature-based approaches, have become increasingly obsolete.Modern adversaries now employ sophisticated, automated, and often novel (zero-day) attacks that can easily bypass such conventional defenses.Moreover, the existing IDS models with machine learning often fail in real-world scenarios to handle challenges like concept drift and an inability to generalize to unseen threats.To address these gaps, we introduce PANDORA (Probabilistic Adversarial Network Defense Over Resource-constrained Architectures), a novel, end-to-end framework for detecting zero-day attacks on edge devices.PANDORA makes three key contributions: 1) It learns uncertainty-aware probabilistic embeddings to create robust representations of network traffic; 2) It introduces a novel Probabilistic Manifold Structuring and Distance (PMSD) Loss function that enables effective zero-shot generalization; and 3) It utilizes an efficient Mamba-Mixture of Experts (MoE) architecture for on-device deployment.To validate our approach, we also introduce the TTDFIoTIDS2025 dataset, a new, high-fidelity benchmark featuring complex, programmatically generated attacks.Our extensive evaluations demonstrate that PANDORA significantly outperforms state-of-the-art models, achieving an F1-score of 0.971 with just 10-shot adaptation on CICIDS2017.Critically, it achieves up to 99% accuracy in zero-shot detection under domain shift and, when deployed on a Raspberry Pi, maintains a low memory footprint of 24 MB and a throughput of up to 4.26 flows/sec, proving its practical viability for real-time edge security.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Avinash Awasthi",
+      "Pritam Vediya",
+      "Hemant Miranka",
+      "Ramesh Babu Battula",
+      "Manoj Singh Gaur"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_BajaberJG26",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_BajaberJG26",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/netcap-data-plane-capability-based-defense-against-token-theft-in-network-access/"
+    },
+    "title": "NetCap: Data-Plane Capability-Based Defense Against Token Theft in Network Access.",
+    "summary": "Tokens play a vital role in enterprise network access control by enabling secure authentication and authorization across various protocols (e.g., JSON Web Tokens, OAuth 2.0).This allows users to access authorized resources using valid access tokens, without the need to repeatedly submit credentials.However, the ambient trust granted to all processes within an authorized host, combined with long token lifetimes, creates an opportunity for malicious processes to hijack tokens and impersonate legitimate users.This threat affects a wide range of protocols and has led to numerous real-world incidents.In this paper, we present NETCAP, a new defense mechanism designed to prevent attackers from using stolen tokens to access unauthorized resources in enterprise environments.The core idea is to introduce unforgeable, process-level capabilities that are bound to authorized processes.These capabilities are continuously embedded in the processes' network traffic to target resources for validation and are frequently refreshed.This binding between process identity and capability ensures that even if access tokens are stolen by malicious processes, they cannot be used to pass authentication without valid capabilities.To support the high volume of requests generated by processes in the network, NETCAP introduces a novel data-plane design based on programmable switches and eBPF.Through multiple optimization techniques, our system supports inline generation and embedding of capabilities, allowing large volumes of traffic to be processed at line rate with little overhead.Our extensive evaluations show that NETCAP maintains line-rate network performance across a variety of protocols and real-world applications with negligible overhead, while effectively securing these applications against token theft attacks.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Osama Bajaber",
+      "Bo Ji 0001",
+      "Peng Gao 0008"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_BasqueDSGDSLWA26",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_BasqueDSGDSLWA26",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/decompiling-the-synergy-an-empirical-study-of-human-llm-teaming-in-software-reverse-engineering/"
+    },
+    "title": "Decompiling the Synergy: An Empirical Study of Human-LLM Teaming in Software Reverse Engineering.",
+    "summary": "Large Language Models (LLMs) are revolutionizing fields previously dominated by human effort.This work presents the first systematic investigation of how LLMs can team with analysts during software reverse engineering (SRE).To accomplish this, we first document the state of LLMs in SRE with an online survey of 153 practitioners, and then we design a finegrained human study on two Capture-The-Flag-style binaries representative of real-world software.In our human study, we instrumented the SRE workflow of 48 participants (split between 24 novices and 24 experts), observing over 109 hours of SRE.Through 18 findings, we found various benefits and harms of LLMs in SRE.Remarkably, we found that LLM assistance narrows the expertise gap: novices' comprehension rate rises by approximately 98%, matching that of experts, whereas experts gain little; however, they also had harmful hallucinations, unhelpful suggestions, and ineffective results.Known-algorithm functions are triaged up to 2.4 faster, and artifact recovery (symbols, comments, types) increases by at least 66%.Overall, our findings identify powerful synergies of humans and LLMs in SRE, but also emphasize the significant shortcomings of LLMs in their current integration.",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Zion Leonahenahe Basque",
+      "Samuele Doria",
+      "Ananta Soneji",
+      "Wil Gibbs",
+      "Adam Doupé",
+      "Yan Shoshitaishvili",
+      "Eleonora Losiouk",
+      "Ruoyu Wang 0001",
+      "Simone Aonzo"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_BernsteinBASM26",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_BernsteinBASM26",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/trust-me-i-know-this-function-hijacking-llm-static-analysis-using-bias/"
+    },
+    "title": "Trust Me, I Know This Function: Hijacking LLM Static Analysis using Bias.",
+    "summary": "No description supplied",
+    "published_at": "2026-07-27T04:25:29.378885+00:00",
+    "fetched_at": "2026-07-27T04:25:29.378885+00:00",
+    "authors": [
+      "Shir Bernstein",
+      "David Beste",
+      "Daniel Ayzenshteyn",
+      "Lea Schönherr",
+      "Yisroel Mirsky"
     ]
   }
 ]
