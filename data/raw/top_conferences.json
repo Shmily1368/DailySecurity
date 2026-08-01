@@ -1,337 +1,442 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_YangYJCSDLZ22",
+    "id": "paper:ieee_sp:conf_sp_LiXLZLZCZWCDL24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_YangYJCSDLZ22",
+      "native_id": "conf_sp_LiXLZLZCZWCDL24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833764"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00172"
     },
-    "title": "FSAFlow: Lightweight and Fast Dynamic Path Tracking and Control for Privacy Protection on Android Using Hybrid Analysis with State-Reduction Strategy.",
-    "summary": "Despite the demonstrated effectiveness of dynamic taint analysis (DTA) in a variety of security applications, the poor performance achieved by available DTA prototypes prevents their widespread adoption in production systems, especially the Android system with limited computation and storage resources. To overcome DTA’s overhead bottlenecks, recent research efforts aim to decouple taint tracking logic from program execution. Continuing this line of research, this work proposes FSAFlow, a novel hybrid taint tracking and control system, to reduce DTA overhead significantly while ensuring sound Android privacy protection. FSAFlow further separates the path tracking logic from the corresponding taint tracking logic and the control of the information flow path is optimized. Specifically, a classic static analysis algorithm is first modified to search target paths and their key branch information. Then, the potential paths that violate the user’s predefined privacy protection policy are chosen and encoded with a Finite State Automaton (FSA). A small amount of FSA-based state management code is inserted into the corresponding position in the program. Finally, it monitors the program’s state of path execution and prevents information leakage during runtime. The efficiency and correctness of FSAFlow are proved by theoretical analysis. The experimental results show that FSAFlow incurs lower overhead than several representative DTA optimization approaches, 2.06% for popular applications, and 5.41% on CaffeineMark 3.0. FSAFlow has fewer false negatives in implicit flow tracking than the Android DTA platform, TaintDroid, and achieves higher precision than the static analysis tool, FlowDroid, by verifying the paths that never occur and tracking in the complete execution stage of the loop body at runtime.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "TuDoor Attack: Systematically Exploring and Exploiting Logic Vulnerabilities in DNS Response Pre-processing with Malformed Packets.",
+    "summary": "DNS can be compared to a game of chess in that its rules are simple, yet the possibilities it presents are endless. While the fundamental rules of DNS are straightforward, DNS implementations can be extremely complex. In this study, we intend to explore the complexities and vulnerabilities in DNS response pre-processing by systematically analyzing DNS RFCs and DNS software implementations. We present the discovery of three new types of logic vulnerabilities, leading to the proposal of three novel attacks, namely the TuDoor attack. These attacks involve the use of malformed DNS response packets to carry out DNS cache poisoning, denial- of-service, and resource consuming attacks. By performing comprehensive experiments, we demonstrate the attack’s feasibility and significant real-world impacts of TUDOOR. In total, 24 mainstream DNS software, including BIND, PowerDNS, and Microsoft DNS, are affected by TuDoor. Attackers can instigate cache poisoning and denial-of-service attacks against vulnerable resolvers using a handful of crafted packets within 1 second or circumvent the query limit to deplete resolution resources (e.g., CPU). Besides, to determine the vulnerable resolver population in the wild, we collect and evaluate 16 popular Wi-Fi routers, 6 prevalent router OSes, 42 public DNS services, and around 1.8M open DNS resolvers. Our measurement results indicate that TUDOOR could exploit 7 routers (OSes), 18 public DNS services, and 424,652 (23.1%) open DNS resolvers. Following the best practice of responsible disclosure, we have reported these vulnerabilities to all affected vendors, and 18 of them, including BIND, Chrome, Cloudflare, and Microsoft, have acknowledged our findings and discussed mitigation solutions with us. Furthermore, 33 CVE IDs are assigned to our discovered vulnerabilities, and we provide an online detection tool as one of the mitigation measures. Our research highlights the urgent need for standardization of DNS response pre-processing logic to enhance the security of DNS.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Zhi Yang",
-      "Zhanhui Yuan",
-      "Shuyuan Jin",
-      "Xingyuan Chen",
-      "Lei Sun",
-      "Xuehui Du",
-      "Wenfa Li",
-      "Hongqi Zhang"
+      "Xiang Li 0108",
+      "Wei Xu 0064",
+      "Baojun Liu 0002",
+      "Mingming Zhang 0010",
+      "Zhou Li 0001",
+      "Jia Zhang 0004",
+      "Deliang Chang",
+      "Xiaofeng Zheng",
+      "Chuhan Wang 0001",
+      "Jianjun Chen 0005",
+      "Haixin Duan",
+      "Qi Li 0002"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_YinLWSZHX22",
+    "id": "paper:ieee_sp:conf_sp_LiYXXZPD24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_YinLWSZHX22",
+      "native_id": "conf_sp_LiYXXZPD24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833723"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00100"
     },
-    "title": "Finding SMM Privilege-Escalation Vulnerabilities in UEFI Firmware with Protocol-Centric Static Analysis.",
-    "summary": "The Unified Extensible Firmware Interface (UEFI) provides a specification of the software interface between an OS and its underlying platform firmware. The runtime services provided are seemingly secure as they reside in System Management Mode (SMM) at ring -2, assuming a higher privilege than the OS kernel at ring 0. However, their software vulnerabilities are known to be exploitable to launch ring 0 to ring -2 privilege escalation, i.e., SMM privilege escalation attacks.In this paper, we introduce an effective static analysis framework for detecting SMM privilege escalation vulnerabilities in UEFI firmware. We present a systematic study of such vulnerabilities and identify their root causes as being two types of references that can escape from the SMRAM, legacy references and unintentional references. Existing static analyses are ineffective in detecting such vulnerabilities in stripped COTS UEFI firmware images, which are developed based on a customized callback mechanism that organizes callable functions into protocols identified by GUIDs. By leveraging such a callback-based programming paradigm, we introduce SPENDER, the first static detection framework, which is founded on a novel protocol-centric analysis, for uncovering the potential SMM privilege escalation vulnerabilities in UEFI firmware efficiently and precisely. For a total of 1148 UEFI binaries collected from eight vendors, SPENDER has successfully found 36 SMM privilege escalation vulnerabilities (two 1-day and 34 0-day vulnerabilities), which can cause arbitrary code execution and arbitrary address write (and can thus enable, e.g., the attackers to install a bootkit into a flash drive). We have reported these 36 vulnerabilities to the vendors, with the two 1-day vulnerabilities confirmed as known previously but the 34 0-day vulnerabilities confirmed as new.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "Make Revocation Cheaper: Hardware-Based Revocable Attribute-Based Encryption.",
+    "summary": "As an advanced one-to-many public key encryption system, attribute-based encryption (ABE) is widely believed to be a promising technology for achieving flexible and fine-grained access control of encrypted data on untrusted storage servers (e.g., public cloud servers). However, user revocation in ABE is a critical but challenging problem, and designing efficient revocable ABE has been an active research topic in the past decade. Almost all the existing revocable ABE schemes incorporate a timestamp in the encryption algorithm such that revoked users cannot decrypt ciphertexts generated in future time intervals. To prevent revoked users from decrypting past ciphertexts, the storage server needs to perform a process called ciphertext delegation (Sahai et al., CRYPTO’12) that periodically updates the timestamp for all ciphertexts. As the number of ciphertexts could be huge in a storage system, ciphertext delegation could pose a huge computation overhead to the server.Motivated by the popularity of commodity Trusted Execution Environment (TEE) technologies, this paper initiates the study on hardware-based revocable ABE (HR-ABE) to eliminate the (unscalable) ciphertext delegation and prevent collusion attacks between an untrusted storage server and revoked users. We formalize this new notion and present an efficient HR-ABE construction that also supports outsourced decryption for resource-constrained data users. Furthermore, HR-ABE is also designed to address the potential secret leakage problem suffered by TEE (e.g., due to side-channel attacks) so that the leakage of secrets possessed by TEE does not lead to leakage of user data. We prove HR-ABE’s security formally and benchmark its performance experimentally.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Jiawei Yin",
-      "Menghao Li",
-      "Wei Wu",
-      "Dandan Sun",
-      "Jianhua Zhou",
-      "Wei Huo 0005",
-      "Jingling Xue"
+      "Xiaoguo Li",
+      "Guomin Yang",
+      "Tao Xiang 0001",
+      "Shengmin Xu",
+      "Bowen Zhao 0001",
+      "HweeHwa Pang",
+      "Robert H. Deng"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_ZengWLCLCC22",
+    "id": "paper:ieee_sp:conf_sp_LinLLWL24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_ZengWLCLCC22",
+      "native_id": "conf_sp_LinLLWL24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833669"
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00049"
     },
-    "title": "SHADEWATCHER: Recommendation-guided Cyber Threat Analysis using System Audit Records.",
-    "summary": "System auditing provides a low-level view into cyber threats by monitoring system entity interactions. In response to advanced cyber-attacks, one prevalent solution is to apply data provenance analysis on audit records to search for anomalies (anomalous behaviors) or specifications of known attacks. However, existing approaches suffer from several limitations: 1) generating high volumes of false alarms, 2) relying on expert knowledge, or 3) producing coarse-grained detection signals. In this paper, we recognize the structural similarity between threat detection in cybersecurity and recommendation in information retrieval. By mapping security concepts of system entity interactions to recommendation concepts of user-item interactions, we identify cyber threats by predicting the preferences of a system entity on its interactive entities. Furthermore, inspired by the recent advances in modeling high-order connectivity via item side information in the recommendation, we transfer the insight to cyber threat analysis and customize an automated detection system, SHADEWATCHER. It fulfills the potential of high-order information in audit records via graph neural networks to improve detection effectiveness. Besides, we equip SHADEWATCHER with dynamic updates towards better generalization to false alarms. In our evaluation against both real-life and simulated cyber-attack scenarios, SHADEWATCHER shows its advantage in identifying threats with high precision and recall rates. Moreover, SHADEWATCHER is capable of pinpointing threats from nearly a million system entity interactions within seconds.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "MAWSEO: Adversarial Wiki Search Poisoning for Illicit Online Promotion.",
+    "summary": "As a prominent instance of vandalism edits, Wiki search poisoning for illicit promotion is a cybercrime in which the adversary aims at editing Wiki articles to promote illicit businesses through Wiki search results of relevant queries. In this paper, we report a study that, for the first time, shows that such stealthy blackhat SEO on Wiki can be automated. Our technique, called MAWSEO, employs adversarial revisions to achieve real-world cybercriminal objectives, including rank boosting, vandalism detection evasion, topic relevancy, semantic consistency, user awareness (but not alarming) of promotional content, etc. Our evaluation and user study demonstrate that MAWSEO is capable of effectively and efficiently generating adversarial vandalism edits, which can bypass state-of-the-art built-in Wiki vandalism detectors, and also get promotional content through to Wiki users without triggering their alarms. In addition, we investigated potential defense, including coherence based detection and adversarial training of vandalism detection, against our attack in the Wiki ecosystem.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Jun Zeng 0006",
-      "Xiang Wang 0010",
-      "Jiahao Liu 0005",
-      "Yinfang Chen",
-      "Zhenkai Liang",
-      "Tat-Seng Chua",
-      "Zheng Leong Chua"
+      "Zilong Lin 0001",
+      "Zhengyi Li",
+      "Xiaojing Liao",
+      "XiaoFeng Wang 0001",
+      "Xiaozhong Liu 0001"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_ZezschwitzC022",
+    "id": "paper:ieee_sp:conf_sp_LintilhacAC24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_ZezschwitzC022",
+      "native_id": "conf_sp_LintilhacAC24",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW54247.2022.9833869"
+      "source_url": "https://doi.org/10.1109/SPW63631.2024.00027"
     },
-    "title": "&quot;It builds trust with the customers&quot; - Exploring User Perceptions of the Padlock Icon in Browser UI.",
+    "title": "Research Report: Testing and Evaluating Artificial Intelligence Applications.",
+    "summary": "In this paper, we describe and demonstrate TEAIS (Test and Evaluation of AI systems), a principled approach for assessing the performance of large language models. We walkthrough an educational example of TEAIS, where we leverage ideas from property testing of functions on the boolean hypercube to probabilistically verify a relevant security property of a PDF malware classifier. As part of this, we develop a novel property tester for monotonicity that works much like a mutation fuzzer. While the results in this report are preliminary, we hope to spark discussion around the challenges and opportunities associated with the testing and evaluation of complex AI systems.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Paul Lintilhac",
+      "Joshua Ackerman",
+      "George Cybenko"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_LiuAC24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_LiuAC24",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP54263.2024.00121"
+    },
+    "title": "Undefined-oriented Programming: Detecting and Chaining Prototype Pollution Gadgets in Node.js Template Engines for Malicious Consequences.",
     "summary": "",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Emanuel von Zezschwitz",
-      "Serena Chen",
-      "Emily Stark 0001"
+      "Zhengyu Liu",
+      "Kecheng An",
+      "Yinzhi Cao"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_ZhanZLYK22",
+    "id": "paper:acm_ccs:conf_ccs_OchiaiT24",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_ZhanZLYK22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833773"
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_OchiaiT24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3691383"
     },
-    "title": "Graphics Peeping Unit: Exploiting EM Side-Channel Information of GPUs to Eavesdrop on Your Neighbors.",
-    "summary": "As the popularity of graphics processing units (GPUs) grows rapidly in recent years, it becomes very critical to study and understand the security implications imposed by them. In this paper, we show that modern GPUs can “broadcast” sensitive information over the air to make a number of attacks practical. Specifically, we present a new electromagnetic (EM) side-channel vulnerability that we have discovered in many GPUs of both NVIDIA and AMD. We show that this vulnerability can be exploited to mount realistic attacks through two case studies, which are website fingerprinting and keystroke timing inference attacks. Our investigation recognizes the commonly used dynamic voltage and frequency scaling (DVFS) feature in GPU as the root cause of this vulnerability. Nevertheless, we also show that simply disabling DVFS may not be an effective countermeasure since it will introduce another highly exploitable EM side-channel vulnerability. To the best of our knowledge, this is the first work that studies realistic physical side-channel attacks on non-shared GPUs at a distance.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "Poster: End-to-End Privacy-Preserving Vertical Federated Learning using Private Cross-Organizational Data Collaboration.",
+    "summary": "As data utilization in organizations is advancing in various fields, insights that data brings will be more diverse when it is sourced through collaboration across different organizations. Federated learning, a machine learning method with distributed data across organizations, with local differential privacy protects privacy by sharing only the model parameters and the information necessary for model update, without having to share the data each organization holds. However, there is a problem with local differential privacy, where the amount of noise increases, leading to the degradation in model accuracy. In this paper, we propose a method of reducing the impact of noise compared to conventional federated learning by leveraging private cross-organizational data collaboration, called Private Cross-aggregation Technology (PCT). PCT combines Private Set Intersection Cardinality, Trusted Execution Environment and Differential Privacy, and outputs a cross-tabulation table that is private from input to output. Our method consists of two steps: (1) creating a private cross-tabulation table using PCT, and (2) training a ML using the private cross-tabulation table. The experiment results showed that (1) the classification accuracy of the proposed method was higher than that of the baseline method in situations where the privacy budget is limited, and (2) the computation time of the proposed method was shorter than that of the baseline method.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Zihao Zhan",
-      "Zhenkai Zhang 0002",
-      "Sisheng Liang",
-      "Fan Yao 0001",
-      "Xenofon D. Koutsoukos"
+      "Keiichi Ochiai",
+      "Masayuki Terada"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_Wu024",
+    "id": "paper:acm_ccs:conf_ccs_OsherHH24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_OsherHH24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3691388"
+    },
+    "title": "Poster: Gift or Curse? Safety Slider Settings in Tor Website Fingerprinting.",
+    "summary": "Website Fingerprinting (WF) attacks on the Tor anonymity network identify websites accessed via Tor by recognizing the traffic patterns -- sequences of packet directions and timing -- associated with accessing a particular site. Previous work has shown that modern WF attacks can function when trained and tested against consistent high or low settings of the Tor \"security slider,'' which impacts the traffic pattern produced by a download. In this work we show that training and testing against traces with a mixture of settings can improve the performance of WF attacks in some cases. Thus research seeking to evaluate WF defenses should consider both scenarios to ensure the most consistent evaluations.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Joel Osher",
+      "James K. Holland",
+      "Nicholas Hopper"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_PapamanthouSGHS24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_PapamanthouSGHS24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3670354"
+    },
+    "title": "Reckle Trees: Updatable Merkle Batch Proofs with Applications.",
+    "summary": "We propose Reckle trees, a new vector commitment based on succinct RECursive arguments and MerKLE trees. Reckle trees' distinguishing feature is their support for succinct batch proofs that are updatable - enabling new applications in the blockchain setting where a proof needs to be computed and efficiently maintained over a moving stream of blocks. Our technical approach is based on embedding the computation of the batch hash inside the recursive Merkle verification via a hash-based accumulator called canonical hashing. Due to this embedding, our batch proofs can be updated in logarithmic time, whenever a Merkle leaf (belonging to the batch or not) changes, by maintaining a data structure that stores previously-computed recursive proofs. Assuming enough parallelism, our batch proofs are also computable in O(log n) parallel time - independent of the size of the batch. As a natural extension of Reckle trees, we also introduce Reckle+ trees. Reckle+ trees provide updatable and succinct proofs for certain types of Map/Reduce computations. In this setting, a prover can commit to a memory M and produce a succinct proof for a Map/Reduce computation over a subset I of M. The proof can be efficiently updated whenever I or M changes.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Charalampos Papamanthou",
+      "Shravan Srinivasan",
+      "Nicolas Gailly",
+      "Ismael Hishon-Rezaizadeh",
+      "Andrus Salumets",
+      "Stjepan Golemac"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_Pappas024",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Pappas024",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690318"
+    },
+    "title": "Sparrow: Space-Efficient zkSNARK for Data-Parallel Circuits and Applications to Zero-Knowledge Decision Trees.",
+    "summary": "Space-efficient SNARKs aim to reduce the prover's space overhead which is one the main obstacles for deploying SNARKs in practice, as it can be prohibitively large (e.g., orders of magnitude larger than natively performing the computation). In this work, we propose Sparrow, a novel space-efficient zero-knowledge SNARK for data-parallel arithmetic circuits with two attractive features: (i) it is the first space-efficient scheme where, for a given field, the prover overhead increases with a multiplicative sublogarithmic factor as the circuit size increases, and (ii) compared to prior space-efficient SNARKs that work for arbitrary arithmetic circuits, it achieves prover space asymptotically smaller than the circuit size itself. Our key building block is a novel space-efficient sumcheck argument with improved prover time which may be of independent interest. Our experimental results for three use cases (arbitrary data parallel circuits, multiplication trees, batch SHA256 hashing) indicate Sparrow outperforms the prior state-of-the-art space-efficient SNARK for arithmetic circuits Gemini (Bootle et al., EUROCRYPT'22) by 3.2-28.7x in total prover space and 3.1-11.3x in prover time. We then use Sparrow to build zero-knowledge proofs of tree training and prediction, relying on its space efficiency to scale to large datasets and forests of multiple trees. Compared to a (non-space-efficient) optimal-time SNARK based on the GKR protocol, we observe prover space reduction of 16-240x for tree training while maintaining essentially the same prover and verifier times and proof size. Even more interestingly, our prover requires comparable space to natively perform the underlying computation. E.g., for a 400MB dataset, our prover only needs 1.4x more space than the native computation.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Christodoulos Pappas",
+      "Dimitrios Papadopoulos 0001"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_PatelPSY24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_PatelPSY24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3670379"
+    },
+    "title": "Efficient Secret Sharing for Large-Scale Applications.",
+    "summary": "Threshold secret sharing enables distributing a message to n parties such that no subset of fewer than t parties can learn the message, whereas any subset of at least t parties can recover the message. Despite being a fundamental primitive, secret sharing still suffers from one significant drawback, where its message reconstruction algorithm is computationally expensive for large privacy thresholds t. In this paper, we aim to address this significant drawback.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Sarvar Patel",
+      "Giuseppe Persiano",
+      "Joon Young Seo",
+      "Kevin Yeo"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SmithYDRS23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_Wu024",
+      "native_id": "conf_uss_SmithYDRS23",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/wu-chuxiong"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/smith"
     },
-    "title": "Do You See How I Pose? Using Poses as an Implicit Authentication Factor for QR Code Payment.",
+    "title": "&quot;If I could do this, I feel anyone could: &quot; The Design and Evaluation of a Secondary Authentication Factor Manager.",
     "summary": "",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Chuxiong Wu",
-      "Qiang Zeng 0001"
+      "Garrett Smith",
+      "Tarun Kumar Yadav",
+      "Jonathan Dutson",
+      "Scott Ruoti",
+      "Kent E. Seamons"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_WuTXTB24",
+    "id": "paper:usenix_security:conf_uss_SnyderKELH23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_WuTXTB24",
+      "native_id": "conf_uss_SnyderKELH23",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/wu-jianliang"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/snyder"
     },
-    "title": "Finding Traceability Attacks in the Bluetooth Low Energy Specification and Its Implementations.",
-    "summary": "",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "Pool-Party: Exploiting Browser Resource Pools for Web Tracking.",
+    "summary": "We identify class of covert channels in browsers that are not mitigated by current defenses, which we call \"pool-party\" attacks. Pool-party attacks allow sites to create covert channels by manipulating limited-but-unpartitioned resource pools. These class of attacks have been known, but in this work we show that they are both more prevalent, more practical for exploitation, and allow exploitation in more ways, than previously identified. These covert channels have sufficient bandwidth to pass cookies and identifiers across site boundaries under practical and real-world conditions. We identify pool-party attacks in all popular browsers, and show they are practical cross-site tracking techniques (i.e., attacks take 0.6s in Chrome and Edge, and 7s in Firefox and Tor Browser). In this paper we make the following contributions: first, we describe pool-party covert channel attacks that exploit limits in application-layer resource pools in browsers. Second, we demonstrate that pool-party attacks are practical, and can be used to track users in all popular browsers; we also share open source implementations of the attack and evaluate them through a representative web crawl. Third, we show that in Gecko based-browsers (including the Tor Browser) pool-party attacks can also be used for cross-profile tracking (e.g., linking user behavior across normal and private browsing sessions). Finally, we discuss possible mitigation strategies and defenses",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Jianliang Wu 0002",
-      "Patrick Traynor",
-      "Dongyan Xu",
-      "Dave (Jing) Tian",
+      "Peter Snyder",
+      "Soroush Karami",
+      "Arthur Edelstein",
+      "Benjamin Livshits",
+      "Hamed Haddadi 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SombatruangCBFK23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_SombatruangCBFK23",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/sombatruang"
+    },
+    "title": "Internet Service Providers&apos; and Individuals&apos; Attitudes, Barriers, and Incentives to Secure IoT.",
+    "summary": "",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Nissy Sombatruang",
+      "Tristan Caulfield",
+      "Ingolf Becker",
+      "Akira Fujita",
+      "Takahiro Kasama",
+      "Koji Nakao",
+      "Daisuke Inoue"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_SongOKMCB23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_SongOKMCB23",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/song"
+    },
+    "title": "Discovering Adversarial Driving Maneuvers against Autonomous Vehicles.",
+    "summary": "",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
+    "authors": [
+      "Ruoyu Song 0001",
+      "Muslum Ozgur Ozmen",
+      "Hyungsub Kim",
+      "Raymond Muller",
+      "Z. Berkay Celik",
       "Antonio Bianchi"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_WuWWZLH00024",
+    "id": "paper:usenix_security:conf_uss_SquarcinaAVM23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_WuWWZLH00024",
+      "native_id": "conf_uss_SquarcinaAVM23",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/wu-yuhao"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/squarcina"
     },
-    "title": "Your Firmware Has Arrived: A Study of Firmware Update Vulnerabilities.",
-    "summary": "",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "Cookie Crumbles: Breaking and Fixing Web Session Integrity.",
+    "summary": "Cookies have a long history of vulnerabilities targeting their confidentiality and integrity. To address these issues, new mechanisms have been proposed and implemented in browsers and server-side applications. Notably, improvements to the Secure attribute and cookie prefixes aim to strengthen cookie integrity against network and same-site attackers, whereas SameSite cookies have been touted as the solution to CSRF. On the server, token-based protections are considered an effective defense for CSRF in the synchronizer token pattern variant. In this paper, we question the effectiveness of these protections and study the real-world security implications of cookie integrity issues, showing how security mechanisms previously considered robust can be bypassed, exposing Web applications to session integrity attacks such as session fixation and cross-origin request forgery (CORF). These flaws are not only implementation-specific bugs but are also caused by compositionality issues of security mechanisms or vulnerabilities in the standard. Our research contributed to 12 CVEs, 27 vulnerability disclosures, and updates to the cookie standard. It comprises (i) a thorough cross-browser evaluation of cookie integrity issues, that results in new attacks originating from implementation or specification inconsistencies, and (ii) a security analysis of the top 13 Web frameworks, exposing session integrity vulnerabilities in 9 of them. We discuss our responsible disclosure and propose practical mitigations.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Yuhao Wu 0006",
-      "Jinwen Wang",
-      "Yujie Wang",
-      "Shixuan Zhai",
-      "Zihan Li",
-      "Yi He 0020",
-      "Kun Sun 0001",
-      "Qi Li 0002",
-      "Ning Zhang 0017"
+      "Marco Squarcina",
+      "Pedro Adão",
+      "Lorenzo Veronese",
+      "Matteo Maffei"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_WuYC24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_WuYC24",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/wu-mingli"
-    },
-    "title": "O-Ring and K-Star: Efficient Multi-party Private Set Intersection.",
-    "summary": "",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
-    "authors": [
-      "Mingli Wu 0002",
-      "Tsz Hon Yuen",
-      "Kwan Yin Chan"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_WyssP24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_WyssP24",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/wyss"
-    },
-    "title": "Zero-setup Intermediate-rate Communication Guarantees in a Global Internet.",
-    "summary": "",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
-    "authors": [
-      "Marc Wyss",
-      "Adrian Perrig"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_SharmaGD23",
+    "id": "paper:ndss:conf_ndss_PoeplauF21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_SharmaGD23",
+      "native_id": "conf_ndss_PoeplauF21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/on-the-anonymity-of-peer-to-peer-network-anonymity-schemes-used-by-cryptocurrencies/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/symqemu-compilation-based-symbolic-execution-for-binaries/"
     },
-    "title": "On the Anonymity of Peer-To-Peer Network Anonymity Schemes Used by Cryptocurrencies.",
-    "summary": "sponsorship: We would like to thank the anonymous reviewers for their valuable feedback. This research is partially supported by the Research Council KU Leuven under the grant C24/18/049, by CyberSecurity Research Flanders with reference number VR20192203, and by DARPA FA8750-19-C-0502. Any opinions, findings and conclusions or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of any of the funding agencies. (Research Council KU Leuven|C24/18/049, CyberSecurity Research Flanders|VR20192203, DARPA|FA8750-19-C-0502)",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "SymQEMU: Compilation-based symbolic execution for binaries.",
+    "summary": "Symbolic execution is a powerful technique for software analysis and bug detection. Compilation-based symbolic execution is a recently proposed flavor that has been shown to improve the performance of symbolic execution significantly when source code is available. We demonstrate a novel technique to enable compilation-based symbolic execution of binaries (i.e., without the need for source code). Our system, SymQEMU, builds on top of QEMU, modifying the intermediate representation of the target program before translating it to the host architecture. This enables SymQEMU to compile symbolic-execution capabilities into binaries and reap the associated performance benefits while maintaining architecture independence.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Piyush Kumar Sharma",
-      "Devashish Gosain",
-      "Claudia Díaz"
+      "Sebastian Poeplau",
+      "Aurélien Francillon"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_ShezanSKPTDC023",
+    "id": "paper:ndss:conf_ndss_PossematoNF21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_ShezanSKPTDC023",
+      "native_id": "conf_ndss_PossematoNF21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/chkplug-checking-gdpr-compliance-of-wordpress-plugins-via-cross-language-code-property-graph/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/preventing-and-detecting-state-inference-attacks-on-android/"
     },
-    "title": "CHKPLUG: Checking GDPR Compliance of WordPress Plugins via Cross-language Code Property Graph.",
-    "summary": "personally identifiable information (PII), which is regulated by privacy laws such as the European Union-introduced General Data Protection Regulation (GDPR).These plugins are published in the global App market and can be accessed or integrated by anyone around the world using the WordPress store.That is unless they specifically block EU traffic, it is the default assumption that they will have potential European Union traffic [32] and need to obey GDPR.An existing article [32] shows that it is the site owner's responsibility to ensure all the plugins installed on their website follow GDPR.Compliance with GDPR will help plugin developers to increase possible installations of their plugins.Plugin developers often are not familiar with privacy laws and therefore the need for an automatic checker is increasing for both plugin developers and website owners using these plugins.To the best of our knowledge, there are no prior works that check the compliance of WordPress plugins against different GDPR articles related to private data.On one hand, researchers are studying the compliance of websites against certain GDPR articles, such as cookie and tracking opt-outs [73], [74].Similarly, a multitude of free and paid services exist to evaluate the GDPR compliance of given websites and vary in complexity, ranging from consulting to cookie analyzers [5], [8], [16] to do-it-yourself checklists [7], [19].However, these only cover a specific subset of GDPR requirements such as cookie consent or involve slow or expensive manual review [6], [17].On the other hand, prior works investigated GDPR compliance in mobile app markets by checking the presence of user consent [67], [68], [83], privacy policies [26], [27], [56], [81], [89], [90], cookies [30], [37], and by analyzing network traffic data [41], [46].While such works are important and successful in checking client-side GDPR compliance, unfortunately, they cannot be extended to WordPress plugins where PIIs are often collected on the client side using HTML and JavaScript, but processed at the server via PHP and SQL.That is, personally identifiable information is flowing between the client and server and is processed heterogeneously across the program language boundaries.Such cross-language dataflows are challenging to identify, let alone be used for detecting GDPR violations because of Abstract-WordPress, a well-known content management system (CMS), provides so-called plugins to augment default functionalities.One challenging problem of deploying WordPress plugins is that they may collect and process user data, such as Personal Identifiable Information (PII), which is usually regulated by laws such as General Data Protection Regulation (GDPR).To the best of our knowledge, no prior works have studied GDPR compliance in WordPress plugins, which often involve multiple program languages, such as PHP, JavaScript, HTML, and SQL.In this paper, we design CHKPLUG, the first automated GDPR checker of WordPress plugins for their compliance with GDPR articles related to PII.The key to CHKPLUG is to match WordPress plugin behavior with GDPR articles using graph queries to a novel cross-language code property graph (CCPG).Specifically, t he C CPG m odels b oth i nline l anguage integration (such as PHP and HTML) and key-value-related connection (such as HTML and JavaScript).CHKPLUG reports a GDPR violation if certain patterns are found in the CCPG.We evaluated CHKPLUG with human-annotated WordPress plugins.Our evaluation shows that CHKPLUG achieves good performance with 98.8% TNR (True Negative Rate) and 89.3% TPR (True Positive Rate) in checking whether a certain Word-Press plugin complies with GDPR.To investigate the current surface of the marketplace, we perform a measurement analysis which shows that 368 plugins violate data deletion regulations, meaning plugins do not provide any functionalities to erase user information from the website.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "Preventing and Detecting State Inference Attacks on Android.",
+    "summary": "between these states. Attacks aiming at determining the state of another app are called state inference attacks, which are particularly relevant in the context of phishing attacks. Phishing attacks consist of luring an unsuspecting user into revealing her sensitive information (e.g., credentials) to a malicious app that mimics the UI of the legitimate one, a technique we refer to as UI Spoofing.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Faysal Hossain Shezan",
-      "Zihao Su",
-      "Mingqing Kang",
-      "Nicholas Phair",
-      "Patrick William Thomas",
-      "Michelangelo van Dam",
-      "Yinzhi Cao",
-      "Yuan Tian 0001"
+      "Andrea Possemato",
+      "Dario Nisi",
+      "Yanick Fratantonio"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Tagliaro0SAL23",
+    "id": "paper:ndss:conf_ndss_QiFCYLYW21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Tagliaro0SAL23",
+      "native_id": "conf_ndss_QiFCYLYW21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/i-still-know-what-you-watched-last-sunday-privacy-of-the-hbbtv-protocol-in-the-european-smart-tv-landscape/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/spectaint-speculative-taint-analysis-for-discovering-spectre-gadgets/"
     },
-    "title": "I Still Know What You Watched Last Sunday: Privacy of the HbbTV Protocol in the European Smart TV Landscape.",
-    "summary": "The ever-increasing popularity of Smart TVs and support for the Hybrid Broadcast Broadband TV (HbbTV) standard allow broadcasters to enrich content offered to users via the standard broadcast signal with Internet-delivered apps, e.g., ranging from quizzes during a TV show to targeted advertisement.HbbTV works using standard web technologies as transparent overlays over a TV channel.Despite the number of HbbTV-enabled devices rapidly growing, studies on the protocol's security and privacy aspects are scarce, and no standard protective measure is in place.We fill this gap by investigating the current state of HbbTV in the European landscape and assessing its implications for users' privacy.We shift the focus from the Smart TV's firmware and app security, already studied in-depth in related work, to the content transmission protocol itself.Contrary to traditional \"linear TV\" signals, HbbTV allows for bi-directional communication: in addition to receiving TV content, it also allows for transmitting data back to the broadcaster.We describe techniques broadcasters use to measure users' (viewing) preferences and show how the protocol's implementation can cause severe privacy risks by studying its deployment by 36 TV channels in five European countries (Italy, Germany, France, Austria, and Finland).We also survey users' awareness of Smart TV and HbbTV-related risks.Our results show little understanding of the possible threats users are exposed to.Finally, we present a denylist-based mechanism to ensure a safe experience for users when watching TV and to reduce the privacy issues that HbbTV may pose.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "SpecTaint: Speculative Taint Analysis for Discovering Spectre Gadgets.",
+    "summary": "Software patching is a crucial mitigation approach against Spectre-type attacks.It utilizes serialization instructions to disable speculative execution of potential Spectre gadgets in a program.Unfortunately, there are no effective solutions to detect gadgets for Spectre-type attacks.In this paper, we propose a novel Spectre gadget detection technique by enabling dynamic taint analysis on speculative execution paths.To this end, we simulate and explore speculative execution at system level (within a CPU emulator).We have implemented a prototype called SpecTaint to demonstrate the efficacy of our proposed approach.We evaluated SpecTaint on our Spectre Samples Dataset, and compared SpecTaint with existing state-of-the-art Spectre gadget detection approaches on real-world applications.Our experimental results demonstrate that SpecTaint outperforms existing methods with respect to detection precision and recall by large margins, and it also detects new Spectre gadgets in real-world applications such as Caffe and Brotli.Besides, SpecTaint significantly reduces the performance overhead after patching the detected gadgets, compared with other approaches.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Carlotta Tagliaro",
-      "Florian Hahn 0001",
-      "Riccardo Sepe",
-      "Alessio Aceti",
-      "Martina Lindorfer"
+      "Zhenxiao Qi",
+      "Qian Feng",
+      "Yueqiang Cheng",
+      "Mengjia Yan 0001",
+      "Peng Li",
+      "Heng Yin 0001",
+      "Tao Wei 0002"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_WadhwaSZN23",
+    "id": "paper:ndss:conf_ndss_RashidiKJPGJNOS21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_WadhwaSZN23",
+      "native_id": "conf_ndss_RashidiKJPGJNOS21",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/he-htlc-revisiting-incentives-in-htlc/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/more-than-a-fair-share-network-data-remanence-attacks-against-secret-sharing-based-schemes/"
     },
-    "title": "He-HTLC: Revisiting Incentives in HTLC.",
-    "summary": "Hashed Time-Locked Contracts (HTLCs) are a widely used primitive in blockchain systems such as payment channels, atomic swaps, etc.Unfortunately, HTLC is incentiveincompatible and is vulnerable to bribery attacks.The state-ofthe-art solution is MAD-HTLC (Oakland'21), which proposes an elegant idea that leverages miners' profit-driven nature to defeat bribery attacks.In this paper, we show that MAD-HTLC is still vulnerable as it only considers a somewhat narrow set of passive strategies by miners.Through a family of novel reverse-bribery attacks, we show concrete active strategies that miners can take to break MAD-HTLC and profit at the loss of MAD-HTLC users.For these attacks, we present their implementation and game-theoretical profitability analysis.Based on the learnings from our attacks, we propose a new HTLC realization, He-HTLC, 1 that is provably secure against all possible strategic manipulation (passive and active).In addition to being secure in a stronger adversary model, He-HTLC achieves other desirable features such as low and user-adjustable collateral, making it more practical to implement and use that proposed schemes.We implemented He-HTLC on Bitcoin and the transaction cost of He-HTLC is comparative to average Bitcoin transaction fees.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "More than a Fair Share: Network Data Remanence Attacks against Secret Sharing-based Schemes.",
+    "summary": "With progress toward a practical quantum computer has come an increasingly rapid search for quantum-safe, secure communication schemes that do not rely on discrete logarithm or factorization problems. One such encryption scheme, Multi-path Switching with Secret Sharing (MSSS), combines secret sharing with multi-path switching to achieve security as long as the adversary does not have global observability of all paths and thus cannot capture enough shares to reconstruct messages. MSSS assumes that sending a share on a path is an atomic operation and all paths have the same delay.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Sarisht Wadhwa",
-      "Jannis Stoeter",
-      "Fan Zhang 0022",
-      "Kartik Nayak"
+      "Leila Rashidi",
+      "Daniel Kostecki",
+      "Alexander James",
+      "Anthony Peterson",
+      "Majid Ghaderi",
+      "Samuel Jero",
+      "Cristina Nita-Rotaru",
+      "Hamed Okhravi",
+      "Reihaneh Safavi-Naini"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_WangAASXW0NC23",
+    "id": "paper:ndss:conf_ndss_ReijsbergenSKL021",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_WangAASXW0NC23",
+      "native_id": "conf_ndss_ReijsbergenSKL021",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/doitrust-dissecting-on-chain-compromised-internet-domains-via-graph-learning/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/laksa-a-probabilistic-proof-of-stake-protocol/"
     },
-    "title": "DOITRUST: Dissecting On-chain Compromised Internet Domains via Graph Learning.",
-    "summary": "Traditional block/allow lists remain a significant defense against malicious websites, by limiting end-users' access to domain names.However, such lists are often incomplete and reactive in nature.In this work, we first introduce an expansion graph which creates organically grown Internet domain allow-lists based on trust transitivity by crawling hyperlinks.Then, we highlight the gap of monitoring nodes with such an expansion graph, where malicious nodes are buried deep along the paths from the compromised websites, termed as \"on-chain compromise\".The stealthiness (evasion of detection) and largescale issues impede the application of existing web malicious analysis methods for identifying on-chain compromises within the sparsely labeled graph.To address the unique challenges of revealing the on-chain compromises, we propose a two-step integrated scheme, DOITRUST, leveraging both individual node features and topology analysis: (i) we develop a semi-supervised suspicion prediction scheme to predict the probability of a node being relevant to targets of compromise (i.e., the denied nodes), including a novel node ranking approach as an efficient global propagation scheme to incorporate the topology information, and a scalable graph learning scheme to separate the global propagation from the training of the local prediction model, and (ii) based on the suspicion prediction results, efficient pruning strategies are proposed to further remove highly suspicious nodes from the crawled graph and analyze the underlying indicator of compromise.Experimental results show that DOITRUST achieves 90% accuracy using less than 1% labeled nodes for the suspicion prediction, and its learning capability outperforms existing nodebased and structure-based approaches.We also demonstrate that DOITRUST is portable and practical.We manually review the detected compromised nodes, finding that at least 94.55% of them have suspicious content, and investigate the underlying indicator of on-chain compromise.",
-    "published_at": "2026-07-30T03:44:36.268646+00:00",
-    "fetched_at": "2026-07-30T03:44:36.268646+00:00",
+    "title": "LaKSA: A Probabilistic Proof-of-Stake Protocol.",
+    "summary": "We present Large-scale Known-committee Stakebased Agreement (LaKSA), a chain-based Proof-of-Stake protocol that is dedicated, but not limited, to cryptocurrencies. LaKSA minimizes interactions between nodes through lightweight committee voting, resulting in a simpler, more robust, and more scalable proposal than competing systems. It also mitigates other drawbacks of previous systems, such as high reward variance and long confirmation times. LaKSA can support large numbers of nodes by design, and provides probabilistic safety guarantees in which a client makes commit decisions by calculating the probability that a transaction is reverted based on its blockchain view. We present a thorough analysis of LaKSA and report on its implementation and evaluation. Furthermore, our new technique of proving safety can be applied more broadly to other Proof-of-Stake protocols.",
+    "published_at": "2026-08-01T04:04:02.105643+00:00",
+    "fetched_at": "2026-08-01T04:04:02.105643+00:00",
     "authors": [
-      "Shuo Wang 0012",
-      "Mahathir Almashor",
-      "Alsharif Abuadbba",
-      "Ruoxi Sun 0001",
-      "Minhui Xue 0001",
-      "Calvin Wang",
-      "Raj Gaire 0001",
-      "Surya Nepal",
-      "Seyit Camtepe"
+      "Daniël Reijsbergen",
+      "Pawel Szalachowski",
+      "Junming Ke",
+      "Zengpeng Li 0001",
+      "Jianying Zhou 0001"
     ]
   }
 ]
