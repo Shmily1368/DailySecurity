@@ -1,425 +1,336 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_EsginSZ22",
+    "id": "paper:ieee_sp:conf_sp_LinYDQZLS26",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_EsginSZ22",
+      "native_id": "conf_sp_LinYDQZLS26",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833655"
+      "source_url": "https://doi.org/10.1109/SP63933.2026.00177"
     },
-    "title": "MatRiCT+: More Efficient Post-Quantum Private Blockchain Payments.",
-    "summary": "We introduce MatRiCT+, a practical private blockchain payment protocol based on “post-quantum” lattice assumptions. MatRiCT+builds on MatRiCT due to Esgin et al. (ACM CCS’19) and, in general, follows the Ring Confidential Transactions (RingCT) approach used in Monero, the largest privacy-preserving cryptocurrency. In terms of the practical aspects, MatRiCT+has 2-18× shorter proofs (depending on the number of input accounts, M) and runs 3-11× faster (for a typical transaction) in comparison to MatRiCT. A significant advantage of MatRiCT+is that the proof length’s dependence on M is very minimal (only O(logM)), while MatRiCT has a proof length linear in M. To support its efficiency, we devise several novel techniques in our design of MatRiCT+to achieve compact lattice-based zeroknowledge proof systems, exploiting the algebraic properties of power-of-2 cyclotomic rings commonly used in practical latticebased cryptography. Along the way, we design a family of “optimal” challenge spaces, using a technique we call partition-and-sample, with minimal $\\ell_{1}$-norm and invertible challenge differences (with overwhelming probability), while supporting highly-splitting power-of-2 cyclotomic rings. We believe all these results to be widely applicable and of independent interest.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "GPUBreach: Privilege Escalation Attacks on GPUs Using Rowhammer.",
+    "summary": "NVIDIA GPUs with GDDR memories have been shown susceptible to Rowhammer-based bit-flips, similar to CPUs. However, Rowhammer exploits on GPUs have been limited to injecting untargeted bit-flips in victim data like weights of machine learning models, to degrade model accuracy, unlike CPU exploits shown capable of privilege escalation. In this paper, we demonstrate that GPU Rowhammer exploits can be as potent as CPU Rowhammer attacks. By exploiting the GPU page table management to identify when and where new page tables are allocated, we enable an unprivileged user CUDA kernel of one process to use RowHammer bit-flips to gain access to the GPU memory of other processes or co-tenants via targeted tampering of such page-tables resident on the GPU memory. Using this newly found primitive, we demonstrate the first GPU-side privilege escalation attacks, leaking secret data such as cryptographic keys from cuPQC libraries, and even tampering with the model's GPU assembly code to degrade models more stealthily than previous attacks. We further demonstrate that GPU-side privilege escalation can lead to CPU-side privilege escalation, defeating the protections provided by the IOMMU, enabling a malicious user-level program with GPU access to gain root shell and system-wide control, even in a non-multi-tenant setting.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Muhammed F. Esgin",
-      "Ron Steinfeld",
-      "Raymond K. Zhao"
+      "Chris S. Lin",
+      "Yuqin Yan",
+      "Guozhen Ding",
+      "Joyce Qu",
+      "Joseph Zhu",
+      "David Lie",
+      "Gururaj Saileshwar"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_FotiouSPKL22",
+    "id": "paper:ieee_sp:conf_sp_Liu26",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_FotiouSPKL22",
+      "native_id": "conf_sp_Liu26",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW54247.2022.9833873"
+      "source_url": "https://doi.org/10.1109/SPW72489.2026.00023"
     },
-    "title": "Capabilities-based access control for IoT devices using Verifiable Credentials.",
-    "summary": "Capabilities-based access control is a promising paradigm that can handle the particularities of IoT systems. Nevertheless, existing systems are not interoperable and they have limitations, such as lack of proof of possession, inefficient revocation mechanisms, and reliance on trusted third parties. In this paper we overcome these limitations by designing and implementing a system that leverages Verifiable Credentials (VCs) to encode the access rights. Our solution specifies protocols for requesting and using VCs that can be mapped to OAuth 2.0, includes an efficient and privacy preserving proof of possession mechanism, and it supports revocation. We implement and evaluate our solution and we show that it can be directly used even by constrained devices.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Nikos Fotiou",
-      "Vasilios A. Siris",
-      "George C. Polyzos",
-      "Yki Kortesniemi",
-      "Dmitrij Lagutin"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GennissenO22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GennissenO22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW54247.2022.9833896"
-    },
-    "title": "Hack the Heap: Heap Layout Manipulation made Easy.",
-    "summary": "Heap layout manipulation — the act of changing the heap layout to the benefit of the attacker — is a key challenge when exploiting heap vulnerabilities. Heap layout manipulation is a hard problem even for experienced exploit developers, due to the complex ways in which even simple operations affect the layout of the heap. Furthermore, different allocators can produce vastly different heap layouts for a given set of operations, and understanding these internal implementation differences is extremely time-consuming and error-prone. Existing work either focuses only on specific types of applications, requires access to source code, or produces complex and opaque solutions needing additional reverse engineering work to complete exploits.In this work, we propose Hack the Heap: an online puzzle game that provides direct solutions to the heap layout manipulation problem. The game comes with an extensive tutorial to guide players on how to play, but requires no Computer Science knowledge. Hack the Heap also provides a toolchain to generate heap vulnerability puzzles from unmodified real-world applications. We were able to create and solve puzzles from 2 out of 3 CVEs, both of which reflected a real-world solution to the heap layout manipulation problem. Hack the Heap makes heap layout manipulation easier and hopefully more fun, without sacrificing important information needed for practical exploit development.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Jordy Gennissen",
-      "Daniel O&apos;Keeffe 0001"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GhasemisharifKP22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GhasemisharifKP22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833753"
-    },
-    "title": "Towards Automated Auditing for Account and Session Management Flaws in Single Sign-On Deployments.",
-    "summary": "Single Sign-On (SSO) is both a core and critical component of user authentication and authorization on the modern web, as it is often offered by web and mobile applications alongside credential-based authentication to facilitate the account creation and login process. However, the interplay between local account management and SSO functionality in the backend leads to flaws that enable or magnify account hijacking attacks. These flaws are not baked into the actual SSO protocols, but manifest due to the complexity of supporting separate but intermingling authentication paths. As a result, these types of flaws cannot be detected by the SSO protocol or implementation verification tools proposed in prior work. In this paper we introduce SAAT, a fully automated modular framework that assesses whether relying parties (RPs) that use Facebook as the IdP comply with secure practices and guidelines, and uncovers flaws in account and session management that stem from or are affected by the interplay of SSO and local functionality. We conduct a large-scale exploration of authentication and session practices in Facebook’s RPs, revealing a volatile ecosystem where SSO support can be suddenly dropped and 17.6% of the tested RPs exhibit non-functional SSO implementations. This highlights the need for the continuous and systematic testing of the SSO ecosystem made possible by SAAT. More critically, we find that security measures are often missing and official guidelines are routinely overlooked or misconfigured, with only 0.8% of the RPs fully enabling re-authentication which can prevent compromise from hijacked identity provider (IdP) cookies. Our study also shows that less than 2% of RPs correctly react to SSO revocation and 67% continue to allow account access even 10 days after revocation. Overall, we envision our framework as a tool for enabling and guiding widespread remediation efforts by major SSO identity providers, which were previously infeasible due to the sheer scale and inherent mutability of this ecosystem.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Mohammad Ghasemisharif",
-      "Chris Kanich",
-      "Jason Polakis"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_GivehchianBHSDB22",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_GivehchianBHSDB22",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46214.2022.9833758"
-    },
-    "title": "Evaluating Physical-Layer BLE Location Tracking Attacks on Mobile Devices.",
-    "summary": "Mobile devices increasingly function as wireless tracking beacons. Using the Bluetooth Low Energy (BLE) protocol, mobile devices such as smartphones and smartwatches continuously transmit beacons to inform passive listeners about device locations for applications such as digital contact tracing for COVID-19, and even finding lost devices. These applications use cryptographic anonymity that limit an adversary’s ability to use these beacons to stalk a user. However, attackers can bypass these defenses by fingerprinting the unique physical-layer imperfections in the transmissions of specific devices.We empirically demonstrate that there are several key challenges that can limit an attacker’s ability to find a stable physical layer identifier to uniquely identify mobile devices using BLE, including variations in the hardware design of BLE chipsets, transmission power levels, differences in thermal conditions, and limitations of inexpensive radios that can be widely deployed to capture raw physical-layer signals. We evaluated how much each of these factors limits accurate fingerprinting in a large-scale field study of hundreds of uncontrolled BLE devices, revealing that physical-layer identification is a viable, although sometimes unreliable, way for an attacker to track mobile devices.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Hadi Givehchian",
-      "Nishant Bhaskar",
-      "Eliana Rodriguez Herrera",
-      "Héctor Rodrigo López Soto",
-      "Christian Dameff",
-      "Dinesh Bharadia",
-      "Aaron Schulman"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_ChatelMSPTH23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_ChatelMSPTH23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3623139"
-    },
-    "title": "PELTA - Shielding Multiparty-FHE against Malicious Adversaries.",
-    "summary": "Multiparty fully homomorphic encryption (MFHE) schemes enable multiple parties to efficiently compute functions on their sensitive data while retaining confidentiality. However, existing MFHE schemes guarantee data confidentiality and the correctness of the computation result only against honest-but-curious adversaries. In this work, we provide the first practical construction that enables the verification of MFHE operations in zero-knowledge, protecting MFHE from malicious adversaries. Our solution relies on a combination of lattice-based commitment schemes and proof systems which we adapt to support both modern FHE schemes and their implementation optimizations. We implement our construction in PELTA. Our experimental evaluation shows that PELTA is one to two orders of magnitude faster than existing techniques in the literature.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Sylvain Chatel",
-      "Christian Mouchet",
-      "Ali Utkan Sahin",
-      "Apostolos Pyrgelis",
-      "Carmela Troncoso",
-      "Jean-Pierre Hubaux"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_ChenL0023",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_ChenL0023",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3624384"
-    },
-    "title": "Poster: Membership Inference Attacks via Contrastive Learning.",
-    "summary": "Since machine learning model is often trained on a limited data set, the model is trained multiple times on the same data sample, which causes the model to memorize most of the training set data. Membership Inference Attacks (MIAs) exploit this feature to determine whether a data sample is used for training a machine learning model. However, in realistic scenarios, it is difficult for the adversary to obtain enough qualified samples that mark accurate identity information, especially since most samples are non-members in real world applications. To address this limitation, in this paper, we propose a new attack method called CLMIA, which uses unsupervised contrastive learning to train an attack model. Meanwhile, in CLMIA, we require only a small amount of data with known membership status to fine-tune the attack model. We evaluated the performance of the attack using ROC curves showing a higher TPR at low FPR compared to other schemes.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Depeng Chen",
-      "Xiao Liu",
-      "Jie Cui 0004",
-      "Hong Zhong 0001"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_ChenXLWC23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_ChenXLWC23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3616610"
-    },
-    "title": "Hopper: Interpretative Fuzzing for Libraries.",
-    "summary": "Despite the fact that the state-of-the-art fuzzers can generate inputs efficiently, existing fuzz drivers still cannot adequately cover entries in libraries. Most of these fuzz drivers are crafted manually by developers, and their quality depends on the developers' understanding of the code. Existing works have attempted to automate the generation of fuzz drivers by learning API usage from code and execution traces. However, the generated fuzz drivers are limited to a few specific call sequences by the code being learned. To address these challenges, we present HOPPER, which can fuzz libraries without requiring any domain knowledge to craft fuzz drivers. It transforms the problem of library fuzzing into the problem of interpreter fuzzing. The interpreters linked against libraries under test can interpret the inputs that describe arbitrary API usage. To generate semantically correct inputs for the interpreter, HOPPER learns the intra-and inter-API constraints in the libraries and mutates the program with grammar awareness. We implemented HOPPER and evaluated its effectiveness on 11 real-world libraries against manually crafted fuzzers and other automatic solutions. Our results show that HOPPER greatly outperformed the other fuzzers in both code coverage and bug finding, having uncovered 25 previously unknown bugs that other fuzzers couldn't. Moreover, we have demonstrated that the proposed intra- and inter-API constraint learning methods can correctly learn constraints implied by the library and, therefore, significantly improve the fuzzing efficiency. The experiment results indicate that HOPPER is able to explore a vast range of API usages for library fuzzing out of the box.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Peng Chen 0034",
-      "Yuxuan Xie",
-      "Yunlong Lyu",
-      "Yuxiao Wang",
-      "Hao Chen 0003"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_Cheon0KS23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Cheon0KS23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3623086"
-    },
-    "title": "Homomorphic Multiple Precision Multiplication for CKKS and Reduced Modulus Consumption.",
-    "summary": "Homomorphic Encryption (HE) schemes such as BGV, BFV, and CKKS consume some ciphertext modulus for each multiplication. Bootstrapping (BTS) restores the modulus and allows homomorphic computation to continue, but it is time-consuming and requires a significant amount of modulus. For these reasons, decreasing modulus consumption is crucial topic for BGV, BFV and CKKS, on which numerous studies have been conducted.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Jung Hee Cheon",
-      "Wonhee Cho 0001",
-      "Jaehyung Kim 0002",
-      "Damien Stehlé"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_ChoudharyWZ0F23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_ChoudharyWZ0F23",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3576915.3623065"
-    },
-    "title": "Declassiflow: A Static Analysis for Modeling Non-Speculative Knowledge to Relax Speculative Execution Security Measures.",
-    "summary": "Speculative execution attacks undermine the security of constant-time programming, the standard technique used to prevent microarchitectural side channels in security-sensitive software such as cryptographic code. Constant-time code must therefore also deploy a defense against speculative execution attacks to prevent leakage of secret data stored in memory or the processor registers. Unfortunately, contemporary defenses, such as speculative load hardening (SLH), can only satisfy this strong security guarantee at a very high performance cost.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
-    "authors": [
-      "Rutvik Choudhary",
-      "Alan Wang 0004",
-      "Zirui Neil Zhao",
-      "Adam Morrison 0001",
-      "Christopher W. Fletcher"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_KonKPB0SY24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_KonKPB0SY24",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/kon"
-    },
-    "title": "SpotProxy: Rediscovering the Cloud for Censorship Circumvention.",
+    "title": "Analysis of Trustworthiness and Fairness in Machine Learning for Healthcare.",
     "summary": "",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Patrick Tser Jern Kon",
-      "Sina Kamali",
-      "Jinyu Pei",
-      "Diogo Barradas",
-      "Ang Chen 0001",
-      "Micah Sherr",
-      "Moti Yung"
+      "Bingyu Liu"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_KondrackiN24",
+    "id": "paper:ieee_sp:conf_sp_LiuBRUZHZDDBSW26",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_KondrackiN24",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/kondracki"
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_LiuBRUZHZDDBSW26",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP63933.2026.00257"
     },
-    "title": "Smudged Fingerprints: Characterizing and Improving the Performance of Web Application Fingerprinting.",
+    "title": "Oxidizer: Toward Concise and High-fidelity Rust Decompilation.",
     "summary": "",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Brian Kondracki",
-      "Nick Nikiforakis"
+      "Yibo Liu",
+      "Zion Leonahenahe Basque",
+      "Arvind S. Raj",
+      "Chavin Udomwongsa",
+      "Chang Zhu",
+      "Jie Hu 0031",
+      "Changyu Zhao",
+      "Fangzhou Dong",
+      "Adam Doupé",
+      "Tiffany Bao",
+      "Yan Shoshitaishvili",
+      "Ruoyu Wang 0001"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_KostanOSA24",
+    "id": "paper:ieee_sp:conf_sp_LiuEX26",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_KostanOSA24",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/kostan"
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_LiuEX26",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP63933.2026.00165"
     },
-    "title": "Exploring digital security and privacy in relative poverty in Germany through qualitative interviews.",
+    "title": "Beyond Indistinguishability: Measuring Extraction Risk in LLM APIs.",
+    "summary": "Indistinguishability properties such as differential privacy bounds or low empirically measured membership inference are widely treated as proxies to show a model is sufficiently protected against broader memorization risks. However, we show that indistinguishability properties are neither sufficient nor necessary for preventing data extraction in LLM APIs. We formalize a privacy-game separation between extraction and indistinguishability-based privacy, showing that indistinguishability and inextractability are incomparable: upper-bounding distinguishability does not upper-bound extractability. To address this gap, we introduce $(l, b)$-inextractability as a definition that requires at least $2^b$ expected queries for any black-box adversary to induce the LLM API to emit a protected $l$-gram substring. We instantiate this via a worst-case extraction game and derive a rank-based extraction risk upper bound for targeted exact extraction, as well as extensions to cover untargeted and approximate extraction. The resulting estimator captures the extraction risk over multiple attack trials and prefix adaptations. We show that it can provide a tight and efficient estimation for standard greedy extraction and an upper bound on the probabilistic extraction risk given any decoding configuration. We empirically evaluate extractability across different models, clarifying its connection to distinguishability, demonstrating its advantage over existing extraction risk estimators, and providing actionable mitigation guidelines across model training, API access, and decoding configurations in LLM API deployment. Our code is publicly available at: https://github.com/Emory-AIMS/Inextractability.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
+    "authors": [
+      "Ruixuan Liu",
+      "David Evans 0001",
+      "Li Xiong 0001"
+    ]
+  },
+  {
+    "id": "paper:ieee_sp:conf_sp_LiuKLC26",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ieee_sp",
+      "native_id": "conf_sp_LiuKLC26",
+      "source_name": "IEEE S&P",
+      "source_url": "https://doi.org/10.1109/SP63933.2026.00254"
+    },
+    "title": "Practical Covert Channel Across Isolated Browser Instances via GPU Command Queue Contention.",
     "summary": "",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Anastassija Kostan",
-      "Sara Olschar",
-      "Lucy Simko",
-      "Yasemin Acar"
+      "Jinhong Liu",
+      "Zifeng Kang",
+      "Song Li 0006",
+      "Yinzhi Cao"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_KraussSD24",
+    "id": "paper:usenix_security:conf_uss_HebrokSCRS25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_KraussSD24",
+      "native_id": "conf_uss_HebrokSCRS25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/kraub-verify"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/hebrok"
     },
-    "title": "Verify your Labels! Trustworthy Predictions and Datasets via Confidence Scores.",
-    "summary": "Machine learning is a rapidly evolving technology with manifold benefits.At its core lies the mapping between samples and corresponding target labels (SL-Mappings).Such mappings can originate from labeled dataset samples or from prediction generated during model inference.The correctness of SL-Mappings is crucial, both during training and for model predictions, especially when considering poisoning attacks.Existing standalone works from the dataset cleaning and prediction confidence scoring domains lack a dual-use tool offering an SL-Mappings score, which is impractical.Moreover, these works have drawbacks, e.g., dependence on specific model architectures and reliance on large datasets, which may not be accessible, or lack a meaningful confidence score.In this paper, we introduce LabelTrust, a versatile tool designed to generate confidence scores for SL-Mappings.We propose pipelines facilitating dataset cleaning and confidence scoring, mitigating the limitations of existing standalone approaches from each domain.Thereby, LabelTrust leverages a Siamese network trained via few-shot learning, requiring minimal clean samples and is agnostic to datasets and model architectures.We demonstrate LabelTrust's efficacy in detecting poisoning attacks within samples and predictions alike, with a modest one-time training overhead of 34.56 seconds and an evaluation time of less than 1 second per SL-Mapping.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "STEK Sharing is Not Caring: Bypassing TLS Authentication in Web Servers using Session Tickets.",
+    "summary": "",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Torsten Krauß",
-      "Jasper Stang",
-      "Alexandra Dmitrienko"
+      "Sven Hebrok",
+      "Tim Leonhard Storm",
+      "Felix Matthias Cramer",
+      "Maximilian Radoy",
+      "Juraj Somorovsky"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_uss_KraussSD24a",
+    "id": "paper:usenix_security:conf_uss_HeimbachVVKW25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_uss_KraussSD24a",
+      "native_id": "conf_uss_HeimbachVVKW25",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity24/presentation/kraub-clearstamp"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/heimbach"
     },
-    "title": "ClearStamp: A Human-Visible and Robust Model-Ownership Proof based on Transposed Model Training.",
-    "summary": "Due to costly efforts during data acquisition and model training, Deep Neural Networks (DNNs) belong to the intellectual property of the model creator.Hence, unauthorized use, theft, or modification may lead to legal repercussions.Existing DNN watermarking methods for ownership proof are often non-intuitive, embed human-invisible marks, require trust in algorithmic assessment that lacks human-understandable attributes, and rely on rigid thresholds, making it susceptible to failure in cases of partial watermark erasure.This paper introduces ClearStamp, the first DNN watermarking method designed for intuitive human assessment.ClearStamp embeds visible watermarks, enabling human decision-making without rigid value thresholds while allowing technology-assisted evaluations.ClearStamp defines a transposed model architecture allowing to use of the model in a backward fashion to interwove the watermark with the main task within all model parameters.Compared to existing watermarking methods, ClearStamp produces visual watermarks that are easy for humans to understand without requiring complex verification algorithms or strict thresholds.The watermark is embedded within all model parameters and entangled with the main task, exhibiting superior robustness.It shows an 8,544-bit watermark capacity comparable to the strongest existing work.Crucially, ClearStamp's effectiveness is model and dataset-agnostic, and resilient against adversarial model manipulations, as demonstrated in a comprehensive study performed with four datasets and seven architectures.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "Deanonymizing Ethereum Validators: The P2P Network Has a Privacy Issue.",
+    "summary": "Many blockchain networks aim to preserve the anonymity of validators in the peer-to-peer (P2P) network, ensuring that no adversary can link a validator's identifier to the IP address of a peer due to associated privacy and security concerns. This work demonstrates that the Ethereum P2P network does not offer this anonymity. We present a methodology that enables any node in the network to identify validators hosted on connected peers and empirically verify the feasibility of our proposed method. Using data collected from four nodes over three days, we locate more than 15% of Ethereum validators in the P2P network. The insights gained from our deanonymization technique provide valuable information on the distribution of validators across peers, their geographic locations, and hosting organizations. We further discuss the implications and risks associated with the lack of anonymity in the P2P network and propose methods to help validators protect their privacy. The Ethereum Foundation has awarded us a bug bounty, acknowledging the impact of our results.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Torsten Krauß",
-      "Jasper Stang",
-      "Alexandra Dmitrienko"
+      "Lioba Heimbach",
+      "Yann Vonlanthen",
+      "Juan Villacis",
+      "Lucianna Kiffer",
+      "Roger Wattenhofer"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_0003ZWWXP22",
+    "id": "paper:usenix_security:conf_uss_HerbertMH0Z25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_HerbertMH0Z25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/herbert"
+    },
+    "title": "Digital Security Perceptions and Practices Around the World: A WEIRD versus Non-WEIRD Comparison.",
+    "summary": "",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
+    "authors": [
+      "Franziska Herbert",
+      "Collins W. Munyendo",
+      "Jonas Hielscher",
+      "Steffen Becker 0003",
+      "Yixin Zou"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_HoangOPYK25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_HoangOPYK25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/hoang"
+    },
+    "title": "LLFuzz: An Over-the-Air Dynamic Testing Framework for Cellular Baseband Lower Layers.",
+    "summary": "",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
+    "authors": [
+      "Tuan Dinh Hoang",
+      "Taekkyung Oh",
+      "CheolJun Park",
+      "Insu Yun",
+      "Yongdae Kim"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_HorstKGMEZ25",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_HorstKGMEZ25",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity25/presentation/van-der-horst"
+    },
+    "title": "High Stakes, Low Certainty: Evaluating the Efficacy of High-Level Indicators of Compromise in Ransomware Attribution.",
+    "summary": "Algorithms and the Foundations of Software technology",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
+    "authors": [
+      "Max van der Horst",
+      "Ricky Kho",
+      "Olga Gadyatskaya",
+      "Michel Mollema",
+      "Michel van Eeten",
+      "Yury Zhauniarovich"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_MaaliAM25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_0003ZWWXP22",
+      "native_id": "conf_ndss_MaaliAM25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-255/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/evaluating-machine-learning-based-iot-device-identification-models-for-security-applications/"
     },
-    "title": "NC-Max: Breaking the Security-Performance Tradeoff in Nakamoto Consensus.",
-    "summary": "First implemented in Bitcoin, Nakamoto Consensus (NC) is the most influential consensus protocol in cryptocurrencies despite all the alternative protocols designed afterward. Nevertheless, NC is trapped by a security-performance tradeoff. While existing efforts mostly attempt to break this tradeoff via abandoning or adjusting NC's backbone protocol, we alternatively forward the relevance of the network layer. We identify and experimentally prove that the crux resides with the prolonged block propagation latency caused by not-yet-propagated transactions. We thus present a two-step mechanism to confirm only fully-propagated transactions, and therefore remove the limits upon NC's performance imposed by its security demands, realizing NC's untapped potential. Implementing this two-step mechanism, we propose NC-Max, whose (1) security is analyzed, proving that it provides stronger resistance than NC against transaction withholding attacks, and (2) performance is evaluated, showing that it exhausts the full throughput supported by the network, and shortens the transaction confirmation latency by 3.0 to 6.6 times compared to NC without compromising security. NC-Max is implemented in Nervos CKB, a public permissionless blockchain.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "Evaluating Machine Learning-Based IoT Device Identification Models for Security Applications.",
+    "summary": "With the proliferation of IoT devices, network device identification is essential for effective network management and security.Many exhibit performance degradation despite the potential of machine learning-based IoT device identification solutions.Degradation arises from the assumption of static IoT environments that do not account for the diversity of real-world IoT networks, as devices operate in various modes and evolve over time.In this paper, we evaluate current IoT device identification solutions using curated datasets and representative features across different settings.We consider key factors that affect realworld device identification, including modes of operation, spatiotemporal variations, and traffic sampling, and organise them into a set of attributes by which we can evaluate current solutions.We then use machine learning explainability techniques to pinpoint the key causes of performance degradation.This evaluation uncovers empirical evidence of what continuously identifies devices, provides valuable insights, and practical recommendations for network operators to improve their IoT device identification in operational deployments.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Ren Zhang 0003",
-      "Dingwei Zhang",
-      "Quake Wang",
-      "Shichen Wu",
-      "Jan Xie",
-      "Bart Preneel"
+      "Eman Maali",
+      "Omar Alrawi",
+      "Julie A. McCann"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_0088LL022",
+    "id": "paper:ndss:conf_ndss_MaarJSGM25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_0088LL022",
+      "native_id": "conf_ndss_MaarJSGM25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-261/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/kernelsnitch-side-channel-attacks-on-kernel-data-structures/"
     },
-    "title": "Demystifying Local Business Search Poisoning for Illicit Drug Promotion.",
-    "summary": "A new type of underground illicit drug promotion, illicit drug business listings on local search services (e.g., local knowledge panel, map search, voice search), is increasingly being utilized by miscreants to advertise and sell controlled substances on the Internet. Miscreants exploit the problematic upstream local data brokers featuring loose control on data quality to post listings that promote illicit drug business. Such a promotion, in turn, pollutes the major downstream search providers' knowledge bases and further reaches a large audience through web, map, and voice searches. To the best of our knowledge, little has been done so far to understand this new illicit promotion in terms of its scope, impact, and techniques, not to mention any effort to identify such illicit drug business listings on a large scale. In this paper, we report the first measurement study of the illicit drug business listings on local search services. Our findings have brought to light the vulnerable and less regulated local business listing ecosystem and the pervasiveness of such illicit activities, as well as the impact on local search audience.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "KernelSnitch: Side Channel-Attacks on Kernel Data Structures.",
+    "summary": "The sharing of hardware elements, such as caches, is known to introduce microarchitectural side-channel leakage.One approach to eliminate this leakage is to not share hardware elements across security domains.However, even under the assumption of leakage-free hardware, it is unclear whether other critical system components, like the operating system, introduce software-caused side-channel leakage.In this paper, we present a novel generic software side-channel attack, KernelSnitch, targeting kernel data structures such as hash tables and trees.These structures are commonly used to store both kernel and user information, e.g., metadata for userspace locks.KernelSnitch exploits that these data structures are variable in size, ranging from an empty state to a theoretically arbitrary amount of elements.Accessing these structures requires a variable amount of time depending on the number of elements, i.e., the occupancy level.This variance constitutes a timing side channel, observable from user space by an unprivileged, isolated attacker.While the timing differences are very low compared to the syscall runtime, we demonstrate and evaluate methods to amplify these timing differences reliably.In three case studies, we show that KernelSnitch allows unprivileged and isolated attackers to leak sensitive information from the kernel and activities in other processes.First, we demonstrate covert channels with transmission rates up to 580 kbit/s.Second, we perform a kernel heap pointer leak in less than 65 s by exploiting the specific indexing that Linux is using in hash tables.Third, we demonstrate a website fingerprinting attack, achieving an F1 score of more than 89 %, showing that activity in other user programs can be observed using KernelSnitch.Finally, we discuss mitigations for our hardware-agnostic attacks.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Peng Wang 0088",
-      "Zilong Lin 0001",
-      "Xiaojing Liao",
-      "XiaoFeng Wang 0001"
+      "Lukas Maar",
+      "Jonas Juffinger",
+      "Thomas Steinbauer",
+      "Daniel Gruss",
+      "Stefan Mangard"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_AbidiNAS22",
+    "id": "paper:ndss:conf_ndss_MackensenS0SPM25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_AbidiNAS22",
+      "native_id": "conf_ndss_MackensenS0SPM25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-233/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/spatial-domain-wireless-jamming-with-reconfigurable-intelligent-surfaces/"
     },
-    "title": "Privacy in Urban Sensing with Instrumented Fleets, Using Air Pollution Monitoring As A Usecase.",
-    "summary": "Companies providing services like cab sharing, ecommerce logistics and food delivery are willing to instrument their vehicles for scaling up measurements of traffic congestion, travel time, road surface quality, air quality, etc. Analyzing fine-grained sensors data from such large fleets can be highly beneficial; however, this sensor information reveals the locations and the number of vehicles in the deployed fleet. This sensitive data is of high business value to rival companies in the same business domain, e.g., Uber vs. Ola, Uber vs. Lyft in cab sharing, or Amazon vs. Alibaba in the e-commerce domain. This paper provides privacy guarantees for the scenario mentioned above using Gaussian Process Regression (GPR) based interpolation, Differential Privacy (DP), and Secure two-party computations (2PC). The sensed values from instrumented vehicle fleets are made available preserving fleet and client privacy, along with client utility. Our system has efficient latency and bandwidth overheads, even for resource-constrained mobile clients. To demonstrate our end-to-end system, we build a sample Android application that gives the least polluted route alternatives given a source-destination pair in a privacy preserved manner.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "Spatial-Domain Wireless Jamming with Reconfigurable Intelligent Surfaces.",
+    "summary": "Wireless communication infrastructure is a cornerstone of modern digital society, yet it remains vulnerable to the persistent threat of wireless jamming.Attackers can easily create radio interference to overshadow legitimate signals, leading to denial of service.The broadcast nature of radio signal propagation makes such attacks possible in the first place, but at the same time poses a challenge for the attacker: The jamming signal does not only reach the victim device but also other neighboring devices, preventing precise attack targeting.In this work, we solve this challenge by leveraging the emerging reconfigurable intelligent surface (RIS) technology, for the first time, for precise delivery of jamming signals.In particular, we propose a novel approach that allows for environment-adaptive spatial control of wireless jamming signals, granting a new degree of freedom to perform jamming attacks.We explore this novel method with extensive experimentation and demonstrate that our approach can disable the wireless communication of one or multiple victim devices while leaving neighboring devices unaffected.Notably, our method extends to challenging scenarios where wireless devices are very close to each other: We demonstrate complete denial-of-service of a Wi-Fi device while a second device located at a distance as close as 5 mm remains unaffected, sustaining wireless communication at a data rate of 25 Mbit/s.Lastly, we conclude by proposing potential countermeasures to thwart RIS-based spatial domain wireless jamming attacks.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Ismi Abidi",
-      "Ishan Nangia",
-      "Paarijaat Aditya",
-      "Rijurekha Sen"
+      "Philipp Mackensen",
+      "Paul Staat",
+      "Stefan Roth 0004",
+      "Aydin Sezgin",
+      "Christof Paar",
+      "Veelasha Moonsamy"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_BabunSAU22",
+    "id": "paper:ndss:conf_ndss_MariniDPQ25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_BabunSAU22",
+      "native_id": "conf_ndss_MariniDPQ25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-192/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/qmsan-efficiently-detecting-uninitialized-memory-errors-during-fuzzing/"
     },
-    "title": "The Truth Shall Set Thee Free: Enabling Practical Forensic Capabilities in Smart Environments.",
-    "summary": "scale, the analysis performed on data collected from multiple devices may reveal substantially more forensic details about the activities occurring in the smart environment at any time. In fact, in some countries, insurance companies have started giving incentives to customers if they install measures like smart lighting, smart energy management systems, smart fire, or water monitoring devices",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "QMSan: Efficiently Detecting Uninitialized Memory Errors During Fuzzing.",
+    "summary": "Fuzzing evolved into the most popular technique to detect bugs in software.Its combination with sanitizers has shown tremendous efficacy in uncovering memory safety errors, such as buffer overflows, that haunt C and C++ programmers.However, an important class of such issues, the so-called useof-uninitialized-memory (UUM) errors, struggles to gain similar benefits from fuzzing endeavors.The only fuzzer-compatible UUM sanitizer available to date, MSan, requires that all libraries are fully instrumented.Unlike address sanitization, for which partial instrumentation results in false negatives (missed detection of bugs), UUM sanitizers require complete instrumentation to avoid false positives, hampering testing at scale.Yet, full-stack compiler-based instrumentation can be a daunting prospect for compatibility and practicality.As a result, many programs are left untested for UUM bugs.In this paper, we propose an efficient multi-layer, opportunistic design that does not require (source-based) recompilation of all code without harming accuracy.The multiplicity of executions when fuzzing offers us the opportunity to learn what any encountered false positive looks like, and later ignore them when we meet them again with new test cases.Such an avenue is feasible only if one can resort to fast techniques to effectively discriminate candidate errors, or false negatives will then occur.We show how to realize this design by using the dynamic binary translation of QEMU for compatibility and lightweight code analysis techniques to achieve scalability and accuracy.As a result, we obtain a fuzzer-friendly, performant sanitizer, QMSAN, that effectively tackles current practicality challenges of UUM error detection.On a collection of 10 open-source and 5 proprietary programs, QMSAN exposed 44 new UUM bugs.In our tests, QMSAN incurs slowdowns of 1.51x over QEMU and 1.55x over the compiler-based instrumentation of MSan, showing no false positives and false negatives.QMSAN is open-source.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Leonardo Babun",
-      "Amit Kumar Sikder",
-      "Abbas Acar",
-      "A. Selcuk Uluagac"
+      "Matteo Marini",
+      "Daniele Cono D&apos;Elia",
+      "Mathias Payer",
+      "Leonardo Querzoni"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_Blanton022",
+    "id": "paper:ndss:conf_ndss_MengSYR0C0D25",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_Blanton022",
+      "native_id": "conf_ndss_MengSYR0C0D25",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-224/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/rondo-scalable-and-reconfiguration-friendly-randomness-beacon/"
     },
-    "title": "Binary Search in Secure Computation.",
-    "summary": "Binary search is one of the most popular algorithms in computer science. Realizing it in the context of secure multiparty computation which demands data-oblivious execution, however, is extremely non-trivial. It has been previously implemented only using oblivious RAM (ORAM) for secure computation and in this work we initiate the study of this topic using conventional secure computation techniques based on secret sharing. We develop a suite of protocols with different properties and of different structure for searching a private dataset of m elements by a private numeric key. Our protocols result in O(m) and O( m) communication using only standard and readily available operations based on secret sharing. We further extend our protocols to support write operations, namely, binary search that obliviously updates the selected element, and realize two variants: updating non-key fields and updating the key field. Our implementation results indicate that even after applying known and our own optimizations to the fastest ORAM constructions, our solutions are faster than optimized ORAM schemes for datasets of up to 2 30 elements and by up to two orders of magnitude. We hope that this work will prompt further interest in seeking efficient realizations of this important problem.",
-    "published_at": "2026-08-13T03:12:17.701519+00:00",
-    "fetched_at": "2026-08-13T03:12:17.701519+00:00",
+    "title": "Rondo: Scalable and Reconfiguration-Friendly Randomness Beacon.",
+    "summary": "We present Rondo, a scalable and reconfigurationfriendly distributed randomness beacon (DRB) protocol in the partially synchronous model.Rondo is the first DRB protocol that is built from batched asynchronous verifiable secret sharing (bAVSS) and meanwhile avoids the high O(n 3 ) message cost, where n is the number of nodes.Our key contribution lies in the introduction of a new variant of bAVSS called batched asynchronous verifiable secret sharing with partial output (bAVSS-PO).bAVSS-PO is a weaker primitive than bAVSS but allows us to build a secure and more scalable DRB protocol.We propose a bAVSS-PO protocol Breeze.Breeze achieves the optimal O(n) messages for the sharing stage and allows Rondo to offer better scalability than prior DRB protocols.Additionally, to support the reconfiguration, we introduce Rondo-BFT, a dynamic and partially synchronous Byzantine fault-tolerant protocol inspired by Dyno (S&P 2022).Unlike Dyno, Rondo-BFT provides a communication pattern that generates randomness beacon output periodically, making it well-suited for DRB applications.We implement our protocols and evaluate the performance on Amazon EC2 using up to 91 instances.Our evaluation results show that Rondo achieves higher throughput than existing works and meanwhile offers better scalability, where the performance does not degrade as significantly as n grows.",
+    "published_at": "2026-08-14T03:10:47.614071+00:00",
+    "fetched_at": "2026-08-14T03:10:47.614071+00:00",
     "authors": [
-      "Marina Blanton",
-      "Chen Yuan 0002"
+      "Xuanji Meng",
+      "Xiao Sui",
+      "Zhaoxin Yang",
+      "Kang Rong",
+      "Wenbo Xu 0002",
+      "Shenglong Chen",
+      "Ying Yan 0002",
+      "Sisi Duan"
     ]
   }
 ]
