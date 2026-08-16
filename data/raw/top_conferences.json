@@ -1,863 +1,329 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_RyanSSJ23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_RyanSSJ23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179366"
-    },
-    "title": "Precise Detection of Kernel Data Races with Probabilistic Lockset Analysis.",
-    "summary": "Finding data races is critical for ensuring security in modern kernel development. However, finding data races in the kernel is challenging because it requires jointly searching over possible combinations of system calls and concurrent execution schedules. Kernel race testing systems typically perform this search by executing groups of fuzzer seeds from a corpus and applying a combination of schedule fuzzing and dynamic race prediction on traces. However, predicting which combinations of seeds can expose races in the kernel is difficult as fuzzer seeds will usually follow different execution paths when executed concurrently due to inter-thread communications and synchronization.To address this challenge, we introduce a new analysis for kernel race prediction, Probabilistic Lockset Analysis (PLA) that addresses the challenges posed by race prediction for the kernel. PLA leverages the observation that system calls almost always perform certain memory accesses to shared memory to perform their function. PLA uses randomized concurrent trace sampling to identify memory accesses that are performed consistently and estimates the probability of races between them subject to kernel lock synchronization. By prioritizing high probability races, PLA is able to make accurate predictions.We evaluate PLA against comparable kernel race testing methods and show it finds races at a 3× higher rate over 24 hours. We use PLA to find 183 races in linux kernel v5.18-rc5, including 102 harmful races. PLA is able to find races that have severe security impact in heavily tested core kernel modules, including use-after-free in memory management, OOB write in network cryptography, and leaking kernel heap memory information. Some of these vulnerabilities have been overlooking by existing systems for years: one of the races found by PLA involving an OOB write has been present in the kernel since 2013 (version v3.14-rc1) and has been designated a high severity CVE.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Gabriel Ryan",
-      "Abhishek Shah",
-      "Dongdong She",
-      "Suman Jana"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_RyeB23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_RyeB23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179376"
-    },
-    "title": "IPvSeeYou: Exploiting Leaked Identifiers in IPv6 for Street-Level Geolocation.",
-    "summary": "We present IPvSeeYou, a privacy attack that permits a remote and unprivileged adversary to physically geolocate many residential IPv6 hosts and networks with street-level precision. The crux of our method involves: 1) remotely discovering wide area (WAN) hardware MAC addresses from home routers; 2) correlating these MAC addresses with their WiFi BSSID counterparts of known location; and 3) extending coverage by associating devices connected to a common penultimate provider router.We first obtain a large corpus of MACs embedded in IPv6 addresses via high-speed network probing. These MAC addresses are effectively leaked up the protocol stack and largely represent WAN interfaces of residential routers, many of which are all-in-one devices that also provide WiFi. We develop a technique to statistically infer the mapping between a router’s WAN and WiFi MAC addresses across manufacturers and devices, and mount a large-scale data fusion attack that correlates WAN MACs with WiFi BSSIDs available in wardriving (geolocation) databases. Using these correlations, we geolocate the IPv6 prefixes of >12M routers in the wild across 146 countries and territories. Selected validation confirms a median geolocation error of 39 meters. We then exploit technology and deployment constraints to extend the attack to a larger set of IPv6 residential routers by clustering and associating devices with a common penultimate provider router. While we responsibly disclosed our results to several manufacturers and providers, the ossified ecosystem of deployed residential cable and DSL routers suggests that our attack will remain a privacy threat into the foreseeable future.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Erik C. Rye",
-      "Robert Beverly"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_SaadM23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SaadM23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179456"
-    },
-    "title": "Three Birds with One Stone: Efficient Partitioning Attacks on Interdependent Cryptocurrency Networks.",
-    "summary": "The biased distribution of cryptocurrency nodes across Autonomous Systems (ASes) increases the risk of spatial partitioning attacks, allowing an adversary to isolate nodes by hijacking AS prefixes. Prior works on spatial partitioning attacks have mainly focused on the Bitcoin network, showing that the prominent cryptocurrency network can be paralyzed by disrupting the physical topology through BGP hijacks.Despite the persisting threat of BGP hijacks, Bitcoin and other cryptocurrencies have not been frequently targeted, likely due to their shielded overlay topology, which limits the exposure of physical network anomalies. In this paper, we present a new perspective by examining the security of cryptocurrency networks, considering shared network resources (network interdependence). We conduct measurements extending beyond the Bitcoin network and analyze commonalities in Bitcoin, Ethereum, and Ripple node hosting patterns. We observe that all three networks are highly centralized, predominantly sharing the common ASes. We also note that among the three cryptocurrencies, Ripple does not shield its overlay topology, which can be exploited to learn about the physical network anomalies. The observed network anomalies present practical attack strategies that can be launched to target all three cryptocurrencies simultaneously.1We supplement our analysis by surveying recent BGP attacks on high-profile ASes and recognizing a need for application-level countermeasures. We propose attack countermeasures that reduce the risk of spatial partitioning, notwithstanding the increasing centralization of nodes and network interdependence.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Muhammad Saad 0001",
-      "David Mohaisen"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_SahinAPL23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SahinAPL23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179288"
-    },
-    "title": "Investigating the Password Policy Practices of Website Administrators.",
-    "summary": "Passwords are the de facto standard for online authentication today, and will likely remain so for the foreseeable future. As a consequence, the security community has extensively explored how users behave with passwords, producing recommendations for password policies that promote password security and usability for users. However, it is the website administrators who must adopt such recommendations to enact improvements to online authentication in practice. To date, there has been limited investigation of how web administrators manage password policies for their sites. To improve online authentication at scale, we must understand the factors behind this specific population’s behaviors and decisions, and how to help administrators deploy more secure password policies.In this paper, we explore how web administrators determine the password policies that they employ, what considerations impact a policy’s evolution, and what challenges administrators encounter when managing a site’s policy. To do so, we conduct an online survey and in-depth semi-structured interviews with 11 US-based web administrators with direct experience managing website password policies. Through our qualitative study, we identify a small set of key factors driving the majority of password policy decisions, and barriers that inhibit administrators from enacting policies that are more aligned with modern guidelines. Moving forward, we propose directions for future research and community action that may help administrators manage password policies more effectively.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Sena Sahin",
-      "Suood Abdulaziz Al-Roomi",
-      "Tara Poteat",
-      "Frank Li 0001"
-    ]
-  },
-  {
-    "id": "paper:ieee_sp:conf_sp_SalemCEKPSTB23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SalemCEKPSTB23",
-      "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP46215.2023.10179281"
-    },
-    "title": "SoK: Let the Privacy Games Begin! A Unified Treatment of Data Inference Privacy in Machine Learning.",
-    "summary": "Deploying machine learning models in production may allow adversaries to infer sensitive information about training data. There is a vast literature analyzing different types of inference risks, ranging from membership inference to reconstruction attacks. Inspired by the success of games (i.e. probabilistic experiments) to study security properties in cryptography, some authors describe privacy inference risks in machine learning using a similar game-based style. However, adversary capabilities and goals are often stated in subtly different ways from one presentation to the other, which makes it hard to relate and compose results. In this paper, we present a game-based framework to systematize the body of knowledge on privacy inference risks in machine learning. We use this framework to (1) provide a unifying structure for definitions of inference risks, (2) formally establish known relations among definitions, and (3) to uncover hitherto unknown relations that would have been difficult to spot otherwise.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Ahmed Salem 0001",
-      "Giovanni Cherubin",
-      "David Evans 0001",
-      "Boris Köpf",
-      "Andrew Paverd",
-      "Anshuman Suri",
-      "Shruti Tople",
-      "Santiago Zanella-Béguelin"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_AlwenCDT21",
+    "id": "paper:acm_ccs:conf_ccs_IshaiSW21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_AlwenCDT21",
+      "native_id": "conf_ccs_IshaiSW21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484820"
+      "source_url": "https://doi.org/10.1145/3460120.3484572"
     },
-    "title": "Modular Design of Secure Group Messaging Protocols and the Security of MLS.",
-    "summary": "The Messaging Layer Security (MLS) project is an IETF effort aiming to establish an industry-wide standard for secure group messaging (SGM). Its development is supported by several major secure-messaging providers (with a combined user base in the billions) and a growing body of academic research. MLS has evolved over many iterations to become a complex, non-trivial, yet relatively ad-hoc cryptographic protocol. In an effort to tame its complexity and build confidence in its security, past analyses of MLS have restricted themselves to sub-protocols of MLS---most prominently a type of sub-protocol embodying so-called continuous group key agreement (CGKA). However, to date the task of proving or even defining the security of the full MLS protocol has been left open. In this work, we fill in this missing piece. First, we formally capture the security of SGM protocols by defining a corresponding security game, which is parametrized by a safety predicate that characterizes the exact level of security achieved by a construction. Then, we cast MLS as an SGM protocol, showing how to modularly build it from the following three main components (and some additional standard cryptographic primitives) in a black-box fashion: (a) CGKA, (b) forward-secure group AEAD (FS-GAEAD), which is a new primitive and roughly corresponds to an \"epoch'' of group messaging, and (c) a so-called PRF-PRNG, which is a two-input hash function that is a pseudorandom function (resp.\\ generator with input) in its first (resp.\\ second) input. Crucially, the security predicate for the SGM security of MLS can be expressed purely as a function of the security predicates of the underlying primitives, which allows to swap out any of the components and immediately obtain a security statement for the resulting SGM construction. Furthermore, we provide instantiations of all component primitives, in particular of CGKA with MLS's TreeKEM sub-protocol (which we prove adaptively secure) and of FS-GAEAD with a novel construction (which has already been adopted by MLS). Along the way we introduce a collection of new techniques, primitives, and results with applications to other SGM protocols and beyond. For example, we extend the Generalized Selective Decryption proof technique (which is central in CGKA literature) and prove adaptive security for another (practical) more secure CGKA protocol called RTreeKEM (Alwen et al.,\\ CRYPTO '20). The modularity of our approach immediately yields a corollary characterizing the security of an SGM construction using RTreeKEM.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Shorter and Faster Post-Quantum Designated-Verifier zkSNARKs from Lattices.",
+    "summary": "Zero-knowledge succinct arguments of knowledge (zkSNARKs) enable efficient privacy-preserving proofs of membership for general NP languages. Our focus in this work is on post-quantum zkSNARKs, with a focus on minimizing proof size. Currently, there is a 1000x gap in the proof size between the best pre-quantum constructions and the best post-quantum ones. Here, we develop and implement new lattice-based zkSNARKs in the designated-verifier preprocessing model. With our construction, after an initial preprocessing step, a proof for an NP relation of size 2^20 is just over 16 KB. Our proofs are 10.3x shorter than previous post-quantum zkSNARKs for general NP languages. Compared to previous lattice-based zkSNARKs (also in the designated-verifier preprocessing model), we obtain a 42x reduction in proof size and a 60x reduction in the prover's running time, all while achieving a much higher level of soundness. Compared to the shortest pre-quantum zkSNARKs by Groth (Eurocrypt 2016), the proof size in our lattice-based construction is 131x longer, but both the prover and the verifier are faster (by 1.2x and 2.8x, respectively). Our construction follows the general blueprint of Bitansky et al. (TCC 2013) and Boneh et al. (Eurocrypt 2017) of combining a linear probabilistically checkable proof (linear PCP) together with a linear-only vector encryption scheme. We develop a concretely-efficient lattice-based instantiation of this compiler by considering quadratic extension fields of moderate characteristic and using linear-only vector encryption over rank-2 module lattices.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Joël Alwen",
-      "Sandro Coretti",
-      "Yevgeniy Dodis",
-      "Yiannis Tselekounis"
+      "Yuval Ishai",
+      "Hang Su",
+      "David J. Wu 0001"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_AnjumMJ21",
+    "id": "paper:acm_ccs:conf_ccs_IsmailYJJM21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_AnjumMJ21",
+      "native_id": "conf_ccs_IsmailYJJM21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3485354"
+      "source_url": "https://doi.org/10.1145/3460120.3485376"
     },
-    "title": "De-identification of Unstructured Clinical Texts from Sequence to Sequence Perspective.",
-    "summary": "In this work, we propose a novel problem formulation for de-identification of unstructured clinical text. We formulate the de-identification problem as a sequence to sequence learning problem instead of a token classification problem. Our approach is inspired by the recent state-of -the-art performance of sequence to sequence learning models for named entity recognition. Early experimentation of our proposed approach achieved 98.91% recall rate on i2b2 dataset. This performance is comparable to current state-of-the-art models for unstructured clinical text de-identification.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "VIP: Safeguard Value Invariant Property for Thwarting Critical Memory Corruption Attacks.",
+    "summary": "Most modern software attacks are rooted in memory corruption vulnerabilities, which are capable of altering security-sensitive data (e.g., function pointers) to unintended values. This paper introduces a new security property, the Value Invariant Property (VIP), and HyperSpace, our prototype that enforces VIP on security-sensitive data. HyperSpace safeguards the integrity of \"data values\" instead of enforcing control/data flow, allowing for low runtime overhead, yet defeating critical attacks effectively. We implement four representative security policies including Control Flow Integrity (VIP-CFI), Code Pointer Integrity (VIP-CPI), Virtual function Table protection (VIP-VTPtr), and heap metadata protection based on HyperSpace. We evaluate HyperSpace with SPEC CPU2006 benchmarks and real-world applications (NGINX and PostgreSQL) and test how HyperSpace defeats memory corruption-based attacks, including three real-world exploits and six attacks that bypass existing defenses (COOP, heap exploits, etc.). Our experimental evaluation shows that HyperSpace successfully stops all these attacks with low runtime overhead: 0.88% and 6.18% average performance overhead for VIP-CFI and VIP-CPI, respectively, and overall approximately 13.18% memory overhead with VIP-CPI in SPEC CPU2006.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Md. Monowar Anjum",
-      "Noman Mohammed",
-      "Xiaoqian Jiang"
+      "Mohannad Ismail",
+      "Jinwoo Yom",
+      "Christopher Jelesnianski",
+      "Yeongjin Jang",
+      "Changwoo Min"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_Araki0OPRT21",
+    "id": "paper:acm_ccs:conf_ccs_JabiyevSOK21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_Araki0OPRT21",
+      "native_id": "conf_ccs_JabiyevSOK21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484560"
+      "source_url": "https://doi.org/10.1145/3460120.3485384"
     },
-    "title": "Secure Graph Analysis at Scale.",
-    "summary": "We present a highly-scalable secure computation of graph algorithms, which hides all information about the topology of the graph or other input values associated with nodes or edges. The setting is where all nodes and edges of the graph are secret-shared between multiple servers, and a secure computation protocol is run between these servers. While the method is general, we demonstrate it in a 3-server setting with an honest majority, with either semi-honest security or full security. A major technical contribution of our work is replacing the usage of secure sort protocols with secure shuffles, which are much more efficient. Full security against malicious behavior is achieved by adding an efficient verification for the shuffle operation, and computing circuits using fully secure protocols. We demonstrate the applicability of this technology by implementing two major algorithms: computing breadth-first search (BFS), which is also useful for contact tracing on private contact graphs, and computing maximal independent set (MIS). We implement both algorithms, with both semi-honest and full security, and run them within seconds on graphs of millions of elements.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "T-Reqs: HTTP Request Smuggling with Differential Fuzzing.",
+    "summary": "HTTP Request Smuggling (HRS) is an attack that exploits the HTTP processing discrepancies between two servers deployed in a proxy-origin configuration, allowing attackers to smuggle hidden requests through the proxy. While this idea is not new, HRS is soaring in popularity due to recently revealed novel exploitation techniques and real-life abuse scenarios. In this work, we step back from the highly-specific exploits hogging the spotlight, and present the first work that systematically explores HRS within a scientific framework. We design an experiment infrastructure powered by a novel grammar-based differential fuzzer, test 10 popular server/proxy/CDN technologies in combinations, identify pairs that result in processing discrepancies, and discover exploits that lead to HRS. Our experiment reveals previously unknown ways to manipulate HTTP requests for exploitation, and for the first time documents the server pairs prone to HRS.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Toshinori Araki",
-      "Jun Furukawa 0001",
-      "Kazuma Ohara",
-      "Benny Pinkas",
-      "Hanan Rosemarin",
-      "Hikaru Tsuchida 0001"
+      "Bahruz Jabiyev",
+      "Steven Sprecher",
+      "Kaan Onarlioglu",
+      "Engin Kirda"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_AttrapadungH0MO21",
+    "id": "paper:acm_ccs:conf_ccs_JagielskiSHO21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_AttrapadungH0MO21",
+      "native_id": "conf_ccs_JagielskiSHO21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484584"
+      "source_url": "https://doi.org/10.1145/3460120.3485368"
     },
-    "title": "Oblivious Linear Group Actions and Applications.",
-    "summary": "In this paper we propose efficient two-party protocols for obliviously applying a (possibly random) linear group action to a data set. Our protocols capture various applications such as oblivious shuffles, circular shifts, matrix multiplications, to name just a few. A notable feature enjoyed by our protocols, is that they admit a round-optimal (more precisely, one-round) online computation phase, once an input-independent off-line computation phase has been completed. Our oblivious shuffle is the first to achieve a round-optimal online phase. The most efficient instantiations of our protocols are obtained in the so-called client-aided client-server setting, where the offline phase is run by a semi-honest input party (client) who will then distribute the generated correlated randomness to the computing parties (servers). When comparing the total running time to the previous best two-party oblivious shuffle protocol by Chase et al. (Asiacrypt 2020), our shuffle protocol in this client-aided setting is up to 105 times and 152 times faster, in the LAN and WAN setting, respectively. We additionally show how the Chase et al. protocol (which is a standard two-party protocol) can be modified to leverage the advantages of the client-aided setting, but show that, even doing so, our scheme is still two times faster in the online phase and 1.34 times faster in total on average.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Subpopulation Data Poisoning Attacks.",
+    "summary": "Machine learning systems are deployed in critical settings, but they might fail in unexpected ways, impacting the accuracy of their predictions. Poisoning attacks against machine learning induce adversarial modification of data used by a machine learning algorithm to selectively change its output when it is deployed. In this work, we introduce a novel data poisoning attack called a subpopulation attack, which is particularly relevant when datasets are large and diverse. We design a modular framework for subpopulation attacks, instantiate it with different building blocks, and show that the attacks are effective for a variety of datasets and machine learning models. We further optimize the attacks in continuous domains using influence functions and gradient optimization methods. Compared to existing backdoor poisoning attacks, subpopulation attacks have the advantage of inducing misclassification in naturally distributed data points at inference time, making the attacks extremely stealthy. We also show that our attack strategy can be used to improve upon existing targeted attacks. We prove that, under some assumptions, subpopulation attacks are impossible to defend against, and empirically demonstrate the limitations of existing defenses against our attacks, highlighting the difficulty of protecting machine learning against this threat.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Nuttapong Attrapadung",
-      "Goichiro Hanaoka",
-      "Takahiro Matsuda 0002",
-      "Hiraku Morita",
-      "Kazuma Ohara",
-      "Jacob C. N. Schuldt",
-      "Tadanori Teruya",
-      "Kazunari Tozawa"
+      "Matthew Jagielski",
+      "Giorgio Severi",
+      "Niklas Pousette Harger",
+      "Alina Oprea"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_BahramaliNHGT21",
+    "id": "paper:acm_ccs:conf_ccs_JiC21",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_BahramaliNHGT21",
+      "native_id": "conf_ccs_JiC21",
       "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3460120.3484777"
+      "source_url": "https://doi.org/10.1145/3460120.3484802"
     },
-    "title": "Robust Adversarial Attacks Against DNN-Based Wireless Communication Systems.",
-    "summary": "There is significant enthusiasm for the employment of Deep Neural Networks (DNNs) for important tasks in major wireless communication systems: channel estimation and decoding in orthogonal frequency division multiplexing (OFDM) systems, end-to-end autoencoder system design, radio signal classification, and signal authentication. Unfortunately, DNNs can be susceptible to adversarial examples, potentially making such wireless systems fragile and vulnerable to attack. In this work, by designing robust adversarial examples that meet key criteria, we perform a comprehensive study of the threats facing DNN-based wireless systems. We model the problem of adversarial wireless perturbations as an optimization problem that incorporates domain constraints specific to different wireless systems. This allows us to generate wireless adversarial perturbations that can be applied to wireless signals on-the-fly (i.e., with no need to know the target signals a priori), are undetectable from natural wireless noise, and are robust against removal. We show that even in the presence of significant defense mechanisms deployed by the communicating parties, our attack performs significantly better compared to existing attacks against DNN-based wireless systems. In particular, the results demonstrate that even when employing well-considered defenses, DNN-based wireless communication systems are vulnerable to adversarial attacks and call into question the employment of DNNs for a number of tasks in robust wireless communication.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Generalized Proof of Liabilities.",
+    "summary": "Proof of liabilities (PoL) allows a prover to prove his/her liabilities to a group of verifiers. This is a cryptographic primitive once used only for proving financial solvency but is also applicable to domains outside finance, including transparent and private donations, new algorithms for disapproval voting and publicly verifiable official reports such as COVID-19 daily cases. These applications share a common nature in incentives: it's not in the prover's interest to increase his/her total liabilities. We generalize PoL for these applications by attempting for the first time to standardize the goals it should achieve from security, privacy and efficiency perspectives. We also propose DAPOL+, a concrete PoL scheme extending the state-of-the-art DAPOL protocol but providing provable security and privacy, with benchmark results demonstrating its practicality. In addition, we explore techniques to provide additional features that might be desired in different applications of PoL and measure the asymptotic probability of failure.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Alireza Bahramali",
-      "Milad Nasr",
-      "Amir Houmansadr",
-      "Dennis Goeckel",
-      "Don Towsley"
+      "Yan Ji 0001",
+      "Konstantinos Chalkias"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_AmebleyD26",
+    "id": "paper:usenix_security:conf_uss_BaBMR22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_woot_AmebleyD26",
+      "native_id": "conf_uss_BaBMR22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/amebley"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/ba"
     },
-    "title": "Are Neuro-Inspired Multi-Modal Vision-Language Models Resilient to Membership Inference Privacy Leakage?",
-    "summary": "In the age of agentic AI, the growing deployment of multi-modal models (MMs) has introduced new attack vectors that can leak sensitive training data in MMs, causing privacy leakage. This paper investigates a black-box privacy attack, i.e., membership inference attack (MIA) on multi-modal vision-language models (VLMs). State-of-the-art research analyzes privacy attacks primarily to unimodal AI-ML systems, while recent studies indicate MMs can also be vulnerable to privacy attacks. While researchers have demonstrated that biologically inspired neural network representations can improve unimodal model resilience against adversarial attacks, it remains unexplored whether neuro-inspired MMs are resilient against privacy attacks. In this work, we introduce a systematic neuroscience-inspired topological regularization (tau) framework to analyze MM VLMs resilience against image-text-based inference privacy attacks. We examine this phenomenon using three VLMs: BLIP, PaliGemma 2, and ViT-GPT2, across three benchmark datasets: COCO, CC3M, and NoCaps. Our experiments compare the resilience of baseline and neuro VLMs (with topological regularization), where the tau &gt; 0 configuration defines the NEURO variant of VLM. Our results on the BLIP model using the COCO dataset illustrate that MIA attack success in NEURO VLMs drops by 24% mean ROC-AUC, while achieving similar model utility (similarities between generated and reference captions) in terms of MPNet and ROUGE-2 metrics. This shows neuro VLMs are comparatively more resilient against privacy attacks, while not significantly compromising model utility. Our extensive evaluation with PaliGemma 2 and ViT-GPT2 models, on two additional datasets: CC3M and NoCaps, further validates the consistency of the findings. This work contributes to the growing understanding of privacy risks in MMs and provides evidence on neuro VLMs privacy threat resilience.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Stateful Greybox Fuzzing.",
+    "summary": "Many protocol implementations are reactive systems, where the protocol process is in continuous interaction with other processes and the environment. If a bug can be exposed only in a certain state, a fuzzer needs to provide a specific sequence of events as inputs that would take protocol into this state before the bug is manifested. We call these bugs as \"stateful\" bugs. Usually, when we are testing a protocol implementation, we do not have a detailed formal specification of the protocol to rely upon. Without knowledge of the protocol, it is inherently difficult for a fuzzer to discover such stateful bugs. A key challenge then is to cover the state space without an explicit specification of the protocol. In this work, we posit that manual annotations for state identification can be avoided for stateful protocol fuzzing. Specifically, we rely on a programmatic intuition that the state variables used in protocol implementations often appear in enum type variables whose values (the state names) come from named constants. In our analysis of the Top-50 most widely used open-source protocol implementations, we found that every implementation uses state variables that are assigned named constants (with easy to comprehend names such as INIT, READY) to represent the current state. In this work, we propose to automatically identify such state variables and track the sequence of values assigned to them during fuzzing to produce a \"map\" of the explored state space. Our experiments confirm that our stateful fuzzer discovers stateful bugs twice as fast as the baseline greybox fuzzer that we extended. Starting from the initial state, our fuzzer exercises one order of magnitude more state/transition sequences and covers code two times faster than the baseline fuzzer. Several zero-day bugs in prominent protocol implementations were found by our fuzzer, and 8 CVEs have been assigned.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "David Amebley",
-      "Sayanton V. Dibbo"
+      "Jinsheng Ba",
+      "Marcel Böhme",
+      "Zahra Mirzamomen",
+      "Abhik Roychoudhury"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_BitsikasVR26",
+    "id": "paper:usenix_security:conf_uss_BaeSKPLSK22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_woot_BitsikasVR26",
+      "native_id": "conf_uss_BaeSKPLSK22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/bitsikas"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/bae"
     },
-    "title": "Security Analysis of LTE Connectivity in Connected Cars: A Case Study of Tesla.",
-    "summary": "Artifact submission for Security Analysis of LTE Connectivity in Connected Cars: A Case Study of Tesla.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Evangelos Bitsikas",
-      "Jason Veara",
-      "Aanjhan Ranganathan"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_Brumley26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_Brumley26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/brumley"
-    },
-    "title": "SoK: The Constant Time Model.",
-    "summary": "Constant time programming patterns is the primary defense against timing attacks on cryptographic implementations, yet what \"constant time\" means varies across academia and industry. This work systematizes constant time models and their evolution, identifies a recurring gap between what models protect and what specifications assume, and distills an offensive methodology for discovering timing vulnerabilities that originate outside the cryptographic primitive boundary. Applying this methodology, we locate a specification-level vulnerability related to private key loading, and confirm the leak in both OpenSSL and BoringSSL. Counterintuitively, BoringSSL's per-observation signal is several orders of magnitude stronger than OpenSSL's, despite an explicitly stricter threat model.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Billy Bob Brumley"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_CarnotF26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_CarnotF26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/carnot"
-    },
-    "title": "SoK: Insecurity of Cellular Basebands.",
+    "title": "Watching the Watchers: Practical Video Identification Attack in LTE Networks.",
     "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Henri Carnot",
-      "Aurélien Francillon"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_ChenSLCL26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_ChenSLCL26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/chen"
-    },
-    "title": "HotWire: Real-World Impersonation and Discharge Attacks on Electric Vehicle Charging Systems.",
-    "summary": "HotWire is a bidirectional testbed for the DIN 70121 and ISO 15118-2 vehicle-to-grid charging protocols. It implements both sides — a rogue EVSE (charging station) and a rogue PEV (electric vehicle) — plus two concrete attacks: (A1) Autocharge EVCCID impersonation, and (A2) forced discharge via fabricated PreChargeRes voltage claims. This archive accompanies the USENIX WOOT '26 paper \"HotWire: Real-World Impersonation and Discharge Attacks on Electric Vehicle Charging Systems\". It contains the full Python implementation, a Docker-based CI test harness (240 unit + integration tests), parametric simulation scripts, hardware design and recovery documentation, safety notes, an Artifact Evaluation Committee (AEC) verification entry-point, and the historical Luxgen N7 forced-discharge bench logs cited as A2 evidence. The artifact can be evaluated entirely inside Docker plus IPv6 loopback simulation — no real charging station, no real vehicle, and no PLC modem are required. See ARTIFACT.md in the archive root for the AEC evaluation path. Source repository: https://github.com/sickcell6000/HotWireLicense: GNU GPL-3.0 (inherited from upstream pyPLC).",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Kuan-Yu Chen",
-      "Md Hasan Shahriar",
-      "Wen-Wei Li",
-      "Shi-Cho Cha 0001",
-      "Wenjing Lou"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_ChinKFFKHZLZK26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_ChinKFFKHZLZK26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/chin"
-    },
-    "title": "OSS-CRS: Liberating AIxCC Cyber Reasoning Systems for Real-World Open-Source Security.",
-    "summary": "DARPA's AI Cyber Challenge (AIxCC) showed that cyber reasoning systems (CRSs) can go beyond vulnerability discovery to autonomously confirm and patch bugs: seven teams built such systems and open-sourced them after the competition. Yet all seven open-sourced CRSs remain largely unusable outside their original teams, each bound to the competition cloud infrastructure that no longer exists. We present OSS-CRS, an open, locally deployable framework for running and combining CRS techniques against real-world open-source projects, with budget-aware resource management. We ported the first-place system (Atlantis) and discovered 10 previously unknown bugs (three of high severity) across 8 OSS-Fuzz projects. OSS-CRS is publicly available.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Andrew Chin",
+      "Sangwook Bae",
+      "Mincheol Son",
       "Dongkwan Kim 0001",
-      "Yu-Fu Fu",
-      "Fabian Fleischer 0001",
-      "Youngjoon Kim",
-      "HyungSeok Han",
-      "Cen Zhang",
-      "Brian J. Lee",
-      "Hanqing Zhao",
-      "Taesoo Kim"
+      "CheolJun Park",
+      "Jiho Lee",
+      "Sooel Son",
+      "Yongdae Kim"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_DuKPM26",
+    "id": "paper:usenix_security:conf_uss_BalashWGRA22",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "usenix_security",
-      "native_id": "conf_woot_DuKPM26",
+      "native_id": "conf_uss_BalashWGRA22",
       "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/du"
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/balash"
     },
-    "title": "SoK: Multi-Layer Indirect Call Analysis in the Real World.",
+    "title": "Security and Privacy Perceptions of Third-Party Application Access for Google Accounts.",
+    "summary": "Online services like Google provide a variety of application programming interfaces (APIs). These online APIs enable authenticated third-party services and applications (apps) to access a user's account data for tasks such as single sign-on (SSO), calendar integration, and sending email on behalf of the user, among others. Despite their prevalence, API access could pose significant privacy and security risks, where a third-party could have unexpected privileges to a user's account. To gauge users' perceptions and concerns regarding third-party apps that integrate with online APIs, we performed a multi-part online survey of Google users. First, we asked n = 432 participants to recall if and when they allowed third-party access to their Google account: 89% recalled using at least one SSO and 52% remembered at least one third-party app. In the second survey, we re-recruited n = 214 participants to ask about specific apps and SSOs they've authorized on their own Google accounts. We collected in-the-wild data about users' actual SSOs and authorized apps: 86% used Google SSO on at least one service, and 67% had at least one third-party app authorized. After examining their apps and SSOs, participants expressed the most concern about access to personal information like email addresses and other publicly shared info. However, participants were less concerned with broader -- and perhaps more invasive -- access to calendars, emails, or cloud storage (as needed by third-party apps). This discrepancy may be due in part to trust transference to apps that integrate with Google, forming an implied partnership. Our results suggest opportunities for design improvements to the current third-party management tools offered by Google; for example, tracking recent access, automatically revoking access due to app disuse, and providing permission controls.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
+    "authors": [
+      "David G. Balash",
+      "Xiaoyuan Wu",
+      "Miles Grant",
+      "Irwin Reyes",
+      "Adam J. Aviv"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_BalensonBEE0MT22",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_BalensonBEE0MT22",
+      "source_name": "USENIX Security",
+      "source_url": "https://doi.org/10.1145/3546096.3546104"
+    },
+    "title": "Toward Findable, Accessible, Interoperable, and Reusable Cybersecurity Artifacts.",
+    "summary": "Researchers in experimental cybersecurity are increasingly sharing the code, data, and other artifacts associated with their studies. This trend is encouraged and rewarded by conferences and journals through practices such as artifact evaluation and badging. While these trends in sharing artifacts are promising, the cybersecurity community is still far from an ecosystem in which artifacts are FAIR: findable, accessible, interoperable, and reusable. The lack of established standards and best practices for sharing and reuse results in artifacts that are often difficult to find and reuse; in addition, the lack of community standards results in artifacts that may be incomplete and low-quality. In this paper we describe our experience in creating an online community hub, called SEARCCH, to promote the sharing and reuse of artifacts for cybersecurity research. Based on our experience, we offer lessons learned: issues that must be addressed to further promote FAIR principles in experimental cybersecurity.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
+    "authors": [
+      "David M. Balenson",
+      "Terry Benzel",
+      "Eric Eide",
+      "David Emmerich",
+      "David Johnson 0004",
+      "Jelena Mirkovic",
+      "Laura Tinnel"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_BarberisFMBG22",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_BarberisFMBG22",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity22/presentation/barberis"
+    },
+    "title": "Branch History Injection: On the Effectiveness of Hardware Mitigations Against Cross-Privilege Spectre-v2 Attacks.",
     "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Yufei Du",
-      "Vasileios P. Kemerlis",
-      "Michalis Polychronakis",
-      "Fabian Monrose"
+      "Enrico Barberis",
+      "Pietro Frigo",
+      "Marius Muench",
+      "Herbert Bos",
+      "Cristiano Giuffrida"
     ]
   },
   {
-    "id": "paper:usenix_security:conf_woot_DubniczkyBBT26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_DubniczkyBBT26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/dubniczky"
-    },
-    "title": "You Have Been LaTeXpOsEd: A Large-Scale Systematic Analysis of Information Leakage in Preprint Archives Using Large Language Models.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Richard A. Dubniczky",
-      "Bertalan Borsos",
-      "Tamás Bisztray",
-      "Norbert Tihanyi"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_EbrahimT26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_EbrahimT26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/ebrahim"
-    },
-    "title": "Protocol Prying: Systematic Vulnerability Research in the AirDrop and Android Quick Share Proximity Transfer Protocols.",
-    "summary": "Apple AirDrop and Google/Samsung Quick Share are prox- imity file-transfer protocols used by over five billion devices, yet their application-layer security properties remain largely unstudied because both stacks are proprietary and undocumented. Both protocols are reachable from wireless proximity without any prior pairing and process complex serialized content (binary plists, CPIO archives, Protocol Buffers, UKEY2 handshakes) inside privileged daemons, making them attractive zero-click targets across multiple operating systems. We perform the first cross-platform reverse engineering and protocol-aware fuzzing study of both stacks. We reconstruct AirDrop’s seven-layer state machine and DVZip adaptive compression from binary analysis, build A IR F UZZ, a protocol-aware fuzzer that mutates pre-compression representations, and complement it with targeted hand-written analyses of Samsung’s Quick Share service and Google’s Quick Share for Windows. We discover six vulnerabilities (V1-V6): three pre-authentication issues in macOS/iOS Air-Drop (V1: Swift fatalError DoS in the HTTP path router; V2: unbounded XML plist recursion in Foundation, V3: NULL deref in Network.framework’s HTTP/1.1 parser), two protocol-layer flaws in Samsung Quick Share (V4: preauthentication OfflineFrame dispatch, V5: D2D encryption bypass for three frame types), and a heap use-after-free in Google Quick Share for Windows (V6) for which Google awarded a bounty. We responsibly disclosed all findings, Apple, Samsung, and Google have acknowledged the reports. For transparency and reproducibility, the AirFuzz artifacts are publicly available on Zenodo: https://zenodo.org/recor ds/20442029.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Arash Ale Ebrahim",
-      "Nils Ole Tippenhauer"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_FallMWP26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_FallMWP26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/fall"
-    },
-    "title": "Exploiting Android Apps with Counterfeit Art.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Rokhaya-Diamil Fall",
-      "Philipp Mao",
-      "Martin Wagner",
-      "Mathias Payer"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_GkritsisPS26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_GkritsisPS26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/gkritsis"
-    },
-    "title": "Evading and crashing anti-malware solutions via data collection overloading during analysis serialization.",
-    "summary": "Malware analysis systems, including dynamic-analysis sandboxes and digital forensics and incident response (DFIR) platforms, rely on telemetry pipelines comprising collection agents, serializers, and database backends to capture and present program behavior to analysts. We show that these data-handling components constitute an exploitable attack surface that can lead to denial-of-analysis (DoA) states without disabling sensors or requiring elevated privileges. We present Telemetry Complexity Attacks (TCAs), a new class of vulnerabilities that exploit mismatches between unbounded collection mechanisms and bounded processing capabilities. Our method recursively spawns child processes to generate deeply nested and oversized objects that stress serialization and storage boundaries, as well as visualization layers, e.g., JSON/BSON depth and size limits. Depending on the product, this leads to truncated or missing behavioral reports, rejected database inserts, serializer recursion and size errors, and unresponsive dashboards, with some cases also exhibiting normal malicious execution that was not recorded or presented to analysts. We evaluate our technique against 18 commercial and open-source malware analysis platforms and endpoint detection and response (EDR) solutions. Seven products fail at different stages of the telemetry pipeline; two CVE identifiers have been assigned (CVE-61301 and CVE-61303); one more is pending; one has been assigned to an underlying library, and others have issued patches or configuration changes. We discuss root causes and propose mitigation strategies to prevent DoA attacks triggered by adversarial telemetry.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Evgenios Gkritsis",
-      "Constantinos Patsakis",
-      "George Stergiopoulos"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_GoemanCSLN26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_GoemanCSLN26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/goeman"
-    },
-    "title": "Real-Time Compromise: Investigating RTC Security in Consumer IoT.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Victor Goeman",
-      "Tom Cordemans",
-      "Christoph Sanders",
-      "Jorn Lapon",
-      "Vincent Naessens"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_HenesBOO26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_HenesBOO26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/henes"
-    },
-    "title": "DisARMed: Attacking ARM TrustZone from Userspace with Memory Aliasing.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Jacqueline Henes",
-      "Matthew Bowden",
-      "Mihai Ordean",
-      "David Oswald"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_HuberS26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_HuberS26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/huber"
-    },
-    "title": "Flash [Re]Loaded: Body Bias Injection on Flash Memory.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Valentin Huber",
-      "Marc Schink"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_IshizueRS26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_IshizueRS26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/ishizue"
-    },
-    "title": "Breaking Infrared Recapture Detection: Optical-Synthesis Attacks and Depth-Aware In-Sensor Countermeasures.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Tetsu Ishizue",
-      "Sara Rampazzi",
-      "Takeshi Sugawara 0001"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_KimPKWWBPT26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_KimPKWWBPT26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/kim"
-    },
-    "title": "FuzzBT: Holistic-State-Guided Fuzzing for Bluetooth Host Stack in Kernels.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Sungwoo Kim 0005",
-      "Hui Peng",
-      "Imtiaz Karim",
-      "Ruoyu Wu",
-      "Jianliang Wu 0002",
-      "Elisa Bertino",
-      "Mathias Payer",
-      "Dave (Jing) Tian"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_LisowskiCM26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_LisowskiCM26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/lisowski"
-    },
-    "title": "CATana: On the Dangers of SIM-Originating AT Commands.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Tomasz Piotr Lisowski",
-      "Kristian Covic",
-      "Marius Muench"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_LoukaB26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_LoukaB26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/louka"
-    },
-    "title": "SoK: 20 Years of Power, Privilege, and Peril in x86 System Management Mode.",
-    "summary": "status: Accepted",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Antonis Louka",
-      "Jo Van Bulck"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_MehtaNSTG26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_MehtaNSTG26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/mehta"
-    },
-    "title": "Swarm in EM Hay: Particle Swarm-guided Probe Placement for EM SCA.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Dev Mehta 0001",
-      "Seyedmohammad Nouraniboosjin",
-      "Maryam Saadat-Safa",
-      "Shahin Tajik",
-      "Fatemeh Ganji"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_NeffHB26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_NeffHB26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/neff"
-    },
-    "title": "Onelogon: Taking over Active Directory Accounts via Netlogon.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Alexander Neff",
-      "Tobias Holl",
-      "Kevin Borgolte"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_OberhuberUWKNM26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_OberhuberUWKNM26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/oberhuber"
-    },
-    "title": "PowerHooK: Enabling Software-Based Power Side Channels Against AMD SEV Technologies via Transient-Execution Replay.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Mathias Oberhuber",
-      "Martin Unterguggenberger",
-      "Martin Wistauder",
-      "Andreas Kogler",
-      "Rishub Nagpal",
-      "Stefan Mangard"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_RoudotS26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_RoudotS26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/roudot"
-    },
-    "title": "Defective by Design: Universal Recovery of All Widevine-Protected Content on Desktop Environments.",
-    "summary": "International audience",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Florian Roudot",
-      "Mohamed Sabt"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_SanftT26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_SanftT26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/sanft"
-    },
-    "title": "SEMSAN: a Configurable Sanitizer for Detecting System-Level Semantic Bugs.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Moritz Sanft",
-      "Flavio Toffalini"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_SenLL26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_SenLL26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/sen"
-    },
-    "title": "LIMA: Defining, Benchmarking and Detecting Cross-Layer Vulnerabilities in LLM Inference Frameworks.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Sanjib Kumar Sen",
-      "Hannah Longoria",
-      "Bozhen Liu"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_UrushigakiKTI26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_UrushigakiKTI26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/urushigaki"
-    },
-    "title": "Practical Attacks on a Decentralized Secure Messenger Session.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Kota Urushigaki",
-      "Hayato Kimura 0002",
-      "Atsushi Tanaka",
-      "Takanori Isobe 0001"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_woot_ZhengTLP26",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_woot_ZhengTLP26",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/woot26/presentation/zheng"
-    },
-    "title": "Squeezing Juicy Variant Bugs Out of Modern Browsers.",
-    "summary": "",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
-    "authors": [
-      "Han Zheng 0006",
-      "Flavio Toffalini",
-      "Qiang Liu 0034",
-      "Mathias Payer"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_WangCZL22",
+    "id": "paper:ndss:conf_ndss_OhABSLKK23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_WangCZL22",
+      "native_id": "conf_ndss_OhABSLKK23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-253/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/preventing-sim-box-fraud-using-device-model-fingerprinting/"
     },
-    "title": "Multi-Certificate Attacks against Proof-of-Elapsed-Time and Their Countermeasures.",
-    "summary": "Proof-of-Elapsed-Time (POET) is a blockchain consensus protocol in which each participating node is required to wait for the passage of a specified time duration before it can participate in the block leader election in each round. It relies on trusted execution environments, such as Intel SGX, to ensure its security, and has been implemented in Hyperledger Sawtooth and used in many real-world settings. This paper examines the security issues including fairness guarantees of the Sawtooth's POET design and implementation, and discovers a new category of security attacks against POET, dubbed Multi-Certificate Attacks, which allows a malicious node to unfairly create multiple Certificates in each round of block leader election and select the one that maximizes her probability of winning. We have systematically analyzed the root causes of these attacks and assisted the Sawtooth community to fix several vulnerabilities in the latest version of POET. To further mitigate the identified threats, we propose a new design of POET in this paper, which we call POETA, that can be used to address the remaining vulnerabilities we have discovered. We have implemented POETA and evaluated its security and performance.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Preventing SIM Box Fraud Using Device Model Fingerprinting.",
+    "summary": "SIM boxes have been playing a critical role in the underground ecosystem of international-scale frauds that steal billions of dollars from individual victims and mobile network operators across the globe. Many mitigation schemes have been proposed for these frauds, mainly aiming to detect fraud call sessions; however, one direct approach to this problem-the prevention of the SIM box devices from network use-has not drawn much attention despite its highly anticipated benefit. This is exactly what we aim to achieve in this paper. We propose a simple access control logic that detects when unauthorized SIM boxes use cellular networks for communication. At the heart of our defense proposal is the precise fingerprinting of device models (e.g., distinguishing an iPhone 13 from any other smartphone models on the market) and device types (i.e., smartphones and IoT devices) without relying on international mobile equipment identity, which can be spoofed easily. We empirically show that fingerprints, which were constructed from network-layer auxiliary information with more than 31K features, are mostly distinct among 85 smartphones and thus can be used to prevent the vast majority of illegal SIM boxes from making unauthorized voice calls. Our proposal, as the very first practical, reliable unauthorized cellular device model detection scheme, greatly simplifies the mitigation against SIM box frauds. * These two authors equally contributed.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Huibo Wang",
-      "Guoxing Chen",
-      "Yinqian Zhang",
-      "Zhiqiang Lin 0001"
+      "Beomseok Oh 0001",
+      "Junho Ahn",
+      "Sangwook Bae",
+      "Mincheol Son",
+      "Yonghwa Lee",
+      "Min Suk Kang",
+      "Yongdae Kim"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_WangGY22",
+    "id": "paper:ndss:conf_ndss_OliveriDB23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_WangGY22",
+      "native_id": "conf_ndss_OliveriDB23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-188/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/an-os-agnostic-approach-to-memory-forensics/"
     },
-    "title": "GhostTalk: Interactive Attack on Smartphone Voice System Through Power Line.",
-    "summary": "a) In a shopping mall, the victim rents a hacked power bank to charge the smartphone. GhostTalk can remotely compromise the smartphone voice assistant through a modified charging cable.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "An OS-agnostic Approach to Memory Forensics.",
+    "summary": "The analysis of memory dumps presents unique challenges, as operating systems use a variety of (often undocumented) ways to represent data in memory. To solve this problem, forensics tools maintain collections of models that precisely describe the kernel data structures used by a handful of operating systems. However, these models cannot be generalized and developing new models may require a very long and tedious reverse engineering effort for closed source systems. In the last years, the tremendous increase in the number of IoT devices, smart-home appliances and cloud-hosted VMs resulted in a growing number of OSs which are not supported by current forensics tools. The way we have been doing memory forensics until today, based on handwritten models and rules, cannot simply keep pace with this variety of systems.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Yuanda Wang",
-      "Hanqing Guo",
-      "Qiben Yan"
+      "Andrea Oliveri",
+      "Matteo Dell&apos;Amico",
+      "Davide Balzarotti"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_WangSCL22",
+    "id": "paper:ndss:conf_ndss_OzmenSFC23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_WangSCL22",
+      "native_id": "conf_ndss_OzmenSFC23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-187/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/evasion-attacks-and-defenses-on-smart-home-physical-event-verification/"
     },
-    "title": "PHYjacking: Physical Input Hijacking for Zero-Permission Authorization Attacks on Android.",
-    "summary": "Nowadays, most mobile devices are equipped with various hardware interfaces such as touchscreen, fingerprint scanner, camera and microphone to capture inputs from the user. Many mobile apps use these physical interfaces to receive userinput for authentication/authorization operations including oneclick login, fingerprint-based payment approval, and face/voice unlocking. In this paper, we investigate the so-called PHYjacking attack where a victim is misled by a zero-permission malicious app to feed physical inputs to different hardware interfaces on a mobile device to result in unintended authorization. We analyze the protection mechanisms in Android for different types of physical input interfaces and introduce new techniques to bypass them. Specifically, we identify weaknesses in the existing protection schemes for the related system APIs and observe common pitfalls when apps implement physical-input-based authorization. Worse still, we discover a race-condition bug in Android that can be exploited even when app-based mitigations are properly implemented. Based on these findings, we introduce fingerprintjacking and facejacking techniques and demonstrate their impact on real apps. We also discuss the feasibility of launching similar attacks against NFC and microphone inputs, as well as effective tapjacking attacks against Single Sign-On apps. We have designed a static analyzer to examine 3000+ real-world apps and find 44% of them contain PHYjacking-related implementation flaws. We demonstrate the practicality and potential impact of PHYjacking via proof-of-concept implementations which enable unauthorized money transfer on a payment app with over 800 million users, user-privacy leak from a social media app with over 400 million users and escalating app permissions in Android 11.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Evasion Attacks and Defenses on Smart Home Physical Event Verification.",
+    "summary": "In smart homes, when an actuator's state changes, it sends an event notification to the IoT hub to report this change (e.g., the door is unlocked). Prior works have shown that event notifications are vulnerable to spoofing and masking attacks. In event spoofing, an adversary reports to the IoT hub a fake event notification that did not physically occur. In event masking, an adversary suppresses the notification of an event that physically occurred. These attacks create inconsistencies between physical and cyber states of actuators, enabling an adversary to indirectly gain control over safety-critical devices by triggering IoT apps. To mitigate these attacks, event verification systems (EVS), or broadly IoT anomaly detection systems, leverage physical event fingerprints that describe the relations between events and their influence on sensor readings. However, smart homes have complex physical interactions between events and sensors that characterize the event fingerprints. Our study of the recent EVS, unfortunately, has revealed that they widely ignore such interactions, which enables an adversary to evade these systems and launch successful event spoofing and masking attacks without getting detected.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Xianbo Wang",
-      "Shangcheng Shi",
-      "Yikang Chen",
-      "Wing Cheong Lau"
+      "Muslum Ozgur Ozmen",
+      "Ruoyu Song 0001",
+      "Habiba Farrukh",
+      "Z. Berkay Celik"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_WuNSWC22",
+    "id": "paper:ndss:conf_ndss_Pan00WNSL23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_WuNSWC22",
+      "native_id": "conf_ndss_Pan00WNSL23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-222/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/your-router-is-my-prober-measuring-ipv6-networks-via-icmp-rate-limiting-side-channels/"
     },
-    "title": "Hybrid Trust Multi-party Computation with Trusted Execution Environment.",
-    "summary": "Trusted execution environment (TEE) such as Intel SGX relies on hardware protection and can perform secure multi-party computation (MPC) much more efficiently than pure software solutions. However, multiple side-channel attacks have been discovered in current implementations, leading to various levels of trust among different parties. For instance, a party might assume that an adversary is unable to compromise TEE, while another might only have a partial trust in TEE or even does not trust it at all. In an MPC scenario consisting of parties with different levels of trust, one could fall back to pure software solutions. While satisfying the security concerns of all parties, those who accept TEE would not be able to enjoy the benefit brought by it.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "Your Router is My Prober: Measuring IPv6 Networks via ICMP Rate Limiting Side Channels.",
+    "summary": "Active Internet measurements face challenges when some measurements require many remote vantage points. In this paper, we propose a novel technique for measuring remote IPv6 networks via side channels in ICMP rate limiting, a required function for IPv6 nodes to limit the rate at which ICMP error messages are generated. This technique, IVANTAGE, can to some extent use 1.1M remote routers distributed in 9.5k autonomous systems and 182 countries as our \"vantage points\". We apply IVANTAGE to two different, but both challenging measurement tasks: 1) measuring the deployment of inbound source address validation (ISAV) and 2) measuring reachability between arbitrary Internet nodes. We accomplish these two tasks from only one local vantage point without controlling the targets or relying on other services within the target networks. Our large-scale ISAV measurements cover 50% of all IPv6 autonomous systems and find 79% of them are vulnerable to spoofing, which is the most large-scale measurement study of IPv6 ISAV to date. Our method for reachability measurements achieves over 80% precision and recall in our evaluation. Finally, we perform an Internet-wide measurement of the ICMP rate limiting implementations, present a detailed discussion on ICMP rate limiting, particularly the potential security and privacy risks in the mechanism of ICMP rate limiting, and provide possible mitigation measures. We make our code available to the community.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Pengfei Wu 0003",
-      "Jianting Ning",
-      "Jiamin Shen",
-      "Hongbing Wang",
-      "Ee-Chien Chang"
+      "Long Pan",
+      "Jiahai Yang 0001",
+      "Lin He 0004",
+      "Zhiliang Wang",
+      "Leyao Nie",
+      "Guanglei Song",
+      "Yaozhong Liu"
     ]
   },
   {
-    "id": "paper:ndss:conf_ndss_XuLPLLG22",
+    "id": "paper:ndss:conf_ndss_RoeschlinCBSC23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_XuLPLLG22",
+      "native_id": "conf_ndss_RoeschlinCBSC23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/auto-draft-217/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/edgetdc-on-the-security-of-time-difference-of-arrival-measurements-in-can-bus-systems/"
     },
-    "title": "PoF: Proof-of-Following for Vehicle Platoons.",
-    "summary": "Cooperative vehicle platooning significantly improves highway safety, fuel efficiency, and traffic flow. In this model, a set of vehicles move in line formation and coordinate acceleration, braking, and steering using a combination of physical sensing and vehicle-to-vehicle (V2V) messaging. The authenticity and integrity of the V2V messages are paramount to safety. For this reason, recent V2V and V2X standards support the integration of a PKI. However, a PKI cannot bind a vehicle's digital identity to the vehicle's physical state (location, velocity, etc.). As a result, a vehicle with valid cryptographic credentials can impact platoons from a remote location.",
-    "published_at": "2026-08-15T02:12:17.178175+00:00",
-    "fetched_at": "2026-08-15T02:12:17.178175+00:00",
+    "title": "EdgeTDC: On the Security of Time Difference of Arrival Measurements in CAN Bus Systems.",
+    "summary": "A Controller Area Network (CAN bus) is a messagebased protocol for intra-vehicle communication designed mainly with robustness and safety in mind. In real-world deployments, CAN bus does not offer common security features such as message authentication. Due to the fact that automotive suppliers need to guarantee interoperability, most manufacturers rely on a decadeold standard (ISO 11898) and changing the format by introducing MACs is impractical. Research has therefore suggested to address this lack of authentication with CAN bus Intrusion Detection Systems (IDSs) that augment the bus with separate modules. IDSs attribute messages to the respective sender by measuring physicallayer features of the transmitted frame. Those features are based on timings, voltage levels, transients-and, as of recently, Time Difference of Arrival (TDoA) measurements. In this work, we show that TDoA-based approaches presented in prior art are vulnerable to novel spoofing and poisoning attacks. We describe how those proposals can be fixed and present our own method called EdgeTDC. Unlike existing methods, EdgeTDC does not rely on Analog-to-digital converters (ADCs) with high sampling rate and high dynamic range to capture the signals at sample level granularity. Our method uses time-to-digital converters (TDCs) to detect the edges and measure their timings. Despite being inexpensive to implement, TDCs offer low latency, high location precision and the ability to measure every single edge (rising and falling) in a frame. Measuring each edge makes analog sampling redundant and allows the calculation of statistics that can even detect tampering with parts of a message. Through extensive experimentation, we show that EdgeTDC can successfully thwart masquerading attacks in the CAN system of modern vehicles.",
+    "published_at": "2026-08-16T02:10:52.580434+00:00",
+    "fetched_at": "2026-08-16T02:10:52.580434+00:00",
     "authors": [
-      "Ziqi Xu 0006",
-      "Jingcheng Li",
-      "Yanjun Pan 0001",
-      "Loukas Lazos",
-      "Ming Li 0003",
-      "Nirnimesh Ghose"
+      "Marc Roeschlin",
+      "Giovanni Camurati",
+      "Pascal Brunner",
+      "Mridula Singh",
+      "Srdjan Capkun"
     ]
   }
 ]
