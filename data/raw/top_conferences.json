@@ -1,443 +1,441 @@
 [
   {
-    "id": "paper:ieee_sp:conf_sp_SridharXD25",
+    "id": "paper:ieee_sp:conf_sp_SchefflerKM23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SridharXD25",
+      "native_id": "conf_sp_SchefflerKM23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00034"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179349"
     },
-    "title": "PAC-Private Algorithms.",
-    "summary": "Provable privacy typically requires involved analysis and is often associated with unacceptable accuracy loss. While many empirical verification or approximation methods, such as Membership Inference Attacks (MIA) and Differential Privacy Auditing (DPA), have been proposed, these do not offer rigorous privacy guarantees. In this paper, we apply recently-proposed Probably Approximately Correct (PAC) Privacy to give formal, mechanized, simulation-based proofs for a range of practical, black-box algorithms: K-Means, Support Vector Machines (SVM), Principal Component Analysis (PCA) and Random Forests. To provide these proofs, we present a new simulation algorithm that efficiently determines anisotropic noise perturbation required for any given level of privacy. We provide a proof of correctness for this algorithm and demonstrate that anisotropic noise has substantive benefits over isotropic noise. Stable algorithms are easier to privatize, and we demonstrate privacy amplification resulting from introducing regularization in these algorithms; meaningful privacy guarantees are obtained with small losses in accuracy. We propose new techniques in order to reduce instability in algorithmic output and convert intractable geometric stability verification into efficient deterministic stability verification. Thorough experiments are included, and we validate our provable adversarial inference hardness against state-of-the-art empirical attacks.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
+    "title": "Public Verification for Private Hash Matching.",
+    "summary": "End-to-end encryption (E2EE) prevents online services from accessing user content. This important security property is also an obstacle for content moderation methods that involve content analysis. The tension between E2EE and efforts to combat child sexual abuse material (CSAM) has become a global flashpoint in encryption policy, because the predominant method of detecting harmful content—server-side perceptual hash matching on plaintext images—is unavailable.Recent applied cryptography advances enable private hash matching (PHM), where a service can match user content against a set of known CSAM images without revealing the hash set to users or nonmatching content to the service. These designs, especially a 2021 proposal for identifying CSAM in Apple’s iCloud Photos service, have attracted widespread criticism for creating risks to security, privacy, and free expression.In this work, we aim to advance scholarship and dialogue about PHM by contributing new cryptographic methods for system verification by the general public. We begin with motivation, describing the rationale for PHM to detect CSAM and the serious societal and technical issues with its deployment. Verification could partially address shortcomings of PHM, and we systematize critiques into two areas for auditing: trust in the hash set and trust in the implementation. We explain how, while these two issues cannot be fully resolved by technology alone, there are possible cryptographic trust improvements.The central contributions of this paper are novel cryptographic protocols that enable three types of public verification for PHM systems: (1) certification that external groups approve the hash set, (2) proof that particular lawful content is not in the hash set, and (3) eventual notification to users of false positive matches. The protocols that we describe are practical, efficient, and compatible with existing PHM constructions.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
     "authors": [
-      "Mayuri Sridhar",
-      "Hanshen Xiao",
-      "Srinivas Devadas"
+      "Sarah Scheffler",
+      "Anunay Kulshrestha",
+      "Jonathan R. Mayer"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_SuiWD25",
+    "id": "paper:ieee_sp:conf_sp_SchwarzlBSMSG23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SuiWD25",
+      "native_id": "conf_sp_SchwarzlBSMSG23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00244"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179297"
     },
-    "title": "Signature-Free Atomic Broadcast with Optimal $O(n{2})$ Messages and $O(1)$ Expected Time.",
-    "summary": "Byzantine atomic broadcast (ABC) is at the heart of permissioned blockchains and various multi-party computation protocols. We resolve a long-standing open problem in ABC, presenting the first signature-free asynchronous ABC protocol that achieves optimal$O(n^{2})$messages and$O(1)$expected time, where$n$is the total number of replicas. Our ABC protocol adopts a new design, relying on a reduction from-perhaps surprisingly-a somewhat neglected primitive called multivalued Byzantine agreement (MBA).",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
+    "title": "Practical Timing Side-Channel Attacks on Memory Compression.",
+    "summary": "Compression algorithms have side channels due to their data-dependent operations. So far, only the compression-ratio side channel was exploited, e.g., the compressed data size.In this paper, we present Decomp+Time, the first memory-compression attack exploiting a timing side channel in compression algorithms. While Decomp+Time affects a much broader set of applications than prior work. A key challenge is precisely crafting attacker-controlled compression payloads to enable the attack with sufficient resolution. Our evolutionary fuzzer, Comprezzor, finds effective Decomp+Time payloads that optimize latency differences such that decompression timing can even be exploited in remote attacks. Decomp+Time has a capacity of 9.73 kB/s locally, and 10.72 bit/min across the internet (14 hops). Using Comprezzor, we develop attacks that leak data bytewise in four different case studies: First, we leak 1.50 bit/min from Memcached on a remote PHP script. Second, we leak database records with 2.69 bit/min, from PostgreSQL in a Python-Flask application, over the internet. Third, we leak secrets with 49.14 bit/min locally from ZRAM-compressed pages on Linux. Fourth, we leak internal heap pointers from the V8 engine within the Google Chrome browser on a system using ZRAM. Thus, it is important to re-evaluate the use of compression on sensitive data even if the application is only reachable via a remote interface.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
     "authors": [
-      "Xiao Sui 0003",
-      "Xin Wang",
-      "Sisi Duan"
+      "Martin Schwarzl",
+      "Pietro Borrello",
+      "Gururaj Saileshwar",
+      "Hanna Müller",
+      "Michael Schwarz 0001",
+      "Daniel Gruss"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_SunLD25",
+    "id": "paper:ieee_sp:conf_sp_ServanSchreiberBYP23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_SunLD25",
+      "native_id": "conf_sp_ServanSchreiberBYP23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SPW67851.2025.00032"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179295"
     },
-    "title": "Ignoring Directionality Leads to Compromised Graph Neural Network Explanations.",
-    "summary": "Graph Neural Networks (GNNs) are increasingly used in critical domains, where reliable explanations are vital for supporting human decision-making. However, the common practice of graph symmetrization discards directional information, leading to significant information loss and misleading explanations. Our analysis demonstrates how this practice compromises explanation fidelity. Through theoretical and empirical studies, we show that preserving directional semantics significantly improves explanation quality, ensuring more faithful insights for human decision-makers. These findings highlight the need for direction-aware GNN explainability in security-critical applications.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
+    "title": "Private Access Control for Function Secret Sharing.",
+    "summary": "Function Secret Sharing (FSS; Eurocrypt 2015) allows a dealer to share a function f with two or more evaluators. Given secret shares of a function f, the evaluators can locally compute secret shares of f (x) for any input x, without learning information about f in the process.In this paper, we initiate the study of access control for FSS. Given the shares of f, the evaluators can ensure that the dealer is authorized to share the provided function. For a function family $\\mathcal{F}$ and an access control list defined over the family, the evaluators receiving the shares of $f \\in \\mathcal{F}$ can efficiently check that the dealer knows the access key for f.This model enables new applications of FSS, such as: (1) anonymous authentication in a multi-party setting, (2) access control in private databases, and (3) authentication and spam prevention in anonymous communication systems.Our definitions and constructions abstract and improve the concrete efficiency of several recent systems that implement ad-hoc mechanisms for access control over FSS. The main building block behind our efficiency improvement is a discrete-logarithm zero-knowledge proof-of-knowledge over secret-shared elements, which may be of independent interest.We evaluate our constructions and show a 50–70× reduction in computational overhead compared to existing access control techniques used in anonymous communication. In other applications, such as private databases, the processing cost of introducing access control is only 1.5–3×, when amortized over databases with 500,000 or more items.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
     "authors": [
-      "Changsheng Sun",
-      "Xinke Li",
-      "Jin Song Dong 0001"
+      "Sacha Servan-Schreiber",
+      "Simon Beyzerov",
+      "Eli Yablon",
+      "Hyojae Park"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_TaHC25",
+    "id": "paper:ieee_sp:conf_sp_ShivakumarBBCCGOSSY23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_TaHC25",
+      "native_id": "conf_sp_ShivakumarBBCCGOSSY23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00114"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179355"
     },
-    "title": "Ring Referral: Efficient Publicly Verifiable Ad hoc Credential Scheme with Issuer and Strong User Anonymity for Decentralized Identity and More.",
-    "summary": "In this paper, we present a ring referral scheme, by which a user can publicly prove her knowledge of a valid signature for a private message that is signed by one of an ad hoc set of authorized issuers, without revealing the signing issuer. Ring referral is a natural extension to traditional ring signature by allowing a prover to obtain a signature from a third-party signer. Our scheme is useful for diverse applications, such as certificate-hiding decentralized identity, privacy-enhancing federated authentication, anonymous endorsement and privacy -preserving referral marketing. In contrast with prior issuer-hiding credential schemes, our ring referral scheme supports more distinguishing features, such as (1) public verifiability over an ad hoc ring, (2) strong user anonymity against collusion among the issuers and verifier to track a user, (3) transparent setup, (4) message hiding, (5) efficient multi-message logarithmic verifiability, (6) threshold scheme for requiring multiple co-signing issuers. Finally, we implemented our ring referral scheme with extensive empirical evaluation.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
+    "title": "Spectre Declassified: Reading from the Right Place at the Wrong Time.",
+    "summary": "Practical information-flow programming languages commonly allow controlled leakage via a declassify construct—programmers can use this construct to declare intentional leakage. For instance, cryptographic signatures and ciphertexts, which are computed from private keys, are viewed as secret by information-flow analyses. Cryptographic libraries can use declassify to make this data public, as it is no longer sensitive.In this paper, we study the interaction between speculative execution and declassification. We show that speculative execution leads to unintended leakage from declassification sites. Concretely, we present a PoC that recovers keys from AES implementations. Our PoC is an instance of a Spectre attack, and remains effective even when programs are compiled with speculative load hardening (SLH), a widespread compiler-based countermeasure against Spectre. We develop formal countermeasures against these attacks, including a significant improvement to SLH we term selective speculative load hardening (selSLH). These countermeasures soundly enforce relative non-interference (RNI): Informally, the speculative leakage of a protected program is limited to the existing sequential leakage of the original program. We implement our simplest countermeasure in the FaCT language and compiler—which is designed specifically for high-assurance cryptography—and we see performance overheads of at most 10%. Finally, although we do not directly implement selSLH, our preliminary evaluation suggests a significant reduction in performance cost for cryptographic functions as compared to traditional SLH.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
     "authors": [
-      "The-Anh Ta",
-      "Xiangyu Hui",
-      "Sid Chi-Kin Chau"
+      "Basavesh Ammanaghatta Shivakumar",
+      "Jack Barnes",
+      "Gilles Barthe",
+      "Sunjay Cauligi",
+      "Chitchanok Chuengsatiansup",
+      "Daniel Genkin",
+      "Sioli O&apos;Connell",
+      "Peter Schwabe",
+      "Rui Qi Sim",
+      "Yuval Yarom"
     ]
   },
   {
-    "id": "paper:ieee_sp:conf_sp_Tan0S0025",
+    "id": "paper:ieee_sp:conf_sp_ShivakumarBGLOPST23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ieee_sp",
-      "native_id": "conf_sp_Tan0S0025",
+      "native_id": "conf_sp_ShivakumarBGLOPST23",
       "source_name": "IEEE S&P",
-      "source_url": "https://doi.org/10.1109/SP61157.2025.00120"
+      "source_url": "https://doi.org/10.1109/SP46215.2023.10179418"
     },
-    "title": "On the Effectiveness of Prompt Stealing Attacks on In-the-Wild Prompts.",
-    "summary": "Large Language Models (LLMs) have increased demand for high-quality prompts, which are now considered valuable commodities in prompt marketplaces. However, this demand has also led to the emergence of prompt stealing attacks, where the adversary attempts to infer prompts from generated outputs, threatening the intellectual property and business models of these marketplaces. Previous research primarily examines prompt stealing on academic datasets. The key question remains unanswered: Do these attacks genuinely threaten in-the-wild prompts curated by real-world users? In this paper, we provide the first systematic study on the efficacy of prompt stealing attacks against in-the-wild prompts. Our analysis shows that in-the-wild prompts differ significantly from academic ones in length, semantics, and topics. Our evaluation subsequently reveals that current prompt stealing attacks perform poorly in this context. To improve attack efficacy, we employ a Text Gradient based method to iteratively refine prompts to better reproduce outputs. This leads to enhanced attack performance, as evidenced by improvements in METEOR score from 0.207 to 0.253 for prompt recovery and from 0.323 to 0.440 for output recovery. Despite these improvements, we showcase that the fundamental challenges persist, highlighting the necessity for further research to improve and evaluate the effectiveness of prompt stealing attacks in practical scenarios.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
+    "title": "Typing High-Speed Cryptography against Spectre v1.",
+    "summary": "The current gold standard of cryptographic software is to write efficient libraries with systematic protections against timing attacks. In order to meet this goal, cryptographic engineers increasingly use high-assurance cryptography tools. These tools guide programmers and provide rigorous guarantees that can be verified independently by library users. However, high-assurance tools reason about overly simple execution models that elide transient execution leakage. Thus, implementations validated by high-assurance cryptography tools remain potentially vulnerable to transient execution attacks such as Spectre or Meltdown. Moreover, proposed countermeasures are not used in practice due to performance overhead.We propose, analyze, implement and evaluate an approach for writing efficient cryptographic implementations that are protected against Spectre v1 attacks. Our approach ensures speculative constant-time, an information flow property which guarantees that programs are protected against Spectre v1. Speculative constant-time is enforced by means of a (value-dependent) information flow type system. The type system tracks security levels depending on whether execution is misspeculating. We implement our approach in the Jasmin framework for high-assurance cryptography, and use it for protecting all implementations of an experimental cryptographic library that includes highly optimized implementations of symmetric primitives, of elliptic-curve cryptography, and of Kyber, a lattice-based KEM recently selected by NIST for standardization. The performance impact of our protections is very low; for example, less than 1% for Kyber and essentially zero for X25519.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
     "authors": [
-      "Yicong Tan",
-      "Xinyue Shen 0001",
-      "Yun Shen",
+      "Basavesh Ammanaghatta Shivakumar",
+      "Gilles Barthe",
+      "Benjamin Grégoire",
+      "Vincent Laporte",
+      "Tiago Oliveira 0004",
+      "Swarn Priya",
+      "Peter Schwabe",
+      "Lucas Tabary-Maujean"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_PapamanthouSGHS24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_PapamanthouSGHS24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3670354"
+    },
+    "title": "Reckle Trees: Updatable Merkle Batch Proofs with Applications.",
+    "summary": "We propose Reckle trees, a new vector commitment based on succinct RECursive arguments and MerKLE trees. Reckle trees' distinguishing feature is their support for succinct batch proofs that are updatable - enabling new applications in the blockchain setting where a proof needs to be computed and efficiently maintained over a moving stream of blocks. Our technical approach is based on embedding the computation of the batch hash inside the recursive Merkle verification via a hash-based accumulator called canonical hashing. Due to this embedding, our batch proofs can be updated in logarithmic time, whenever a Merkle leaf (belonging to the batch or not) changes, by maintaining a data structure that stores previously-computed recursive proofs. Assuming enough parallelism, our batch proofs are also computable in O(log n) parallel time - independent of the size of the batch. As a natural extension of Reckle trees, we also introduce Reckle+ trees. Reckle+ trees provide updatable and succinct proofs for certain types of Map/Reduce computations. In this setting, a prover can commit to a memory M and produce a succinct proof for a Map/Reduce computation over a subset I of M. The proof can be efficiently updated whenever I or M changes.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Charalampos Papamanthou",
+      "Shravan Srinivasan",
+      "Nicolas Gailly",
+      "Ismael Hishon-Rezaizadeh",
+      "Andrus Salumets",
+      "Stjepan Golemac"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_Pappas024",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_Pappas024",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690318"
+    },
+    "title": "Sparrow: Space-Efficient zkSNARK for Data-Parallel Circuits and Applications to Zero-Knowledge Decision Trees.",
+    "summary": "Space-efficient SNARKs aim to reduce the prover's space overhead which is one the main obstacles for deploying SNARKs in practice, as it can be prohibitively large (e.g., orders of magnitude larger than natively performing the computation). In this work, we propose Sparrow, a novel space-efficient zero-knowledge SNARK for data-parallel arithmetic circuits with two attractive features: (i) it is the first space-efficient scheme where, for a given field, the prover overhead increases with a multiplicative sublogarithmic factor as the circuit size increases, and (ii) compared to prior space-efficient SNARKs that work for arbitrary arithmetic circuits, it achieves prover space asymptotically smaller than the circuit size itself. Our key building block is a novel space-efficient sumcheck argument with improved prover time which may be of independent interest. Our experimental results for three use cases (arbitrary data parallel circuits, multiplication trees, batch SHA256 hashing) indicate Sparrow outperforms the prior state-of-the-art space-efficient SNARK for arithmetic circuits Gemini (Bootle et al., EUROCRYPT'22) by 3.2-28.7x in total prover space and 3.1-11.3x in prover time. We then use Sparrow to build zero-knowledge proofs of tree training and prediction, relying on its space efficiency to scale to large datasets and forests of multiple trees. Compared to a (non-space-efficient) optimal-time SNARK based on the GKR protocol, we observe prover space reduction of 16-240x for tree training while maintaining essentially the same prover and verifier times and proof size. Even more interestingly, our prover requires comparable space to natively perform the underlying computation. E.g., for a 400MB dataset, our prover only needs 1.4x more space than the native computation.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Christodoulos Pappas",
+      "Dimitrios Papadopoulos 0001"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_PatelPSY24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_PatelPSY24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3670379"
+    },
+    "title": "Efficient Secret Sharing for Large-Scale Applications.",
+    "summary": "Threshold secret sharing enables distributing a message to n parties such that no subset of fewer than t parties can learn the message, whereas any subset of at least t parties can recover the message. Despite being a fundamental primitive, secret sharing still suffers from one significant drawback, where its message reconstruction algorithm is computationally expensive for large privacy thresholds t. In this paper, we aim to address this significant drawback.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Sarvar Patel",
+      "Giuseppe Persiano",
+      "Joon Young Seo",
+      "Kevin Yeo"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_PeinemannKSCM24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_PeinemannKSCM24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690301"
+    },
+    "title": "S-BDT: Distributed Differentially Private Boosted Decision Trees.",
+    "summary": "We introduce S-BDT: a novel (𝜀, 𝛿)-differentially private distributed gradient boosted decision tree (GBDT) learner that improves the protection of single training data points (privacy) while achieving meaningful learning goals, such as accuracy or regression error (utility).S-BDT uses less noise by relying on non-spherical multivariate Gaussian noise, for which we show tight subsampling bounds for privacy amplification and incorporate that into a Rényi filter for individual privacy accounting.We experimentally reach the same utility while saving 50% in terms of epsilon for 𝜀 ≤ 0.5 on the Abalone regression dataset (dataset size ≈ 4𝐾), saving 30% in terms of epsilon for 𝜀 ≤ 0.08 for the Adult classification dataset (dataset size ≈ 50𝐾), and saving 30% in terms of epsilon for 𝜀 ≤ 0.03 for the Spambase classification dataset (dataset size ≈ 5𝐾).Moreover, we show that for situations where a GBDT is learning a stream of data that originates from different subpopulations (non-IID), S-BDT improves the saving of epsilon even further. CCS Concepts• Theory of computation → Theory of database privacy and security; • Computing methodologies → Boosting; Online learning settings.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Thorsten Peinemann",
+      "Moritz Kirschte",
+      "Joshua Stock",
+      "Carlos Cotrini",
+      "Esfandiar Mohammadi"
+    ]
+  },
+  {
+    "id": "paper:acm_ccs:conf_ccs_PengJ0Z24",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "acm_ccs",
+      "native_id": "conf_ccs_PengJ0Z24",
+      "source_name": "ACM CCS",
+      "source_url": "https://doi.org/10.1145/3658644.3690237"
+    },
+    "title": "Toss a Fault to BpfChecker: Revealing Implementation Flaws for eBPF runtimes with Differential Fuzzing.",
+    "summary": "eBPF is a revolutionary technology that can run sandboxed programs in a privileged context and has an extensive range of applications, such as network monitoring on Linux kernel, denial-of-service protection on Windows, and the execution mechanism of smart contracts on blockchain. However, implementation flaws in eBPF have broad-reaching impact and serious consequences. Prior studies primarily focus on the memory safety of the eBPF runtimes, but few can detect implementation flaws (i.e., whether the implementation is correct). Meanwhile, existing implementation flaws detecting methods predominantly address bugs in the verifier, neglecting bugs in other components (i.e., the interpreter and the JIT compiler). In this paper, we present BpfChecker, a differential fuzzing framework to detect implementation flaws in the eBPF runtimes. It utilizes eBPF programs as input, performing differential testing for the critical states across various eBPF runtimes to uncover implementation flaws. To enhance the semantics of generated programs, we devise a lightweight intermediate representation and perform constrained mutations under the guidance of error messages. We have implemented a prototype of BpfChecker and extensively evaluated it on the three eBPF runtimes (i.e., Solana rBPF, vanilla rBPF, Windows eBPF). As a result, we have uncovered 28 new implementation flaws, received 2 CVEs and 800,000 bounty with developers' acknowledgment. More importantly, 2 of the newly found bugs can be used to create divergences in the execution layer of the Solana network.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Chaoyuan Peng",
+      "Muhui Jiang",
+      "Lei Wu 0012",
+      "Yajin Zhou"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_JangidCZL21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_JangidCZL21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/jangid"
+    },
+    "title": "Towards Formal Verification of State Continuity for Enclave Programs.",
+    "summary": "",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Mohit Kumar Jangid",
+      "Guoxing Chen",
+      "Yinqian Zhang",
+      "Zhiqiang Lin 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_JansenTG21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_JansenTG21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/jansen"
+    },
+    "title": "Once is Never Enough: Foundations for Sound Statistical Inference in Tor Network Experimentation.",
+    "summary": "Tor is a popular low-latency anonymous communication system that focuses on usability and performance: a faster network will attract more users, which in turn will improve the anonymity of everyone using the system. The standard practice for previous research attempting to enhance Tor performance is to draw conclusions from the observed results of a single simulation for standard Tor and for each research variant. But because the simulations are run in sampled Tor networks, it is possible that sampling error alone could cause the observed effects. Therefore, we call into question the practical meaning of any conclusions that are drawn without considering the statistical significance of the reported results. In this paper, we build foundations upon which we improve the Tor experimental method. First, we present a new Tor network modeling methodology that produces more representative Tor networks as well as new and improved experimentation tools that run Tor simulations faster and at a larger scale than was previously possible. We showcase these contributions by running simulations with 6,489 relays and 792k simultaneously active users, the largest known Tor network simulations and the first at a network scale of 100%. Second, we present new statistical methodologies through which we: (i) show that running multiple simulations in independently sampled networks is necessary in order to produce informative results; and (ii) show how to use the results from multiple simulations to conduct sound statistical inference. We present a case study using 420 simulations to demonstrate how to apply our methodologies to a concrete set of Tor experiments and how to analyze the results.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Rob Jansen",
+      "Justin Tracey",
+      "Ian Goldberg 0001"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_JeitnerS21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_JeitnerS21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/jeitner"
+    },
+    "title": "Injection Attacks Reloaded: Tunnelling Malicious Payloads over DNS.",
+    "summary": "The traditional design principle for Internet protocols indicates: \"Be strict when sending and tolerant when receiving\" [RFC1958], and DNS is no exception to this. The transparency of DNS in handling the DNS records, also standardised specifically for DNS [RFC3597], is one of the key features that made it such a popular platform facilitating a constantly increasing number of new applications. An application simply creates a new DNS record and can instantly start distributing it over DNS without requiring any changes to the DNS servers and platforms. Our Internet wide study confirms that more than 1.3M (96% of tested) open DNS resolvers are standard compliant and treat DNS records transparently. In this work we show that this `transparency' introduces a severe vulnerability in the Internet: we demonstrate a new method to launch string injection attacks by encoding malicious payloads into DNS records. We show how to weaponise such DNS records to attack popular applications. For instance, we apply string injection to launch a new type of DNS cache poisoning attack, which we evaluated against a population of open resolvers and found 105K to be vulnerable. Such cache poisoning cannot be prevented with common setups of DNSSEC. Our attacks apply to internal as well as to public services, for instance, we reveal that all eduroam services are vulnerable to our injection attacks, allowing us to launch exploits ranging from unauthorised access to eduroam networks to resource starvation. Depending on the application, our attacks cause system crashes, data corruption and leakage, degradation of security, and can introduce remote code execution and arbitrary errors. In our evaluation of the attacks in the Internet we find that all the standard compliant open DNS resolvers we tested allow our injection attacks against applications and users on their networks.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Philipp Jeitner",
+      "Haya Schulmann"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_JiE0S21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_JiE0S21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/ji"
+    },
+    "title": "DEFInit: An Analysis of Exposed Android Init Routines.",
+    "summary": "",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Yuede Ji",
+      "Mohamed Elsabagh",
+      "Ryan Johnson 0002",
+      "Angelos Stavrou"
+    ]
+  },
+  {
+    "id": "paper:usenix_security:conf_uss_JiaCCP21",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "usenix_security",
+      "native_id": "conf_uss_JiaCCP21",
+      "source_name": "USENIX Security",
+      "source_url": "https://www.usenix.org/conference/usenixsecurity21/presentation/jia"
+    },
+    "title": "Entangled Watermarks as a Defense against Model Extraction.",
+    "summary": "Machine learning involves expensive data collection and training procedures. Model owners may be concerned that valuable intellectual property can be leaked if adversaries mount model extraction attacks. As it is difficult to defend against model extraction without sacrificing significant prediction accuracy, watermarking instead leverages unused model capacity to have the model overfit to outlier input-output pairs. Such pairs are watermarks, which are not sampled from the task distribution and are only known to the defender. The defender then demonstrates knowledge of the input-output pairs to claim ownership of the model at inference. The effectiveness of watermarks remains limited because they are distinct from the task distribution and can thus be easily removed through compression or other forms of knowledge transfer. \r\nWe introduce Entangled Watermarking Embeddings (EWE). Our approach encourages the model to learn features for classifying data that is sampled from the task distribution and data that encodes watermarks. An adversary attempting to remove watermarks that are entangled with legitimate data is also forced to sacrifice performance on legitimate data. Experiments on MNIST, Fashion-MNIST, CIFAR-10, and Speech Commands validate that the defender can claim model ownership with 95\\% confidence with less than 100 queries to the stolen copy, at a modest cost below 0.81 percentage points on average in the defended model's performance.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Hengrui Jia 0001",
+      "Christopher A. Choquette-Choo",
+      "Varun Chandrasekaran",
+      "Nicolas Papernot"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiLBZZ0D023",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiLBZZ0D023",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/ghost-domain-reloaded-vulnerable-links-in-domain-name-delegation-and-revocation/"
+    },
+    "title": "Ghost Domain Reloaded: Vulnerable Links in Domain Name Delegation and Revocation.",
+    "summary": "In this paper, we propose PHOENIX DOMAIN, a general and novel attack that allows adversaries to maintain the revoked malicious domain continuously resolvable at scale, which enables an old, mitigated attack, Ghost Domain. PHOENIX DOMAIN has two variations and affects all mainstream DNS software and public DNS resolvers overall because it does not violate any DNS specifications and best security practices. The attack is made possible through systematically \"reverse engineer\" the cache operations of 8 DNS implementations, and new attack surfaces are revealed in the domain name delegation processes. We select 41 well-known public DNS resolvers and prove that all surveyed DNS services are vulnerable to PHOENIX DOMAIN, including Google Public DNS and Cloudflare DNS. Extensive measurement studies are performed with 210k stable and distributed DNS recursive resolvers, and results show that even after one month from domain name revocation and cache expiration, more than 25% of recursive resolvers can still resolve it. The proposed attack provides an opportunity for adversaries to evade the security practices of malicious domain take-down. We have reported discovered vulnerabilities to all affected vendors and suggested 6 types of mitigation approaches to them. Until now, 7 DNS software providers and 15 resolver vendors, including BIND, Unbound, Google, and Cloudflare, have confirmed the vulnerabilities, and some of them are implementing and publishing mitigation patches according to our suggestions. In addition, 9 CVE numbers have been assigned. The study calls for standardization to address the issue of how to revoke domain names securely and maintain cache consistency.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Xiang Li 0108",
+      "Baojun Liu 0002",
+      "Xuesong Bai",
+      "Mingming Zhang 0010",
+      "Qifan Zhang 0002",
+      "Zhou Li 0001",
+      "Haixin Duan",
+      "Qi Li 0002"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiYN23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiYN23",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/double-and-nothing-understanding-and-detecting-cryptocurrency-giveaway-scams/"
+    },
+    "title": "Double and Nothing: Understanding and Detecting Cryptocurrency Giveaway Scams.",
+    "summary": "As cryptocurrencies increase in popularity and users obtain and manage their own assets, attackers are pivoting from just abusing cryptocurrencies as a payment mechanism, to stealing crypto assets from end users. In this paper, we report on the first large-scale analysis of cryptocurrency giveaway scams. Giveaway scams are deceptively simple scams where attackers set up webpages advertising fake events and promising users to double or triple the funds that they send to a specific wallet address. To understand the population of these scams in the wild we design and implement CryptoScamTracker, a tool that uses Certificate Transparency logs to identify likely giveaway scams. Through a 6-month-long experiment, CryptoScamTracker identified a total of 10,079 giveaway scam websites targeting users of all popular cryptocurrencies. Next to analyzing the hosting and domain preferences of giveaway scammers, we perform the first quantitative analysis of stolen funds using the public blockchains of the abused cryptocurrencies, extracting the transactions corresponding to 2,266 wallets belonging to scammers. We find that just for the scams discovered in our reporting period, attackers have stolen the equivalent of tens of millions of dollars, organizing large-scale campaigns across different cryptocurrencies. Lastly, we find evidence that attackers try to re-victimize users by offering fund-recovery services and that some victims send funds multiple times to the same scammers.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Xigao Li",
+      "Anurag Yepuri",
+      "Nick Nikiforakis"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiZCLFT23",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiZCLFT23",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/towards-automatic-and-precise-heap-layout-manipulation-for-general-purpose-programs/"
+    },
+    "title": "Towards Automatic and Precise Heap Layout Manipulation for General-Purpose Programs.",
+    "summary": "A critical challenge in automatic heap-based exploit generation is to find out whether an exploitable state can be constructed by manipulating the heap layout. This is usually achieved by re-arranging the objects in heap memory according to an orchestrated strategy that utilizes the program's heap operations. However, hindered by the difficulty in strategically coordinating the use of heap operations given the complexity in the program logic and heap allocation mechanisms, the goal of precise heap layout manipulation for general-purpose programs has not been accomplished.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Runhao Li",
+      "Bin Zhang",
+      "Jiongyi Chen",
+      "Wenfeng Lin",
+      "Chao Feng 0002",
+      "Chaojing Tang"
+    ]
+  },
+  {
+    "id": "paper:ndss:conf_ndss_LiuL0S023",
+    "type": "paper",
+    "source_info": {
+      "source": "top_conferences",
+      "source_sub": "ndss",
+      "native_id": "conf_ndss_LiuL0S023",
+      "source_name": "NDSS",
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/backdoor-attacks-against-dataset-distillation/"
+    },
+    "title": "Backdoor Attacks Against Dataset Distillation.",
+    "summary": "Dataset distillation has emerged as a prominent technique to improve data efficiency when training machine learning models. It encapsulates the knowledge from a large dataset into a smaller synthetic dataset. A model trained on this smaller distilled dataset can attain comparable performance to a model trained on the original training dataset. However, the existing dataset distillation techniques mainly aim at achieving the best trade-off between resource usage efficiency and model utility. The security risks stemming from them have not been explored. This study performs the first backdoor attack against the models trained on the data distilled by dataset distillation models in the image domain. Concretely, we inject triggers into the synthetic data during the distillation procedure rather than during the model training stage, where all previous attacks are performed. We propose two types of backdoor attacks, namely NAIVEATTACK and DOORPING. NAIVEATTACK simply adds triggers to the raw data at the initial distillation phase, while DOORPING iteratively updates the triggers during the entire distillation procedure. We conduct extensive evaluations on multiple datasets, architectures, and dataset distillation techniques. Empirical evaluation shows that NAIVEATTACK achieves decent attack success rate (ASR) scores in some cases, while DOORPING reaches higher ASR scores (close to 1.0) in all cases. Furthermore, we conduct a comprehensive ablation study to analyze the factors that may affect the attack performance. Finally, we evaluate multiple defense mechanisms against our backdoor attacks and show that our attacks can practically circumvent these defense mechanisms.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
+    "authors": [
+      "Yugeng Liu",
+      "Zheng Li 0023",
       "Michael Backes 0001",
+      "Yun Shen",
       "Yang Zhang 0016"
     ]
   },
   {
-    "id": "paper:acm_ccs:conf_ccs_XuDHL0024",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_XuDHL0024",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3670290"
-    },
-    "title": "PhyScout: Detecting Sensor Spoofing Attacks via Spatio-temporal Consistency.",
-    "summary": "Existing defense approaches against sensor spoofing attacks suf- fer from the limitations of limited specific attack types, requiring GPU computation, exhibiting considerable detection latency and struggling with the interpretability of corner cases. We developed PhyScout, a holistic sensor spoofing defense framework to over- come the above limitations. Our framework capitalizes on the ob- servation that human drivers can rapidly and accurately identify spoofing attacks by performing spatio-temporal consistency checks of their environment. We commence by defining the generalized conflicts that different sensor spoofing attacks produce regarding the spatio-temporal consistency. These conflicts are subsequently unified and formalized through a least squares problem approach. This process is modeled using image-based feature point extrac- tion and matching techniques, followed by the design of a risk identification method for each conflict. We evaluate PhyScout across various environments, including simulators, datasets, and real-world scenarios. Compared to existing defense solutions, PhyScout offers rapid identification of sensor at- tacks (within 100ms) with low performance overhead (CPU-based), and conflict visualization. It demonstrates a fresh paradigm in au- tonomous vehicle security and presents new avenues for future research in robust and efficient defense mechanisms against sensor spoofing attacks. More video demos are at our anonymous website https://sites.google.com/view/physcout.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Yuan Xu 0033",
-      "Gelei Deng",
-      "Xingshuo Han",
-      "Guanlin Li",
-      "Han Qiu 0001",
-      "Tianwei Zhang 0004"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_XuJWFXXFP24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_XuJWFXXFP24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3690336"
-    },
-    "title": "Fuzzing JavaScript Engines with a Graph-based IR.",
-    "summary": "Mutation-based fuzzing effectively discovers defects in JS engines. High-quality mutations are key for the performance of mutation-based fuzzers. The choice of the underlying representation (e.g., a sequence of tokens, an abstract syntax tree, or an intermediate representation) defines the possible mutation space and subsequently influences the design of mutation operators. Current program representations in JS engine fuzzers center around abstract syntax trees and customized bytecode-level intermediate languages. However, existing efforts struggle to generate semantically valid and meaningful mutations, limiting the discovery of defects in JS engines.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Haoran Xu",
-      "Zhiyuan Jiang",
-      "Yongjun Wang",
-      "Shuhui Fan",
-      "Shenglin Xu",
-      "Peidai Xie",
-      "Shaojing Fu",
-      "Mathias Payer"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_XuW0BLJWW024",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_XuW0BLJWW024",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3690238"
-    },
-    "title": "ProFake: Detecting Deepfakes in the Wild against Quality Degradation with Progressive Quality-adaptive Learning.",
-    "summary": "Despite the promising advances in deepfake detection on current datasets, detecting visual deepfakes in real-world scenarios (e.g., deepfake videos and live streaming on YouTube) remains a challenge due to the inherent quality degradation such as unpredictable compression employed by social media platforms. Such degradation perturbs discernible forgery clues and diminishes the effectiveness of deepfake detection methods, raising a critical safety concern to the misuse of forgery faces in real-world scenarios. In this paper, we aim to understand the impacts of real-world degradation on the robustness of deepfake detection. Particularly, we investigate the risk of degraded deepfakes towards their detection on two real-world scenarios (i.e., deepfake videos and deepfake live streaming on social media platforms). By measuring the effects of real-world degradations on the performance and representation capabilities of detection models, we reveal that real-world deepfakes can be simulated via common degradation operations (e.g., JPEG compression) as they are perceptually similar to deepfake detectors. By analyzing the training dynamics under different sequences of training samples, we observe that the training order of deepfakes progressing from non-degraded (easy) to heavily degraded (hard) enhances the adaptability of detection models to various degradation in real-world scenarios. Drawing from these observations, we present a novel deepfake detection method ProFake to enhance the robustness of deepfake detection against real-world quality degradations. ProFake enables quality-adaptive learning via progressively degrade, detect and assign weights for the training samples driven by the feedback of model performance and image quality, which ensures that our model gradually focuses on more challenging samples to achieve quality-adaptive deepfake detection. Extensive experiments show that compared with existing methods, ProFake improves deepfake detection accuracy by an average of over 10 % in real-world scenarios and by an average of over 30 % in heavily degraded scenarios, while maintaining comparable performance in detecting high-quality deepfakes.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Huiyu Xu",
-      "Yaopeng Wang",
-      "Zhibo Wang 0001",
-      "Zhongjie Ba",
-      "Wenxin Liu",
-      "Lu Jin",
-      "Haiqin Weng",
-      "Tao Wei 0002",
-      "Kui Ren 0001"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_XuZH24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_XuZH24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3690200"
-    },
-    "title": "Camel: Communication-Efficient and Maliciously Secure Federated Learning in the Shuffle Model of Differential Privacy.",
-    "summary": "Federated learning (FL) has rapidly become a compelling paradigm that enables multiple clients to jointly train a model by sharing only gradient updates for aggregation, without revealing their local private data. In order to protect the gradient updates which could also be privacy-sensitive, there has been a line of work studying local differential privacy (LDP) mechanisms to provide a formal privacy guarantee. With LDP mechanisms, clients locally perturb their gradient updates before sharing them out for aggregation. However, such approaches are known for greatly degrading the model utility, due to heavy noise addition. To enable a better privacy-utility trade-off, a recently emerging trend is to apply the shuffle model of DP in FL, which relies on an intermediate shuffling operation on the perturbed gradient updates to achieve privacy amplification. Following this trend, in this paper, we present Camel, a new communication-efficient and maliciously secure FL framework in the shuffle model of DP. Camel first departs from existing works by ambitiously supporting integrity check for the shuffle computation, achieving security against malicious adversary. Specifically, Camel builds on the trending cryptographic primitive of secret-shared shuffle, with custom techniques we develop for optimizing system-wide communication efficiency, and for lightweight integrity checks to harden the security of server-side computation. In addition, we also derive a significantly tighter bound on the privacy loss through analyzing the Rényi differential privacy (RDP) of the overall FL process. Extensive experiments demonstrate that Camel achieves better privacy-utility trade-offs than the state-of-the-art work, with promising performance.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Shuangqing Xu",
-      "Yifeng Zheng 0001",
-      "Zhongyun Hua"
-    ]
-  },
-  {
-    "id": "paper:acm_ccs:conf_ccs_XueZFLXLLY24",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "acm_ccs",
-      "native_id": "conf_ccs_XueZFLXLLY24",
-      "source_name": "ACM CCS",
-      "source_url": "https://doi.org/10.1145/3658644.3691374"
-    },
-    "title": "Poster: An Exploration of Large Language Models in Malicious Source Code Detection.",
-    "summary": "Embedding malicious code within the software supply chain has become a significant concern in the information technology field. Current methods for detecting malicious code, based on signatures, behavior analysis, and traditional machine learning models, lack result interpretability. This study proposes a novel malicious code detection framework, Mal-LLM, which leverages the cost advantages of traditional machine learning models and the interpretability of LLMs. Initially, traditional machine learning models filter vast amounts of malicious source code in the software supply chain. Subsequently, LLMs analyze and interpret the filtered malicious source code using a customized prompt template incorporating role-playing and chain-of-thought techniques. The feasibility of the Mal-LLM framework is validated through extensive experimental analyses, examining the ambiguity and redundancy of the LLM in the framework, the significance of ''experience'' and ''malicious'' prompts, and exploring methods to reduce the cost of using LLMs from an enterprise perspective.",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Di Xue",
-      "Gang Zhao",
-      "Zhongqi Fan",
-      "Wei Li 0302",
-      "Yahong Xu",
-      "Zhen Liu 0045",
-      "Yin Liu",
-      "Zhongliang Yuan"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_RosenbergTFJ23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_RosenbergTFJ23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/rosenberg"
-    },
-    "title": "Fairness Properties of Face Recognition and Obfuscation Systems.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Harrison Rosenberg",
-      "Brian Tang",
-      "Kassem Fawaz",
-      "Somesh Jha"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SachdevaLZS23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SachdevaLZS23",
-      "source_name": "USENIX Security",
-      "source_url": "https://doi.org/10.1145/3607505.3607512"
-    },
-    "title": "User Profiling and Vulnerability Introduction Prediction in Social Coding Repositories: A Dynamic Graph Embedding Approach: Vulnerability Introduction Prediction in Social Coding Repositories.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Agrim Sachdeva",
-      "Ben Lazarine",
-      "Hongyi Zhu 0001",
-      "Sagar Samtani"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SajadmaneshSBG23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SajadmaneshSBG23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/sajadmanesh"
-    },
-    "title": "GAP: Differentially Private Graph Neural Networks with Aggregation Perturbation.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Sina Sajadmanesh",
-      "Ali Shahin Shamsabadi",
-      "Aurélien Bellet",
-      "Daniel Gatica-Perez"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_SamermitTKMWCT23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_SamermitTKMWCT23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/samermit"
-    },
-    "title": "&quot;Millions of people are watching you&quot;: Understanding the Digital-Safety Needs and Practices of Creators.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Patrawat Samermit",
-      "Anna Turner",
-      "Patrick Gage Kelley",
-      "Tara Matthews",
-      "Vanessia Wu",
-      "Sunny Consolvo",
-      "Kurt Thomas"
-    ]
-  },
-  {
-    "id": "paper:usenix_security:conf_uss_Sanchez-RolaBBB23",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "usenix_security",
-      "native_id": "conf_uss_Sanchez-RolaBBB23",
-      "source_name": "USENIX Security",
-      "source_url": "https://www.usenix.org/conference/usenixsecurity23/presentation/sanchez-rola"
-    },
-    "title": "Rods with Laser Beams: Understanding Browser Fingerprinting on Phishing Pages.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Iskander Sánchez-Rola",
-      "Leyla Bilge",
-      "Davide Balzarotti",
-      "Armin Buescher",
-      "Petros Efstathopoulos"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_00020S0AC0L25",
+    "id": "paper:ndss:conf_ndss_Luo0WTXZLL23",
     "type": "paper",
     "source_info": {
       "source": "top_conferences",
       "source_sub": "ndss",
-      "native_id": "conf_ndss_00020S0AC0L25",
+      "native_id": "conf_ndss_Luo0WTXZLL23",
       "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/censor-defense-against-gradient-inversion-via-orthogonal-subspace-bayesian-sampling/"
+      "source_url": "https://www.ndss-symposium.org/ndss-paper/vulhawk-cross-architecture-vulnerability-detection-with-entropy-based-binary-code-search/"
     },
-    "title": "CENSOR: Defense Against Gradient Inversion via Orthogonal Subspace Bayesian Sampling.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
+    "title": "VulHawk: Cross-architecture Vulnerability Detection with Entropy-based Binary Code Search.",
+    "summary": "Code reuse is widespread in software development. It brings a heavy spread of vulnerabilities, threatening software security. Unfortunately, with the development and deployment of the Internet of Things (IoT), the harms of code reuse are magnified. Binary code search is a viable way to find these hidden vulnerabilities. Facing IoT firmware images compiled by different compilers with different optimization levels from different architectures, the existing methods are hard to fit these complex scenarios. In this paper, we propose a novel intermediate representation function model, which is an architecture-agnostic model for cross-architecture binary code search. It lifts binary code into microcode and preserves the main semantics of binary functions via complementing implicit operands and pruning redundant instructions. Then, we use natural language processing techniques and graph convolutional networks to generate function embeddings. We call the combination of a compiler, architecture, and optimization level as a file environment, and take a divideand-conquer strategy to divide a similarity calculation problem of C 2 N cross-file-environment scenarios into N -1 embedding transferring sub-problems. We propose an entropy-based adapter to transfer function embeddings from different file environments into the same file environment to alleviate the differences caused by various file environments. To precisely identify vulnerable functions, we propose a progressive search strategy to supplement function embeddings with fine-grained features to reduce false positives caused by patched functions. We implement a prototype named VulHawk and conduct experiments under seven different tasks to evaluate its performance and robustness. The experiments show VulHawk outperforms Asm2Vec, Asteria, BinDiff, GMN, PalmTree, SAFE, and Trex.",
+    "published_at": "2026-09-01T05:38:10.717337+00:00",
+    "fetched_at": "2026-09-01T05:38:10.717337+00:00",
     "authors": [
-      "Kaiyuan Zhang 0002",
-      "Siyuan Cheng 0005",
-      "Guangyu Shen",
-      "Bruno Ribeiro 0001",
-      "Shengwei An",
-      "Pin-Yu Chen",
-      "Xiangyu Zhang 0001",
-      "Ninghui Li 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_00020YHQ025",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_00020YHQ025",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/explanation-as-a-watermark-towards-harmless-and-multi-bit-model-ownership-verification-via-watermarking-feature-attribution/"
-    },
-    "title": "Explanation as a Watermark: Towards Harmless and Multi-bit Model Ownership Verification via Watermarking Feature Attribution.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Shuo Shao 0002",
-      "Yiming Li 0004",
-      "Hongwei Yao",
-      "Yiling He",
-      "Zhan Qin",
-      "Kui Ren 0001"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_0002CH0H25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_0002CH0H25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/lend-me-your-beam-privacy-implications-of-plaintext-beamforming-feedback-in-wifi/"
-    },
-    "title": "Lend Me Your Beam: Privacy Implications of Plaintext Beamforming Feedback in WiFi.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Rui Xiao 0002",
-      "Xiankai Chen",
-      "Yinghui He",
-      "Jun Han 0001",
-      "Jinsong Han"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_0002KH25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_0002KH25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/raifle-reconstruction-attacks-on-interaction-based-federated-learning-with-adversarial-data-manipulation/"
-    },
-    "title": "RAIFLE: Reconstruction Attacks on Interaction-based Federated Learning with Adversarial Data Manipulation.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Dzung Pham 0002",
-      "Shreyas Kulkarni",
-      "Amir Houmansadr"
-    ]
-  },
-  {
-    "id": "paper:ndss:conf_ndss_0002MWY25",
-    "type": "paper",
-    "source_info": {
-      "source": "top_conferences",
-      "source_sub": "ndss",
-      "native_id": "conf_ndss_0002MWY25",
-      "source_name": "NDSS",
-      "source_url": "https://www.ndss-symposium.org/ndss-paper/on-borrowed-time-preventing-static-side-channel-analysis/"
-    },
-    "title": "On Borrowed Time - Preventing Static Side-Channel Analysis.",
-    "summary": "",
-    "published_at": "2026-08-31T06:05:29.720790+00:00",
-    "fetched_at": "2026-08-31T06:05:29.720790+00:00",
-    "authors": [
-      "Robert Dumitru 0002",
-      "Thorben Moos",
-      "Andrew Wabnitz",
-      "Yuval Yarom"
+      "Zhenhao Luo",
+      "Pengfei Wang 0010",
+      "Baosheng Wang",
+      "Yong Tang 0005",
+      "Wei Xie 0007",
+      "Xu Zhou 0004",
+      "Danjun Liu",
+      "Kai Lu 0001"
     ]
   }
 ]
