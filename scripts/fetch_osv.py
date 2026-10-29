@@ -125,6 +125,9 @@ def _http_get_json(client: httpx.Client, url: str) -> Any:
 )
 async def _async_http_get_json(client: httpx.AsyncClient, url: str) -> Any:
     resp = await client.get(url)
+    # OSV does not index every CVE. A missing record is a normal final answer.
+    if resp.status_code == 404:
+        return 404
     resp.raise_for_status()
     return resp.json()
 
