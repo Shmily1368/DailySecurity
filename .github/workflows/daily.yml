@@ -15,10 +15,15 @@ on:
 permissions:
   contents: write # 允许推送 data/ 到仓库
 
+concurrency:
+  group: daily-data-update
+  cancel-in-progress: false
+
 jobs:
   update-data:
     name: "Update Data Pipeline"
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     
     steps:
       - name: Checkout repository
@@ -35,94 +40,29 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: Fetch arXiv & Top Conferences Papers
-        run: |
-          python scripts/fetch_arxiv.py --max-results 100
-          python scripts/fetch_top_conferences.py --limit-per-conf 5
-        
-      - name: Fetch CISA KEV
-        run: python scripts/fetch_cisa_kev.py --days 1
-        
-      - name: Fetch NVD CVEs
+      - name: Collect, summarize and validate current data
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: python scripts/fetch_nvd.py --days 1
-        
-      - name: Fetch EPSS
-        run: python scripts/fetch_epss.py --input data/raw/cisa_kev.json --input data/raw/nvd_recent.json
-        continue-on-error: true # 容忍 EPSS 接口不稳定
-        
-      - name: Fetch GitHub Advisory & OSV
-        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python scripts/fetch_github_advisory.py || true
-          python scripts/fetch_osv.py --nvd-source data/raw/nvd_recent.json --limit 500 || true
-          
-      - name: Fetch Vendor Advisories
-        run: python scripts/fetch_vendor_advisories.py --days 1 --limit-per-source 50
-        continue-on-error: true
-        
-      - name: Fetch Threat Intelligence
-        run: python scripts/fetch_threat_intel.py --days 1 --limit-per-source 50
-        continue-on-error: true
-        
-      - name: Summarize with LLM (Dynamic Mode)
-        env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
+          FORCE_MOCK: ${{ inputs.force_mock }}
         run: |
-          # 检查是否有真实 API KEY, 如果没有或手动勾选了 force_mock, 则使用 mock 模式
-          MOCK_FLAG=""
-          if [ -z "$OPENAI_API_KEY" ] || [ "${{ github.event.inputs.force_mock }}" == "true" ]; then
-            echo "OPENAI_API_KEY is not set or force_mock is true. Using --mock mode."
-            MOCK_FLAG="--mock"
+          if [ "$FORCE_MOCK" = "true" ]; then
+            python scripts/run_pipeline.py --mock
           else
-            echo "Using LLM_BASE_URL: ${LLM_BASE_URL:-default}"
-            echo "Using LLM_MODEL: ${LLM_MODEL:-gpt-4o-mini}"
+            python scripts/run_pipeline.py
           fi
-          
-          python scripts/summarize_with_llm.py \
-            --input data/raw/arxiv_latest.json \
-            --input data/raw/top_conferences.json \
-            --output data/processed/paper_digest.json \
-            $MOCK_FLAG || true
-            
-          python scripts/summarize_with_llm.py \
-            --input data/raw/cisa_kev.json \
-            --input data/raw/nvd_recent.json \
-            --input data/raw/github_advisory_latest.json \
-            --input data/raw/osv_latest.json \
-            --output data/processed/daily_digest.json \
-            --limit 20 \
-            $MOCK_FLAG || true
-            
-          python scripts/summarize_with_llm.py \
-            --input data/raw/vendor_advisories.json \
-            --output data/processed/vendor_advisories_digest.json \
-            --limit 30 \
-            $MOCK_FLAG || true
-            
-          python scripts/summarize_with_llm.py \
-            --input data/raw/threat_intel.json \
-            --output data/processed/threat_intel_digest.json \
-            --limit 30 \
-            $MOCK_FLAG || true
-            
-      - name: Build Daily Digest & Rank
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
-          LLM_MODEL: ${{ secrets.LLM_MODEL }}
-        run: |
-          if [ -z "$OPENAI_API_KEY" ] || [ "${{ github.event.inputs.force_mock }}" == "true" ]; then
-            export LLM_MOCK="1"
-          fi
-          python scripts/build_daily_digest.py
-        
-      - name: Validate Data
-        run: python scripts/validate_data.py --all
+
+      - name: Upload pipeline diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-diagnostics-${{ github.run_id }}
+          path: data/tmp/pipeline/
+          retention-days: 14
+          if-no-files-found: ignore
         
       - name: Commit and push changes
         run: |
@@ -131,5 +71,3 @@ jobs:
           git add data/
           # 只有在有变更的情况下才提交
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(data): auto update daily security radar" && git push)
-
-# Force GitHub Actions Scheduler to reload the cron config: Thu Apr 30 11:36:02 CST 2026

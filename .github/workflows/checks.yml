@@ -1,0 +1,25 @@
+name: Offline pipeline checks
+
+on:
+  push:
+    branches: [main]
+    paths: ["scripts/**", "schemas/**", "requirements.txt", ".github/workflows/**"]
+  pull_request:
+    paths: ["scripts/**", "schemas/**", "requirements.txt", ".github/workflows/**"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python scripts/check_pipeline.py

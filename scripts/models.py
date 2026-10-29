@@ -78,6 +78,17 @@ class ExploitMaturity(str, Enum):
     IN_THE_WILD = "in_the_wild"     # 已在野利用
 
 
+class ConfidenceLabel(str, Enum):
+    ABSTRACT_ONLY = "abstract_only"
+    METADATA_ONLY = "metadata_only"
+    WITH_REFERENCES = "with_references"
+    FULL_TEXT = "full_text"
+    SOURCE_CONFIRMED = "source_confirmed"
+    SINGLE_SOURCE = "single_source"
+    MULTI_SOURCE = "multi_source"
+    UNVERIFIED = "unverified"
+
+
 # ---------------------------------------------------------------------------
 # 组合模型
 # ---------------------------------------------------------------------------
@@ -172,7 +183,7 @@ class LlmSummary(BaseModel):
 
     model_config = ConfigDict(extra="ignore")
 
-    summary_zh: str = Field(..., min_length=1, description="一句话中文摘要, <= 120 字")
+    summary_zh: str = Field(..., min_length=1, description="中文摘要, 目标 300~500 字；信息不足时可更短")
     why_it_matters_zh: str = Field(..., min_length=1, description="推荐理由, <= 150 字")
     impact_zh: Optional[str] = None
     detection_signals_zh: List[str] = Field(default_factory=list)
@@ -186,12 +197,9 @@ class LlmSummary(BaseModel):
     novelty_score: float = Field(..., ge=0.0, le=1.0)
     actionability_score: float = Field(..., ge=0.0, le=1.0)
     confidence: float = Field(..., ge=0.0, le=1.0)
-    confidence_label: Optional[str] = Field(
+    confidence_label: Optional[ConfidenceLabel] = Field(
         default=None,
-        description=(
-            "置信度标签, 枚举值: "
-            "'abstract_only' / 'metadata_only' / 'with_references' / 'full_text'"
-        ),
+        description="证据范围或来源置信度标签，与 DigestItem JSON Schema 保持一致",
     )
 
     # 可选字段：如果存在则使用
@@ -413,6 +421,7 @@ __all__ = [
     "Category",
     "KevStatus",
     "ExploitMaturity",
+    "ConfidenceLabel",
     "ExploitRef",
     "SourceInfo",
     "RiskSignal",

@@ -1,6 +1,7 @@
 import json
 import glob
 import os
+import sys
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 import argparse
@@ -22,7 +23,8 @@ def load_processed_items(input_dir: str) -> Dict[str, DigestItem]:
     
     for filepath in glob.glob(f"{input_dir}/*.json"):
         # Ignore mock files or any test files when building production digest
-        if "mock" in filepath or "test" in filepath or filepath.endswith("digest_items.json"):
+        filename = Path(filepath).name
+        if "mock" in filename or "test" in filename or filename == "digest_items.json":
             print(f"[INFO] Skipping mock/test file: {filepath}")
             continue
             
@@ -89,7 +91,8 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
     
     for filepath in glob.glob(f"{raw_dir}/*.json"):
         # Ignore error files and EPSS scores (which are purely metadata to be merged)
-        if "errors" in filepath or "epss" in filepath:
+        filename = Path(filepath).name
+        if filename.endswith("_errors.json") or "epss" in filename or "mock" in filename or "test" in filename:
             continue
             
         with open(filepath, "r", encoding="utf-8") as f:
@@ -126,7 +129,7 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                     # Create a minimal fallback LlmSummary
                     summary_data = {
                         "summary_zh": clean_summary[:400] or "（暂无可用摘要）",
-                        "why_it_matters_zh": "原文内容（由于配额限制，未进行深度 LLM 分析）",
+                        "why_it_matters_zh": "原文摘录（未生成 LLM 摘要，请结合来源自行核实）",
                         "recommended_action_zh": "建议根据原文自行评估",
                         "confidence_label": "metadata_only",
                         "confidence": 0.5,
@@ -140,8 +143,11 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                         summary_data["category"] = "advisory"
                     elif raw_item.type == ItemType.THREAT_REPORT:
                         summary_data["category"] = "threat-intel"
+                    elif raw_item.type == ItemType.DETECTION_RULE:
+                        summary_data["category"] = "detection"
                         
                     llm_summary = build_llm_summary(raw_item, summary_data)
+                    llm_summary.prompt_version = "fallback"
                     digest_item = build_digest_item(raw_item, llm_summary)
                     missing_items.append(digest_item)
                     existing_ids.add(raw_item.id)
@@ -178,8 +184,8 @@ def build_sections(items: List[DigestItem], top_10_ids: List[str] = None) -> Dic
     for item in items:
         # ======= 1. Threat Intel =======
         if item.type == ItemType.THREAT_REPORT:
-            threat_type = getattr(item.summary, "threat_type", "").lower() if item.summary else ""
-            tags = " ".join(getattr(item.summary, "tags", [])).lower() if item.summary else ""
+            threat_type = (item.llm_summary.threat_type or "").lower()
+            tags = " ".join(item.llm_summary.tags).lower()
             if "apt" in threat_type or "apt" in tags:
                 sections["threat_apt"].append(item.id)
             elif "ransomware" in threat_type or "cybercrime" in tags or "botnet" in tags:
@@ -286,18 +292,22 @@ def build_hero(items: List[DigestItem]) -> Hero:
 
 def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str, is_mock: bool = False) -> List[DigestItem]:
     """
-    Find items in the top N list that only have fallback summaries (metadata_only),
+    Find items in the top N list that only have fallback summaries,
     and process them with LLM on the fly to ensure high quality for the top picks.
     """
-    missing_items = [item for item in top_items if getattr(item.llm_summary, "confidence_label", "") == "metadata_only"]
+    missing_items = [item for item in top_items if item.llm_summary.prompt_version == "fallback"]
     if not missing_items:
+        return top_items
+
+    if not is_mock and not os.getenv("OPENAI_API_KEY"):
+        print("[WARN] No LLM API key; keeping explicitly marked source excerpts.")
         return top_items
 
     print(f"[INFO] Found {len(missing_items)} Top items missing LLM summary. Processing them now...")
     
     # Initialize LLM Client
     client = None
-    if is_mock or not os.getenv("OPENAI_API_KEY"):
+    if is_mock:
         print("[INFO] build_daily_digest: Using MockLlmClient for missing Top items.")
         client = MockLlmClient()
     else:
@@ -309,7 +319,8 @@ def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str
     raw_files = glob.glob(f"{raw_dir}/*.json")
     raw_map = {}
     for rf_path in raw_files:
-        if "mock" in rf_path or "test" in rf_path or "epss" in rf_path:
+        filename = Path(rf_path).name
+        if "mock" in filename or "test" in filename or "epss" in filename or filename.endswith("_errors.json"):
             continue
         try:
             with open(rf_path, "r", encoding="utf-8") as f:
@@ -344,6 +355,8 @@ def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str
             raw_summary_dict = client.summarize(raw_item)
             summary = build_llm_summary(raw_item, raw_summary_dict)
             new_digest_item = build_digest_item(raw_item, summary)
+            # 保留排名前合并的 EPSS 等风险信号。
+            new_digest_item.risk = item.risk
             updated_items_map[item.id] = new_digest_item
             print(f"[OK] Successfully generated LLM summary for {item.id}")
         except Exception as e:
@@ -442,8 +455,8 @@ def main():
                     item.risk.epss_score = max_epss
     
     if not items:
-        print("[WARN] No items found in processed or raw dir.")
-        return
+        print("[ERROR] No current items found; preserving the previously published digest.")
+        return 1
         
     # 2. 排序并补录 Top 10 的 LLM 摘要
     # First ranking pass to find top candidates
@@ -485,7 +498,7 @@ def main():
     digest = DailyDigest(
         date=date_str,
         generated_at=now,
-        is_mock=False,
+        is_mock=is_mock,
         hero=hero,
         sections=sections,
         items=ranked_items
@@ -521,6 +534,7 @@ def main():
     print(f"[OK] Built daily digest with {len(ranked_items)} items.")
     print(f"  -> {date_path}")
     print(f"  -> {latest_path}")
+    return 0
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

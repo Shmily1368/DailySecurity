@@ -183,8 +183,13 @@ export function getAllDates(): string[] {
     return getDailyIndex().dates;
 }
 
+// 构建期间 data/daily 是固定快照，聚合和索引只需计算一次。
+let allItemsCache: DigestItem[] | null = null;
+let topicItemsCache: Map<string, DigestItem[]> | null = null;
+
 /** 聚合所有日期的所有条目 (供归档、主题分析用) */
 export function getAllItems(): DigestItem[] {
+    if (allItemsCache !== null) return allItemsCache;
     const index = getDailyIndex();
     const allItems: DigestItem[] = [];
     const seen = new Set<string>();
@@ -203,22 +208,35 @@ export function getAllItems(): DigestItem[] {
     }
     // 按照 published_at 倒序
     allItems.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
-    return allItems;
+    allItemsCache = allItems;
+    return allItemsCache;
+}
+
+function getTopicItemsMap(): Map<string, DigestItem[]> {
+    if (topicItemsCache !== null) return topicItemsCache;
+    const index = new Map<string, DigestItem[]>();
+    for (const item of getAllItems()) {
+        const topics = new Set([
+            ...(item.llm_summary?.tags ?? []),
+            ...(item.topics ?? []),
+        ]);
+        for (const topic of topics) {
+            const related = index.get(topic);
+            if (related) related.push(item);
+            else index.set(topic, [item]);
+        }
+    }
+    topicItemsCache = index;
+    return topicItemsCache;
+}
+
+export function getTopicItems(topic: string): DigestItem[] {
+    return getTopicItemsMap().get(topic) ?? [];
 }
 
 /** 获取所有主题/标签的列表 */
 export function getAllTopics(): string[] {
-    const items = getAllItems();
-    const topics = new Set<string>();
-    for (const item of items) {
-        if (item.llm_summary?.tags) {
-            item.llm_summary.tags.forEach(t => topics.add(t));
-        }
-        if (item.topics) {
-            item.topics.forEach(t => topics.add(t));
-        }
-    }
-    return Array.from(topics).sort();
+    return Array.from(getTopicItemsMap().keys()).sort();
 }
 
 function slugifyTopic(topic: string): string {

@@ -180,11 +180,14 @@ def format_item(p, source_id, info, now, abstract=""):
     }
 
 def run():
+    global STATE_FILE
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="data/raw/top_conferences.json")
+    parser.add_argument("--state-file", type=Path, default=STATE_FILE)
     parser.add_argument("--limit-per-conf", type=int, default=5, help="Number of random fallback papers per conference")
     parser.add_argument("--force", action="store_true", help="Force fetch ignoring state")
     args = parser.parse_args()
+    STATE_FILE = args.state_file
 
     conferences = {
         "ieee_sp": {"stream": "conf/sp", "name": "IEEE S&P", "url": "https://www.ieee-security.org/TC/SP-Index.html"},

@@ -10,7 +10,9 @@
 
 ## 项目状态
 
-**Phase 1 (当前)**: 项目骨架 + 基于 mock 数据的最小前端。暂未接入真实数据源。
+已接入真实来源并部署至 [dailysecurity.cn](https://www.dailysecurity.cn/)。每日数据更新由 GitHub Actions 执行，Astro 读取日报 JSON 构建静态站点。
+
+构建缓存、来源降级与校验规则见 [构建与数据管线可靠性](./docs/PIPELINE_RELIABILITY.md)。
 
 ---
 
@@ -74,14 +76,15 @@ pip install -r requirements.txt
 
 ```bash
 cp .env.example .env
-# 编辑 .env; 开发期保持 LLM_MOCK=1, 不需要填 OPENAI_API_KEY
+# 将需要的变量导出到 shell；脚本不会自动加载 .env
+# 明确需要模拟摘要时使用 --mock，无 key 的生产管线使用原文摘录
 ```
 
-### 3. 启动前端 (读取 mock JSON)
+### 3. 启动前端 (读取已提交日报)
 
 ```bash
 cd src
-npm install
+npm ci
 npm run dev        # 本地开发服务器, 默认 http://localhost:4321
 ```
 
@@ -93,7 +96,7 @@ npm run build      # 产物在 src/dist/
 npm run preview    # 本地预览构建产物
 ```
 
-> 前端直接从项目根目录的 `data/daily/<date>.json` 读取数据。当前仅有一份 mock 数据 `data/daily/2026-04-27.json`。
+> 前端读取项目根目录的 `data/daily/latest.json` 与历史日期日报。构建期间的数据视为固定快照；修改数据后重启开发服务。
 
 ### 4. 数据校验
 
@@ -306,7 +309,7 @@ python scripts/validate_data.py data/processed/digest_items.json
   `temperature=0.2`。
 - 每条输出用 Pydantic `LlmSummary` + `DigestItem` 双重校验; 单条失败仅 `[WARN]`
   记录并跳过, 不中断整体任务。
-- 论文类型强制 `confidence_label = "abstract_only"` (代码层覆盖 LLM 输出)。
+- 论文仅提供摘要时强制 `abstract_only`；没有摘要时标注 `metadata_only`。
 - Prompt 按 item type 分派 (paper / cve / kev / advisory / threat_report /
   detection_rule), 详情见 [docs/PROMPTS.md](./docs/PROMPTS.md)。
 
@@ -315,7 +318,11 @@ python scripts/validate_data.py data/processed/digest_items.json
 `scripts/rank_items.py` 会计算各项加分，`scripts/build_daily_digest.py` 负责组装最终的日报：
 
 ```bash
+# 推荐：在新目录中采集、摘要、校验后发布日报，避免复用旧产物
+python scripts/run_pipeline.py
+
 # 从 processed 目录读取数据，生成 data/daily/YYYY-MM-DD.json 和 latest.json
+# 仅用于手动处理已准备好的数据；自动更新使用 run_pipeline.py
 python scripts/build_daily_digest.py
 ```
 
@@ -330,7 +337,7 @@ python scripts/build_daily_digest.py
 
 #### 如何配置 GitHub Secrets (可选)
 如果需要真实调用 LLM 和提高 NVD API 速率，请在 **Settings** -> **Secrets and variables** -> **Actions** 中添加：
-- `OPENAI_API_KEY`: 你的 OpenAI API 密钥。**如果不配置，Actions 将自动回退到 `--mock` 模式**，产生假数据而不会报错。
+- `OPENAI_API_KEY`: 你的 OpenAI API 密钥。如果不配置，使用本次真实来源数据的原文摘录，并明确说明未生成 LLM 摘要。
 - `NVD_API_KEY`: 你的 NVD API 密钥。
 
 #### 如何手动触发 Workflow
@@ -339,7 +346,7 @@ python scripts/build_daily_digest.py
 3. 点击右侧的 **Run workflow**
 4. （可选）你可以勾选 `Force mock mode` 强制本次运行不调用 LLM API。
 
-> **注：** `daily.yml` 每天 UTC 01:30 (北京时间 09:30) 自动运行，它会自动把抓取到的 JSON 数据提交回 `main` 分支。`main` 分支的数据变更会自动触发 `deploy.yml` 进行前端静态构建和 Pages 发布。
+> **注：** `daily.yml` 配置每天 UTC 00:37 (北京时间 08:37) 自动运行，实际启动时间可能受 GitHub 调度影响。成功后提交数据到 `main`；`deploy.yml` 通过上游工作流完成事件触发构建和 Pages 发布。
 
 ---
 
@@ -368,9 +375,11 @@ export OPENAI_API_KEY="sk-..."
 export LLM_BASE_URL="https://api.deepseek.com/v1" # 例如使用 DeepSeek
 export LLM_MODEL="deepseek-chat"
 
-# 运行摘要并合并数据
-python scripts/summarize_with_llm.py --input data/raw/arxiv_latest.json --output data/processed/arxiv_digest.json --limit 10 --mock
-python scripts/build_daily_digest.py
+# 采集、摘要、校验并发布；显式模拟摘要可增加 --mock
+python scripts/run_pipeline.py
+
+# 离线检查，不访问来源网站或 LLM API
+python scripts/check_pipeline.py
 ```
 
 4. 本地预览：
@@ -383,10 +392,10 @@ cd src && npm run dev
 ## 自动更新机制 (GitHub Actions)
 
 项目配置了每日自动抓取和部署的工作流 (`.github/workflows/daily.yml` 和 `deploy.yml`)：
-- **触发时间**：每天 UTC 01:30 (北京时间 09:30)。
-- **运行内容**：依次执行论文、CVE、厂商公告和威胁情报的数据抓取。通过 `--mock` 或环境变量生成摘要后进行 `validate_data.py` 数据验证，若验证通过将更新数据自动推送到当前仓库。数据推送会触发第二个流水线完成静态站点（Astro）的构建，发布至 GitHub Pages。
+- **触发时间**：配置为每天 UTC 00:37 (北京时间 08:37)，实际启动可能延迟。
+- **运行内容**：各来源独立采集，仅消费本次产物；新日报通过双重校验后提交。单来源失败允许其他来源继续；没有可用新数据时失败并保留上次日报。部署工作流在上游成功后构建并发布 Pages。
 - **环境变量配置**：你需要在 GitHub 仓库的 **Settings -> Secrets and variables -> Actions** 中配置以下 Secret 才能使用真实大模型：
-  - `OPENAI_API_KEY` (必填，否则将 fallback 到 `--mock` 假数据模式)
+  - `OPENAI_API_KEY` (生成真实模型摘要时需要；无 key 使用明确标注的原文摘录)
   - `LLM_BASE_URL` (选填，如果你不用 OpenAI 官方接口)
   - `LLM_MODEL` (选填，默认为 `gpt-4o-mini`)
   - `NVD_API_KEY` (选填，用于提升 NVD 抓取速率)

@@ -35,14 +35,10 @@ import httpx
 from tenacity import (
     RetryError,
     retry,
-    retry_if_exception_type,
+    retry_if_exception,
     stop_after_attempt,
     wait_exponential,
-    before_sleep_log
 )
-import logging
-
-logger = logging.getLogger(__name__)
 
 # 允许导入 scripts/models.py
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -53,12 +49,12 @@ from models import ItemType, RawItem, SourceInfo  # noqa: E402
 # 配置
 # ---------------------------------------------------------------------------
 
-ARXIV_API_ENDPOINT = "http://export.arxiv.org/api/query"
+ARXIV_API_ENDPOINT = "https://export.arxiv.org/api/query"
 ARXIV_CATEGORY = "cs.CR"
 DEFAULT_MAX_RESULTS = 100  # Lowered to 100 to reduce rate limit risk
 DEFAULT_OUTPUT = Path("data/raw/arxiv_latest.json")
 HTTP_TIMEOUT = 20.0
-USER_AGENT = "cyber-daily-radar/0.1 (+https://github.com/)"
+USER_AGENT = "DailySecurity/0.2 (+https://github.com/Shmily1368/DailySecurity)"
 
 
 # ---------------------------------------------------------------------------
@@ -70,36 +66,41 @@ class ArxivFetchError(RuntimeError):
     """arXiv 抓取失败的统一异常。"""
 
 
-import random
-import time
-
-USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-]
-
 def log_retry(retry_state):
-    print(f"[WARN] arXiv 请求失败 (尝试次数 {retry_state.attempt_number}), 即将 sleep {retry_state.idle_for} 秒后重试...", file=sys.stderr)
+    print(f"[WARN] arXiv 请求失败 (尝试次数 {retry_state.attempt_number}), {retry_state.next_action.sleep} 秒后重试...", file=sys.stderr)
+
+
+def _retryable(exc: BaseException) -> bool:
+    return isinstance(exc, httpx.RequestError) or (
+        isinstance(exc, httpx.HTTPStatusError)
+        and (exc.response.status_code == 429 or exc.response.status_code >= 500)
+    )
+
+
+def _retry_wait(retry_state) -> float:
+    delay = wait_exponential(multiplier=3, min=3, max=30)(retry_state)
+    exc = retry_state.outcome.exception()
+    if isinstance(exc, httpx.HTTPStatusError):
+        try:
+            # 遵守服务端 Retry-After；整个来源另有管线超时上限。
+            delay = max(delay, float(exc.response.headers.get("Retry-After", "0")))
+        except ValueError:
+            pass
+    return delay
+
 
 @retry(
     reraise=True,
-    stop=stop_after_attempt(5),
-    wait=wait_exponential(multiplier=30, min=60, max=300),
-    retry=retry_if_exception_type((httpx.HTTPError,)),
+    stop=stop_after_attempt(3),
+    wait=_retry_wait,
+    retry=retry_if_exception(_retryable),
     before_sleep=log_retry
 )
 def _http_get(url: str) -> str:
     """带重试的 HTTP GET, 失败抛 httpx.HTTPError 触发 tenacity 重试。"""
-    # 每次请求前强行增加随机延时，遵守 arXiv 速率建议，伪装正常行为
-    delay = random.uniform(5.0, 10.0)
-    time.sleep(delay)
-    
-    ua = random.choice(USER_AGENTS)
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
-        headers={"User-Agent": ua},
+        headers={"User-Agent": USER_AGENT},
         follow_redirects=True,
     ) as client:
         resp = client.get(url)

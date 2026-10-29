@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ItemCard from '../../components/ItemCard.astro';
-import { getAllTopicEntries, getAllItems } from '../../lib/data';
+import { getAllTopicEntries, getTopicItems } from '../../lib/data';
 
 export async function getStaticPaths() {
   const topics = getAllTopicEntries();
@@ -15,13 +15,7 @@ export async function getStaticPaths() {
 
 const { topic } = Astro.params;
 const { originalTopic } = Astro.props;
-const allItems = getAllItems();
-
-const relatedItems = allItems.filter(item => {
-  const llmTags = item.llm_summary?.tags ?? [];
-  const rawTopics = item.topics ?? [];
-  return llmTags.includes(originalTopic as string) || rawTopics.includes(originalTopic as string);
-});
+const relatedItems = getTopicItems(originalTopic as string);
 ---
 
 <BaseLayout title={`#${originalTopic} 主题 - Cyber Security Daily Radar`}>

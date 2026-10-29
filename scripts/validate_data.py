@@ -81,10 +81,14 @@ def _load_schema(name: str) -> dict:
 
 def _looks_like_digest_items(data: Any) -> bool:
     """判断 data 是否为一组 DigestItem (不含 hero)。"""
-    if not isinstance(data, dict):
+    if not isinstance(data, dict) or "hero" in data:
         return False
     items = data.get("items")
-    if not isinstance(items, list) or not items:
+    if not isinstance(items, list):
+        return False
+    if data.get("kind") == "digest_items":
+        return True
+    if not items:
         return False
     first = items[0]
     return isinstance(first, dict) and "llm_summary" in first
@@ -249,8 +253,11 @@ def _collect_all_files() -> List[Path]:
         if not d.exists():
             continue
         files.extend(sorted(d.rglob("*.json")))
-    # 排除 index.json (非本 schema)
-    return [f for f in files if f.name != "index.json"]
+    # index 和来源诊断不是业务条目；显式指定诊断文件仍会校验失败。
+    return [
+        f for f in files
+        if f.name != "index.json" and not f.name.endswith("_errors.json")
+    ]
 
 
 def main() -> int:
