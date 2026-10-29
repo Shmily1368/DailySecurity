@@ -288,7 +288,7 @@ class RawItem(BaseModel):
     # 正文
     title: str
     summary: Optional[str] = Field(
-        default=None, description="源站摘要/描述, 截断 <= 4000 字符"
+        default=None, max_length=4000, description="源站摘要/描述, 截断 <= 4000 字符"
     )
     raw_text: Optional[str] = Field(
         default=None, description="完整原文 (可选, 仅供内部 LLM 调用)"

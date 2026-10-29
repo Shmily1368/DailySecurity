@@ -38,6 +38,8 @@ python scripts/run_pipeline.py --source-timeout 600 --llm-timeout 600
 
 摘要中间文件增加 `kind="digest_items"`，空条目列表也能识别为摘要产物。含有 `hero` 的完整日报必须校验整个日报，不能只校验其中条目。
 
+会议采集在写出前将 OpenAlex 原始摘要截断至 4000 字符；RawItem 模型与正式 Schema 使用同一限制。该限制针对来源摘要，与面向读者的 LLM 中文摘要长度目标分开。
+
 ```bash
 # 不访问来源网站，不调用 LLM API
 python scripts/check_pipeline.py

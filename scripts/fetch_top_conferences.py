@@ -173,7 +173,7 @@ def format_item(p, source_id, info, now, abstract=""):
             "source_url": ee or info['url']
         },
         "title": title,
-        "summary": abstract,
+        "summary": abstract[:4000],
         "published_at": now.isoformat(),
         "fetched_at": now.isoformat(),
         "authors": authors

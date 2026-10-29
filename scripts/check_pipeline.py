@@ -14,6 +14,7 @@ from jsonschema import Draft202012Validator
 from pydantic import ValidationError
 
 import fetch_arxiv
+from fetch_top_conferences import format_item
 import run_pipeline
 import validate_data
 from models import ConfidenceLabel, ItemType, LlmSummary, RawItem
@@ -69,6 +70,21 @@ def check_contracts() -> None:
     for item_type, category in [(ItemType.ADVISORY, "advisory"), (ItemType.THREAT_REPORT, "threat-intel")]:
         result = build_llm_summary(raw_item(item_type), {"topics": ["apt"], "confidence": "single_source"})
         assert result.category == category and result.tags == ["apt"]
+    conference = format_item(
+        {"key": "conf/example/fixture", "title": "Fixture", "authors": {}, "year": "2026"},
+        "fixture", {"name": "Fixture", "url": "https://example.com"},
+        datetime.now(timezone.utc), abstract="a" * 4001,
+    )
+    assert len(conference["summary"]) == 4000
+    RawItem.model_validate(conference)
+    raw_schema = json.loads((ROOT / "schemas/raw_item.schema.json").read_text())
+    Draft202012Validator(raw_schema).validate(conference)
+    try:
+        RawItem.model_validate({**conference, "summary": "a" * 4001})
+    except ValidationError:
+        pass
+    else:
+        raise AssertionError("Raw model accepted an oversized summary")
     print("[OK] Summary labels, numeric confidence, categories and paper evidence constraints")
 
 
