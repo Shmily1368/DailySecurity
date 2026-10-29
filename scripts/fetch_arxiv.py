@@ -223,6 +223,7 @@ def entry_to_raw_item(entry: Any, fetched_at: datetime) -> RawItem | None:
         source_name="arXiv cs.CR",
         source_url=abs_url,  # type: ignore[arg-type]
         native_id=native_id,
+        source_quality="primary",
     )
 
     return RawItem(

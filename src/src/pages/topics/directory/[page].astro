@@ -1,0 +1,10 @@
+---
+import TopicDirectory from '../../../components/TopicDirectory.astro';
+import { getAllTopics } from '../../../lib/data';
+export function getStaticPaths() {
+  return Array.from({ length: Math.max(0, Math.ceil(getAllTopics().length / 100) - 1) }, (_, i) => ({
+    params: { page: String(i + 2) }, props: { page: i + 2 },
+  }));
+}
+---
+<TopicDirectory page={Astro.props.page} />

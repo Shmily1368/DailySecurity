@@ -61,6 +61,7 @@ from pathlib import Path
 from typing import Any, Iterable, Optional
 
 import httpx
+from fetch_result import FetchBatch
 from tenacity import (
     RetryError,
     retry,
@@ -133,13 +134,13 @@ async def async_fetch_osv(client: httpx.AsyncClient, oid: str, sem: asyncio.Sema
             data = await _async_http_get_json(client, OSV_VULN_URL.format(osv_id=oid))
             return oid, data
         except RetryError:
-            return oid, None
+            raise OsvFetchError(f"Retries exhausted for {oid}")
         except httpx.HTTPStatusError as e:
             if e.response.status_code == 404:
                 return oid, 404
-            return oid, None
+            raise OsvFetchError(f"HTTP {e.response.status_code} for {oid}") from e
         except httpx.HTTPError:
-            return oid, None
+            raise OsvFetchError(f"Request failed for {oid}")
 
 async def fetch_all_osv(cves: list[str]) -> list[dict]:
     headers = {"User-Agent": USER_AGENT, "Accept": "application/json"}
@@ -147,21 +148,36 @@ async def fetch_all_osv(cves: list[str]) -> list[dict]:
     seen_ids = set()
     
     # 限制并发为 30, 防止被 OSV API 限流
-    sem = asyncio.Semaphore(30)
+    sem = asyncio.Semaphore(8)
+    errors = []
+    not_found = 0
     
     async with httpx.AsyncClient(timeout=HTTP_TIMEOUT, headers=headers, follow_redirects=True) as client:
         # Phase 1: Reverse query CVEs
         tasks = [async_fetch_osv(client, cve, sem) for cve in cves]
-        results = await asyncio.gather(*tasks)
+        results = await asyncio.gather(*tasks, return_exceptions=True)
         
-        for cve, data in results:
+        for query, result in zip(cves, results):
+            if isinstance(result, Exception):
+                errors.append({"id": query, "error_type": type(result).__name__})
+                continue
+            cve, data = result
+            if data == 404:
+                not_found += 1
             if isinstance(data, dict):
                 osv_id = data.get("id")
                 # 如果命中，/v1/vulns/CVE-xxxx 会直接返回完整的 OSV 记录
-                if isinstance(osv_id, str) and osv_id and osv_id not in seen_ids:
-                    seen_ids.add(osv_id)
-                    out.append(data)
-    return out
+                if not isinstance(osv_id, str) or not osv_id.strip():
+                    errors.append({"id": query, "error_type": "invalid_response"})
+                    continue
+                if osv_id in seen_ids:
+                    continue
+                seen_ids.add(osv_id)
+                out.append(data)
+            elif data != 404:
+                errors.append({"id": query, "error_type": "invalid_response"})
+    status = "partial" if errors and len(errors) < len(cves) else "failed" if errors else "success" if out else "not_found"
+    return FetchBatch(out, status=status, errors=errors, query_count=len(cves), not_found_count=not_found)
 # ---------------------------------------------------------------------------
 # 归一
 # ---------------------------------------------------------------------------
@@ -257,7 +273,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
     if summary_final and len(summary_final) > 4000:
         summary_final = summary_final[:4000]
 
-    published = _parse_iso(entry.get("published")) or fetched_at
+    published = _parse_iso(entry.get("published"))
     updated = _parse_iso(entry.get("modified"))
 
     # aliases -> CVE
@@ -285,7 +301,15 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
     risk = RiskSignal(
         cvss_score=None,
         cvss_vector=cvss_vector,
+        patch_status="available" if any(
+            event.get("fixed")
+            for affected in entry.get("affected", []) if isinstance(affected, dict)
+            for ranges in affected.get("ranges", []) if isinstance(ranges, dict)
+            for event in ranges.get("events", []) if isinstance(event, dict)
+        ) else "unknown",
     )
+    if risk.patch_status == "available":
+        risk.patch_references = [OSV_WEB_URL.format(osv_id=osv_id)]
 
     source_info = SourceInfo(
         source="osv",
@@ -293,6 +317,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         source_name="OSV.dev",
         source_url=OSV_WEB_URL.format(osv_id=osv_id),  # type: ignore[arg-type]
         native_id=osv_id,
+        source_quality="primary",
     )
 
     topics = ["advisory"] + ecosystems + cwes
@@ -307,6 +332,8 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         published_at=published,
         updated_at=updated,
         fetched_at=fetched_at,
+        first_seen_at=fetched_at,
+        date_precision="exact" if published else "unknown",
         authors=[],
         affiliations=[],
         cves=cves,
@@ -330,7 +357,7 @@ def normalize(entries: Iterable[dict], fetched_at: datetime) -> list[RawItem]:
             continue
         if item is not None:
             out.append(item)
-    out.sort(key=lambda x: (x.published_at, x.id), reverse=True)
+    out.sort(key=lambda x: (x.published_at or x.updated_at or x.fetched_at, x.id), reverse=True)
     return out
 
 
@@ -466,9 +493,10 @@ def main() -> int:
                 "normalized_count": 0,
                 "fetched_at": fetched_at.isoformat(),
                 "source": "OSV.dev /v1/vulns",
+                **getattr(entries, "meta", {}),
             },
         )
-        return 0
+        return 1 if getattr(entries, "meta", {}).get("status") == "failed" else 0
 
     fetched_at = datetime.now(timezone.utc)
     items = normalize(entries, fetched_at)
@@ -480,6 +508,7 @@ def main() -> int:
         "normalized_count": len(items),
         "fetched_at": fetched_at.isoformat(),
         "source": "OSV.dev /v1/vulns",
+        **getattr(entries, "meta", {}),
     }
 
     count = dump_items(items, args.output, meta)

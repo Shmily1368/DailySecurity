@@ -1,4 +1,5 @@
 ---
+import '../styles/items.css';
 export interface Props {
   title: string;
   description?: string;
@@ -206,5 +207,9 @@ const { title, description = '每日网络空间安全雷达 —— 聚合论文
         Powered by Astro · Data from arXiv / NVD / CISA KEV / EPSS
       </div>
     </footer>
+    <script>
+      import { bindDetails } from '../lib/cards';
+      bindDetails();
+    </script>
   </body>
 </html>

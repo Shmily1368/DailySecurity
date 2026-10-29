@@ -5,7 +5,9 @@ import sys
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
 import argparse
+from urllib.parse import urlparse
 from typing import Dict, List, Any
+from storage import atomic_json
 
 from models import DigestItem, DailyDigest, Hero, HeroStats, ItemType, Severity, RawItem, RiskSignal
 from rank_items import rank_items
@@ -16,9 +18,12 @@ def parse_args():
     parser.add_argument("--processed-dir", default="data/processed", help="Dir containing processed JSON files")
     parser.add_argument("--raw-dir", default="data/raw", help="Dir containing raw JSON files")
     parser.add_argument("--output-dir", default="data/daily", help="Dir to output daily digest")
+    parser.add_argument("--previous-digest", type=Path)
+    parser.add_argument("--health-file", type=Path)
+    parser.add_argument("--date", default=None, help="Publication date; default Asia/Shanghai")
     return parser.parse_args()
 
-def load_processed_items(input_dir: str) -> Dict[str, DigestItem]:
+def load_processed_items(input_dir: str, aggregate: bool = True) -> Dict[str, DigestItem]:
     items_map: Dict[str, DigestItem] = {}
     
     for filepath in glob.glob(f"{input_dir}/*.json"):
@@ -49,12 +54,93 @@ def load_processed_items(input_dir: str) -> Dict[str, DigestItem]:
                         items_map[item.id] = item
                     else:
                         existing = items_map[item.id]
-                        if item.published_at > existing.published_at:
+                        if item_time(item) > item_time(existing):
                             items_map[item.id] = item
                 except Exception as e:
                     print(f"[WARN] Failed to validate item in {filepath}: {e}")
                     
-    return items_map
+    if not aggregate:
+        return items_map
+    return {item.id: item for item in aggregate_vulnerabilities(list(items_map.values()))}
+
+
+def item_time(item):
+    return item.updated_at or item.published_at or item.first_seen_at or item.fetched_at or datetime.min.replace(tzinfo=timezone.utc)
+
+
+def article_is_valid(item):
+    url = urlparse(str(item.source_url if isinstance(item, DigestItem) else item.source_info.source_url))
+    if url.hostname in {"beian.miit.gov.cn", "android.googlesource.com", "www.android.com"}:
+        return False
+    return not any(word in url.path.lower() for word in ("/cookie-settings", "/privacy/", "/login", "/signup"))
+
+
+def entity_key(item):
+    if item.type in {ItemType.CVE, ItemType.KEV, ItemType.ADVISORY} and len(item.cves) == 1 and item.source in {
+        "nvd", "kev", "cisa", "ghsa", "github_advisory", "osv"
+    }:
+        return "cve:" + item.cves[0].upper()
+    return "item:" + item.id
+
+
+def aggregate_vulnerabilities(items):
+    from models import SourceInfo
+    groups = {}
+    for item in items:
+        groups.setdefault(entity_key(item), []).append(item)
+    merged = []
+    levels = [Severity.INFO, Severity.LOW, Severity.MEDIUM, Severity.HIGH, Severity.CRITICAL]
+    for records in groups.values():
+        # Current records precede retained same-ID copies; only their content competes for the base.
+        candidates = {}
+        for item in records:
+            candidates.setdefault(item.id, item)
+        base = max(candidates.values(), key=lambda it: (it.summary_status == "model", it.source == "nvd", item_time(it), it.id)).model_copy(deep=True)
+        sources = {}
+        for item in records:
+            base.aliases = sorted(set(base.aliases + item.aliases + [item.id]))
+            for field in ("cves", "vendors", "products", "topics"):
+                setattr(base, field, sorted(set(getattr(base, field) + getattr(item, field))))
+            for source in item.related_sources + [SourceInfo(
+                source=item.source, source_sub=item.source_sub, source_quality=item.source_quality,
+                source_name=item.source_name, source_url=item.source_url,
+                native_id=item.aliases[0] if item.aliases else item.id,
+            )]:
+                sources[(source.source, str(source.source_url))] = source
+            base.severity = max([base.severity, item.severity], key=levels.index)
+            if not item.risk:
+                continue
+            if not base.risk:
+                base.risk = RiskSignal()
+            for field in ("cvss_score", "epss_score", "epss_percentile"):
+                value = getattr(item.risk, field)
+                if value is not None and (getattr(base.risk, field) is None or value > getattr(base.risk, field)):
+                    setattr(base.risk, field, value)
+                    if field == "cvss_score":
+                        base.risk.cvss_vector = item.risk.cvss_vector
+            for field in ("kev_listed", "known_exploited", "exploit_in_the_wild", "has_public_exploit"):
+                if getattr(item.risk, field):
+                    setattr(base.risk, field, True)
+            if item.risk.known_ransomware is True:
+                base.risk.known_ransomware = True
+            elif item.risk.known_ransomware is False and base.risk.known_ransomware is None:
+                base.risk.known_ransomware = False
+            if item.risk.kev_listed:
+                base.risk.kev_status = "listed"
+                base.risk.kev_date_added = item.risk.kev_date_added
+                base.risk.due_date = item.risk.due_date
+            if item.risk.patch_status == "available":
+                base.risk.patch_status = "available"
+            base.risk.patch_references = list({str(r): r for r in base.risk.patch_references + item.risk.patch_references}.values())
+            base.risk.exploit_references = list({str(r.url): r for r in base.risk.exploit_references + item.risk.exploit_references}.values())
+        base.related_sources = [s for key, s in sources.items() if key != (base.source, str(base.source_url))]
+        if base.risk:
+            if base.risk.known_exploited or base.risk.kev_listed:
+                base.risk.exploit_maturity = "in_the_wild"
+            elif base.risk.has_public_exploit:
+                base.risk.exploit_maturity = "poc"
+        merged.append(base)
+    return merged
 
 def load_epss_scores(raw_dir: str) -> Dict[str, float]:
     """Load EPSS scores mapping from epss_scores.json to merge into items."""
@@ -92,7 +178,7 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
     for filepath in glob.glob(f"{raw_dir}/*.json"):
         # Ignore error files and EPSS scores (which are purely metadata to be merged)
         filename = Path(filepath).name
-        if filename.endswith("_errors.json") or "epss" in filename or "mock" in filename or "test" in filename:
+        if filename.endswith(("_errors.json", "_status.json")) or "epss" in filename or "mock" in filename or "test" in filename:
             continue
             
         with open(filepath, "r", encoding="utf-8") as f:
@@ -120,7 +206,7 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                     
                     # Skip old historical data (especially important for cisa_kev.json which has 1500+ items)
                     # For threat intelligence, we also want to stay daily.
-                    if raw_item.published_at and raw_item.published_at < cutoff_date:
+                    if not article_is_valid(raw_item) or item_time(raw_item) < cutoff_date:
                         continue
                         
                     import re
@@ -134,6 +220,7 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                         "confidence_label": "metadata_only",
                         "confidence": 0.5,
                         "category": "vuln"
+                        , "prompt_version": "fallback"
                     }
                     
                     if raw_item.type == ItemType.PAPER:
@@ -165,6 +252,8 @@ def build_sections(items: List[DigestItem], top_10_ids: List[str] = None) -> Dic
         "research_systems": [],
         "research_crypto": [],
         "research_others": [],
+        "research_history": [],
+        "detection_rules": [],
         # Vuln
         "vuln_exploited": [],
         "vuln_poc": [],
@@ -196,7 +285,7 @@ def build_sections(items: List[DigestItem], top_10_ids: List[str] = None) -> Dic
                 sections["threat_campaigns"].append(item.id)
                 
         # ======= 2. Vendor Advisories (Only Primary Vendors) =======
-        elif item.type == ItemType.ADVISORY and item.source.lower() == "vendor":
+        elif item.type == ItemType.ADVISORY and item.source.lower() == "vendor" and item.source_quality == "primary":
             # Assuming product_vendor from source config, we heuristically split based on tags or source name
             title_lower = item.title.lower()
             if "cloud" in title_lower or "aws" in title_lower or "aliyun" in title_lower or "tencent" in title_lower:
@@ -207,25 +296,31 @@ def build_sections(items: List[DigestItem], top_10_ids: List[str] = None) -> Dic
                 sections["vendor_os"].append(item.id)
                 
         # ======= 3. Vulnerability Alerts (CVE, KEV, and Secondary Advisories like Seebug) =======
-        elif item.type in [ItemType.CVE, ItemType.KEV] or (item.type == ItemType.ADVISORY and item.source.lower() != "vendor"):
-            is_exploited = (item.risk and getattr(item.risk, "kev_listed", False)) or (item.summary and "exploited" in getattr(item.summary, "tags", []))
+        elif item.type in [ItemType.CVE, ItemType.KEV, ItemType.ADVISORY]:
+            is_exploited = bool(item.risk and (
+                item.risk.kev_listed or item.risk.known_exploited or item.risk.exploit_in_the_wild
+                or item.risk.exploit_maturity == "in_the_wild"
+            ))
             
             text_to_check = (item.title + " " + str(item.summary) + " " + str(item.topics)).lower()
-            is_supply_chain = "supply chain" in text_to_check or "供应链" in text_to_check or item.source in ["github_advisory", "osv"]
+            is_supply_chain = "supply chain" in text_to_check or "供应链" in text_to_check
             
-            is_research_poc = item.type == ItemType.ADVISORY and item.source.lower() != "vendor" # e.g. Seebug, 360CERT
+            is_research_poc = bool(item.risk and (item.risk.has_public_exploit or item.risk.exploit_references))
             
             if is_exploited:
                 sections["vuln_exploited"].append(item.id)
-            elif is_supply_chain:
-                sections["vuln_supply_chain"].append(item.id)
             elif is_research_poc:
                 sections["vuln_poc"].append(item.id)
+            elif is_supply_chain:
+                sections["vuln_supply_chain"].append(item.id)
             else:
                 sections["vuln_baseline"].append(item.id)
                 
         # ======= 4. Research / Papers =======
         elif item.type == ItemType.PAPER:
+            if item.is_backfill:
+                sections["research_history"].append(item.id)
+                continue
             title_lower = item.title.lower()
             
             if any(k in title_lower for k in ["ai ", " ai", "llm", "machine learning", "deep learning", "adversarial", "federated"]):
@@ -236,6 +331,8 @@ def build_sections(items: List[DigestItem], top_10_ids: List[str] = None) -> Dic
                 sections["research_crypto"].append(item.id)
             else:
                 sections["research_others"].append(item.id)
+        elif item.type == ItemType.DETECTION_RULE:
+            sections["detection_rules"].append(item.id)
             
     # Top 10
     if top_10_ids is not None:
@@ -295,6 +392,8 @@ def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str
     Find items in the top N list that only have fallback summaries,
     and process them with LLM on the fly to ensure high quality for the top picks.
     """
+    if not is_mock:
+        return top_items
     missing_items = [item for item in top_items if item.llm_summary.prompt_version == "fallback"]
     if not missing_items:
         return top_items
@@ -380,6 +479,7 @@ def get_diverse_top_10(items: List[DigestItem]) -> List[DigestItem]:
     
     selected = []
     seen_ids = set()
+    seen_entities = set()
     
     # 按照漏洞4、情报3、论文3的比例挑选最高分
     for category_list, limit in [(vulns, 4), (threats, 3), (papers, 3)]:
@@ -387,9 +487,10 @@ def get_diverse_top_10(items: List[DigestItem]) -> List[DigestItem]:
         for it in category_list:
             if count >= limit:
                 break
-            if it.id not in seen_ids:
+            if it.id not in seen_ids and entity_key(it) not in seen_entities:
                 selected.append(it)
                 seen_ids.add(it.id)
+                seen_entities.add(entity_key(it))
                 count += 1
                 
     # 如果名额没招满（比如某天没有足够的论文），用剩余最高分补齐至 10 条
@@ -397,8 +498,11 @@ def get_diverse_top_10(items: List[DigestItem]) -> List[DigestItem]:
     for it in remaining:
         if len(selected) >= 10:
             break
+        if entity_key(it) in seen_entities:
+            continue
         selected.append(it)
         seen_ids.add(it.id)
+        seen_entities.add(entity_key(it))
         
     # 重新按分数降序排列
     return sorted(selected, key=lambda x: x.recommendation_score, reverse=True)
@@ -411,32 +515,43 @@ def main():
     output_dir.mkdir(parents=True, exist_ok=True)
     
     # 1. 读取已经通过 LLM 总结好的 items
-    processed_items_map = load_processed_items(str(processed_dir))
-    existing_ids = set(processed_items_map.keys())
+    processed_items_map = load_processed_items(str(processed_dir), aggregate=False)
+    existing_ids = set(processed_items_map.keys()) | {a for i in processed_items_map.values() for a in i.aliases}
     
     # 1.5 读取漏网之鱼 (被 LLM limit 卡掉的 raw_items)，生成 fallback 结构
     missing_items = load_missing_raw_items(str(raw_dir), existing_ids)
     
     items = list(processed_items_map.values()) + missing_items
+    now = datetime.now(timezone.utc)
+    date_str = args.date or now.astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d")
     
     # 1.6 严格过滤，确保只展示“当日”数据 (过去 24-36 小时)
     # 论文类因为周末断层，放宽到 96 小时
-    now_utc = datetime.now(timezone.utc)
+    now_utc = now
     cutoff_date_default = now_utc - timedelta(hours=36)
     cutoff_date_paper = now_utc - timedelta(hours=96)
     
     valid_items = []
     for item in items:
+        if not article_is_valid(item):
+            continue
         # 有些特殊的 fallback 没有 published_at，或者确保只过滤确实有发表时间且较新的
-        if getattr(item, "published_at", None):
+        if item.published_at or item.updated_at:
             cutoff = cutoff_date_paper if item.type == ItemType.PAPER else cutoff_date_default
-            if item.published_at >= cutoff:
+            if item_time(item) >= cutoff:
                 valid_items.append(item)
         else:
-            # 没有明确发布时间的，保守起见默认放行 (可能是今天新产生的合成数据)
-            valid_items.append(item)
+            # 未知日期只展示近期首次发现，不把每天重新抓取当成新发表。
+            if item.first_seen_at and item.first_seen_at >= cutoff_date_default:
+                valid_items.append(item)
     
-    items = valid_items
+    # Published same-day items outlive the rolling window and retain evidence even for current IDs.
+    if args.previous_digest and args.previous_digest.exists():
+        previous = DailyDigest.model_validate_json(args.previous_digest.read_text())
+        if previous.date == date_str:
+            valid_items.extend(i for i in previous.items if article_is_valid(i))
+
+    items = aggregate_vulnerabilities(valid_items)
 
     # 1.8 Merge EPSS scores
     epss_map = load_epss_scores(str(raw_dir))
@@ -454,7 +569,9 @@ def main():
                 if item.risk.epss_score is None or max_epss > item.risk.epss_score:
                     item.risk.epss_score = max_epss
     
-    if not items:
+    health = json.loads(args.health_file.read_text()) if args.health_file and args.health_file.exists() else {}
+    if not items and not any(row.get("status") in {"success", "no_new", "not_found", "partial"}
+                             for row in health.get("sources", {}).values()):
         print("[ERROR] No current items found; preserving the previously published digest.")
         return 1
         
@@ -492,8 +609,10 @@ def main():
     hero = build_hero(ranked_items)
     
     # 5. 组装 DailyDigest
-    now = datetime.now(timezone.utc)
-    date_str = now.strftime("%Y-%m-%d")
+    model_count = sum(i.summary_status == "model" for i in ranked_items)
+    health["summary"] = {"input_count": len(ranked_items), "model_count": model_count,
+                         "excerpt_count": sum(i.summary_status == "excerpt" for i in ranked_items),
+                         "coverage": model_count / len(ranked_items) if ranked_items else 0}
     
     digest = DailyDigest(
         date=date_str,
@@ -501,19 +620,18 @@ def main():
         is_mock=is_mock,
         hero=hero,
         sections=sections,
-        items=ranked_items
+        items=ranked_items,
+        health=health,
     )
     
     # 6. 输出
     output_data = digest.model_dump(mode="json")
     
     date_path = output_dir / f"{date_str}.json"
-    with open(date_path, "w", encoding="utf-8") as f:
-        json.dump(output_data, f, ensure_ascii=False, indent=2)
+    atomic_json(date_path, output_data)
         
     latest_path = output_dir / "latest.json"
-    with open(latest_path, "w", encoding="utf-8") as f:
-        json.dump(output_data, f, ensure_ascii=False, indent=2)
+    atomic_json(latest_path, output_data)
 
     # 7. 更新 index.json
     index_path = output_dir / "index.json"
@@ -528,8 +646,7 @@ def main():
         index_data["dates"].append(date_str)
         index_data["dates"].sort(reverse=True)
         
-    with open(index_path, "w", encoding="utf-8") as f:
-        json.dump(index_data, f, ensure_ascii=False, indent=2)
+    atomic_json(index_path, index_data)
         
     print(f"[OK] Built daily digest with {len(ranked_items)} items.")
     print(f"  -> {date_path}")

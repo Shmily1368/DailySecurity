@@ -1,63 +1,103 @@
 name: Deploy Astro site to Pages
 
 on:
-  # 在推送到 main 分支时触发（主要是当 daily.yml 更新了 data/ 之后）
   push:
-    branches: ["main"]
-  # 当 Daily 数据流水线完成后触发，避免 GITHUB_TOKEN push 不触发后续 workflow
-  workflow_run:
-    workflows: ["Daily Security Radar Update"]
-    types: [completed]
-  # 允许手动触发
+    branches: [main]
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      ref:
+        required: true
+        type: string
 
-# 设置 GITHUB_TOKEN 的权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 允许一个并发的部署
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: false
 
 jobs:
   build:
-    # workflow_run 仅在上游成功时继续，push / 手动触发则直接运行
-    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 12
+    outputs:
+      sha: ${{ steps.revision.outputs.sha }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: "20"
+          ref: ${{ inputs.ref || github.sha }}
+      - name: Record immutable build revision
+        id: revision
+        run: |
+          bash scripts/setup_ci_git.sh
+          printf 'sha=%s\n' "$(./git-personal rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Validate the exact revision being published
+        run: |
+          pip install -r requirements-dev.txt
+          python -m pytest scripts/tests -q --tb=short
+          python scripts/check_pipeline.py
+          python scripts/publication.py validate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
           cache: npm
           cache-dependency-path: src/package-lock.json
-      - name: Install dependencies
-        run: |
-          cd src
-          npm ci
-      - name: Build Astro
-        run: |
-          cd src
-          npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - run: npm ci
+        working-directory: src
+      - run: npm run check
+        working-directory: src
+      - name: Build static site
+        env:
+          DATA_COMMIT: ${{ steps.revision.outputs.sha }}
+        run: npm run build
+        working-directory: src
+      - name: Verify size, pagination, paths and manifest
+        run: python scripts/check_site.py
+      - uses: actions/upload-pages-artifact@v3
         with:
           path: src/dist
 
   deploy:
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    needs: build
     runs-on: ubuntu-latest
-    name: Deploy
+    timeout-minutes: 6
     steps:
-      - name: Deploy to GitHub Pages
+      - name: Prevent an older build from replacing a newer revision
+        id: current
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUILD_SHA: ${{ needs.build.outputs.sha }}
+        run: |
+          current_sha="$(gh api "repos/${GITHUB_REPOSITORY}/commits/main" --jq .sha)"
+          if [ "$current_sha" = "$BUILD_SHA" ]; then
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::A newer main revision exists; this older artifact will not be deployed."
+          fi
+      - uses: actions/deploy-pages@v4
+        if: steps.current.outputs.deploy == 'true'
         id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/checkout@v4
+        if: steps.current.outputs.deploy == 'true'
+        with:
+          ref: ${{ needs.build.outputs.sha }}
+      - uses: actions/setup-python@v5
+        if: steps.current.outputs.deploy == 'true'
+        with:
+          python-version: '3.11'
+      - name: Verify the public manifest
+        if: steps.current.outputs.deploy == 'true'
+        env:
+          DATA_COMMIT: ${{ needs.build.outputs.sha }}
+        run: python scripts/publication.py verify

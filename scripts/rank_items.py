@@ -8,7 +8,7 @@ def calculate_scores(item: DigestItem) -> DigestItem:
     reasons = []
 
     # 1. CISA KEV: +10
-    if item.risk and (item.risk.kev_listed or str(item.risk.kev_status) == "listed"):
+    if item.risk and (item.risk.kev_listed or item.risk.kev_status == "listed"):
         risk_score += 10.0
         recommendation_score += 10.0
         reasons.append("CISA KEV 已收录 (+10)")
@@ -26,18 +26,7 @@ def calculate_scores(item: DigestItem) -> DigestItem:
         reasons.append(f"CVSS 严重风险 ({item.risk.cvss_score:.1f}) (+4)")
 
     # 4. 有补丁: +3
-    # 通过类型或 LLM 生成的建议字段判断
-    has_patch = False
-    if item.type == ItemType.ADVISORY:
-        has_patch = True
-    else:
-        text_to_check_patch = (
-            str(item.llm_summary.defense_advice_zh) + 
-            str(item.llm_summary.recommended_action_zh) + 
-            str(item.llm_summary.summary_zh)
-        )
-        if any(kw in text_to_check_patch for kw in ["补丁", "修复版本", "升级到", "已修复", "更新至", "安全更新"]):
-            has_patch = True
+    has_patch = bool(item.risk and item.risk.patch_status == "available")
             
     if has_patch:
         recommendation_score += 3.0
@@ -79,21 +68,14 @@ def calculate_scores(item: DigestItem) -> DigestItem:
 
     # 8. Source reliability: primary > secondary > community
     # primary: +3, secondary: +2, community: +1
-    primary_sources = ["nvd", "kev", "osv", "vendor", "cisa"]
-    secondary_sources = ["ghsa", "epss", "github"]
-    if item.source.lower() in primary_sources:
-        recommendation_score += 3.0
-        reasons.append("Primary 数据源 (+3)")
-    elif item.source.lower() in secondary_sources:
-        recommendation_score += 2.0
-        reasons.append("Secondary 数据源 (+2)")
-    else:
-        recommendation_score += 1.0
-        reasons.append("Community 数据源 (+1)")
+    quality = item.source_quality
+    quality_bonus = {"primary": 3.0, "secondary": 2.0, "community": 1.0}.get(quality, 0.0)
+    recommendation_score += quality_bonus
+    reasons.append(f"{quality.title()} 数据源 (+{quality_bonus:g})")
 
     # 9. 厂商公告特定加分
     if item.type == ItemType.ADVISORY:
-        if item.source.lower() == "vendor":
+        if item.source.lower() == "vendor" and quality == "primary":
             recommendation_score += 1.0
             reasons.append("官方一手公告 (+1 叠加到 Primary)")
         if item.cves and len(item.cves) > 0:
@@ -101,10 +83,10 @@ def calculate_scores(item: DigestItem) -> DigestItem:
             reasons.append("包含 CVE (+2)")
         if item.severity == Severity.CRITICAL:
             recommendation_score += 4.0
-            reasons.append("厂商评估 Critical (+4)")
+            reasons.append("来源评估 Critical (+4)")
         elif item.severity == Severity.HIGH:
             recommendation_score += 3.0
-            reasons.append("厂商评估 High (+3)")
+            reasons.append("来源评估 High (+3)")
             
         infra_keywords = ["云服务", "cloud", "vpn", "防火墙", "firewall", "网关", "gateway", "身份系统", "identity", "sso", "浏览器", "browser", "移动系统", "mobile", "ios", "android"]
         text_to_check_infra = (item.title + " " + str(item.summary) + " " + str(item.products)).lower()
@@ -127,7 +109,7 @@ def calculate_scores(item: DigestItem) -> DigestItem:
     # 10. 威胁情报特定加分
     if item.type == ItemType.THREAT_REPORT:
         # 一手安全厂商/官方 CERT 来源: +4 (Primary +3 的基础上加 1)
-        if item.source.lower() == "threat_intel": # threat_intel fetcher marks itself as primary in scripts
+        if item.source.lower() == "threat_intel" and quality == "primary":
             recommendation_score += 1.0
             reasons.append("官方/一手情报来源 (+1 叠加到 Primary)")
             
@@ -181,7 +163,7 @@ def calculate_scores(item: DigestItem) -> DigestItem:
             reasons.append("有明确防御建议 (+3)")
 
     # LLM 原生分数作为基底加成 (0~1 之间，不占主导，但能微调排序)
-    if item.llm_summary:
+    if item.summary_status == "model" and item.llm_summary.prompt_version != "fallback" and not item.llm_summary.refusal:
         llm_bonus = (item.llm_summary.novelty_score + item.llm_summary.actionability_score) / 2.0
         recommendation_score += llm_bonus
         reasons.append(f"LLM 评分加成 (+{llm_bonus:.1f})")

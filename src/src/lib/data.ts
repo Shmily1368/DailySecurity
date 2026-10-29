@@ -1,20 +1,13 @@
-/**
- * 数据访问层: 读取 data/processed/mock_digest.json (Phase 2 mock)
- * 以及 data/daily/*.json (后续管线产物)。
- *
- * 类型与 scripts/models.py / schemas/digest_item.schema.json 保持对齐。
- */
+/** Build-time access to a verified current generation and legacy daily archives. */
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // src/src/lib/data.ts -> 项目根 (DailySecurity/)
 const PROJECT_ROOT = path.resolve(__dirname, '..', '..', '..');
 const DAILY_DIR = path.join(PROJECT_ROOT, 'data', 'daily');
-const PROCESSED_DIR = path.join(PROJECT_ROOT, 'data', 'processed');
-
-// 当前 Phase 2 默认读取的 mock digest
 const LATEST_DIGEST_PATH = path.join(DAILY_DIR, 'latest.json');
 
 export type Severity = 'critical' | 'high' | 'medium' | 'low' | 'info';
@@ -48,6 +41,9 @@ export interface ExploitRef {
 }
 
 export interface RiskSignal {
+    severity?: Severity | null;
+    patch_status?: 'available' | 'unknown' | 'unavailable';
+    patch_references?: string[];
     cvss_score?: number | null;
     cvss_vector?: string | null;
     epss_score?: number | null;
@@ -79,9 +75,31 @@ export interface LlmSummary {
     novelty_score: number;
     actionability_score: number;
     confidence: number;
+    confidence_label?: 'abstract_only' | 'metadata_only' | 'with_references' | 'full_text' |
+        'source_confirmed' | 'single_source' | 'multi_source' | 'unverified' | null;
+    affected_assets?: string[] | null;
+    cves?: string[] | null;
+    limitations?: string[] | null;
+    threat_type?: string | null;
+    threat_actors?: string[] | null;
+    malware_families?: string[] | null;
+    affected_industries?: string[] | null;
+    affected_regions?: string[] | null;
+    attack_techniques?: string[] | null;
+    iocs_present?: boolean | null;
     refusal?: boolean;
     refusal_reason?: string | null;
     prompt_version?: string | null;
+}
+
+export interface SourceInfo {
+    source: string;
+    source_sub?: string | null;
+    source_name: string;
+    source_url: string;
+    native_id: string;
+    source_quality?: 'primary' | 'secondary' | 'community' | 'unknown';
+    link_kind?: 'article' | 'feed';
 }
 
 export interface DigestItem {
@@ -93,9 +111,20 @@ export interface DigestItem {
     source: string;
     source_name: string;
     source_url: string;
+    source_sub?: string | null;
+    source_quality?: SourceInfo['source_quality'];
+    aliases?: string[];
+    related_sources?: SourceInfo[];
+    summary_status?: 'legacy' | 'model' | 'excerpt' | 'refused' | 'mock';
 
-    published_at: string;
+    published_at: string | null;
     updated_at?: string | null;
+    fetched_at?: string | null;
+    first_seen_at?: string | null;
+    date_precision?: 'exact' | 'year' | 'unknown';
+    published_year?: number | null;
+    is_backfill?: boolean;
+    abstract_source?: string | null;
 
     cves?: string[];
     vendors?: string[];
@@ -134,6 +163,12 @@ export interface DailyDigest {
     };
     sections: Record<string, string[]>;
     items: DigestItem[];
+    health?: {
+        checked_at?: string;
+        status?: string;
+        sources?: Record<string, { status: string; count?: number; [key: string]: unknown }>;
+        llm?: { groups?: Record<string, unknown>[]; circuit?: Record<string, unknown> | null };
+    };
 }
 
 interface DailyIndex {
@@ -144,27 +179,78 @@ interface DailyIndex {
 export interface TopicEntry {
     topic: string;
     slug: string;
+    topics: string[];
 }
 
 let topicEntriesCache: TopicEntry[] | null = null;
 let topicSlugMapCache: Map<string, string> | null = null;
 
-/** 读取最新 digest (data/daily/latest.json)。 */
+interface Snapshot {
+    generation: string;
+    date: string;
+    generated_at: string;
+    digest: string;
+    index: string;
+    state: string;
+    sha256: string;
+}
+let snapshotCache: Snapshot | null | undefined;
+let latestCache: DailyDigest | undefined;
+let dailyIndexCache: DailyIndex | undefined;
+const dailyCache = new Map<string, DailyDigest>();
+
+function snapshotPath(relative: string): string {
+    const target = fs.realpathSync(path.join(PROJECT_ROOT, 'data', relative));
+    const generations = fs.realpathSync(path.join(PROJECT_ROOT, 'data', 'generations')) + path.sep;
+    if (!target.startsWith(generations)) throw new Error('Snapshot path escapes generations');
+    return target;
+}
+
+export function getSnapshot(): Snapshot | null {
+    if (snapshotCache !== undefined) return snapshotCache;
+    const pointer = path.join(PROJECT_ROOT, 'data', 'current.json');
+    if (!fs.existsSync(pointer)) return snapshotCache = null;
+    const current = JSON.parse(fs.readFileSync(pointer, 'utf8')) as Snapshot;
+    for (const key of ['digest', 'index', 'state'] as const) snapshotPath(current[key]);
+    const bytes = fs.readFileSync(snapshotPath(current.digest));
+    if (createHash('sha256').update(bytes).digest('hex') !== current.sha256) {
+        throw new Error('Current digest checksum mismatch');
+    }
+    snapshotCache = current;
+    return current;
+}
+
 export function getLatestDigest(): DailyDigest {
-    const raw = fs.readFileSync(LATEST_DIGEST_PATH, 'utf-8');
-    return JSON.parse(raw) as DailyDigest;
+    if (latestCache) return latestCache;
+    const snapshot = getSnapshot();
+    const raw = fs.readFileSync(snapshot ? snapshotPath(snapshot.digest) : LATEST_DIGEST_PATH, 'utf8');
+    latestCache = JSON.parse(raw) as DailyDigest;
+    if (snapshot && latestCache.date !== snapshot.date) throw new Error('Snapshot date mismatch');
+    return latestCache;
 }
 
 export function getDailyIndex(): DailyIndex {
-    const p = path.join(DAILY_DIR, 'index.json');
-    const raw = fs.readFileSync(p, 'utf-8');
-    return JSON.parse(raw) as DailyIndex;
+    if (dailyIndexCache) return dailyIndexCache;
+    const snapshot = getSnapshot();
+    const p = snapshot ? snapshotPath(snapshot.index) : path.join(DAILY_DIR, 'index.json');
+    dailyIndexCache = JSON.parse(fs.readFileSync(p, 'utf8')) as DailyIndex;
+    if (dailyIndexCache.dates.some(date => !/^\d{4}-\d{2}-\d{2}$/.test(date))) {
+        throw new Error('Invalid archive date');
+    }
+    dailyIndexCache.dates = [...new Set(dailyIndexCache.dates)].sort().reverse();
+    return dailyIndexCache;
 }
 
 export function getDailyDigest(date: string): DailyDigest {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error('Invalid date');
+    if (date === getLatestDigest().date) return getLatestDigest();
+    if (dailyCache.has(date)) return dailyCache.get(date)!;
     const p = path.join(DAILY_DIR, `${date}.json`);
-    const raw = fs.readFileSync(p, 'utf-8');
-    return JSON.parse(raw) as DailyDigest;
+    const digest = JSON.parse(fs.readFileSync(p, 'utf8')) as DailyDigest;
+    // Avoid retaining 614MB of duplicate history during a build.
+    if (dailyCache.size >= 2) dailyCache.delete(dailyCache.keys().next().value!);
+    dailyCache.set(date, digest);
+    return digest;
 }
 
 /** 根据 id 列表在 items 中查出条目, 保持顺序, 跳过找不到的 */
@@ -186,6 +272,22 @@ export function getAllDates(): string[] {
 // 构建期间 data/daily 是固定快照，聚合和索引只需计算一次。
 let allItemsCache: DigestItem[] | null = null;
 let topicItemsCache: Map<string, DigestItem[]> | null = null;
+const detailLocations = new Map<string, string>();
+export const PAGE_SIZE = 20;
+
+export function payloadChunk(date: string, page: number): { url: string; body: string } {
+    const items = getDailyDigest(date).items.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE);
+    const body = JSON.stringify(items);
+    const hash = createHash('sha256').update(body).digest('hex');
+    return { url: `/payload/${date}/${hash}.json.gz`, body };
+}
+
+export function getDetailLocation(id: string): string {
+    if (!allItemsCache) getAllItems();
+    const url = detailLocations.get(id);
+    if (!url) throw new Error(`Missing detail payload for ${id}`);
+    return url;
+}
 
 /** 聚合所有日期的所有条目 (供归档、主题分析用) */
 export function getAllItems(): DigestItem[] {
@@ -196,18 +298,21 @@ export function getAllItems(): DigestItem[] {
     for (const date of index.dates) {
         try {
             const digest = getDailyDigest(date);
-            for (const item of digest.items) {
+            for (let offset = 0; offset < digest.items.length; offset += PAGE_SIZE) {
+                const url = payloadChunk(date, offset / PAGE_SIZE).url;
+                for (const item of digest.items.slice(offset, offset + PAGE_SIZE)) {
                 if (!seen.has(item.id)) {
                     seen.add(item.id);
                     allItems.push(item);
+                    detailLocations.set(item.id, url);
+                }
                 }
             }
-        } catch (e) {
-            console.warn(`Failed to read digest for date ${date}`);
-        }
+        } catch (e) { throw new Error(`Invalid digest for date ${date}`, { cause: e }); }
     }
     // 按照 published_at 倒序
-    allItems.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
+    const time = (i: DigestItem) => Date.parse(i.published_at ?? i.first_seen_at ?? '') || 0;
+    allItems.sort((a, b) => time(b) - time(a));
     allItemsCache = allItems;
     return allItemsCache;
 }
@@ -219,11 +324,12 @@ function getTopicItemsMap(): Map<string, DigestItem[]> {
         const topics = new Set([
             ...(item.llm_summary?.tags ?? []),
             ...(item.topics ?? []),
-        ]);
+        ].map(topicKey));
         for (const topic of topics) {
-            const related = index.get(topic);
+            const key = topicKey(topic);
+            const related = index.get(key);
             if (related) related.push(item);
-            else index.set(topic, [item]);
+            else index.set(key, [item]);
         }
     }
     topicItemsCache = index;
@@ -231,12 +337,21 @@ function getTopicItemsMap(): Map<string, DigestItem[]> {
 }
 
 export function getTopicItems(topic: string): DigestItem[] {
-    return getTopicItemsMap().get(topic) ?? [];
+    return getTopicItemsMap().get(topicKey(topic)) ?? [];
 }
 
 /** 获取所有主题/标签的列表 */
 export function getAllTopics(): string[] {
-    return Array.from(getTopicItemsMap().keys()).sort();
+    return getAllTopicEntries().filter(entry => entry.slug === getTopicSlug(entry.topic))
+        .map(entry => entry.topic).sort();
+}
+
+function topicKey(topic: string): string { return topic.normalize('NFKC').trim().toLowerCase(); }
+
+function getRawTopics(): string[] {
+    return [...new Set(getAllItems().flatMap(item => [
+        ...(item.llm_summary?.tags ?? []), ...(item.topics ?? []),
+    ]))].sort();
 }
 
 function slugifyTopic(topic: string): string {
@@ -251,25 +366,63 @@ function slugifyTopic(topic: string): string {
 }
 
 function buildTopicEntries(): TopicEntry[] {
-    const topics = getAllTopics();
+    const topics = getRawTopics();
+    const registryFile = path.join(PROJECT_ROOT, 'config', 'topic-slugs.json');
+    const registry = fs.existsSync(registryFile) ? JSON.parse(fs.readFileSync(registryFile, 'utf8')) as {
+        legacy: [string, string][]; canonical: [string, string][];
+    } : null;
     const slugCounts = new Map<string, number>();
-
-    return topics.map((topic) => {
+    const legacy = new Map<string, { spellings: Set<string>; topics: Set<string> }>();
+    const families = new Map<string, string>();
+    for (const topic of topics) {
+        if (!families.has(topicKey(topic))) families.set(topicKey(topic), topic);
+    }
+    const aliases: [string, string][] = registry?.legacy ?? topics.map(topic => {
         const baseSlug = slugifyTopic(topic);
         const currentCount = (slugCounts.get(baseSlug) ?? 0) + 1;
         slugCounts.set(baseSlug, currentCount);
-
-        return {
-            topic,
-            slug: currentCount === 1 ? baseSlug : `${baseSlug}-${currentCount}`,
-        };
+        const slug = currentCount === 1 ? baseSlug : `${baseSlug}-${currentCount}`;
+        return [topic, slug];
     });
+    for (const [topic, slug] of aliases) {
+        const key = topicKey(slug);
+        const row = legacy.get(key) ?? { spellings: new Set(), topics: new Set() };
+        row.spellings.add(slug);
+        row.topics.add(topicKey(topic));
+        legacy.set(key, row);
+        if (!families.has(topicKey(topic))) families.set(topicKey(topic), topic);
+    }
+    const entries: TopicEntry[] = [];
+    topicSlugMapCache = new Map();
+    const stable = new Map(registry?.canonical ?? []);
+    const reserved = new Set([...legacy.keys(), ...stable.values()].map(topicKey));
+    for (const [key, topic] of families) {
+        const base = slugifyTopic(key);
+        const candidate = legacy.get(topicKey(base));
+        let slug = stable.get(key) ?? base;
+        if (!stable.has(key) && (registry || candidate && (candidate.topics.size !== 1 || !candidate.topics.has(key)))) {
+            slug = `${base}-${createHash('sha256').update(key).digest('hex').slice(0, 12)}`;
+            while (reserved.has(topicKey(slug))) slug += '-x';
+        }
+        reserved.add(topicKey(slug));
+        topicSlugMapCache.set(key, slug);
+        entries.push({ topic, slug, topics: [key] });
+    }
+    const paths = new Map(entries.map(entry => [entry.slug, entry]));
+    for (const [folded, row] of legacy) {
+        const related = [...row.topics];
+        const label = related.map(key => families.get(key) ?? key).join(' / ');
+        // Legacy collisions serve the same union at every case variant.
+        for (const slug of new Set([...row.spellings, folded])) {
+            paths.set(slug, { topic: label, slug, topics: related });
+        }
+    }
+    return [...paths.values()];
 }
 
 export function getAllTopicEntries(): TopicEntry[] {
-    if (!topicEntriesCache || !topicSlugMapCache) {
+    if (!topicEntriesCache) {
         topicEntriesCache = buildTopicEntries();
-        topicSlugMapCache = new Map(topicEntriesCache.map((entry) => [entry.topic, entry.slug]));
     }
     return topicEntriesCache;
 }
@@ -278,5 +431,9 @@ export function getTopicSlug(topic: string): string {
     if (!topicSlugMapCache) {
         getAllTopicEntries();
     }
-    return topicSlugMapCache?.get(topic) ?? slugifyTopic(topic);
+    return topicSlugMapCache?.get(topicKey(topic)) ?? slugifyTopic(topicKey(topic));
+}
+
+export function getEntryItems(entry: TopicEntry): DigestItem[] {
+    return [...new Map(entry.topics.flatMap(getTopicItems).map(item => [item.id, item])).values()];
 }

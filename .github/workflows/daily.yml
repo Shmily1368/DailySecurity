@@ -2,18 +2,22 @@ name: Daily Security Radar Update
 
 on:
   schedule:
-    # 每天 UTC 00:37 运行 (北京时间 08:37)
-    - cron: '37 0 * * *'
+    # 07:47 / 08:07 / 08:27 Beijing; late recovery at 09:07.
+    - cron: '47 23 * * *'
+    - cron: '7,27 0 * * *'
+    - cron: '7 1 * * *'
   workflow_dispatch:
     inputs:
-      force_mock:
-        description: 'Force mock mode (do not use LLM API)'
+      force_refresh:
+        description: 'Collect again even if today is already published'
         required: false
         type: boolean
         default: false
 
 permissions:
-  contents: write # 允许推送 data/ 到仓库
+  contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: daily-data-update
@@ -21,41 +25,46 @@ concurrency:
 
 jobs:
   update-data:
-    name: "Update Data Pipeline"
     runs-on: ubuntu-latest
-    timeout-minutes: 180
-    
+    timeout-minutes: 16
+    outputs:
+      data_sha: ${{ steps.commit.outputs.sha }}
+      deploy: ${{ steps.gate.outputs.deploy }}
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: 'pip'
-          
-      - name: Install Python dependencies
+          cache: pip
+      - name: Record the actual checkout revision
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          
-      - name: Collect, summarize and validate current data
+          bash scripts/setup_ci_git.sh
+          printf 'DATA_COMMIT=%s\n' "$(./git-personal rev-parse HEAD)" >> "$GITHUB_ENV"
+      - name: Check whether today is already published
+        id: gate
+        env:
+          FORCE_REFRESH: ${{ inputs.force_refresh }}
+        run: python scripts/publication.py gate
+      - name: Install dependencies
+        if: steps.gate.outputs.collect == 'true'
+        run: pip install -r requirements-dev.txt
+      - name: Offline regression
+        if: steps.gate.outputs.collect == 'true'
+        run: |
+          python -m pytest scripts/tests -q --tb=short
+          python scripts/check_pipeline.py
+      - name: Collect, summarize and atomically publish
+        if: steps.gate.outputs.collect == 'true'
         env:
           NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           LLM_BASE_URL: ${{ secrets.LLM_BASE_URL }}
           LLM_MODEL: ${{ secrets.LLM_MODEL }}
-          FORCE_MOCK: ${{ inputs.force_mock }}
-        run: |
-          if [ "$FORCE_MOCK" = "true" ]; then
-            python scripts/run_pipeline.py --mock
-          else
-            python scripts/run_pipeline.py
-          fi
-
-      - name: Upload pipeline diagnostics
+        run: python scripts/run_pipeline.py --source-timeout 180 --llm-timeout 120
+      - name: Upload diagnostics
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -63,11 +72,19 @@ jobs:
           path: data/tmp/pipeline/
           retention-days: 14
           if-no-files-found: ignore
-        
-      - name: Commit and push changes
+      - name: Commit the verified data and record its SHA
+        id: commit
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add data/
-          # 只有在有变更的情况下才提交
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(data): auto update daily security radar" && git push)
+          ./git-personal add data/
+          if ! ./git-personal diff --staged --quiet; then
+            ./git-personal commit -m "chore(data): publish verified daily security snapshot"
+            ./git-personal push origin HEAD:main
+          fi
+          printf 'sha=%s\n' "$(./git-personal rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: update-data
+    if: needs.update-data.outputs.deploy == 'true'
+    uses: ./.github/workflows/deploy.yml
+    with:
+      ref: ${{ needs.update-data.outputs.data_sha }}

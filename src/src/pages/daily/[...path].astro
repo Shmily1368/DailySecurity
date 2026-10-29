@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ItemCard from '../../components/ItemCard.astro';
+import { getAllDates, getDailyDigest, payloadChunk, PAGE_SIZE } from '../../lib/data';
+export function getStaticPaths() {
+  return getAllDates().flatMap(date => {
+    const digest = getDailyDigest(date);
+    const total = Math.max(1, Math.ceil(digest.items.length / PAGE_SIZE));
+    return Array.from({ length: total }, (_, index) => ({
+      params: { path: index ? `${date}/page/${index + 1}` : date },
+      props: { date, page: index + 1, total },
+    }));
+  });
+}
+const { date, page, total } = Astro.props;
+const digest = getDailyDigest(date);
+const items = digest.items.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+const detailUrl = payloadChunk(date, page - 1).url;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pageUrl = (p: number) => `${base}/daily/${date}${p === 1 ? '' : `/page/${p}`}`;
+---
+<BaseLayout title={`安全日报 - ${date} - Cyber Security Daily Radar`}>
+  <h1>{date} 归档</h1>
+  <p>{digest.hero.one_liner_zh}</p>
+  <a href={`${base}/daily`}>← 返回归档列表</a>
+  <nav class="page-nav" aria-label="分页">
+    {page > 1 && <a href={pageUrl(page - 1)}>上一页</a>}
+    <span>第 {page} / {total} 页 · {digest.items.length} 条</span>
+    {page < total && <a href={pageUrl(page + 1)}>下一页</a>}
+  </nav>
+  {items.length ? items.map(item => <ItemCard item={item} detailUrl={detailUrl} />) : <p class="muted">当日无新增条目。</p>}
+</BaseLayout>

@@ -173,19 +173,12 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> RawItem | None:
     date_added = entry.get("dateAdded")
     due_date = entry.get("dueDate")
 
-    published = _to_utc_datetime(date_added) or fetched_at
+    published = _to_utc_datetime(date_added)
+    date_added = published.strftime("%Y-%m-%d") if published else None
+    parsed_due = _to_utc_datetime(due_date)
+    due_date = parsed_due.strftime("%Y-%m-%d") if parsed_due else None
 
     known_ransomware = (entry.get("knownRansomwareCampaignUse") or "").strip() == "Known"
-
-    # KEV 按定义均已在野利用, 对应最高成熟度; 仅给一条 CISA 官方目录链接作为权威来源,
-    # 不抓取 / 不链接任何 PoC 代码页面。
-    exploit_refs: list[ExploitRef] = [
-        ExploitRef(
-            url="https://www.cisa.gov/known-exploited-vulnerabilities-catalog",  # type: ignore[arg-type]
-            source="cisa",
-            label="CISA KEV Catalog",
-        )
-    ]
 
     risk = RiskSignal(
         kev_status=KevStatus.LISTED,
@@ -195,9 +188,9 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> RawItem | None:
         known_ransomware=known_ransomware,
         known_exploited=True,  # KEV 条目按定义均已在野利用
         exploit_in_the_wild=True,  # 兼容字段同步
-        has_public_exploit=True,
+        has_public_exploit=False,
         exploit_maturity=ExploitMaturity.IN_THE_WILD,
-        exploit_references=exploit_refs,
+        exploit_references=[],
     )
 
     vendor = (entry.get("vendorProject") or "").strip()
@@ -209,6 +202,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> RawItem | None:
         source_name="CISA KEV",
         source_url=_cve_source_url(cve_id),  # type: ignore[arg-type]
         native_id=cve_id,
+        source_quality="primary",
     )
 
     references: list[str] = [
@@ -231,6 +225,8 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> RawItem | None:
         published_at=published,
         updated_at=None,
         fetched_at=fetched_at,
+        first_seen_at=fetched_at,
+        date_precision="exact" if published else "unknown",
         authors=[],
         affiliations=[],
         cves=[cve_id],
@@ -245,7 +241,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> RawItem | None:
 
 
 def normalize_feed(feed: dict, fetched_at: datetime) -> List[RawItem]:
-    vulns = feed.get("vulnerabilities") or []
+    vulns = feed.get("vulnerabilities") if isinstance(feed, dict) else None
     if not isinstance(vulns, list):
         raise KevFetchError("CISA KEV JSON 缺少 vulnerabilities 数组")
     items: List[RawItem] = []

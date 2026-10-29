@@ -2,6 +2,7 @@
 scripts/fetch_nvd.py
 
 抓取 NVD CVE API 2.0 最近 N 天发布或修改的 CVE, 归一为 RawItem 落盘。
+首次按 --days 初始化窗口, 后续从持久化水位连续续抓, 每轮共享翻页预算。
 
 数据源:
     https://services.nvd.nist.gov/rest/json/cves/2.0
@@ -51,6 +52,8 @@ from pathlib import Path
 from typing import Any, Iterable, List, Optional
 
 import httpx
+from fetch_result import FetchBatch
+from storage import atomic_json
 from tenacity import (
     RetryError,
     retry,
@@ -130,6 +133,8 @@ def fetch_nvd_window(
     api_key: Optional[str],
     *,
     url: str = NVD_API_URL,
+    start_index: int = 0,
+    max_pages: Optional[int] = None,
 ) -> list[dict]:
     """
     拉取 [start, end] 范围内所有 lastModified 的 CVE, 自动翻页。
@@ -146,9 +151,10 @@ def fetch_nvd_window(
         return ts.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.000")
 
     all_items: list[dict] = []
-    start_index = 0
     total_results: Optional[int] = None
     page_count = 0
+    page_limit = MAX_PAGES if max_pages is None else max_pages
+    errors = []
 
     with httpx.Client(
         timeout=HTTP_TIMEOUT,
@@ -165,8 +171,14 @@ def fetch_nvd_window(
             try:
                 payload = _http_get_json(client, url, params)
             except RetryError as e:
+                if all_items:
+                    errors.append({"error_type": type(e).__name__, "start_index": start_index})
+                    break
                 raise NvdFetchError(f"NVD 请求在重试后仍失败: {e}") from e
             except httpx.HTTPError as e:
+                if all_items:
+                    errors.append({"error_type": type(e).__name__, "start_index": start_index})
+                    break
                 raise NvdFetchError(f"NVD 请求失败: {e!r}") from e
             except json.JSONDecodeError as e:
                 raise NvdFetchError(f"NVD JSON 解析失败: {e}") from e
@@ -174,9 +186,11 @@ def fetch_nvd_window(
             if not isinstance(payload, dict):
                 raise NvdFetchError("NVD 返回非对象 JSON")
 
-            vulns = payload.get("vulnerabilities") or []
+            vulns = payload.get("vulnerabilities")
             if not isinstance(vulns, list):
                 raise NvdFetchError("NVD 返回 vulnerabilities 字段非数组")
+            if not isinstance(payload.get("totalResults"), int) or payload["totalResults"] < 0:
+                raise NvdFetchError("NVD totalResults missing or invalid")
 
             all_items.extend(vulns)
             page_count += 1
@@ -187,15 +201,19 @@ def fetch_nvd_window(
 
             start_index += len(vulns)
             # 翻页结束: 本次返回 0 条, 或者已经覆盖 totalResults，或者达到了最大的翻页次数
-            if not vulns or start_index >= (total_results or 0) or page_count >= MAX_PAGES:
-                if page_count >= MAX_PAGES and start_index < (total_results or 0):
-                    print(f"[WARN] 达到最大翻页限制 ({MAX_PAGES})。总数: {total_results}，已获取: {start_index}。", file=sys.stderr)
+            if not vulns or start_index >= (total_results or 0) or page_count >= page_limit:
+                if page_count >= page_limit and start_index < (total_results or 0):
+                    print(f"[WARN] 达到最大翻页限制 ({page_limit})。总数: {total_results}，已获取: {start_index}。", file=sys.stderr)
                 break
 
             # 主动限速, 避免触发 NVD 的 429
             time.sleep(sleep)
 
-    return all_items
+    partial = bool(errors) or start_index < (total_results or 0)
+    return FetchBatch(all_items, status="partial" if partial else "success",
+                      next_start_index=start_index if partial else None,
+                      total_results=total_results, errors=errors, page_count=page_count,
+                      window_start=start.isoformat(), window_end=end.isoformat())
 
 
 # ---------------------------------------------------------------------------
@@ -377,7 +395,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
     title = desc if len(desc) <= 180 else desc[:177] + "..."
     summary = desc[:4000] if desc else None
 
-    published = _parse_iso(cve.get("published")) or fetched_at
+    published = _parse_iso(cve.get("published"))
     updated = _parse_iso(cve.get("lastModified"))
 
     cvss_score, cvss_vector = _pick_cvss(cve)
@@ -394,6 +412,13 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         has_public_exploit=has_exploit,
         exploit_maturity=maturity,
         exploit_references=exploit_refs,
+        patch_status="available" if any(
+            "Patch" in (ref.get("tags") or []) for ref in cve.get("references", [])
+            if isinstance(ref, dict) and str(ref.get("url", "")).startswith("http")
+        ) else "unknown",
+        patch_references=[ref["url"] for ref in cve.get("references", [])
+                          if isinstance(ref, dict) and "Patch" in (ref.get("tags") or [])
+                          and str(ref.get("url", "")).startswith("http")],
     )
 
     source_info = SourceInfo(
@@ -402,6 +427,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         source_name="NVD",
         source_url=_nvd_detail_url(cve_id),  # type: ignore[arg-type]
         native_id=cve_id,
+        source_quality="primary",
     )
 
     topics = ["cve"] + cwes
@@ -416,6 +442,8 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         published_at=published,
         updated_at=updated,
         fetched_at=fetched_at,
+        first_seen_at=fetched_at,
+        date_precision="exact" if published else "unknown",
         authors=[],
         affiliations=[],
         cves=[cve_id],
@@ -441,7 +469,7 @@ def normalize(vulns: Iterable[dict], fetched_at: datetime) -> list[RawItem]:
         if item is not None:
             items.append(item)
     # 按 published_at 倒序, 便于后续排序 / 稳定 diff
-    items.sort(key=lambda x: (x.published_at, x.id), reverse=True)
+    items.sort(key=lambda x: (x.updated_at or x.published_at or x.fetched_at, x.id), reverse=True)
     return items
 
 
@@ -481,7 +509,7 @@ def main() -> int:
         "--days",
         type=int,
         default=DEFAULT_DAYS,
-        help=f"回溯天数 (默认 {DEFAULT_DAYS}, 最大 {MAX_DAYS})",
+        help=f"首次运行回溯天数 (默认 {DEFAULT_DAYS}, 最大 {MAX_DAYS}); 后续从水位续抓",
     )
     parser.add_argument(
         "--output",
@@ -494,6 +522,7 @@ def main() -> int:
         default=NVD_API_URL,
         help="自定义 NVD API URL (调试用)",
     )
+    parser.add_argument("--state-file", type=Path, default=Path("data/state/nvd_cursor.json"))
     args = parser.parse_args()
 
     days = max(1, min(args.days, MAX_DAYS))
@@ -506,26 +535,96 @@ def main() -> int:
     else:
         print("[INFO] 未设置 NVD_API_KEY, 使用公共限速 (5 req / 30s)", file=sys.stderr)
 
-    end = datetime.now(timezone.utc)
-    start = end - timedelta(days=days)
+    target_end = datetime.now(timezone.utc).replace(microsecond=0)
+    start = target_end - timedelta(days=days)
+    cursor = {}
+    completed_until = None
+    if args.state_file.exists():
+        try:
+            cursor = json.loads(args.state_file.read_text())
+            if not isinstance(cursor, dict):
+                raise ValueError("NVD cursor must be an object")
+            completed_until = _parse_iso(cursor.get("completed_until"))
+            if "completed_until" in cursor and completed_until is None:
+                raise ValueError("Invalid completed_until")
+            if cursor.get("next_start_index") is not None:
+                start = _parse_iso(cursor.get("window_start"))
+                end = _parse_iso(cursor.get("window_end"))
+                index = cursor["next_start_index"]
+                if (start is None or end is None or start >= end
+                        or type(index) is not int or index < 0
+                        or not isinstance(cursor.get("entries", []), list)):
+                    raise ValueError("Invalid pending NVD window")
+            elif completed_until is not None:
+                start = completed_until
+            else:
+                raise ValueError("NVD cursor has no coverage state")
+        except (OSError, ValueError) as exc:
+            print(f"[ERROR] 读取 NVD 状态失败: {exc}", file=sys.stderr)
+            return 1
 
-    print(
-        f"[INFO] 拉取 NVD CVE: lastMod {start.isoformat()} ~ {end.isoformat()}",
-        file=sys.stderr,
-    )
+    initial_start = start
+    remaining_pages = MAX_PAGES
+    pending = cursor if cursor.get("next_start_index") is not None else None
+    next_state = cursor
+    vulns = []
+    windows = []
+    errors = []
+    while remaining_pages > 0 and (pending is not None or start < target_end):
+        # Resume a frozen page window, then catch up from its end, never from now-days.
+        end = (_parse_iso(pending["window_end"]) if pending is not None
+               else min(target_end, start + timedelta(days=MAX_DAYS)))
+        index = pending["next_start_index"] if pending is not None else 0
+        entries = pending.get("entries", []) if pending is not None else []
+        print(f"[INFO] 拉取 NVD CVE: lastMod {start.isoformat()} ~ {end.isoformat()}",
+              file=sys.stderr)
+        try:
+            batch = fetch_nvd_window(start, end, api_key, url=args.url,
+                                    start_index=index, max_pages=remaining_pages)
+        except NvdFetchError as exc:
+            print(f"[ERROR] {exc}", file=sys.stderr)
+            if not windows:
+                return 1
+            errors.append({"error_type": type(exc).__name__, "window_start": start.isoformat(),
+                           "window_end": end.isoformat(), "start_index": index})
+            next_state = {"completed_until": completed_until.isoformat(),
+                          "window_start": start.isoformat(), "window_end": end.isoformat(),
+                          "next_start_index": index, "entries": entries}
+            break
 
-    try:
-        vulns = fetch_nvd_window(start, end, api_key, url=args.url)
-    except NvdFetchError as e:
-        print(f"[ERROR] {e}", file=sys.stderr)
-        return 1
+        window_entries = entries + list(batch)
+        vulns.extend(window_entries)
+        windows.append(batch.meta)
+        errors.extend(batch.meta["errors"])
+        remaining_pages -= batch.meta["page_count"]
+        if batch.meta["next_start_index"] is not None:
+            next_state = {**batch.meta, "entries": window_entries}
+            if completed_until is not None:
+                next_state["completed_until"] = completed_until.isoformat()
+            break
+        completed_until = end
+        next_state = {"completed_until": completed_until.isoformat()}
+        pending = None
+        start = end
+        if remaining_pages > 0 and start < target_end:
+            time.sleep(SLEEP_WITH_KEY if api_key else SLEEP_NO_KEY)
 
     fetched_at = datetime.now(timezone.utc)
     items = normalize(vulns, fetched_at)
 
     meta = {
-        "window_start": start.isoformat(),
-        "window_end": end.isoformat(),
+        **(windows[-1] if windows else {}),
+        "window_start": initial_start.isoformat(),
+        "window_end": windows[-1]["window_end"] if windows else start.isoformat(),
+        "target_end": target_end.isoformat(),
+        "completed_until": completed_until.isoformat() if completed_until is not None else None,
+        "next_start_index": next_state.get("next_start_index"),
+        "page_count": MAX_PAGES - remaining_pages,
+        "status": ("partial" if next_state.get("next_start_index") is not None
+                   or completed_until is not None and completed_until < target_end
+                   else "success" if vulns else "no_new"),
+        "errors": errors,
+        "windows": windows,
         "raw_count": len(vulns),
         "normalized_count": len(items),
         "fetched_at": fetched_at.isoformat(),
@@ -533,6 +632,7 @@ def main() -> int:
     }
 
     count = dump_items(items, args.output, meta)
+    atomic_json(args.state_file, next_state)
     print(f"[OK] 写入 {count} 条 CVE 到 {args.output}", file=sys.stderr)
     return 0
 

@@ -100,6 +100,8 @@ sources:
     source_quality: "secondary"
     parser: "html"
     url: "https://www.seebug.org/"
+    article_selector: "td.vul-title-wrapper a[href]"
+    article_url_pattern: "^/vuldb/ssvid-[0-9]+$"
     enabled: true
     rate_limit_seconds: 10
     tags: ["knownsec", "seebug", "vulnerability"]
@@ -223,6 +225,10 @@ sources:
     source_quality: "primary"
     parser: "html"
     url: "https://cloud.tencent.com/announce"
+    article_selector: ".msg-list-item .msg-list-con a[href]"
+    article_container_selector: ".msg-list-item"
+    article_url_pattern: "^/announce/detail/[0-9]+$"
+    article_title_pattern: "安全|漏洞|CVE|防护|security|vulnerability"
     enabled: true
     rate_limit_seconds: 5
     tags: ["tencent", "cloud", "advisory"]
@@ -420,7 +426,10 @@ sources:
     content_type: "vendor_advisory"
     source_quality: "primary"
     parser: "html"
-    url: "https://support.apple.com/en-us/HT201222"
+    url: "https://support.apple.com/en-us/100100"
+    article_selector: "table td:first-child a[href]"
+    article_url_pattern: "^/en-us/[0-9]+$"
+    article_date_selector: "td:last-child"
     enabled: true
     rate_limit_seconds: 5
     tags: ["apple", "ios", "macos"]
@@ -450,7 +459,11 @@ sources:
     content_type: "vendor_advisory"
     source_quality: "primary"
     parser: "html"
-    url: "https://source.android.com/docs/security/bulletin"
+    url: "https://source.android.com/docs/security/bulletin/asb-overview"
+    article_selector: ".devsite-article-body table td:first-child a[href]"
+    article_container_selector: ".devsite-article-body table tr"
+    article_url_pattern: "^/docs/security/bulletin/(?:[0-9]{4}/)?[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    article_date_selector: "td:nth-child(3)"
     enabled: true
     rate_limit_seconds: 5
     tags: ["android", "mobile"]
@@ -466,6 +479,9 @@ sources:
     source_quality: "primary"
     parser: "html"
     url: "https://www.mozilla.org/en-US/security/advisories/"
+    article_selector: "li.level-item a[href]"
+    article_url_pattern: "^/en-US/security/advisories/mfsa[0-9]{4}-[0-9]+/$"
+    article_date_heading: "h2"
     enabled: true
     rate_limit_seconds: 5
     tags: ["mozilla", "firefox", "browser"]
@@ -586,6 +602,11 @@ sources:
     source_quality: "primary"
     parser: "html"
     url: "https://www.oracle.com/security-alerts/"
+    article_selector: "table a[href]"
+    article_container_selector: "table tr"
+    article_url_pattern: "^/security-alerts/(cpu[a-z]+[0-9]{4}|alert-[a-z0-9-]+)\\.html$"
+    article_date_selector: "td:last-child"
+    article_date_field: "updated_at"
     enabled: true
     rate_limit_seconds: 5
     tags: ["oracle", "database", "java"]

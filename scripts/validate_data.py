@@ -32,9 +32,10 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from datetime import date
 from typing import Any, List, Tuple
 
-from jsonschema import Draft202012Validator
+from jsonschema import Draft202012Validator, FormatChecker
 from pydantic import TypeAdapter, ValidationError
 
 # 允许从 scripts/ 同级导入
@@ -154,7 +155,19 @@ def _validate_digest(data: Any) -> List[str]:
         return errors
 
     try:
-        DailyDigest.model_validate(data)
+        digest = DailyDigest.model_validate(data)
+        try:
+            date.fromisoformat(digest.date)
+        except ValueError:
+            errors.append("[business] date must be a real calendar date")
+        ids = {item.id for item in digest.items}
+        if len(ids) != len(digest.items):
+            errors.append("[business] duplicate item ids")
+        for section, members in digest.sections.items():
+            if len(set(members)) != len(members):
+                errors.append(f"[business] {section}: duplicate section members")
+            if set(members) - ids:
+                errors.append(f"[business] {section}: unknown item ids")
     except ValidationError as e:
         for err in e.errors():
             loc = ".".join(str(x) for x in err["loc"])
@@ -168,7 +181,7 @@ def _jsonschema_check(data: Any, schema: dict) -> List[str]:
     # raw_item schema 针对单条; digest schema 针对整包。通过 $id 判断。
     schema_id = schema.get("$id", "")
     if "raw_item" in schema_id:
-        validator = Draft202012Validator(schema)
+        validator = Draft202012Validator(schema, format_checker=FormatChecker())
         items = data
         if isinstance(data, dict) and "items" in data:
             items = data["items"]
@@ -192,13 +205,13 @@ def _jsonschema_check(data: Any, schema: dict) -> List[str]:
                 "$ref": "#/$defs/DigestItem",
                 "$defs": schema.get("$defs", {}),
             }
-            item_validator = Draft202012Validator(item_schema)
+            item_validator = Draft202012Validator(item_schema, format_checker=FormatChecker())
             for i, item in enumerate(data.get("items", [])):
                 for err in item_validator.iter_errors(item):
                     loc = "/".join(str(x) for x in err.absolute_path)
                     errors.append(f"[jsonschema] items[{i}].{loc}: {err.message}")
         else:
-            validator = Draft202012Validator(schema)
+            validator = Draft202012Validator(schema, format_checker=FormatChecker())
             for err in validator.iter_errors(data):
                 loc = "/".join(str(x) for x in err.absolute_path)
                 errors.append(f"[jsonschema] {loc or '<root>'}: {err.message}")
@@ -216,7 +229,7 @@ def validate_file(
 
     try:
         data = _load_json(path)
-    except json.JSONDecodeError as e:
+    except (json.JSONDecodeError, OSError) as e:
         return False, [f"JSON 解析失败: {e}"]
 
     if schema_name is None:
@@ -256,7 +269,7 @@ def _collect_all_files() -> List[Path]:
     # index 和来源诊断不是业务条目；显式指定诊断文件仍会校验失败。
     return [
         f for f in files
-        if f.name != "index.json" and not f.name.endswith("_errors.json")
+        if f.name != "index.json" and not f.name.endswith(("_errors.json", "_status.json"))
     ]
 
 

@@ -1,358 +1,513 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://cyber-daily-radar/schemas/raw_item.schema.json",
-    "title": "RawItem",
-    "description": "所有 fetcher 归一化后的统一原始结构",
-    "type": "object",
-    "additionalProperties": false,
-    "required": [
-        "id",
-        "type",
-        "source_info",
-        "title",
-        "published_at",
-        "fetched_at"
-    ],
-    "properties": {
-        "id": {
-            "type": "string",
-            "description": "全局唯一 ID, 约定为 {source}:{native_id}",
-            "minLength": 1
-        },
-        "type": {
-            "type": "string",
-            "enum": [
-                "paper",
-                "cve",
-                "kev",
-                "advisory",
-                "threat_report",
-                "detection_rule"
-            ]
-        },
-        "source_info": {
-            "$ref": "#/$defs/SourceInfo"
-        },
-        "title": {
-            "type": "string",
-            "minLength": 1
-        },
-        "summary": {
-            "type": [
-                "string",
-                "null"
-            ],
-            "maxLength": 4000
-        },
-        "raw_text": {
-            "type": [
-                "string",
-                "null"
-            ]
-        },
-        "published_at": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "updated_at": {
-            "type": [
-                "string",
-                "null"
-            ],
-            "format": "date-time"
-        },
-        "fetched_at": {
-            "type": "string",
-            "format": "date-time"
-        },
-        "authors": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "affiliations": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "cves": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "pattern": "^CVE-\\d{4}-\\d{4,}$"
-            }
-        },
-        "vendors": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "products": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "affected_versions": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "topics": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "lang": {
-            "type": "string",
-            "default": "en"
-        },
-        "risk": {
-            "oneOf": [
-                {
-                    "type": "null"
-                },
-                {
-                    "$ref": "#/$defs/RiskSignal"
-                }
-            ]
-        },
-        "threat_meta": {
-            "oneOf": [
-                {
-                    "type": "null"
-                },
-                {
-                    "$ref": "#/$defs/ThreatMeta"
-                }
-            ]
-        },
-        "references": {
-            "type": "array",
-            "items": {
-                "type": "string",
-                "format": "uri"
-            }
-        }
+  "$defs": {
+    "ExploitMaturity": {
+      "description": "Exploit 成熟度, 对齐 CVSS Temporal E (Exploit Code Maturity)。\n\n注意: 本字段只标注 \"存在性与成熟度\" 这一风险信号, 严禁在任何字段落地\nPoC 正文 / payload / 攻击步骤。",
+      "enum": [
+        "unreported",
+        "poc",
+        "functional",
+        "weaponized",
+        "in_the_wild"
+      ],
+      "title": "ExploitMaturity",
+      "type": "string"
     },
-    "$defs": {
-        "ThreatMeta": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "malware_families": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "threat_actors": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "affected_industries": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "affected_regions": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "attack_techniques": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "iocs_present": {
-                    "type": "boolean"
-                },
-                "confidence": {
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                }
-            }
+    "ExploitRef": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "type": [
+            "string",
+            "null"
+          ]
         },
-        "SourceInfo": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "source",
-                "source_name",
-                "source_url",
-                "native_id"
-            ],
-            "properties": {
-                "source": {
-                    "type": "string",
-                    "minLength": 1
-                },
-                "source_sub": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "source_name": {
-                    "type": "string",
-                    "minLength": 1
-                },
-                "source_url": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "native_id": {
-                    "type": "string",
-                    "minLength": 1
-                }
-            }
+        "source": {
+          "description": "来源标识 (exploit-db / github / vendor / cisa ...)",
+          "minLength": 1,
+          "type": "string"
         },
-        "RiskSignal": {
-            "type": "object",
-            "additionalProperties": false,
-            "properties": {
-                "cvss_score": {
-                    "type": [
-                        "number",
-                        "null"
-                    ],
-                    "minimum": 0,
-                    "maximum": 10
-                },
-                "cvss_vector": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "epss_score": {
-                    "type": [
-                        "number",
-                        "null"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "epss_percentile": {
-                    "type": [
-                        "number",
-                        "null"
-                    ],
-                    "minimum": 0,
-                    "maximum": 1
-                },
-                "kev_status": {
-                    "type": "string",
-                    "enum": [
-                        "listed",
-                        "not_listed",
-                        "unknown"
-                    ],
-                    "default": "unknown"
-                },
-                "kev_listed": {
-                    "type": "boolean",
-                    "default": false
-                },
-                "kev_date_added": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
-                },
-                "due_date": {
-                    "type": [
-                        "string",
-                        "null"
-                    ],
-                    "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
-                    "description": "CISA KEV 强制修复截止日期"
-                },
-                "known_ransomware": {
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "known_exploited": {
-                    "type": [
-                        "boolean",
-                        "null"
-                    ],
-                    "description": "是否已在野利用 (新契约字段)"
-                },
-                "exploit_in_the_wild": {
-                    "type": [
-                        "boolean",
-                        "null"
-                    ],
-                    "description": "兼容旧字段, 等价于 known_exploited"
-                },
-                "has_public_exploit": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "是否已存在公开 exploit / PoC (仅记录存在性)"
-                },
-                "exploit_maturity": {
-                    "type": "string",
-                    "enum": [
-                        "unreported",
-                        "poc",
-                        "functional",
-                        "weaponized",
-                        "in_the_wild"
-                    ],
-                    "default": "unreported",
-                    "description": "exploit 成熟度, 对齐 CVSS Temporal E"
-                },
-                "exploit_references": {
-                    "type": "array",
-                    "description": "仅存 URL + 元数据, 禁止落地 PoC 正文 / payload / 攻击步骤",
-                    "items": {
-                        "$ref": "#/$defs/ExploitRef"
-                    },
-                    "default": []
-                }
-            }
-        },
-        "ExploitRef": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "url",
-                "source"
-            ],
-            "properties": {
-                "url": {
-                    "type": "string",
-                    "format": "uri"
-                },
-                "source": {
-                    "type": "string",
-                    "minLength": 1,
-                    "description": "来源标识 (exploit-db / github / vendor / cisa ...)"
-                },
-                "label": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            }
+        "url": {
+          "format": "uri",
+          "type": "string"
         }
+      },
+      "required": [
+        "url",
+        "source"
+      ],
+      "type": "object"
+    },
+    "ItemType": {
+      "description": "条目类型, 覆盖论文与漏洞情报两大类。",
+      "enum": [
+        "paper",
+        "cve",
+        "kev",
+        "advisory",
+        "threat_report",
+        "detection_rule"
+      ],
+      "title": "ItemType",
+      "type": "string"
+    },
+    "KevStatus": {
+      "description": "KEV 状态枚举, 比单纯布尔更明确。",
+      "enum": [
+        "listed",
+        "not_listed",
+        "unknown"
+      ],
+      "title": "KevStatus",
+      "type": "string"
+    },
+    "RiskSignal": {
+      "additionalProperties": false,
+      "properties": {
+        "cvss_score": {
+          "maximum": 10,
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "cvss_vector": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "due_date": {
+          "description": "CISA KEV 强制修复截止日期",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "epss_percentile": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "epss_score": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "exploit_in_the_wild": {
+          "description": "兼容旧字段, 等价于 known_exploited",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "exploit_maturity": {
+          "default": "unreported",
+          "description": "exploit 成熟度, 对齐 CVSS Temporal E",
+          "enum": [
+            "unreported",
+            "poc",
+            "functional",
+            "weaponized",
+            "in_the_wild"
+          ],
+          "type": "string"
+        },
+        "exploit_references": {
+          "default": [],
+          "description": "仅存 URL + 元数据, 禁止落地 PoC 正文 / payload / 攻击步骤",
+          "items": {
+            "$ref": "#/$defs/ExploitRef"
+          },
+          "type": "array"
+        },
+        "has_public_exploit": {
+          "default": false,
+          "description": "是否已存在公开 exploit / PoC (仅记录存在性)",
+          "type": "boolean"
+        },
+        "kev_date_added": {
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "kev_listed": {
+          "default": false,
+          "type": "boolean"
+        },
+        "kev_status": {
+          "default": "unknown",
+          "enum": [
+            "listed",
+            "not_listed",
+            "unknown"
+          ],
+          "type": "string"
+        },
+        "known_exploited": {
+          "description": "是否已在野利用 (新契约字段)",
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "known_ransomware": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "patch_references": {
+          "items": {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Patch References",
+          "type": "array"
+        },
+        "patch_status": {
+          "default": "unknown",
+          "enum": [
+            "available",
+            "unknown",
+            "unavailable"
+          ],
+          "title": "Patch Status",
+          "type": "string"
+        },
+        "severity": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Severity"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "type": "object"
+    },
+    "Severity": {
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low",
+        "info"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceInfo": {
+      "additionalProperties": false,
+      "properties": {
+        "link_kind": {
+          "default": "article",
+          "enum": [
+            "article",
+            "feed"
+          ],
+          "title": "Link Kind",
+          "type": "string"
+        },
+        "native_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_name": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_quality": {
+          "default": "unknown",
+          "enum": [
+            "primary",
+            "secondary",
+            "community",
+            "unknown"
+          ],
+          "title": "Source Quality",
+          "type": "string"
+        },
+        "source_sub": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_url": {
+          "format": "uri",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "source_name",
+        "source_url",
+        "native_id"
+      ],
+      "type": "object"
+    },
+    "ThreatMeta": {
+      "additionalProperties": false,
+      "properties": {
+        "affected_industries": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "affected_regions": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "attack_techniques": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "confidence": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "iocs_present": {
+          "type": "boolean"
+        },
+        "malware_families": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "threat_actors": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
     }
+  },
+  "$id": "https://cyber-daily-radar/schemas/raw_item.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "所有 fetcher 归一化后的统一原始结构",
+  "properties": {
+    "abstract_source": {
+      "anyOf": [
+        {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Abstract Source"
+    },
+    "affected_versions": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "affiliations": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "authors": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "cves": {
+      "items": {
+        "pattern": "^CVE-\\d{4}-\\d{4,}$",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "date_precision": {
+      "default": "exact",
+      "enum": [
+        "exact",
+        "year",
+        "unknown"
+      ],
+      "title": "Date Precision",
+      "type": "string"
+    },
+    "fetched_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "first_seen_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "First Seen At"
+    },
+    "id": {
+      "description": "全局唯一 ID, 约定为 {source}:{native_id}",
+      "minLength": 1,
+      "type": "string"
+    },
+    "is_backfill": {
+      "default": false,
+      "title": "Is Backfill",
+      "type": "boolean"
+    },
+    "lang": {
+      "default": "en",
+      "type": "string"
+    },
+    "products": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "published_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "published_year": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Published Year"
+    },
+    "raw_text": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "references": {
+      "items": {
+        "format": "uri",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "risk": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/RiskSignal"
+        }
+      ]
+    },
+    "source_info": {
+      "$ref": "#/$defs/SourceInfo"
+    },
+    "summary": {
+      "maxLength": 4000,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "threat_meta": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "$ref": "#/$defs/ThreatMeta"
+        }
+      ]
+    },
+    "title": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "topics": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "type": {
+      "enum": [
+        "paper",
+        "cve",
+        "kev",
+        "advisory",
+        "threat_report",
+        "detection_rule"
+      ],
+      "type": "string"
+    },
+    "updated_at": {
+      "format": "date-time",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "vendors": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "type",
+    "source_info",
+    "title",
+    "published_at",
+    "fetched_at"
+  ],
+  "title": "RawItem",
+  "type": "object"
 }

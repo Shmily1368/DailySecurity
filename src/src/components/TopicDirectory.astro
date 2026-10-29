@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TopicTag from './TopicTag.astro';
+import { getAllTopics } from '../lib/data';
+export interface Props { page: number }
+const { page } = Astro.props;
+const topics = getAllTopics();
+const total = Math.ceil(topics.length / 100);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pageUrl = (p: number) => `${base}/topics${p === 1 ? '' : `/directory/${p}`}`;
+---
+<BaseLayout title={`主题目录 - 第 ${page} 页 - Cyber Security Daily Radar`}>
+  <h1>主题目录</h1>
+  <p class="muted">{topics.length} 个主题，按名称排序。</p>
+  <nav class="page-nav" aria-label="分页">
+    {page > 1 && <a href={pageUrl(page - 1)}>上一页</a>}
+    <span>第 {page} / {total} 页</span>
+    {page < total && <a href={pageUrl(page + 1)}>下一页</a>}
+  </nav>
+  <div class="topics">{topics.slice((page - 1) * 100, page * 100).map(topic => <TopicTag topic={topic} />)}</div>
+</BaseLayout>
+<style>.topics { display: flex; flex-wrap: wrap; gap: 1rem; padding: 1rem 0; }</style>

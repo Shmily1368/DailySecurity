@@ -7,6 +7,7 @@
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro build",
+        "check": "tsc --noEmit && tsx ../scripts/check_frontend.ts && node ../scripts/check_home.mjs",
         "preview": "astro preview",
         "astro": "astro"
     },
@@ -14,6 +15,8 @@
         "astro": "^4.16.0"
     },
     "devDependencies": {
+        "@types/node": "^20.19.43",
+        "tsx": "^4.23.15",
         "typescript": "^5.5.4"
     }
 }

@@ -1,9 +1,20 @@
 import yaml
+import re
+from urllib.parse import urlparse
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Union
 
 class SourceConfig:
     def __init__(self, data: Dict[str, Any]):
+        if not isinstance(data, dict) or any(not isinstance(data.get(k), str) or not data[k].strip()
+                                             for k in ("id", "name", "url")):
+            raise ValueError("Source requires nonempty id, name and url")
+        if not isinstance(data.get("enabled", False), bool):
+            raise ValueError(f"{data['id']}: enabled must be boolean")
+        if urlparse(data["url"]).scheme not in {"https", "http"}:
+            raise ValueError(f"{data['id']}: invalid source URL")
+        if data.get("source_quality", "secondary") not in {"primary", "secondary", "community", "unknown"}:
+            raise ValueError(f"{data['id']}: invalid source_quality")
         self.id: str = data["id"]
         self.name: str = data["name"]
         self.region: str = data.get("region", "GLOBAL")
@@ -18,6 +29,19 @@ class SourceConfig:
         self.notes: str = data.get("notes", "")
         self.expected_fields: List[str] = data.get("expected_fields", [])
         self.safety_policy: str = data.get("safety_policy", "strict_no_poc")
+        self.article_selector: Optional[str] = data.get("article_selector")
+        self.article_url_pattern: Optional[str] = data.get("article_url_pattern")
+        self.article_container_selector: Optional[str] = data.get("article_container_selector")
+        self.article_date_selector: Optional[str] = data.get("article_date_selector")
+        self.article_date_heading: Optional[str] = data.get("article_date_heading")
+        self.article_title_pattern: Optional[str] = data.get("article_title_pattern")
+        self.article_date_field: str = data.get("article_date_field", "published_at")
+        if not isinstance(self.article_date_field, str) or self.article_date_field not in {"published_at", "updated_at"}:
+            raise ValueError(f"{self.id}: invalid article_date_field")
+        if self.article_url_pattern:
+            re.compile(self.article_url_pattern)
+        if self.article_title_pattern:
+            re.compile(self.article_title_pattern)
 
 def load_sources(config_path: Union[str, Path]) -> List[SourceConfig]:
     """加载并解析指定的 YAML 配置文件。"""
@@ -28,9 +52,16 @@ def load_sources(config_path: Union[str, Path]) -> List[SourceConfig]:
     with open(path, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
         
+    if not isinstance(data, dict) or not isinstance(data.get("sources"), list):
+        raise ValueError("Source configuration must contain a sources array")
     sources = []
+    seen = set()
     for s_data in data.get("sources", []):
-        sources.append(SourceConfig(s_data))
+        source = SourceConfig(s_data)
+        if source.id in seen:
+            raise ValueError(f"Duplicate source id: {source.id}")
+        seen.add(source.id)
+        sources.append(source)
         
     return sources
 

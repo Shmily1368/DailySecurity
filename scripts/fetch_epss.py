@@ -269,6 +269,7 @@ def epss_entry_to_raw_item(entry: dict, fetched_at: datetime) -> RawItem | None:
         source_name="FIRST EPSS",
         source_url=f"https://www.first.org/epss/data_stats#search-{cve}",  # type: ignore[arg-type]
         native_id=cve,
+        source_quality="primary",
     )
 
     title = (

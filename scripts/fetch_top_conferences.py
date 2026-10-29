@@ -12,6 +12,7 @@ import re
 from datetime import datetime, timezone
 import time
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type, AsyncRetrying
+from storage import atomic_json
 
 STATE_FILE = Path("data/state/dblp_state.json")
 
@@ -25,9 +26,7 @@ def load_state():
     return None
 
 def save_state(seen_keys):
-    STATE_FILE.parent.mkdir(parents=True, exist_ok=True)
-    with open(STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump({"seen_keys": list(seen_keys)}, f)
+    atomic_json(STATE_FILE, {"seen_keys": sorted(seen_keys)})
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -40,8 +39,8 @@ def get_random_headers():
     return {"User-Agent": random.choice(USER_AGENTS)}
 
 @retry(
-    stop=stop_after_attempt(4),
-    wait=wait_exponential(multiplier=5, min=30, max=120),
+    stop=stop_after_attempt(2),
+    wait=wait_exponential(multiplier=2, min=2, max=10),
     retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError)),
     reraise=True
 )
@@ -62,7 +61,7 @@ def fetch_dblp_all(stream_id, year):
         return [h['info'] for h in hits if h.get('info', {}).get('type') == 'Conference and Workshop Papers']
     except Exception as e:
         print(f"[WARN] Error fetching {stream_id} {year} all: {e}")
-    return []
+        raise
 
 def fetch_dblp_random(stream_id, year, limit=5):
     # Fetch a random subset of papers from a specific year
@@ -88,8 +87,8 @@ def fetch_abstract_openalex(title: str) -> str:
 
 async def _safe_get_async(client: httpx.AsyncClient, url: str, timeout: float = 30.0) -> httpx.Response:
     async for attempt in AsyncRetrying(
-        stop=stop_after_attempt(4),
-        wait=wait_exponential(multiplier=5, min=30, max=120),
+        stop=stop_after_attempt(2),
+        wait=wait_exponential(multiplier=2, min=2, max=10),
         retry=retry_if_exception_type((httpx.HTTPError, httpx.ReadError)),
         reraise=True
     ):
@@ -99,18 +98,27 @@ async def _safe_get_async(client: httpx.AsyncClient, url: str, timeout: float = 
             res.raise_for_status()
             return res
 
-async def fetch_abstract_openalex_async(client: httpx.AsyncClient, title: str, sem: asyncio.Semaphore) -> str:
+class AbstractText(str):
+    source_url = None
+
+
+async def fetch_abstract_openalex_async(client: httpx.AsyncClient, title: str, sem: asyncio.Semaphore, year=None) -> str:
     """Fetch abstract from OpenAlex API based on paper title concurrently."""
     # 净化标题：去除非字母数字字符，仅保留空格，防止 OpenAlex API 400 报错
     clean_title = re.sub(r'[^a-zA-Z0-9\s]', ' ', title)
     clean_title = " ".join(clean_title.split())
-    url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(clean_title)}&select=title,abstract_inverted_index"
+    url = f"https://api.openalex.org/works?filter=title.search:{urllib.parse.quote(clean_title)}&select=id,title,publication_year,abstract_inverted_index"
     async with sem:
         try:
             res = await _safe_get_async(client, url, timeout=20.0)
             data = res.json()
             results = data.get("results", [])
             for r in results:
+                    normalized = lambda value: "".join(c for c in str(value).casefold() if c.isalnum())
+                    if normalized(r.get("title", "")) != normalized(title):
+                        continue
+                    if year and r.get("publication_year") != int(year):
+                        continue
                     idx = r.get("abstract_inverted_index")
                     if idx:
                         # Reconstruct the abstract from the inverted index
@@ -119,7 +127,9 @@ async def fetch_abstract_openalex_async(client: httpx.AsyncClient, title: str, s
                             for pos in positions:
                                 words[pos] = word
                         abstract = " ".join(words[i] for i in sorted(words.keys()))
-                        return abstract
+                        result = AbstractText(abstract)
+                        result.source_url = r.get("id")
+                        return result
         except Exception as e:
             print(f"[WARN] OpenAlex fetch failed for '{title[:30]}...': {e}")
     return ""
@@ -134,7 +144,7 @@ async def process_papers_async(papers, source_id, info, now):
             title = p.get('title', '')
             if isinstance(title, list):
                 title = title[0]
-            tasks.append(fetch_abstract_openalex_async(client, title, sem))
+            tasks.append(fetch_abstract_openalex_async(client, title, sem, p.get("year")))
             
         print(f"[INFO] 正在并发获取 {len(papers)} 篇论文的摘要...")
         abstracts = await asyncio.gather(*tasks)
@@ -156,7 +166,8 @@ def format_item(p, source_id, info, now, abstract=""):
     
     author_str = ", ".join(authors) if authors else "Unknown"
     title = p.get('title', '')
-    year_pub = p.get('year', '')
+    year_pub = str(p.get('year', ''))
+    published_year = int(year_pub) if year_pub.isdigit() else None
     
     ee = p.get('ee', '')
     if isinstance(ee, list):
@@ -168,14 +179,20 @@ def format_item(p, source_id, info, now, abstract=""):
         "source_info": {
             "source": "top_conferences",
             "source_sub": source_id,
+            "source_quality": "primary",
             "native_id": p.get('key', '').replace('/', '_'),
             "source_name": info['name'],
             "source_url": ee or info['url']
         },
         "title": title,
         "summary": abstract[:4000],
-        "published_at": now.isoformat(),
+        "published_at": None,
         "fetched_at": now.isoformat(),
+        "first_seen_at": now.isoformat(),
+        "date_precision": "year" if published_year else "unknown",
+        "published_year": published_year,
+        "is_backfill": bool(published_year and published_year < now.year),
+        "abstract_source": getattr(abstract, "source_url", None),
         "authors": authors
     }
 
@@ -184,9 +201,11 @@ def run():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", default="data/raw/top_conferences.json")
     parser.add_argument("--state-file", type=Path, default=STATE_FILE)
-    parser.add_argument("--limit-per-conf", type=int, default=5, help="Number of random fallback papers per conference")
+    parser.add_argument("--limit-per-conf", type=int, default=20, help="Per-run discovery limit per conference")
     parser.add_argument("--force", action="store_true", help="Force fetch ignoring state")
     args = parser.parse_args()
+    if args.limit_per_conf <= 0:
+        parser.error("--limit-per-conf must be positive")
     STATE_FILE = args.state_file
 
     conferences = {
@@ -196,56 +215,70 @@ def run():
         "ndss": {"stream": "conf/ndss", "name": "NDSS", "url": "https://www.ndss-symposium.org/"}
     }
 
-    current_year = datetime.now().year
-    
     # 1. Load state
     seen_keys = load_state() if not args.force else None
-    is_first_run = (seen_keys is None)
-    if is_first_run:
+    if seen_keys is None:
         seen_keys = set()
     
     results = []
+    statuses = []
     now = datetime.now(timezone.utc)
+    current_year = now.year
     
     for source_id, info in conferences.items():
         # Step A: Check current year and previous year for ALL papers
         all_recent_papers = []
-        all_recent_papers.extend(fetch_dblp_all(info['stream'], current_year))
-        all_recent_papers.extend(fetch_dblp_all(info['stream'], current_year - 1))
+        errors = []
+        for year in (current_year, current_year - 1):
+            try:
+                all_recent_papers.extend(fetch_dblp_all(info['stream'], year))
+            except Exception as exc:
+                errors.append({"year": year, "error_type": type(exc).__name__})
+        failed_years = [error["year"] for error in errors]
+        if len(failed_years) == 2:
+            statuses.append({"source_id": source_id, "status": "failed", "item_count": 0,
+                             "failed_years": failed_years, "errors": errors})
+            continue
         
         new_papers = []
+        batch_keys = set()
         for p in all_recent_papers:
             key = p.get('key', '')
-            if key and key not in seen_keys:
+            if key and key not in seen_keys and key not in batch_keys:
                 new_papers.append(p)
-                seen_keys.add(key)
+                batch_keys.add(key)
         
-        # If it's the very first run, we don't want to flood with 800+ papers,
-        # so we just mark them as seen, and act as if no "new" papers arrived today.
-        if is_first_run:
-            print("[INFO] First run: Initialized state with current papers.")
-            # Do not clear new_papers so we get something on the first run.
-            # Just limit it to a reasonable number to avoid flooding.
-            new_papers = new_papers[:20]
-            
+        pending_count = len(new_papers)
+        new_papers = new_papers[:args.limit_per_conf]
+        processed = []
+        processing_failed = False
         if len(new_papers) > 0:
-            print(f"[OK] Found {len(new_papers)} NEW papers for {info['name']}! Fetching all of them.")
-            results.extend(asyncio.run(process_papers_async(new_papers, source_id, info, now)))
+            print(f"[OK] Processing {len(new_papers)} of {pending_count} unseen papers for {info['name']}.")
+            try:
+                processed = asyncio.run(process_papers_async(new_papers, source_id, info, now))
+            except Exception as exc:
+                processing_failed = True
+                errors.append({"phase": "processing", "error_type": type(exc).__name__})
+            results.extend(processed)
+            emitted_ids = {item["id"] for item in processed}
+            emitted_keys = {p["key"] for p in new_papers
+                            if f"paper:{source_id}:{p['key'].replace('/', '_')}" in emitted_ids}
+            seen_keys.update(emitted_keys)
+            pending_count -= len(emitted_keys)
         else:
-            print(f"[INFO] No new papers for {info['name']}. Fetching {args.limit_per_conf} random fallback from past 5 years.")
-            # Fallback: pick a random year from the past 5 years
-            random_year = random.choice(range(current_year - 5, current_year + 1))
-            fallback_papers = fetch_dblp_random(info['stream'], random_year, limit=args.limit_per_conf)
-            results.extend(asyncio.run(process_papers_async(fallback_papers, source_id, info, now)))
-            # Note: We do NOT add fallback papers to seen_keys, so they can be randomly picked again.
-
-    # Save the updated state
-    save_state(seen_keys)
+            print(f"[INFO] No new papers for {info['name']}.")
+        status = ("failed" if processing_failed else "partial" if errors or pending_count
+                  else "success" if processed else "no_new")
+        statuses.append({"source_id": source_id, "status": status,
+                         "item_count": len(processed), "pending_count": pending_count,
+                         "failed_years": failed_years, "errors": errors})
 
     out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, ensure_ascii=False, indent=2)
+    atomic_json(out_path.with_name(out_path.stem + "_status.json"), statuses)
+    save_state(seen_keys)
     
     print(f"[OK] Total {len(results)} top conference papers saved to {out_path}")
 

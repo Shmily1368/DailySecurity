@@ -3,9 +3,9 @@ name: Offline pipeline checks
 on:
   push:
     branches: [main]
-    paths: ["scripts/**", "schemas/**", "requirements.txt", ".github/workflows/**"]
+    paths: ["scripts/**", "schemas/**", "requirements*.txt", ".github/workflows/**"]
   pull_request:
-    paths: ["scripts/**", "schemas/**", "requirements.txt", ".github/workflows/**"]
+    paths: ["scripts/**", "schemas/**", "requirements*.txt", ".github/workflows/**"]
   workflow_dispatch:
 
 permissions:
@@ -21,5 +21,6 @@ jobs:
         with:
           python-version: "3.11"
           cache: pip
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements-dev.txt
+      - run: python -m pytest scripts/tests -q --tb=short
       - run: python scripts/check_pipeline.py

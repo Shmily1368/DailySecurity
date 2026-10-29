@@ -115,6 +115,8 @@ sources:
     source_quality: "primary"
     parser: "html"
     url: "https://www.cert.org.cn/"
+    article_selector: "li a[href]"
+    article_url_pattern: "^/publish/main/44/[0-9]{4}/.+\\.html$"
     enabled: true
     rate_limit_seconds: 5
     tags: ["cncert", "government", "report"]
@@ -190,6 +192,9 @@ sources:
     source_quality: "community"
     parser: "html"
     url: "https://xz.aliyun.com/"
+    article_selector: ".hot_news2 li div a[href]"
+    article_container_selector: ".hot_news2 li"
+    article_url_pattern: "^/news/[0-9]+$"
     enabled: true
     rate_limit_seconds: 5
     tags: ["xianzhi", "community", "research"]
@@ -205,6 +210,9 @@ sources:
     source_quality: "community"
     parser: "html"
     url: "https://bbs.kanxue.com/"
+    article_selector: ".bbs_home_page_row_div a.bbs_home_page_list_title[href]"
+    article_container_selector: ".bbs_home_page_row_div"
+    article_url_pattern: "^/thread-[0-9]+\\.htm$"
     enabled: true
     rate_limit_seconds: 5
     tags: ["kanxue", "community", "reversing"]
@@ -312,7 +320,10 @@ sources:
     content_type: "threat_intel"
     source_quality: "primary"
     parser: "html"
-    url: "https://www.crowdstrike.com/blog/category/threat-intel-research/"
+    url: "https://www.crowdstrike.com/en-us/blog/category.counter-adversary-operations/"
+    article_selector: ".category_article .post_info h3 a[href]"
+    article_container_selector: ".category_article"
+    article_url_pattern: "^/(en-us/)?blog/[a-z0-9-]+/$"
     enabled: true
     rate_limit_seconds: 5
     tags: ["crowdstrike", "apt", "edr"]

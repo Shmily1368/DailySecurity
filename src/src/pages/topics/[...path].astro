@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ItemCard from '../../components/ItemCard.astro';
+import { getAllTopicEntries, getEntryItems, PAGE_SIZE } from '../../lib/data';
+export function getStaticPaths() {
+  return getAllTopicEntries().flatMap(entry => {
+    const items = getEntryItems(entry);
+    const total = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+    return Array.from({ length: total }, (_, index) => ({
+      params: { path: index ? `${entry.slug}/page/${index + 1}` : entry.slug },
+      props: { entry, page: index + 1, total, count: items.length, items: items.slice(index * PAGE_SIZE, (index + 1) * PAGE_SIZE) },
+    }));
+  });
+}
+const { entry, page, total, count, items } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const pageUrl = (p: number) => `${base}/topics/${encodeURIComponent(entry.slug)}${p === 1 ? '' : `/page/${p}`}`;
+---
+<BaseLayout title={`#${entry.topic} 主题 - Cyber Security Daily Radar`}>
+  <h1>#{entry.topic}</h1>
+  <p class="muted">共收录 {count} 条相关情报。{entry.topics.length > 1 && '此旧链接包含发生名称冲突的主题。'}</p>
+  <a href={`${base}/topics`}>← 返回所有主题</a>
+  <nav class="page-nav" aria-label="分页">
+    {page > 1 && <a href={pageUrl(page - 1)}>上一页</a>}
+    <span>第 {page} / {total} 页</span>
+    {page < total && <a href={pageUrl(page + 1)}>下一页</a>}
+  </nav>
+  {items.map(item => <ItemCard item={item} />)}
+</BaseLayout>

@@ -252,7 +252,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
     if summary_final and len(summary_final) > 4000:
         summary_final = summary_final[:4000]
 
-    published = _parse_iso(entry.get("published_at")) or fetched_at
+    published = _parse_iso(entry.get("published_at"))
     updated = _parse_iso(entry.get("updated_at"))
 
     # CVE
@@ -318,7 +318,14 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
     risk = RiskSignal(
         cvss_score=cvss_score,
         cvss_vector=cvss_vector,
+        severity=severity,
+        patch_status="available" if any(
+            vulnerability.get("first_patched_version")
+            for vulnerability in entry.get("vulnerabilities", []) if isinstance(vulnerability, dict)
+        ) else "unknown",
     )
+    if risk.patch_status == "available":
+        risk.patch_references = [source_url]
 
     source_info = SourceInfo(
         source="ghsa",
@@ -326,6 +333,7 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         source_name="GitHub Advisory",
         source_url=source_url,  # type: ignore[arg-type]
         native_id=ghsa_id,
+        source_quality="primary",
     )
 
     topics = ["advisory"] + ecosystems + cwes
@@ -344,6 +352,8 @@ def entry_to_raw_item(entry: dict, fetched_at: datetime) -> Optional[RawItem]:
         published_at=published,
         updated_at=updated,
         fetched_at=fetched_at,
+        first_seen_at=fetched_at,
+        date_precision="exact" if published else "unknown",
         authors=[],
         affiliations=[],
         cves=cves,
@@ -367,7 +377,8 @@ def normalize(entries: Iterable[dict], fetched_at: datetime) -> list[RawItem]:
             continue
         if item is not None:
             out.append(item)
-    out.sort(key=lambda x: (x.published_at, x.id), reverse=True)
+    out.sort(key=lambda x: (x.published_at or x.updated_at or x.first_seen_at or x.fetched_at,
+                            x.id), reverse=True)
     return out
 
 

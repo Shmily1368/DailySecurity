@@ -15,7 +15,7 @@ from __future__ import annotations
 
 from datetime import datetime
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, HttpUrl, field_validator, ValidationInfo
 
@@ -123,6 +123,8 @@ class SourceInfo(BaseModel):
     source_name: str = Field(..., description="人类可读来源名")
     source_url: HttpUrl = Field(..., description="原始条目链接")
     native_id: str = Field(..., description="源站原始 ID")
+    source_quality: Literal["primary", "secondary", "community", "unknown"] = "unknown"
+    link_kind: Literal["article", "feed"] = "article"
 
 
 class RiskSignal(BaseModel):
@@ -133,6 +135,9 @@ class RiskSignal(BaseModel):
     # CVSS
     cvss_score: Optional[float] = Field(default=None, ge=0.0, le=10.0)
     cvss_vector: Optional[str] = None
+    severity: Optional[Severity] = None
+    patch_status: Literal["available", "unknown", "unavailable"] = "unknown"
+    patch_references: List[HttpUrl] = Field(default_factory=list)
 
     # EPSS
     epss_score: Optional[float] = Field(
@@ -295,9 +300,14 @@ class RawItem(BaseModel):
     )
 
     # 时间
-    published_at: datetime
+    published_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
     fetched_at: datetime
+    first_seen_at: Optional[datetime] = None
+    date_precision: Literal["exact", "year", "unknown"] = "exact"
+    published_year: Optional[int] = None
+    is_backfill: bool = False
+    abstract_source: Optional[HttpUrl] = None
 
     # 论文侧
     authors: List[str] = Field(default_factory=list)
@@ -344,10 +354,21 @@ class DigestItem(BaseModel):
     source: str
     source_name: str
     source_url: HttpUrl
+    source_sub: Optional[str] = None
+    source_quality: Literal["primary", "secondary", "community", "unknown"] = "unknown"
+    aliases: List[str] = Field(default_factory=list)
+    related_sources: List[SourceInfo] = Field(default_factory=list)
+    summary_status: Literal["legacy", "model", "excerpt", "refused", "mock"] = "legacy"
 
     # 时间
-    published_at: datetime
+    published_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
+    fetched_at: Optional[datetime] = None
+    first_seen_at: Optional[datetime] = None
+    date_precision: Literal["exact", "year", "unknown"] = "exact"
+    published_year: Optional[int] = None
+    is_backfill: bool = False
+    abstract_source: Optional[HttpUrl] = None
 
     # 分类字段
     cves: List[str] = Field(default_factory=list)
@@ -406,13 +427,14 @@ class DailyDigest(BaseModel):
 
     model_config = ConfigDict(extra="forbid")
 
-    schema_version: str = "0.2.0"
+    schema_version: str = "0.3.0"
     date: str
     generated_at: datetime
     is_mock: bool = False
     hero: Hero
     sections: dict[str, List[str]] = Field(default_factory=dict)
     items: List[DigestItem]
+    health: dict = Field(default_factory=dict)
 
 
 __all__ = [

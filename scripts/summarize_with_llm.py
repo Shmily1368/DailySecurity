@@ -41,12 +41,15 @@ import argparse
 import json
 import os
 import sys
+import hashlib
+import time
 from datetime import datetime, timezone
 import concurrent.futures
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
 from pydantic import ValidationError
+from storage import atomic_json
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from models import (  # noqa: E402
@@ -61,7 +64,7 @@ from models import (  # noqa: E402
 )
 
 
-PROMPT_VERSION = "v2"
+PROMPT_VERSION = "v3"
 
 # 置信度标签 -> 数值映射 (供 LlmSummary.confidence 使用)
 CONFIDENCE_LABEL_SCORE = {
@@ -315,11 +318,11 @@ def render_user_prompt(item: RawItem) -> str:
         "source": item.source_info.source_name,
         "source_url": str(item.source_info.source_url) if item.source_info.source_url else "(未提供)",
         "published_at": item.published_at.isoformat() if item.published_at else "(未提供)",
-        "source_quality": "primary" if item.source_info.source in ("vendor", "nvd", "kev", "osv", "cisa", "threat_intel") else "secondary",
+        "source_quality": item.source_info.source_quality,
         "advisory_id": item.source_info.native_id,
         "vendors": ", ".join(item.vendors) if item.vendors else "(未提供)",
         "products": ", ".join(item.products) if item.products else "(未提供)",
-        "severity": getattr(item, "severity", "unknown"),
+        "severity": source_severity(item).value,
         "references": ", ".join(str(r) for r in item.references) if item.references else "(无)",
         "ecosystems": ", ".join(
             t for t in item.topics if t not in {"advisory", "cve"}
@@ -349,7 +352,11 @@ def render_user_prompt(item: RawItem) -> str:
         "known_ransomware": risk.known_ransomware,
     }
     try:
-        return tpl.format(**ctx)
+        return tpl.format(**ctx) + (
+            f"\n来源质量: {item.source_info.source_quality}; 子来源: {item.source_info.source_sub or '(未提供)'}"
+            f"\n公开PoC证据: {risk.has_public_exploit}; 补丁状态: {risk.patch_status}; CVSS: {risk.cvss_score}"
+            "\n来源质量非primary时不得声明官方一手确认。补丁状态unknown不代表已有补丁。"
+        )
     except KeyError:
         # 给最鲁棒的兜底 prompt
         return (
@@ -515,7 +522,7 @@ class OpenAiLlmClient(LlmClient):
     def __init__(self, api_key: str, model: Optional[str] = None):
         self.api_key = api_key
         self.model = model or os.environ.get("LLM_MODEL") or "gpt-4o-mini"
-        self.base_url = os.environ.get("LLM_BASE_URL")
+        self.base_url = (os.environ.get("LLM_BASE_URL") or "").strip() or None
         
         try:
             from openai import OpenAI  # type: ignore
@@ -523,8 +530,8 @@ class OpenAiLlmClient(LlmClient):
             self._client = OpenAI(
                 api_key=api_key,
                 base_url=self.base_url,
-                timeout=60.0,
-                max_retries=2,
+                timeout=float(os.environ.get("LLM_REQUEST_TIMEOUT", "20")),
+                max_retries=1,
             )
         except Exception as e:  # noqa: BLE001
             raise RuntimeError(
@@ -637,8 +644,8 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
     }
     data.setdefault("category", default_categories.get(item.type, Category.VULN.value))
     data.setdefault("severity_hint", Severity.INFO.value)
-    data.setdefault("novelty_score", 0.4)
-    data.setdefault("actionability_score", 0.4)
+    data.setdefault("novelty_score", 0.0)
+    data.setdefault("actionability_score", 0.0)
     data.setdefault("refusal", False)
     data.setdefault("refusal_reason", None)
     data.setdefault("impact_zh", None)
@@ -682,19 +689,32 @@ def build_llm_summary(item: RawItem, raw: dict[str, Any]) -> LlmSummary:
             data["severity_hint"] = data["severity"]
         data.pop("severity")
         
-    data["prompt_version"] = PROMPT_VERSION
+    data["prompt_version"] = "fallback" if raw.get("prompt_version") == "fallback" else PROMPT_VERSION
+    if data["prompt_version"] == "fallback" or data["refusal"]:
+        data["novelty_score"] = 0.0
+        data["actionability_score"] = 0.0
 
     return LlmSummary(**data)
+
+
+def source_severity(item: RawItem) -> Severity:
+    risk = item.risk or RiskSignal()
+    levels = [Severity.INFO, Severity.LOW, Severity.MEDIUM, Severity.HIGH, Severity.CRITICAL]
+    candidates = [_mock_severity(risk)]
+    if risk.severity:
+        candidates.append(risk.severity)
+    for tag in item.topics:
+        if tag.startswith("severity:") and tag.split(":", 1)[1] in {s.value for s in levels}:
+            candidates.append(Severity(tag.split(":", 1)[1]))
+    return max(candidates, key=levels.index)
 
 
 def build_digest_item(item: RawItem, summary: LlmSummary) -> DigestItem:
     """从 RawItem + LlmSummary 组装 DigestItem (不含 rank_score; 后续 rank 阶段填)。"""
     # 继承或推导字段
-    severity = getattr(item.risk, "severity", None) if item.risk else None
-    if severity is None:
-        severity = getattr(item, "severity", Severity("info"))
+    severity = source_severity(item)
     # override by llm hint if raw is info
-    if severity == Severity("info") and summary.severity_hint:
+    if severity == Severity.INFO and summary.severity_hint and summary.prompt_version != "fallback" and not summary.refusal:
         try:
             severity = Severity(summary.severity_hint.lower())
         except ValueError:
@@ -708,8 +728,18 @@ def build_digest_item(item: RawItem, summary: LlmSummary) -> DigestItem:
         source=item.source_info.source,
         source_name=item.source_info.source_name,
         source_url=item.source_info.source_url,
+        source_sub=item.source_info.source_sub,
+        source_quality=item.source_info.source_quality,
+        aliases=[item.source_info.native_id],
+        summary_status="refused" if summary.refusal else "excerpt" if summary.prompt_version == "fallback" else "model",
         published_at=item.published_at,
         updated_at=item.updated_at,
+        fetched_at=item.fetched_at,
+        first_seen_at=item.first_seen_at or item.fetched_at,
+        date_precision=item.date_precision,
+        published_year=item.published_year,
+        is_backfill=item.is_backfill,
+        abstract_source=item.abstract_source,
         cves=item.cves,
         vendors=item.vendors,
         products=item.products,
@@ -764,56 +794,86 @@ def summarize_all(
     client: LlmClient,
     *,
     limit: Optional[int] = None,
+    cache_path: Optional[Path] = None,
+    circuit_file: Optional[Path] = None,
+    budget_seconds: Optional[float] = None,
 ) -> list[DigestItem]:
-    items_list = list(items)
+    all_inputs = list(items)
+    items_list = all_inputs
     if limit is not None:
         items_list = items_list[:limit]
 
     digest_items: list[DigestItem] = []
-    n_ok = 0
-    n_skip = 0
-
-    def process_item(item: RawItem) -> Optional[DigestItem]:
+    stats = {"input_count": len(all_inputs), "selected_count": len(items_list),
+             "success_count": 0, "cached_count": 0, "refused_count": 0,
+             "skipped_count": len(all_inputs) - len(items_list), "errors": {}}
+    deadline = time.monotonic() + (budget_seconds if budget_seconds is not None else float(os.environ.get("LLM_BUDGET_SECONDS", "90")))
+    cache = {}
+    if cache_path and cache_path.exists():
         try:
-            raw_out = client.summarize(item)
-        except Exception as e:
-            sys.stderr.write(f"[WARN] [{client.name}] 单条摘要失败, 跳过 id={item.id}: {e!r}\n")
-            return None
-        
+            cache = json.loads(cache_path.read_text())
+        except (ValueError, OSError):
+            pass
+    stopped = bool(circuit_file and circuit_file.exists())
+    for item in items_list:
+        fingerprint = json.dumps({
+            "input": item.model_dump(mode="json", exclude={"fetched_at", "first_seen_at"}),
+            "model": str(getattr(client, "model", client.name)),
+            "prompt": SYSTEM_PROMPT + render_user_prompt(item), "version": PROMPT_VERSION,
+        }, ensure_ascii=False, sort_keys=True)
+        key = hashlib.sha256(fingerprint.encode()).hexdigest()
+        cached = cache.get(key)
+        if not cached and (stopped or time.monotonic() >= deadline):
+            stats["skipped_count"] += 1
+            error_type = "circuit_open" if stopped else "budget_exhausted"
+            stats["errors"][error_type] = stats["errors"].get(error_type, 0) + 1
+            continue
         try:
+            raw_out = cached["summary"] if cached else client.summarize(item)
             summary = build_llm_summary(item, raw_out)
+            if summary.refusal:
+                stats["refused_count"] += 1
+                stats["skipped_count"] += 1
+                continue
             digest = build_digest_item(item, summary)
-            return digest
-        except (ValidationError, ValueError, TypeError) as e:
-            sys.stderr.write(f"[WARN] LlmSummary 校验失败, 跳过 id={item.id}: {e}\n")
-            return None
-
-    # Determine max workers based on client type
-    max_workers = 1 if isinstance(client, MockLlmClient) else 10
-
-    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(process_item, item): item for item in items_list}
-        for future in concurrent.futures.as_completed(futures):
-            result = future.result()
-            if result is not None:
-                digest_items.append(result)
-                n_ok += 1
+            if isinstance(client, MockLlmClient):
+                digest.summary_status = "mock"
             else:
-                n_skip += 1
-
-    sys.stderr.write(f"[INFO] 摘要完成: {n_ok} 条成功, {n_skip} 条跳过\n")
-    # Sort to maintain original reverse chronological order
-    digest_items.sort(key=lambda x: (x.published_at, x.id), reverse=True)
+                cache[key] = {"summary": summary.model_dump(mode="json"), "saved_at": datetime.now(timezone.utc).isoformat()}
+            digest_items.append(digest)
+            stats["success_count"] += 1
+            stats["cached_count"] += int(bool(cached))
+        except Exception as exc:
+            code = getattr(exc, "status_code", None)
+            error_type = f"http_{code}" if code else type(exc).__name__
+            stats["errors"][error_type] = stats["errors"].get(error_type, 0) + 1
+            stats["skipped_count"] += 1
+            # Record only error type and item identity; never expose API response bodies.
+            sys.stderr.write(f"[WARN] 摘要失败: id={item.id}, error={error_type}\n")
+            if code in {400, 401, 402, 403, 404}:
+                stopped = True
+                if circuit_file:
+                    atomic_json(circuit_file, {"error_type": error_type})
+    if cache_path:
+        # Bounded cache keeps recent validated summaries; changed source evidence has a new fingerprint.
+        cache = dict(sorted(cache.items(), key=lambda row: row[1].get("saved_at", ""), reverse=True)[:2000])
+        atomic_json(cache_path, cache)
+    stats["coverage"] = stats["success_count"] / len(all_inputs) if all_inputs else 0.0
+    client.stats = stats
+    sys.stderr.write(f"[INFO] 摘要统计: {json.dumps(stats, ensure_ascii=False)}\n")
+    floor = datetime.min.replace(tzinfo=timezone.utc)
+    digest_items.sort(key=lambda x: (x.published_at or x.first_seen_at or floor, x.id), reverse=True)
     return digest_items
 
 
-def dump_digest_items(items: list[DigestItem], output: Path) -> int:
+def dump_digest_items(items: list[DigestItem], output: Path, stats: Optional[dict] = None) -> int:
     output.parent.mkdir(parents=True, exist_ok=True)
     payload = {
-        "schema_version": "0.2.0",
+        "schema_version": "0.3.0",
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "kind": "digest_items",
         "items": [x.model_dump(mode="json") for x in items],
+        "summary_stats": stats or {},
     }
     with output.open("w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=2)
@@ -841,8 +901,11 @@ def main() -> int:
     parser.add_argument(
         "--model",
         default=None,
-        help="OpenAI 模型名 (默认从 OPENAI_MODEL 或 gpt-4o-mini)",
+        help="OpenAI 模型名 (默认从 LLM_MODEL 或 gpt-4o-mini)",
     )
+    parser.add_argument("--cache-file", type=Path)
+    parser.add_argument("--circuit-file", type=Path)
+    parser.add_argument("--budget-seconds", type=float, default=90)
     args = parser.parse_args()
 
     # 选择客户端
@@ -881,8 +944,9 @@ def main() -> int:
         dump_digest_items([], args.output)
         return 0
 
-    digest = summarize_all(all_items, client, limit=args.limit)
-    count = dump_digest_items(digest, args.output)
+    digest = summarize_all(all_items, client, limit=args.limit, cache_path=args.cache_file,
+                           circuit_file=args.circuit_file, budget_seconds=args.budget_seconds)
+    count = dump_digest_items(digest, args.output, client.stats)
     print(f"[OK] 写入 {count} 条 DigestItem 到 {args.output}", file=sys.stderr)
     return 0
 

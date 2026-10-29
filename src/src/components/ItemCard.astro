@@ -1,21 +1,19 @@
 ---
 import type { DigestItem } from '../lib/data';
-import PaperCard from './PaperCard.astro';
-import VulnerabilityCard from './VulnerabilityCard.astro';
-import AdvisoryCard from './AdvisoryCard.astro';
-
-export interface Props {
-  item: DigestItem;
-}
-
-const { item } = Astro.props;
+import { preview } from '../lib/view';
+export interface Props { item: DigestItem; detailUrl?: string }
+const row = preview(Astro.props.item, Astro.props.detailUrl);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
-{item.type === 'paper' ? (
-  <PaperCard item={item} />
-) : item.type === 'cve' || item.type === 'kev' ? (
-  <VulnerabilityCard item={item} />
-) : item.type === 'advisory' ? (
-  <AdvisoryCard item={item} />
-) : (
-  <VulnerabilityCard item={item} />
-)}
+<article class="item-card" data-item-id={row.id} data-type={row.type}>
+  <div class="item-meta"><span>{row.typeLabel}</span><span>{row.date}</span><span>{row.severity.toUpperCase()}</span></div>
+  <h3><a href={row.url} target="_blank" rel="noopener noreferrer">{row.title}</a></h3>
+  {row.cves.length > 0 && <p class="identifiers">{row.cves.join(' · ')}</p>}
+  <p class="item-summary">{row.summary}</p>
+  <p class="item-meta">{row.summaryLabel} · {row.sources.join(' / ')}</p>
+  <div class="item-footer">
+    <div class="item-tags">{row.topics.map(t => <a href={`${base}/topics/${encodeURIComponent(t.slug)}`}>#{t.topic}</a>)}</div>
+    <button class="detail-button" data-detail={`${base}${row.detail}`} data-id={row.id} aria-expanded="false">查看详情</button>
+  </div>
+  <div class="item-detail" hidden></div>
+</article>
