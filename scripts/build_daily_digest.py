@@ -1,6 +1,7 @@
 import json
 import glob
 import os
+import re
 import sys
 from pathlib import Path
 from datetime import datetime, timezone, timedelta
@@ -23,13 +24,19 @@ def parse_args():
     parser.add_argument("--date", default=None, help="Publication date; default Asia/Shanghai")
     return parser.parse_args()
 
+def is_mock_or_test_file(filename: str) -> bool:
+    # "latest" contains "test"; only complete filename tokens identify tests.
+    name = filename.lower()
+    tokens = re.split(r"[._-]+", name)
+    return "mock" in name or any(token in {"test", "tests"} for token in tokens)
+
 def load_processed_items(input_dir: str, aggregate: bool = True) -> Dict[str, DigestItem]:
     items_map: Dict[str, DigestItem] = {}
     
     for filepath in glob.glob(f"{input_dir}/*.json"):
         # Ignore mock files or any test files when building production digest
         filename = Path(filepath).name
-        if "mock" in filename or "test" in filename or filename == "digest_items.json":
+        if is_mock_or_test_file(filename) or filename == "digest_items.json":
             print(f"[INFO] Skipping mock/test file: {filepath}")
             continue
             
@@ -178,7 +185,7 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
     for filepath in glob.glob(f"{raw_dir}/*.json"):
         # Ignore error files and EPSS scores (which are purely metadata to be merged)
         filename = Path(filepath).name
-        if filename.endswith(("_errors.json", "_status.json")) or "epss" in filename or "mock" in filename or "test" in filename:
+        if filename.endswith(("_errors.json", "_status.json")) or "epss" in filename or is_mock_or_test_file(filename):
             continue
             
         with open(filepath, "r", encoding="utf-8") as f:
@@ -209,7 +216,6 @@ def load_missing_raw_items(raw_dir: str, existing_ids: set) -> List[DigestItem]:
                     if not article_is_valid(raw_item) or item_time(raw_item) < cutoff_date:
                         continue
                         
-                    import re
                     clean_summary = re.sub(r'<[^>]+>', '', raw_item.summary) if raw_item.summary else raw_item.title
                     
                     # Create a minimal fallback LlmSummary
@@ -419,7 +425,7 @@ def process_missing_top_items_with_llm(top_items: List[DigestItem], raw_dir: str
     raw_map = {}
     for rf_path in raw_files:
         filename = Path(rf_path).name
-        if "mock" in filename or "test" in filename or "epss" in filename or filename.endswith("_errors.json"):
+        if is_mock_or_test_file(filename) or "epss" in filename or filename.endswith("_errors.json"):
             continue
         try:
             with open(rf_path, "r", encoding="utf-8") as f:

@@ -118,11 +118,12 @@ def run_builder(tmp_path, monkeypatch):
     raw_dir.mkdir()
     monkeypatch.setenv("LLM_MOCK", "0")
 
-    def run(*, processed=(), raw_items=(), previous=None, clock=BUILDER_NOW, health=None):
+    def run(*, processed=(), raw_items=(), previous=None, clock=BUILDER_NOW, health=None,
+            raw_filename="nvd_recent.json"):
         (processed_dir / "daily_digest.json").write_text(json.dumps({
             "items": [item.model_dump(mode="json") for item in processed],
         }))
-        (raw_dir / "nvd_recent.json").write_text(json.dumps({
+        (raw_dir / raw_filename).write_text(json.dumps({
             "items": [item.model_dump(mode="json") for item in raw_items],
         }))
         previous_path = tmp_path / "previous.json"
@@ -152,6 +153,43 @@ def run_builder(tmp_path, monkeypatch):
         return output
 
     return run
+
+
+@pytest.mark.parametrize("filename,source,kind", [
+    ("arxiv_latest.json", "arxiv", ItemType.PAPER),
+    ("github_advisory_latest.json", "ghsa", ItemType.ADVISORY),
+    ("osv_latest.json", "osv", ItemType.ADVISORY),
+])
+def test_latest_raw_sources_survive_missing_model_summaries(run_builder, filename, source, kind):
+    event = builder_raw(source, BUILDER_NOW - timedelta(hours=2), kind=kind)
+    output = run_builder(raw_items=[event], raw_filename=filename,
+                         clock=BUILDER_NOW + timedelta(days=1),
+                         health={"sources": {source: {"status": "success"}}})
+    assert [item["id"] for item in output["items"]] == [event.id]
+    assert output["items"][0]["summary_status"] == "excerpt"
+    assert output["sections"]["top_10"] == [event.id]
+    if kind == ItemType.PAPER:
+        research_ids = [item_id for section, ids in output["sections"].items()
+                        if section.startswith("research_") for item_id in ids]
+        assert research_ids == [event.id]
+
+
+def test_latest_processed_digest_is_loaded(tmp_path):
+    item = builder_summary(builder_raw("arxiv", BUILDER_NOW, kind=ItemType.PAPER))
+    (tmp_path / "paper_latest.json").write_text(json.dumps({
+        "items": [item.model_dump(mode="json")],
+    }))
+    assert set(m.load_processed_items(str(tmp_path), aggregate=False)) == {item.id}
+
+
+@pytest.mark.parametrize("filename", ["test_arxiv.json", "arxiv_test.json", "arxiv.mock.json"])
+def test_test_and_mock_files_remain_excluded(tmp_path, filename):
+    event = builder_raw("arxiv", datetime.now(timezone.utc), kind=ItemType.PAPER)
+    (tmp_path / filename).write_text(json.dumps({"items": [event.model_dump(mode="json")]}))
+    assert m.load_missing_raw_items(str(tmp_path), set()) == []
+    item = builder_summary(event)
+    (tmp_path / filename).write_text(json.dumps({"items": [item.model_dump(mode="json")]}))
+    assert m.load_processed_items(str(tmp_path), aggregate=False) == {}
 
 
 def test_processed_loading_can_defer_aggregation(tmp_path):
